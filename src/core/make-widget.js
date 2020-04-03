@@ -1,0 +1,57 @@
+import React from 'react'
+import { render } from 'react-dom'
+
+import {
+  appendParamsToUrl,
+  replaceExistingKeys,
+  noop,
+  omit
+} from './utils'
+import {
+  isMobile
+} from './utils/mobile-detection'
+import Widget from './views/widget'
+
+const defaultOptions = {
+  mode: 'embed-widget',
+  hideFooter: false,
+  hideHeaders: false,
+  hideScrollbars: false,
+  disableTracking: false,
+  onSubmit: noop
+}
+
+const queryStringKeys = {
+  mode: 'typeform-embed',
+  hideFooter: 'embed-hide-footer',
+  hideHeaders: 'embed-hide-headers',
+  opacity: 'embed-opacity',
+  disableTracking: 'disable-tracking'
+}
+
+export default function makeWidget (element, url, options) {
+  options = { ...defaultOptions, ...options }
+
+  const enabledFullscreen = isMobile(navigator.userAgent)
+
+  let queryStrings = replaceExistingKeys(options, queryStringKeys)
+
+  if (enabledFullscreen) {
+    queryStrings = {
+      // We don't set the opacity on the iframe when is mobile
+      ...omit('embed-opacity', queryStrings),
+      'add-placeholder-ws': true
+    }
+  }
+
+  const urlWithQueryString = appendParamsToUrl(url, queryStrings)
+
+  render(
+    <Widget
+      enabledFullscreen={enabledFullscreen}
+      options={options}
+      url={urlWithQueryString}
+    />,
+    element
+  )
+}

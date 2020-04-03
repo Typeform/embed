@@ -1,0 +1,80 @@
+.typeform-share.button:active {
+	background-image: -moz-linear-gradient(top, #e8e8e8, #dcdcdc);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e8e8e8), to(#dcdcdc));
+	background-image: -webkit-linear-gradient(top, #e8e8e8, #dcdcdc);
+	background-image: -o-linear-gradient(top, #e8e8e8, #dcdcdc);
+	background-image: linear-gradient(to bottom, #e8e8e8, #dcdcdc);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe8e8e8', endColorstr='#ffdcdcdc', GradientType=0);
+	-webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.6), 1px 1px 1px rgba(0, 0, 0, 0), 1px 1px 1px rgba(0, 0, 0, 0), 1px 1px 1px rgba(0, 0, 0, 0);
+	-moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.6), 1px 1px 1px rgba(0, 0, 0, 0), 1px 1px 1px rgba(0, 0, 0, 0), 1px 1px 1px rgba(0, 0, 0, 0);
+	box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.6), 1px 1px 1px rgba(0, 0, 0, 0), 1px 1px 1px rgba(0, 0, 0, 0), 1px 1px 1px rgba(0, 0, 0, 0);
+}
+
+.typeform-share.button:hover {
+	background-image: -moz-linear-gradient(top, #ffffff, #ededed);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ededed));
+	background-image: -webkit-linear-gradient(top, #ffffff, #ededed);
+	background-image: -o-linear-gradient(top, #ffffff, #ededed);
+	background-image: linear-gradient(to bottom, #ffffff, #ededed);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffededed', GradientType=0);
+	-webkit-box-shadow: 0 0 0 transparent, 1px 1px 1px rgba(0, 0, 0, 0), 1px 1px 1px rgba(0, 0, 0, 0), 1px 1px 1px rgba(0, 0, 0, 0);
+	-moz-box-shadow: 0 0 0 transparent, 1px 1px 1px rgba(0, 0, 0, 0), 1px 1px 1px rgba(0, 0, 0, 0), 1px 1px 1px rgba(0, 0, 0, 0);
+	box-shadow: 0 0 0 transparent, 1px 1px 1px rgba(0, 0, 0, 0), 1px 1px 1px rgba(0, 0, 0, 0), 1px 1px 1px rgba(0, 0, 0, 0);
+}
+
+.typeform-share.button {
+	-webkit-background-clip: border-box;
+	-webkit-background-origin: padding-box;
+	-webkit-background-size: auto;
+	-webkit-border-image: none;
+	-webkit-user-select: none;
+	background-attachment: scroll;
+	background-clip: border-box;
+	background-color: rgb(238, 238, 238);
+	background-image: -webkit-linear-gradient(top, rgb(243, 243, 243), rgb(225, 225, 225));
+	background-origin: padding-box;
+	background-repeat: repeat-x;
+	background-size: auto;
+	border-bottom-color: rgb(165, 165, 165);
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-left-color: rgb(177, 177, 177);
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-right-color: rgb(177, 177, 177);
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-top-color: rgb(207, 207, 207);
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	border-top-style: solid;
+	border-top-width: 1px;
+	color: rgb(85, 85, 85);
+	cursor: pointer;
+	display: block;
+	float: left;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 25px;
+	list-style-type: none;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	padding-bottom: 2px;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 3px;
+	position: relative;
+	text-align: left;
+	text-decoration:none !important;
+	text-shadow: none;
+	vertical-align: middle;
+}
+

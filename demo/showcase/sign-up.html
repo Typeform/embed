@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=300, initial-scale=1" name="viewport">
+    <title>Inicio de sesión</title>
+    <style>
+        /* latin-ext */
+
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 300;
+            src: local('Open Sans Light'), local('OpenSans-Light'), url(//fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTYjoYw3YTyktCCer_ilOlhE.woff2) format('woff2');
+            unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+        }
+        /* latin */
+
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 300;
+            src: local('Open Sans Light'), local('OpenSans-Light'), url(//fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTRampu5_7CjHW5spxoeN3Vs.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+        }
+    </style>
+    <style>
+        html,
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            position: absolute;
+            height: 100%;
+            min-width: 100%;
+            font-size: 13px;
+            color: #404040;
+            direction: ltr;
+            -webkit-text-size-adjust: none;
+        }
+
+        a,
+        a:hover,
+        a:visited {
+            color: #427fed;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 20px;
+            color: #262626;
+            margin: 0 0 15px;
+            font-weight: normal;
+        }
+
+        h2 {
+            font-size: 14px;
+            color: #262626;
+            margin: 0 0 15px;
+            font-weight: bold;
+        }
+
+        .wrapper {
+            position: relative;
+            min-height: 100%;
+        }
+
+        .content {
+            padding: 0 44px;
+        }
+
+        .main {
+            padding-bottom: 100px;
+        }
+        /* For modern browsers */
+
+        .clearfix:before,
+        .clearfix:after {
+            content: "";
+            display: table;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+        /* For IE 6/7 (trigger hasLayout) */
+
+        .clearfix {
+            zoom: 1;
+        }
+
+        .typoogle-header-bar {
+            height: 71px;
+            border-bottom: 1px solid #e5e5e5;
+            overflow: hidden;
+        }
+
+        .header .logo {
+            background-image: url(https://ssl.gstatic.com/accounts/ui/logo_1x.png);
+            background-size: 116px 38px;
+            background-repeat: no-repeat;
+            margin: 17px 0 0;
+            float: left;
+            height: 38px;
+            width: 116px;
+        }
+
+        .header .logo-w {
+            background-image: url(https://ssl.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_112x36dp.png);
+            background-size: 112px 36px;
+            margin: 21px 0 0;
+        }
+
+        .header .secondary-link {
+            margin: 28px 0 0;
+            float: right;
+        }
+
+        .header .secondary-link a {
+            font-weight: normal;
+        }
+
+        .typoogle-header-bar.centered {
+            border: 0;
+            height: 108px;
+        }
+
+        .typoogle-header-bar.centered .header .logo {
+            float: none;
+            margin: 40px auto 30px;
+            display: block;
+        }
+
+        .typoogle-header-bar.centered .header .secondary-link {
+            display: none
+        }
+
+        .typoogle-footer-bar {
+            position: absolute;
+            bottom: 0;
+            height: 35px;
+            width: 100%;
+            border-top: 1px solid #e5e5e5;
+            overflow: hidden;
+        }
+
+        .footer {
+            padding-top: 7px;
+            font-size: .85em;
+            white-space: nowrap;
+            line-height: 0;
+        }
+
+        .footer ul {
+            float: left;
+            max-width: 80%;
+            min-height: 16px;
+            padding: 0;
+        }
+
+        .footer ul li {
+            color: #737373;
+            display: inline;
+            padding: 0;
+            padding-right: 1.5em;
+        }
+
+        .footer a {
+            color: #737373;
+        }
+
+        .banner {
+            text-align: center;
+        }
+
+        .card {
+            background-color: #f7f7f7;
+            margin: 0 auto 25px;
+            width: 304px;
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .card>*:first-child {
+            margin-top: 0;
+        }
+
+        .secondary-actions {
+            text-align: center;
+        }
+    </style>
+    <style>
+        .banner h1 {
+            font-family: 'Open Sans', arial;
+            -webkit-font-smoothing: antialiased;
+            color: #555;
+            font-size: 42px;
+            font-weight: 300;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .banner h2 {
+            font-family: 'Open Sans', arial;
+            -webkit-font-smoothing: antialiased;
+            color: #555;
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 45px;
+        }
+
+        .signin-card {
+            width: 550px;
+            height: 100%;
+        }
+
+        .one-typoogle p {
+            margin: 0 0 10px;
+            color: #555;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .one-typoogle p.create-account,
+        .one-typoogle p.switch-account {
+            margin-bottom: 30px;
+        }
+
+        .one-typoogle .logo-strip {
+            background-repeat: no-repeat;
+            display: block;
+            margin: 10px auto;
+            background-image: url(https://ssl.gstatic.com/accounts/ui/wlogostrip_230x17_1x.png);
+            background-size: 230px 17px;
+            width: 230px;
+            height: 17px;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+        <div class="typoogle-header-bar  centered">
+            <div class="header content clearfix">
+                <div class="logo logo-w"></div>
+            </div>
+        </div>
+        <div class="main content clearfix">
+            <div class="banner">
+                <h1>
+                    Una cuenta para todo Typoogle.
+                </h1>
+                <h2 class="hidden-small">
+                    Inicia sesión con tu cuenta de Typoogle
+                </h2>
+            </div>
+            <div class="main-content no-name">
+                <div class="card signin-card pre-shift no-name">
+                  <div
+                    class="typeform-widget"
+                    style="height: 365px; padding-left: 3%; width: 96%;"
+                    data-url="//admin.typeform.com/to/I5E6Sw"
+                    data-hide-footer
+                  ></div>
+                </div>
+                <div class="card-mask-wrap no-name">
+                    <div class="card-mask">
+                        <div class="one-typoogle">
+                            <p class="create-account">
+                                <span id="link-signup">
+                                  <a href="#">
+                                    Crear cuenta
+                                  </a>
+                                </span>
+                            </p>
+                            <p class="tagline">
+                                Una sola cuenta de Typoogle para todos los servicios de Typoogle
+                            </p>
+                            <div class="logo-strip"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="typoogle-footer-bar">
+            <div class="footer content clearfix">
+                <ul id="footer-list">
+                    <li>
+                        <a href="#" target="_blank">
+                          Acerca de Typoogle
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                          Privacidad
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                          Condiciones
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                          Ayuda
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </div>
+
+      <script type="text/javascript" src="./../embed.js"></script>
+      <script type="text/javascript" src="./../demo.js"></script>
+    </body>
+</html>

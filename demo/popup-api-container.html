@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Add the title of your typeform below-->
+    <title>Popup example</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <!--CSS styles that ensure your typeform takes up all the available screen space (DO NOT EDIT!)-->
+    <style type="text/css">
+      body, html {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      body {
+        margin: 20px;
+      }
+      #open-popup-2 {
+        padding: 10px 5px;
+        font-size: 16px;
+      }
+      #container {
+        width: 800px;
+        height: 600px;
+        margin: 0 auto;
+        border: 1px solid #333;
+        border-radius: 2px;
+        position: relative;
+        padding: 10px;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        background: red;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <a id="open-popup-1" href="#">Click me to open a right drawer popup!</a>
+    <br>
+    <p>This button opens a popup in a container</p>
+    <button id="open-popup-2">Open popup</button>
+
+    <div id="container">
+      <h1>Lorem ipsum dolor!</h1>
+      <br>
+      <a href="http://www.typeform.com">This is Beardy's home</a>
+      <br><br>
+      <div class="box"></div>&nbsp;
+      <div class="box"></div>&nbsp;
+      <div class="box"></div>&nbsp;
+      <div class="box"></div>&nbsp;
+      <div class="box"></div>&nbsp;
+      <br>
+      <span>Lorem</span><br>
+      <span>ipsum</span><br>
+      <span>dolor</span><br>
+      <span>sit</span><br>
+      <span>amet</span><br>
+      <span>consectetur</span><br>
+      <span>adipiscing</span><br>
+      <span>elit</span><br>
+      <br>
+      <a id="open-popup-3" href="#">Click me to open a left drawer popup in here!</a>
+    </div>
+
+    <script type="text/javascript" src="embed.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
+    <script>
+      document.getElementById('open-popup-1').addEventListener('click', function () {
+        window.typeformEmbed.makePopup('//admin.typeform.com/to/crwuex', {
+          mode: 'drawer_right',
+          autoOpen: true,
+          drawerWidth: 600,
+          onSubmit: () => {
+            alert('open-popup-1 has been submitted')
+          }
+        })
+      })
+
+      document.getElementById('open-popup-2').addEventListener('click', function () {
+        const container = document.getElementById('container')
+
+        window.typeformEmbed.makePopup('//admin.typeform.com/to/crwuex', {
+          mode: 'popup',
+          autoOpen: true,
+          container: container,
+          onSubmit: () => {
+            alert('open-popup-2 has been submitted')
+          }
+        })
+      })
+
+      document.getElementById('open-popup-3').addEventListener('click', function () {
+        const container = document.getElementById('container')
+
+        window.typeformEmbed.makePopup('//admin.typeform.com/to/crwuex', {
+          mode: 'drawer_left',
+          autoOpen: true,
+          container: container,
+          drawerWidth: 400,
+          onSubmit: () => {
+            alert('open-popup-3 has been submitted')
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

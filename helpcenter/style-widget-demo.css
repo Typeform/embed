@@ -1,0 +1,90 @@
+body {
+  margin: 5%;
+  background-color: #ECEDE6;
+}
+
+body.typeform-default {
+  width: 920px;
+  margin: 0 auto;
+  padding: 60px;
+}
+body.typeform-default .typeform-widget {
+  width: 920px;
+}
+h1 {
+  letter-spacing: -0.02em;
+  font-family: "Georgia", "Times";
+  font-weight: normal;
+  text-shadow: #999999 1px 1px 2px;
+  margin: 0;
+  font-size: 29px;
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 400px) {
+  h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+}
+@media screen and (min-width: 600px) {
+  h1 {
+    font-size: 59px;
+    margin-bottom: 40px;
+  }
+}
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 74px;
+    margin-bottom: 30px;
+  }
+}
+.typeform-default h1 {
+  font-size: 74px;
+  margin-bottom: 30px;
+}
+h1 span {
+  font-family: "Goudy Old Style", Baskerville, "Palatino Linotype", Palatino, serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.typeform-widget {
+  position: relative;
+  width: 100%;
+  margin-bottom: 5px;
+}
+@media screen and (min-width: 400px) {
+  .typeform-widget {
+    margin-bottom: 10px;
+    height: 300px;
+  }
+}
+@media screen and (min-width: 600px) {
+  .typeform-widget {
+    margin-bottom: 30px;
+    height: 300px;
+  }
+}
+@media screen and (min-width: 800px) {
+  .typeform-widget {
+    margin-bottom: 30px;
+    height: 500px;
+  }
+}
+.typeform-default .typeform-widget {
+  margin-bottom: 30px;
+  height: 500px;
+}
+p {
+  font-family: Georgia,Serif;
+  font-size: 16px;
+  line-height: 150%;
+  color: #333;
+}
+@media screen and (min-width: 800px) {
+  p {
+    font-size: 16px;
+  }
+}
+.typeform-default p {
+  font-size: 16px;
+}

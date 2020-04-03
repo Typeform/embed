@@ -1,0 +1,145 @@
+{
+  "name": "@typeform/embed",
+  "version": "0.0.0-semantic-release",
+  "description": "Library to embed Typeforms in your website",
+  "author": "Typeform",
+  "license": "LGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Typeform/embed.git"
+  },
+  "main": "lib/api",
+  "files": [
+    "assets",
+    "lib",
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "clean": "yarn run clean:dist && yarn run clean:lib",
+    "clean:dist": "rm -rf dist",
+    "clean:lib": "rm -rf lib",
+    "start": "NODE_ENV=development webpack-dev-server -d --config webpack.config.dist.js",
+    "test": "yarn run lint && yarn run test:unit && yarn test:functional",
+    "test:unit": "jest",
+    "test:visual": "yarn test:visual:install && yarn test:visual:chrome && yarn test:visual:firefox",
+    "test:visual:install": "yarn selenium-standalone install --silent",
+    "test:visual:chrome": "yarn codeceptjs --config codecept-visual.conf.js run --steps",
+    "test:visual:firefox": "yarn codeceptjs --config codecept-visual.conf.js run --steps --profile firefox",
+    "test:visual:safari": "yarn codeceptjs --config codecept-visual.conf.js run --steps --profile safari",
+    "test:functional": "yarn test:e2e:chrome && yarn test:e2e:firefox",
+    "test:e2e:firefox": "yarn cypress run --browser firefox",
+    "test:e2e:chrome": "yarn cypress run --browser chrome",
+    "test:unit:watch": "jest --watch",
+    "coverage": "jest --coverage",
+    "prepublish": "yarn run lib",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once --pro",
+    "copy": "yarn run copy:assets && yarn run copy:helpcenter && yarn run copy:demo",
+    "copy:assets": "copyfiles -f assets/* dist",
+    "copy:helpcenter": "copyfiles -f helpcenter/* dist",
+    "copy:demo": "copyfiles -f demo/* dist",
+    "build": "yarn run dist && yarn run lib && yarn run copy",
+    "dist": "yarn run clean:dist && webpack --config webpack.config.dist.js",
+    "lib": "yarn run clean:lib && webpack --config webpack.config.lib.js",
+    "lint": "eslint ./src --ext .js --ignore-path .eslintignore"
+  },
+  "devDependencies": {
+    "@applitools/eyes-webdriverio": "^5.7.2",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@typeform/eslint-config": "^1.12.0",
+    "@wdio/selenium-standalone-service": "^5.11.2",
+    "babel-core": "^6.5.1",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^22.2.0",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-emotion": "^9.0.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.1.8",
+    "babel-preset-react": "^6.23.0",
+    "codeceptjs": "^2.5.0",
+    "copyfiles": "^2.2.0",
+    "cypress": "^4.2.0",
+    "dotenv": "^8.2.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^5.13.0",
+    "husky": "^4.2.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^25.1.0",
+    "jsdom": "^11.6.2",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "selenium-standalone": "^6.17.0",
+    "semantic-release": "^12.2.5",
+    "travis-deploy-once": "^4.3.3",
+    "uglifyjs-webpack-plugin": "^1.1.8",
+    "url-loader": "^0.6.2",
+    "webdriverio": "^6.0.5",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "core-js": "^3.6.4",
+    "create-emotion": "^9.0.2",
+    "create-emotion-styled": "^9.0.1",
+    "custom-event": "^1.0.1",
+    "is-url": "^1.2.2",
+    "preact": "^10.3.3",
+    "prop-types": "^15.7.2",
+    "scrollbar-width": "^3.1.1",
+    "spin.js": "^2.3.2",
+    "url-parse": "^1.4.5"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 versions",
+              "safari >= 7",
+              "ie >= 9"
+            ],
+            "useBuiltIns": true
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-object-rest-spread",
+      "emotion"
+    ]
+  },
+  "jest": {
+    "setupFiles": [
+      "./test/setup.js"
+    ],
+    "transform": {
+      ".*": "<rootDir>/node_modules/babel-jest"
+    },
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^.+\\.(css|gif|png|woff|ttf|svg)$": "identity-obj-proxy"
+    },
+    "roots": [
+      "./src"
+    ]
+  },
+  "greenkeeper": {
+    "ignore": [
+      "react",
+      "react-dom"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}

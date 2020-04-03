@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    video {
+      position: absolute;
+      min-width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #page {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #filler {
+      height: 300px;
+    }
+
+    #text {
+      background-image: url(http://static-p.iuqo.com/skins/iuqo/images/iuqo.png);
+      width: 94px;
+      height: 63px;
+      margin-left: -47px;
+      pointer-events: none;
+      position: absolute;
+      left: 50%;
+      top: 220px;
+    }
+
+    #logo {
+      position: absolute;
+      background-image: url("http://static-p.iuqo.com/skins/iuqo/images/logo-final.png");
+      background-position: -149px -159px;
+      background-position-x: -149px;
+      background-position-y: -159px;
+      background-repeat: no-repeat;
+      cursor: url("http://static-p.iuqo.com/skins/iuqo/images/pointer.gif"), default;
+      font-family: Lato, sans-serif;
+      font-size: 11px;
+      height: 147px;
+      left: 50%;
+      margin-left: -73px;
+      opacity: 1;
+      top: 80px;
+      transform: matrix(1, 0, 0, 1, 0, 0);
+      width: 146px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="page">
+
+    <video class="vjs-tech" autoplay data-setup="{}" id="clip_html5_api" loop="" src="http://static-p.iuqo.com/media/home/home/video/cloud2.mp4"></video>
+
+    <div id="logo"></div>
+    <div id="text"></div>
+
+    <div id="filler"></div>
+    <div
+      class="typeform-widget"
+      style="width: 100%; height: 500px;"
+      data-url="http://forms.typeform.com/to/y5DZHt"
+      data-transparency=100
+      data-hide-footer
+      data-hide-headers
+    ></div>
+  </div>
+
+  <script type="text/javascript" src="./../embed.js"></script>
+  <script type="text/javascript" src="./../demo.js"></script>
+  <!-- <script>
+    (function () { var qs, js, q, s, d = document, gi = d.getElementById, ce = d.createElement, gt = d.getElementsByTagName, id = 'typef_orm', b = 'https://s3-eu-west-1.amazonaws.com/share.typeform.com/'; if (!gi.call(d, id)) { js = ce.call(d, 'script'); js.id = id; js.src = b + 'widget.js'; q = gt.call(d, 'script')[0]; q.parentNode.insertBefore(js, q) } })()
+  </script> -->
+
+</body>
+
+</html>

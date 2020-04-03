@@ -1,0 +1,81 @@
+os: linux
+dist: trusty
+
+language: node_js
+
+node_js:
+  - "12"
+
+python:
+  - "3.6"
+
+addons:
+  chrome: stable
+  firefox: latest
+
+branches:
+  only:
+    - master
+    - release
+
+cache:
+  npm: false
+  yarn: false
+
+notifications:
+  email: false
+  slack:
+    rooms:
+      - $SLACK_NOTIFICATION_TOKEN#distribution-alerts
+    on_pull_requests: true
+
+env:
+  VERSION: "$TRAVIS_BUILD_NUMBER"
+
+before_install:
+  - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY
+  - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_KEY
+
+jobs:
+  include:
+    - stage: "Test"
+      name: "Test"
+      if: branch = master OR branch = release
+      script:
+        - yarn start --no-info & export EMBED_PID=$!
+        - yarn test
+        - kill $EMBED_PID
+    - name: "Visual Test Chrome"
+      if: fork = false AND (branch = master OR branch = release)
+      script:
+        - yarn start --no-info & export EMBED_PID=$!
+        - yarn test:visual:install
+        - yarn test:visual:chrome
+        - kill $EMBED_PID
+    - name: "Visual Test Firefox"
+      if: fork = false AND (branch = master OR branch = release)
+      script:
+        - yarn start --no-info & export EMBED_PID=$!
+        - yarn test:visual:install
+        - yarn test:visual:firefox
+        - kill $EMBED_PID
+    - name: "Deploy"
+      # Deploy to preview preview URL for testing purposes. Only deploy pull requests to 'release' branch.
+      if: branch = release
+      script:
+        - pip install --user awscli
+        - aws s3 cp ./dist s3://$AWS_ASSETS_BUCKET/$TRAVIS_COMMIT --recursive --acl public-read
+    - stage: "Release"
+      name: "Release to NPM"
+      if: branch = release AND type = push
+      script:
+        - yarn semantic-release
+    - name: "Release to AWS"
+      # Deploy to AWS production is done by copying already deployed sources via "Test and Publish" job.
+      # This allows us to rollback quickly (no building, just copy existing file).
+      git:
+        clone: false
+      if: branch = release AND type = push
+      script:
+        - pip install --user awscli
+        - aws s3 cp s3://$AWS_ASSETS_BUCKET/$TRAVIS_COMMIT s3://$AWS_ASSETS_BUCKET/ --recursive --acl public-read

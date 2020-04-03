@@ -1,0 +1,13 @@
+name: "Embed"
+description: "Library for embedding Typeforms in external websites"
+team:
+  name: "Sticky bugs"
+  slack_channel: "#stick_bug"
+metrics:
+  logging: "https://rpm.newrelic.com/accounts/291864/browser/9223656"
+ci_url:
+  - "https://travis-ci.com/Typeform/embed"
+  - "https://jenkins.typeform.tf/view/Embed/"
+deploy_url: "https://s3-eu-west-1.amazonaws.com/share.typeform.com"
+dependencies:
+  - { name: "jarvis", url: "https://github.com/Typeform/jarvis" }

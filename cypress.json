@@ -1,0 +1,14 @@
+{
+  "chromeWebSecurity": false,
+  "integrationFolder": "./e2e/functional",
+  "baseUrl": "http://localhost:8080/",
+  "defaultCommandTimeout": 6000,
+  "pageLoadTimeout": 10000,
+  "trashAssetsBeforeRuns": true,
+  "video": false,
+  "screenshotOnRunFailure": false,
+  "viewportWidth": 1280,
+  "viewportHeight": 1000,
+  "projectId": "i84r51",
+  "animationDistanceThreshold": 2
+}

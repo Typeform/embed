@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Add the title of your typeform below-->
+    <title>Popup API example</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <!--CSS styles that ensure your typeform takes up all the available screen space (DO NOT EDIT!)-->
+    <style type="text/css">
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <p>This page should auto open a popup that will close automatically 3 seconds after submitting</p>
+
+    <script type="text/javascript" src="embed.js"></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', function () {
+        window.typeformEmbed.makePopup('//admin.typeform.com/to/BEQFwg', {
+          mode: 'popup',
+          autoOpen: true,
+          hideHeaders: true,
+          hideFooter: true,
+          hideScrollbars: true,
+          autoClose: 3,
+          disableSubmit: true,
+          onSubmit: function () {
+            alert('This is the onSubmit callback proving that the form has been submitted')
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

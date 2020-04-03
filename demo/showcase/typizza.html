@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Add the title of your typeform below-->
+    <title>Typizza</title>
+    <meta charset="utf-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <!--CSS styles that ensure your typeform takes up all the available screen space (DO NOT EDIT!)-->
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Nunito:400,800');
+      html {
+        background-color: gainsboro;
+        background-image: url(./typizza.jpg);
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      body {
+        margin: 0 300px;
+        background-color: white;
+      }
+
+      .typizza-header {
+        height: 100px;
+        background-color: crimson;
+        padding: 20px 20px 0;
+      }
+
+      .typizza-header h1{
+        font-family: Nunito;
+        font-size: 60px;
+        text-shadow: 1px 1px 0 #888;
+        color: white;
+        margin: 0;
+      }
+
+      .menu {
+        text-align: right;
+      }
+
+      .menu ul {
+        margin: 0;
+        position: relative;
+        top: -10px;
+        list-style-type: none;
+        font-family: Nunito;
+        font-size: 20px;
+        color: white;
+      }
+
+      .menu li {
+        display: inline;
+        text-transform: uppercase;
+        margin-right: 10px;
+      }
+
+      .container {
+        padding: 10px;
+      }
+
+      .container-center {
+        padding: 0 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .container-left {
+        float: left;
+      }
+    </style>
+</head>
+
+<body>
+  <nav class="typizza-header">
+    <h1>🍕Typizza</h1>
+    <div class="menu">
+      <ul>
+        <li>Coupons</li>
+        <li>Locations</li>
+        <li>Tracker</li>
+        <li>Contact</li>
+        <li>Mandarina</li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="container-left">
+      <img src="./pizza2.jpg" alt="Coupon" />
+    </div>
+    <div class="container-center">
+      <img src="./pizza1.jpg" alt="Coupon" />
+      <div
+        class="typeform-widget"
+        style="width: 100%; height: 600px;"
+        data-url="//tfcollect.typeform.com/to/VdDsow"
+        data-transparency=100
+        data-hide-headers
+        data-hide-footer
+        data-autoclose=200
+      ></div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="./../embed.js"></script>
+  <script type="text/javascript" src="./../demo.js"></script>
+</body>
+</html>
