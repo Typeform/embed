@@ -39,25 +39,35 @@ before_install:
 jobs:
   include:
     - stage: "Test"
-      name: "Test"
+      name: "Lint"
       if: branch = master OR branch = release
       script:
-        - yarn start --no-info & export EMBED_PID=$!
-        - yarn test
-        - kill $EMBED_PID
-    - name: "Visual Test Chrome"
+        - yarn lint
+    - name: "Unit Tests"
+      if: branch = master OR branch = release
+      script:
+        - yarn test:unit
+    - name: "Visual Tests (Internal)"
       if: fork = false AND (branch = master OR branch = release)
       script:
         - yarn start --no-info & export EMBED_PID=$!
         - yarn test:visual:install
         - yarn test:visual:chrome
+        - yarn test:visual:firefox
         - kill $EMBED_PID
-    - name: "Visual Test Firefox"
+    - name: "Functional Tests (Internal)"
       if: fork = false AND (branch = master OR branch = release)
       script:
         - yarn start --no-info & export EMBED_PID=$!
-        - yarn test:visual:install
-        - yarn test:visual:firefox
+        - yarn test:functional:chrome --record --parallel
+        - yarn test:functional:firefox --record --parallel
+        - kill $EMBED_PID
+    - name: "Functional Tests (External)"
+      if: fork = true AND (branch = master OR branch = release)
+      script:
+        - yarn start --no-info & export EMBED_PID=$!
+        - yarn test:functional:chrome
+        - yarn test:functional:firefox
         - kill $EMBED_PID
     - name: "Deploy"
       # Deploy to preview preview URL for testing purposes. Only deploy pull requests to 'release' branch.
