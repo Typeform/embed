@@ -6,7 +6,7 @@ module.exports = {
     opinionScale: '[data-qa*=blocktype-opinionScale]',
     closeButton: '[data-qa="popup-close-button"]'
   },
-  resizeWindow: (I) => {
-    I.resizeWindow(375, 600)
+  resizeWindow: async (I) => {
+    await I.resizeWindow(375, 600)
   }
 }
