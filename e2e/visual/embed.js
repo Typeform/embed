@@ -1,74 +1,85 @@
 const { resizeWindow } = require('../codeceptjs-utils')
 
-const clickOnLink = (I, n = 1) => {
+const clickOnLink = async (I, n = 1) => {
   const cssLinkSelector = `[data-mode="${n}"]`
-  I.click({ css: cssLinkSelector })
+  await I.click({ css: cssLinkSelector })
 }
+
+const waitForIFrame = async (I) => {
+  await I.waitForVisible({ css: 'iframe' }, WAITING_TIME)
+  await I.waitForIFrameMessage()
+}
+const WAITING_TIME = 5
 
 Feature('Embed Widget')
 
-Scenario('Basic Widget', async (I) => {
-  I.amOnPage('widget.html')
-  I.waitForVisible({ css: 'iframe' }, 5)
+Scenario('Basic Widget @desktop', async (I) => {
+  await I.amOnPage('widget.html')
+  await waitForIFrame(I)
   await I.eyesCheck('Embed Basic Widget')
 })
 
-Scenario('Full Page Widget', async (I) => {
-  I.amOnPage('full.html')
-  I.waitForVisible({ css: 'iframe' }, 5)
+Scenario('Full Page Widget @desktop', async (I) => {
+  await I.amOnPage('full.html')
+  await waitForIFrame(I)
   await I.eyesCheck('Embed Full Page Widget')
 })
 
-Scenario('Basic Widget on Mobile', async (I) => {
-  resizeWindow(I)
-  I.amOnPage('widget.html')
+Scenario('Basic Widget @mobile', async (I) => {
+  await resizeWindow(I)
+  await I.amOnPage('widget.html')
+  await waitForIFrame(I)
   await I.eyesCheck('Embed Basic Widget - Mobile')
 })
 
-Scenario('Full Page Widget on Mobile', async (I) => {
-  resizeWindow(I)
-  I.amOnPage('full.html')
+Scenario('Full Page Widget @mobile', async (I) => {
+  await resizeWindow(I)
+  await I.amOnPage('full.html')
+  await waitForIFrame(I)
   await I.eyesCheck('Embed Full Page Widget - Mobile')
 })
 
-Scenario('Popup Widget', async (I) => {
-  I.amOnPage('popup.html')
-  clickOnLink(I, 1)
-  I.waitForVisible({ css: 'iframe' }, 10)
+Scenario('Popup Widget @desktop', async (I) => {
+  await I.amOnPage('popup.html')
+  await clickOnLink(I, 1)
+  await waitForIFrame(I)
   await I.eyesCheck('Popup Widget')
 })
 
-Scenario('Popup Widget on Mobile', async (I) => {
-  resizeWindow(I)
-  I.amOnPage('popup.html')
-  clickOnLink(I, 1)
+Scenario('Popup Widget @mobile', async (I) => {
+  await resizeWindow(I)
+  await I.amOnPage('popup.html')
+  await clickOnLink(I, 1)
+  await waitForIFrame(I)
   await I.eyesCheck('Popup Widget')
 })
 
-Scenario('Drawer Widget', async (I) => {
-  I.amOnPage('popup.html')
-  clickOnLink(I, 2)
-  I.waitForVisible({ css: 'iframe' }, 10)
+Scenario('Drawer Widget @desktop', async (I) => {
+  await I.amOnPage('popup.html')
+  await clickOnLink(I, 2)
+  await waitForIFrame(I)
   await I.eyesCheck('Drawer Widget')
 })
 
-Scenario('Drawer Widget on Mobile', async (I) => {
-  resizeWindow(I)
-  I.amOnPage('popup.html')
-  clickOnLink(I, 2)
+Scenario('Drawer Widget @mobile', async (I) => {
+  await resizeWindow(I)
+  await I.amOnPage('popup.html')
+  await clickOnLink(I, 2)
+  await waitForIFrame(I)
   await I.eyesCheck('Drawer Widget - Mobile')
 })
 
-Scenario('Right Drawer Widget', async (I) => {
-  I.amOnPage('popup.html')
-  clickOnLink(I, 3)
-  I.waitForVisible({ css: 'iframe' }, 10)
+Scenario('Right Drawer Widget @desktop', async (I) => {
+  await I.amOnPage('popup.html')
+  await clickOnLink(I, 3)
+  await waitForIFrame(I)
   await I.eyesCheck('Popup Widget')
 })
 
-Scenario('Right Drawer Widget on Mobile', async (I) => {
-  resizeWindow(I)
-  I.amOnPage('popup.html')
-  clickOnLink(I, 3)
+Scenario('Right Drawer Widget @mobile', async (I) => {
+  await resizeWindow(I)
+  await I.amOnPage('popup.html')
+  await clickOnLink(I, 3)
+  await waitForIFrame(I)
   await I.eyesCheck('Right Drawer Widget - Mobile')
 })

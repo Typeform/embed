@@ -33,7 +33,7 @@ export const setupIframeTesting = (iframe) => {
   // We can only use it inside Chrome disabling web security --> see config
   // Won't work in popups
   if (Cypress.isBrowser('chrome')) {
-    getIframeBody(iframe).find('[data-qa="fixed-footer-progress"]').should('be.visible')
+    getIframeBody(iframe).find('[data-qa="start-button"]').should('be.visible')
   } else {
     cy.get(iframe).should('be.visible')
   }

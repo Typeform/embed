@@ -11,7 +11,7 @@ python:
 
 addons:
   chrome: stable
-  firefox: latest
+  firefox: "67.0"
 
 branches:
   only:
@@ -47,12 +47,25 @@ jobs:
       if: branch = master OR branch = release
       script:
         - yarn test:unit
-    - name: "Visual Tests (Internal)"
+    - name: "Visual Tests Chrome (Internal)"
       if: fork = false AND (branch = master OR branch = release)
       script:
         - yarn start --no-info & export EMBED_PID=$!
         - yarn test:visual:install
         - yarn test:visual:chrome
+        - kill $EMBED_PID
+    - name: "Visual Tests Mobile (Internal)"
+      if: fork = false AND (branch = master OR branch = release)
+      script:
+        - yarn start --no-info & export EMBED_PID=$!
+        - yarn test:visual:install
+        - yarn test:visual:mobile
+        - kill $EMBED_PID
+    - name: "Visual Tests Firefox (Internal)"
+      if: fork = false AND (branch = master OR branch = release)
+      script:
+        - yarn start --no-info & export EMBED_PID=$!
+        - yarn test:visual:install
         - yarn test:visual:firefox
         - kill $EMBED_PID
     - name: "Functional Tests (Internal)"
@@ -66,8 +79,8 @@ jobs:
       if: fork = true AND (branch = master OR branch = release)
       script:
         - yarn start --no-info & export EMBED_PID=$!
-        - yarn test:functional:chrome
-        - yarn test:functional:firefox
+        - yarn test:functional:chrome --parallel
+        - yarn test:functional:firefox --parallel
         - kill $EMBED_PID
     - name: "Deploy"
       # Deploy to preview preview URL for testing purposes. Only deploy pull requests to 'release' branch.
