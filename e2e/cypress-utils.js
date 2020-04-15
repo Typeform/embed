@@ -75,3 +75,14 @@ export const setupPopupTesting = (popup) => {
   }
   cy.get(IFRAME).should('not.exist') // IFrame is removed from DOM
 }
+
+export const openAsMobile = (url) => {
+  cy.viewport('iphone-6')
+  cy.visit(url, {
+    onBeforeLoad: win => {
+      Object.defineProperty(win.navigator, 'userAgent', {
+        value: 'Cypress mobile browser'
+      })
+    }
+  })
+}

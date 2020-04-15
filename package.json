@@ -30,6 +30,7 @@
     "test:visual:chrome": "yarn codeceptjs --config codecept-visual.conf.js run --steps --grep @desktop",
     "test:visual:firefox": "yarn codeceptjs --config codecept-visual.conf.js run --steps --profile firefox --grep @desktop",
     "test:visual:mobile": "yarn codeceptjs --config codecept-visual.conf.js run --steps --grep @mobile",
+    "test:functional:debug": "yarn cypress open",
     "test:functional": "yarn test:functional:chrome && yarn test:functional:firefox",
     "test:functional:firefox": "yarn cypress run --browser firefox",
     "test:functional:chrome": "yarn cypress run --browser chrome",
