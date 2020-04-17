@@ -35,11 +35,11 @@ exports.config = {
     WebDriver: {
       smartWait: 5000,
       url: process.env.URL || 'http://localhost:8080',
-      show: true,
       browser: process.profile || 'chrome',
       host: '127.0.0.1',
       port: 4444,
       path: '/wd/hub',
+      restart: false,
       desiredCapabilities: capabilities[process.profile] || capabilities.chrome,
       windowSize: '1200x825'
     },

@@ -8,7 +8,6 @@ describe('Drawer Embed Widget', () => {
       link
     })
   })
-
   it('Closes Embed Drawer using Keyboard', () => {
     setupPopupTesting({
       link,

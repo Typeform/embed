@@ -1,20 +1,24 @@
+window.messages = []
 window.addEventListener('message', function (event) {
   console.log(`${event.data.type} event has been triggered`)
+  // Changes the document title when the form is ready
+  if (event.data.type === 'form-ready') {
+    window.document.title = event.data.type
+  }
 })
-
 var queryString = window.location.search
 
 var EMBED_DOM_CLASSES = [
   {
     selector: '.typeform-widget',
-    attribute: 'data-url',
+    attribute: 'data-url'
   }, {
     selector: '.typeform-share',
-    attribute: 'href',
+    attribute: 'href'
   }, {
     selector: '.typeform-full',
-    attribute: 'src',
-  },
+    attribute: 'src'
+  }
 ]
 
 window.addEventListener('DOMContentLoaded', function () {

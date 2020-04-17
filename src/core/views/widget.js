@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 import styled, { keyframes } from '../styles'
@@ -103,6 +104,8 @@ class Widget extends Component {
 
     this.embedId = randomString()
     this.mobileEmbedId = randomString()
+    this.wrapperRef = createRef()
+    this.fullScreenModalDiv = document.createElement('div')
 
     this.state = {
       isFormReady: false,
@@ -133,6 +136,8 @@ class Widget extends Component {
     window.addEventListener('welcome-screen-hidden', this.goFullScreen)
     window.addEventListener('redirect-after-submit', redirectToUrl)
     window.addEventListener('thank-you-screen-redirect', redirectToUrl)
+
+    document.body.appendChild(this.fullScreenModalDiv)
   }
 
   componentWillUnmount () {
@@ -144,6 +149,8 @@ class Widget extends Component {
     window.removeEventListener('welcome-screen-hidden', this.goFullScreen)
     window.removeEventListener('redirect-after-submit', redirectToUrl)
     window.removeEventListener('thank-you-screen-redirect', redirectToUrl)
+
+    document.body.removeChild(this.fullScreenModalDiv)
   }
 
   setIframeRef (node) {
@@ -240,7 +247,7 @@ class Widget extends Component {
     const fullscreenIframeUrl = updateQueryStringParameter('typeform-welcome', '0', url)
 
     return (
-      <WidgetWrapper>
+      <WidgetWrapper ref={this.wrapperRef}>
         <IframeWrapper
           backgroundColor={enabledFullscreen ? backgroundColor : 'transparent'}
         >
@@ -265,19 +272,19 @@ class Widget extends Component {
               width={iframePosition && iframePosition.width}
             />
         }
-        { enabledFullscreen &&
-            <MobileModal
-              backgroundColor={backgroundColor}
-              buttonColor={buttonColor}
-              embedId={this.mobileEmbedId}
-              onClose={this.handleClose}
-              onSubmit={options.onSubmit}
-              open={isFullscreen}
-              openDelay={0.3}
-              url={fullscreenIframeUrl}
-            />
-        }
-
+        { enabledFullscreen && ReactDOM.createPortal(
+          <MobileModal
+            backgroundColor={backgroundColor}
+            buttonColor={buttonColor}
+            embedId={this.mobileEmbedId}
+            onClose={this.handleClose}
+            onSubmit={options.onSubmit}
+            open={isFullscreen}
+            openDelay={0.3}
+            url={fullscreenIframeUrl}
+          />,
+          this.fullScreenModalDiv
+        )}
       </WidgetWrapper>
     )
   }

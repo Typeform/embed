@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Add the title of your typeform below-->
+    <title>Widget in position:absolute div example</title>
+    <meta charset="utf-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <!--CSS styles that ensure your typeform takes up all the available screen space (DO NOT EDIT!)-->
+    <style type="text/css">
+      * {
+        box-sizing: border-box;
+      }
+
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: sans-serif;
+      }
+
+      .poweredby {
+        font-family: Sans-Serif;
+        font-size: 12px;
+        color: #999;
+        opacity: 0.5;
+        margin-top: 15px;
+        text-align: center;
+      }
+
+      .content {
+        position: absolute;
+        top: 0;
+        z-index: 10;
+        height: 800px;
+        background: #222;
+        color: white;
+        width: 100%;
+        text-align: center;
+        padding: 0 20px
+      }
+
+      .content p {
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      .form {
+        position: absolute;
+        top: 820px;
+        z-index: 5;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content">
+        <h1>Welcome!</h1>
+        <p>This absolutely positioned element is here to intentionaly obstruct Typeform fullscreen modal on mobile devices.</p>
+        <p>Scroll down to see the form.</p>
+      </div>
+      <div class="form">
+        <div
+          class="typeform-widget"
+          data-url="//admin.typeform.com/to/McAQk1"
+          style="width:100%; height:500px;"
+        ></div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="demo.js"></script>
+    <script type="text/javascript" src="embed.js"></script>
+  </body>
+</html>

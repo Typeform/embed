@@ -1,7 +1,7 @@
 const { setupPopupTesting } = require('../cypress-utils')
 
 const link = 3
-describe('Right Drawer Embed Widget', () => {
+describe('Right Drawer Embed Widget handled with close button', () => {
   it('Closes Embed Drawer clicking on the close button', () => {
     setupPopupTesting({
       link

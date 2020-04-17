@@ -26,6 +26,16 @@ module.exports = function () {
     // For Visual Tests requires more waiting time
     waitForVisualElement (cssLocator) {
       this.waitForVisible({ css: cssLocator }, 10)
+    },
+    async waitForIFrameMessage () {
+      this.executeAsyncScript(function (done) {
+        const interval = setInterval(function () {
+          if (window.document.title === 'form-ready') {
+            clearInterval(interval)
+            done()
+          }
+        }, 100)
+      })
     }
   })
 }

@@ -11,7 +11,7 @@ python:
 
 addons:
   chrome: stable
-  firefox: latest
+  firefox: "67.0"
 
 branches:
   only:
@@ -39,34 +39,58 @@ before_install:
 jobs:
   include:
     - stage: "Test"
-      name: "Test"
+      name: "Lint"
       if: branch = master OR branch = release
       script:
+        - yarn lint
+    - name: "Unit Tests"
+      if: branch = master OR branch = release
+      script:
+        - yarn test:unit
+    - name: "Functional Tests (Internal)"
+      if: fork = false AND (branch = master OR branch = release)
+      script:
         - yarn start --no-info & export EMBED_PID=$!
-        - yarn test
+        - yarn test:functional:chrome --record --parallel
+        - yarn test:functional:firefox --record --parallel
         - kill $EMBED_PID
-    - name: "Visual Test Chrome"
+    - name: "Functional Tests (External)"
+      if: fork = true AND (branch = master OR branch = release)
+      script:
+        - yarn start --no-info & export EMBED_PID=$!
+        - yarn test:functional:chrome --parallel
+        - yarn test:functional:firefox --parallel
+        - kill $EMBED_PID
+    - name: "Visual Tests Chrome (Internal)"
       if: fork = false AND (branch = master OR branch = release)
       script:
         - yarn start --no-info & export EMBED_PID=$!
         - yarn test:visual:install
         - yarn test:visual:chrome
         - kill $EMBED_PID
-    - name: "Visual Test Firefox"
+    - name: "Visual Tests Mobile (Internal)"
+      if: fork = false AND (branch = master OR branch = release)
+      script:
+        - yarn start --no-info & export EMBED_PID=$!
+        - yarn test:visual:install
+        - yarn test:visual:mobile
+        - kill $EMBED_PID
+    - name: "Visual Tests Firefox (Internal)"
       if: fork = false AND (branch = master OR branch = release)
       script:
         - yarn start --no-info & export EMBED_PID=$!
         - yarn test:visual:install
         - yarn test:visual:firefox
         - kill $EMBED_PID
-    - name: "Deploy"
+    - stage: "Release"
+      name: "Deploy"
       # Deploy to preview preview URL for testing purposes. Only deploy pull requests to 'release' branch.
       if: branch = release
       script:
+        - yarn build
         - pip install --user awscli
         - aws s3 cp ./dist s3://$AWS_ASSETS_BUCKET/$TRAVIS_COMMIT --recursive --acl public-read
-    - stage: "Release"
-      name: "Release to NPM"
+    - name: "Release to NPM"
       if: branch = release AND type = push
       script:
         - yarn semantic-release

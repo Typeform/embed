@@ -154,9 +154,6 @@ This is the list of all the test commands, if you want to run them one by one:
 - `yarn test:visual` --> Runs visual tests with CodeceptJs, WebDriver, and Applitools.
 - `yarn test:visual:chrome` --> Runs visual tests using Chrome
 - `yarn test:visual:firefox` --> Runs visual tests using Firefox (Gecko drivers)
-- `yarn test:visual:safari` --> Runs tests with Safari. This requires some extra steps for our local environment, check the [official apple documentation](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari). 
-
-***_Note: `yarn test:visual` will not run the Safari tests. You need to run them manually_**
 
 ## Feedback
 

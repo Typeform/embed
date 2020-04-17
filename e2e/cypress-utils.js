@@ -33,7 +33,7 @@ export const setupIframeTesting = (iframe) => {
   // We can only use it inside Chrome disabling web security --> see config
   // Won't work in popups
   if (Cypress.isBrowser('chrome')) {
-    getIframeBody(iframe).find('[data-qa="fixed-footer-progress"]').should('be.visible')
+    getIframeBody(iframe).find('[data-qa="start-button"]').should('be.visible')
   } else {
     cy.get(iframe).should('be.visible')
   }
@@ -74,4 +74,15 @@ export const setupPopupTesting = (popup) => {
     cy.get('[data-qa="popup-close-button"]').click({ log: true, timeout: 5000 }) // Close Iframe
   }
   cy.get(IFRAME).should('not.exist') // IFrame is removed from DOM
+}
+
+export const openAsMobile = (url) => {
+  cy.viewport('iphone-6')
+  cy.visit(url, {
+    onBeforeLoad: win => {
+      Object.defineProperty(win.navigator, 'userAgent', {
+        value: 'Cypress mobile browser'
+      })
+    }
+  })
 }
