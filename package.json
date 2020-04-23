@@ -35,7 +35,7 @@
     "test:functional:firefox": "yarn cypress run --browser firefox",
     "test:functional:chrome": "yarn cypress run --browser chrome",
     "prepublish": "yarn run lib",
-    "semantic-release": "semantic-release",
+    "semantic-release": "semantic-release --branch release",
     "travis-deploy-once": "travis-deploy-once --pro",
     "copy": "yarn run copy:assets && yarn run copy:helpcenter && yarn run copy:demo",
     "copy:assets": "copyfiles -f assets/* dist",
@@ -142,8 +142,5 @@
       "pre-commit": "yarn run lint",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  },
-  "release": {
-    "branches": ["release"]
   }
 }
