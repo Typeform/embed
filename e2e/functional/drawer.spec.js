@@ -1,4 +1,4 @@
-const { setupPopupTesting } = require('../cypress-utils')
+const { setupPopupTesting, openAsMobile, setupPopupTestingOnMobile } = require('../cypress-utils')
 
 const link = 2
 
@@ -18,9 +18,8 @@ describe('Drawer Embed Widget', () => {
 
 describe('Drawer Embed Widget on Mobile', () => {
   it('Closes the Drawer widget clicking on close Button', () => {
-    setupPopupTesting({
-      link,
-      isMobile: true
-    })
+    openAsMobile('popup.html')
+    cy.get(`[data-mode="${link}"]`).click()
+    setupPopupTestingOnMobile()
   })
 })

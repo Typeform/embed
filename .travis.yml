@@ -58,8 +58,8 @@ jobs:
       if: fork = true AND (branch = master OR branch = release)
       script:
         - yarn start --no-info & export EMBED_PID=$!
-        - yarn test:functional:chrome --parallel
-        - yarn test:functional:firefox --parallel
+        - yarn test:functional:chrome
+        - yarn test:functional:firefox
         - kill $EMBED_PID
     - name: "Visual Tests Chrome (Internal)"
       if: fork = false AND (branch = master OR branch = release)

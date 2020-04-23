@@ -43,7 +43,7 @@ To work with Embed as a developer:
 
 We're always looking for new ways to embed the typeform, code samples and more.
 
-If you have an idea for a community project, please [tell us about it](https://collect.typeform.com/to/F9jz78)!
+If you have an idea for a community project, please [tell us about it](https://tfproductops.typeform.com/to/RGpsdc)!
 
 ## Submit your changes via pull request
 
@@ -74,4 +74,4 @@ $ yarn test:visual
 
 ## Send us feedback
 
-[Send us feedback about the Embed SDK](https://collect.typeform.com/to/F9jz78). We can't wait to hear what you think!
+[Send us feedback about the Embed SDK](https://tfproductops.typeform.com/to/RGpsdc). We can't wait to hear what you think!
