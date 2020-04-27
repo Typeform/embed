@@ -83,9 +83,9 @@ jobs:
         - yarn test:visual:firefox
         - kill $EMBED_PID
     - stage: "Release"
-      name: "Deploy"
+      name: "Deploy Preview to AWS"
       # Deploy to preview preview URL for testing purposes. Only deploy pull requests to 'release' branch.
-      if: branch = release
+      if: branch = release AND type = pull_request
       script:
         - yarn build
         - pip install --user awscli
@@ -95,11 +95,8 @@ jobs:
       script:
         - yarn semantic-release
     - name: "Release to AWS"
-      # Deploy to AWS production is done by copying already deployed sources via "Test and Publish" job.
-      # This allows us to rollback quickly (no building, just copy existing file).
-      git:
-        clone: false
       if: branch = release AND type = push
       script:
+        - yarn build
         - pip install --user awscli
-        - aws s3 cp s3://$AWS_ASSETS_BUCKET/$TRAVIS_COMMIT s3://$AWS_ASSETS_BUCKET/ --recursive --acl public-read
+        - aws s3 cp ./dist s3://$AWS_ASSETS_BUCKET --recursive --acl public-read
