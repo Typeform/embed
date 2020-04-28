@@ -3,6 +3,8 @@ import CustomEvent from 'custom-event'
 import Enzyme, { shallow, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
+import * as utils from '../utils'
+
 import Popup, {
   POPUP,
   DRAWER,
@@ -100,6 +102,18 @@ describe('Popup', () => {
 
     window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: '098765' } }))
     expect(onSubmitMock).not.toHaveBeenCalled()
+  })
+
+  it('passes event data to onSubmit callback', () => {
+    const onSubmitMock = jest.fn()
+    const options = { ...popupOptions, onSubmit: onSubmitMock }
+    const getSubmitEventDataSpy = jest.spyOn(utils, 'getSubmitEventData')
+    const event = new CustomEvent('form-submit', { detail: { embedId: EMBED_ID } })
+
+    shallow(<Popup embedId={EMBED_ID} options={options} url={URL} />)
+
+    window.dispatchEvent(event)
+    expect(getSubmitEventDataSpy).toHaveBeenCalledWith(event)
   })
 
   describe(`upon receiving upon 'embed-auto-close-popup' event`, () => {
