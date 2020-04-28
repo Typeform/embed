@@ -106,8 +106,10 @@ export default function makePopup (url, options) {
   options.container.appendChild(domNode)
 
   const popup = {
-    open () {
-      renderComponent(url, domNode, options, this.close)
+    open (event) {
+      const { currentTarget } = event || {}
+      const currentUrl = currentTarget && currentTarget.href ? currentTarget.href : url
+      renderComponent(currentUrl, domNode, options, this.close)
     },
     close () {
       window.postMessage({ type: 'form-closed', embedId }, '*')

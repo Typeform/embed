@@ -26,7 +26,7 @@ const initializePopup = (element) => {
 
   element.onclick = (event) => {
     event.stopPropagation()
-    popup.open()
+    popup.open(event)
     return false
   }
 }
