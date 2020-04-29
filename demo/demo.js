@@ -6,7 +6,6 @@ window.addEventListener('message', function (event) {
     window.document.title = event.data.type
   }
 })
-var queryString = window.location.search
 
 var EMBED_DOM_CLASSES = [
   {
@@ -21,7 +20,12 @@ var EMBED_DOM_CLASSES = [
   }
 ]
 
+const addQueryStringToUrl = (url, queryString) => {
+  return /\?/.test(url) ? `${url}&${queryString}` : `${url}?${queryString}`
+}
+
 window.addEventListener('DOMContentLoaded', function () {
+  var queryString = window.location.search.substring(1)
   if (queryString.length === 0) {
     return
   }
@@ -32,7 +36,7 @@ window.addEventListener('DOMContentLoaded', function () {
       var embeds = document.querySelectorAll(embed.selector)
       embeds.forEach(function (embed) {
         var embedAttr = embed.getAttribute(attribute)
-        embed.setAttribute(attribute, embedAttr + queryString)
+        embed.setAttribute(attribute, addQueryStringToUrl(embedAttr, queryString))
       })
     })
 })
