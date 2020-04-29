@@ -23,6 +23,9 @@ class Iframe extends Component {
 
   // Fixes scroll not responding in renderer v1
   handleLoad () {
+    if (!this.iframeRef) {
+      return
+    }
     this.iframeRef.style.height = `${this.iframeRef.offsetHeight + 1}px`
     setTimeout(() => {
       this.iframeRef.style.height = ''
