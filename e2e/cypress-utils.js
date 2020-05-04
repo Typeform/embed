@@ -51,29 +51,42 @@ export const setupIframeTesting = (iframe) => {
 
 export const IFRAME = '[data-qa="iframe"]'
 
-export const setupPopupTesting = (popup) => {
-  const { link, hasKeyboardEvent } = popup
-  cy.visit('popup.html')
-  cy.get(`[data-mode="${link}"]`).click()
-  // TODO find a fix for testing iframe in firefox
-  // We cannot test the keyboard event in firefox
-  // As it will block any action inside the iframe
-  if (hasKeyboardEvent && Cypress.isBrowser('chrome')) {
+export const openPopup = (mode) => {
+  cy.visit('popup.html?foobar=hello')
+  cy.get(`[data-mode="${mode}"]`).click()
+  cy.get(IFRAME).should('not.be.undefined')
+}
+
+export const openPopupAsMobile = (mode) => {
+  openAsMobile('popup.html?foobar=hello')
+  cy.get(`[data-mode="${mode}"]`).click()
+  cy.get(IFRAME).should('not.be.undefined')
+}
+
+export const closePopupViaButton = () => {
+  cy.get('[data-qa="popup-close-button"]').click({ log: true, timeout: 5000 })
+  cy.get(IFRAME).should('not.exist')
+}
+
+export const closePopupViaButtonOnMobile = () => {
+  cy.get('[data-qa="close-button-mobile"]').click({ log: true, timeout: 5000 })
+  cy.get(IFRAME).should('not.exist')
+}
+
+export const closePopupViaKeyboard = () => {
+  if (Cypress.isBrowser('chrome')) {
     // give some extra safe time to load
     // because we cannot wait inside Iframe for popups
     cy.wait(2000).then(() => {
       getIframeBody(IFRAME).then(($body) => {
         const iframeBody = cy.wrap($body)
-        iframeBody.find('input')
-          .focus()
-          .type('{esc}')
+        iframeBody.find('input').focus().type('{esc}')
+        cy.get(IFRAME).should('not.exist')
       })
     })
   } else {
-    cy.get(IFRAME).should('not.be.undefined') // IFrame exists
-    cy.get('[data-qa="popup-close-button"]').click({ log: true, timeout: 5000 }) // Close Iframe
+    closePopupViaButton() // only chrome can access inside of <iframe>, cloe via button in other browsers
   }
-  cy.get(IFRAME).should('not.exist') // IFrame is removed from DOM
 }
 
 export const openAsMobile = (url) => {
@@ -93,17 +106,6 @@ export const setupEmbedOnMobile = () => {
 
     cy.wait(WAIT).then(() => {
       cy.get('[data-qa="close-button-mobile"]').should('be.visible').click()
-    })
-  } else {
-    cy.get(IFRAME).should('be.visible')
-  }
-}
-
-export const setupPopupTestingOnMobile = () => {
-  if (Cypress.isBrowser('chrome')) { // inside of an iframe is testable only in Chrome
-    cy.wait(WAIT).then(() => {
-      cy.get('[data-qa="close-button-mobile"]').should('be.visible').click()
-      cy.get(IFRAME).should('not.exist') // IFrame is removed from DOM
     })
   } else {
     cy.get(IFRAME).should('be.visible')
