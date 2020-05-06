@@ -11,6 +11,7 @@ import {
   isMobile
 } from './utils/mobile-detection'
 import Widget from './views/widget'
+import { getPostMessageHandler } from './utils/get-post-message-handler'
 
 const defaultOptions = {
   mode: 'embed-widget',
@@ -31,6 +32,8 @@ const queryStringKeys = {
 
 export default function makeWidget (element, url, options) {
   options = { ...defaultOptions, ...options }
+
+  window.addEventListener('message', getPostMessageHandler('form-ready', options.onReady))
 
   const enabledFullscreen = isMobile(navigator.userAgent)
 
