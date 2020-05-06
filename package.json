@@ -72,6 +72,7 @@
     "jsdom": "^11.6.2",
     "react": "16.12.0",
     "react-dom": "16.12.0",
+    "regenerator-runtime": "^0.13.5",
     "selenium-standalone": "^6.17.0",
     "semantic-release": "^12.2.5",
     "travis-deploy-once": "^4.3.3",

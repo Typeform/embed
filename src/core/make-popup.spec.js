@@ -104,4 +104,27 @@ describe('makePopup', () => {
     expect(component.type.name).toEqual('Popup')
     expect(component.props.options).toEqual(expect.objectContaining(options))
   })
+
+  it(`onReady is called during initialization`, async () => {
+    const options = { onReady: jest.fn() }
+
+    makePopup(URL, options)
+
+    window.postMessage({ type: 'form-ready' }, '*')
+    await new Promise((resolve) => setTimeout(resolve))
+    expect(options.onReady).toHaveBeenCalledTimes(1)
+    expect(options.onReady).toHaveBeenCalledWith()
+  })
+
+  it(`onClose is called when form closes`, async () => {
+    const options = { onClose: jest.fn() }
+
+    makePopup(URL, options)
+
+    window.postMessage({ type: 'form-closed' }, '*')
+    await new Promise((resolve) => setTimeout(resolve))
+
+    expect(options.onClose).toHaveBeenCalledTimes(1)
+    expect(options.onClose).toHaveBeenCalledWith()
+  })
 })
