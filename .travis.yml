@@ -1,5 +1,5 @@
 os: linux
-dist: trusty
+dist: xenial
 
 language: node_js
 
@@ -10,6 +10,7 @@ python:
   - "3.6"
 
 addons:
+# https://stackoverflow.com/questions/57903415/travis-ci-chrome-62-instead-of-77
   chrome: stable
   firefox: "67.0"
 
