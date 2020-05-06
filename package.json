@@ -16,7 +16,7 @@
     "README.md"
   ],
   "scripts": {
-    "clean": "yarn run clean:dist && yarn run clean:lib",
+    "clean": "yarn clean:dist && yarn clean:lib",
     "clean:dist": "rm -rf dist",
     "clean:lib": "rm -rf lib",
     "start": "NODE_ENV=development webpack-dev-server -d --config webpack.config.dist.js",
@@ -26,24 +26,24 @@
     "test:unit:watch": "jest --watch",
     "test:unit:coverage": "jest --coverage",
     "test:visual": "yarn test:visual:install && yarn test:visual:chrome && yarn test:visual:firefox && yarn test:visual:mobile",
-    "test:visual:install": "yarn selenium-standalone install --silent",
-    "test:visual:chrome": "yarn codeceptjs --config codecept-visual.conf.js run --steps --grep @desktop",
-    "test:visual:firefox": "yarn codeceptjs --config codecept-visual.conf.js run --steps --profile firefox --grep @desktop",
-    "test:visual:mobile": "yarn codeceptjs --config codecept-visual.conf.js run --steps --grep @mobile",
-    "test:functional:debug": "yarn cypress open",
+    "test:visual:install": "selenium-standalone install --silent",
+    "test:visual:chrome": "codeceptjs --config codecept-visual.conf.js run --steps --grep @desktop",
+    "test:visual:firefox": "codeceptjs --config codecept-visual.conf.js run --steps --profile firefox --grep @desktop",
+    "test:visual:mobile": "codeceptjs --config codecept-visual.conf.js run --steps --grep @mobile",
+    "test:functional:debug": "cypress open",
     "test:functional": "yarn test:functional:chrome && yarn test:functional:firefox",
-    "test:functional:firefox": "yarn cypress run --browser firefox",
-    "test:functional:chrome": "yarn cypress run --browser chrome",
-    "prepublish": "yarn run lib",
+    "test:functional:firefox": "cypress run --headless --browser firefox",
+    "test:functional:chrome": "cypress run --headless --browser chrome",
+    "prepublish": "yarn lib",
     "semantic-release": "semantic-release --branch release",
     "travis-deploy-once": "travis-deploy-once --pro",
-    "copy": "yarn run copy:assets && yarn run copy:helpcenter && yarn run copy:demo",
+    "copy": "yarn copy:assets && yarn copy:helpcenter && yarn copy:demo",
     "copy:assets": "copyfiles -f assets/* dist",
     "copy:helpcenter": "copyfiles -f helpcenter/* dist",
     "copy:demo": "copyfiles -f demo/* dist",
-    "build": "yarn run dist && yarn run lib && yarn run copy",
-    "dist": "yarn run clean:dist && webpack --config webpack.config.dist.js",
-    "lib": "yarn run clean:lib && webpack --config webpack.config.lib.js"
+    "build": "yarn dist && yarn lib && yarn copy",
+    "dist": "yarn clean:dist && webpack --config webpack.config.dist.js",
+    "lib": "yarn clean:lib && webpack --config webpack.config.lib.js"
   },
   "devDependencies": {
     "@applitools/eyes-webdriverio": "^5.7.2",
@@ -139,7 +139,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run lint",
+      "pre-commit": "yarn lint",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   }
