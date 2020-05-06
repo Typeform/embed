@@ -10,7 +10,7 @@ python:
   - "3.6"
 
 addons:
-  chrome: "64.0"
+  chrome: stable
   firefox: "67.0"
 
 branches:
