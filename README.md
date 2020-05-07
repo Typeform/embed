@@ -154,7 +154,7 @@ Although we have no hard limit, we recommend having a height of at least 350px.
 We use `position: fixed` to position our modal relative to its containing block established by the viewport. If one of the modal ancestors has a `transform`, `perspective`, or `filter` css property set to something other than `none` the positioning will be relative to it and probably not visible by the user.
 
 ## Tests
-In order to run visual tests, it is need an applitools key.
+In order to run visual tests, you need an applitools key.
 - Add a `.env` file in your root, you can look at the `.env.example`
 - Add your api key `EYES_API_KEY=HERE_GOES_YOUR_KEY`
 - (Optional) You can add the url, by default the url is `http://localhost:8080`
