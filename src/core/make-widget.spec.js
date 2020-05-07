@@ -58,4 +58,16 @@ describe('makeWidget', () => {
 
     expect(component.type.name).toEqual('Widget')
   })
+
+  it(`onReady is called during initialization`, async () => {
+    const element = document.createElement('div')
+    const options = { onReady: jest.fn() }
+
+    makeWidget(element, URL, options)
+
+    window.postMessage({ type: 'form-ready' }, '*')
+    await new Promise((resolve) => setTimeout(resolve))
+    expect(options.onReady).toHaveBeenCalledTimes(1)
+    expect(options.onReady).toHaveBeenCalledWith()
+  })
 })

@@ -18,6 +18,7 @@ import Popup, {
   DEFAULT_AUTOCLOSE_TIMEOUT
 } from './views/popup'
 import MobileModal from './views/mobile-modal'
+import { getPostMessageHandler } from './utils/get-post-message-handler'
 
 const DEFAULT_DRAWER_WIDTH = 800
 
@@ -41,7 +42,8 @@ const queryStringKeys = {
   disableTracking: 'disable-tracking'
 }
 
-const renderComponent = (url, domNode, options, onClose) => {
+const renderComponent = (params, options) => {
+  const { url, domNode, close } = params
   const {
     autoClose,
     buttonText,
@@ -59,7 +61,7 @@ const renderComponent = (url, domNode, options, onClose) => {
     render(
       <Popup
         embedId={embedId}
-        onClose={onClose}
+        onClose={close}
         options={options}
         url={urlWithQueryString}
       />,
@@ -73,7 +75,7 @@ const renderComponent = (url, domNode, options, onClose) => {
         buttonText={buttonText}
         embedId={embedId}
         isAutoCloseEnabled={isAutoCloseEnabled}
-        onClose={onClose}
+        onClose={close}
         onSubmit={onSubmit}
         open
         url={urlWithQueryString}
@@ -84,6 +86,9 @@ const renderComponent = (url, domNode, options, onClose) => {
 }
 
 export default function makePopup (url, options) {
+  window.addEventListener('message', getPostMessageHandler('form-ready', options.onReady))
+  window.addEventListener('message', getPostMessageHandler('form-closed', options.onClose))
+
   const embedId = randomString()
 
   options = {
@@ -109,10 +114,17 @@ export default function makePopup (url, options) {
     open (event) {
       const { currentTarget } = event || {}
       const currentUrl = currentTarget && currentTarget.href ? currentTarget.href : url
-      renderComponent(currentUrl, domNode, options, this.close)
+      const params = {
+        domNode,
+        url: currentUrl,
+        close: this.close
+      }
+
+      renderComponent(params, options)
     },
     close () {
       window.postMessage({ type: 'form-closed', embedId }, '*')
+
       unmountComponentAtNode(domNode)
     }
   }

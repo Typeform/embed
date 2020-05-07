@@ -57,6 +57,7 @@ typeformEmbed.makeWidget(element, url, options)
   | hideFooter     | Hide typeform footer, that appears showing the progress bar and the navigation buttons.                                                                        | `Boolean`  | false   |
   | hideHeaders    | Hide typeform header, that appears when you have a Question group, or a long question that you need to scroll through to answer, like a Multiple Choice block. | `Boolean`  | false   |
   | onSubmit       | Callback function that will be executed right after the typeform is successfully submitted.                                                                    | `Function` | -       |
+  | onReady       | Callback function that will be executed once the typeform is ready.                                                                                             | `Function` | -       |
 
   #### Example:
 
@@ -73,6 +74,9 @@ typeformEmbed.makeWidget(element, url, options)
       hideScrollbars: true,
       onSubmit: function () {
         console.log('Typeform successfully submitted')
+      },
+      onReady: function () {
+        console.log('Typeform is ready')
       }
     }
   )
@@ -99,6 +103,10 @@ typeformEmbed.makePopup(url, options)
   | hideHeaders    | Hide typeform header, that appears when you have a Question group, or a long question that you need to scroll through to answer, like a Multiple Choice block. | `Boolean`                                                                     | false   |
   | drawerWidth    | Specify the width of the drawer (only applies if using `mode` `"drawer_left"` or `"drawer_right"`).                                                             | `Number` (pixels)                                                            | 800     |
   | onSubmit       | Callback function that will be executed right after the typeform is successfully submitted.                                                                    | `Function`                                                                    | -       |
+  | onReady        | Callback function that will be executed once the typeform is ready.                                                                                            |
+  `Function`                                                                    | -       |
+  | onClose        | Callback function that will be executed once the typeform is closed.                                                                                            |
+  `Function`                                                                    | -       |
 
   #### Example:
 
@@ -112,6 +120,12 @@ typeformEmbed.makePopup(url, options)
       hideScrollbars: true,
       onSubmit: function () {
         console.log('Typeform successfully submitted')
+      },
+      onReady: function () {
+        console.log('Typeform is ready')
+      },
+      onClose: function () {
+        console.log('Typeform is closed')
       }
     }
   )
@@ -140,15 +154,15 @@ Although we have no hard limit, we recommend having a height of at least 350px.
 We use `position: fixed` to position our modal relative to its containing block established by the viewport. If one of the modal ancestors has a `transform`, `perspective`, or `filter` css property set to something other than `none` the positioning will be relative to it and probably not visible by the user.
 
 ## Tests
-In order to run visual tests, it is need an applitools key. 
-- Add a `.env` file in your root, you can look at the `.env.example` 
+In order to run visual tests, you need an applitools key.
+- Add a `.env` file in your root, you can look at the `.env.example`
 - Add your api key `EYES_API_KEY=HERE_GOES_YOUR_KEY`
 - (Optional) You can add the url, by default the url is `http://localhost:8080`
 - Start the server `yarn start`
 - Run the tests with `yarn test`
 - - This command will run all the tests. That means **unit tests**, **integration tests** and **visual tests**
 
-This is the list of all the test commands, if you want to run them one by one: 
+This is the list of all the test commands, if you want to run them one by one:
 - `yarn test:unit`  --> Runs unit tests
 - `yarn test:functional` --> Runs cross browser functional tests with Cypress
 - `yarn test:visual` --> Runs visual tests with CodeceptJs, WebDriver, and Applitools.

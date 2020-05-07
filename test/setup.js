@@ -1,3 +1,4 @@
+require('regenerator-runtime/runtime')
 const { JSDOM } = require('jsdom')
 
 // This setup creates a fake DOM with JSDOM and set globally
@@ -8,5 +9,5 @@ const { window } = new JSDOM('<html><body></body></html')
 global.window = window
 global.document = window.document
 global.navigator = {
-  userAgent: 'node.js',
+  userAgent: 'node.js'
 }
