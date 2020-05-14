@@ -35,7 +35,6 @@
     "test:functional:firefox": "yarn cypress run --browser firefox",
     "test:functional:chrome": "yarn cypress run --browser chrome",
     "prepublish": "yarn run lib",
-    "semantic-release": "yarn semantic-release --branch release",
     "travis-deploy-once": "yarn travis-deploy-once --pro",
     "copy": "yarn run copy:assets && yarn run copy:helpcenter && yarn run copy:demo",
     "copy:assets": "yarn copyfiles -f assets/* dist",
