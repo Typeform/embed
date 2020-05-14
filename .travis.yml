@@ -17,7 +17,6 @@ addons:
 branches:
   only:
     - master
-    - release
 
 cache:
   npm: false
@@ -41,43 +40,43 @@ jobs:
   include:
     - stage: "Test"
       name: "Lint"
-      if: branch = master OR branch = release
+      if: branch = master
       script:
         - yarn lint
     - name: "Unit Tests"
-      if: branch = master OR branch = release
+      if: branch = master
       script:
         - yarn test:unit
     - name: "Functional Tests (Internal)"
-      if: fork = false AND (branch = master OR branch = release)
+      if: fork = false AND branch = master
       script:
         - yarn start --no-info & export EMBED_PID=$!
         - yarn test:functional:chrome --record --parallel
         - yarn test:functional:firefox --record --parallel
         - kill $EMBED_PID
     - name: "Functional Tests (External)"
-      if: fork = true AND (branch = master OR branch = release)
+      if: fork = true AND branch = master
       script:
         - yarn start --no-info & export EMBED_PID=$!
         - yarn test:functional:chrome
         - yarn test:functional:firefox
         - kill $EMBED_PID
     - name: "Visual Tests Chrome (Internal)"
-      if: fork = false AND (branch = master OR branch = release)
+      if: fork = false AND branch = master
       script:
         - yarn start --no-info & export EMBED_PID=$!
         - yarn test:visual:install
         - yarn test:visual:chrome
         - kill $EMBED_PID
     - name: "Visual Tests Mobile (Internal)"
-      if: fork = false AND (branch = master OR branch = release)
+      if: fork = false AND branch = master
       script:
         - yarn start --no-info & export EMBED_PID=$!
         - yarn test:visual:install
         - yarn test:visual:mobile
         - kill $EMBED_PID
     - name: "Visual Tests Firefox (Internal)"
-      if: fork = false AND (branch = master OR branch = release)
+      if: fork = false AND branch = master
       script:
         - yarn start --no-info & export EMBED_PID=$!
         - yarn test:visual:install
@@ -85,18 +84,19 @@ jobs:
         - kill $EMBED_PID
     - stage: "Release"
       name: "Deploy Preview to AWS"
-      # Deploy to preview preview URL for testing purposes. Only deploy pull requests to 'release' branch.
-      if: branch = release AND type = pull_request
+      # Deploy to preview preview URL for testing purposes. Only deploy pull requests to 'master' branch.
+      if: (type = pull_request AND branch = master AND fork = false) OR (type = push AND branch =~ /preview-./)
       script:
         - yarn build
         - pip install --user awscli
         - aws s3 cp ./dist s3://$AWS_ASSETS_BUCKET/$TRAVIS_COMMIT --recursive --acl public-read
+        - ./scripts/comment-preview-link
     - name: "Release to NPM"
-      if: branch = release AND type = push
+      if: branch = master AND type = push
       script:
-        - yarn semantic-release
+        - yarn semantic-release --branch master
     - name: "Release to AWS"
-      if: branch = release AND type = push
+      if: branch = master AND type = push
       script:
         - yarn build
         - pip install --user awscli
