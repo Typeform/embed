@@ -90,6 +90,7 @@ jobs:
         - yarn build
         - pip install --user awscli
         - aws s3 cp ./dist s3://$AWS_ASSETS_BUCKET/$TRAVIS_COMMIT --recursive --acl public-read
+        - ./scripts/comment-preview-link
     - name: "Release to NPM"
       if: branch = master AND type = push
       script:
