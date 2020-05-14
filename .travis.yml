@@ -85,7 +85,7 @@ jobs:
     - stage: "Release"
       name: "Deploy Preview to AWS"
       # Deploy to preview preview URL for testing purposes. Only deploy pull requests to 'master' branch.
-      if: fork = false AND type = pull_request AND branch =~ /preview-./
+      if: (type = pull_request AND branch = master AND fork = false) OR (type = push AND branch =~ /preview-./)
       script:
         - yarn build
         - pip install --user awscli
