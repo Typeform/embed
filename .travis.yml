@@ -95,7 +95,7 @@ jobs:
     - name: "Release to NPM"
       if: branch = master AND type = push
       script:
-        - yarn semantic-release --branch master
+        - yarn semantic-release
     - name: "Release to AWS"
       if: branch = master AND type = push
       script:
