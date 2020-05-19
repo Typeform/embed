@@ -55,7 +55,8 @@
     "@semantic-release/npm": "^7.0.5",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "@typeform/eslint-config": "^1.12.0",
-    "@wdio/selenium-standalone-service": "^5.11.2",
+    "@wdio/cli": "^6.1.12",
+    "@wdio/selenium-standalone-service": "^6.0.16",
     "babel-core": "^6.5.1",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^22.2.0",
@@ -83,7 +84,7 @@
     "travis-deploy-once": "^4.3.3",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "url-loader": "^0.6.2",
-    "webdriverio": "^6.0.5",
+    "webdriverio": "^6.1.12",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
