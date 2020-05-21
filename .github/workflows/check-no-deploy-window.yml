@@ -1,0 +1,37 @@
+on:
+  schedule:
+    - cron:  '2/60 * * * *'
+  pull_request:
+    branches:
+      - master
+jobs:
+  should_deploy:
+    runs-on: ubuntu-latest
+    name: check no deploy window
+    steps:
+      - name: is deploy calendar busy?
+        uses: Typeform/siesta@v1
+        id: siesta
+        with:
+          google-credentials: ${{ secrets.siesta_google_credentials }}
+          google-token: ${{ secrets.siesta_google_token }}
+          google-calendar-id: ${{ secrets.siesta_google_calendar_id }}
+          custom-calendar-busy-message: 'There is an event in the Calendar. Deploying not recommended.'
+          custom-calendar-not-busy-message: 'No event in the Calendar. Feel free to deploy.'
+          fail-if-busy: false
+      - name: set label action based on result
+        uses: haya14busa/action-cond@v1.0.0
+        id: condval
+        with:
+          cond: ${{steps.siesta.outputs.calendar-busy}}
+          if_true: add
+          if_false: remove
+      - name: add or remove label
+        uses: Typeform/labeler@v1
+        id: labeler
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository-name: ${{ github.repository }}
+          label: no-deploy-window
+          label-action: ${{steps.condval.outputs.value}}
+          base-branch: master
