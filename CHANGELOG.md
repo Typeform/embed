@@ -1,3 +1,10 @@
+# [0.19.0](https://github.com/Typeform/embed/compare/v0.18.0...v0.19.0) (2020-05-25)
+
+
+### Features
+
+* **FEAR-95:** Publish the package to npm and GitHub registries ([fcba676](https://github.com/Typeform/embed/commit/fcba676))
+
 # [0.18.0](https://github.com/Typeform/embed/compare/v0.17.0...v0.18.0) (2020-05-21)
 
 
