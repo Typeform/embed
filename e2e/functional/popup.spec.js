@@ -2,8 +2,10 @@ import {
   closePopupViaButton,
   openPopup,
   closePopupViaKeyboard,
-  openPopupAsMobile,
-  closePopupViaButtonOnMobile, getIframeBody, IFRAME
+  openPopupOnMobile,
+  closePopupViaButtonOnMobile,
+  getIframe,
+  IFRAME_SELECTOR
 } from '../cypress-utils'
 
 const popupModes = {
@@ -15,22 +17,19 @@ const popupModes = {
 Object.keys(popupModes).forEach(popupMode => {
   describe(`${popupModes[popupMode]} Embed Widget`, () => {
     describe('Desktop', () => {
-      beforeEach(() => {
+      before(() => {
         openPopup(popupMode)
       })
 
       it('Passes query string parameter', () => {
-        cy.get('[data-qa="iframe"]').should('have.attr', 'src').and('match', /foobar=hello/)
+        cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /foobar=hello/)
       })
 
       it('Displays correct hidden field value', () => {
-        if (Cypress.isBrowser('chrome')) {
-          cy.wait(2000).then(() => {
-            getIframeBody(IFRAME).then(($body) => {
-              cy.wrap($body).find('[data-qa~="block-title"]').first().should('have.text', 'Full Name (hello)')
-            })
-          })
-        }
+        getIframe(
+          IFRAME_SELECTOR,
+          iframeBody => iframeBody.find('[data-qa~="block-title"]').first().should('have.text', 'Full Name (hello)')
+        )
       })
 
       it('Closes Embed Popup clicking on the close button', () => {
@@ -38,16 +37,17 @@ Object.keys(popupModes).forEach(popupMode => {
       })
 
       it('Closes Embed Popup using Keyboard', () => {
+        cy.get(`[data-mode="${popupMode}"]`).click()
         closePopupViaKeyboard()
       })
     })
 
     describe('Mobile', () => {
-      beforeEach(() => {
-        openPopupAsMobile(popupMode)
+      before(() => {
+        openPopupOnMobile(popupMode)
       })
 
-      it('Closes the Drawer widget clicking on close Button', () => {
+      it('Closes Embed Popup clicking on close Button', () => {
         closePopupViaButtonOnMobile()
       })
     })

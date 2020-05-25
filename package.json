@@ -96,6 +96,7 @@
     "create-emotion": "^9.0.2",
     "create-emotion-styled": "^9.0.1",
     "custom-event": "^1.0.1",
+    "eslint-plugin-cypress": "^2.10.3",
     "is-url": "^1.2.2",
     "preact": "^10.3.3",
     "prop-types": "^15.7.2",
