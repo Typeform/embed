@@ -42,7 +42,8 @@
     "copy:demo": "yarn copyfiles -f demo/* dist",
     "build": "yarn run dist && yarn run lib && yarn run copy",
     "dist": "yarn run clean:dist && yarn webpack --config webpack.config.dist.js",
-    "lib": "yarn run clean:lib && yarn webpack --config webpack.config.lib.js"
+    "lib": "yarn run clean:lib && yarn webpack --config webpack.config.lib.js",
+    "publish:github": "npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN && npm publish --registry https://npm.pkg.github.com"
   },
   "devDependencies": {
     "@applitools/eyes-webdriverio": "^5.7.2",
@@ -50,6 +51,7 @@
     "@commitlint/config-conventional": "^8.3.4",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/exec": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/github": "^7.0.6",
     "@semantic-release/npm": "^7.0.5",
