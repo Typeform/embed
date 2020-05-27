@@ -144,4 +144,15 @@ describe('Utilities', () => {
       expect(onMessage).not.toHaveBeenCalled()
     })
   })
+
+  describe('getSubmitEventData', () => {
+    test('takes submission info from the event', () => {
+      const detail = { response_id: 'response_id' }
+      expect(utils.getSubmitEventData({ detail })).toEqual({ response_id: detail.response_id })
+    })
+
+    test('returns undefined for empty object', () => {
+      expect(utils.getSubmitEventData({ detail: {} })).toEqual({ response_id: undefined })
+    })
+  })
 })

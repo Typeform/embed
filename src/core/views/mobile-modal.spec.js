@@ -4,6 +4,8 @@ import Enzyme, { shallow, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import CustomEvent from 'custom-event'
 
+import * as utils from '../utils'
+
 import MobileModal from './mobile-modal'
 import Iframe from './components/iframe'
 import CloseIcon from './components/close-icon'
@@ -65,6 +67,17 @@ describe('MobileModal', () => {
 
     window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: '098765' } }))
     expect(onSubmitSpy).not.toHaveBeenCalled()
+  })
+
+  it('passes event data to onSubmit callback', () => {
+    const onSubmitSpy = jest.fn()
+    const getSubmitEventDataSpy = jest.spyOn(utils, 'getSubmitEventData')
+    const event = new CustomEvent('form-submit', { detail: { embedId: EMBED_ID } })
+
+    shallow(<MobileModal embedId={EMBED_ID} onSubmit={onSubmitSpy} url={URL} />)
+    window.dispatchEvent(event)
+
+    expect(getSubmitEventDataSpy).toHaveBeenCalledWith(event)
   })
 
   describe('prevent page below modal to scroll', () => {

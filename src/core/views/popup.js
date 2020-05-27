@@ -10,7 +10,8 @@ import {
   broadcastMessage,
   callIfEmbedIdMatches,
   redirectToUrl,
-  updateQueryStringParameter
+  updateQueryStringParameter,
+  getSubmitEventData
 } from './../utils'
 import closeImg from './../../../assets/close.gif'
 
@@ -225,8 +226,10 @@ class Popup extends Component {
     }
   }
 
-  handleFormSubmit () {
-    this.props.options.onSubmit && this.props.options.onSubmit()
+  handleFormSubmit (event) {
+    if (this.props.options.onSubmit) {
+      this.props.options.onSubmit(getSubmitEventData(event))
+    }
   }
 
   render () {

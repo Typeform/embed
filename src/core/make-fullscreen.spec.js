@@ -1,5 +1,6 @@
 import CustomEvent from 'custom-event'
 
+import * as utils from './utils'
 import makeFullScreen from './make-fullscreen'
 
 describe('makeFullScreen', () => {
@@ -29,7 +30,12 @@ describe('makeFullScreen', () => {
     const onSubmitMock = jest.fn()
     makeFullScreen(iframe, URL, { onSubmit: onSubmitMock })
 
-    window.dispatchEvent(new CustomEvent('form-submit'))
+    const getSubmitEventDataSpy = jest.spyOn(utils, 'getSubmitEventData')
+    const event = new CustomEvent('form-submit')
+
+    window.dispatchEvent(event)
+
+    expect(getSubmitEventDataSpy).toHaveBeenCalledWith(event)
     expect(onSubmitMock).toHaveBeenCalled()
   })
 })

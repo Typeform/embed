@@ -5,7 +5,8 @@ import {
   applyIOSIframeResizeHack,
   replaceExistingKeys,
   redirectToUrl,
-  noop
+  noop,
+  getSubmitEventData
 } from './utils'
 import onMessage from './utils/message-propagation'
 
@@ -28,8 +29,8 @@ export default function makeFullScreen (iframe, url, options) {
 
   iframe.src = appendParamsToUrl(url, replaceExistingKeys(options, queryStringKeys))
 
-  const onFormSubmit = () => {
-    options.onSubmit()
+  const onFormSubmit = (event) => {
+    options.onSubmit(getSubmitEventData(event))
   }
 
   ensureMetaViewport()

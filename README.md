@@ -131,6 +131,27 @@ typeformEmbed.makePopup(url, options)
   )
   ```
 
+### `onSubmit` event
+
+Callback function `onSubmit` receives `event` object with next properties:
+
+| Parameter     | Type   | Description        |
+| ------------- | ------ | ------------------ |
+| `response_id` | string | ID of the response |
+
+#### Example:
+
+```javascript
+const reference = typeformEmbed.makePopup(
+  'https://admin.typeform.com/to/PlBzgL',
+  {
+    onSubmit: function (event) {
+      console.log(event.response_id)
+    }
+  }
+)
+```
+
 ## Troubleshooting
 
 ### An element in my page is over the typeform

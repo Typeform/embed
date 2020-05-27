@@ -9,7 +9,8 @@ import {
   isElementInViewport,
   callIfEmbedIdMatches,
   updateQueryStringParameter,
-  redirectToUrl
+  redirectToUrl,
+  getSubmitEventData
 } from '../utils'
 import randomString from '../utils/random-string'
 
@@ -192,8 +193,10 @@ class Widget extends Component {
     broadcastMessage(this.embedId, event)
   }
 
-  handleFormSubmit () {
-    this.props.options.onSubmit && this.props.options.onSubmit()
+  handleFormSubmit (event) {
+    if (this.props.options.onSubmit) {
+      this.props.options.onSubmit(getSubmitEventData(event))
+    }
   }
 
   reloadIframe () {

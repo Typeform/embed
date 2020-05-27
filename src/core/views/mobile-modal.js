@@ -9,7 +9,8 @@ import {
   broadcastMessage,
   callIfEmbedIdMatches,
   redirectToUrl,
-  updateQueryStringParameter
+  updateQueryStringParameter,
+  getSubmitEventData
 } from './../utils'
 import { DEFAULT_AUTOCLOSE_TIMEOUT } from './popup'
 
@@ -116,8 +117,10 @@ class MobileModal extends Component {
     }
   }
 
-  handleFormSubmit () {
-    this.props.onSubmit && this.props.onSubmit()
+  handleFormSubmit (event) {
+    if (this.props.onSubmit) {
+      this.props.onSubmit(getSubmitEventData(event))
+    }
   }
 
   handleFormTheme (event) {

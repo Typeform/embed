@@ -5,6 +5,7 @@ import Enzyme, { shallow, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
 import randomString from '../utils/random-string'
+import * as utils from '../utils'
 
 import Widget from './widget'
 import MobileModal from './mobile-modal'
@@ -43,6 +44,18 @@ describe('Widget', () => {
 
     window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: '098765' } }))
     expect(onSubmitMock).not.toHaveBeenCalled()
+  })
+
+  it('passes event data to onSubmit callback', () => {
+    const onSubmitMock = jest.fn()
+    const options = { onSubmit: onSubmitMock }
+    const getSubmitEventDataSpy = jest.spyOn(utils, 'getSubmitEventData')
+    const event = new CustomEvent('form-submit', { detail: { embedId: EMBED_ID } })
+
+    shallow(<Widget options={options} url={URL} />)
+
+    window.dispatchEvent(event)
+    expect(getSubmitEventDataSpy).toHaveBeenCalledWith(event)
   })
 
   describe('on fullscreen mode', () => {

@@ -174,3 +174,7 @@ export const redirectToUrl = event => {
     document.body.removeChild(anchor)
   } catch (e) {}
 }
+
+export const getSubmitEventData = (event) => {
+  return { response_id: event && event.detail ? event.detail.response_id : undefined }
+}
