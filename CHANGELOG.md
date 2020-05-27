@@ -1,3 +1,10 @@
+# [0.20.0](https://github.com/Typeform/embed/compare/v0.19.0...v0.20.0) (2020-05-27)
+
+
+### Features
+
+* **DIST-41:** Add response_id to onSubmit callback ([a8e2edf](https://github.com/Typeform/embed/commit/a8e2edf))
+
 # [0.19.0](https://github.com/Typeform/embed/compare/v0.18.0...v0.19.0) (2020-05-25)
 
 
