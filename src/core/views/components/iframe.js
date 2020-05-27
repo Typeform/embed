@@ -28,6 +28,9 @@ class Iframe extends Component {
     }
     this.iframeRef.style.height = `${this.iframeRef.offsetHeight + 1}px`
     setTimeout(() => {
+      if (!this.iframeRef) {
+        return
+      }
       this.iframeRef.style.height = ''
       applyIOSFooterHack(this.iframeRef)
       applyIOSIframeResizeHack(this.iframeRef)

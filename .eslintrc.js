@@ -5,8 +5,6 @@ module.exports = {
     Scenario: true,
     within: true,
     actor: true,
-    cy: true,
-    Cypress: true
   },
   rules: {
     "comma-dangle": ["error", "never"],
