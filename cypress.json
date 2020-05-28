@@ -1,6 +1,7 @@
 {
   "chromeWebSecurity": false,
-  "integrationFolder": "./e2e/functional",
+  "integrationFolder": "./e2e/spec",
+  "screenshotsFolder": "./e2e/screenshots",
   "baseUrl": "http://localhost:8080/",
   "defaultCommandTimeout": 6000,
   "pageLoadTimeout": 10000,

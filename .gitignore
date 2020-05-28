@@ -54,8 +54,5 @@ lib
 node_modules
 .npmrc
 
-# codeceptjs
-e2e/output
-
-# cypress
-cypress
+# tests
+e2e/screenshots

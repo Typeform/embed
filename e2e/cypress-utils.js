@@ -1,4 +1,6 @@
 export const IFRAME_SELECTOR = '[data-qa="iframe"]'
+export const screenSizeDesktop = { width: 1024, height: 768 }
+export const screenSizeMobile = { width: 375, height: 667 }
 
 const getIframeBody = (iframe) => {
   return cy
@@ -18,19 +20,12 @@ export const getIframe = (iframe, callbackWithIframeBody, callbackWithIframe) =>
 export const testEmbeddedForm = (selector = IFRAME_SELECTOR) => {
   getIframe(
     selector,
-    iframeBody => iframeBody.find('input').should('be.visible'),
+    iframeBody => iframeBody.find('[data-qa="start-button"]').should('have.text', 'Start').should('be.visible'),
     iframe => iframe.should('be.visible')
   )
 }
 
 export const openPopup = (mode) => {
-  cy.visit('popup.html?foobar=hello')
-  cy.get(`[data-mode="${mode}"]`).click()
-  cy.get(IFRAME_SELECTOR).should('not.be.undefined')
-}
-
-export const openPopupOnMobile = (mode) => {
-  openOnMobile('popup.html?foobar=hello')
   cy.get(`[data-mode="${mode}"]`).click()
   cy.get(IFRAME_SELECTOR).should('not.be.undefined')
 }
@@ -49,15 +44,24 @@ export const closePopupViaKeyboard = () => {
   getIframe(
     IFRAME_SELECTOR,
     iframeBody => {
-      iframeBody.find('input').first().focus().type('{esc}')
+      iframeBody.find('[data-qa="start-button"]').type('{esc}') // send escape key to iframe
       cy.get(IFRAME_SELECTOR).should('not.exist')
     },
     () => closePopupViaButton()
   )
 }
 
+const setViewport = ({ width, height }) => {
+  cy.viewport(width, height)
+}
+
+export const open = (url) => {
+  setViewport(screenSizeDesktop)
+  cy.visit(url)
+}
+
 export const openOnMobile = (url) => {
-  cy.viewport('iphone-6')
+  setViewport(screenSizeMobile)
   cy.visit(url, {
     onBeforeLoad: win => {
       Object.defineProperty(win.navigator, 'userAgent', {
@@ -71,7 +75,7 @@ export const testEmbedFormOnMobile = () => {
   getIframe(
     IFRAME_SELECTOR,
     iframeBody => {
-      iframeBody.find('[data-qa="start-button"]').should('have.text', 'Start').click()
+      iframeBody.find('[data-qa="start-button"]').click()
 
       // on mobile there are 2 iframes when the form is opened in modal window
       cy.get(IFRAME_SELECTOR).should('have.length', 2)
@@ -81,4 +85,9 @@ export const testEmbedFormOnMobile = () => {
     },
     iframe => iframe.should('be.visible')
   )
+}
+
+export const waitForEmbed = (wait = 0) => {
+  cy.title().should('eq', 'form-ready')
+  cy.wait(wait) // short waiting time to make sure the form is loaded
 }
