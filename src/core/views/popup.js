@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ScrollbarWidth from 'scrollbar-width'
 
+import closeImg from '../../../assets/close.gif'
 import styled from '../styles'
-
-import Iframe from './components/iframe'
-import Spinner from './components/spinner'
 import {
   broadcastMessage,
   callIfEmbedIdMatches,
   redirectToUrl,
   updateQueryStringParameter,
   getSubmitEventData
-} from './../utils'
-import closeImg from './../../../assets/close.gif'
+} from '../utils'
+
+import Iframe from './components/iframe'
+import Spinner from './components/spinner'
 
 const ESC_KEY_CODE = 27
 const CLOSE_BUTTON_WIDTH = 30

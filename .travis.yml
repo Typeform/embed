@@ -33,6 +33,7 @@ env:
   VERSION: "$TRAVIS_BUILD_NUMBER"
 
 before_install:
+  - export APPLITOOLS_BATCH_ID=`echo ${TRAVIS_PULL_REQUEST_SHA:=$TRAVIS_COMMIT}`
   - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY
   - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_KEY
   - npm config set '//registry.npmjs.org/:_authToken' ${NPM_TOKEN}
@@ -66,22 +67,13 @@ jobs:
       if: fork = false AND branch = master
       script:
         - yarn start --no-info & export EMBED_PID=$!
-        - yarn test:visual:install
-        - yarn test:visual:chrome
-        - kill $EMBED_PID
-    - name: "Visual Tests Mobile (Internal)"
-      if: fork = false AND branch = master
-      script:
-        - yarn start --no-info & export EMBED_PID=$!
-        - yarn test:visual:install
-        - yarn test:visual:mobile
+        - yarn test:visual:chrome  --record --parallel --group visual-chrome
         - kill $EMBED_PID
     - name: "Visual Tests Firefox (Internal)"
       if: fork = false AND branch = master
       script:
         - yarn start --no-info & export EMBED_PID=$!
-        - yarn test:visual:install
-        - yarn test:visual:firefox
+        - yarn test:visual:firefox --record --parallel --group visual-firefox
         - kill $EMBED_PID
     - stage: "Release"
       name: "Deploy Preview to AWS"
