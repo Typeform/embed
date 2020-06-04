@@ -1,5 +1,0 @@
-#!/bin/sh
-
-curl -H "Authorization: token ${GH_TOKEN}" -X POST \
--d "{\"body\": \"Embed script preview available: https://embed.typeform.com/${TRAVIS_COMMIT}/embed.js\"}" \
-"https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments"

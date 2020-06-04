@@ -82,8 +82,8 @@ jobs:
       script:
         - yarn build
         - pip install --user awscli
-        - aws s3 cp ./dist s3://$AWS_ASSETS_BUCKET/$TRAVIS_COMMIT --recursive --acl public-read
-        - ./scripts/comment-preview-link
+        - yarn add @typeform/jarvis
+        - DEBUG=jarvis yarn run jarvis deploy --path dist --preview --notify-preview
     - name: "Release to NPM"
       if: branch = master AND type = push
       script:
@@ -93,4 +93,5 @@ jobs:
       script:
         - yarn build
         - pip install --user awscli
-        - aws s3 cp ./dist s3://$AWS_ASSETS_BUCKET --recursive --acl public-read
+        - yarn add @typeform/jarvis
+        - DEBUG=jarvis jarvis deploy --path dist
