@@ -19,12 +19,12 @@ import Popup, {
 } from './views/popup'
 import MobileModal from './views/mobile-modal'
 import { getPostMessageHandler } from './utils/get-post-message-handler'
+import { handleAutoOpen } from './utils/popup-auto-open'
 
 const DEFAULT_DRAWER_WIDTH = 800
 
 const defaultOptions = {
   mode: POPUP,
-  autoOpen: false,
   isModalOpen: false,
   autoClose: DEFAULT_AUTOCLOSE_TIMEOUT,
   hideFooter: false,
@@ -32,7 +32,9 @@ const defaultOptions = {
   hideScrollbars: false,
   disableTracking: false,
   drawerWidth: DEFAULT_DRAWER_WIDTH,
-  onSubmit: noop
+  onSubmit: noop,
+  open: null,
+  openValue: null
 }
 
 const queryStringKeys = {
@@ -129,9 +131,7 @@ export default function makePopup (url, options) {
     }
   }
 
-  if (options.autoOpen) {
-    popup.open()
-  }
+  handleAutoOpen(popup, options.open, options.openValue)
 
   return popup
 }

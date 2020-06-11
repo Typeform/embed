@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Open: time</title>
+  </head>
+  <body>
+    <h1>This popup opens in <span id="seconds">5</span> seconds</h1>
+    <p>The popup is opened automatically after the given time has passed.</p>
+    <a
+      id="popup"
+      class="typeform-share"
+      href="//betatests.typeform.com/to/Z9k3bK?disable-tracking=true"
+      data-mode="drawer_right"
+      data-open="time"
+      data-open-value="5000"
+      target="_blank"
+    >
+      Open the popup manually instead
+    </a>
+
+    <h2>Customize the time</h2>
+    <p>This can be set on "Share" page as well.</p>
+    <form action="" method="get">
+      <label for="time">Milliseconds</label>
+      <input id="time" name="ms" type="number" value="5000" step="1000" min="1000" />
+      <button type="submit">Set</button>
+    </form>
+
+    <script>
+      const param = window.location.search.match(/ms=(\d+)/)
+      if (param) {
+        const ms = parseInt(param[1], 10);
+        document.getElementById('popup').dataset.openValue = ms;
+        document.getElementById('time').value = ms;
+        document.getElementById('seconds').innerHTML = Math.round(ms / 1000);
+      }
+    </script>
+
+    <script type="text/javascript" src="../embed.js"></script>
+    <script type="text/javascript" src="../demo.js"></script>
+  </body>
+</html>

@@ -18,7 +18,7 @@ describe('Attributes', () => {
       const popupOptions = {
         mode: 'popup',
         autoClose: 10,
-        autoOpen: true,
+        open: 'load',
         hideHeaders: true
       }
 

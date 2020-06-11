@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Open: exit</title>
+    <style>
+      #visual-threshold {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        background: rgba(255,0,0,0.2);
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="visual-threshold"></div>
+    <h1>This popup opens on exit intent</h1>
+    <p>If a user wants to navigate away from your page, they usually need to access the browser toolbar.</p>
+    <p>We detect mouse movement in top part of the page - if the mouse is moving "up", we open the popup.</p>
+    <p>The popup is opened only once (on first detected exit intent).</p>
+    <a
+      id="popup"
+      class="typeform-share"
+      href="//betatests.typeform.com/to/Z9k3bK?disable-tracking=true"
+      data-mode="drawer_right"
+      data-open="exit"
+      data-open-value="50"
+      target="_blank"
+    >
+      Open the popup manually instead
+    </a>
+
+    <h2>Technical stuff</h2>
+    <p>This is not available for customization on "Share" page, but the embed lib allows it.</p>
+    <form action="" method="get">
+      <label for="threshold">Pixels from top</label>
+      <input id="threshold" name="threshold" type="number" value="50" step="10" min="10" max="250" />
+      <button type="submit">Set</button>
+    </form>
+
+    <script>
+      const param = window.location.search.match(/threshold=(\d+)/)
+      if (param) {
+        const thresholdValue = parseInt(param[1], 10);
+        document.getElementById('popup').dataset.openValue = thresholdValue;
+        document.getElementById('threshold').value = thresholdValue;
+        document.getElementById('visual-threshold').style.height = thresholdValue + 'px';
+      }
+    </script>
+
+    <script type="text/javascript" src="../embed.js"></script>
+    <script type="text/javascript" src="../demo.js"></script>
+  </body>
+</html>

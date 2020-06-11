@@ -28,7 +28,7 @@ const instantiatePopup = (options) => {
 }
 
 const renderPopupComponent = (autoOpen = false) => {
-  const options = { hola: true, autoOpen }
+  const options = { hola: true, open: autoOpen ? 'load' : null }
 
   const popup = instantiatePopup(options)
   if (!autoOpen) popup.open()
@@ -42,7 +42,7 @@ const renderPopupComponent = (autoOpen = false) => {
 
 const renderMobileModalComponent = (autoOpen = false) => {
   const spy = jest.fn()
-  const options = { uid: UID, buttonText: 'hola', autoOpen, onSubmit: spy }
+  const options = { uid: UID, buttonText: 'hola', open: autoOpen ? 'load' : null, onSubmit: spy }
 
   isMobileMock.mockImplementation(() => true)
   renderMock.mockClear()
@@ -95,7 +95,7 @@ describe('makePopup', () => {
   })
 
   it(`renders a Popup component on desktop devices when 'drawerWidth' option is a valid number`, () => {
-    const options = { autoOpen: true, drawerWidth: 650 }
+    const options = { open: 'load', drawerWidth: 650 }
 
     instantiatePopup(options)
     const component = renderMock.mock.calls[0][0]
