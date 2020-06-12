@@ -4,13 +4,15 @@ import {
   openPopup,
   closePopupViaKeyboard,
   closePopupViaButtonOnMobile,
-  IFRAME_SELECTOR, openOnMobile
+  IFRAME_SELECTOR,
+  openOnMobile
 } from '../../cypress-utils'
 
 const popupModes = {
-  1: 'Popup',
-  2: 'Drawer Left',
-  3: 'Drawer Right'
+  popup: 'Popup',
+  drawer_left: 'Drawer Left',
+  drawer_right: 'Drawer Right',
+  popover: 'Popover'
 }
 
 Object.keys(popupModes).forEach(popupMode => {

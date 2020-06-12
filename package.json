@@ -22,7 +22,7 @@
     "build": "./scripts/build.sh",
     "start": "yarn serve -S demo",
     "test": "yarn lint && yarn test:unit && yarn test:visual && yarn test:functional",
-    "lint": "yarn eslint ./src --ext .js --ignore-path .eslintignore",
+    "lint": "yarn eslint ./src --ext .js --ignore-path .eslintignore --max-warnings=0",
     "test:unit": "yarn jest",
     "test:unit:watch": "yarn jest --watch",
     "test:unit:coverage": "yarn jest --coverage",

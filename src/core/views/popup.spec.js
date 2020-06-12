@@ -8,7 +8,8 @@ import * as utils from '../utils'
 import Popup, {
   POPUP,
   DRAWER,
-  DRAWER_RIGHT
+  DRAWER_RIGHT,
+  POPOVER
 } from './popup'
 import Iframe from './components/iframe'
 
@@ -21,14 +22,6 @@ const popupOptions = {
   mode: POPUP
 }
 
-const leftDrawerOptions = {
-  mode: DRAWER
-}
-
-const rightDrawerOptions = {
-  mode: DRAWER_RIGHT
-}
-
 Enzyme.configure({ adapter: new Adapter() })
 
 describe('Popup', () => {
@@ -37,27 +30,6 @@ describe('Popup', () => {
     const popup = shallow(<Popup embedId={EMBED_ID} options={popupOptions} url={URL} />)
 
     expect(popup.find(Iframe).prop('src')).toEqual(expectedUrl)
-  })
-
-  it('renders the correct mode (popup)', () => {
-    const options = popupOptions
-    const popup = shallow(<Popup options={options} url={URL} />)
-
-    expect(popup.find(`[data-qa="popup-mode-${options.mode}"]`)).toHaveLength(1)
-  })
-
-  it('renders the correct mode (left drawer)', () => {
-    const options = leftDrawerOptions
-    const popup = shallow(<Popup options={options} url={URL} />)
-
-    expect(popup.find(`[data-qa="popup-mode-${options.mode}"]`)).toHaveLength(1)
-  })
-
-  it('renders the correct mode (right drawer)', () => {
-    const options = rightDrawerOptions
-    const popup = shallow(<Popup options={options} url={URL} />)
-
-    expect(popup.find(`[data-qa="popup-mode-${options.mode}"]`)).toHaveLength(1)
   })
 
   it('calls onClose callback function when close button is clicked', done => {
@@ -88,34 +60,53 @@ describe('Popup', () => {
     })
   })
 
-  it('onSubmit callback is executed upon typeform submission when embed ID matches', () => {
-    const onSubmitMock = jest.fn()
-    const options = { ...popupOptions, onSubmit: onSubmitMock }
-    mount(<Popup embedId={EMBED_ID} options={options} url={URL} />)
+  describe('renders the correct mode', () => {
+    const useCases = [
+      POPUP,
+      DRAWER,
+      DRAWER_RIGHT,
+      POPOVER
+    ]
 
-    window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: EMBED_ID } }))
-    expect(onSubmitMock).toHaveBeenCalledTimes(1)
+    useCases.forEach((mode) => {
+      it(`for "${mode}" mode`, () => {
+        const options = { mode }
+        const popup = shallow(<Popup options={options} url={URL}/>)
+        expect(popup.find(`[data-qa="popup-mode-${mode}"]`)).toHaveLength(1)
+      })
+    })
   })
 
-  it('onSubmit callback is not executed upon typeform submission when embed ID does not match', () => {
-    const onSubmitMock = jest.fn()
-    const options = { ...popupOptions, onSubmit: onSubmitMock }
-    mount(<Popup embedId={EMBED_ID} options={options} url={URL} />)
+  describe('onSubmit callback', () => {
+    it('is executed upon typeform submission when embed ID matches', () => {
+      const onSubmitMock = jest.fn()
+      const options = { ...popupOptions, onSubmit: onSubmitMock }
+      mount(<Popup embedId={EMBED_ID} options={options} url={URL}/>)
 
-    window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: '098765' } }))
-    expect(onSubmitMock).not.toHaveBeenCalled()
-  })
+      window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: EMBED_ID } }))
+      expect(onSubmitMock).toHaveBeenCalledTimes(1)
+    })
 
-  it('passes event data to onSubmit callback', () => {
-    const onSubmitMock = jest.fn()
-    const options = { ...popupOptions, onSubmit: onSubmitMock }
-    const getSubmitEventDataSpy = jest.spyOn(utils, 'getSubmitEventData')
-    const event = new CustomEvent('form-submit', { detail: { embedId: EMBED_ID } })
+    it('is not executed upon typeform submission when embed ID does not match', () => {
+      const onSubmitMock = jest.fn()
+      const options = { ...popupOptions, onSubmit: onSubmitMock }
+      mount(<Popup embedId={EMBED_ID} options={options} url={URL}/>)
 
-    shallow(<Popup embedId={EMBED_ID} options={options} url={URL} />)
+      window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: '098765' } }))
+      expect(onSubmitMock).not.toHaveBeenCalled()
+    })
 
-    window.dispatchEvent(event)
-    expect(getSubmitEventDataSpy).toHaveBeenCalledWith(event)
+    it('receives event data', () => {
+      const onSubmitMock = jest.fn()
+      const options = { ...popupOptions, onSubmit: onSubmitMock }
+      const getSubmitEventDataSpy = jest.spyOn(utils, 'getSubmitEventData')
+      const event = new CustomEvent('form-submit', { detail: { embedId: EMBED_ID } })
+
+      shallow(<Popup embedId={EMBED_ID} options={options} url={URL}/>)
+
+      window.dispatchEvent(event)
+      expect(getSubmitEventDataSpy).toHaveBeenCalledWith(event)
+    })
   })
 
   describe(`upon receiving upon 'embed-auto-close-popup' event`, () => {

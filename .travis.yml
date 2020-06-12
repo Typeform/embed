@@ -84,7 +84,7 @@ jobs:
       script:
         - yarn build
         - pip install --user awscli
-        - yarn add @typeform/jarvis@10.4.0 # jarvis version pinned, latest version has a bug, we should unpin it when its fixed
+        - yarn add @typeform/jarvis@10.4.0
         - ./scripts/consolidate-dist.sh
         - DEBUG=jarvis yarn run jarvis deploy --path dist --preview --notify-preview
     - name: "Release to NPM"
@@ -96,6 +96,6 @@ jobs:
       script:
         - yarn build
         - pip install --user awscli
-        - yarn add @typeform/jarvis@10.4.0 # jarvis version pinned, latest version has a bug, we should unpin it when its fixed
+        - yarn add @typeform/jarvis@10.4.0
         - ./scripts/consolidate-dist.sh
         - DEBUG=jarvis jarvis deploy --path dist

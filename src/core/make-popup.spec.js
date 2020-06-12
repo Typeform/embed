@@ -81,8 +81,8 @@ describe('makePopup', () => {
     })
   })
 
-  it(`throws an error when 'drawerWidth' option is not a number`, () => {
-    const options = { autoOpen: true, drawerWidth: 'hello' }
+  it(`throws an error when 'width' option is not a number`, () => {
+    const options = { autoOpen: true, width: 'hello' }
 
     isMobileMock.mockImplementation(() => false)
     appendParamsToUrlMock.mockImplementation((url) => url)
@@ -94,8 +94,8 @@ describe('makePopup', () => {
     expect(renderMock).toHaveBeenCalledTimes(0)
   })
 
-  it(`renders a Popup component on desktop devices when 'drawerWidth' option is a valid number`, () => {
-    const options = { open: 'load', drawerWidth: 650 }
+  it(`renders a Popup component on desktop devices when 'width' option is a valid number`, () => {
+    const options = { open: 'load', width: 650 }
 
     instantiatePopup(options)
     const component = renderMock.mock.calls[0][0]
