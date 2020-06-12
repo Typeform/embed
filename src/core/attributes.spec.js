@@ -11,6 +11,8 @@ describe('Attributes', () => {
       popupMockElem.setAttribute('data-mode', 'popup')
       popupMockElem.setAttribute('data-submit-close-delay', 10)
       popupMockElem.setAttribute('data-auto-open', true)
+      popupMockElem.setAttribute('data-open', 'scroll')
+      popupMockElem.setAttribute('data-open-value', 20)
       popupMockElem.setAttribute('data-hide-headers', '')
       popupMockElem.setAttribute('data-hide-footer', false)
       popupMockElem.setAttribute('data-invalid-attribute', true)
@@ -18,7 +20,9 @@ describe('Attributes', () => {
       const popupOptions = {
         mode: 'popup',
         autoClose: 10,
-        open: 'load',
+        autoOpen: true,
+        open: 'scroll',
+        openValue: '20',
         hideHeaders: true
       }
 

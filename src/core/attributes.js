@@ -44,6 +44,10 @@ const sanitizePopupAttributes = data => {
     obj.autoClose = submitCloseDelay
   }
 
+  if (data.autoOpen === '' || data.autoOpen === 'true') {
+    obj.autoOpen = true
+  }
+
   if (data.hideHeaders === '' || data.hideHeaders === 'true') {
     obj.hideHeaders = true
   }
@@ -59,8 +63,6 @@ const sanitizePopupAttributes = data => {
   if (data.open) {
     obj.open = data.open
     obj.openValue = data.openValue
-  } else if (data.autoOpen === '' || data.autoOpen === 'true') { // legacy auto-open attribute
-    obj.open = 'load'
   }
 
   return obj
