@@ -57,7 +57,7 @@ typeformEmbed.makeWidget(element, url, options)
   | hideFooter     | Hide typeform footer, that appears showing the progress bar and the navigation buttons.                                                                        | `Boolean`  | false   |
   | hideHeaders    | Hide typeform header, that appears when you have a Question group, or a long question that you need to scroll through to answer, like a Multiple Choice block. | `Boolean`  | false   |
   | onSubmit       | Callback function that will be executed right after the typeform is successfully submitted.                                                                    | `Function` | -       |
-  | onReady       | Callback function that will be executed once the typeform is ready.                                                                                             | `Function` | -       |
+  | onReady        | Callback function that will be executed once the typeform is ready.                                                                                            | `Function` | -       |
 
   #### Example:
 
@@ -95,27 +95,33 @@ typeformEmbed.makePopup(url, options)
 
   | option         | description                                                                                                                                                    | values                                                                        | default |
   |----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|---------|
-  | mode           | ![typeform Embed Popup modes](/documentation/popup.png) <br/> The way of showing the embed                                                                     | `String` any of: <br/> `"popup"` <br/> `"drawer_left"` <br/> `"drawer_right"` | "popup" |
-  | autoOpen       | Your typeform will launch as soon as your web page is opened                                                                                                   | `Boolean`                                                                     | false   |
-  | autoClose      | Time until the embedded typeform will automatically close after a respondent clicks the Submit button. The default time is 5 seconds. PRO+ users can change the `autoClose` time. | `Number` (seconds)                                                        | -       |
+  | mode           | The way of showing the popup                                                                                                                                   | `String` any of: <br/> `"popup"` <br/> `"drawer_left"` <br/> `"drawer_right"` <br/> `"side-panel"` <br/> `"popover"` | "popup" |
+  | ❌ autoOpen    | Your typeform will launch as soon as your web page is opened **Deprecated:** Use `open: "load"` instead                                                        | `Boolean`                                                                     | false   |
+  | 💡 open        | Your typeform will launch based on behavioral triggers                                                                                                         | `String` any of: <br/> `"exit"` <br/> `"load"` <br/> `"scroll"` <br/> `"time"`| null    |
+  | 💡 openValue   | Configuration for behavioral triggers. Based on `open`: <br/> - `"exit"`: exit threshold in pixels <br/> - `"scroll"`: % of page scrolled <br/> * `"time"`: time in milliseconds  | `Number`                                                   | null    |
+  | autoClose      | Time until the embedded typeform will automatically close after a respondent clicks the Submit button. The default time is 5 seconds. PRO+ users can change the `autoClose` time. | `Number` (seconds)                                         | -       |
   | hideScrollbars | Hide fixed scrollbars.                                                                                                                                         | `Boolean`                                                                     | false   |
   | hideFooter     | Hide typeform footer, that appears showing the progress bar and the navigation buttons.                                                                        | `Boolean`                                                                     | false   |
   | hideHeaders    | Hide typeform header, that appears when you have a Question group, or a long question that you need to scroll through to answer, like a Multiple Choice block. | `Boolean`                                                                     | false   |
-  | drawerWidth    | Specify the width of the drawer (only applies if using `mode` `"drawer_left"` or `"drawer_right"`).                                                             | `Number` (pixels)                                                            | 800     |
+  | drawerWidth    | Specify the width of the drawer (only applies if using `mode` `"drawer_left"` or `"drawer_right"`).                                                            | `Number` (pixels)                                                             | 800     |
   | onSubmit       | Callback function that will be executed right after the typeform is successfully submitted.                                                                    | `Function`                                                                    | -       |
-  | onReady        | Callback function that will be executed once the typeform is ready.                                                                                            |
-  `Function`                                                                    | -       |
-  | onClose        | Callback function that will be executed once the typeform is closed.                                                                                            |
-  `Function`                                                                    | -       |
+  | onReady        | Callback function that will be executed once the typeform is ready.                                                                                            | `Function`                                                                    | -       |
+  | onClose        | Callback function that will be executed once the typeform is closed.                                                                                           | `Function`                                                                    | -       |
 
-  #### Example:
+Types:
+
+- ❌ Deprecated option. Will be removed in future.
+- 💡 Experimental option. Implementation might change in future without prior notice. Use at your own risk.
+
+#### Example:
 
   ```js
   typeformEmbed.makePopup(
     'https://admin.typeform.com/to/PlBzgL',
     {
       mode: 'drawer_left',
-      autoOpen: true,
+      open: 'scroll',
+      openValue: 30,
       autoClose: 3,
       hideScrollbars: true,
       onSubmit: function () {

@@ -131,6 +131,10 @@ export default function makePopup (url, options) {
     }
   }
 
+  if (!options.open && options.autoOpen) { // legacy auto-open attribute
+    options.open = 'load'
+  }
+
   handleAutoOpen(popup, options.open, options.openValue)
 
   return popup
