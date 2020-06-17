@@ -8,18 +8,18 @@
     "type": "git",
     "url": "https://github.com/Typeform/embed.git"
   },
-  "main": "lib/api",
+  "main": "build/lib.pure.js",
+  "module": "build/lib.pure.js",
   "files": [
     "assets",
-    "lib",
-    "dist",
+    "build",
+    "package.json",
     "README.md"
   ],
   "scripts": {
-    "clean": "yarn run clean:dist && yarn run clean:lib",
-    "clean:dist": "rm -rf dist",
-    "clean:lib": "rm -rf lib",
-    "start": "NODE_ENV=development webpack-dev-server -d --config webpack.config.dist.js",
+    "clean": "rm -rf build",
+    "build": "./scripts/build.sh",
+    "start": "yarn serve -S -l 3000 demo",
     "test": "yarn lint && yarn test:unit && yarn test:visual && yarn test:functional",
     "lint": "yarn eslint ./src --ext .js --ignore-path .eslintignore",
     "test:unit": "yarn jest",
@@ -34,121 +34,62 @@
     "test:functional:chrome": "yarn run test:functional:run --browser chrome",
     "test:functional:run": "yarn cypress run --spec e2e/spec/functional/**/*",
     "test:debug": "yarn cypress open",
-    "prepublish": "yarn run lib",
+    "prepublish": "yarn run build",
     "travis-deploy-once": "yarn travis-deploy-once --pro",
-    "copy": "yarn run copy:assets && yarn run copy:helpcenter && yarn run copy:demo",
-    "copy:assets": "yarn copyfiles -f assets/* dist",
-    "copy:helpcenter": "yarn copyfiles -f helpcenter/* dist",
-    "copy:demo": "yarn copyfiles -f demo/* dist",
-    "build": "yarn run dist && yarn run lib && yarn run copy",
-    "dist": "yarn run clean:dist && yarn webpack --config webpack.config.dist.js",
-    "lib": "yarn run clean:lib && yarn webpack --config webpack.config.lib.js",
     "publish:github": "npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN && npm publish --registry https://npm.pkg.github.com"
   },
   "devDependencies": {
-    "@applitools/eyes-cypress": "^3.11.1",
+    "@applitools/eyes-cypress": "^3.12.0",
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/exec": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
-    "@semantic-release/github": "^7.0.6",
+    "@semantic-release/github": "^7.0.7",
     "@semantic-release/npm": "^7.0.5",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "@typeform/eslint-config": "^1.12.0",
-    "@wdio/cli": "^6.1.12",
-    "@wdio/selenium-standalone-service": "^6.0.16",
-    "babel-core": "^6.5.1",
-    "babel-eslint": "^10.0.3",
-    "babel-jest": "^22.2.0",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-emotion": "^9.0.1",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-env": "^1.1.8",
-    "babel-preset-react": "^6.23.0",
-    "copyfiles": "^2.2.0",
-    "cypress": "^4.2.0",
-    "dotenv": "^8.2.0",
+    "@wdio/cli": "^6.1.17",
+    "@wdio/selenium-standalone-service": "^6.1.14",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.0.1",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "core-js": "^3.6.5",
+    "cypress": "^4.8.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "eslint": "^5.13.0",
-    "husky": "^4.2.3",
+    "eslint": "^7.2.0",
+    "eslint-plugin-cypress": "^2.11.1",
+    "husky": "^4.2.5",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^25.1.0",
-    "jsdom": "^11.6.2",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
+    "jest": "^26.0.1",
+    "jsdom": "^16.2.2",
+    "preact": "^10.4.4",
     "regenerator-runtime": "^0.13.5",
     "selenium-standalone": "^6.17.0",
-    "semantic-release": "^17.0.7",
-    "travis-deploy-once": "^4.3.3",
-    "uglifyjs-webpack-plugin": "^1.1.8",
-    "url-loader": "^0.6.2",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "semantic-release": "^17.0.8",
+    "serve": "^11.3.2",
+    "travis-deploy-once": "^5.0.11",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "core-js": "^3.6.4",
-    "create-emotion": "^9.0.2",
-    "create-emotion-styled": "^9.0.1",
     "custom-event": "^1.0.1",
-    "eslint-plugin-cypress": "^2.10.3",
     "is-url": "^1.2.2",
-    "preact": "^10.3.3",
     "prop-types": "^15.7.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "scrollbar-width": "^3.1.1",
-    "spin.js": "^2.3.2",
+    "spin.js": "^4.1.0",
+    "styled-components": "^5.1.1",
     "url-parse": "^1.4.5"
-  },
-  "babel": {
-    "presets": [
-      "react",
-      [
-        "env",
-        {
-          "targets": {
-            "browsers": [
-              "last 2 versions",
-              "safari >= 7",
-              "ie >= 9"
-            ],
-            "useBuiltIns": true
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "transform-object-rest-spread",
-      "emotion"
-    ]
-  },
-  "jest": {
-    "setupFiles": [
-      "./test/setup.js"
-    ],
-    "transform": {
-      ".*": "<rootDir>/node_modules/babel-jest"
-    },
-    "testEnvironment": "node",
-    "moduleNameMapper": {
-      "^.+\\.(css|gif|png|woff|ttf|svg)$": "identity-obj-proxy"
-    },
-    "roots": [
-      "./src"
-    ]
-  },
-  "greenkeeper": {
-    "ignore": [
-      "react",
-      "react-dom"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn run lint",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   }
 }

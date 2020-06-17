@@ -51,6 +51,7 @@ coverage
 
 dist
 lib
+build
 node_modules
 .npmrc
 

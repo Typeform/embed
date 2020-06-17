@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
-import styled, { injectGlobal } from '../styles'
+import styled, { createGlobalStyle } from 'styled-components'
 
 import CloseIcon from './components/close-icon'
 import Iframe from './components/iframe'
@@ -29,7 +28,7 @@ const Wrapper = styled.div`
   transition: all 400ms ease ${props => props.openDelay}s;
 `
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   .__typeform-embed-mobile-modal-open {
     overflow: hidden !important;
     position: fixed !important;
@@ -166,6 +165,7 @@ class MobileModal extends Component {
         open={open}
         openDelay={this.props.openDelay}
       >
+        <GlobalStyle />
         {open && <Iframe src={iframeUrl} />}
         <CloseIcon
           color={buttonColor}

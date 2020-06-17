@@ -2,7 +2,7 @@ import {
   makePopup,
   makeWidget,
   makeFullScreen
-} from './api'
+} from './lib'
 import {
   getDataset,
   sanitizePopupAttributes,

@@ -1,8 +1,8 @@
 import React, { Component, createRef } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import styled, { keyframes } from 'styled-components'
 
-import styled, { keyframes } from '../styles'
 import {
   debounce,
   broadcastMessage,
@@ -201,6 +201,7 @@ class Widget extends Component {
 
   reloadIframe () {
     // Re-assign the source of the iframe, makes it reload cross-browser
+    // eslint-disable-next-line
     this.iframe.iframeRef.src = this.iframe.iframeRef.src
   }
 
