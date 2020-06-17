@@ -6,7 +6,8 @@ describe('Popup Widget', () => {
     popup: 'Popup',
     drawer_left: 'Drawer Left',
     drawer_right: 'Drawer Right',
-    popover: 'Popover'
+    popover: 'Popover',
+    side_panel: 'Side Panel'
   }
 
   Object.keys(popupModes).forEach(popupMode => {

@@ -8,6 +8,7 @@ import {
   sanitizePopupAttributes,
   sanitizeWidgetAttributes
 } from './core/attributes'
+import { SIDE_PANEL } from './core/views/popup'
 
 const onDOMReady = (callback) => {
   if (document.readyState !== 'loading') {
@@ -21,6 +22,9 @@ const initializePopup = (element) => {
   const url = element.getAttribute('href')
   const dataset = getDataset(element)
   const data = sanitizePopupAttributes(dataset)
+  if (data.mode === SIDE_PANEL && !data.container) {
+    data.container = element.parentNode
+  }
 
   const popup = makePopup(url, data)
 

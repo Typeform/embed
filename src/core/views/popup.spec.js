@@ -9,7 +9,8 @@ import Popup, {
   POPUP,
   DRAWER,
   DRAWER_RIGHT,
-  POPOVER
+  POPOVER,
+  SIDE_PANEL
 } from './popup'
 import Iframe from './components/iframe'
 
@@ -65,7 +66,8 @@ describe('Popup', () => {
       POPUP,
       DRAWER,
       DRAWER_RIGHT,
-      POPOVER
+      POPOVER,
+      SIDE_PANEL
     ]
 
     useCases.forEach((mode) => {
