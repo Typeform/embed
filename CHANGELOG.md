@@ -1,3 +1,10 @@
+## [0.21.3](https://github.com/Typeform/embed/compare/v0.21.2...v0.21.3) (2020-06-18)
+
+
+### Bug Fixes
+
+* **DIST-304:** Rerelease the package ([6755f56](https://github.com/Typeform/embed/commit/6755f56eb5da711500b900d40fa6a4fdd3aaa982))
+
 ## [0.21.2](https://github.com/Typeform/embed/compare/v0.21.1...v0.21.2) (2020-06-18)
 
 
