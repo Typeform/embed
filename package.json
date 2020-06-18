@@ -12,7 +12,8 @@
   "module": "build/lib.pure.js",
   "files": [
     "assets",
-    "build",
+    "build/lib.pure.js",
+    "build/lib.pure.js.map",
     "package.json",
     "README.md"
   ],

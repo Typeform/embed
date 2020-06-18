@@ -26,7 +26,7 @@ The NPM version doesn't include neither React, ReacDOM nor polyfills. It's a res
 
 #### CDN script
 
-You can also consume the library fromt our [CDN](https://embed.typeform.com/embed.js):
+You can also consume the library from our [CDN](https://embed.typeform.com/embed.js):
 
 ```html
 <script src="https://embed.typeform.com/embed.js"></script>

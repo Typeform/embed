@@ -49,8 +49,6 @@ coverage
 # nodemon
 .monitor
 
-dist
-lib
 build
 node_modules
 .npmrc
