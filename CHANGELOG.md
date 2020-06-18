@@ -1,3 +1,10 @@
+## [0.21.2](https://github.com/Typeform/embed/compare/v0.21.1...v0.21.2) (2020-06-18)
+
+
+### Bug Fixes
+
+* **DIST-304:** Read [@typeform](https://github.com/typeform) packages from Github ([f13c38e](https://github.com/Typeform/embed/commit/f13c38ef84e18c8ea6397bce045e79ff04bc77f3))
+
 ## [0.21.1](https://github.com/Typeform/embed/compare/v0.21.0...v0.21.1) (2020-06-18)
 
 
