@@ -1,3 +1,10 @@
+## [0.21.1](https://github.com/Typeform/embed/compare/v0.21.0...v0.21.1) (2020-06-18)
+
+
+### Bug Fixes
+
+* Trigger release ([1fe770b](https://github.com/Typeform/embed/commit/1fe770b4faaed1f80bce96e8059c8d50ab8c4d27))
+
 # [0.21.0](https://github.com/Typeform/embed/compare/v0.20.0...v0.21.0) (2020-06-16)
 
 
