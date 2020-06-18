@@ -45,10 +45,10 @@ function getWebpackConfig () {
       path: path.resolve(__dirname, 'build'),
       // Pattern to compose the output filename
       filename: getAssetName(includeDeps),
-      // UMD allows to support both NPM package format, as well as
+      // UMD supports both NPM package format and
       // global variable format, when used from a CDN
       libraryTarget: 'umd',
-      // Sets the name of a global variable that would contain the entrypoint
+      // Sets the name of a global variable that will contain the entrypoint
       // when used from a CDN
       library: 'typeformEmbed'
     },
