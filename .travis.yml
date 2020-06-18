@@ -83,6 +83,7 @@ jobs:
         - yarn build
         - pip install --user awscli
         - yarn add @typeform/jarvis@10.4.0 # jarvis version pinned, latest version has a bug, we should unpin it when its fixed
+        - DEBUG=jarvis yarn run jarvis deploy --path demo --preview --notify-preview
         - DEBUG=jarvis yarn run jarvis deploy --path build --preview --notify-preview
     - name: "Release to NPM"
       if: branch = master AND type = push
@@ -94,4 +95,5 @@ jobs:
         - yarn build
         - pip install --user awscli
         - yarn add @typeform/jarvis@10.4.0 # jarvis version pinned, latest version has a bug, we should unpin it when its fixed
+        - DEBUG=jarvis jarvis deploy --path demo
         - DEBUG=jarvis jarvis deploy --path build
