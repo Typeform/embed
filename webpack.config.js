@@ -71,6 +71,10 @@ function getWebpackConfig () {
               limit: 25000
             }
           }
+        },
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader']
         }
       ]
     },
@@ -97,7 +101,8 @@ function getWebpackConfig () {
     // Remove unnecessary output
     stats: {
       all: false,
-      assets: true
+      assets: true,
+      errors: true
     }
   }
 }
