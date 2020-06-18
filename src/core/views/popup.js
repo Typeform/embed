@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ScrollbarWidth from 'scrollbar-width'
+import styled from 'styled-components'
 
 import closeImg from '../../../assets/close.gif'
-import styled from '../styles'
 import {
   broadcastMessage,
   callIfEmbedIdMatches,

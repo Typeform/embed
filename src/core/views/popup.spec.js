@@ -12,6 +12,8 @@ import Popup, {
 } from './popup'
 import Iframe from './components/iframe'
 
+jest.mock('./components/spinner', () => () => null)
+
 const URL = 'http://popup.cat'
 const EMBED_ID = '123456'
 

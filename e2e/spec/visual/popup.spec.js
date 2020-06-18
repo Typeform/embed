@@ -13,14 +13,14 @@ describe('Popup Widget', () => {
 
     describe(`${name}`, () => {
       it(`${name} Desktop`, () => {
-        open('popup.html?foobar=hello')
+        open('/popup?foobar=hello')
         openPopup(popupMode)
         waitForEmbed(1000)
         eyesCheckDesktop('Popup')
       })
 
       it(`${name} Mobile`, () => {
-        openOnMobile('popup.html?foobar=hello')
+        openOnMobile('/popup?foobar=hello')
         openPopup(popupMode)
         waitForEmbed(1000)
         eyesCheckMobile('Popup')

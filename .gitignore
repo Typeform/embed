@@ -50,7 +50,7 @@ coverage
 .monitor
 
 dist
-lib
+build
 node_modules
 .npmrc
 

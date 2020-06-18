@@ -1,6 +1,8 @@
+import 'spin.js/spin.css'
+
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Spin from 'spin.js'
+import { Spinner as Spin } from 'spin.js'
 
 const defaultConfig = {
   lines: 16,

@@ -5,10 +5,6 @@ import isUrl from 'is-url'
 const DOMAIN_REGEXP = /(\.typeform)\.(com|io)$/
 
 const acceptMessageOrigin = event => {
-  if (process.env.NODE_ENV === 'development') {
-    return true
-  }
-
   // deal with polymorphistic legacy: some events come from jQuery, other Vanilla JS
   const re = new RegExp('^(?:f|ht)tp(?:s)?://([^/]+)', 'im')
   const matches = event.origin.match(re)

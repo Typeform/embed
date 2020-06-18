@@ -9,9 +9,9 @@ import {
   makePopup as makePopupMock,
   makeWidget as makeWidgetMock,
   makeFullScreen as makeFullScreenMock
-} from './../src/api'
+} from './../src/lib'
 
-jest.mock('./../src/api')
+jest.mock('./../src/lib')
 jest.mock('./../src/core/attributes')
 
 const POPUP_URL = 'http://popup.cat'

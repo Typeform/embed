@@ -52,27 +52,27 @@ jobs:
     - name: "Functional Tests (Internal)"
       if: fork = false AND branch = master
       script:
-        - yarn start --no-info & export EMBED_PID=$!
+        - yarn start & export EMBED_PID=$!
         - yarn test:functional:chrome  --record --parallel --group functional-chrome
         - yarn test:functional:firefox --record --parallel --group functional-firefox
         - kill $EMBED_PID
     - name: "Functional Tests (External)"
       if: fork = true AND branch = master
       script:
-        - yarn start --no-info & export EMBED_PID=$!
+        - yarn start & export EMBED_PID=$!
         - yarn test:functional:chrome --record false
         - yarn test:functional:firefox --record false
         - kill $EMBED_PID
     - name: "Visual Tests Chrome (Internal)"
       if: fork = false AND branch = master
       script:
-        - yarn start --no-info & export EMBED_PID=$!
+        - yarn start & export EMBED_PID=$!
         - yarn test:visual:chrome  --record --parallel --group visual-chrome
         - kill $EMBED_PID
     - name: "Visual Tests Firefox (Internal)"
       if: fork = false AND branch = master
       script:
-        - yarn start --no-info & export EMBED_PID=$!
+        - yarn start & export EMBED_PID=$!
         - yarn test:visual:firefox --record --parallel --group visual-firefox
         - kill $EMBED_PID
     - stage: "Release"
@@ -83,6 +83,7 @@ jobs:
         - yarn build
         - pip install --user awscli
         - yarn add @typeform/jarvis@10.4.0 # jarvis version pinned, latest version has a bug, we should unpin it when its fixed
+        - ./scripts/consolidate-dist.sh
         - DEBUG=jarvis yarn run jarvis deploy --path dist --preview --notify-preview
     - name: "Release to NPM"
       if: branch = master AND type = push
@@ -94,4 +95,5 @@ jobs:
         - yarn build
         - pip install --user awscli
         - yarn add @typeform/jarvis@10.4.0 # jarvis version pinned, latest version has a bug, we should unpin it when its fixed
+        - ./scripts/consolidate-dist.sh
         - DEBUG=jarvis jarvis deploy --path dist
