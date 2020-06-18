@@ -10,7 +10,7 @@
     [
       "@semantic-release/exec",
       {
-        "successCmd": "npm publish --registry https://registry.npmjs.org"
+        "successCmd": "npm config set @typeform:registry https://registry.npmjs.org/ && npm publish --registry https://registry.npmjs.org"
       }
     ],
     "@semantic-release/git",
