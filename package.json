@@ -19,7 +19,7 @@
   "scripts": {
     "clean": "rm -rf build",
     "build": "./scripts/build.sh",
-    "start": "yarn serve -S -l 3000 demo",
+    "start": "yarn serve -S demo",
     "test": "yarn lint && yarn test:unit && yarn test:visual && yarn test:functional",
     "lint": "yarn eslint ./src --ext .js --ignore-path .eslintignore",
     "test:unit": "yarn jest",
