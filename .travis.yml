@@ -10,7 +10,7 @@ python:
   - "3.6"
 
 addons:
-# https://stackoverflow.com/questions/57903415/travis-ci-chrome-62-instead-of-77
+  # https://stackoverflow.com/questions/57903415/travis-ci-chrome-62-instead-of-77
   chrome: stable
   firefox: "67.0"
 
@@ -36,7 +36,7 @@ before_install:
   - export APPLITOOLS_BATCH_ID=`echo ${TRAVIS_PULL_REQUEST_SHA:=$TRAVIS_COMMIT}`
   - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY
   - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_KEY
-  - npm config set '//registry.npmjs.org/:_authToken' ${NPM_TOKEN}
+  - npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
   - npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
   - npm config set @typeform:registry https://npm.pkg.github.com/
 
