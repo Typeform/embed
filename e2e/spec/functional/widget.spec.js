@@ -2,7 +2,7 @@ import { open, testEmbeddedForm, openOnMobile, testEmbedFormOnMobile } from '../
 
 describe('Embed Widget in div with position:absolute on mobile', () => {
   it('Loads correctly the basic embed widget', () => {
-    openOnMobile('absolute.html')
+    openOnMobile('/absolute')
     testEmbedFormOnMobile()
   })
 })
@@ -10,14 +10,14 @@ describe('Embed Widget in div with position:absolute on mobile', () => {
 describe('Basic Embed Widget', () => {
   describe('On Desktop', () => {
     it('Loads correctly the basic embed widget', () => {
-      open('widget.html')
+      open('/widget')
       testEmbeddedForm()
     })
   })
 
   describe('On Mobile', () => {
     it('Loads correctly the basic embed widget', () => {
-      openOnMobile('widget.html')
+      openOnMobile('/widget')
       testEmbedFormOnMobile()
     })
   })
@@ -28,14 +28,14 @@ describe('Full Page Embed Widget', () => {
 
   describe('On Desktop', () => {
     it('Loads correctly the Full Page widget', () => {
-      open('full.html')
+      open('/full')
       testEmbeddedForm(iframe)
     })
   })
 
   describe('On Mobile', () => {
     it('Loads correctly the Full Page widget', () => {
-      openOnMobile('full.html')
+      openOnMobile('/full')
       testEmbeddedForm(iframe) // full page widget behaves the same as on desktop (no modal window)
     })
   })

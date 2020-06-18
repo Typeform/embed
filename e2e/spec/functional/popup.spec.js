@@ -4,7 +4,6 @@ import {
   openPopup,
   closePopupViaKeyboard,
   closePopupViaButtonOnMobile,
-  getIframe,
   IFRAME_SELECTOR, openOnMobile
 } from '../../cypress-utils'
 
@@ -18,7 +17,7 @@ Object.keys(popupModes).forEach(popupMode => {
   describe(`${popupModes[popupMode]} Embed Widget`, () => {
     describe('Desktop', () => {
       before(() => {
-        open('popup.html?foobar=hello')
+        open('/popup?foobar=hello')
         openPopup(popupMode)
       })
 
@@ -38,7 +37,7 @@ Object.keys(popupModes).forEach(popupMode => {
 
     describe('Mobile', () => {
       before(() => {
-        openOnMobile('popup.html')
+        openOnMobile('/popup')
         openPopup(popupMode)
       })
 
