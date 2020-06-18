@@ -36,8 +36,7 @@
     "test:functional:run": "yarn cypress run --spec e2e/spec/functional/**/*",
     "test:debug": "yarn cypress open",
     "prepublish": "yarn run build",
-    "travis-deploy-once": "yarn travis-deploy-once --pro",
-    "publish:github": "npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN && npm publish --registry https://npm.pkg.github.com"
+    "travis-deploy-once": "yarn travis-deploy-once --pro"
   },
   "devDependencies": {
     "@applitools/eyes-cypress": "^3.12.0",
