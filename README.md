@@ -14,16 +14,27 @@ Requirements:
 
 ### Installation
 
+
+#### NPM package
+
 We recommend to use `yarn` as your package manager, and also a build tool like webpack or browserify in order to use it.
 
 ```bash
 yarn add @typeform/embed
 ```
+The NPM version doesn't include neither React, ReacDOM nor polyfills. It's a responsibility of the application to provide those deps as peer dependencies and control the environment polyfilling process.
 
-If you're not, you can still use it with our [CDN](https://embed.typeform.com/embed.js):
+#### CDN script
+
+You can also consume the library fromt our [CDN](https://embed.typeform.com/embed.js):
 
 ```html
 <script src="https://embed.typeform.com/embed.js"></script>
+<!-- this script exposes the API to `window.typeformEmbed` -->
+```
+The CDN version has everything bundled, so the script is ready to use out-of the box. It contains react, react-dom, and polyfills. If you believe everything is already injected in your environment globals you can use a more lightweight version, ***although it's not recommended***:
+```html
+<script src="https://embed.typeform.com/embed.pure.js"></script>
 <!-- this script exposes the API to `window.typeformEmbed` -->
 ```
 
