@@ -18,7 +18,7 @@
     "README.md"
   ],
   "scripts": {
-    "clean": "rm -rf build",
+    "clean": "rm -rf build dist",
     "build": "./scripts/build.sh",
     "start": "yarn serve -S demo",
     "test": "yarn lint && yarn test:unit && yarn test:visual && yarn test:functional",

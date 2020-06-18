@@ -49,6 +49,7 @@ coverage
 # nodemon
 .monitor
 
+dist
 build
 node_modules
 .npmrc
