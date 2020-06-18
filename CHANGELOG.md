@@ -1,3 +1,10 @@
+## [0.21.4](https://github.com/Typeform/embed/compare/v0.21.3...v0.21.4) (2020-06-18)
+
+
+### Bug Fixes
+
+* **DIST-304:** Rerelease the package to npmjs ([71d6297](https://github.com/Typeform/embed/commit/71d62976fc121f53c635efe2dd80d0a22fe94384))
+
 ## [0.21.3](https://github.com/Typeform/embed/compare/v0.21.2...v0.21.3) (2020-06-18)
 
 
