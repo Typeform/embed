@@ -1,3 +1,15 @@
+# [0.21.0](https://github.com/Typeform/embed/compare/v0.20.0...v0.21.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* **DIST-193:** Fix for autoOpen backward compatibility ([c1a8627](https://github.com/Typeform/embed/commit/c1a8627))
+
+
+### Features
+
+* **DIST-193:** Open popup using behavioral trigger ([b724c2e](https://github.com/Typeform/embed/commit/b724c2e))
+
 # [0.20.0](https://github.com/Typeform/embed/compare/v0.19.0...v0.20.0) (2020-05-27)
 
 
