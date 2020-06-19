@@ -20,7 +20,8 @@
   "scripts": {
     "clean": "rm -rf build dist",
     "build": "./scripts/build.sh",
-    "start": "yarn serve -S demo",
+    "serve-demo": "PORT=8080 yarn serve -S demo",
+    "start": "NODE_ENV=development webpack-dev-server -d --config webpack.config.js --content-base ./demo",
     "test": "yarn lint && yarn test:unit && yarn test:visual && yarn test:functional",
     "lint": "yarn eslint ./src --ext .js --ignore-path .eslintignore --max-warnings=0",
     "test:unit": "yarn jest",
@@ -81,7 +82,8 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "custom-event": "^1.0.1",

@@ -19,7 +19,7 @@ Object.keys(popupModes).forEach(popupMode => {
   describe(`${popupModes[popupMode]} Embed Widget`, () => {
     describe('Desktop', () => {
       before(() => {
-        open('/popup?foobar=hello')
+        open('/popup.html?foobar=hello')
         openPopup(popupMode)
       })
 
@@ -39,7 +39,7 @@ Object.keys(popupModes).forEach(popupMode => {
 
     describe('Mobile', () => {
       before(() => {
-        openOnMobile('/popup')
+        openOnMobile('/popup.html')
         openPopup(popupMode)
       })
 

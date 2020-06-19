@@ -2,8 +2,10 @@ import CustomEvent from 'custom-event'
 import isObject from 'isobject'
 import isUrl from 'is-url'
 
-const isLocalhost = /^localhost/.test(window.location.host)
-const DOMAIN_REGEXP = isLocalhost ? /(\.typeform)\.(com|io)$|^localhost:/ : /(\.typeform)\.(com|io)$/
+const getDomainRegexp = () => {
+  const isLocalhost = /^localhost:/.test(window.location.host)
+  return isLocalhost ? /(\.typeform)\.(com|io)$|^localhost:/ : /(\.typeform)\.(com|io)$/
+}
 
 const acceptMessageOrigin = event => {
   // deal with polymorphistic legacy: some events come from jQuery, other Vanilla JS
@@ -13,7 +15,7 @@ const acceptMessageOrigin = event => {
     const domain = matches[1].toString()
 
     // to test this in local you will need to whitelist your local domain
-    if (!DOMAIN_REGEXP.test(domain)) {
+    if (!getDomainRegexp().test(domain)) {
       return false
     }
   } else {

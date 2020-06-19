@@ -4,13 +4,13 @@ import { eyesCheckDesktop, eyesCheckMobile } from '../../applitools-utils'
 describe('Embed Widget', () => {
   describe('Basic', function () {
     it('Basic Embed Widget - Desktop', () => {
-      open('/widget')
+      open('/widget.html')
       waitForEmbed()
       eyesCheckDesktop('Embed')
     })
 
     it('Basic Embed Widget - Mobile', () => {
-      openOnMobile('/widget')
+      openOnMobile('/widget.html')
       waitForEmbed()
       eyesCheckMobile('Embed')
     })
@@ -18,14 +18,14 @@ describe('Embed Widget', () => {
 
   describe('Full Page', () => {
     it('Full Page Embed Widget - Desktop', () => {
-      open('/full')
-      waitForEmbed(500)
+      open('/full.html')
+      waitForEmbed()
       eyesCheckDesktop('Embed')
     })
 
     it('Full Page Embed Widget - Mobile', () => {
-      openOnMobile('/full')
-      waitForEmbed(500)
+      openOnMobile('/full.html')
+      waitForEmbed()
       eyesCheckMobile('Embed')
     })
   })

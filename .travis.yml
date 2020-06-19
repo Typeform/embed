@@ -54,27 +54,27 @@ jobs:
     - name: "Functional Tests (Internal)"
       if: fork = false AND branch = master
       script:
-        - yarn start & export EMBED_PID=$!
+        - yarn serve-demo & export EMBED_PID=$!
         - yarn test:functional:chrome  --record --parallel --group functional-chrome
         - yarn test:functional:firefox --record --parallel --group functional-firefox
         - kill $EMBED_PID
     - name: "Functional Tests (External)"
       if: fork = true AND branch = master
       script:
-        - yarn start & export EMBED_PID=$!
+        - yarn serve-demo & export EMBED_PID=$!
         - yarn test:functional:chrome --record false
         - yarn test:functional:firefox --record false
         - kill $EMBED_PID
     - name: "Visual Tests Chrome (Internal)"
       if: fork = false AND branch = master
       script:
-        - yarn start & export EMBED_PID=$!
+        - yarn serve-demo & export EMBED_PID=$!
         - yarn test:visual:chrome  --record --parallel --group visual-chrome
         - kill $EMBED_PID
     - name: "Visual Tests Firefox (Internal)"
       if: fork = false AND branch = master
       script:
-        - yarn start & export EMBED_PID=$!
+        - yarn serve-demo & export EMBED_PID=$!
         - yarn test:visual:firefox --record --parallel --group visual-firefox
         - kill $EMBED_PID
     - stage: "Release"
