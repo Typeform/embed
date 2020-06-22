@@ -3,9 +3,10 @@ import { eyesCheckDesktop, eyesCheckMobile } from '../../applitools-utils'
 
 describe('Popup Widget', () => {
   const popupModes = {
-    1: 'Popup',
-    2: 'Drawer Left',
-    3: 'Drawer Right'
+    popup: 'Popup',
+    drawer_left: 'Drawer Left',
+    drawer_right: 'Drawer Right',
+    popover: 'Popover'
   }
 
   Object.keys(popupModes).forEach(popupMode => {
@@ -13,16 +14,16 @@ describe('Popup Widget', () => {
 
     describe(`${name}`, () => {
       it(`${name} Desktop`, () => {
-        open('/popup?foobar=hello')
+        open('/popup.html?foobar=hello')
         openPopup(popupMode)
-        waitForEmbed(1000)
+        waitForEmbed()
         eyesCheckDesktop('Popup')
       })
 
       it(`${name} Mobile`, () => {
-        openOnMobile('/popup?foobar=hello')
+        openOnMobile('/popup.html?foobar=hello')
         openPopup(popupMode)
-        waitForEmbed(1000)
+        waitForEmbed()
         eyesCheckMobile('Popup')
       })
     })

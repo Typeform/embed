@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { render } from 'react-dom'
 import PropTypes from 'prop-types'
 import ScrollbarWidth from 'scrollbar-width'
 import styled from 'styled-components'
@@ -22,10 +23,12 @@ export const DEFAULT_AUTOCLOSE_TIMEOUT = 5
 export const POPUP = 'popup'
 export const DRAWER = 'drawer_left'
 export const DRAWER_RIGHT = 'drawer_right'
+export const POPOVER = 'popover'
 export const POPUP_MODES = {
   [POPUP]: 'popup-blank',
   [DRAWER]: 'popup-classic',
-  [DRAWER_RIGHT]: 'popup-drawer'
+  [DRAWER_RIGHT]: 'popup-drawer',
+  [POPOVER]: 'popup-popover'
 }
 
 const BaseWrapper = styled.div`
@@ -75,12 +78,28 @@ const drawerRightWrapper = styled(drawerWrapper)`
   right: ${p => (!p.open ? -(p.width - CLOSE_BUTTON_WIDTH) : 0)}px;
 `
 
+const popoverWrapper = styled(BaseWrapper)`
+  width: ${p => p.width}px;
+  height: ${p => p.height}px;
+  transition: all 300ms ease-out;
+  bottom: 96px;
+  right: 16px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 4px, rgba(0, 0, 0, 0.06) 0px 2px 12px;
+`
+
 const BaseCloseImage = styled.img`
   position: absolute;
   padding: 8px;
   cursor: pointer;
   width: initial;
   max-width: initial;
+`
+
+const IconCloseImage = styled.img`
+  padding: 8px;
+  vertical-align: middle;
 `
 
 const closeImagePopup = styled(BaseCloseImage)`
@@ -110,6 +129,7 @@ class Popup extends Component {
     super(props)
 
     this.state = {
+      isLoading: true,
       frameAnimate: false,
       iframeLoaded: false,
       popupAnimate: true,
@@ -135,12 +155,16 @@ class Popup extends Component {
     window.addEventListener('embed-auto-close-popup', this.handleAutoClose)
     window.addEventListener('redirect-after-submit', redirectToUrl)
     window.addEventListener('thank-you-screen-redirect', redirectToUrl)
+    window.tfClosePopup = this.handleClose
 
     setTimeout(() => {
       this.setState({
         popupAnimate: false
       })
     }, 100)
+
+    const spinnerConfig = { scale: 0.6 }
+    this.updateIcon(<Spinner config={spinnerConfig} stopped={this.state.iframeLoaded} />)
   }
 
   componentWillUnmount () {
@@ -151,6 +175,7 @@ class Popup extends Component {
     window.removeEventListener('embed-auto-close-popup', this.handleAutoClose)
     window.removeEventListener('redirect-after-submit', redirectToUrl)
     window.removeEventListener('thank-you-screen-redirect', redirectToUrl)
+    delete window.tfClosePopup
   }
 
   setWrapperRef (node) {
@@ -160,6 +185,7 @@ class Popup extends Component {
   getWrapperComponent (mode) {
     if (mode === DRAWER_RIGHT) return drawerRightWrapper
     if (mode === DRAWER) return drawerLeftWrapper
+    if (mode === POPOVER) return popoverWrapper
     return popupWrapper
   }
 
@@ -169,18 +195,44 @@ class Popup extends Component {
     return closeImagePopup
   }
 
+  updateIcon (component) {
+    if (this.props.icon) {
+      if (!this.iconHTML) {
+        this.iconHTML = this.props.icon.innerHTML
+      }
+
+      this.props.icon.innerHTML = ''
+
+      if (component) {
+        render(component, this.props.icon)
+      } else {
+        this.props.icon.innerHTML = this.iconHTML
+      }
+    }
+  }
+
   handleIframeLoad (iframeRef) {
     this.setState({ iframeLoaded: true }, () => {
       setTimeout(() => {
-        this.setState({ frameAnimate: true })
-        if (iframeRef && iframeRef.contentWindow) {
-          iframeRef.contentWindow.focus()
+        if (this.state.isLoading) {
+          this.updateIcon(
+            <IconCloseImage
+              alt='close-typeform'
+              data-qa='popup-close-button'
+              src={closeImg}
+            />
+          )
+          this.setState({ frameAnimate: true, isLoading: false })
+          if (iframeRef && iframeRef.contentWindow) {
+            iframeRef.contentWindow.focus()
+          }
         }
       }, 500)
     })
   }
 
   handleAnimateBeforeClose () {
+    this.updateIcon()
     this.setState({ frameAnimate: false, popupAnimate: false }, () => {
       setTimeout(() => {
         this.setState({ popupAnimate: true }, () => {
@@ -191,6 +243,7 @@ class Popup extends Component {
   }
 
   handleClose () {
+    this.setState({ isLoading: false })
     this.handleAnimateBeforeClose()
   }
 
@@ -235,7 +288,7 @@ class Popup extends Component {
   render () {
     let iframeStyles = null
     const { embedId, options, url } = this.props
-    const { drawerWidth, hideScrollbars, isContained, mode } = options
+    const { width, height, hideScrollbars, isContained, mode } = options
 
     if (hideScrollbars) {
       iframeStyles = {
@@ -256,39 +309,51 @@ class Popup extends Component {
     const Wrapper = this.getWrapperComponent(mode)
     const CloseImage = this.getCloseImage(mode)
 
+    const showSmallPopup = mode === POPOVER
+
+    const wrappedForm = (
+      <Wrapper
+        data-qa={`popup-mode-${mode}`}
+        height={height}
+        innerRef={this.setWrapperRef}
+        isContained={isContained}
+        mode={mode}
+        onTransitionEnd={this.handleTransitionEnd}
+        open={this.state.frameAnimate && !this.state.isLoading}
+        width={width}
+      >
+        {!showSmallPopup && this.state.iframeLoaded && (
+          <CloseImage
+            alt='close-typeform'
+            data-qa='popup-close-button'
+            mode={mode}
+            onClick={this.handleAnimateBeforeClose}
+            src={closeImg}
+          />
+        )}
+        <Iframe
+          onLoad={this.handleIframeLoad}
+          src={iframeUrl}
+          style={iframeStyles}
+        />
+      </Wrapper>
+    )
+
+    if (showSmallPopup) {
+      return wrappedForm
+    }
+
     return (
       <Overlay appearing={this.state.popupAnimate} isContained={isContained}>
         <Spinner stopped={this.state.iframeLoaded} />
-        <Wrapper
-          data-qa={`popup-mode-${mode}`}
-          innerRef={this.setWrapperRef}
-          isContained={isContained}
-          mode={mode}
-          onTransitionEnd={this.handleTransitionEnd}
-          open={this.state.frameAnimate}
-          width={drawerWidth}
-        >
-          {this.state.iframeLoaded && (
-            <CloseImage
-              alt='close-typeform'
-              data-qa='popup-close-button'
-              mode={mode}
-              onClick={this.handleAnimateBeforeClose}
-              src={closeImg}
-            />
-          )}
-          <Iframe
-            onLoad={this.handleIframeLoad}
-            src={iframeUrl}
-            style={iframeStyles}
-          />
-        </Wrapper>
+        {wrappedForm}
       </Overlay>
     )
   }
 }
 
 Popup.propTypes = {
+  icon: PropTypes.func,
   embedId: PropTypes.string,
   height: PropTypes.number,
   onClose: PropTypes.func,

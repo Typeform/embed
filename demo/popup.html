@@ -1,27 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <!--Add the title of your typeform below-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Popup example</title>
-    <!--CSS styles that ensure your typeform takes up all the available screen space (DO NOT EDIT!)-->
+    <link rel="stylesheet" href="demo.css" />
     <style type="text/css">
-      body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
+      a.popup {
+        margin: 20px 0;
+        display: block;
       }
 
-      a {
-        margin: 20px;
-        display: block;
+      .popover {
+        width: 54px;
+        height: 54px;
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background: #427fed;
+      }
+
+      .popover > .icon {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+      }
+
+      .popover-hint {
+        color: darkgray;
+        position: fixed;
+        right: 90px;
+        bottom: 16px;
+        height: 54px;
+        line-height: 54px;
       }
     </style>
   </head>
   <body>
     <a
-      class="typeform-share"
-      href="//betatests.typeform.com/to/Z9k3bK?disable-tracking=true"
-      data-mode="1"
+      class="typeform-share popup"
+      href="./form/mock.html"
+      data-mode="popup"
       data-submit-close-delay="4"
       target="_blank"
     >
@@ -29,9 +52,9 @@
     </a>
 
     <a
-      class="typeform-share"
-      href="//betatests.typeform.com/to/Z9k3bK?disable-tracking=true"
-      data-mode="2"
+      class="typeform-share popup"
+      href="./form/mock.html"
+      data-mode="drawer_left"
       data-submit-close-delay="4"
       target="_blank"
     >
@@ -39,13 +62,33 @@
     </a>
 
     <a
-      class="typeform-share"
-      href="//betatests.typeform.com/to/Z9k3bK?disable-tracking=true"
-      data-mode="3"
+      class="typeform-share popup"
+      href="./form/mock.html"
+      data-mode="drawer_right"
+      data-width="400"
       data-submit-close-delay="4"
       target="_blank"
     >
       Launch me as a right drawer!
+    </a>
+
+    <div class="popover-hint">Launch a popover here 👉</div>
+
+    <a
+      class="typeform-share popover"
+      href="./form/mock.html"
+      data-mode="popover"
+      data-width="500"
+      data-height="600"
+      data-submit-close-delay="4"
+      target="_blank"
+    >
+      <span class="icon">
+        <svg width="24" height="24" fill="none" style="margin-top:7px" viewBox="0 0 84 83">
+          <rect width="84" height="56" fill="#fff" rx="8" />
+          <path fill="#fff" d="M43 50h41v33L43 50z" opacity=".7" />
+        </svg>
+      </span>
     </a>
 
     <script type="text/javascript" src="embed.js"></script>

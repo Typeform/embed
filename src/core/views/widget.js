@@ -119,6 +119,7 @@ class Widget extends Component {
     this.handleMessage = this.handleMessage.bind(this)
     this.handleFormReady = callIfEmbedIdMatches(this.handleFormReady.bind(this), this.embedId)
     this.handleFormSubmit = callIfEmbedIdMatches(this.handleFormSubmit.bind(this), this.embedId)
+    this.handleMobileFormSubmit = this.handleMobileFormSubmit.bind(this)
     this.handleFormTheme = callIfEmbedIdMatches(this.handleFormTheme.bind(this), this.embedId)
     this.goFullScreen = callIfEmbedIdMatches(this.goFullScreen.bind(this), this.embedId)
     this.focusIframe = this.focusIframe.bind(this)
@@ -199,6 +200,10 @@ class Widget extends Component {
     }
   }
 
+  handleMobileFormSubmit (event) {
+    this.props.options.onSubmit(event)
+  }
+
   reloadIframe () {
     // Re-assign the source of the iframe, makes it reload cross-browser
     // eslint-disable-next-line
@@ -237,7 +242,7 @@ class Widget extends Component {
       isFormReady
     } = this.state
 
-    const { enabledFullscreen, options, url } = this.props
+    const { enabledFullscreen, url } = this.props
 
     const iframePosition =
       this.iframe && this.iframe.iframeRef.getBoundingClientRect()
@@ -282,7 +287,7 @@ class Widget extends Component {
             buttonColor={buttonColor}
             embedId={this.mobileEmbedId}
             onClose={this.handleClose}
-            onSubmit={options.onSubmit}
+            onSubmit={this.handleMobileFormSubmit}
             open={isFullscreen}
             openDelay={0.3}
             url={fullscreenIframeUrl}

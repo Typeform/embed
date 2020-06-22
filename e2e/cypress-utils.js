@@ -87,7 +87,7 @@ export const testEmbedFormOnMobile = () => {
   )
 }
 
-export const waitForEmbed = (wait = 0) => {
+export const waitForEmbed = () => {
   cy.title().should('eq', 'form-ready')
-  cy.wait(wait) // short waiting time to make sure the form is loaded
+  cy.wait(500) // wait for the animation to finish
 }

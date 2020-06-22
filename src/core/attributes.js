@@ -65,6 +65,14 @@ const sanitizePopupAttributes = data => {
     obj.openValue = data.openValue
   }
 
+  if (data.width) {
+    obj.width = parseInt(data.width, 10)
+  }
+
+  if (data.height) {
+    obj.height = parseInt(data.height, 10)
+  }
+
   return obj
 }
 
