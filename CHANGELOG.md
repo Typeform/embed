@@ -1,3 +1,15 @@
+# [0.22.0](https://github.com/Typeform/embed/compare/v0.21.4...v0.22.0) (2020-06-22)
+
+
+### Bug Fixes
+
+* **DIST-305:** Use mocked form in visual tests ([fe35ebe](https://github.com/Typeform/embed/commit/fe35ebe001da87e6a7a7a6c829fbc62f4bfa08e7))
+
+
+### Features
+
+* **DIST-305:** Add popover popup type ([c6ead21](https://github.com/Typeform/embed/commit/c6ead21908e78308cfbc9fdb206c9f298c99b3fd))
+
 ## [0.21.4](https://github.com/Typeform/embed/compare/v0.21.3...v0.21.4) (2020-06-18)
 
 
