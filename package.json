@@ -22,7 +22,7 @@
     "build": "./scripts/build.sh",
     "serve-demo": "PORT=8080 yarn serve -S demo",
     "start": "NODE_ENV=development webpack-dev-server -d --config webpack.config.js --content-base ./demo",
-    "test": "yarn lint && yarn test:unit && yarn test:visual && yarn test:functional",
+    "test": "yarn lint && yarn test:unit && yarn test:functional && yarn test:visual",
     "lint": "yarn eslint ./src --ext .js --ignore-path .eslintignore --max-warnings=0",
     "test:unit": "yarn jest",
     "test:unit:watch": "yarn jest --watch",

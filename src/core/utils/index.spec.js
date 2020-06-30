@@ -8,10 +8,20 @@ jest.mock('./message-propagation')
 
 describe('Utilities', () => {
   describe('appendParamsToUrl', () => {
-    it('should append parameters to url correctly', () => {
-      fixtures.urls.forEach((fixture) => {
+    fixtures.urls.forEach((fixture) => {
+      it(`should append parameters correctly to url ${fixture.url}`, () => {
         const result = utils.appendParamsToUrl(fixture.url, fixture.params)
+        expect(result).toEqual(fixture.expected)
+      })
+    })
+  })
 
+  describe('updateQueryStringParameter', () => {
+    fixtures.urls.forEach((fixture) => {
+      it(`should update parameter correctly on url ${fixture.url}`, () => {
+        const key = Object.keys(fixture.params)[0]
+        const value = Object.values(fixture.params)[0]
+        const result = utils.updateQueryStringParameter(key, value, fixture.url)
         expect(result).toEqual(fixture.expected)
       })
     })
