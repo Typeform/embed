@@ -1,3 +1,10 @@
+## [0.22.1](https://github.com/Typeform/embed/compare/v0.22.0...v0.22.1) (2020-07-01)
+
+
+### Bug Fixes
+
+* **TYP-2386:** Pass hidden fields via fragment ([#50](https://github.com/Typeform/embed/issues/50)) ([0b611b9](https://github.com/Typeform/embed/commit/0b611b97db88ee659441ae9d9d220b685c00b2cf))
+
 # [0.22.0](https://github.com/Typeform/embed/compare/v0.21.4...v0.22.0) (2020-06-22)
 
 
