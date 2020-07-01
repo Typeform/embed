@@ -23,7 +23,7 @@ Object.keys(popupModes).forEach(popupMode => {
         openPopup(popupMode)
       })
 
-      it('Passes query string parameter', () => {
+      it('Passes hidden field parameter', () => {
         cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /foobar=hello/)
       })
 

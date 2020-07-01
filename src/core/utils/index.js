@@ -22,13 +22,7 @@ export const broadcastMessage = (embedId, event) => {
 }
 
 export const updateQueryStringParameter = (key, value, uri) => {
-  const re = new RegExp(`([?&])${key}=.*?(&|$)`, 'i')
-  const separator = uri.indexOf('?') !== -1 ? '&' : '?'
-  if (uri.match(re)) {
-    return uri.replace(re, `$1${key}=${value}$2`)
-  }
-
-  return `${uri + separator + key}=${value}`
+  return appendParamsToUrl(uri, { [key]: value })
 }
 
 export const appendParamsToUrl = (url, params) => {
@@ -36,7 +30,8 @@ export const appendParamsToUrl = (url, params) => {
   const {
     query,
     origin,
-    pathname
+    pathname,
+    hash
   } = UrlParse(url, true)
   const path = pathname.replace(/\/$/, '') // remove trailing slash
   const parameters = Object.assign({}, query, params)
@@ -47,7 +42,7 @@ export const appendParamsToUrl = (url, params) => {
     )
   })
 
-  return `${origin}${path}?${queryParameters.join('&')}`
+  return `${origin}${path}?${queryParameters.join('&')}${hash}`
 }
 
 export const replaceExistingKeys = (obj, replacer) => {
