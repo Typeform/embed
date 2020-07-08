@@ -65,7 +65,6 @@
           js.id = id;
           js.src = b + "embed.js";
           q = gt.call(d, "script")[0];
-          console.log(q.parentNode);
           document.getElementsByClassName("typeform-widget")[0].setAttribute("data-url", getFormURL());
           q.parentNode.insertBefore(js, q);
         }

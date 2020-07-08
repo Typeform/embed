@@ -43,6 +43,7 @@ const initializeWidget = (element) => {
 const iframe = document.getElementById('typeform-full')
 if (iframe) {
   makeFullScreen(iframe, iframe.src, {})
+  iframe.focus()
 }
 
 onDOMReady(() => {
@@ -61,12 +62,20 @@ onDOMReady(() => {
     initializePopup(popupElements[i])
   }
 
+  if (popupElementsLength) {
+    popupElements[0].focus()
+  }
+
   // make widgets
   const widgetElements = document.getElementsByClassName('typeform-widget')
   const widgetElementsLength = widgetElements.length
 
   for (let i = 0; i < widgetElementsLength; i++) {
     initializeWidget(widgetElements[i])
+  }
+
+  if (widgetElementsLength) {
+    widgetElements[0].focus()
   }
 })
 
