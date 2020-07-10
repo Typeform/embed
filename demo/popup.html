@@ -10,6 +10,48 @@
         display: block;
       }
 
+      /* CSS for wrapper is required */
+      .side-panel-wrapper {
+        top: calc(50% - 300px); /* needs to be set manually based on popup size */
+        right: 0;
+        position: fixed;
+        transition: width 300ms ease-out;
+        width: 0;
+      }
+
+      .side-panel {
+        position: absolute;
+        top: 300px; /* needs to be set manually based on button size */
+        width: 300px; /* needs to be set manually based on button size */
+        height: 40px;
+        background: #427fed;
+        color: white;
+        padding: 0 20px;
+        margin: 0;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transform: rotate(-90deg);
+        transform-origin: bottom left;
+      }
+
+      .side-panel > .icon {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+      }
+
+      .side-panel > .icon > svg {
+        transform-origin: left;
+        transform: translate(10px,-15px) rotate(90deg)
+      }
+
       .popover {
         width: 54px;
         height: 54px;
@@ -30,13 +72,19 @@
         display: flex;
       }
 
-      .popover-hint {
+      .popover-hint, .side-panel-hint {
         color: darkgray;
         position: fixed;
         right: 90px;
         bottom: 16px;
         height: 54px;
         line-height: 54px;
+      }
+
+      .side-panel-hint {
+        bottom: auto;
+        top: calc(50% - 200px);
+        right: 60px;
       }
     </style>
   </head>
@@ -91,6 +139,28 @@
         </svg>
       </span>
     </a>
+
+    <div class="side-panel-hint">Side panel 👉</div>
+
+    <div class="side-panel-wrapper">
+      <a
+        class="typeform-share side-panel"
+        href="./form/mock.html#foobar=hello"
+        data-mode="side_panel"
+        data-width="360"
+        data-height="560"
+        data-submit-close-delay="4"
+        target="_blank"
+      >
+        <span class="icon">
+          <svg width="24" height="24" fill="none" style="margin-top:7px" viewBox="0 0 84 83">
+            <rect width="84" height="56" fill="#fff" rx="8" />
+            <path fill="#fff" d="M43 50h41v33L43 50z" opacity=".7" />
+          </svg>
+        </span>
+        Launch me as a side panel!
+      </a>
+    </div>
 
     <script type="text/javascript" src="embed.js"></script>
     <script type="text/javascript" src="demo.js"></script>

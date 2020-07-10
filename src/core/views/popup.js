@@ -24,11 +24,13 @@ export const POPUP = 'popup'
 export const DRAWER = 'drawer_left'
 export const DRAWER_RIGHT = 'drawer_right'
 export const POPOVER = 'popover'
+export const SIDE_PANEL = 'side_panel'
 export const POPUP_MODES = {
   [POPUP]: 'popup-blank',
   [DRAWER]: 'popup-classic',
   [DRAWER_RIGHT]: 'popup-drawer',
-  [POPOVER]: 'popup-popover'
+  [POPOVER]: 'popup-popover',
+  [SIDE_PANEL]: 'popup-side-panel'
 }
 
 const BaseWrapper = styled.div`
@@ -87,6 +89,11 @@ const popoverWrapper = styled(BaseWrapper)`
   border-radius: 4px;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 4px, rgba(0, 0, 0, 0.06) 0px 2px 12px;
+`
+
+const sidePanelWrapper = styled.div`
+  width: ${p => p.width}px;
+  height: ${p => p.height}px;
 `
 
 const BaseCloseImage = styled.img`
@@ -186,6 +193,7 @@ class Popup extends Component {
     if (mode === DRAWER_RIGHT) return drawerRightWrapper
     if (mode === DRAWER) return drawerLeftWrapper
     if (mode === POPOVER) return popoverWrapper
+    if (mode === SIDE_PANEL) return sidePanelWrapper
     return popupWrapper
   }
 
@@ -222,6 +230,7 @@ class Popup extends Component {
               src={closeImg}
             />
           )
+          this.handleSidePanelOpen()
           this.setState({ frameAnimate: true, isLoading: false })
           if (iframeRef && iframeRef.contentWindow) {
             iframeRef.contentWindow.focus()
@@ -233,6 +242,7 @@ class Popup extends Component {
 
   handleAnimateBeforeClose () {
     this.updateIcon()
+    this.handleSidePanelClose()
     this.setState({ frameAnimate: false, popupAnimate: false }, () => {
       setTimeout(() => {
         this.setState({ popupAnimate: true }, () => {
@@ -285,6 +295,21 @@ class Popup extends Component {
     }
   }
 
+  handleSidePanelOpen () {
+    const { mode, container, width, height } = this.props.options
+    if (mode === SIDE_PANEL) {
+      container.style.width = `${width}px`
+      container.style.height = `${height}px`
+    }
+  }
+
+  handleSidePanelClose () {
+    const { mode, container } = this.props.options
+    if (mode === SIDE_PANEL) {
+      container.style.width = 0
+    }
+  }
+
   render () {
     let iframeStyles = null
     const { embedId, options, url } = this.props
@@ -309,7 +334,7 @@ class Popup extends Component {
     const Wrapper = this.getWrapperComponent(mode)
     const CloseImage = this.getCloseImage(mode)
 
-    const showSmallPopup = mode === POPOVER
+    const showSmallPopup = mode === POPOVER || mode === SIDE_PANEL
 
     const wrappedForm = (
       <Wrapper

@@ -18,7 +18,8 @@ import Popup, {
   DEFAULT_AUTOCLOSE_TIMEOUT,
   POPOVER,
   DRAWER,
-  DRAWER_RIGHT
+  DRAWER_RIGHT,
+  SIDE_PANEL
 } from './views/popup'
 import MobileModal from './views/mobile-modal'
 import { getPostMessageHandler } from './utils/get-post-message-handler'
@@ -142,7 +143,7 @@ export default function makePopup (url, userOptions) {
       }
 
       const isOpen = domNode.children.length > 0
-      const togglePopup = options.mode === POPOVER
+      const togglePopup = options.mode === POPOVER || options.mode === SIDE_PANEL
       if (isOpen && togglePopup) {
         if (typeof window.tfClosePopup === 'function') {
           window.tfClosePopup({ ...event, detail: { embedId } })
