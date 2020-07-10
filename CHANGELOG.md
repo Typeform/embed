@@ -1,3 +1,10 @@
+## [0.22.2](https://github.com/Typeform/embed/compare/v0.22.1...v0.22.2) (2020-07-10)
+
+
+### Bug Fixes
+
+* **DIST-306:** Add side panel popup type ([5935791](https://github.com/Typeform/embed/commit/5935791bc47cdd353822d872dc3d7088ed773c3b))
+
 ## [0.22.1](https://github.com/Typeform/embed/compare/v0.22.0...v0.22.1) (2020-07-01)
 
 
