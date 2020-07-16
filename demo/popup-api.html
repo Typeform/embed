@@ -93,15 +93,15 @@
     </style>
   </head>
   <body>
-    <a id="popup" class="popup">Launch me as a popup!</a>
+    <a id="btn-popup" class="popup">Launch me as a popup!</a>
 
-    <a id="drawer-left" class="popup">Launch me as a drawer!</a>
+    <a id="btn-drawer_left" class="popup">Launch me as a drawer!</a>
 
-    <a id="drawer-right" class="popup">Launch me as a right drawer!</a>
+    <a id="btn-drawer_right" class="popup">Launch me as a right drawer!</a>
 
     <div class="popover-hint">Launch a popover here 👉</div>
 
-    <a id="popover" class="popover">
+    <a id="btn-popover" class="popover">
       <span class="icon">
         <svg width="24" height="24" fill="none" style="margin-top:7px" viewBox="0 0 84 83">
           <rect width="84" height="56" fill="#fff" rx="8" />
@@ -113,7 +113,7 @@
     <div class="side-panel-hint">Side panel 👉</div>
 
     <div class="side-panel-wrapper">
-      <a id="side-panel" class="side-panel">
+      <a id="btn-side_panel" class="side-panel">
         <span class="icon">
           <svg width="24" height="24" fill="none" style="margin-top:7px" viewBox="0 0 84 83">
             <rect width="84" height="56" fill="#fff" rx="8" />
@@ -129,26 +129,26 @@
 
     <script>
       function makeMockPopup(options = {}) {
-        return window.typeformEmbed.makePopup('./form/mock.html', options)
+        return window.typeformEmbed.makePopup('./form/mock.html#foobar=hello', options)
       }
       window.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('popup').onclick = function(e) {
+        document.getElementById('btn-popup').onclick = function(e) {
           e.preventDefault()
           makeMockPopup({mode: 'popup'}).open()
         }
 
-        document.getElementById('drawer-left').onclick = function(e) {
+        document.getElementById('btn-drawer_left').onclick = function(e) {
           e.preventDefault()
           makeMockPopup({mode: 'drawer_left'}).open()
         }
 
-        document.getElementById('drawer-right').onclick = function(e) {
+        document.getElementById('btn-drawer_right').onclick = function(e) {
           e.preventDefault()
           makeMockPopup({mode: 'drawer_right', width: 300}).open()
         }
 
         let popoverPopup
-        const popoverButton = document.getElementById('popover')
+        const popoverButton = document.getElementById('btn-popover')
         const popoverButtonIcon = popoverButton.innerHTML
         const popoverReadyCallback = function () {
           setTimeout(function() {
@@ -176,7 +176,7 @@
         }
 
         let sidePanelPopup
-        const sidePanelButton = document.getElementById('side-panel')
+        const sidePanelButton = document.getElementById('btn-side_panel')
         const sidePanelButtonContent = sidePanelButton.innerHTML
         const sidePanelReadyCallback = function () {
           setTimeout(function() {
