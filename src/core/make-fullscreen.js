@@ -28,6 +28,7 @@ export default function makeFullScreen (iframe, url, options) {
   }
 
   iframe.src = appendParamsToUrl(url, replaceExistingKeys(options, queryStringKeys))
+  iframe.focus()
 
   const onFormSubmit = (event) => {
     options.onSubmit(getSubmitEventData(event))
