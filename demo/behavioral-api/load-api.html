@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Open: load (via API)</title>
+    <link rel="stylesheet" href="../demo.css" />
+  </head>
+  <body>
+    <h1>This popup opens on page load (via API)</h1>
+    <p>If you see this you very likely already closed the popup.</p>
+    <p>If the popup did not open automatically something is broken.</p>
+
+    <script type="text/javascript" src="../embed.js"></script>
+    <script>
+      window.typeformEmbed.makePopup(
+        '../form/mock.html#foobar=hello',
+        {
+          mode: 'popup',
+          open: 'load',
+        }
+      )
+    </script>
+  </body>
+</html>

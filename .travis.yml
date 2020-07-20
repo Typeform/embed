@@ -51,11 +51,16 @@ jobs:
       if: branch = master
       script:
         - yarn test:unit
-    - name: "Functional Tests (Internal)"
+    - name: "Functional Tests Chrome (Internal)"
       if: fork = false AND branch = master
       script:
         - yarn serve-demo & export EMBED_PID=$!
         - yarn test:functional:chrome  --record --parallel --group functional-chrome
+        - kill $EMBED_PID
+    - name: "Functional Tests Firefox (Internal)"
+      if: fork = false AND branch = master
+      script:
+        - yarn serve-demo & export EMBED_PID=$!
         - yarn test:functional:firefox --record --parallel --group functional-firefox
         - kill $EMBED_PID
     - name: "Functional Tests (External)"

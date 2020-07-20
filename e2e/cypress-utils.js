@@ -25,13 +25,13 @@ export const testEmbeddedForm = (selector = IFRAME_SELECTOR) => {
   )
 }
 
-export const openPopup = (mode) => {
-  cy.get(`[data-mode="${mode}"]`).click()
-  cy.get(IFRAME_SELECTOR).should('not.be.undefined')
+export const openPopup = (selector) => {
+  cy.get(selector).click()
+  cy.get(IFRAME_SELECTOR).should('be.visible')
 }
 
-export const closePopupViaButton = () => {
-  cy.get('[data-qa="popup-close-button"]').click()
+export const closePopupViaButton = (selector = '[data-qa="popup-close-button"]') => {
+  cy.get(selector).click()
   cy.get(IFRAME_SELECTOR).should('not.exist')
 }
 
@@ -40,14 +40,14 @@ export const closePopupViaButtonOnMobile = () => {
   cy.get(IFRAME_SELECTOR).should('not.exist')
 }
 
-export const closePopupViaKeyboard = () => {
+export const closePopupViaKeyboard = (selector = '[data-qa="popup-close-button"]') => {
   getIframe(
     IFRAME_SELECTOR,
     iframeBody => {
       iframeBody.find('[data-qa="start-button"]').type('{esc}') // send escape key to iframe
       cy.get(IFRAME_SELECTOR).should('not.exist')
     },
-    () => closePopupViaButton()
+    () => closePopupViaButton(selector)
   )
 }
 

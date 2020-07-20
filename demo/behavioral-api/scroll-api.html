@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Open: scroll</title>
+    <title>Open: scroll (via API)</title>
     <link rel="stylesheet" href="../demo.css" />
     <style>
       .scroll-indicator {
@@ -23,20 +23,9 @@
       The popup will open at <span id="percent">30</span>%<br/>
       You scrolled <span id="scroll-pixels">0</span>px, that is <span id="scroll-percentage">0.00</span>% of the page
     </div>
-    <h1>This popup opens on scroll - at <span id="percent-title">30</span>%</h1>
+    <h1>This popup opens on scroll - at <span id="percent-title">30</span>% (via API)</h1>
     <p>The popup is opened automatically when you scroll past given percentage of the page height.</p>
     <p>The popup is opened only once (when you scroll past the given percentage for the first time).</p>
-    <a
-      id="popup"
-      class="typeform-share"
-      href="//betatests.typeform.com/to/Z9k3bK?disable-tracking=true"
-      data-mode="drawer_left"
-      data-open="scroll"
-      data-open-value="30"
-      target="_blank"
-    >
-      Open the popup manually instead
-    </a>
 
     <h2>Customize the percentage</h2>
     <p>This can be set on "Share" page as well.</p>
@@ -46,15 +35,8 @@
       <button type="submit">Set</button>
     </form>
 
+    <script type="text/javascript" src="../embed.js"></script>
     <script>
-      const param = window.location.search.match(/percent=(\d+)/)
-      if (param) {
-        const percent = parseInt(param[1], 10);
-        document.getElementById('popup').dataset.openValue = percent;
-        document.getElementById('threshold').value = percent;
-        document.getElementById('percent').innerHTML = percent;
-        document.getElementById('percent-title').innerHTML = percent;
-      }
       document.addEventListener('scroll', function() {
         const offsetTop = window.pageYOffset || document.documentElement.scrollTop
         const clientTop = document.documentElement.clientTop || 0
@@ -63,10 +45,23 @@
         document.getElementById('scroll-pixels').innerHTML = scrollTopPixels;
         document.getElementById('scroll-percentage').innerHTML = (Math.round(scrollTopPercentage * 100) / 100).toFixed(2);
       })
-    </script>
 
-    <script type="text/javascript" src="../embed.js"></script>
-    <script type="text/javascript" src="../demo.js"></script>
+      const param = window.location.search.match(/percent=(\d+)/)
+      const percent = param ? parseInt(param[1], 10) : 30;
+
+      document.getElementById('threshold').value = percent;
+      document.getElementById('percent').innerHTML = percent;
+      document.getElementById('percent-title').innerHTML = percent;
+
+      window.typeformEmbed.makePopup(
+        '../form/mock.html#foobar=hello',
+        {
+          mode: 'popup',
+          open: 'scroll',
+          openValue: percent
+        }
+      )
+    </script>
 
     <div class="lorem-ipsum">
       <h2>Random text to make the page long</h2>
