@@ -1,3 +1,10 @@
+# [0.23.0](https://github.com/Typeform/embed/compare/v0.22.2...v0.23.0) (2020-07-20)
+
+
+### Features
+
+* **DIST-301:** Add functional tests for behavioral triggers from DIST-193 ([7684471](https://github.com/Typeform/embed/commit/76844715e8960dce877fee2ef9e633c41ec526ae))
+
 ## [0.22.2](https://github.com/Typeform/embed/compare/v0.22.1...v0.22.2) (2020-07-10)
 
 
