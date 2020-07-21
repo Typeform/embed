@@ -94,6 +94,7 @@ const popoverWrapper = styled(BaseWrapper)`
 const sidePanelWrapper = styled.div`
   width: ${p => p.width}px;
   height: ${p => p.height}px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 4px, rgba(0, 0, 0, 0.06) 0px 2px 12px;
 `
 
 const BaseCloseImage = styled.img`
