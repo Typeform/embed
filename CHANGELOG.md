@@ -1,3 +1,10 @@
+## [0.23.1](https://github.com/Typeform/embed/compare/v0.23.0...v0.23.1) (2020-07-21)
+
+
+### Bug Fixes
+
+* **DIST-269:** Fix autofocus of full-screen form in Safari ([ec93bb7](https://github.com/Typeform/embed/commit/ec93bb7a63413bcf8a76967390c29afb9da6cd6b))
+
 # [0.23.0](https://github.com/Typeform/embed/compare/v0.22.2...v0.23.0) (2020-07-20)
 
 
