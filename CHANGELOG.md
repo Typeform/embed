@@ -1,3 +1,10 @@
+## [0.23.2](https://github.com/Typeform/embed/compare/v0.23.1...v0.23.2) (2020-07-22)
+
+
+### Bug Fixes
+
+* **DIST-351:** Add box shadow to side panel popup ([eced969](https://github.com/Typeform/embed/commit/eced9697f4b980cc714af0ad7db00482649654c6))
+
 ## [0.23.1](https://github.com/Typeform/embed/compare/v0.23.0...v0.23.1) (2020-07-21)
 
 
