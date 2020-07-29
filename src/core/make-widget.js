@@ -8,6 +8,9 @@ import {
   omit
 } from './utils'
 import {
+  transferUrlParametersToQueryStrings
+} from './utils/url-parameters-transfer'
+import {
   isMobile
 } from './utils/mobile-detection'
 import Widget from './views/widget'
@@ -19,6 +22,7 @@ const defaultOptions = {
   hideHeaders: false,
   hideScrollbars: false,
   disableTracking: false,
+  transferableUrlParameters: [],
   onSubmit: noop
 }
 
@@ -38,6 +42,7 @@ export default function makeWidget (element, url, options) {
   const enabledFullscreen = isMobile(navigator.userAgent)
 
   let queryStrings = replaceExistingKeys(options, queryStringKeys)
+  queryStrings = transferUrlParametersToQueryStrings(options.transferableUrlParameters, queryStrings)
 
   if (enabledFullscreen) {
     queryStrings = {

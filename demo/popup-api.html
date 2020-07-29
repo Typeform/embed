@@ -134,17 +134,17 @@
       window.addEventListener('DOMContentLoaded', function () {
         document.getElementById('btn-popup').onclick = function(e) {
           e.preventDefault()
-          makeMockPopup({mode: 'popup'}).open()
+          makeMockPopup({mode: 'popup', transferableUrlParameters: ['utm_source']}).open()
         }
 
         document.getElementById('btn-drawer_left').onclick = function(e) {
           e.preventDefault()
-          makeMockPopup({mode: 'drawer_left'}).open()
+          makeMockPopup({mode: 'drawer_left', transferableUrlParameters: ['utm_source']}).open()
         }
 
         document.getElementById('btn-drawer_right').onclick = function(e) {
           e.preventDefault()
-          makeMockPopup({mode: 'drawer_right', width: 300}).open()
+          makeMockPopup({mode: 'drawer_right', width: 300, transferableUrlParameters: ['utm_source']}).open()
         }
 
         let popoverPopup
@@ -164,6 +164,7 @@
               mode: 'popover',
               width: 400,
               height: 400,
+              transferableUrlParameters: ['utm_source'],
               onReady: popoverReadyCallback
             })
             popoverButton.innerHTML = '...'
@@ -202,6 +203,7 @@
               mode: 'side_panel',
               width: 400,
               height: 400,
+              transferableUrlParameters: ['utm_source'],
               container: sidePanelContainerElement,
               onReady: sidePanelReadyCallback
             })

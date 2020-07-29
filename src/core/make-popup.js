@@ -7,6 +7,9 @@ import {
   ensureMetaViewport,
   noop
 } from './utils'
+import {
+  transferUrlParametersToQueryStrings
+} from './utils/url-parameters-transfer'
 import randomString from './utils/random-string'
 import {
   isMobile,
@@ -45,6 +48,7 @@ const buildOptions = (embedId, options) => {
     hideHeaders: false,
     hideScrollbars: false,
     disableTracking: false,
+    transferableUrlParameters: options.transferableUrlParameters || [],
     onSubmit: noop,
     open: null,
     openValue: null,
@@ -72,9 +76,12 @@ const renderComponent = (params, options) => {
     onSubmit
   } = options
 
+  let queryStrings = replaceExistingKeys(options, queryStringKeys)
+  queryStrings = transferUrlParametersToQueryStrings(options.transferableUrlParameters, queryStrings)
+
   const urlWithQueryString = appendParamsToUrl(
     url,
-    replaceExistingKeys(options, queryStringKeys)
+    queryStrings
   )
 
   if (!isMobile(navigator.userAgent) && isScreenBig()) {
