@@ -134,7 +134,7 @@ export default function makePopup (url, userOptions) {
     open (event) {
       const { currentTarget } = event || {}
       const currentUrl = currentTarget && currentTarget.href ? currentTarget.href : url
-      const icon = currentTarget && currentTarget.querySelector('span.icon')
+      const icon = (currentTarget && currentTarget.querySelector('span.icon')) || document.querySelector('a.typeform-share.button > span.icon')
       const params = {
         domNode,
         icon,
