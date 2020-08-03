@@ -1,3 +1,10 @@
+## [0.24.1](https://github.com/Typeform/embed/compare/v0.24.0...v0.24.1) (2020-08-03)
+
+
+### Bug Fixes
+
+* **DIST-366:** Display correct icon when popup is opened automatically ([6b68f37](https://github.com/Typeform/embed/commit/6b68f37591b19020653333886df8d2a7b83239b8))
+
 # [0.24.0](https://github.com/Typeform/embed/compare/v0.23.2...v0.24.0) (2020-08-03)
 
 
