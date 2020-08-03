@@ -64,6 +64,10 @@ const sanitizePopupAttributes = data => {
     obj.hideScrollbars = true
   }
 
+  if (data.shareGoogleAnalyticsInstance === '' || data.shareGoogleAnalyticsInstance === 'true') {
+    obj.shareGoogleAnalyticsInstance = true
+  }
+
   if (data.open) {
     obj.open = data.open
     obj.openValue = data.openValue
@@ -97,6 +101,10 @@ const sanitizeWidgetAttributes = data => {
 
   if (data.hideScrollbars === '' || data.hideScrollbars === 'true') {
     obj.hideScrollbars = true
+  }
+
+  if (data.shareGoogleAnalyticsInstance === '' || data.shareGoogleAnalyticsInstance === 'true') {
+    obj.shareGoogleAnalyticsInstance = true
   }
 
   const transparency = parseInt(data.transparency, 10)
