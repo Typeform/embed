@@ -94,6 +94,11 @@ describe('makePopup', () => {
     expect(renderMock).toHaveBeenCalledTimes(0)
   })
 
+  it('attaches the element to popup object', () => {
+    const mockElement = document.createElement('test')
+    expect(makePopup('', {}, mockElement).element).toBe(mockElement)
+  })
+
   it(`renders a Popup component on desktop devices when 'width' option is a valid number`, () => {
     const options = { open: 'load', width: 650 }
 
