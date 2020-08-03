@@ -69,7 +69,7 @@ typeformEmbed.makeWidget(element, url, options)
   | hideHeaders    | Hide typeform header, that appears when you have a Question group, or a long question that you need to scroll through to answer, like a Multiple Choice block. | `Boolean`  | false   |
   | onSubmit       | Callback function that will be executed right after the typeform is successfully submitted.                                                                    | `Function` | -       |
   | onReady        | Callback function that will be executed once the typeform is ready.                                                                                            | `Function` | -       |
-
+    | transferableUrlParameters     | Parameters that we want to transfert from the URL to the Typeform as hidden fields | `Array`   | [] |
   #### Example:
 
   ```js
@@ -121,6 +121,7 @@ typeformEmbed.makePopup(url, options)
   | onReady        | Callback function that will be executed once the typeform is ready.                                                                                            | `Function`                                                                    | -       |
   | onClose        | Callback function that will be executed once the typeform is closed.                                                                                           | `Function`                                                                    | -       |
   | container      | Element to place the popup into. Optional. Required only for `"side_panel"` mode.                                                                              | `DOM element`                                                                 | -       |
+      | transferableUrlParameters     | Parameters that we want to transfert from the URL to the Typeform as hidden fields | `Array`   | [] |
 
 Types:
 

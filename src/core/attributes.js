@@ -18,6 +18,10 @@ const transformLegacyDataMode = dataMode => {
   return element ? element.mode : dataMode
 }
 
+const parseTransferableUrlParameters = transferableUrlParameters => {
+  return transferableUrlParameters.replace(/ /g, '').split(',')
+}
+
 const getDataset = element => {
   const data = {}
   ;[].forEach.call(element.attributes, attr => {
@@ -73,6 +77,10 @@ const sanitizePopupAttributes = data => {
     obj.height = parseInt(data.height, 10)
   }
 
+  if (data.transferableUrlParameters) {
+    obj.transferableUrlParameters = parseTransferableUrlParameters(data.transferableUrlParameters)
+  }
+
   return obj
 }
 
@@ -98,6 +106,10 @@ const sanitizeWidgetAttributes = data => {
 
   if (data.buttonText) {
     obj.buttonText = data.buttonText
+  }
+
+  if (data.transferableUrlParameters) {
+    obj.transferableUrlParameters = parseTransferableUrlParameters(data.transferableUrlParameters)
   }
 
   return obj

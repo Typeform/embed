@@ -10,7 +10,7 @@ describe('Embed Widget in div with position:absolute on mobile', () => {
 describe('Basic Embed Widget', () => {
   describe('On Desktop', () => {
     before(() => {
-      open('/widget.html')
+      open('/widget.html?utm_source=facebook')
     })
 
     it('Loads correctly the basic embed widget', () => {
@@ -20,11 +20,15 @@ describe('Basic Embed Widget', () => {
     it('Passes hidden field parameter', () => {
       cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /foobar=hello/)
     })
+
+    it('Passes Browser URL parameters', () => {
+      cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /utm_source=facebook/)
+    })
   })
 
   describe('On Mobile', () => {
     before(() => {
-      openOnMobile('/widget.html')
+      openOnMobile('/widget.html?utm_source=facebook')
     })
 
     it('Loads correctly the basic embed widget', () => {
@@ -33,6 +37,10 @@ describe('Basic Embed Widget', () => {
 
     it('Passes hidden field parameter', () => {
       cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /foobar=hello/)
+    })
+
+    it('Passes Browser URL parameters', () => {
+      cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /utm_source=facebook/)
     })
   })
 })
@@ -40,7 +48,7 @@ describe('Basic Embed Widget', () => {
 describe('Basic Embed Widget with Legacy Hidden Fields', () => {
   describe('On Desktop', () => {
     before(() => {
-      open('/widget-legacy.html')
+      open('/widget-legacy.html?utm_source=facebook')
     })
 
     it('Loads correctly the basic embed widget', () => {
@@ -50,11 +58,15 @@ describe('Basic Embed Widget with Legacy Hidden Fields', () => {
     it('Passes hidden field parameter', () => {
       cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /foobar=hello/)
     })
+
+    it('Passes Browser URL parameters', () => {
+      cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /utm_source=facebook/)
+    })
   })
 
   describe('On Mobile', () => {
     before(() => {
-      openOnMobile('/widget-legacy.html')
+      openOnMobile('/widget-legacy.html?utm_source=facebook')
     })
 
     it('Loads correctly the basic embed widget', () => {
@@ -63,6 +75,10 @@ describe('Basic Embed Widget with Legacy Hidden Fields', () => {
 
     it('Passes hidden field parameter', () => {
       cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /foobar=hello/)
+    })
+
+    it('Passes Browser URL parameters', () => {
+      cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /utm_source=facebook/)
     })
   })
 })

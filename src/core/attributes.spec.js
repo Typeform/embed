@@ -42,6 +42,12 @@ describe('Attributes', () => {
         mode: 'drawer_right'
       })
     })
+
+    it('takes in account the data-transferable-url-parameters option and parse the options correctly', () => {
+      const mockElement = document.createElement('div')
+      mockElement.setAttribute('data-transferable-url-parameters', 'foo, bar,  john')
+      expect(sanitizePopupAttributes(getDataset(mockElement))).toEqual({ transferableUrlParameters: ['foo', 'bar', 'john'] })
+    })
   })
 
   describe('Widget', () => {
@@ -60,6 +66,12 @@ describe('Attributes', () => {
       }
 
       expect(sanitizeWidgetAttributes(getDataset(widgetMockElem))).toEqual(widgetOptions)
+    })
+
+    it('takes in account the data-transferable-url-parameters option and parse the options correctly', () => {
+      const widgetMockElem = document.createElement('div')
+      widgetMockElem.setAttribute('data-transferable-url-parameters', ' foo,   bar,  john')
+      expect(sanitizeWidgetAttributes(getDataset(widgetMockElem))).toEqual({ transferableUrlParameters: ['foo', 'bar', 'john'] })
     })
   })
 })

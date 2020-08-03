@@ -17,8 +17,8 @@ const popupModes = {
 }
 
 const pages = {
-  '/popup.html': 'embed code',
-  '/popup-api.html': 'API'
+  '/popup.html?utm_source=facebook  ': 'embed code',
+  '/popup-api.html?utm_source=facebook': 'API'
 }
 
 Object.keys(popupModes).forEach(popupMode => {
@@ -33,6 +33,10 @@ Object.keys(popupModes).forEach(popupMode => {
 
           it('Passes hidden field parameter', () => {
             cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /foobar=hello/)
+          })
+
+          it('Passes Browser URL parameters', () => {
+            cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /utm_source=facebook/)
           })
 
           it('Closes Embed Popup clicking on the close button', () => {
