@@ -1,3 +1,11 @@
+# [0.24.0](https://github.com/Typeform/embed/compare/v0.23.2...v0.24.0) (2020-08-03)
+
+
+### Features
+
+* Add data-transferable-url-parameters attribute to embed ([87b7824](https://github.com/Typeform/embed/commit/87b782414127d154c041bf04161925fa9ff53c86))
+* Add transferableUrlParameters option to the embed API ([5531870](https://github.com/Typeform/embed/commit/5531870994fdd5ccf0c203c7642b0f2d67e46b1f))
+
 ## [0.23.2](https://github.com/Typeform/embed/compare/v0.23.1...v0.23.2) (2020-07-22)
 
 
