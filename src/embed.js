@@ -26,7 +26,7 @@ const initializePopup = (element) => {
     data.container = element.parentNode
   }
 
-  const popup = makePopup(url, data)
+  const popup = makePopup(url, data, element)
 
   element.onclick = (event) => {
     event.stopPropagation()

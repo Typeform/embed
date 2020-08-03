@@ -90,3 +90,29 @@ Object.keys(pages).forEach(pageSuffix => {
     })
   })
 })
+
+describe('Open: load (via embed code)', () => {
+  before(() => {
+    open(getPageUrl('load', '-code'))
+  })
+
+  it('should display close button', () => {
+    cy.get('.typeform-share > .icon > img[data-qa="popup-close-button"]').should('be.visible')
+    cy.get('.typeform-share > .icon > svg').should('not.be.visible')
+  })
+
+  describe('when popup is closed', () => {
+    before(() => {
+      cy.get('.typeform-share').click()
+    })
+
+    it('should display the popup', () => {
+      cy.get(IFRAME_SELECTOR).should('not.be.visible')
+    })
+
+    it('should display original icon', () => {
+      cy.get('.typeform-share > .icon > img[data-qa="popup-close-button"]').should('not.be.visible')
+      cy.get('.typeform-share > .icon > svg').should('be.visible')
+    })
+  })
+})

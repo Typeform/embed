@@ -113,7 +113,7 @@ const renderComponent = (params, options) => {
   }
 }
 
-export default function makePopup (url, userOptions) {
+export default function makePopup (url, userOptions, element) {
   window.addEventListener('message', getPostMessageHandler('form-ready', userOptions.onReady))
   window.addEventListener('message', getPostMessageHandler('form-closed', userOptions.onClose))
 
@@ -138,8 +138,9 @@ export default function makePopup (url, userOptions) {
   options.container.appendChild(domNode)
 
   const popup = {
+    element,
     open (event) {
-      const { currentTarget } = event || {}
+      const currentTarget = event && event.currentTarget ? event.currentTarget : this.element
       const currentUrl = currentTarget && currentTarget.href ? currentTarget.href : url
       const icon = currentTarget && currentTarget.querySelector('span.icon')
       const params = {

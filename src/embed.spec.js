@@ -46,7 +46,7 @@ describe('Embed', () => {
   it('initialises popup elements', () => {
     expect(makePopupMock).toHaveBeenCalledTimes(1)
     expect(sanitizePopupAttributesMock).toHaveBeenCalledTimes(1)
-    expect(makePopupMock).toBeCalledWith(POPUP_URL, POPUP_ATTR)
+    expect(makePopupMock).toBeCalledWith(POPUP_URL, POPUP_ATTR, document.querySelector('.typeform-share'))
   })
 
   it('initialises widget elements', () => {
