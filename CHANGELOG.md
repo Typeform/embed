@@ -1,3 +1,10 @@
+## [0.24.3](https://github.com/Typeform/embed/compare/v0.24.2...v0.24.3) (2020-08-04)
+
+
+### Bug Fixes
+
+* **DIST-353:** Focus inconsistency fixed ([#66](https://github.com/Typeform/embed/issues/66)) ([62296f2](https://github.com/Typeform/embed/commit/62296f25742184bc58d622b8c3c545c95268692e))
+
 ## [0.24.2](https://github.com/Typeform/embed/compare/v0.24.1...v0.24.2) (2020-08-04)
 
 
