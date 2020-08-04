@@ -1,3 +1,10 @@
+## [0.24.2](https://github.com/Typeform/embed/compare/v0.24.1...v0.24.2) (2020-08-04)
+
+
+### Bug Fixes
+
+* **DIST-370:** Change scroll top calculation ([92cb67c](https://github.com/Typeform/embed/commit/92cb67cc05e7a155011db0e2b1db764de62460ff))
+
 ## [0.24.1](https://github.com/Typeform/embed/compare/v0.24.0...v0.24.1) (2020-08-03)
 
 
