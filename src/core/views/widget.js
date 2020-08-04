@@ -127,6 +127,7 @@ class Widget extends Component {
     this.reloadIframe = this.reloadIframe.bind(this)
     this.debouncedScroll = debounce(this.focusIframe, DEBOUNCE_WAIT, this)
     this.setIframeRef = this.setIframeRef.bind(this)
+    this.sendFocusMessageToIframe = this.sendFocusMessageToIframe.bind(this)
   }
 
   componentDidMount () {
@@ -214,11 +215,9 @@ class Widget extends Component {
     if (this.props.enabledFullscreen) return
 
     const { iframeRef } = this.iframe
-
     if (!iframeRef || !iframeRef.contentWindow) {
       return
     }
-
     const isIframeInViewport = isElementInViewport(iframeRef)
     const canPostMessage =
       this.state.isFormReady &&
@@ -227,11 +226,18 @@ class Widget extends Component {
       iframeRef.contentWindow != null
 
     if (canPostMessage) {
-      iframeRef.contentWindow.postMessage('embed-focus', '*')
-      this.setState({
-        isIframeFocused: true
-      })
+      this.setState({ isIframeFocused: true }, this.sendFocusMessageToIframe)
     }
+  }
+
+  sendFocusMessageToIframe () {
+    const { iframeRef } = this.iframe
+    if (!iframeRef) { return }
+
+    setTimeout(
+      () => iframeRef.contentWindow.postMessage('embed-focus', '*'),
+      100
+    )
   }
 
   render () {
