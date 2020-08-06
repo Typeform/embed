@@ -1,3 +1,10 @@
+## [0.24.4](https://github.com/Typeform/embed/compare/v0.24.3...v0.24.4) (2020-08-06)
+
+
+### Bug Fixes
+
+* **DIST-382:** Add shadow transition to sidetab ([e8f76be](https://github.com/Typeform/embed/commit/e8f76be67872b13173cfe2f114c13bdb14208bac))
+
 ## [0.24.3](https://github.com/Typeform/embed/compare/v0.24.2...v0.24.3) (2020-08-04)
 
 
