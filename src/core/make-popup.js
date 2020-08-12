@@ -27,6 +27,7 @@ import Popup, {
 import MobileModal from './views/mobile-modal'
 import { getPostMessageHandler } from './utils/get-post-message-handler'
 import { handleAutoOpen } from './utils/popup-auto-open'
+import { setupGoogleAnalyticsInstanceSharingFeature } from './features/google-analytics-instance-sharing'
 
 const DEFAULT_DRAWER_WIDTH = 800
 const DEFAULT_POPUP_WIDTH = 320
@@ -49,6 +50,7 @@ const buildOptions = (embedId, options) => {
     hideScrollbars: false,
     disableTracking: false,
     transferableUrlParameters: options.transferableUrlParameters || [],
+    shareGoogleAnalyticsInstance: options.shareGoogleAnalyticsInstance || false,
     onSubmit: noop,
     open: null,
     openValue: null,
@@ -120,6 +122,10 @@ export default function makePopup (url, userOptions, element) {
   const embedId = randomString()
 
   const options = buildOptions(embedId, userOptions)
+
+  if (options.shareGoogleAnalyticsInstance) {
+    setupGoogleAnalyticsInstanceSharingFeature(embedId)
+  }
 
   if (!Number.isSafeInteger(options.width)) {
     throw new Error(

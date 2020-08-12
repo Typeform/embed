@@ -69,7 +69,8 @@ typeformEmbed.makeWidget(element, url, options)
   | hideHeaders    | Hide typeform header, that appears when you have a Question group, or a long question that you need to scroll through to answer, like a Multiple Choice block. | `Boolean`  | false   |
   | onSubmit       | Callback function that will be executed right after the typeform is successfully submitted.                                                                    | `Function` | -       |
   | onReady        | Callback function that will be executed once the typeform is ready.                                                                                            | `Function` | -       |
-    | transferableUrlParameters     | Parameters that we want to transfert from the URL to the Typeform as hidden fields | `Array`   | [] |
+  | transferableUrlParameters     | Parameters that we want to transfert from the URL to the Typeform as hidden fields | `Array`   | [] |
+  | shareGoogleAnalyticsInstance | Allows to share the Google instance of the page with the Typeform in the embed | `Boolean`   | false |
   #### Example:
 
   ```js

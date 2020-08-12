@@ -15,6 +15,8 @@ import {
 } from './utils/mobile-detection'
 import Widget from './views/widget'
 import { getPostMessageHandler } from './utils/get-post-message-handler'
+import { setupGoogleAnalyticsInstanceSharingFeature } from './features/google-analytics-instance-sharing'
+import randomString from './utils/random-string'
 
 const defaultOptions = {
   mode: 'embed-widget',
@@ -37,7 +39,13 @@ const queryStringKeys = {
 export default function makeWidget (element, url, options) {
   options = { ...defaultOptions, ...options }
 
+  const embedId = randomString()
+
   window.addEventListener('message', getPostMessageHandler('form-ready', options.onReady))
+
+  if (options.shareGoogleAnalyticsInstance) {
+    setupGoogleAnalyticsInstanceSharingFeature(embedId)
+  }
 
   const enabledFullscreen = isMobile(navigator.userAgent)
 
