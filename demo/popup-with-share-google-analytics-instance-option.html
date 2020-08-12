@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Popup example</title>
+    <link rel="stylesheet" href="demo.css" />
+    <!-- Google Analytics Debug instance -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics_debug.js','ga');
+    
+      ga('create', 'UA-XXXXX-Y', 'auto');
+      if (location.hostname == 'localhost') {
+        // This disables network interraction with Google Analytics
+        ga('set', 'sendHitTask', null);
+      }
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics Debug instance -->
+    <style type="text/css">
+      a.popup {
+        margin: 20px 0;
+        display: block;
+      }
+
+      /* CSS for wrapper is required */
+      .side-panel-wrapper {
+        top: calc(50% - 300px); /* needs to be set manually based on popup size */
+        right: 0;
+        position: fixed;
+        transition: width 300ms ease-out;
+        width: 0;
+      }
+
+      .side-panel {
+        position: absolute;
+        top: 300px; /* needs to be set manually based on button size */
+        width: 300px; /* needs to be set manually based on button size */
+        height: 40px;
+        background: #427fed;
+        color: white;
+        padding: 0 20px;
+        margin: 0;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transform: rotate(-90deg);
+        transform-origin: bottom left;
+      }
+
+      .side-panel > .icon {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+      }
+
+      .side-panel > .icon > svg {
+        transform-origin: left;
+        transform: translate(10px,-15px) rotate(90deg)
+      }
+
+      .popover {
+        width: 54px;
+        height: 54px;
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background: #427fed;
+      }
+
+      .popover > .icon {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+      }
+
+      .popover-hint, .side-panel-hint {
+        color: darkgray;
+        position: fixed;
+        right: 90px;
+        bottom: 16px;
+        height: 54px;
+        line-height: 54px;
+      }
+
+      .side-panel-hint {
+        bottom: auto;
+        top: calc(50% - 200px);
+        right: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      id="btn-popup"
+      class="typeform-share popup"
+      href="./form/mock.html#foobar=hello"
+      data-mode="popup"
+      data-submit-close-delay="4"
+      class="typeform-share popup"
+      data-share-google-analytics-instance
+      target="_blank"
+    >
+      Launch me as a popup!
+    </a>
+
+    <!-- uses legacy hidden field in query param -->
+    <a
+      id="btn-drawer_left"
+      class="typeform-share popup"
+      href="./form/mock.html?foobar=hello"
+      data-mode="drawer_left"
+      data-submit-close-delay="4"
+      class="typeform-share popup"
+      data-share-google-analytics-instance
+      target="_blank"
+    >
+      Launch me as a drawer!
+    </a>
+
+    <a
+      id="btn-drawer_right"
+      class="typeform-share popup"
+      href="./form/mock.html#foobar=hello"
+      data-mode="drawer_right"
+      data-width="400"
+      data-submit-close-delay="4"
+      class="typeform-share popup"
+      data-share-google-analytics-instance
+      target="_blank"
+    >
+      Launch me as a right drawer!
+    </a>
+
+    <div class="popover-hint">Launch a popover here 👉</div>
+
+    <a
+      id="btn-popover"
+      class="typeform-share popover"
+      href="./form/mock.html#foobar=hello"
+      data-mode="popover"
+      data-width="500"
+      data-height="600"
+      data-submit-close-delay="4"
+      class="typeform-share popup"
+      data-share-google-analytics-instance
+      target="_blank"
+    >
+      <span class="icon">
+        <svg width="24" height="24" fill="none" style="margin-top:7px" viewBox="0 0 84 83">
+          <rect width="84" height="56" fill="#fff" rx="8" />
+          <path fill="#fff" d="M43 50h41v33L43 50z" opacity=".7" />
+        </svg>
+      </span>
+    </a>
+
+    <div class="side-panel-hint">Side panel 👉</div>
+
+    <div class="side-panel-wrapper">
+      <a
+        id="btn-side_panel"
+        class="typeform-share side-panel"
+        href="./form/mock.html#foobar=hello"
+        data-mode="side_panel"
+        data-width="360"
+        data-height="560"
+        data-submit-close-delay="4"
+        class="typeform-share popup"
+        data-share-google-analytics-instance
+        target="_blank"
+      >
+        <span class="icon">
+          <svg width="24" height="24" fill="none" style="margin-top:7px" viewBox="0 0 84 83">
+            <rect width="84" height="56" fill="#fff" rx="8" />
+            <path fill="#fff" d="M43 50h41v33L43 50z" opacity=".7" />
+          </svg>
+        </span>
+        Launch me as a side panel!
+      </a>
+    </div>
+
+    <script type="text/javascript" src="embed.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
+  </body>
+</html>

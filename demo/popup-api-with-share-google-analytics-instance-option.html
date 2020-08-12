@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Popup example</title>
+    <link rel="stylesheet" href="demo.css" />
+    <!-- Google Analytics Debug instance -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics_debug.js','ga');
+    
+      ga('create', 'UA-XXXXX-Y', 'auto');
+      if (location.hostname == 'localhost') {
+        // This disables network interraction with Google Analytics
+        ga('set', 'sendHitTask', null);
+      }
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics Debug instance -->
+    <style type="text/css">
+      a.popup {
+        margin: 20px 0;
+        display: block;
+        color: #427fed;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      /* CSS for wrapper is required */
+      .side-panel-wrapper {
+        top: calc(50% - 300px); /* needs to be set manually based on popup size */
+        right: 0;
+        position: fixed;
+        transition: width 300ms ease-out;
+        width: 0;
+      }
+
+      .side-panel {
+        position: absolute;
+        top: 300px; /* needs to be set manually based on button size */
+        width: 300px; /* needs to be set manually based on button size */
+        height: 40px;
+        background: #427fed;
+        color: white;
+        padding: 0 20px;
+        margin: 0;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transform: rotate(-90deg);
+        transform-origin: bottom left;
+      }
+
+      .side-panel > .icon {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+      }
+
+      .side-panel > .icon > svg {
+        transform-origin: left;
+        transform: translate(10px,-15px) rotate(90deg)
+      }
+
+      .popover {
+        width: 54px;
+        height: 54px;
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background: #427fed;
+        color: white;
+      }
+
+      .popover > .icon {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+      }
+
+      .popover-hint, .side-panel-hint {
+        color: darkgray;
+        position: fixed;
+        right: 90px;
+        bottom: 16px;
+        height: 54px;
+        line-height: 54px;
+      }
+
+      .side-panel-hint {
+        bottom: auto;
+        top: calc(50% - 200px);
+        right: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <a id="btn-popup" class="popup">Launch me as a popup!</a>
+
+    <a id="btn-drawer_left" class="popup">Launch me as a drawer!</a>
+
+    <a id="btn-drawer_right" class="popup">Launch me as a right drawer!</a>
+
+    <div class="popover-hint">Launch a popover here 👉</div>
+
+    <a id="btn-popover" class="popover">
+      <span class="icon">
+        <svg width="24" height="24" fill="none" style="margin-top:7px" viewBox="0 0 84 83">
+          <rect width="84" height="56" fill="#fff" rx="8" />
+          <path fill="#fff" d="M43 50h41v33L43 50z" opacity=".7" />
+        </svg>
+      </span>
+    </a>
+
+    <div class="side-panel-hint">Side panel 👉</div>
+
+    <div class="side-panel-wrapper">
+      <a id="btn-side_panel" class="side-panel">
+        <span class="icon">
+          <svg width="24" height="24" fill="none" style="margin-top:7px" viewBox="0 0 84 83">
+            <rect width="84" height="56" fill="#fff" rx="8" />
+            <path fill="#fff" d="M43 50h41v33L43 50z" opacity=".7" />
+          </svg>
+        </span>
+        Launch me as a side panel!
+      </a>
+    </div>
+
+    <script type="text/javascript" src="embed.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
+
+    <script>
+      function makeMockPopup(options = {}) {
+        return window.typeformEmbed.makePopup('./form/mock.html#foobar=hello', options)
+      }
+      window.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('btn-popup').onclick = function(e) {
+          e.preventDefault()
+          makeMockPopup({mode: 'popup', shareGoogleAnalyticsInstance: true, }).open()
+        }
+
+        document.getElementById('btn-drawer_left').onclick = function(e) {
+          e.preventDefault()
+          makeMockPopup({mode: 'drawer_left', shareGoogleAnalyticsInstance: true, }).open()
+        }
+
+        document.getElementById('btn-drawer_right').onclick = function(e) {
+          e.preventDefault()
+          makeMockPopup({mode: 'drawer_right', width: 300, shareGoogleAnalyticsInstance: true, }).open()
+        }
+
+        let popoverPopup
+        const popoverButton = document.getElementById('btn-popover')
+        const popoverButtonIcon = popoverButton.innerHTML
+        const popoverReadyCallback = function () {
+          setTimeout(function() {
+            popoverButton.innerHTML = '&#10005;'
+          }, 500)
+        }
+
+        popoverButton.onclick = function(e) {
+          e.preventDefault()
+
+          if (!popoverPopup) {
+            popoverPopup = makeMockPopup({
+              mode: 'popover',
+              width: 400,
+              height: 400,
+              shareGoogleAnalyticsInstance: true,
+              onReady: popoverReadyCallback
+            })
+            popoverButton.innerHTML = '...'
+            popoverPopup.open()
+          } else {
+            popoverPopup.close()
+            popoverPopup = null
+            popoverButton.innerHTML = popoverButtonIcon
+          }
+        }
+
+        let sidePanelPopup
+        const sidePanelButton = document.getElementById('btn-side_panel')
+        const sidePanelButtonContent = sidePanelButton.innerHTML
+        const sidePanelReadyCallback = function () {
+          setTimeout(function() {
+            sidePanelButton.innerHTML = 'CLOSE'
+          }, 500)
+        }
+
+        /**
+         * Side panel popup needs to be displayed inside a container.
+         * This enables
+         *
+         * The container:
+         *   - needs to be direct parent of the button
+         *   - needs to have correct styles (see `.side-panel-wrapper` styles)
+         */
+        const sidePanelContainerElement = document.querySelector('.side-panel-wrapper')
+
+        sidePanelButton.onclick = function(e) {
+          e.preventDefault()
+
+          if (!sidePanelPopup) {
+            sidePanelPopup = makeMockPopup({
+              mode: 'side_panel',
+              width: 400,
+              height: 400,
+              shareGoogleAnalyticsInstance: true,
+              container: sidePanelContainerElement,
+              onReady: sidePanelReadyCallback
+            })
+            sidePanelButton.innerHTML = 'LOADING...'
+            sidePanelPopup.open()
+          } else {
+            sidePanelContainerElement.style.width = 0
+            sidePanelButton.innerHTML = 'CLOSING...'
+              setTimeout(function() {
+              sidePanelPopup.close()
+              sidePanelPopup = null
+              sidePanelButton.innerHTML = sidePanelButtonContent
+            }, 500) // handle closing animation manually
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

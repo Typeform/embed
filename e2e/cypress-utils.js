@@ -55,9 +55,9 @@ const setViewport = ({ width, height }) => {
   cy.viewport(width, height)
 }
 
-export const open = (url) => {
+export const open = (url, options = {}) => {
   setViewport(screenSizeDesktop)
-  cy.visit(url)
+  cy.visit(url, options)
 }
 
 export const openOnMobile = (url) => {

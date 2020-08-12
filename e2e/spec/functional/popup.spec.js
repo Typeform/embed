@@ -71,3 +71,32 @@ Object.keys(popupModes).forEach(popupMode => {
     })
   })
 })
+
+const pagesGoogleAnalyticsInstanceSharingFeature = {
+  '/popup-with-share-google-analytics-instance-option.html': 'embed code',
+  '/popup-api-with-share-google-analytics-instance-option.html': 'API'
+}
+
+describe('Popup Widget with shareGoogleAnalyticsInstance option', () => {
+  Object.keys(popupModes).forEach(popupMode => {
+    Object.keys(pagesGoogleAnalyticsInstanceSharingFeature).forEach(pageUrl => {
+      describe(`Embedded using ${pages[pageUrl]} (at ${pageUrl})`, () => {
+        describe('Desktop', () => {
+          before(() => {
+            open(pageUrl, {
+              onBeforeLoad (win) {
+                // start spying
+                cy.spy(win, 'postMessage').as('postMessage')
+              }
+            })
+            openPopup(`#btn-${popupMode}`)
+          })
+
+          it('sends the ga-client-id by postMessage', () => {
+            cy.get('@postMessage').should('to.be.calledWithMatch', { type: 'ga-client-id' })
+          })
+        })
+      })
+    })
+  })
+})

@@ -10,7 +10,12 @@ describe('Embed Widget in div with position:absolute on mobile', () => {
 describe('Basic Embed Widget', () => {
   describe('On Desktop', () => {
     before(() => {
-      open('/widget.html?utm_source=facebook')
+      open('/widget.html?utm_source=facebook', {
+        onBeforeLoad (win) {
+          // start spying
+          cy.spy(win, 'postMessage')
+        }
+      })
     })
 
     it('Loads correctly the basic embed widget', () => {
@@ -112,6 +117,22 @@ describe('Full Page Embed Widget', () => {
 
     it('Passes hidden field parameter', () => {
       cy.get(iframe).should('have.attr', 'src').and('match', /foobar=hello/)
+    })
+  })
+})
+
+describe('Embed Widget with shareGoogleAnalyticsInstance option', () => {
+  describe('On Desktop', () => {
+    before(() => {
+      open('/widget-with-share-google-analytics-instance-option.html', {
+        onBeforeLoad (win) {
+          // start spying
+          cy.spy(win, 'postMessage').as('postMessage')
+        }
+      })
+    })
+    it('sends the ga-client-id by postMessage', () => {
+      cy.get('@postMessage').should('to.be.calledWithMatch', { type: 'ga-client-id' })
     })
   })
 })
