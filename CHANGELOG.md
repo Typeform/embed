@@ -1,3 +1,24 @@
+## [0.24.4](https://github.com/Typeform/embed/compare/v0.24.3...v0.24.4) (2020-08-06)
+
+
+### Bug Fixes
+
+* **DIST-382:** Add shadow transition to sidetab ([e8f76be](https://github.com/Typeform/embed/commit/e8f76be67872b13173cfe2f114c13bdb14208bac))
+
+## [0.24.3](https://github.com/Typeform/embed/compare/v0.24.2...v0.24.3) (2020-08-04)
+
+
+### Bug Fixes
+
+* **DIST-353:** Focus inconsistency fixed ([#66](https://github.com/Typeform/embed/issues/66)) ([62296f2](https://github.com/Typeform/embed/commit/62296f25742184bc58d622b8c3c545c95268692e))
+
+## [0.24.2](https://github.com/Typeform/embed/compare/v0.24.1...v0.24.2) (2020-08-04)
+
+
+### Bug Fixes
+
+* **DIST-370:** Change scroll top calculation ([92cb67c](https://github.com/Typeform/embed/commit/92cb67cc05e7a155011db0e2b1db764de62460ff))
+
 ## [0.24.1](https://github.com/Typeform/embed/compare/v0.24.0...v0.24.1) (2020-08-03)
 
 

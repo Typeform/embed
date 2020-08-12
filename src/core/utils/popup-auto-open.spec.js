@@ -88,11 +88,8 @@ describe('handleAutoOpen', () => {
 
     beforeAll(() => {
       global.document = {
-        body: {
-          clientHeight: 1000
-        },
         documentElement: {
-          clientHeight: 500
+          clientHeight: 1000
         },
         addEventListener: (_event, fn) => {
           handler = fn
@@ -100,7 +97,8 @@ describe('handleAutoOpen', () => {
         removeEventListener
       }
       global.window = {
-        pageYOffset: 0
+        pageYOffset: 0,
+        innerHeight: 500
       }
     })
 

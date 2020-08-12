@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- intentionally leaving out the <!DOCTYPE html> -->
 <html lang="en">
   <head>
     <title>Open: scroll (via embed code)</title>
@@ -59,7 +59,7 @@
         const offsetTop = window.pageYOffset || document.documentElement.scrollTop
         const clientTop = document.documentElement.clientTop || 0
         const scrollTopPixels = offsetTop - clientTop
-        const scrollTopPercentage = scrollTopPixels / document.body.clientHeight * 100
+        const scrollTopPercentage = scrollTopPixels / document.documentElement.clientHeight * 100
         document.getElementById('scroll-pixels').innerHTML = scrollTopPixels;
         document.getElementById('scroll-percentage').innerHTML = (Math.round(scrollTopPercentage * 100) / 100).toFixed(2);
       })
