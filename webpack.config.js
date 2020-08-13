@@ -48,6 +48,9 @@ function getWebpackConfig () {
       // UMD supports both NPM package format and
       // global variable format, when used from a CDN
       libraryTarget: 'umd',
+      // globalObject setting is required, so the library can
+      // work in both node and browser environments
+      globalObject: 'this',
       // Sets the name of a global variable that will contain the entrypoint
       // when used from a CDN
       library: 'typeformEmbed'
@@ -74,7 +77,7 @@ function getWebpackConfig () {
         },
         {
           test: /\.css$/i,
-          use: ['style-loader', 'css-loader']
+          use: ['css-loader']
         }
       ]
     },
