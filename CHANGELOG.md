@@ -1,3 +1,10 @@
+# [0.25.0](https://github.com/Typeform/embed/compare/v0.24.4...v0.25.0) (2020-08-13)
+
+
+### Features
+
+* **DIST-390:** Added node.js support ([#70](https://github.com/Typeform/embed/issues/70)) ([44630be](https://github.com/Typeform/embed/commit/44630be0e84d0a2f920789f63e6a0669aa85b557))
+
 ## [0.24.4](https://github.com/Typeform/embed/compare/v0.24.3...v0.24.4) (2020-08-06)
 
 
