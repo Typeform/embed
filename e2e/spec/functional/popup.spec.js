@@ -95,7 +95,7 @@ describe('Popup Widget with shareGoogleAnalyticsInstance option', () => {
           it('sends the ga-client-id by postMessage', () => {
             cy.get('@postMessage').should('to.be.calledWithMatch', { type: 'ga-client-id' })
           })
-          it('Passes Browser share-google-analytics-instance parameter to the URL', () => {
+          it('Passes Browser share-ga-instance parameter to the URL', () => {
             cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /share-ga-instance/)
           })
         })
