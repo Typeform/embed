@@ -132,7 +132,7 @@ describe('Embed Widget with shareGoogleAnalyticsInstance option', () => {
       })
     })
     it('sends the ga-client-id by postMessage', () => {
-      cy.get('@postMessage').should('to.be.calledWithMatch', { type: 'ga-client-id' })
+      cy.get('@postMessage').should('to.be.calledWithMatch', 'ga-client-id')
     })
     it('Passes Browser share-ga-instance parameter to the URL', () => {
       cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /share-ga-instance/)

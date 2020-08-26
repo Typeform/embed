@@ -13,6 +13,6 @@ export const setupGoogleAnalyticsInstanceSharingFeature = (embedId) => {
   gaObject(function (tracker) {
     const gaClientId = tracker.get('clientId')
     const message = { embedId, gaClientId }
-    window.postMessage({ type: 'ga-client-id', message }, '*')
+    window.postMessage('ga-client-id', message, '*')
   })
 }
