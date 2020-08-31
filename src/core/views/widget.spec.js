@@ -66,7 +66,7 @@ describe('Widget', () => {
         .mockImplementationOnce(() => MOBILE_EMBED_ID)
       const onSubmitMock = jest.fn()
       const options = { onSubmit: onSubmitMock }
-      mount(<Widget embedId={EMBED_ID} enabledFullscreen options={options} url={URL}/>)
+      mount(<Widget embedId={MOBILE_EMBED_ID} enabledFullscreen options={options} url={URL}/>)
 
       window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: MOBILE_EMBED_ID } }))
       expect(onSubmitMock).toHaveBeenCalledTimes(1)
