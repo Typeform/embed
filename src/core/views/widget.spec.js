@@ -23,7 +23,7 @@ Enzyme.configure({ adapter: new Adapter() })
 
 describe('Widget', () => {
   it('renders an iframe with the passed url prop', () => {
-    const widget = shallow(<Widget url={URL} />)
+    const widget = shallow(<Widget embedId={EMBED_ID} url={URL} />)
 
     expect(widget.find(Iframe).prop('src')).toEqual(`${URL}?typeform-embed-id=${EMBED_ID}`)
   })
@@ -31,7 +31,7 @@ describe('Widget', () => {
   it('onSubmit callback is executed upon typeform submission when embed ID matches', () => {
     const onSubmitMock = jest.fn()
     const options = { onSubmit: onSubmitMock }
-    mount(<Widget options={options} url={URL} />)
+    mount(<Widget embedId={EMBED_ID} options={options} url={URL} />)
 
     window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: EMBED_ID } }))
     expect(onSubmitMock).toHaveBeenCalledTimes(1)
@@ -40,7 +40,7 @@ describe('Widget', () => {
   it('onSubmit callback is not executed upon typeform submission when embed ID does not match', () => {
     const onSubmitMock = jest.fn()
     const options = { onSubmit: onSubmitMock }
-    mount(<Widget options={options} url={URL} />)
+    mount(<Widget embedId={EMBED_ID} options={options} url={URL} />)
 
     window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: '098765' } }))
     expect(onSubmitMock).not.toHaveBeenCalled()
@@ -52,7 +52,7 @@ describe('Widget', () => {
     const getSubmitEventDataSpy = jest.spyOn(utils, 'getSubmitEventData')
     const event = new CustomEvent('form-submit', { detail: { embedId: EMBED_ID } })
 
-    shallow(<Widget options={options} url={URL} />)
+    shallow(<Widget embedId={EMBED_ID} options={options} url={URL} />)
 
     window.dispatchEvent(event)
     expect(getSubmitEventDataSpy).toHaveBeenCalledWith(event)
@@ -66,20 +66,20 @@ describe('Widget', () => {
         .mockImplementationOnce(() => MOBILE_EMBED_ID)
       const onSubmitMock = jest.fn()
       const options = { onSubmit: onSubmitMock }
-      mount(<Widget enabledFullscreen options={options} url={URL}/>)
+      mount(<Widget embedId={EMBED_ID} enabledFullscreen options={options} url={URL}/>)
 
       window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: MOBILE_EMBED_ID } }))
       expect(onSubmitMock).toHaveBeenCalledTimes(1)
     })
 
     it('renders an iframe with disabled submissions', () => {
-      const wrapper = mount(<Widget enabledFullscreen url={URL}/>)
+      const wrapper = mount(<Widget embedId={EMBED_ID} enabledFullscreen url={URL}/>)
       expect(wrapper.find(Iframe)).toHaveLength(1)
       expect(wrapper.find(Iframe).props().src.includes('disable-tracking=true')).toBe(true)
     })
 
     it('renders a second iframe after the welcome-screen-hidden event', () => {
-      const wrapper = mount(<Widget enabledFullscreen url={URL}/>)
+      const wrapper = mount(<Widget embedId={EMBED_ID} enabledFullscreen url={URL}/>)
 
       let modal = wrapper.find(MobileModal)
       expect(wrapper.find(MobileModal).props().url.includes('typeform-welcome=0')).toBe(true)

@@ -124,15 +124,7 @@ describe('Full Page Embed Widget', () => {
 describe('Embed Widget with shareGoogleAnalyticsInstance option', () => {
   describe('On Desktop', () => {
     before(() => {
-      open('/widget-with-share-google-analytics-instance-option.html', {
-        onBeforeLoad (win) {
-          // start spying
-          cy.spy(win, 'postMessage').as('postMessage')
-        }
-      })
-    })
-    it('sends the ga-client-id by postMessage', () => {
-      cy.get('@postMessage').should('to.be.calledWithMatch', { type: 'ga-client-id' })
+      open('/widget-with-share-google-analytics-instance-option.html')
     })
     it('Passes Browser share-ga-instance parameter to the URL', () => {
       cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /share-ga-instance/)

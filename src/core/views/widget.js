@@ -103,7 +103,7 @@ class Widget extends Component {
   constructor (props) {
     super(props)
 
-    this.embedId = randomString()
+    this.embedId = props.embedId
     this.mobileEmbedId = randomString()
     this.wrapperRef = createRef()
     this.fullScreenModalDiv = document.createElement('div')
@@ -269,6 +269,7 @@ class Widget extends Component {
           <Iframe
             frameBorder='0'
             height='100%'
+            id={this.embedId}
             ref={this.setIframeRef}
             src={inlineIframeUrl}
             width='100%'
@@ -309,7 +310,7 @@ Widget.propTypes = {
   url: PropTypes.string,
   options: PropTypes.object.isRequired,
   enabledFullscreen: PropTypes.bool,
-  embedId: PropTypes.string
+  embedId: PropTypes.string.isRequired
 }
 
 Widget.defaultProps = {

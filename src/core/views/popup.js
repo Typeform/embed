@@ -359,6 +359,7 @@ class Popup extends Component {
           />
         )}
         <Iframe
+          id={embedId}
           onLoad={this.handleIframeLoad}
           src={iframeUrl}
           style={iframeStyles}

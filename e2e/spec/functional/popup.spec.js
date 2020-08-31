@@ -83,17 +83,8 @@ describe('Popup Widget with shareGoogleAnalyticsInstance option', () => {
       describe(`Embedded using ${pages[pageUrl]} (at ${pageUrl})`, () => {
         describe('Desktop', () => {
           before(() => {
-            open(pageUrl, {
-              onBeforeLoad (win) {
-                // start spying
-                cy.spy(win, 'postMessage').as('postMessage')
-              }
-            })
+            open(pageUrl)
             openPopup(`#btn-${popupMode}`)
-          })
-
-          it('sends the ga-client-id by postMessage', () => {
-            cy.get('@postMessage').should('to.be.calledWithMatch', { type: 'ga-client-id' })
           })
           it('Passes Browser share-ga-instance parameter to the URL', () => {
             cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /share-ga-instance/)

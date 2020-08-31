@@ -65,6 +65,7 @@ export default function makeWidget (element, url, options) {
 
   render(
     <Widget
+      embedId={embedId}
       enabledFullscreen={enabledFullscreen}
       options={options}
       url={urlWithQueryString}
