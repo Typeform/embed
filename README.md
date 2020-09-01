@@ -47,6 +47,28 @@ import * as typeformEmbed from '@typeform/embed'
 const typeformEmbed = require('@typeform/embed')
 ```
 
+#### With React Hooks
+```jsx
+import React, { useRef, useEffect } from 'react';
+import * as typeformEmbed from "@typeform/embed";
+
+const MyTypeform = () => {
+  const typeformRef = useRef(null);
+  
+  useEffect(() => {
+    typeformEmbed.makeWidget(typeformRef.current, 'https://form.typeform.com/to/MY_TYPEFORM_ID', {
+      hideFooter: true,
+      hideHeaders: true,
+      opacity: 0,
+    });
+  }, [typeformRef]);
+  
+  return (
+    <div ref={typeformRef} style={{ height: '100vh', width: '100%'}}></div>
+  );
+}
+```
+
 ## Types of Embed
 
 ### Widget
@@ -231,4 +253,3 @@ We'd love to have your helping hand on typeform's embed. See [CONTRIBUTING.md](C
 - safari >= 7
 
 [Browserlist support](http://browserl.ist/?q=last+2+versions%2C+safari+%3E%3D+7%2C+ie+%3E%3D+9)
-
