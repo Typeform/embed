@@ -50,6 +50,7 @@ const typeformEmbed = require('@typeform/embed')
 #### With React Hooks
 ```jsx
 import React, { useRef, useEffect } from 'react';
+import * as typeformEmbed from "@typeform/embed";
 
 const MyTypeform = () => {
   const typeformRef = useRef(null);
@@ -252,4 +253,3 @@ We'd love to have your helping hand on typeform's embed. See [CONTRIBUTING.md](C
 - safari >= 7
 
 [Browserlist support](http://browserl.ist/?q=last+2+versions%2C+safari+%3E%3D+7%2C+ie+%3E%3D+9)
-
