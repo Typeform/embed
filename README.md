@@ -56,7 +56,7 @@ const MyTypeform = () => {
   const typeformRef = useRef(null);
   
   useEffect(() => {
-    typeformEmbed.makeWidget(typeFormRef.current, 'https://form.typeform.com/to/MY_TYPEFORM_ID', {
+    typeformEmbed.makeWidget(typeformRef.current, 'https://form.typeform.com/to/MY_TYPEFORM_ID', {
       hideFooter: true,
       hideHeaders: true,
       opacity: 0,
