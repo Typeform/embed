@@ -17,9 +17,10 @@ const openOnScroll = (popup, scrollThreshold) => {
   const handleScroll = () => {
     const offsetTop = window.pageYOffset || document.documentElement.scrollTop
     const clientTop = document.documentElement.clientTop || 0
+    const pageHeight = document.documentElement.scrollHeight
     const scrollTopPixels = offsetTop - clientTop
-    const scrollTopPercentage = scrollTopPixels / document.documentElement.clientHeight * 100
-    const scrolledToTheBottom = scrollTopPixels + window.innerHeight >= document.documentElement.clientHeight
+    const scrollTopPercentage = scrollTopPixels / pageHeight * 100
+    const scrolledToTheBottom = scrollTopPixels + window.innerHeight >= pageHeight
 
     if (scrollTopPercentage >= scrollThreshold || scrolledToTheBottom) {
       popup.open()
