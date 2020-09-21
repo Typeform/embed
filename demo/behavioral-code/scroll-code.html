@@ -4,6 +4,19 @@
     <title>Open: scroll (via embed code)</title>
     <link rel="stylesheet" href="../demo.css" />
     <style>
+      html {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        height: 100%;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        border-bottom: 10px rgba(0,0,0,0.25) solid;
+        margin: 20px;
+        padding: 20px;
+      }
       .scroll-indicator {
         position: fixed;
         top: 0;
@@ -59,7 +72,8 @@
         const offsetTop = window.pageYOffset || document.documentElement.scrollTop
         const clientTop = document.documentElement.clientTop || 0
         const scrollTopPixels = offsetTop - clientTop
-        const scrollTopPercentage = scrollTopPixels / document.documentElement.clientHeight * 100
+        const pageHeight = document.documentElement.scrollHeight
+        const scrollTopPercentage = scrollTopPixels / pageHeight * 100
         document.getElementById('scroll-pixels').innerHTML = scrollTopPixels;
         document.getElementById('scroll-percentage').innerHTML = (Math.round(scrollTopPercentage * 100) / 100).toFixed(2);
       })

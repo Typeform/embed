@@ -89,7 +89,7 @@ describe('handleAutoOpen', () => {
     beforeAll(() => {
       global.document = {
         documentElement: {
-          clientHeight: 1000
+          scrollHeight: 1000
         },
         addEventListener: (_event, fn) => {
           handler = fn

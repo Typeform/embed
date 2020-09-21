@@ -41,7 +41,8 @@
         const offsetTop = window.pageYOffset || document.documentElement.scrollTop
         const clientTop = document.documentElement.clientTop || 0
         const scrollTopPixels = offsetTop - clientTop
-        const scrollTopPercentage = scrollTopPixels / document.body.clientHeight * 100
+        const pageHeight = document.documentElement.scrollHeight
+        const scrollTopPercentage = scrollTopPixels / pageHeight * 100
         document.getElementById('scroll-pixels').innerHTML = scrollTopPixels;
         document.getElementById('scroll-percentage').innerHTML = (Math.round(scrollTopPercentage * 100) / 100).toFixed(2);
       })
