@@ -1,3 +1,10 @@
+## [0.25.1](https://github.com/Typeform/embed/compare/v0.25.0...v0.25.1) (2020-09-21)
+
+
+### Bug Fixes
+
+* **DIST-453:** Fix page height calculation ([7708d48](https://github.com/Typeform/embed/commit/7708d48ade6262c1a3a00ca867088b2e79cdf2c9))
+
 # [0.25.0](https://github.com/Typeform/embed/compare/v0.24.4...v0.25.0) (2020-08-13)
 
 
