@@ -15,17 +15,10 @@ describe('Popup Widget', () => {
 
     describe(`${name}`, () => {
       it(`${name} Desktop`, () => {
-        open('/popup.html?foobar=hello')
+        open('/popup.html?foobar=hallo')
         openPopup(`#btn-${popupMode}`)
         waitForEmbed()
-        eyesCheckDesktop('Popup')
-      })
-
-      it(`${name} Mobile`, () => {
-        openOnMobile('/popup.html?foobar=hello')
-        openPopup(`#btn-${popupMode}`)
-        waitForEmbed()
-        eyesCheckMobile('Popup')
+        cy.percySnapshot(`${name} Popup Desktop`)
       })
     })
   })
