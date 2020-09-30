@@ -106,6 +106,13 @@ function getWebpackConfig () {
       all: false,
       assets: true,
       errors: true
+    },
+
+    devServer: {
+      allowedHosts: [
+        // uncomment the following line for access from BrowserStack devices
+        // 'bs-local.com'
+      ]
     }
   }
 }

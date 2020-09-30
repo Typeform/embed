@@ -1,8 +1,6 @@
 import {
   appendParamsToUrl,
   ensureMetaViewport,
-  applyIOSFooterHack,
-  applyIOSIframeResizeHack,
   replaceExistingKeys,
   redirectToUrl,
   noop,
@@ -36,14 +34,7 @@ export default function makeFullScreen (iframe, url, options) {
 
   ensureMetaViewport()
 
-  // Fix scroll inside the iframe (renderer v1)
   iframe.onload = () => {
-    setTimeout(() => {
-      iframe.style.height = ''
-      applyIOSFooterHack(iframe)
-      applyIOSIframeResizeHack(iframe)
-    }, 1)
-
     iframe.contentWindow.focus()
   }
 
