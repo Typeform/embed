@@ -1,3 +1,10 @@
+## [0.25.2](https://github.com/Typeform/embed/compare/v0.25.1...v0.25.2) (2020-10-05)
+
+
+### Bug Fixes
+
+* **DIST-459:** Remove device-specific hacks that are no longer needed ([a2b02bf](https://github.com/Typeform/embed/commit/a2b02bf07e575f3feadb4db2ce7f62d903e9f047))
+
 ## [0.25.1](https://github.com/Typeform/embed/compare/v0.25.0...v0.25.1) (2020-09-21)
 
 
