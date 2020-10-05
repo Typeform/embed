@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { applyIOSFooterHack, applyIOSIframeResizeHack } from '../../utils'
 import embedPermissions from '../../utils/embed-permissions'
 
 class Iframe extends Component {
@@ -21,22 +20,8 @@ class Iframe extends Component {
     this.iframeRef = node
   }
 
-  // Fixes scroll not responding in renderer v1
   handleLoad () {
-    if (!this.iframeRef) {
-      return
-    }
-    this.iframeRef.style.height = `${this.iframeRef.offsetHeight + 1}px`
-    setTimeout(() => {
-      if (!this.iframeRef) {
-        return
-      }
-      this.iframeRef.style.height = ''
-      applyIOSFooterHack(this.iframeRef)
-      applyIOSIframeResizeHack(this.iframeRef)
-
-      this.props.onLoad && this.props.onLoad(this.iframeRef)
-    }, 1)
+    this.props.onLoad && this.props.onLoad(this.iframeRef)
   }
 
   render () {

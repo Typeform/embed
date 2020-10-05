@@ -1,10 +1,5 @@
 import UrlParse from 'url-parse'
 
-import {
-  isMobile,
-  isSafari,
-  isIOSDevice
-} from './mobile-detection'
 import onMessage from './message-propagation'
 
 export const checkEmbedId = (embedId, event) => event.detail && event.detail.embedId === embedId
@@ -94,23 +89,6 @@ export const isElementInViewport = el => {
   )
 }
 
-// RD-712
-export const fixSafariScroll = iframe => {
-  if (isMobile(navigator.userAgent) || !isSafari(navigator.userAgent)) {
-    return
-  }
-
-  iframe.addEventListener('load', () => {
-    return setTimeout(() => {
-      const originalHeight = window.getComputedStyle(iframe).height
-      iframe.setAttribute('height', `${iframe.offsetHeight + 1}px`)
-      return setTimeout(() => {
-        iframe.setAttribute('height', originalHeight)
-      }, 1)
-    }, 1000)
-  })
-}
-
 export const debounce = (func, wait, context) => {
   let timeout
   return (...args) => {
@@ -122,29 +100,6 @@ export const debounce = (func, wait, context) => {
     clearTimeout(timeout)
     timeout = setTimeout(debounced, wait)
   }
-}
-
-// Fix RD-731, footer not fully visible on iOS devices
-export const applyIOSFooterHack = element => {
-  if (!isIOSDevice(navigator.userAgent)) {
-    return
-  }
-
-  element.setAttribute('scrolling', 'no')
-  element.style.height = '1px'
-  element.style.minHeight = '100%'
-}
-
-export const applyIOSIframeResizeHack = element => {
-  if (!isIOSDevice(navigator.userAgent)) {
-    return
-  }
-
-  element.style.maxHeight = '100%'
-  element.style.maxWidth = '100%'
-  element.style.minHeight = '100%'
-  element.style.minWidth = '100%'
-  element.style.width = 0
 }
 
 export const noop = () => null
