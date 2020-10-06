@@ -17,8 +17,8 @@ function getWebpackConfig () {
   return {
     // Build mode, development or production
     mode: buildMode,
-    // Sourcemaps generation mode
-    devtool: 'source-map',
+    // Sourcemaps generation mode only for development
+    devtool: buildMode === 'development' ? 'source-map' : undefined,
 
     // Entry points configuration
     // Specifies what source files (values) are use to generate output files (keys)
