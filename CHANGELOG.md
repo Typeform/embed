@@ -1,3 +1,10 @@
+## [0.25.3](https://github.com/Typeform/embed/compare/v0.25.2...v0.25.3) (2020-10-07)
+
+
+### Bug Fixes
+
+* **DIST-454:** Fixes spinner animation ([27bc1f2](https://github.com/Typeform/embed/commit/27bc1f258261f0572e8c75e52e3cce07a5e680bb))
+
 ## [0.25.2](https://github.com/Typeform/embed/compare/v0.25.1...v0.25.2) (2020-10-05)
 
 
