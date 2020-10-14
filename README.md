@@ -143,7 +143,7 @@ typeformEmbed.makePopup(url, options)
   | onReady        | Callback function that will be executed once the typeform is ready.                                                                                            | `Function`                                                                    | -       |
   | onClose        | Callback function that will be executed once the typeform is closed.                                                                                           | `Function`                                                                    | -       |
   | container      | Element to place the popup into. Optional. Required only for `"side_panel"` mode.                                                                              | `DOM element`                                                                 | -       |
-      | transferableUrlParameters     | Parameters that we want to transfert from the URL to the Typeform as hidden fields | `Array`   | [] |
+  | transferableUrlParameters     | Parameters that we want to transfert from the URL to the Typeform as hidden fields | `Array`   | [] |
 
 Types:
 
