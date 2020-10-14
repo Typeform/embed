@@ -1,3 +1,10 @@
+## [0.25.4](https://github.com/Typeform/embed/compare/v0.25.3...v0.25.4) (2020-10-14)
+
+
+### Bug Fixes
+
+* **DIST-476:** Fix README ([#80](https://github.com/Typeform/embed/issues/80)) ([d112bd3](https://github.com/Typeform/embed/commit/d112bd3d184eac21eb4f4f9669dc634da3d272ab))
+
 ## [0.25.3](https://github.com/Typeform/embed/compare/v0.25.2...v0.25.3) (2020-10-07)
 
 
