@@ -73,6 +73,8 @@
     "jest": "^26.0.1",
     "jsdom": "^16.2.2",
     "preact": "^10.4.4",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "regenerator-runtime": "^0.13.5",
     "selenium-standalone": "^6.17.0",
     "semantic-release": "^17.0.8",
@@ -89,11 +91,13 @@
     "custom-event": "^1.0.1",
     "is-url": "^1.2.2",
     "prop-types": "^15.7.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
     "scrollbar-width": "^3.1.1",
     "spin.js": "^4.1.0",
     "styled-components": "^5.1.1",
     "url-parse": "^1.4.5"
+  },
+  "peerDependencies": {
+    "react": ">=16.13.1",
+    "react-dom": ">=16.13.1"
   }
 }
