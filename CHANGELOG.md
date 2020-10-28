@@ -1,3 +1,10 @@
+## [0.25.5](https://github.com/Typeform/embed/compare/v0.25.4...v0.25.5) (2020-10-28)
+
+
+### Performance Improvements
+
+* Move react, react-dom to peer deps ([0690537](https://github.com/Typeform/embed/commit/06905377f25c2affe395c6c996d649638b5d393e))
+
 ## [0.25.4](https://github.com/Typeform/embed/compare/v0.25.3...v0.25.4) (2020-10-14)
 
 
