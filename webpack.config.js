@@ -1,6 +1,7 @@
 const path = require('path')
 
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const {
   NODE_ENV = 'production',
@@ -44,7 +45,7 @@ function getWebpackConfig () {
       // Sets the output folder
       path: path.resolve(__dirname, 'build'),
       // Pattern to compose the output filename
-      filename: getAssetName(includeDeps),
+      filename: getAssetName('[name]'),
       // UMD supports both NPM package format and
       // global variable format, when used from a CDN
       libraryTarget: 'umd',
@@ -113,18 +114,26 @@ function getWebpackConfig () {
         // uncomment the following line for access from BrowserStack devices
         // 'bs-local.com'
       ]
-    }
+    },
+
+    plugins: [
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'disabled',
+        generateStatsFile: true,
+        statsFilename: getAssetName('stats', 'json')
+      })
+    ]
   }
-}
 
-function getAssetName (includeDeps) {
-  const result = [
-    '[name]',
-    includeDeps ? '' : 'pure',
-    'js'
-  ]
-    .filter((x) => x)
-    .join('.')
+  function getAssetName (suffix, ext = 'js') {
+    const result = [
+      suffix,
+      includeDeps ? '' : 'pure',
+      ext
+    ]
+      .filter((x) => x)
+      .join('.')
 
-  return result
+    return result
+  }
 }
