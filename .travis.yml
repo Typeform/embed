@@ -89,7 +89,7 @@ jobs:
       script:
         - yarn build
         - pip install --user awscli
-        - yarn add @typeform/jarvis@10.4.0
+        - yarn add @typeform/jarvis
         - ./scripts/consolidate-dist.sh
         - DEBUG=jarvis yarn run jarvis deploy --path dist --preview --notify-preview
     - name: "Release to NPM"
@@ -101,6 +101,6 @@ jobs:
       script:
         - yarn build
         - pip install --user awscli
-        - yarn add @typeform/jarvis@10.6.3
+        - yarn add @typeform/jarvis
         - ./scripts/consolidate-dist.sh
         - DEBUG=jarvis jarvis deploy --path dist
