@@ -1,3 +1,10 @@
+## [0.25.6](https://github.com/Typeform/embed/compare/v0.25.5...v0.25.6) (2020-11-03)
+
+
+### Bug Fixes
+
+* **DIST-426:** Use latest Jarvis version ([#93](https://github.com/Typeform/embed/issues/93)) ([5fe9dee](https://github.com/Typeform/embed/commit/5fe9dee2fae37544e547d66890f97400a5adb9b2))
+
 ## [0.25.5](https://github.com/Typeform/embed/compare/v0.25.4...v0.25.5) (2020-10-28)
 
 
