@@ -12,7 +12,6 @@ python:
 addons:
   # https://stackoverflow.com/questions/57903415/travis-ci-chrome-62-instead-of-77
   chrome: stable
-  firefox: "67.0"
 
 branches:
   only:
@@ -51,36 +50,23 @@ jobs:
       if: branch = master
       script:
         - yarn test:unit
-    - name: "Functional Tests Chrome (Internal)"
+    - name: "Functional Tests (Internal)"
       if: fork = false AND branch = master
       script:
         - yarn serve-demo & export EMBED_PID=$!
-        - yarn test:functional:chrome  --record --parallel --group functional-chrome
-        - kill $EMBED_PID
-    - name: "Functional Tests Firefox (Internal)"
-      if: fork = false AND branch = master
-      script:
-        - yarn serve-demo & export EMBED_PID=$!
-        - yarn test:functional:firefox --record --parallel --group functional-firefox
+        - yarn test:functional  --record --parallel --group functional
         - kill $EMBED_PID
     - name: "Functional Tests (External)"
       if: fork = true AND branch = master
       script:
         - yarn serve-demo & export EMBED_PID=$!
-        - yarn test:functional:chrome --record false
-        - yarn test:functional:firefox --record false
+        - yarn test:functional --record false
         - kill $EMBED_PID
-    - name: "Visual Tests Chrome (Internal)"
+    - name: "Visual Tests (Internal)"
       if: fork = false AND branch = master
       script:
         - yarn serve-demo & export EMBED_PID=$!
-        - yarn test:visual:chrome  --record --parallel --group visual-chrome
-        - kill $EMBED_PID
-    - name: "Visual Tests Firefox (Internal)"
-      if: fork = false AND branch = master
-      script:
-        - yarn serve-demo & export EMBED_PID=$!
-        - yarn test:visual:firefox --record --parallel --group visual-firefox
+        - yarn test:visual  --record --parallel --group visual
         - kill $EMBED_PID
     - stage: "Release"
       name: "Deploy Preview to AWS"
