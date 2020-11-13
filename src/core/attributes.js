@@ -81,6 +81,10 @@ const sanitizePopupAttributes = data => {
     obj.transferableUrlParameters = parseTransferableUrlParameters(data.transferableUrlParameters)
   }
 
+  if (data.size) {
+    obj.size = parseInt(data.size, 10)
+  }
+
   return obj
 }
 

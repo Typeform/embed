@@ -58,10 +58,23 @@ const Overlay = styled.div`
 `
 
 const popupWrapper = styled(BaseWrapper)`
-  width: ${p => (p.isContained ? 'calc(100% - 80px)' : 'calc(100vw - 80px)')};
-  height: ${p => (p.isContained ? 'calc(100% - 80px)' : 'calc(100vh - 80px)')};
-  top: 40px;
-  left: 40px;
+  ${p => {
+    const offset = (100 - p.size) / 2
+    if (p.isContained) {
+      return `
+        width: calc(${p.size}% - 80px); 
+        height: calc(${p.size}% - 80px); 
+        top: calc(${offset}% + 40px);
+        left: calc(${offset}% + 40px);
+      `
+    }
+    return `
+      width: calc(${p.size}% - 80px); 
+      height: calc(${p.size}% - 80px); 
+      top: calc(${offset}% + 40px);
+      left: calc(${offset}% + 40px);
+    `
+  }}
   transition: all 300ms ease-out;
 `
 
@@ -315,7 +328,7 @@ class Popup extends Component {
   render () {
     let iframeStyles = null
     const { embedId, options, url } = this.props
-    const { width, height, hideScrollbars, isContained, mode } = options
+    const { width, height, hideScrollbars, isContained, mode, size } = options
 
     if (hideScrollbars) {
       iframeStyles = {
@@ -347,6 +360,7 @@ class Popup extends Component {
         mode={mode}
         onTransitionEnd={this.handleTransitionEnd}
         open={this.state.frameAnimate && !this.state.isLoading}
+        size={size}
         width={width}
       >
         {!showSmallPopup && this.state.iframeLoaded && (

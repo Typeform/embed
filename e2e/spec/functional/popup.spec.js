@@ -49,11 +49,7 @@ Object.keys(popupModes).forEach(popupMode => {
 
           it('Closes Embed Popup using Keyboard', () => {
             openPopup(`#btn-${popupMode}`)
-            if (popupMode === 'popover' || popupMode === 'side_panel') {
-              closePopupViaKeyboard(`#btn-${popupMode}`) // close button is used as fallback in firefox
-            } else {
-              closePopupViaKeyboard()
-            }
+            closePopupViaKeyboard()
           })
         })
 

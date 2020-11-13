@@ -9,20 +9,11 @@ const getIframeBody = (iframe) => {
     .then(cy.wrap) // wrap "body" DOM element to allow chaining more Cypress commands
 }
 
-export const getIframe = (iframe, callbackWithIframeBody, callbackWithIframe) => {
-  if (Cypress.isBrowser('chrome')) {
-    callbackWithIframeBody(getIframeBody(iframe))
-  } else if (callbackWithIframe) {
-    callbackWithIframe(cy.get(iframe))
-  }
-}
-
 export const testEmbeddedForm = (selector = IFRAME_SELECTOR) => {
-  getIframe(
-    selector,
-    iframeBody => iframeBody.find('[data-qa="start-button"]').should('have.text', 'Start').should('be.visible'),
-    iframe => iframe.should('be.visible')
-  )
+  getIframeBody(selector)
+    .find('[data-qa="start-button"]')
+    .should('have.text', 'Start')
+    .should('be.visible')
 }
 
 export const openPopup = (selector) => {
@@ -40,15 +31,11 @@ export const closePopupViaButtonOnMobile = () => {
   cy.get(IFRAME_SELECTOR).should('not.exist')
 }
 
-export const closePopupViaKeyboard = (selector = '[data-qa="popup-close-button"]') => {
-  getIframe(
-    IFRAME_SELECTOR,
-    iframeBody => {
-      iframeBody.find('[data-qa="start-button"]').type('{esc}') // send escape key to iframe
-      cy.get(IFRAME_SELECTOR).should('not.exist')
-    },
-    () => closePopupViaButton(selector)
-  )
+export const closePopupViaKeyboard = () => {
+  getIframeBody(IFRAME_SELECTOR)
+    .find('[data-qa="form-input"]')
+    .type('{esc}', { force: true }) // input is hidden, force the "esc" key
+  cy.get(IFRAME_SELECTOR).should('not.exist')
 }
 
 const setViewport = ({ width, height }) => {
@@ -72,19 +59,13 @@ export const openOnMobile = (url) => {
 }
 
 export const testEmbedFormOnMobile = () => {
-  getIframe(
-    IFRAME_SELECTOR,
-    iframeBody => {
-      iframeBody.find('[data-qa="start-button"]').click()
+  getIframeBody(IFRAME_SELECTOR).find('[data-qa="start-button"]').click()
 
-      // on mobile there are 2 iframes when the form is opened in modal window
-      cy.get(IFRAME_SELECTOR).should('have.length', 2)
+  // on mobile there are 2 iframes when the form is opened in modal window
+  cy.get(IFRAME_SELECTOR).should('have.length', 2)
 
-      cy.get('[data-qa="close-button-mobile"]').click()
-      cy.get(IFRAME_SELECTOR).should('have.length', 1)
-    },
-    iframe => iframe.should('be.visible')
-  )
+  cy.get('[data-qa="close-button-mobile"]').click()
+  cy.get(IFRAME_SELECTOR).should('have.length', 1)
 }
 
 export const waitForEmbed = () => {

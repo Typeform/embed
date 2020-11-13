@@ -4,6 +4,8 @@ import { eyesCheckDesktop, eyesCheckMobile } from '../../applitools-utils'
 describe('Popup Widget', () => {
   const popupModes = {
     popup: 'Popup',
+    popup_s: 'Popup (small)',
+    popup_xs: 'Popup (very small)',
     drawer_left: 'Drawer Left',
     drawer_right: 'Drawer Right',
     popover: 'Popover',

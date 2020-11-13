@@ -47,6 +47,9 @@
         <h1>This is the typeform you are looking for</h1>
         <img src="./photo.jpg" alt="photo" />
         <button onclick="start()" data-qa="start-button">Start</button>
+
+        <!-- hidden input field for closing the form via keyboard in functional tests (cypress requires input element for typing) -->
+        <input type="hidden" data-qa="form-input" />
       </div>
     </div>
   </div>
