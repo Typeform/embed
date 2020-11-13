@@ -104,13 +104,6 @@ export const debounce = (func, wait, context) => {
 
 export const noop = () => null
 
-export const omit = (key, object) => {
-  const {
-    [key]: deletedKey, ...otherKeys
-  } = object
-  return otherKeys
-}
-
 export const redirectToUrl = event => {
   const { url } = event.detail
 
@@ -127,4 +120,8 @@ export const redirectToUrl = event => {
 
 export const getSubmitEventData = (event) => {
   return { response_id: event && event.detail ? event.detail.response_id : undefined }
+}
+
+export const removeColorTransparency = (color) => {
+  return `${color}`.replace(/rgba\((.*),\s?[\d.]+\)/, 'rgb($1)')
 }

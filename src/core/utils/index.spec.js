@@ -165,4 +165,17 @@ describe('Utilities', () => {
       expect(utils.getSubmitEventData({ detail: {} })).toEqual({ response_id: undefined })
     })
   })
+
+  describe('removeColorTransparency', () => {
+    test('should remove transparency', () => {
+      expect(utils.removeColorTransparency('rgba(255, 0, 0, 0.5)')).toBe('rgb(255, 0, 0)')
+      expect(utils.removeColorTransparency('rgba(255,0,0,1)')).toBe('rgb(255,0,0)')
+      expect(utils.removeColorTransparency('rgba(255,0,0,.25)')).toBe('rgb(255,0,0)')
+    })
+
+    test('return the same color if there is no transparency', () => {
+      expect(utils.removeColorTransparency('#ff0000')).toBe('#ff0000')
+      expect(utils.removeColorTransparency('rgb(255, 0, 0)')).toBe('rgb(255, 0, 0)')
+    })
+  })
 })

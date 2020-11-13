@@ -4,8 +4,7 @@ import { render } from 'react-dom'
 import {
   appendParamsToUrl,
   replaceExistingKeys,
-  noop,
-  omit
+  noop
 } from './utils'
 import {
   transferUrlParametersToQueryStrings
@@ -46,8 +45,7 @@ export default function makeWidget (element, url, options) {
 
   if (enabledFullscreen) {
     queryStrings = {
-      // We don't set the opacity on the iframe when is mobile
-      ...omit('embed-opacity', queryStrings),
+      ...queryStrings,
       'add-placeholder-ws': true
     }
   }
