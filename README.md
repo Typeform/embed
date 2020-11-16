@@ -213,9 +213,6 @@ If you want to override this behaviour, the best option is to use the API with `
 ### After opening a typeform in mobile, a `<meta name="viewport">` tag is added to the document
 This tag is needed for the correct visualization of the typeform. This is only a problem if you don't have this tag in your site.
 
-### Transparency is not applied on mobile
-We do not apply transparency on modals, and all embed types behave like a modal in mobile.
-
 ### Typeform does not look good with a small embed
 Although we have no hard limit, we recommend having a height of at least 350px.
 

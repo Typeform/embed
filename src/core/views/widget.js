@@ -10,7 +10,8 @@ import {
   callIfEmbedIdMatches,
   updateQueryStringParameter,
   redirectToUrl,
-  getSubmitEventData
+  getSubmitEventData,
+  removeColorTransparency
 } from '../utils'
 import randomString from '../utils/random-string'
 
@@ -163,8 +164,7 @@ class Widget extends Component {
   goFullScreen () {
     if (this.props.enabledFullscreen) {
       this.setState({ isFullscreen: true })
-
-      setTimeout(this.reloadIframe, 3000)
+      setTimeout(this.reloadIframe, 500)
     }
   }
 
@@ -259,7 +259,14 @@ class Widget extends Component {
       inlineIframeUrl = updateQueryStringParameter('disable-tracking', 'true', inlineIframeUrl)
     }
 
-    const fullscreenIframeUrl = updateQueryStringParameter('typeform-welcome', '0', url)
+    let fullscreenIframeUrl = updateQueryStringParameter('typeform-welcome', '0', url)
+
+    // fullscreen modal window should not have transparency because it has to cover the host page under it
+    fullscreenIframeUrl = updateQueryStringParameter('embed-opacity', '100', fullscreenIframeUrl)
+
+    // placeholder background should match background of the welcome screen when modal is closed (it might be transparent)
+    // when the fullscreen modal is opened it should match background of the modal (modal background is never transparent)
+    const placeholderBackgroundColor = isFullscreen ? removeColorTransparency(backgroundColor) : backgroundColor
 
     return (
       <WidgetWrapper ref={this.wrapperRef}>
@@ -276,7 +283,7 @@ class Widget extends Component {
         </IframeWrapper>
         { enabledFullscreen &&
             <Placeholder
-              backgroundColor={backgroundColor}
+              backgroundColor={placeholderBackgroundColor}
               bottom={iframePosition && iframePosition.bottom}
               height={iframePosition && iframePosition.height}
               left={iframePosition && iframePosition.left}

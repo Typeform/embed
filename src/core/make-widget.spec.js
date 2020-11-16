@@ -53,7 +53,6 @@ describe('makeWidget', () => {
     const widgetURL = component.props.url
     const { query } = UrlParse(widgetURL, true)
     expect(query['add-placeholder-ws']).toBe('true')
-    expect(query['embed-opacity']).toBeUndefined()
     expect(query['mandarina']).toBeUndefined()
 
     expect(component.type.name).toEqual('Widget')
