@@ -1,3 +1,10 @@
+# [0.26.0](https://github.com/Typeform/embed/compare/v0.25.6...v0.26.0) (2020-11-16)
+
+
+### Features
+
+* **DIST-225:** Allow transparent welcome screen on mobile ([603c671](https://github.com/Typeform/embed/commit/603c6718d7b3ae690f2584e18f2753e398ef63c6))
+
 ## [0.25.6](https://github.com/Typeform/embed/compare/v0.25.5...v0.25.6) (2020-11-03)
 
 
