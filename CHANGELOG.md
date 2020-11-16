@@ -1,3 +1,10 @@
+# [0.27.0](https://github.com/Typeform/embed/compare/v0.26.0...v0.27.0) (2020-11-16)
+
+
+### Features
+
+* **DIST-512:** Add "size" option for "popup" embed mode ([dc8b919](https://github.com/Typeform/embed/commit/dc8b9198d8aa3c611030d281801276e57b86eff5))
+
 # [0.26.0](https://github.com/Typeform/embed/compare/v0.25.6...v0.26.0) (2020-11-16)
 
 
