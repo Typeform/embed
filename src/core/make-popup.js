@@ -31,6 +31,7 @@ import { handleAutoOpen } from './utils/popup-auto-open'
 const DEFAULT_DRAWER_WIDTH = 800
 const DEFAULT_POPUP_WIDTH = 320
 const DEFAULT_POPUP_HEIGHT = 500
+const DEFAULT_POPUP_SIZE_PERCENT = 100
 
 const buildOptions = (embedId, options) => {
   const isDrawer = options.mode === DRAWER || options.mode === DRAWER_RIGHT
@@ -55,6 +56,7 @@ const buildOptions = (embedId, options) => {
     width,
     height: DEFAULT_POPUP_HEIGHT,
     isAutoCloseEnabled: options.autoClose !== undefined,
+    size: DEFAULT_POPUP_SIZE_PERCENT,
     ...options
   }
 }

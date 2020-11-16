@@ -99,6 +99,10 @@
 
     <a id="btn-drawer_right" class="popup">Launch me as a right drawer!</a>
 
+    <a id="btn-popup_s" class="popup">Launch me as a small popup!</a>
+
+    <a id="btn-popup_xs" class="popup">Launch me as a very small popup!</a>
+
     <div class="popover-hint">Launch a popover here 👉</div>
 
     <a id="btn-popover" class="popover">
@@ -145,6 +149,16 @@
         document.getElementById('btn-drawer_right').onclick = function(e) {
           e.preventDefault()
           makeMockPopup({mode: 'drawer_right', width: 300, transferableUrlParameters: ['utm_source']}).open()
+        }
+
+        document.getElementById('btn-popup_s').onclick = function(e) {
+          e.preventDefault()
+          makeMockPopup({mode: 'popup', transferableUrlParameters: ['utm_source'], size: 75}).open()
+        }
+
+        document.getElementById('btn-popup_xs').onclick = function(e) {
+          e.preventDefault()
+          makeMockPopup({mode: 'popup', transferableUrlParameters: ['utm_source'], size: 40}).open()
         }
 
         let popoverPopup

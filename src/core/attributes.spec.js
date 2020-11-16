@@ -16,6 +16,7 @@ describe('Attributes', () => {
       popupMockElem.setAttribute('data-hide-headers', '')
       popupMockElem.setAttribute('data-hide-footer', false)
       popupMockElem.setAttribute('data-invalid-attribute', true)
+      popupMockElem.setAttribute('data-size', '15')
 
       const popupOptions = {
         mode: 'popup',
@@ -23,7 +24,8 @@ describe('Attributes', () => {
         autoOpen: true,
         open: 'scroll',
         openValue: '20',
-        hideHeaders: true
+        hideHeaders: true,
+        size: 15
       }
 
       expect(sanitizePopupAttributes(getDataset(popupMockElem))).toEqual(popupOptions)
