@@ -233,10 +233,8 @@ In order to run visual tests, you need an applitools key.
 
 This is the list of all the test commands, if you want to run them one by one:
 - `yarn test:unit`  --> Runs unit tests
-- `yarn test:functional` --> Runs cross browser functional tests with Cypress
+- `yarn test:functional` --> Runs functional tests with Cypress
 - `yarn test:visual` --> Runs visual tests with Cypress and Applitools
-- `yarn test:visual:chrome` --> Runs visual tests using Chrome
-- `yarn test:visual:firefox` --> Runs visual tests using Firefox (Gecko drivers)
 
 ## Feedback
 
