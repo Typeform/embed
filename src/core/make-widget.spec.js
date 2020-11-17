@@ -6,12 +6,16 @@ import makeWidget from './make-widget'
 import {
   isMobile as isMobileMock
 } from './utils/mobile-detection'
+import randomString from './utils/random-string'
 
 jest.mock('react-dom')
 jest.mock('./utils/mobile-detection')
+jest.mock('./utils/random-string')
 
 const URL = 'http://widget.cat'
-const UID = 'unique uid'
+const EMBED_ID = '123456'
+
+randomString.mockImplementation(() => EMBED_ID)
 
 describe('makeWidget', () => {
   it('renders a Widget component on desktop devices', () => {
@@ -64,9 +68,20 @@ describe('makeWidget', () => {
 
     makeWidget(element, URL, options)
 
-    window.postMessage({ type: 'form-ready' }, '*')
+    window.postMessage({ type: 'form-ready', embedId: EMBED_ID }, '*')
     await new Promise((resolve) => setTimeout(resolve))
     expect(options.onReady).toHaveBeenCalledTimes(1)
     expect(options.onReady).toHaveBeenCalledWith()
+  })
+
+  it(`onReady is not called for other embedId`, async () => {
+    const element = document.createElement('div')
+    const options = { onReady: jest.fn() }
+
+    makeWidget(element, URL, options)
+
+    window.postMessage({ type: 'form-ready', embedId: 'foo' }, '*')
+    await new Promise((resolve) => setTimeout(resolve))
+    expect(options.onReady).not.toHaveBeenCalled()
   })
 })

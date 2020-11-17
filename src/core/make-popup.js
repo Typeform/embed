@@ -5,6 +5,7 @@ import {
   appendParamsToUrl,
   replaceExistingKeys,
   ensureMetaViewport,
+  callIfEmbedIdMatches,
   noop
 } from './utils'
 import {
@@ -116,10 +117,10 @@ const renderComponent = (params, options) => {
 }
 
 export default function makePopup (url, userOptions, element) {
-  window.addEventListener('message', getPostMessageHandler('form-ready', userOptions.onReady))
-  window.addEventListener('message', getPostMessageHandler('form-closed', userOptions.onClose))
-
   const embedId = randomString()
+
+  window.addEventListener('message', callIfEmbedIdMatches(getPostMessageHandler('form-ready', userOptions.onReady), embedId))
+  window.addEventListener('message', callIfEmbedIdMatches(getPostMessageHandler('form-closed', userOptions.onClose), embedId))
 
   const options = buildOptions(embedId, userOptions)
 

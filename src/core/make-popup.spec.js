@@ -2,26 +2,27 @@
 import { render as renderMock } from 'react-dom'
 
 import makePopup from './make-popup'
-import {
-  appendParamsToUrl as appendParamsToUrlMock
-} from './utils'
+import { appendParamsToUrl } from './utils'
 import {
   isMobile as isMobileMock,
   isScreenBig as isScreenBigMock
 } from './utils/mobile-detection'
+import randomString from './utils/random-string'
 
 jest.mock('react-dom')
-jest.mock('./utils')
 jest.mock('./utils/mobile-detection')
+jest.mock('./utils/random-string')
 
 const URL = 'http://popup.cat'
 const UID = 'a unique id'
+const EMBED_ID = '123456'
+
+randomString.mockImplementation(() => EMBED_ID)
 
 isScreenBigMock.mockImplementation(() => true)
 
 const instantiatePopup = (options) => {
   isMobileMock.mockImplementation(() => false)
-  appendParamsToUrlMock.mockImplementation((url) => url)
   renderMock.mockClear()
 
   return makePopup(URL, options)
@@ -36,7 +37,7 @@ const renderPopupComponent = (autoOpen = false) => {
 
   expect(renderMock).toHaveBeenCalledTimes(1)
   expect(component.type.name).toEqual('Popup')
-  expect(component.props.url).toEqual(URL)
+  expect(component.props.url).toEqual(`${URL}?typeform-embed=popup-blank`)
   expect(component.props.options).toEqual(expect.objectContaining(options))
 }
 
@@ -53,7 +54,7 @@ const renderMobileModalComponent = (autoOpen = false) => {
 
   expect(renderMock).toHaveBeenCalledTimes(1)
   expect(component.type.name).toEqual('MobileModal')
-  expect(component.props.url).toEqual(URL)
+  expect(component.props.url).toEqual(`${URL}?typeform-embed=popup-blank`)
   expect(component.props.buttonText).toEqual(options.buttonText)
 
   component.props.onSubmit()
@@ -85,7 +86,6 @@ describe('makePopup', () => {
     const options = { autoOpen: true, width: 'hello' }
 
     isMobileMock.mockImplementation(() => false)
-    appendParamsToUrlMock.mockImplementation((url) => url)
     renderMock.mockClear()
 
     expect(() => {
@@ -110,15 +110,26 @@ describe('makePopup', () => {
     expect(component.props.options).toEqual(expect.objectContaining(options))
   })
 
+  // eslint-disable-next-line jest/no-focused-tests
   it(`onReady is called during initialization`, async () => {
     const options = { onReady: jest.fn() }
 
     makePopup(URL, options)
 
-    window.postMessage({ type: 'form-ready' }, '*')
+    window.postMessage({ type: 'form-ready', embedId: EMBED_ID }, '*')
     await new Promise((resolve) => setTimeout(resolve))
     expect(options.onReady).toHaveBeenCalledTimes(1)
     expect(options.onReady).toHaveBeenCalledWith()
+  })
+
+  it(`onReady is not called for other embedId`, async () => {
+    const options = { onReady: jest.fn() }
+
+    makePopup(URL, options)
+
+    window.postMessage({ type: 'form-ready', embedId: 'foo' }, '*')
+    await new Promise((resolve) => setTimeout(resolve))
+    expect(options.onReady).not.toHaveBeenCalled()
   })
 
   it(`onClose is called when form closes`, async () => {
@@ -126,10 +137,21 @@ describe('makePopup', () => {
 
     makePopup(URL, options)
 
-    window.postMessage({ type: 'form-closed' }, '*')
+    window.postMessage({ type: 'form-closed', embedId: EMBED_ID }, '*')
     await new Promise((resolve) => setTimeout(resolve))
 
     expect(options.onClose).toHaveBeenCalledTimes(1)
     expect(options.onClose).toHaveBeenCalledWith()
+  })
+
+  it(`onClose is not called for other embedId`, async () => {
+    const options = { onClose: jest.fn() }
+
+    makePopup(URL, options)
+
+    window.postMessage({ type: 'form-closed', embedId: 'bar' }, '*')
+    await new Promise((resolve) => setTimeout(resolve))
+
+    expect(options.onClose).not.toHaveBeenCalled()
   })
 })
