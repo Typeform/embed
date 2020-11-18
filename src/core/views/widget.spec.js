@@ -14,7 +14,6 @@ import Iframe from './components/iframe'
 jest.mock('../utils/random-string')
 
 const URL = 'http://widget.cat'
-const UID = 'a unique id'
 const EMBED_ID = '123456'
 
 randomString.mockImplementation(() => EMBED_ID)

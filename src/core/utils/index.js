@@ -2,7 +2,10 @@ import UrlParse from 'url-parse'
 
 import onMessage from './message-propagation'
 
-export const checkEmbedId = (embedId, event) => event.detail && event.detail.embedId === embedId
+export const checkEmbedId = (embedId, event) => {
+  return (event.detail && event.detail.embedId === embedId) ||
+    (event.data && event.data.embedId === embedId)
+}
 
 export const callIfEmbedIdMatches = (func, embedId) => event => {
   if (checkEmbedId(embedId, event)) {

@@ -4,6 +4,7 @@ import { render } from 'react-dom'
 import {
   appendParamsToUrl,
   replaceExistingKeys,
+  callIfEmbedIdMatches,
   noop
 } from './utils'
 import {
@@ -14,6 +15,7 @@ import {
 } from './utils/mobile-detection'
 import Widget from './views/widget'
 import { getPostMessageHandler } from './utils/get-post-message-handler'
+import randomString from './utils/random-string'
 
 const defaultOptions = {
   mode: 'embed-widget',
@@ -34,9 +36,10 @@ const queryStringKeys = {
 }
 
 export default function makeWidget (element, url, options) {
+  const embedId = randomString()
   options = { ...defaultOptions, ...options }
 
-  window.addEventListener('message', getPostMessageHandler('form-ready', options.onReady))
+  window.addEventListener('message', callIfEmbedIdMatches(getPostMessageHandler('form-ready', options.onReady), embedId))
 
   const enabledFullscreen = isMobile(navigator.userAgent)
 
@@ -54,6 +57,7 @@ export default function makeWidget (element, url, options) {
 
   render(
     <Widget
+      embedId={embedId}
       enabledFullscreen={enabledFullscreen}
       options={options}
       url={urlWithQueryString}

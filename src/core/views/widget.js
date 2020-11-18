@@ -104,7 +104,7 @@ class Widget extends Component {
   constructor (props) {
     super(props)
 
-    this.embedId = randomString()
+    this.embedId = props.embedId || randomString()
     this.mobileEmbedId = randomString()
     this.wrapperRef = createRef()
     this.fullScreenModalDiv = document.createElement('div')

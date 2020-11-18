@@ -95,11 +95,26 @@ describe('Utilities', () => {
   })
 
   describe('callIfEmbedIdMatches', () => {
-    test('returns a function that will execute callback if embedId matches', () => {
+    test('returns a function that will execute callback if details.embedId matches', () => {
       const embedId = '123456'
       const callback = jest.fn()
       const event = {
         detail: {
+          embedId
+        }
+      }
+
+      const func = utils.callIfEmbedIdMatches(callback, embedId)
+      func(event)
+
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
+    test('returns a function that will execute callback if data.embedId matches', () => {
+      const embedId = '123456'
+      const callback = jest.fn()
+      const event = {
+        data: {
           embedId
         }
       }
