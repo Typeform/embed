@@ -1,3 +1,10 @@
+## [0.27.1](https://github.com/Typeform/embed/compare/v0.27.0...v0.27.1) (2020-11-18)
+
+
+### Bug Fixes
+
+* Check embed ID in "onReady" and "onClose" callbacks ([1c287d5](https://github.com/Typeform/embed/commit/1c287d5b1afb29b28180df04fa0ba6f6959d10e5))
+
 # [0.27.0](https://github.com/Typeform/embed/compare/v0.26.0...v0.27.0) (2020-11-16)
 
 
