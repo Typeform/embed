@@ -132,8 +132,8 @@
     <script type="text/javascript" src="demo.js"></script>
 
     <script>
-      function makeMockPopup(options = {}) {
-        return window.typeformEmbed.makePopup('./form/mock.html#foobar=hello', options)
+      function makeMockPopup(options = {}, element) {
+        return window.typeformEmbed.makePopup('./form/mock.html#foobar=hello', options, element)
       }
       window.addEventListener('DOMContentLoaded', function () {
         document.getElementById('btn-popup').onclick = function(e) {
@@ -161,77 +161,30 @@
           makeMockPopup({mode: 'popup', transferableUrlParameters: ['utm_source'], size: 40}).open()
         }
 
-        let popoverPopup
         const popoverButton = document.getElementById('btn-popover')
-        const popoverButtonIcon = popoverButton.innerHTML
-        const popoverReadyCallback = function () {
-          setTimeout(function() {
-            popoverButton.innerHTML = '&#10005;'
-          }, 500)
-        }
-
-        popoverButton.onclick = function(e) {
+        const popoverPopup = makeMockPopup({
+          mode: 'popover',
+          width: 400,
+          height: 400,
+          transferableUrlParameters: ['utm_source'],
+        }, popoverButton)
+        popoverButton.onclick = function (e) {
           e.preventDefault()
-
-          if (!popoverPopup) {
-            popoverPopup = makeMockPopup({
-              mode: 'popover',
-              width: 400,
-              height: 400,
-              transferableUrlParameters: ['utm_source'],
-              onReady: popoverReadyCallback
-            })
-            popoverButton.innerHTML = '...'
-            popoverPopup.open()
-          } else {
-            popoverPopup.close()
-            popoverPopup = null
-            popoverButton.innerHTML = popoverButtonIcon
-          }
+          popoverPopup.open()
         }
 
-        let sidePanelPopup
-        const sidePanelButton = document.getElementById('btn-side_panel')
-        const sidePanelButtonContent = sidePanelButton.innerHTML
-        const sidePanelReadyCallback = function () {
-          setTimeout(function() {
-            sidePanelButton.innerHTML = 'CLOSE'
-          }, 500)
-        }
-
-        /**
-         * Side panel popup needs to be displayed inside a container.
-         * This enables
-         *
-         * The container:
-         *   - needs to be direct parent of the button
-         *   - needs to have correct styles (see `.side-panel-wrapper` styles)
-         */
         const sidePanelContainerElement = document.querySelector('.side-panel-wrapper')
-
-        sidePanelButton.onclick = function(e) {
+        const sidePanelButton = document.getElementById('btn-side_panel')
+        const sidePanelPopup = makeMockPopup({
+          mode: 'side_panel',
+          width: 400,
+          height: 400,
+          transferableUrlParameters: ['utm_source'],
+          container: sidePanelContainerElement,
+        }, sidePanelButton)
+        sidePanelButton.onclick = function (e) {
           e.preventDefault()
-
-          if (!sidePanelPopup) {
-            sidePanelPopup = makeMockPopup({
-              mode: 'side_panel',
-              width: 400,
-              height: 400,
-              transferableUrlParameters: ['utm_source'],
-              container: sidePanelContainerElement,
-              onReady: sidePanelReadyCallback
-            })
-            sidePanelButton.innerHTML = 'LOADING...'
-            sidePanelPopup.open()
-          } else {
-            sidePanelContainerElement.style.width = 0
-            sidePanelButton.innerHTML = 'CLOSING...'
-              setTimeout(function() {
-              sidePanelPopup.close()
-              sidePanelPopup = null
-              sidePanelButton.innerHTML = sidePanelButtonContent
-            }, 500) // handle closing animation manually
-          }
+          sidePanelPopup.open()
         }
       })
     </script>
