@@ -129,6 +129,7 @@ class Widget extends Component {
     this.debouncedScroll = debounce(this.focusIframe, DEBOUNCE_WAIT, this)
     this.setIframeRef = this.setIframeRef.bind(this)
     this.sendFocusMessageToIframe = this.sendFocusMessageToIframe.bind(this)
+    this.handleFormScreenChanged = this.handleFormScreenChanged.bind(this)
   }
 
   componentDidMount () {
@@ -140,6 +141,7 @@ class Widget extends Component {
     window.addEventListener('welcome-screen-hidden', this.goFullScreen)
     window.addEventListener('redirect-after-submit', redirectToUrl)
     window.addEventListener('thank-you-screen-redirect', redirectToUrl)
+    window.addEventListener('form-screen-changed', this.handleFormScreenChanged)
 
     document.body.appendChild(this.fullScreenModalDiv)
   }
@@ -153,6 +155,7 @@ class Widget extends Component {
     window.removeEventListener('welcome-screen-hidden', this.goFullScreen)
     window.removeEventListener('redirect-after-submit', redirectToUrl)
     window.removeEventListener('thank-you-screen-redirect', redirectToUrl)
+    window.removeEventListener('form-screen-changed', this.handleFormScreenChanged)
 
     document.body.removeChild(this.fullScreenModalDiv)
   }
@@ -189,6 +192,12 @@ class Widget extends Component {
       backgroundColor: theme.backgroundColor,
       buttonColor: theme.color
     })
+  }
+
+  handleFormScreenChanged (event) {
+    if (this.props.options.onScreenChanged) {
+      this.props.options.onScreenChanged(event)
+    }
   }
 
   handleMessage (event) {

@@ -24,7 +24,8 @@ const defaultOptions = {
   hideScrollbars: false,
   disableTracking: false,
   transferableUrlParameters: [],
-  onSubmit: noop
+  onSubmit: noop,
+  onScreenChanged: noop
 }
 
 const queryStringKeys = {
