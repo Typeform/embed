@@ -54,7 +54,7 @@ import * as typeformEmbed from "@typeform/embed";
 
 const MyTypeform = () => {
   const typeformRef = useRef(null);
-  
+
   useEffect(() => {
     typeformEmbed.makeWidget(typeformRef.current, 'https://form.typeform.com/to/MY_TYPEFORM_ID', {
       hideFooter: true,
@@ -62,7 +62,7 @@ const MyTypeform = () => {
       opacity: 0,
     });
   }, [typeformRef]);
-  
+
   return (
     <div ref={typeformRef} style={{ height: '100vh', width: '100%'}}></div>
   );
@@ -82,16 +82,17 @@ typeformEmbed.makeWidget(element, url, options)
 - **url**: typeform's URL (like: `https://admin.typeform.com/to/PlBzgL`)
 - **options**: Object with the optional parameters:
 
-  | option         | description                                                                                                                                                    | values     | default |
-  |----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|---------|
-  | opacity        | You can make your typeform's background totally transparent, or opaque. (For example, to have a video as a background)                                         | `Number`   | 100     |
-  | buttonText     | The button text that appears on mobile in order to open the typeform.                                                                                          | `String`   | "Start" |
-  | hideScrollbars | Hide fixed scrollbars.                                                                                                                                         | `Boolean`  | false   |
-  | hideFooter     | Hide typeform footer, that appears showing the progress bar and the navigation buttons.                                                                        | `Boolean`  | false   |
-  | hideHeaders    | Hide typeform header, that appears when you have a Question group, or a long question that you need to scroll through to answer, like a Multiple Choice block. | `Boolean`  | false   |
-  | onSubmit       | Callback function that will be executed right after the typeform is successfully submitted.                                                                    | `Function` | -       |
-  | onReady        | Callback function that will be executed once the typeform is ready.                                                                                            | `Function` | -       |
-    | transferableUrlParameters     | Parameters that we want to transfert from the URL to the Typeform as hidden fields | `Array`   | [] |
+  | option          | description                                                                                                                                                    | values     | default |
+  |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|---------|
+  | opacity         | You can make your typeform's background totally transparent, or opaque. (For example, to have a video as a background)                                         | `Number`   | 100     |
+  | buttonText      | The button text that appears on mobile in order to open the typeform.                                                                                          | `String`   | "Start" |
+  | hideScrollbars  | Hide fixed scrollbars.                                                                                                                                         | `Boolean`  | false   |
+  | hideFooter      | Hide typeform footer, that appears showing the progress bar and the navigation buttons.                                                                        | `Boolean`  | false   |
+  | hideHeaders     | Hide typeform header, that appears when you have a Question group, or a long question that you need to scroll through to answer, like a Multiple Choice block. | `Boolean`  | false   |
+  | onSubmit        | Callback function that will be executed right after the typeform is successfully submitted.                                                                    | `Function` | -       |
+  | onReady         | Callback function that will be executed once the typeform is ready.                                                                                            | `Function` | -       |
+  | onScreenChanged | Callback function that will be executed once the typeform's active screen changes.                                                                             | `Function` | -       |
+  | transferableUrlParameters | Parameters that we want to transfert from the URL to the Typeform as hidden fields | `Array`   | [] |
   #### Example:
 
   ```js
