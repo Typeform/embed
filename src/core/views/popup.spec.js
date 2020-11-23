@@ -111,6 +111,26 @@ describe('Popup', () => {
     })
   })
 
+  describe('onScreenChanged callback', () => {
+    it('should be called when the user execute an interaction that triggers a screen change', () => {
+      const onScreenChangedMock = jest.fn()
+      const options = { ...popupOptions, onScreenChanged: onScreenChangedMock }
+      mount(<Popup embedId={EMBED_ID} options={options} url={URL}/>)
+
+      window.dispatchEvent(new CustomEvent('form-screen-changed', { detail: { embedId: EMBED_ID } }))
+      expect(onScreenChangedMock).toHaveBeenCalledTimes(1)
+    })
+
+    it('should NOT be called when the user execute an interaction that triggers a screen change and the embed ID doesn\'t match', () => {
+      const onScreenChangedMock = jest.fn()
+      const options = { ...popupOptions, onScreenChanged: onScreenChangedMock }
+      mount(<Popup embedId={EMBED_ID} options={options} url={URL}/>)
+
+      window.dispatchEvent(new CustomEvent('form-screen-changed', { detail: { embedId: '098765' } }))
+      expect(onScreenChangedMock).not.toHaveBeenCalled()
+    })
+  })
+
   describe(`upon receiving upon 'embed-auto-close-popup' event`, () => {
     let onCloseMock
     it('does not call onAutoClose callback function when auto close is not enabled', () => {

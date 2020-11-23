@@ -62,15 +62,15 @@ const popupWrapper = styled(BaseWrapper)`
     const offset = (100 - p.size) / 2
     if (p.isContained) {
       return `
-        width: calc(${p.size}% - 80px); 
-        height: calc(${p.size}% - 80px); 
+        width: calc(${p.size}% - 80px);
+        height: calc(${p.size}% - 80px);
         top: calc(${offset}% + 40px);
         left: calc(${offset}% + 40px);
       `
     }
     return `
-      width: calc(${p.size}% - 80px); 
-      height: calc(${p.size}% - 80px); 
+      width: calc(${p.size}% - 80px);
+      height: calc(${p.size}% - 80px);
       top: calc(${offset}% + 40px);
       left: calc(${offset}% + 40px);
     `
@@ -167,6 +167,7 @@ class Popup extends Component {
     this.handleAnimateBeforeClose = this.handleAnimateBeforeClose.bind(this)
     this.handleTransitionEnd = this.handleTransitionEnd.bind(this)
     this.setWrapperRef = this.setWrapperRef.bind(this)
+    this.handleFormScreenChanged = callIfEmbedIdMatches(this.handleFormScreenChanged.bind(this), this.props.embedId)
   }
 
   componentDidMount () {
@@ -177,6 +178,7 @@ class Popup extends Component {
     window.addEventListener('embed-auto-close-popup', this.handleAutoClose)
     window.addEventListener('redirect-after-submit', redirectToUrl)
     window.addEventListener('thank-you-screen-redirect', redirectToUrl)
+    window.addEventListener('form-screen-changed', this.handleFormScreenChanged)
     window.tfClosePopup = this.handleClose
 
     setTimeout(() => {
@@ -197,6 +199,7 @@ class Popup extends Component {
     window.removeEventListener('embed-auto-close-popup', this.handleAutoClose)
     window.removeEventListener('redirect-after-submit', redirectToUrl)
     window.removeEventListener('thank-you-screen-redirect', redirectToUrl)
+    window.removeEventListener('form-screen-changed', this.handleFormScreenChanged)
     delete window.tfClosePopup
   }
 
@@ -216,6 +219,12 @@ class Popup extends Component {
     if (mode === DRAWER_RIGHT) return closeImageRight
     if (mode === DRAWER) return closeImageLeft
     return closeImagePopup
+  }
+
+  handleFormScreenChanged (event) {
+    if (this.props.options.onScreenChanged) {
+      this.props.options.onScreenChanged(event)
+    }
   }
 
   updateIcon (component) {
