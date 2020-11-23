@@ -39,6 +39,9 @@ class Iframe extends Component {
         style={{ border: 0, ...style }}
         title='typeform-embed'
         width='100%'
+        mozallowfullscreen='mozallowfullscreen'
+        webkitallowfullscreen='webkitallowfullscreen'
+        allowfullscreen='allowfullscreen'
       />
     )
   }
