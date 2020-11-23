@@ -1,3 +1,12 @@
+# [0.28.0](https://github.com/Typeform/embed/compare/v0.27.1...v0.28.0) (2020-11-23)
+
+
+### Features
+
+* **WEB-821:** Add onScreenChanged callback to popup ([91cffc9](https://github.com/Typeform/embed/commit/91cffc9ef35caae225a15ab9b235e8935d9c13a9))
+* **WEB-821:** Add onScreenChanged callback to widget ([fed0734](https://github.com/Typeform/embed/commit/fed0734870956bc38cccbe349545b2c2faf4029a))
+* **WEB-821:** Update README file ([3c12277](https://github.com/Typeform/embed/commit/3c1227790aecc01dd581d0249d6766db9223a668))
+
 ## [0.27.1](https://github.com/Typeform/embed/compare/v0.27.0...v0.27.1) (2020-11-18)
 
 
