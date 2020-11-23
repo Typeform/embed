@@ -45,6 +45,15 @@ describe('Widget', () => {
     expect(onSubmitMock).not.toHaveBeenCalled()
   })
 
+  it('onScreenChanged callback is executed when the user execute an interaction that triggers a screen change', () => {
+    const onScreenChangedMock = jest.fn()
+    const options = { onScreenChanged: onScreenChangedMock }
+    mount(<Widget options={options} url={URL} />)
+
+    window.dispatchEvent(new CustomEvent('form-screen-changed'))
+    expect(onScreenChangedMock).toHaveBeenCalledTimes(1)
+  })
+
   it('passes event data to onSubmit callback', () => {
     const onSubmitMock = jest.fn()
     const options = { onSubmit: onSubmitMock }
