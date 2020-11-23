@@ -1,4 +1,4 @@
-export const setupGoogleAnalyticsInstanceSharingFeature = (embedId) => {
+export const setupGoogleAnalyticsInstanceSharingFeature = (iframeRef, embedId) => {
   // Throw an error if the feature is enabled but ga is not found
 
   const gaObject = window[window.GoogleAnalyticsObject]
@@ -10,10 +10,16 @@ export const setupGoogleAnalyticsInstanceSharingFeature = (embedId) => {
     )
   }
 
-  gaObject(function (tracker) {
-    const gaClientId = tracker.get('clientId')
+  const sendGaIdMessage = (gaClientId) => {
     const data = { embedId, gaClientId }
-    const iframeWindow = document.querySelector(`iframe#${embedId}`).contentWindow
-    iframeWindow.postMessage({ type: 'ga-client-id', data }, '*')
+    setTimeout(
+      () => iframeRef.contentWindow.postMessage({ type: 'ga-client-id', data }, '*'),
+      0
+    )
+  }
+
+  gaObject((tracker) => {
+    const gaClientId = tracker.get('clientId')
+    sendGaIdMessage(gaClientId)
   })
 }
