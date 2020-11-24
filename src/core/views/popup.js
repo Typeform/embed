@@ -39,10 +39,8 @@ const BaseWrapper = styled.div`
   position: ${p => (p.isContained ? 'absolute' : 'fixed')};
   max-width: 100%;
   z-index: 10001;
-  @media screen and (min-width: 1024px) {
-    min-width: 360px;
-    min-height: 360px;
-  }
+  min-width: 360px;
+  min-height: 360px;
 `
 
 const Overlay = styled.div`
