@@ -1,3 +1,10 @@
+# [0.29.0](https://github.com/Typeform/embed/compare/v0.28.0...v0.29.0) (2020-11-24)
+
+
+### Features
+
+* Allow fullscreen for embedded videos ([0e3dc88](https://github.com/Typeform/embed/commit/0e3dc88ec6e2b270c520c18b3b03b894a7333354))
+
 # [0.28.0](https://github.com/Typeform/embed/compare/v0.27.1...v0.28.0) (2020-11-23)
 
 
