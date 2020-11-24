@@ -17,6 +17,7 @@ describe('Attributes', () => {
       popupMockElem.setAttribute('data-hide-footer', false)
       popupMockElem.setAttribute('data-invalid-attribute', true)
       popupMockElem.setAttribute('data-size', '15')
+      popupMockElem.setAttribute('data-share-google-analytics-instance', true)
 
       const popupOptions = {
         mode: 'popup',
@@ -25,7 +26,8 @@ describe('Attributes', () => {
         open: 'scroll',
         openValue: '20',
         hideHeaders: true,
-        size: 15
+        size: 15,
+        shareGoogleAnalyticsInstance: true
       }
 
       expect(sanitizePopupAttributes(getDataset(popupMockElem))).toEqual(popupOptions)
@@ -60,11 +62,13 @@ describe('Attributes', () => {
       widgetMockElem.setAttribute('data-scrollbars', false)
       widgetMockElem.setAttribute('data-invalid-attribute', true)
       widgetMockElem.setAttribute('data-transparency', 20)
+      widgetMockElem.setAttribute('data-share-google-analytics-instance', true)
 
       const widgetOptions = {
         hideHeaders: true,
         hideFooter: true,
-        opacity: 100 - 20
+        opacity: 100 - 20,
+        shareGoogleAnalyticsInstance: true,
       }
 
       expect(sanitizeWidgetAttributes(getDataset(widgetMockElem))).toEqual(widgetOptions)
