@@ -40,6 +40,8 @@ const BaseWrapper = styled.div`
   position: ${p => (p.isContained ? 'absolute' : 'fixed')};
   max-width: 100%;
   z-index: 10001;
+  min-width: 360px;
+  min-height: 360px;
 `
 
 const Overlay = styled.div`
@@ -59,23 +61,13 @@ const Overlay = styled.div`
 `
 
 const popupWrapper = styled(BaseWrapper)`
-  ${p => {
-    const offset = (100 - p.size) / 2
-    if (p.isContained) {
-      return `
-        width: calc(${p.size}% - 80px);
-        height: calc(${p.size}% - 80px);
-        top: calc(${offset}% + 40px);
-        left: calc(${offset}% + 40px);
-      `
-    }
-    return `
-      width: calc(${p.size}% - 80px);
-      height: calc(${p.size}% - 80px);
-      top: calc(${offset}% + 40px);
-      left: calc(${offset}% + 40px);
-    `
-  }}
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  ${({ size }) => size && `
+    height: calc(${size}% - 80px); 
+    width: calc(${size}% - 80px); 
+  `}  
   transition: all 300ms ease-out;
 `
 
