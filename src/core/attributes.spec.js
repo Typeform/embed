@@ -68,7 +68,7 @@ describe('Attributes', () => {
         hideHeaders: true,
         hideFooter: true,
         opacity: 100 - 20,
-        shareGoogleAnalyticsInstance: true,
+        shareGoogleAnalyticsInstance: true
       }
 
       expect(sanitizeWidgetAttributes(getDataset(widgetMockElem))).toEqual(widgetOptions)

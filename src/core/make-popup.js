@@ -51,6 +51,7 @@ const buildOptions = (embedId, options) => {
     hideScrollbars: false,
     disableTracking: false,
     transferableUrlParameters: options.transferableUrlParameters || [],
+    shareGoogleAnalyticsInstance: options.shareGoogleAnalyticsInstance || false,
     onSubmit: noop,
     open: null,
     openValue: null,
@@ -66,7 +67,8 @@ const queryStringKeys = {
   embedType: 'typeform-embed',
   hideFooter: 'embed-hide-footer',
   hideHeaders: 'embed-hide-headers',
-  disableTracking: 'disable-tracking'
+  disableTracking: 'disable-tracking',
+  shareGoogleAnalyticsInstance: 'share-ga-instance'
 }
 
 const renderComponent = (params, options) => {

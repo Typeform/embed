@@ -14,6 +14,7 @@ import {
   removeColorTransparency
 } from '../utils'
 import randomString from '../utils/random-string'
+import setupGoogleAnalyticsInstanceSharingFeature from '../features/google-analytics-instance-sharing'
 
 import Iframe from './components/iframe'
 import MobileModal from './mobile-modal'
@@ -164,6 +165,18 @@ class Widget extends Component {
     this.iframe = node
   }
 
+  setupGoogleAnalyticsInstanceSharingFeature () {
+    if (this.props.options.shareGoogleAnalyticsInstance) {
+      const { iframeRef } = this.iframe
+      const canPostMessage =
+      this.state.isFormReady &&
+      iframeRef.contentWindow != null
+      if (canPostMessage) {
+        setupGoogleAnalyticsInstanceSharingFeature(iframeRef, this.props.embedId)
+      }
+    }
+  }
+
   goFullScreen () {
     if (this.props.enabledFullscreen) {
       this.setState({ isFullscreen: true })
@@ -182,6 +195,7 @@ class Widget extends Component {
       },
       () => {
         this.focusIframe()
+        this.setupGoogleAnalyticsInstanceSharingFeature()
       }
     )
   }
