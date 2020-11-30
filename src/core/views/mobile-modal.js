@@ -51,6 +51,7 @@ class MobileModal extends Component {
     }
 
     this.handleMessage = this.handleMessage.bind(this)
+    this.handleFormReady = callIfEmbedIdMatches(this.handleFormReady.bind(this), this.props.embedId)
     this.handleAutoClose = callIfEmbedIdMatches(this.handleAutoClose.bind(this), this.props.embedId)
     this.handleFormSubmit = callIfEmbedIdMatches(this.handleFormSubmit.bind(this), this.props.embedId)
     this.handleFormTheme = callIfEmbedIdMatches(this.handleFormTheme.bind(this), this.props.embedId)
