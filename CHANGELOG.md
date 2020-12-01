@@ -1,3 +1,10 @@
+## [0.29.1](https://github.com/Typeform/embed/compare/v0.29.0...v0.29.1) (2020-11-30)
+
+
+### Bug Fixes
+
+* **DIST-548:** Make side tab button reponsive to text ([#109](https://github.com/Typeform/embed/issues/109)) ([8c47406](https://github.com/Typeform/embed/commit/8c47406672eb003586045cab4f8260855163d890))
+
 # [0.29.0](https://github.com/Typeform/embed/compare/v0.28.0...v0.29.0) (2020-11-24)
 
 
