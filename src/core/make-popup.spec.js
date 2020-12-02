@@ -34,17 +34,17 @@ const renderPopupComponent = (autoOpen = false) => {
     open: autoOpen ? 'load' : null,
     source: 'example.com',
     medium: 'embed-snippet',
-    mediumVersion: '0.29.1',
-    embedTriggerType: 'on_page_load'
+    mediumVersion: '0.29.1'
   }
 
   const popup = instantiatePopup(options)
+  const embedTriggerType = autoOpen ? '&typeform-embed-trigger-type=load' : ''
   if (!autoOpen) popup.open()
   const component = renderMock.mock.calls[0][0]
 
   expect(renderMock).toHaveBeenCalledTimes(1)
   expect(component.type.name).toEqual('Popup')
-  expect(component.props.url).toEqual(`${URL}?typeform-embed=popup-blank&typeform-source=example.com&typeform-medium=embed-snippet&typeform-medium-version=0.29.1&typeform-embed-trigger-type=on_page_load`)
+  expect(component.props.url).toEqual(`${URL}?typeform-embed=popup-blank&typeform-source=example.com&typeform-medium=embed-snippet&typeform-medium-version=0.29.1${embedTriggerType}`)
   expect(component.props.options).toEqual(expect.objectContaining(options))
 }
 
@@ -62,12 +62,13 @@ const renderMobileModalComponent = (autoOpen = false) => {
   renderMock.mockClear()
 
   const popup = makePopup(URL, options)
+  const embedTriggerType = autoOpen ? '&typeform-embed-trigger-type=load' : ''
   if (!autoOpen) popup.open()
   const component = renderMock.mock.calls[0][0]
 
   expect(renderMock).toHaveBeenCalledTimes(1)
   expect(component.type.name).toEqual('MobileModal')
-  expect(component.props.url).toEqual(`${URL}?typeform-embed=popup-blank&typeform-source=my-website.com&typeform-medium=embed-sdk`)
+  expect(component.props.url).toEqual(`${URL}?typeform-embed=popup-blank&typeform-source=my-website.com&typeform-medium=embed-sdk${embedTriggerType}`)
   expect(component.props.buttonText).toEqual(options.buttonText)
 
   component.props.onSubmit()

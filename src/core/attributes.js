@@ -62,10 +62,6 @@ const sanitizeCommonAttributes = data => {
     obj.mediumVersion = data.mediumVersion
   }
 
-  if (data.embedTriggerType) {
-    obj.embedTriggerType = data.embedTriggerType
-  }
-
   return obj
 }
 

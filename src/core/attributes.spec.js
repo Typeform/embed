@@ -32,8 +32,7 @@ describe('Attributes', () => {
         size: 15,
         source: 'example.com',
         medium: 'embed-snippet',
-        mediumVersion: '0.29.1',
-        embedTriggerType: 'on_page_load'
+        mediumVersion: '0.29.1'
       }
 
       expect(sanitizePopupAttributes(getDataset(popupMockElem))).toEqual(popupOptions)

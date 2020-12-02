@@ -68,7 +68,7 @@ const queryStringKeys = {
   source: 'typeform-source',
   medium: 'typeform-medium',
   mediumVersion: 'typeform-medium-version',
-  embedTriggerType: 'typeform-embed-trigger-type',
+  open: 'typeform-embed-trigger-type',
   hideFooter: 'embed-hide-footer',
   hideHeaders: 'embed-hide-headers',
   disableTracking: 'disable-tracking'
