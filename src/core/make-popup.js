@@ -46,6 +46,7 @@ const buildOptions = (embedId, options) => {
     embedType: POPUP_MODES[options.mode] || POPUP_MODES[POPUP],
     isModalOpen: false,
     autoClose: DEFAULT_AUTOCLOSE_TIMEOUT,
+    medium: 'embed-sdk',
     hideFooter: false,
     hideHeaders: false,
     hideScrollbars: false,
@@ -64,6 +65,10 @@ const buildOptions = (embedId, options) => {
 
 const queryStringKeys = {
   embedType: 'typeform-embed',
+  source: 'typeform-source',
+  medium: 'typeform-medium',
+  mediumVersion: 'typeform-medium-version',
+  embedTriggerType: 'typeform-embed-trigger-type',
   hideFooter: 'embed-hide-footer',
   hideHeaders: 'embed-hide-headers',
   disableTracking: 'disable-tracking'

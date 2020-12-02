@@ -29,7 +29,14 @@ const instantiatePopup = (options) => {
 }
 
 const renderPopupComponent = (autoOpen = false) => {
-  const options = { hola: true, open: autoOpen ? 'load' : null }
+  const options = {
+    hola: true,
+    open: autoOpen ? 'load' : null,
+    source: 'example.com',
+    medium: 'embed-snippet',
+    mediumVersion: '0.29.1',
+    embedTriggerType: 'on_page_load'
+  }
 
   const popup = instantiatePopup(options)
   if (!autoOpen) popup.open()
@@ -37,13 +44,19 @@ const renderPopupComponent = (autoOpen = false) => {
 
   expect(renderMock).toHaveBeenCalledTimes(1)
   expect(component.type.name).toEqual('Popup')
-  expect(component.props.url).toEqual(`${URL}?typeform-embed=popup-blank`)
+  expect(component.props.url).toEqual(`${URL}?typeform-embed=popup-blank&typeform-source=example.com&typeform-medium=embed-snippet&typeform-medium-version=0.29.1&typeform-embed-trigger-type=on_page_load`)
   expect(component.props.options).toEqual(expect.objectContaining(options))
 }
 
 const renderMobileModalComponent = (autoOpen = false) => {
   const spy = jest.fn()
-  const options = { uid: UID, buttonText: 'hola', open: autoOpen ? 'load' : null, onSubmit: spy }
+  const options = {
+    uid: UID,
+    buttonText: 'hola',
+    open: autoOpen ? 'load' : null,
+    onSubmit: spy,
+    source: 'my-website.com'
+  }
 
   isMobileMock.mockImplementation(() => true)
   renderMock.mockClear()
@@ -54,7 +67,7 @@ const renderMobileModalComponent = (autoOpen = false) => {
 
   expect(renderMock).toHaveBeenCalledTimes(1)
   expect(component.type.name).toEqual('MobileModal')
-  expect(component.props.url).toEqual(`${URL}?typeform-embed=popup-blank`)
+  expect(component.props.url).toEqual(`${URL}?typeform-embed=popup-blank&typeform-source=my-website.com&typeform-medium=embed-sdk`)
   expect(component.props.buttonText).toEqual(options.buttonText)
 
   component.props.onSubmit()

@@ -35,8 +35,42 @@ const getDataset = element => {
   return data
 }
 
-const sanitizePopupAttributes = data => {
+const sanitizeCommonAttributes = data => {
   const obj = {}
+
+  if (data.hideHeaders === '' || data.hideHeaders === 'true') {
+    obj.hideHeaders = true
+  }
+
+  if (data.hideFooter === '' || data.hideFooter === 'true') {
+    obj.hideFooter = true
+  }
+
+  if (data.hideScrollbars === '' || data.hideScrollbars === 'true') {
+    obj.hideScrollbars = true
+  }
+
+  if (data.source) {
+    obj.source = data.source
+  }
+
+  if (data.medium) {
+    obj.medium = data.medium
+  }
+
+  if (data.mediumVersion) {
+    obj.mediumVersion = data.mediumVersion
+  }
+
+  if (data.embedTriggerType) {
+    obj.embedTriggerType = data.embedTriggerType
+  }
+
+  return obj
+}
+
+const sanitizePopupAttributes = data => {
+  const obj = sanitizeCommonAttributes(data)
 
   if (data.mode) {
     obj.mode = transformLegacyDataMode(data.mode)
@@ -50,18 +84,6 @@ const sanitizePopupAttributes = data => {
 
   if (data.autoOpen === '' || data.autoOpen === 'true') {
     obj.autoOpen = true
-  }
-
-  if (data.hideHeaders === '' || data.hideHeaders === 'true') {
-    obj.hideHeaders = true
-  }
-
-  if (data.hideFooter === '' || data.hideFooter === 'true') {
-    obj.hideFooter = true
-  }
-
-  if (data.hideScrollbars === '' || data.hideScrollbars === 'true') {
-    obj.hideScrollbars = true
   }
 
   if (data.open) {
@@ -89,19 +111,7 @@ const sanitizePopupAttributes = data => {
 }
 
 const sanitizeWidgetAttributes = data => {
-  const obj = {}
-
-  if (data.hideHeaders === '' || data.hideHeaders === 'true') {
-    obj.hideHeaders = true
-  }
-
-  if (data.hideFooter === '' || data.hideFooter === 'true') {
-    obj.hideFooter = true
-  }
-
-  if (data.hideScrollbars === '' || data.hideScrollbars === 'true') {
-    obj.hideScrollbars = true
-  }
+  const obj = sanitizeCommonAttributes(data)
 
   const transparency = parseInt(data.transparency, 10)
   if (data.transparency && transparency >= 0 && transparency <= 100) {
