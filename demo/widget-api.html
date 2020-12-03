@@ -41,7 +41,10 @@
       window.typeformEmbed.makeWidget(el1, '//betatests.typeform.com/to/Z9k3bK', {
         hideFooter: true,
         hideHeaders: true,
-        disableSubmit: true,
+        disableSubmit: true,        
+        medium: 'embed-sdk',
+        mediumVersion: '0.29.1',
+        embedTrigger_type: 'on_page_load',
         onSubmit: function () {
           alert('my-embedded-typeform-1 has been submitted')
         }

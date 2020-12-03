@@ -21,6 +21,8 @@ const defaultOptions = {
   mode: 'embed-widget',
   hideFooter: false,
   hideHeaders: false,
+  medium: 'embed-sdk',
+  source: window?.location?.hostname,
   hideScrollbars: false,
   disableTracking: false,
   transferableUrlParameters: [],
@@ -30,6 +32,9 @@ const defaultOptions = {
 
 const queryStringKeys = {
   mode: 'typeform-embed',
+  source: 'typeform-source',
+  medium: 'typeform-medium',
+  mediumVersion: 'typeform-medium-version',
   hideFooter: 'embed-hide-footer',
   hideHeaders: 'embed-hide-headers',
   opacity: 'embed-opacity',
