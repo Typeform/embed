@@ -17,6 +17,10 @@ describe('Attributes', () => {
       popupMockElem.setAttribute('data-hide-footer', false)
       popupMockElem.setAttribute('data-invalid-attribute', true)
       popupMockElem.setAttribute('data-size', '15')
+      popupMockElem.setAttribute('data-source', 'example.com')
+      popupMockElem.setAttribute('data-medium', 'embed-snippet')
+      popupMockElem.setAttribute('data-medium-version', '0.29.1')
+      popupMockElem.setAttribute('data-embed-trigger-type', 'on_page_load')
       popupMockElem.setAttribute('data-share-google-analytics-instance', true)
 
       const popupOptions = {
@@ -27,6 +31,9 @@ describe('Attributes', () => {
         openValue: '20',
         hideHeaders: true,
         size: 15,
+        source: 'example.com',
+        medium: 'embed-snippet',
+        mediumVersion: '0.29.1',
         shareGoogleAnalyticsInstance: true
       }
 

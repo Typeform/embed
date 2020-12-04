@@ -1,3 +1,12 @@
+# [0.30.0](https://github.com/Typeform/embed/compare/v0.29.1...v0.30.0) (2020-12-03)
+
+
+### Features
+
+* **DIST-401:** Add tracking parameters ([2271166](https://github.com/Typeform/embed/commit/22711661ee8fd9b88bafc9c94d3c2c4801ea5934))
+* **DIST-401:** Add trigger type as open value ([4fdb180](https://github.com/Typeform/embed/commit/4fdb180da93b01ee4aa4371ea4aecf3d319b743a))
+* **DIST-401:** Defaults source to hostname ([ae03cc6](https://github.com/Typeform/embed/commit/ae03cc68b780390bfe1362bc2e8e798b0abab9b5))
+
 ## [0.29.1](https://github.com/Typeform/embed/compare/v0.29.0...v0.29.1) (2020-11-30)
 
 

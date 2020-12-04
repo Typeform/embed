@@ -93,7 +93,11 @@ typeformEmbed.makeWidget(element, url, options)
   | onReady         | Callback function that will be executed once the typeform is ready.                                                                                            | `Function` | -       |
   | onScreenChanged | Callback function that will be executed once the typeform's active screen changes.                                                                             | `Function` | -       |
   | transferableUrlParameters | Parameters that we want to transfert from the URL to the Typeform as hidden fields | `Array`   | [] |
+  | source | Domain name of the site using the SDK | `String`   | null |
+  | medium | Name of the plugin built on top of the SDK | `String`   | null |
+  | mediumVersion | Version of the plugin built on top of the SDK | `String`   | null |
   | shareGoogleAnalyticsInstance | Allows to share the Google instance of the page with the Typeform in the embed | `Boolean`   | false |
+  
   #### Example:
 
   ```js
@@ -148,6 +152,9 @@ typeformEmbed.makePopup(url, options)
   | onClose        | Callback function that will be executed once the typeform is closed.                                                                                           | `Function`                                                                    | -       |
   | container      | Element to place the popup into. Optional. Required only for `"side_panel"` mode.                                                                              | `DOM element`                                                                 | -       |
   | transferableUrlParameters     | Parameters that we want to transfert from the URL to the Typeform as hidden fields | `Array`   | [] |
+  | source | Domain name of the site using the SDK | `String`   | null |
+  | medium | Name of the plugin built on top of the SDK | `String`   | null |
+  | mediumVersion | Version of the plugin built on top of the SDK | `String`   | null |
   | shareGoogleAnalyticsInstance | Allows to share the Google instance of the page with the Typeform in the embed | `Boolean`   | false |
 
 Types:
