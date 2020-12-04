@@ -230,7 +230,8 @@ MobileModal.defaultProps = {
   openDelay: 0,
   autoClose: null,
   backgroundColor: 'transparent',
-  buttonColor: '#FFF'
+  buttonColor: '#FFF',
+  options: {}
 }
 
 export default MobileModal
