@@ -59,7 +59,7 @@ const MyTypeform = () => {
     typeformEmbed.makeWidget(typeformRef.current, 'https://form.typeform.com/to/MY_TYPEFORM_ID', {
       hideFooter: true,
       hideHeaders: true,
-      opacity: 0,
+      opacity: 50,
     });
   }, [typeformRef]);
 
