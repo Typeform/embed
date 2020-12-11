@@ -9,8 +9,8 @@ const eyesCheck = (name, mobile) => {
     browser: {
       width,
       height,
-      name: Cypress.browser.name
-    }
+      name: Cypress.browser.name,
+    },
   })
   cy.eyesCheckWindow(name)
   cy.eyesClose()

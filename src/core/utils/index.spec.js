@@ -30,14 +30,14 @@ describe('Utilities', () => {
   describe('replaceExistingKeys', () => {
     it('should return existing keys', () => {
       const options = {
-        hideFooter: true
+        hideFooter: true,
       }
       const replacer = {
         hideFooter: 'embed-hide-footer',
-        opacity: 'embed-opacity'
+        opacity: 'embed-opacity',
       }
       const expectedResult = {
-        'embed-hide-footer': true
+        'embed-hide-footer': true,
       }
       const result = utils.replaceExistingKeys(options, replacer)
 
@@ -47,11 +47,11 @@ describe('Utilities', () => {
     it('should not return false or null values', () => {
       const options = {
         hideFooter: false,
-        opacity: null
+        opacity: null,
       }
       const replacer = {
         hideFooter: 'embed-hide-footer',
-        opacity: 'embed-opacity'
+        opacity: 'embed-opacity',
       }
       const expectedResult = {}
       const result = utils.replaceExistingKeys(options, replacer)
@@ -62,14 +62,14 @@ describe('Utilities', () => {
     it('should not return values not present in the replacer', () => {
       const options = {
         myCustomOne: true,
-        opacity: 80
+        opacity: 80,
       }
       const replacer = {
         hideFooter: 'embed-hide-footer',
-        opacity: 'embed-opacity'
+        opacity: 'embed-opacity',
       }
       const expectedResult = {
-        'embed-opacity': 80
+        'embed-opacity': 80,
       }
       const result = utils.replaceExistingKeys(options, replacer)
 
@@ -100,8 +100,8 @@ describe('Utilities', () => {
       const callback = jest.fn()
       const event = {
         detail: {
-          embedId
-        }
+          embedId,
+        },
       }
 
       const func = utils.callIfEmbedIdMatches(callback, embedId)
@@ -115,8 +115,8 @@ describe('Utilities', () => {
       const callback = jest.fn()
       const event = {
         data: {
-          embedId
-        }
+          embedId,
+        },
       }
 
       const func = utils.callIfEmbedIdMatches(callback, embedId)
@@ -130,8 +130,8 @@ describe('Utilities', () => {
       const callback = jest.fn()
       const event = {
         detail: {
-          embedId: '098765'
-        }
+          embedId: '098765',
+        },
       }
 
       const func = utils.callIfEmbedIdMatches(callback, embedId)
@@ -149,8 +149,8 @@ describe('Utilities', () => {
       const embedId = '123456'
       const event = {
         data: {
-          embedId
-        }
+          embedId,
+        },
       }
 
       utils.broadcastMessage(embedId, event)
@@ -161,8 +161,8 @@ describe('Utilities', () => {
       const embedId = '123456'
       const event = {
         data: {
-          embedId: '098765'
-        }
+          embedId: '098765',
+        },
       }
 
       utils.broadcastMessage(embedId, event)

@@ -4,25 +4,25 @@ import {
   replaceExistingKeys,
   redirectToUrl,
   noop,
-  getSubmitEventData
+  getSubmitEventData,
 } from './utils'
 import onMessage from './utils/message-propagation'
 
 const defaultOptions = {
   mode: 'embed-fullpage',
   disableTracking: false,
-  onSubmit: noop
+  onSubmit: noop,
 }
 
 const queryStringKeys = {
   mode: 'typeform-embed',
-  disableTracking: 'disable-tracking'
+  disableTracking: 'disable-tracking',
 }
 
-export default function makeFullScreen (iframe, url, options) {
+export default function makeFullScreen(iframe, url, options) {
   options = {
     ...defaultOptions,
-    ...options
+    ...options,
   }
 
   iframe.src = appendParamsToUrl(url, replaceExistingKeys(options, queryStringKeys))

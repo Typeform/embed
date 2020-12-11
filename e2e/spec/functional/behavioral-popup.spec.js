@@ -2,14 +2,14 @@ import { IFRAME_SELECTOR, open } from '../../cypress-utils'
 
 const pages = {
   '-code': 'embed code',
-  '-api': 'API'
+  '-api': 'API',
 }
 
 const getPageUrl = (name, suffix, query = '') => {
   return `/behavioral${suffix}/${name}${suffix}.html?${query}`
 }
 
-Object.keys(pages).forEach(pageSuffix => {
+Object.keys(pages).forEach((pageSuffix) => {
   describe(`Behavioral Embeds using ${pages[pageSuffix]}`, () => {
     describe('Open: exit', () => {
       before(() => {
@@ -25,9 +25,7 @@ Object.keys(pages).forEach(pageSuffix => {
       })
 
       it('should not display the popup on mouse movement outside the area', () => {
-        cy.get('body')
-          .trigger('mousemove', { clientY: 120 })
-          .trigger('mousemove', { clientY: 101 })
+        cy.get('body').trigger('mousemove', { clientY: 120 }).trigger('mousemove', { clientY: 101 })
         cy.get(IFRAME_SELECTOR).should('not.exist')
       })
 

@@ -3,10 +3,7 @@ import { render as renderMock } from 'react-dom'
 
 import makePopup from './make-popup'
 import { appendParamsToUrl } from './utils'
-import {
-  isMobile as isMobileMock,
-  isScreenBig as isScreenBigMock
-} from './utils/mobile-detection'
+import { isMobile as isMobileMock, isScreenBig as isScreenBigMock } from './utils/mobile-detection'
 import randomString from './utils/random-string'
 
 jest.mock('react-dom')
@@ -34,7 +31,7 @@ const renderPopupComponent = (autoOpen = false) => {
     open: autoOpen ? 'load' : null,
     source: 'example.com',
     medium: 'embed-snippet',
-    mediumVersion: '0.29.1'
+    mediumVersion: '0.29.1',
   }
 
   const popup = instantiatePopup(options)
@@ -44,7 +41,9 @@ const renderPopupComponent = (autoOpen = false) => {
 
   expect(renderMock).toHaveBeenCalledTimes(1)
   expect(component.type.name).toEqual('Popup')
-  expect(component.props.url).toEqual(`${URL}?typeform-embed=popup-blank&typeform-source=example.com&typeform-medium=embed-snippet&typeform-medium-version=0.29.1${embedTriggerType}`)
+  expect(component.props.url).toEqual(
+    `${URL}?typeform-embed=popup-blank&typeform-source=example.com&typeform-medium=embed-snippet&typeform-medium-version=0.29.1${embedTriggerType}`
+  )
   expect(component.props.options).toEqual(expect.objectContaining(options))
 }
 
@@ -55,7 +54,7 @@ const renderMobileModalComponent = (autoOpen = false) => {
     buttonText: 'hola',
     open: autoOpen ? 'load' : null,
     onSubmit: spy,
-    source: 'my-website.com'
+    source: 'my-website.com',
   }
 
   isMobileMock.mockImplementation(() => true)
@@ -68,7 +67,9 @@ const renderMobileModalComponent = (autoOpen = false) => {
 
   expect(renderMock).toHaveBeenCalledTimes(1)
   expect(component.type.name).toEqual('MobileModal')
-  expect(component.props.url).toEqual(`${URL}?typeform-embed=popup-blank&typeform-source=my-website.com&typeform-medium=embed-sdk${embedTriggerType}`)
+  expect(component.props.url).toEqual(
+    `${URL}?typeform-embed=popup-blank&typeform-source=my-website.com&typeform-medium=embed-sdk${embedTriggerType}`
+  )
   expect(component.props.buttonText).toEqual(options.buttonText)
 
   component.props.onSubmit()

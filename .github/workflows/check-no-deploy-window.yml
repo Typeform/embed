@@ -2,7 +2,7 @@ name: Check No Deploy Window
 on:
   # Runs every Mon-Friday at 4:00 and 10:00 UTC
   schedule:
-    - cron:  '0 4,10 * * 1-5'
+    - cron: '0 4,10 * * 1-5'
   pull_request:
     branches:
       - master

@@ -3,12 +3,12 @@
 import {
   getDataset as getDatasetMock,
   sanitizePopupAttributes as sanitizePopupAttributesMock,
-  sanitizeWidgetAttributes as sanitizeWidgetAttributesMock
+  sanitizeWidgetAttributes as sanitizeWidgetAttributesMock,
 } from './../src/core/attributes'
 import {
   makePopup as makePopupMock,
   makeWidget as makeWidgetMock,
-  makeFullScreen as makeFullScreenMock
+  makeFullScreen as makeFullScreenMock,
 } from './../src/lib'
 
 jest.mock('./../src/lib')

@@ -9,10 +9,10 @@ describe('Popup Widget', () => {
     drawer_left: 'Drawer Left',
     drawer_right: 'Drawer Right',
     popover: 'Popover',
-    side_panel: 'Side Panel'
+    side_panel: 'Side Panel',
   }
 
-  Object.keys(popupModes).forEach(popupMode => {
+  Object.keys(popupModes).forEach((popupMode) => {
     const name = `${popupModes[popupMode]}`
 
     describe(`${name}`, () => {

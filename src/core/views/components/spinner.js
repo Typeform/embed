@@ -16,12 +16,13 @@ const defaultConfig = {
   top: '50%',
   left: '50%',
   position: 'absolute',
-  zIndex: 999
+  zIndex: 999,
 }
 
 const SpinnerWrapper = styled.div`
   @keyframes spinner-line-fade-more {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 0; /* minimum opacity */
     }
     1% {
@@ -30,7 +31,9 @@ const SpinnerWrapper = styled.div`
   }
 
   @keyframes spinner-line-fade-quick {
-    0%, 39%, 100% {
+    0%,
+    39%,
+    100% {
       opacity: 0.25; /* minimum opacity */
     }
     40% {
@@ -39,7 +42,8 @@ const SpinnerWrapper = styled.div`
   }
 
   @keyframes spinner-line-fade-default {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 0.22; /* minimum opacity */
     }
     1% {
@@ -48,7 +52,9 @@ const SpinnerWrapper = styled.div`
   }
 
   @keyframes spinner-line-shrink {
-    0%, 25%, 100% {
+    0%,
+    25%,
+    100% {
       /* minimum scale and opacity */
       transform: scale(0.5);
       opacity: 0.25;
@@ -61,17 +67,17 @@ const SpinnerWrapper = styled.div`
 `
 
 class Spinner extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.getRef = this.getRef.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.instantiateSpinner(this.props)
   }
 
-  componentWillReceiveProps (newProps) {
+  componentWillReceiveProps(newProps) {
     if (newProps.config.color !== this.props.config.color) {
       this.spinner.stop()
       // the Spinner API doesn't provide a method to change its options after instantiation,
@@ -86,25 +92,23 @@ class Spinner extends Component {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.spinner.stop()
   }
 
-  getRef (node) {
+  getRef(node) {
     this.container = node
   }
 
-  instantiateSpinner (props) {
+  instantiateSpinner(props) {
     this.spinner = new Spin({ ...defaultConfig, ...props.config })
     if (!props.stopped) {
       this.spinner.spin(this.container)
     }
   }
 
-  render () {
-    return (
-      <SpinnerWrapper ref={this.getRef} />
-    )
+  render() {
+    return <SpinnerWrapper ref={this.getRef} />
   }
 }
 
@@ -112,13 +116,13 @@ Spinner.propTypes = {
   config: PropTypes.object,
   stopped: PropTypes.bool,
   className: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
 }
 
 Spinner.defaultProps = {
   config: defaultConfig,
   className: '',
-  style: {}
+  style: {},
 }
 
 export default Spinner

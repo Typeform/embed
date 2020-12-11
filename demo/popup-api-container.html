@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Popup example</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <link rel="stylesheet" href="demo.css" />
     <style type="text/css">
       #open-popup-2 {
@@ -28,30 +28,35 @@
   </head>
   <body>
     <a id="open-popup-1" href="#">Click me to open a right drawer popup!</a>
-    <br>
+    <br />
     <p>This button opens a popup in a container</p>
     <button id="open-popup-2">Open popup</button>
 
     <div id="container">
       <h1>Lorem ipsum dolor!</h1>
-      <br>
+      <br />
       <a href="http://www.typeform.com">This is Beardy's home</a>
-      <br><br>
-      <div class="box"></div>&nbsp;
-      <div class="box"></div>&nbsp;
-      <div class="box"></div>&nbsp;
-      <div class="box"></div>&nbsp;
-      <div class="box"></div>&nbsp;
-      <br>
-      <span>Lorem</span><br>
-      <span>ipsum</span><br>
-      <span>dolor</span><br>
-      <span>sit</span><br>
-      <span>amet</span><br>
-      <span>consectetur</span><br>
-      <span>adipiscing</span><br>
-      <span>elit</span><br>
-      <br>
+      <br /><br />
+      <div class="box"></div>
+      &nbsp;
+      <div class="box"></div>
+      &nbsp;
+      <div class="box"></div>
+      &nbsp;
+      <div class="box"></div>
+      &nbsp;
+      <div class="box"></div>
+      &nbsp;
+      <br />
+      <span>Lorem</span><br />
+      <span>ipsum</span><br />
+      <span>dolor</span><br />
+      <span>sit</span><br />
+      <span>amet</span><br />
+      <span>consectetur</span><br />
+      <span>adipiscing</span><br />
+      <span>elit</span><br />
+      <br />
       <a id="open-popup-3" href="#">Click me to open a left drawer popup in here!</a>
     </div>
 
@@ -65,7 +70,7 @@
           width: 600,
           onSubmit: () => {
             alert('open-popup-1 has been submitted')
-          }
+          },
         })
       })
 
@@ -78,7 +83,7 @@
           container: container,
           onSubmit: () => {
             alert('open-popup-2 has been submitted')
-          }
+          },
         })
       })
 
@@ -92,7 +97,7 @@
           width: 400,
           onSubmit: () => {
             alert('open-popup-3 has been submitted')
-          }
+          },
         })
       })
     </script>

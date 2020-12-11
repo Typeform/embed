@@ -1,41 +1,39 @@
-const transformLegacyDataMode = dataMode => {
+const transformLegacyDataMode = (dataMode) => {
   const POPUPS_MODES = [
     {
       id: '1',
-      mode: 'popup'
+      mode: 'popup',
     },
     {
       id: '2',
-      mode: 'drawer_left'
+      mode: 'drawer_left',
     },
     {
       id: '3',
-      mode: 'drawer_right'
-    }
+      mode: 'drawer_right',
+    },
   ]
 
-  const element = POPUPS_MODES.find(m => m.id === dataMode)
+  const element = POPUPS_MODES.find((m) => m.id === dataMode)
   return element ? element.mode : dataMode
 }
 
-const parseTransferableUrlParameters = transferableUrlParameters => {
+const parseTransferableUrlParameters = (transferableUrlParameters) => {
   return transferableUrlParameters.replace(/ /g, '').split(',')
 }
 
-const getDataset = element => {
+const getDataset = (element) => {
   const data = {}
-  ;[].forEach.call(element.attributes, attr => {
+  ;[].forEach.call(element.attributes, (attr) => {
     if (/^data-/.test(attr.name)) {
-      const camelCaseName = attr.name
-        .substr(5)
-        .replace(/-(.)/g, ($0, $1) => $1.toUpperCase())
+      const camelCaseName = attr.name.substr(5).replace(/-(.)/g, ($0, $1) => $1.toUpperCase())
       data[camelCaseName] = attr.value
     }
   })
   return data
 }
 
-const sanitizeCommonAttributes = data => {
+const sanitizeCommonAttributes = (data) => {
   const obj = {}
 
   if (data.hideHeaders === '' || data.hideHeaders === 'true') {
@@ -65,7 +63,7 @@ const sanitizeCommonAttributes = data => {
   return obj
 }
 
-const sanitizePopupAttributes = data => {
+const sanitizePopupAttributes = (data) => {
   const obj = sanitizeCommonAttributes(data)
 
   if (data.mode) {
@@ -106,7 +104,7 @@ const sanitizePopupAttributes = data => {
   return obj
 }
 
-const sanitizeWidgetAttributes = data => {
+const sanitizeWidgetAttributes = (data) => {
   const obj = sanitizeCommonAttributes(data)
 
   const transparency = parseInt(data.transparency, 10)
