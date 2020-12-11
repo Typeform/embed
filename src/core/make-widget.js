@@ -22,7 +22,7 @@ const defaultOptions = {
   hideFooter: false,
   hideHeaders: false,
   medium: 'embed-sdk',
-  source: window?.location?.hostname,
+  source: window?.location?.hostname.replace('www.', ''),
   hideScrollbars: false,
   disableTracking: false,
   transferableUrlParameters: [],
