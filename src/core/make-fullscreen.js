@@ -1,6 +1,6 @@
 import {
   appendParamsToUrl,
-  ensureMetaViewport,
+  setMobileMetaViewport,
   replaceExistingKeys,
   redirectToUrl,
   noop,
@@ -32,7 +32,7 @@ export default function makeFullScreen (iframe, url, options) {
     options.onSubmit(getSubmitEventData(event))
   }
 
-  ensureMetaViewport()
+  setMobileMetaViewport()
 
   iframe.onload = () => {
     iframe.contentWindow.focus()
