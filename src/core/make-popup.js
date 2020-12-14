@@ -36,7 +36,7 @@ const buildOptions = (embedId, options) => {
     isModalOpen: false,
     autoClose: DEFAULT_AUTOCLOSE_TIMEOUT,
     medium: 'embed-sdk',
-    source: window?.location?.hostname,
+    source: window?.location?.hostname.replace('wwww.', ''),
     hideFooter: false,
     hideHeaders: false,
     hideScrollbars: false,
