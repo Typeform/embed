@@ -1,0 +1,34 @@
+name: Release
+
+on:
+  push:
+    branches: [master]
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+  AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
+  PUBLIC_CDN_URL: 'https://embed.typeform.com'
+
+jobs:
+  release_npm:
+    name: Release to NPM
+    runs-on: ubuntu-latest # [self-hosted, node-12]
+    steps:
+      - run: yarn install
+      - run: yarn build
+      - run: yarn semantic-release
+  release_aws:
+    name: Release to AWS
+    runs-on: ubuntu-latest # [self-hosted, node-12]
+    steps:
+      # Update registry before installing private package. See CONTRIBUTING.md for more details.
+      - run: rm ./.npmrc
+      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+      - run: npm config set @typeform:registry https://npm.pkg.github.com/
+      - run: yarn install
+      - run: yarn build
+      - run: yarn add @typeform/jarvis
+      - run: ./scripts/consolidate-dist.sh
+      - run: DEBUG=jarvis jarvis deploy --path dist
