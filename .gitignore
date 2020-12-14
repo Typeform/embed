@@ -52,7 +52,6 @@ coverage
 dist
 build
 node_modules
-.npmrc
 
 # tests
 e2e/screenshots
