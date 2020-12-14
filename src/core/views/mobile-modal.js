@@ -9,7 +9,9 @@ import {
   callIfEmbedIdMatches,
   redirectToUrl,
   updateQueryStringParameter,
-  getSubmitEventData
+  getSubmitEventData,
+  setMobileMetaViewport,
+  ensureMetaViewport
 } from './../utils'
 import { DEFAULT_AUTOCLOSE_TIMEOUT } from './popup'
 
@@ -45,7 +47,8 @@ class MobileModal extends Component {
 
     this.state = {
       backgroundColor: props.backgroundColor,
-      buttonColor: props.buttonColor
+      buttonColor: props.buttonColor,
+      originalViewportContent: null
     }
 
     this.handleMessage = this.handleMessage.bind(this)
@@ -56,6 +59,9 @@ class MobileModal extends Component {
   }
 
   componentDidMount () {
+    const originalViewportContent = setMobileMetaViewport()
+    this.setState({ originalViewportContent })
+
     window.addEventListener('message', this.handleMessage)
     window.addEventListener('embed-auto-close-popup', this.handleAutoClose)
     window.addEventListener('form-submit', this.handleFormSubmit)
@@ -85,6 +91,9 @@ class MobileModal extends Component {
   }
 
   componentWillUnmount () {
+    ensureMetaViewport(this.state.originalViewportContent)
+    this.setState({ originalViewportContent: null })
+
     window.removeEventListener('message', this.handleMessage)
     window.removeEventListener('embed-auto-close-popup', this.handleAutoClose)
     window.removeEventListener('form-submit', this.handleFormSubmit)

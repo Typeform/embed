@@ -54,23 +54,32 @@ export const replaceExistingKeys = (obj, replacer) => {
   }, {})
 }
 
-export const ensureMetaViewport = () => {
+export const setMobileMetaViewport = () => {
+  return ensureMetaViewport('width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0')
+}
+
+export const ensureMetaViewport = (viewportContent) => {
   if (!document.querySelector) {
-    return
+    return null
   }
 
   const viewport = document.querySelector('meta[name=viewport]')
-  const viewportContent =
-    'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 
   if (viewport) {
-    viewport.setAttribute('content', viewportContent)
-  } else {
+    const originalViewportContent = viewport.getAttribute('content')
+    if (viewportContent) {
+      viewport.setAttribute('content', viewportContent)
+    } else {
+      viewport.parentNode.removeChild(viewport)
+    }
+    return originalViewportContent
+  } else if (viewportContent) {
     const metaTag = document.createElement('meta')
     metaTag.content = viewportContent
     metaTag.name = 'viewport'
     document.head.appendChild(metaTag)
   }
+  return null
 }
 
 export const isElementInViewport = el => {

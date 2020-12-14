@@ -54,13 +54,28 @@ Object.keys(popupModes).forEach(popupMode => {
         })
 
         describe('Mobile', () => {
+          let viewportContent
+
           before(() => {
             openOnMobile(pageUrl)
+            cy.get('meta[name=viewport]')
+              .invoke('attr', 'content')
+              .then(content => {
+                viewportContent = content
+              })
             openPopup(`#btn-${popupMode}`)
+          })
+
+          it('Updates viewport meta tag', () => {
+            cy.get('meta[name=viewport]').invoke('attr', 'content').should('not.eq', viewportContent)
           })
 
           it('Closes Embed Popup clicking on close Button', () => {
             closePopupViaButtonOnMobile()
+          })
+
+          it('Restores viewport meta tag', () => {
+            cy.get('meta[name=viewport]').invoke('attr', 'content').should('eq', viewportContent)
           })
         })
       })
