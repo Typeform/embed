@@ -4,7 +4,6 @@ import { render, unmountComponentAtNode } from 'react-dom'
 import {
   appendParamsToUrl,
   replaceExistingKeys,
-  ensureMetaViewport,
   callIfEmbedIdMatches,
   noop
 } from './utils'
@@ -105,7 +104,6 @@ const renderComponent = (params, options) => {
       domNode
     )
   } else {
-    ensureMetaViewport()
     render(
       <MobileModal
         autoClose={autoClose}
