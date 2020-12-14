@@ -1,8 +1,4 @@
-import {
-  getDataset,
-  sanitizePopupAttributes,
-  sanitizeWidgetAttributes
-} from './attributes'
+import { getDataset, sanitizePopupAttributes, sanitizeWidgetAttributes } from './attributes'
 
 describe('Attributes', () => {
   describe('Popup', () => {
@@ -32,7 +28,7 @@ describe('Attributes', () => {
         size: 15,
         source: 'example.com',
         medium: 'embed-snippet',
-        mediumVersion: '0.29.1'
+        mediumVersion: '0.29.1',
       }
 
       expect(sanitizePopupAttributes(getDataset(popupMockElem))).toEqual(popupOptions)
@@ -44,18 +40,20 @@ describe('Attributes', () => {
       expect(sanitizePopupAttributes(getDataset(mockElement))).toEqual({ mode: 'popup' })
       mockElement.setAttribute('data-mode', '2')
       expect(sanitizePopupAttributes(getDataset(mockElement))).toEqual({
-        mode: 'drawer_left'
+        mode: 'drawer_left',
       })
       mockElement.setAttribute('data-mode', '3')
       expect(sanitizePopupAttributes(getDataset(mockElement))).toEqual({
-        mode: 'drawer_right'
+        mode: 'drawer_right',
       })
     })
 
     it('takes in account the data-transferable-url-parameters option and parse the options correctly', () => {
       const mockElement = document.createElement('div')
       mockElement.setAttribute('data-transferable-url-parameters', 'foo, bar,  john')
-      expect(sanitizePopupAttributes(getDataset(mockElement))).toEqual({ transferableUrlParameters: ['foo', 'bar', 'john'] })
+      expect(sanitizePopupAttributes(getDataset(mockElement))).toEqual({
+        transferableUrlParameters: ['foo', 'bar', 'john'],
+      })
     })
   })
 
@@ -71,7 +69,7 @@ describe('Attributes', () => {
       const widgetOptions = {
         hideHeaders: true,
         hideFooter: true,
-        opacity: 100 - 20
+        opacity: 100 - 20,
       }
 
       expect(sanitizeWidgetAttributes(getDataset(widgetMockElem))).toEqual(widgetOptions)
@@ -80,7 +78,9 @@ describe('Attributes', () => {
     it('takes in account the data-transferable-url-parameters option and parse the options correctly', () => {
       const widgetMockElem = document.createElement('div')
       widgetMockElem.setAttribute('data-transferable-url-parameters', ' foo,   bar,  john')
-      expect(sanitizeWidgetAttributes(getDataset(widgetMockElem))).toEqual({ transferableUrlParameters: ['foo', 'bar', 'john'] })
+      expect(sanitizeWidgetAttributes(getDataset(widgetMockElem))).toEqual({
+        transferableUrlParameters: ['foo', 'bar', 'john'],
+      })
     })
   })
 })

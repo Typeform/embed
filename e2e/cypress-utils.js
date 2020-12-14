@@ -5,15 +5,13 @@ export const screenSizeMobile = { width: 375, height: 667 }
 const getIframeBody = (iframe) => {
   return cy
     .get(iframe)
-    .its('0.contentDocument.body').should('not.be.empty') // retry until the body element is not empty
+    .its('0.contentDocument.body')
+    .should('not.be.empty') // retry until the body element is not empty
     .then(cy.wrap) // wrap "body" DOM element to allow chaining more Cypress commands
 }
 
 export const testEmbeddedForm = (selector = IFRAME_SELECTOR) => {
-  getIframeBody(selector)
-    .find('[data-qa="start-button"]')
-    .should('have.text', 'Start')
-    .should('be.visible')
+  getIframeBody(selector).find('[data-qa="start-button"]').should('have.text', 'Start').should('be.visible')
 }
 
 export const openPopup = (selector) => {
@@ -32,9 +30,7 @@ export const closePopupViaButtonOnMobile = () => {
 }
 
 export const closePopupViaKeyboard = () => {
-  getIframeBody(IFRAME_SELECTOR)
-    .find('[data-qa="form-input"]')
-    .type('{esc}', { force: true }) // input is hidden, force the "esc" key
+  getIframeBody(IFRAME_SELECTOR).find('[data-qa="form-input"]').type('{esc}', { force: true }) // input is hidden, force the "esc" key
   cy.get(IFRAME_SELECTOR).should('not.exist')
 }
 
@@ -50,11 +46,11 @@ export const open = (url) => {
 export const openOnMobile = (url) => {
   setViewport(screenSizeMobile)
   cy.visit(url, {
-    onBeforeLoad: win => {
+    onBeforeLoad: (win) => {
       Object.defineProperty(win.navigator, 'userAgent', {
-        value: 'Cypress mobile browser'
+        value: 'Cypress mobile browser',
       })
-    }
+    },
   })
 }
 

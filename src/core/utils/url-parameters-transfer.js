@@ -14,7 +14,7 @@ export const transferUrlParametersToQueryStrings = (transferableUrlParameters, q
   const urlSearchString = window.location.search.substr(1)
   const urlSearchParams = urlSearchToParams(urlSearchString)
   const queryStringsWithTransferedParams = { ...queryStrings }
-  transferableUrlParameters.forEach(transferableParam => {
+  transferableUrlParameters.forEach((transferableParam) => {
     if (!(transferableParam in queryStrings)) {
       queryStringsWithTransferedParams[transferableParam] = urlSearchParams[transferableParam]
     }

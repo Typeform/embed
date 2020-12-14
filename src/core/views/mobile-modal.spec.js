@@ -10,7 +10,7 @@ import MobileModal from './mobile-modal'
 import Iframe from './components/iframe'
 import CloseIcon from './components/close-icon'
 
-const timeout = ms => new Promise(resolve => setTimeout(resolve, ms))
+const timeout = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const URL = 'http://mobilemodal.cat'
 const EMBED_ID = '123456'

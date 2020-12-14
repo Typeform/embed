@@ -19,19 +19,16 @@
     <script type="text/javascript" src="../embed.js"></script>
     <script>
       const param = window.location.search.match(/ms=(\d+)/)
-      const ms = param ? parseInt(param[1], 10) : 5000;
+      const ms = param ? parseInt(param[1], 10) : 5000
 
-      document.getElementById('time').value = ms;
-      document.getElementById('seconds').innerHTML = Math.round(ms / 1000);
+      document.getElementById('time').value = ms
+      document.getElementById('seconds').innerHTML = Math.round(ms / 1000)
 
-      window.typeformEmbed.makePopup(
-        '../form/mock.html#foobar=hello',
-        {
-          mode: 'popup',
-          open: 'time',
-          openValue: ms
-        }
-      )
+      window.typeformEmbed.makePopup('../form/mock.html#foobar=hello', {
+        mode: 'popup',
+        open: 'time',
+        openValue: ms,
+      })
     </script>
   </body>
 </html>
