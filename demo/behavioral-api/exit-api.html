@@ -10,7 +10,7 @@
         left: 0;
         width: 100%;
         height: 50px;
-        background: rgba(255,0,0,0.2);
+        background: rgba(255, 0, 0, 0.2);
         pointer-events: none;
       }
     </style>
@@ -33,19 +33,16 @@
     <script type="text/javascript" src="../embed.js"></script>
     <script>
       const param = window.location.search.match(/threshold=(\d+)/)
-      const thresholdValue = param ? parseInt(param[1], 10) : 50;
+      const thresholdValue = param ? parseInt(param[1], 10) : 50
 
-      document.getElementById('threshold').value = thresholdValue;
-      document.getElementById('visual-threshold').style.height = thresholdValue + 'px';
+      document.getElementById('threshold').value = thresholdValue
+      document.getElementById('visual-threshold').style.height = thresholdValue + 'px'
 
-      window.typeformEmbed.makePopup(
-        '../form/mock.html#foobar=hello',
-        {
-          mode: 'popup',
-          open: 'exit',
-          openValue: thresholdValue
-        }
-      )
+      window.typeformEmbed.makePopup('../form/mock.html#foobar=hello', {
+        mode: 'popup',
+        open: 'exit',
+        openValue: thresholdValue,
+      })
     </script>
   </body>
 </html>

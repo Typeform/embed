@@ -11,14 +11,14 @@ import {
   updateQueryStringParameter,
   getSubmitEventData,
   setMobileMetaViewport,
-  ensureMetaViewport
+  ensureMetaViewport,
 } from './../utils'
 import { DEFAULT_AUTOCLOSE_TIMEOUT } from './popup'
 
 const Wrapper = styled.div`
-  visibility: ${p => (p.open ? 'visible' : 'hidden')};
-  opacity: ${p => (p.open ? 1 : 0)};
-  background-color: ${p => p.backgroundColor};
+  visibility: ${(p) => (p.open ? 'visible' : 'hidden')};
+  opacity: ${(p) => (p.open ? 1 : 0)};
+  background-color: ${(p) => p.backgroundColor};
   position: fixed !important;
   z-index: 10001;
   left: 0 !important;
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   bottom: 0 !important;
   overflow: hidden !important;
   height: 100%;
-  transition: all 400ms ease ${props => props.openDelay}s;
+  transition: all 400ms ease ${(props) => props.openDelay}s;
 `
 
 const GlobalStyle = createGlobalStyle`
@@ -42,13 +42,13 @@ const GlobalStyle = createGlobalStyle`
 `
 
 class MobileModal extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
       backgroundColor: props.backgroundColor,
       buttonColor: props.buttonColor,
-      originalViewportContent: null
+      originalViewportContent: null,
     }
 
     this.handleMessage = this.handleMessage.bind(this)
@@ -58,7 +58,7 @@ class MobileModal extends Component {
     this.handleClose = this.handleClose.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const originalViewportContent = setMobileMetaViewport()
     this.setState({ originalViewportContent })
 
@@ -74,23 +74,20 @@ class MobileModal extends Component {
     }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     if (!prevProps.open && this.props.open) {
       this.open()
     }
 
-    if (
-      prevProps.backgroundColor !== this.props.backgroundColor ||
-      prevProps.buttonColor !== this.props.buttonColor
-    ) {
+    if (prevProps.backgroundColor !== this.props.backgroundColor || prevProps.buttonColor !== this.props.buttonColor) {
       this.setState({
         backgroundColor: this.props.backgroundColor,
-        buttonColor: this.props.buttonColor
+        buttonColor: this.props.buttonColor,
       })
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     ensureMetaViewport(this.state.originalViewportContent)
     this.setState({ originalViewportContent: null })
 
@@ -104,19 +101,14 @@ class MobileModal extends Component {
     document.body.classList.remove('__typeform-embed-mobile-modal-open')
   }
 
-  handleMessage (event) {
+  handleMessage(event) {
     broadcastMessage(this.props.embedId, event)
   }
 
-  handleAutoClose (event) {
-    const canSetAutocloseDelay =
-      event.detail.isProPlus || event.detail.canSetAutocloseDelay
-    const {
-      isAutoCloseEnabled,
-      autoClose = DEFAULT_AUTOCLOSE_TIMEOUT
-    } = this.props
-    const timeout =
-      (canSetAutocloseDelay ? autoClose : DEFAULT_AUTOCLOSE_TIMEOUT) * 1000
+  handleAutoClose(event) {
+    const canSetAutocloseDelay = event.detail.isProPlus || event.detail.canSetAutocloseDelay
+    const { isAutoCloseEnabled, autoClose = DEFAULT_AUTOCLOSE_TIMEOUT } = this.props
+    const timeout = (canSetAutocloseDelay ? autoClose : DEFAULT_AUTOCLOSE_TIMEOUT) * 1000
 
     if (isAutoCloseEnabled) {
       setTimeout(() => {
@@ -125,28 +117,28 @@ class MobileModal extends Component {
     }
   }
 
-  handleFormSubmit (event) {
+  handleFormSubmit(event) {
     if (this.props.onSubmit) {
       this.props.onSubmit(getSubmitEventData(event))
     }
   }
 
-  handleFormTheme (event) {
+  handleFormTheme(event) {
     const { theme } = event.detail || {}
     this.setState({
       backgroundColor: theme.backgroundColor,
-      buttonColor: theme.color
+      buttonColor: theme.color,
     })
   }
 
-  open () {
+  open() {
     setTimeout(() => {
       this.originalBodyScrollTop = window.document.body.scrollTop
       document.body.classList.add('__typeform-embed-mobile-modal-open')
     }, this.props.openDelay * 1000 + 500)
   }
 
-  handleClose () {
+  handleClose() {
     document.body.classList.remove('__typeform-embed-mobile-modal-open')
     setTimeout(() => {
       window.document.body.scrollTop = this.originalBodyScrollTop
@@ -157,30 +149,17 @@ class MobileModal extends Component {
     }
   }
 
-  render () {
+  render() {
     const { embedId, url, open } = this.props
     const { backgroundColor, buttonColor } = this.state
 
-    const iframeUrl = updateQueryStringParameter(
-      'typeform-embed-id',
-      embedId,
-      url
-    )
+    const iframeUrl = updateQueryStringParameter('typeform-embed-id', embedId, url)
 
     return (
-      <Wrapper
-        backgroundColor={backgroundColor}
-        data-qa='mobile-modal'
-        open={open}
-        openDelay={this.props.openDelay}
-      >
+      <Wrapper backgroundColor={backgroundColor} data-qa="mobile-modal" open={open} openDelay={this.props.openDelay}>
         <GlobalStyle />
         {open && <Iframe src={iframeUrl} />}
-        <CloseIcon
-          color={buttonColor}
-          dataQa='close-button-mobile'
-          onClick={this.handleClose}
-        />
+        <CloseIcon color={buttonColor} dataQa="close-button-mobile" onClick={this.handleClose} />
       </Wrapper>
     )
   }
@@ -197,7 +176,7 @@ MobileModal.propTypes = {
   onSubmit: PropTypes.func,
   autoClose: PropTypes.number,
   openDelay: PropTypes.number,
-  embedId: PropTypes.string
+  embedId: PropTypes.string,
 }
 
 MobileModal.defaultProps = {
@@ -205,7 +184,7 @@ MobileModal.defaultProps = {
   openDelay: 0,
   autoClose: null,
   backgroundColor: 'transparent',
-  buttonColor: '#FFF'
+  buttonColor: '#FFF',
 }
 
 export default MobileModal

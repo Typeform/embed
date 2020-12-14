@@ -4,10 +4,11 @@
     <!--Add the title of your typeform below-->
     <title>Feedback pill example</title>
     <meta charset="utf-8" />
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <!--CSS styles that ensure your typeform takes up all the available screen space (DO NOT EDIT!)-->
     <style type="text/css">
-      body, html {
+      body,
+      html {
         margin: 0;
         padding: 0;
         height: 100%;
@@ -37,36 +38,34 @@
       .popup-message-bottom--visible {
         bottom: 25px;
       }
-
     </style>
   </head>
   <body>
-      <div class="popup-message-bottom">
-        <div
-            class="typeform-widget"
-            style="width: 100%; height: 100%;"
-            data-url="//admin.typeform.com/to/zrROEA"
-            data-hide-headers
-            data-hide-footer
-        />
-      </div>
+    <div class="popup-message-bottom">
+      <div
+        class="typeform-widget"
+        style="width: 100%; height: 100%"
+        data-url="//admin.typeform.com/to/zrROEA"
+        data-hide-headers
+        data-hide-footer
+      />
+    </div>
 
     <script type="text/javascript" src="./../embed.js"></script>
     <script type="text/javascript" src="./../demo.js"></script>
     <script>
-        var annoyingPopup = document.querySelector('.popup-message-bottom')
-        var VISIBLE_CLASS = 'popup-message-bottom--visible'
+      var annoyingPopup = document.querySelector('.popup-message-bottom')
+      var VISIBLE_CLASS = 'popup-message-bottom--visible'
 
-        setTimeout(function () {
-            annoyingPopup.classList.add(VISIBLE_CLASS)
-        }, 3000)
+      setTimeout(function () {
+        annoyingPopup.classList.add(VISIBLE_CLASS)
+      }, 3000)
 
-        window.addEventListener('message', function (event) {
-            if (event.data === 'form-submit') {
-                annoyingPopup.classList.remove(VISIBLE_CLASS)
-            }
-        })
+      window.addEventListener('message', function (event) {
+        if (event.data === 'form-submit') {
+          annoyingPopup.classList.remove(VISIBLE_CLASS)
+        }
+      })
     </script>
-
   </body>
 </html>

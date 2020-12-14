@@ -1,13 +1,5 @@
-import {
-  makePopup,
-  makeWidget,
-  makeFullScreen
-} from './lib'
-import {
-  getDataset,
-  sanitizePopupAttributes,
-  sanitizeWidgetAttributes
-} from './core/attributes'
+import { makePopup, makeWidget, makeFullScreen } from './lib'
+import { getDataset, sanitizePopupAttributes, sanitizeWidgetAttributes } from './core/attributes'
 import { SIDE_PANEL } from './core/views/popup'
 
 const onDOMReady = (callback) => {
@@ -76,8 +68,4 @@ onDOMReady(() => {
 
 // Webpack configuration exposes this in window.typeformEmbed
 // for users that load from S3 and use the API
-export {
-  makePopup,
-  makeWidget,
-  makeFullScreen
-}
+export { makePopup, makeWidget, makeFullScreen }

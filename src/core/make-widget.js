@@ -1,18 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import {
-  appendParamsToUrl,
-  replaceExistingKeys,
-  callIfEmbedIdMatches,
-  noop
-} from './utils'
-import {
-  transferUrlParametersToQueryStrings
-} from './utils/url-parameters-transfer'
-import {
-  isMobile
-} from './utils/mobile-detection'
+import { appendParamsToUrl, replaceExistingKeys, callIfEmbedIdMatches, noop } from './utils'
+import { transferUrlParametersToQueryStrings } from './utils/url-parameters-transfer'
+import { isMobile } from './utils/mobile-detection'
 import Widget from './views/widget'
 import { getPostMessageHandler } from './utils/get-post-message-handler'
 import randomString from './utils/random-string'
@@ -27,7 +18,7 @@ const defaultOptions = {
   disableTracking: false,
   transferableUrlParameters: [],
   onSubmit: noop,
-  onScreenChanged: noop
+  onScreenChanged: noop,
 }
 
 const queryStringKeys = {
@@ -38,14 +29,17 @@ const queryStringKeys = {
   hideFooter: 'embed-hide-footer',
   hideHeaders: 'embed-hide-headers',
   opacity: 'embed-opacity',
-  disableTracking: 'disable-tracking'
+  disableTracking: 'disable-tracking',
 }
 
-export default function makeWidget (element, url, options) {
+export default function makeWidget(element, url, options) {
   const embedId = randomString()
   options = { ...defaultOptions, ...options }
 
-  window.addEventListener('message', callIfEmbedIdMatches(getPostMessageHandler('form-ready', options.onReady), embedId))
+  window.addEventListener(
+    'message',
+    callIfEmbedIdMatches(getPostMessageHandler('form-ready', options.onReady), embedId)
+  )
 
   const enabledFullscreen = isMobile(navigator.userAgent)
 
@@ -55,19 +49,14 @@ export default function makeWidget (element, url, options) {
   if (enabledFullscreen) {
     queryStrings = {
       ...queryStrings,
-      'add-placeholder-ws': true
+      'add-placeholder-ws': true,
     }
   }
 
   const urlWithQueryString = appendParamsToUrl(url, queryStrings)
 
   render(
-    <Widget
-      embedId={embedId}
-      enabledFullscreen={enabledFullscreen}
-      options={options}
-      url={urlWithQueryString}
-    />,
+    <Widget embedId={embedId} enabledFullscreen={enabledFullscreen} options={options} url={urlWithQueryString} />,
     element
   )
 }

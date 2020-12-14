@@ -3,11 +3,10 @@ import UrlParse from 'url-parse'
 import onMessage from './message-propagation'
 
 export const checkEmbedId = (embedId, event) => {
-  return (event.detail && event.detail.embedId === embedId) ||
-    (event.data && event.data.embedId === embedId)
+  return (event.detail && event.detail.embedId === embedId) || (event.data && event.data.embedId === embedId)
 }
 
-export const callIfEmbedIdMatches = (func, embedId) => event => {
+export const callIfEmbedIdMatches = (func, embedId) => (event) => {
   if (checkEmbedId(embedId, event)) {
     func(event)
   }
@@ -25,19 +24,12 @@ export const updateQueryStringParameter = (key, value, uri) => {
 
 export const appendParamsToUrl = (url, params) => {
   const queryParameters = []
-  const {
-    query,
-    origin,
-    pathname,
-    hash
-  } = UrlParse(url, true)
+  const { query, origin, pathname, hash } = UrlParse(url, true)
   const path = pathname.replace(/\/$/, '') // remove trailing slash
   const parameters = Object.assign({}, query, params)
 
-  Object.keys(parameters).forEach(key => {
-    queryParameters.push(
-      `${encodeURIComponent(key)}=${encodeURIComponent(parameters[key])}`
-    )
+  Object.keys(parameters).forEach((key) => {
+    queryParameters.push(`${encodeURIComponent(key)}=${encodeURIComponent(parameters[key])}`)
   })
 
   return `${origin}${path}?${queryParameters.join('&')}${hash}`
@@ -82,7 +74,7 @@ export const ensureMetaViewport = (viewportContent) => {
   return null
 }
 
-export const isElementInViewport = el => {
+export const isElementInViewport = (el) => {
   // If it's a nested iframe, don't try to calculate if is insideViewport
   if (window.top !== window) {
     return false
@@ -94,10 +86,8 @@ export const isElementInViewport = el => {
   const docWidth = window.innerWidth || document.documentElement.clientWidth
   const docHeight = window.innerHeight || document.documentElement.clientHeight
 
-  return (rect.top >= -margin &&
-    rect.left >= -margin &&
-    rect.bottom <= docHeight + margin &&
-    rect.right <= docWidth + margin
+  return (
+    rect.top >= -margin && rect.left >= -margin && rect.bottom <= docHeight + margin && rect.right <= docWidth + margin
   )
 }
 
@@ -116,7 +106,7 @@ export const debounce = (func, wait, context) => {
 
 export const noop = () => null
 
-export const redirectToUrl = event => {
+export const redirectToUrl = (event) => {
   const { url } = event.detail
 
   try {

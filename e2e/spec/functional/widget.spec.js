@@ -18,11 +18,15 @@ describe('Basic Embed Widget', () => {
     })
 
     it('Passes hidden field parameter', () => {
-      cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /foobar=hello/)
+      cy.get(IFRAME_SELECTOR)
+        .should('have.attr', 'src')
+        .and('match', /foobar=hello/)
     })
 
     it('Passes Browser URL parameters', () => {
-      cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /utm_source=facebook/)
+      cy.get(IFRAME_SELECTOR)
+        .should('have.attr', 'src')
+        .and('match', /utm_source=facebook/)
     })
   })
 
@@ -36,11 +40,15 @@ describe('Basic Embed Widget', () => {
     })
 
     it('Passes hidden field parameter', () => {
-      cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /foobar=hello/)
+      cy.get(IFRAME_SELECTOR)
+        .should('have.attr', 'src')
+        .and('match', /foobar=hello/)
     })
 
     it('Passes Browser URL parameters', () => {
-      cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /utm_source=facebook/)
+      cy.get(IFRAME_SELECTOR)
+        .should('have.attr', 'src')
+        .and('match', /utm_source=facebook/)
     })
   })
 })
@@ -56,11 +64,15 @@ describe('Basic Embed Widget with Legacy Hidden Fields', () => {
     })
 
     it('Passes hidden field parameter', () => {
-      cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /foobar=hello/)
+      cy.get(IFRAME_SELECTOR)
+        .should('have.attr', 'src')
+        .and('match', /foobar=hello/)
     })
 
     it('Passes Browser URL parameters', () => {
-      cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /utm_source=facebook/)
+      cy.get(IFRAME_SELECTOR)
+        .should('have.attr', 'src')
+        .and('match', /utm_source=facebook/)
     })
   })
 
@@ -74,11 +86,15 @@ describe('Basic Embed Widget with Legacy Hidden Fields', () => {
     })
 
     it('Passes hidden field parameter', () => {
-      cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /foobar=hello/)
+      cy.get(IFRAME_SELECTOR)
+        .should('have.attr', 'src')
+        .and('match', /foobar=hello/)
     })
 
     it('Passes Browser URL parameters', () => {
-      cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /utm_source=facebook/)
+      cy.get(IFRAME_SELECTOR)
+        .should('have.attr', 'src')
+        .and('match', /utm_source=facebook/)
     })
   })
 })
@@ -97,7 +113,9 @@ describe('Full Page Embed Widget', () => {
     })
 
     it('Passes hidden field parameter', () => {
-      cy.get(iframe).should('have.attr', 'src').and('match', /foobar=hello/)
+      cy.get(iframe)
+        .should('have.attr', 'src')
+        .and('match', /foobar=hello/)
     })
   })
 
@@ -111,7 +129,9 @@ describe('Full Page Embed Widget', () => {
     })
 
     it('Passes hidden field parameter', () => {
-      cy.get(iframe).should('have.attr', 'src').and('match', /foobar=hello/)
+      cy.get(iframe)
+        .should('have.attr', 'src')
+        .and('match', /foobar=hello/)
     })
   })
 })

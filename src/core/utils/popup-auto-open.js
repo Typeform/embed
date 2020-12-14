@@ -1,4 +1,3 @@
-
 const openOnExit = (popup, exitThreshold) => {
   let prevY = 0
   const handleMouseMove = (event) => {
@@ -19,7 +18,7 @@ const openOnScroll = (popup, scrollThreshold) => {
     const clientTop = document.documentElement.clientTop || 0
     const pageHeight = document.documentElement.scrollHeight
     const scrollTopPixels = offsetTop - clientTop
-    const scrollTopPercentage = scrollTopPixels / pageHeight * 100
+    const scrollTopPercentage = (scrollTopPixels / pageHeight) * 100
     const scrolledToTheBottom = scrollTopPixels + window.innerHeight >= pageHeight
 
     if (scrollTopPercentage >= scrollThreshold || scrolledToTheBottom) {

@@ -3,9 +3,7 @@ import { render as renderMock } from 'react-dom'
 import UrlParse from 'url-parse'
 
 import makeWidget from './make-widget'
-import {
-  isMobile as isMobileMock
-} from './utils/mobile-detection'
+import { isMobile as isMobileMock } from './utils/mobile-detection'
 import randomString from './utils/random-string'
 
 jest.mock('react-dom')
@@ -25,7 +23,7 @@ describe('makeWidget', () => {
       mandarina: 2,
       source: 'website.com',
       medium: 'embed-wordpress',
-      mediumVersion: '9999'
+      mediumVersion: '9999',
     }
 
     isMobileMock.mockImplementationOnce(() => false)
