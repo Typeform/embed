@@ -28,10 +28,14 @@
     "test:unit": "yarn jest",
     "test:unit:watch": "yarn jest --watch",
     "test:unit:coverage": "yarn jest --coverage",
+    "ci:functional": "start-server-and-test serve-demo 8080 test:ci:functional",
+    "ci:functional:external": "start-server-and-test serve-demo 8080 'yarn test:functional --record false'",
+    "ci:visual": "start-server-and-test serve-demo 8080 test:ci:visual",
+    "test:ci:functional": "yarn test:functional --record --parallel --group functional",
+    "test:ci:visual": "yarn test:visual --record --parallel --group visual",
     "test:visual": "yarn cypress run --spec e2e/spec/visual/**/* --browser chrome",
     "test:functional": "yarn cypress run --spec e2e/spec/functional/**/* --browser chrome",
     "test:debug": "yarn cypress open",
-    "prepublish": "yarn run build",
     "travis-deploy-once": "yarn travis-deploy-once --pro"
   },
   "devDependencies": {
@@ -76,6 +80,7 @@
     "selenium-standalone": "^6.17.0",
     "semantic-release": "^17.0.8",
     "serve": "^11.3.2",
+    "start-server-and-test": "^1.11.6",
     "style-loader": "^1.2.1",
     "travis-deploy-once": "^5.0.11",
     "uglifyjs-webpack-plugin": "^2.2.0",

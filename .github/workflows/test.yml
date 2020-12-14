@@ -1,0 +1,95 @@
+name: Test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+  AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
+  PUBLIC_CDN_URL: 'https://embed.typeform.com'
+  JARVIS_NOTIFY_PREVIEW_TEMPLATE: '"*[BOT]* Preview available: https://embed.typeform.com/\${version}/embed.js"'
+  EYES_API_KEY: ${{ secrets.EYES_API_KEY }}
+  APPLITOOLS_BATCH_ID: ${{ github.sha }}
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ~/.cache
+          key: ${{ runner.os }}-modules-v3-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn install
+      - run: yarn lint
+  unit:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ~/.cache
+          key: ${{ runner.os }}-modules-v3-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn install
+      - run: yarn test:unit
+  #  functional:
+  #    name: Functional Tests
+  #    runs-on: ubuntu-latest
+  #    if: github.event.pull_request.head.repo.full_name == github.repository
+  #    steps:
+  #      - uses: actions/checkout@v2
+  #      - uses: actions/setup-node@v1
+  #      - uses: actions/cache@v2
+  #        with:
+  #          path: |
+  #            **/node_modules
+  #            ~/.cache
+  #          key: ${{ runner.os }}-modules-v3-${{ hashFiles('**/yarn.lock') }}
+  #      - run: yarn install
+  #      - run: yarn build
+  #      - run: yarn ci:functional
+  functional_external:
+    name: Functional Tests (without Cypress)
+    runs-on: ubuntu-latest
+    #    if: github.event.pull_request.head.repo.full_name != github.repository
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ~/.cache
+          key: ${{ runner.os }}-modules-v3-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn install
+      - run: yarn build
+      - run: yarn ci:functional:external
+  visual:
+    name: Visual Tests
+    runs-on: ubuntu-latest
+    #    if: github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ~/.cache
+          key: ${{ runner.os }}-modules-v3-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn install
+      - run: yarn build
+      - run: yarn ci:visual

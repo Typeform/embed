@@ -14,29 +14,37 @@ Requirements:
 
 To work with Embed as a developer:
 
-1. [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) this repository (https://github.com/Typeform/embed)
-2. clone your fork:
+1. [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) this repository (https://github.com/Typeform/embed)
+2. Clone your fork:
    ```bash
    $ git clone git@github.com:<your-github-username>/embed.git
    $ cd embed
    ```
-3. install dependencies
+3. Install dependencies
    ```bash
    $ yarn
    ```
-4. run:
+4. Start server in dev mode and watch for changes:
    ```bash
-   $ yarn start         # start mock-server and run in development the renderer
-   $ yarn test          # run lint, unit and functional tests
-   $ yarn test:visual   # run visual tests (requires EYES_API_KEY env var for AppliTools)
-   $ yarn build         # build project to ./dist and ./lib
-   $ yarn clean         # delete directories with built files (./dist and ./lib)
+   yarn start
    ```
-
-## Development goals
-
-<!-- * TODO: add items to this bullet list of your current goals for Embed -->
-<!-- * TODO: add any priorities you want readers to know about -->
+5. Format and check your code:
+   ```bash
+   yarn prettier          # run prettier and write changes
+   yarn lint              # run linter and check prettier formatting
+   ```
+6. Test your changes and format your code:
+   ```bash
+   yarn test              # run all tests: lint, unit, functional and visual tests
+   yarn test:unit         # run unit tests
+   yarn test:functional   # run functional tests
+   yarn test:visual       # run visual tests (requires EYES_API_KEY env var for AppliTools)
+   ```
+7. Build project. Library is built and published when a pull request is merged to `master`.
+   ```bash
+   yarn build             # build project to ./dist and ./lib
+   yarn clean             # delete directories with built files (./dist and ./lib)
+   ```
 
 ## Development suggestions
 
@@ -69,12 +77,8 @@ Can have multiple lines.
 BREAKING CHANGE: This line should explain which changes. It is required onyl for commits with breaking change.
 ```
 
-Each open pull request will be tested automatically with:
-
-```bash
-$ yarn test
-$ yarn test:visual
-```
+Each open pull request will be tested automatically [via Github Actions](./.github/workflows/test.yml).
+It is recommended to run lint, unit & functional tests locally before opening a pull request.
 
 ## Send us feedback
 

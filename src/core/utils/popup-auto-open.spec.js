@@ -20,20 +20,13 @@ describe('handleAutoOpen', () => {
   })
 
   describe('on exit', () => {
-    const removeEventListener = jest.fn()
     let handler
 
     beforeAll(() => {
-      global.document = {
-        addEventListener: (_event, fn) => {
-          handler = fn
-        },
-        removeEventListener,
-      }
-    })
-
-    afterAll(() => {
-      delete global.document
+      jest.spyOn(document, 'addEventListener').mockImplementation((_event, fn) => {
+        handler = fn // retrieve the auto-open handler method for testing
+      })
+      jest.spyOn(document, 'removeEventListener')
     })
 
     it('should not open the popup when mouse moves outside the threshold', () => {
@@ -44,7 +37,7 @@ describe('handleAutoOpen', () => {
       handler({ clientY: 110 })
       handler({ clientY: 105 })
       expect(mockPopup.open).toHaveBeenCalledTimes(0)
-      expect(removeEventListener).toHaveBeenCalledTimes(0)
+      expect(document.removeEventListener).toHaveBeenCalledTimes(0)
     })
 
     it('should not open the popup when mouse moves down', () => {
@@ -54,7 +47,7 @@ describe('handleAutoOpen', () => {
       handler({ clientY: 11 })
       handler({ clientY: 12 })
       expect(mockPopup.open).toHaveBeenCalledTimes(0)
-      expect(removeEventListener).toHaveBeenCalledTimes(0)
+      expect(document.removeEventListener).toHaveBeenCalledTimes(0)
     })
 
     it('should open the popup (and remove event listener) when mouse moves up', () => {
@@ -62,7 +55,7 @@ describe('handleAutoOpen', () => {
       handler({ clientY: 10 })
       handler({ clientY: 8 })
       expect(mockPopup.open).toHaveBeenCalledTimes(1)
-      expect(removeEventListener).toHaveBeenCalledTimes(1)
+      expect(document.removeEventListener).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -83,44 +76,32 @@ describe('handleAutoOpen', () => {
   })
 
   describe('on scroll', () => {
-    const removeEventListener = jest.fn()
     let handler
 
     beforeAll(() => {
-      global.document = {
-        documentElement: {
-          scrollHeight: 1000,
-        },
-        addEventListener: (_event, fn) => {
-          handler = fn
-        },
-        removeEventListener,
-      }
-      global.window = {
-        pageYOffset: 0,
-        innerHeight: 500,
-      }
-    })
-
-    afterAll(() => {
-      delete global.document
-      delete global.window
+      jest.spyOn(document, 'addEventListener').mockImplementation((_event, fn) => {
+        handler = fn // retrieve the auto-open handler method for testing
+      })
+      jest.spyOn(document, 'removeEventListener')
+      window.pageYOffset = 0
+      window.innerHeight = 500
+      Object.defineProperty(window.HTMLHtmlElement.prototype, 'scrollHeight', { value: 1000 })
     })
 
     it('should not open the popup when the page has not scrolled past the threshold', () => {
       handleAutoOpen(mockPopup, 'scroll', 30)
 
-      global.window.pageYOffset = 0
+      window.pageYOffset = 0
       handler()
 
-      global.window.pageYOffset = 100
+      window.pageYOffset = 100
       handler()
 
-      global.window.pageYOffset = 299
+      window.pageYOffset = 299
       handler()
 
       expect(mockPopup.open).toHaveBeenCalledTimes(0)
-      expect(removeEventListener).toHaveBeenCalledTimes(0)
+      expect(document.removeEventListener).toHaveBeenCalledTimes(0)
     })
 
     it('should open the popup when the page has scrolled past the threshold', () => {
@@ -128,7 +109,7 @@ describe('handleAutoOpen', () => {
       global.window.pageYOffset = 300
       handler()
       expect(mockPopup.open).toHaveBeenCalledTimes(1)
-      expect(removeEventListener).toHaveBeenCalledTimes(1)
+      expect(document.removeEventListener).toHaveBeenCalledTimes(1)
     })
 
     it('should open the popup when the page is scrolled at the end and threshold is beyond the end', () => {
@@ -136,7 +117,7 @@ describe('handleAutoOpen', () => {
       global.window.pageYOffset = 500
       handler()
       expect(mockPopup.open).toHaveBeenCalledTimes(1)
-      expect(removeEventListener).toHaveBeenCalledTimes(1)
+      expect(document.removeEventListener).toHaveBeenCalledTimes(1)
     })
   })
 
