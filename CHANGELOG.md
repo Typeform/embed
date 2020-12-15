@@ -1,3 +1,22 @@
+## [0.31.1](https://github.com/Typeform/embed/compare/v0.31.0...v0.31.1) (2020-12-15)
+
+
+### Bug Fixes
+
+* **DIST-584:** Remove www from tracking ([#112](https://github.com/Typeform/embed/issues/112)) ([2a67f57](https://github.com/Typeform/embed/commit/2a67f5728f9ef0418e2d46fc0e6af9619861baf8))
+
+# [0.31.0](https://github.com/Typeform/embed/compare/v0.30.0...v0.31.0) (2020-12-14)
+
+
+### Bug Fixes
+
+* **DIST-568:** Restore viewport when popup is closed ([32f3c9b](https://github.com/Typeform/embed/commit/32f3c9b24179a9f2f408c4ac6f7bd6661386f7b0))
+
+
+### Features
+
+* Update eslint and add prettier ([7745536](https://github.com/Typeform/embed/commit/7745536d7cf56312b2018fb8e019fc4b542f3687))
+
 # [0.30.0](https://github.com/Typeform/embed/compare/v0.29.1...v0.30.0) (2020-12-03)
 
 

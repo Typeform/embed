@@ -25,13 +25,13 @@ const closeArrow = css`
 
 const ArrowLeft = styled.span`
   ${closeArrow}
-  background-color: ${p => p.backgroundColor};
+  background-color: ${(p) => p.backgroundColor};
   transform: translate(0, 13px) rotate3d(0, 0, 1, -135deg);
 `
 
 const ArrowRight = styled.span`
   ${closeArrow}
-  background-color: ${p => p.backgroundColor};
+  background-color: ${(p) => p.backgroundColor};
   transform: translate(0, 13px) rotate3d(0, 0, 1, -45deg);
 `
 
@@ -42,11 +42,10 @@ const CloseIcon = ({ color, onClick, dataQa }) => (
   </Root>
 )
 
-CloseIcon.propTypes =
-  {
-    color: PropTypes.string,
-    dataQa: PropTypes.string,
-    onClick: PropTypes.func
-  }
+CloseIcon.propTypes = {
+  color: PropTypes.string,
+  dataQa: PropTypes.string,
+  onClick: PropTypes.func,
+}
 
 export default CloseIcon

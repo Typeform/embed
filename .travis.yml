@@ -4,10 +4,10 @@ dist: xenial
 language: node_js
 
 node_js:
-  - "12"
+  - '12'
 
 python:
-  - "3.6"
+  - '3.6'
 
 addons:
   # https://stackoverflow.com/questions/57903415/travis-ci-chrome-62-instead-of-77
@@ -29,7 +29,7 @@ notifications:
     on_pull_requests: true
 
 env:
-  VERSION: "$TRAVIS_BUILD_NUMBER"
+  VERSION: '$TRAVIS_BUILD_NUMBER'
 
 before_install:
   - export APPLITOOLS_BATCH_ID=`echo ${TRAVIS_PULL_REQUEST_SHA:=$TRAVIS_COMMIT}`
@@ -41,35 +41,35 @@ before_install:
 
 jobs:
   include:
-    - stage: "Test"
-      name: "Lint"
+    - stage: 'Test'
+      name: 'Lint'
       if: branch = master
       script:
         - yarn lint
-    - name: "Unit Tests"
+    - name: 'Unit Tests'
       if: branch = master
       script:
         - yarn test:unit
-    - name: "Functional Tests (Internal)"
+    - name: 'Functional Tests (Internal)'
       if: fork = false AND branch = master
       script:
         - yarn serve-demo & export EMBED_PID=$!
         - yarn test:functional  --record --parallel --group functional
         - kill $EMBED_PID
-    - name: "Functional Tests (External)"
+    - name: 'Functional Tests (External)'
       if: fork = true AND branch = master
       script:
         - yarn serve-demo & export EMBED_PID=$!
         - yarn test:functional --record false
         - kill $EMBED_PID
-    - name: "Visual Tests (Internal)"
+    - name: 'Visual Tests (Internal)'
       if: fork = false AND branch = master
       script:
         - yarn serve-demo & export EMBED_PID=$!
         - yarn test:visual  --record --parallel --group visual
         - kill $EMBED_PID
-    - stage: "Release"
-      name: "Deploy Preview to AWS"
+    - stage: 'Release'
+      name: 'Deploy Preview to AWS'
       # Deploy to preview preview URL for testing purposes. Only deploy pull requests to 'master' branch.
       if: (type = pull_request AND branch = master AND fork = false) OR (type = push AND branch =~ /preview-./)
       script:
@@ -78,11 +78,11 @@ jobs:
         - yarn add @typeform/jarvis
         - ./scripts/consolidate-dist.sh
         - DEBUG=jarvis yarn run jarvis deploy --path dist --preview --notify-preview
-    - name: "Release to NPM"
+    - name: 'Release to NPM'
       if: branch = master AND type = push
       script:
         - yarn semantic-release
-    - name: "Release to AWS"
+    - name: 'Release to AWS'
       if: branch = master AND type = push
       script:
         - yarn build

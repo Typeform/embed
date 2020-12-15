@@ -2,7 +2,7 @@ import { handleAutoOpen } from './popup-auto-open'
 
 describe('handleAutoOpen', () => {
   const mockPopup = {
-    open: jest.fn()
+    open: jest.fn(),
   }
 
   afterEach(() => {
@@ -28,7 +28,7 @@ describe('handleAutoOpen', () => {
         addEventListener: (_event, fn) => {
           handler = fn
         },
-        removeEventListener
+        removeEventListener,
       }
     })
 
@@ -89,16 +89,16 @@ describe('handleAutoOpen', () => {
     beforeAll(() => {
       global.document = {
         documentElement: {
-          scrollHeight: 1000
+          scrollHeight: 1000,
         },
         addEventListener: (_event, fn) => {
           handler = fn
         },
-        removeEventListener
+        removeEventListener,
       }
       global.window = {
         pageYOffset: 0,
-        innerHeight: 500
+        innerHeight: 500,
       }
     })
 

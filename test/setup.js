@@ -9,5 +9,5 @@ const { window } = new JSDOM('<html><body></body></html')
 global.window = window
 global.document = window.document
 global.navigator = {
-  userAgent: 'node.js'
+  userAgent: 'node.js',
 }

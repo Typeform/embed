@@ -1,79 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Form mock</title>
-  <style type="text/css">
-    html, body {
-      background: #647;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 30px;
-    }
-    img {
-      display: block;
-      width: 100%;
-      max-width: 700px;
-      margin: 40px auto;
-    }
-    button {
-      display: block;
-      margin: 0 auto;
-      width: 100px;
-      height: 48px;
-      background-color: #fff;
-      color: #647;
-      font-size: 20px;
-      font-weight: 700;
-      line-height: 48px;
-      cursor: pointer;
-      outline: none;
-      border: none;
-      border-radius: 4px;
-      box-shadow: rgba(0, 0, 0, 0.1) 0 3px 12px 0;
-    }
-  </style>
-</head>
-<body>
-  <div id="root">
-    <div data-qa="renderer">
-      <div data-qa="welcome-screen-wrapper">
-        <h1>This is the typeform you are looking for</h1>
-        <img src="./photo.jpg" alt="photo" />
-        <button onclick="start()" data-qa="start-button">Start</button>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Form mock</title>
+    <style type="text/css">
+      html,
+      body {
+        background: #647;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        text-align: center;
+        padding: 20px;
+      }
+      h1 {
+        font-size: 30px;
+      }
+      img {
+        display: block;
+        width: 100%;
+        max-width: 700px;
+        margin: 40px auto;
+      }
+      button {
+        display: block;
+        margin: 0 auto;
+        width: 100px;
+        height: 48px;
+        background-color: #fff;
+        color: #647;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 48px;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        border-radius: 4px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 3px 12px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div data-qa="renderer">
+        <div data-qa="welcome-screen-wrapper">
+          <h1>This is the typeform you are looking for</h1>
+          <img src="./photo.jpg" alt="photo" />
+          <button onclick="start()" data-qa="start-button">Start</button>
 
-        <!-- hidden input field for closing the form via keyboard in functional tests (cypress requires input element for typing) -->
-        <input type="hidden" data-qa="form-input" />
+          <!-- hidden input field for closing the form via keyboard in functional tests (cypress requires input element for typing) -->
+          <input type="hidden" data-qa="form-input" />
+        </div>
       </div>
     </div>
-  </div>
-</body>
-<script>
-  window.onload = function() {
-    send('form-theme', { theme: { backgroundColor: '#647', color: '#fff' } })
-    send('form-ready')
-  }
-  document.onkeydown = function(event) {
-    if (event.key === "Escape" || event.key === "Esc") {
-      send('form-close')
+  </body>
+  <script>
+    window.onload = function () {
+      send('form-theme', { theme: { backgroundColor: '#647', color: '#fff' } })
+      send('form-ready')
     }
-  }
+    document.onkeydown = function (event) {
+      if (event.key === 'Escape' || event.key === 'Esc') {
+        send('form-close')
+      }
+    }
 
-  function start() {
-    send('welcome-screen-hidden')
-  }
-  function send(type, data = {}) {
-    var embedIdParam = window.location.search.match(/typeform-embed-id=([^&]+)/)
-    data.type = type
-    data.embedId = embedIdParam && embedIdParam[1]
-    console.log('Triggering event', data)
-    window.parent.postMessage(data)
-  }
-</script>
+    function start() {
+      send('welcome-screen-hidden')
+    }
+    function send(type, data = {}) {
+      var embedIdParam = window.location.search.match(/typeform-embed-id=([^&]+)/)
+      data.type = type
+      data.embedId = embedIdParam && embedIdParam[1]
+      console.log('Triggering event', data)
+      window.parent.postMessage(data)
+    }
+  </script>
 </html>
