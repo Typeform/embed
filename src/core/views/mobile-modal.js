@@ -114,9 +114,7 @@ class MobileModal extends Component {
   setupGoogleAnalyticsInstanceSharingFeature() {
     if (this.props.options.shareGoogleAnalyticsInstance) {
       const { iframeRef } = this.iframe
-      const canPostMessage =
-      this.state.isFormReady &&
-      iframeRef.contentWindow != null
+      const canPostMessage = this.state.isFormReady && iframeRef.contentWindow != null
       if (canPostMessage) {
         setupGoogleAnalyticsInstanceSharingFeature(iframeRef, this.props.embedId)
       }
@@ -171,10 +169,10 @@ class MobileModal extends Component {
     }
   }
 
-  handleFormReady () {
+  handleFormReady() {
     this.setState(
       {
-        isFormReady: true
+        isFormReady: true,
       },
       () => {
         this.setupGoogleAnalyticsInstanceSharingFeature()
@@ -219,7 +217,7 @@ MobileModal.defaultProps = {
   autoClose: null,
   backgroundColor: 'transparent',
   buttonColor: '#FFF',
-  options: {}
+  options: {},
 }
 
 export default MobileModal

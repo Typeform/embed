@@ -166,9 +166,7 @@ class Widget extends Component {
   setupGoogleAnalyticsInstanceSharingFeature() {
     if (this.props.options.shareGoogleAnalyticsInstance) {
       const { iframeRef } = this.iframe
-      const canPostMessage =
-      this.state.isFormReady &&
-      iframeRef.contentWindow != null
+      const canPostMessage = this.state.isFormReady && iframeRef.contentWindow != null
       if (canPostMessage) {
         setupGoogleAnalyticsInstanceSharingFeature(iframeRef, this.props.embedId)
       }

@@ -12,10 +12,7 @@ const setupGoogleAnalyticsInstanceSharingFeature = (iframeRef, embedId) => {
 
   const sendGaIdMessage = (gaClientId) => {
     const data = { embedId, gaClientId }
-    setTimeout(
-      () => iframeRef.contentWindow.postMessage({ type: 'ga-client-id', data }, '*'),
-      0
-    )
+    setTimeout(() => iframeRef.contentWindow.postMessage({ type: 'ga-client-id', data }, '*'), 0)
   }
 
   gaObject((tracker) => {

@@ -228,9 +228,7 @@ class Popup extends Component {
   setupGoogleAnalyticsInstanceSharingFeature() {
     if (this.props.options.shareGoogleAnalyticsInstance) {
       const { iframeRef } = this.iframe
-      const canPostMessage =
-      this.state.isFormReady &&
-      iframeRef.contentWindow != null
+      const canPostMessage = this.state.isFormReady && iframeRef.contentWindow != null
       if (canPostMessage) {
         setupGoogleAnalyticsInstanceSharingFeature(iframeRef, this.props.embedId)
       }
@@ -294,7 +292,7 @@ class Popup extends Component {
   handleFormReady() {
     this.setState(
       {
-        isFormReady: true
+        isFormReady: true,
       },
       () => {
         this.setupGoogleAnalyticsInstanceSharingFeature()
@@ -400,12 +398,7 @@ class Popup extends Component {
             src={closeImg}
           />
         )}
-        <Iframe
-          onLoad={this.handleIframeLoad}
-          ref={this.setIframeRef}
-          src={iframeUrl}
-          style={iframeStyles}
-        />
+        <Iframe onLoad={this.handleIframeLoad} ref={this.setIframeRef} src={iframeUrl} style={iframeStyles} />
       </Wrapper>
     )
 
