@@ -4,10 +4,9 @@ const setupGoogleAnalyticsInstanceSharingFeature = (iframeRef, embedId) => {
   const gaObject = window[window.GoogleAnalyticsObject]
 
   if (gaObject === undefined || gaObject === null) {
-    throw new Error(
-      `Whoops! You enabled the shareGoogleAnalyticsInstance feature but the google analytics object has not been found. 
-      Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript code in your page. `
-    )
+    // eslint-disable-next-line no-console
+    console.error(`Whoops! You enabled the shareGoogleAnalyticsInstance feature but the google analytics object has not been found. 
+      Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript code in your page.`)
   }
 
   const sendGaIdMessage = (gaClientId) => {
