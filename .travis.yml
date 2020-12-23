@@ -54,7 +54,7 @@ jobs:
       if: fork = false AND branch = master
       script:
         - yarn serve-demo & export EMBED_PID=$!
-        - yarn test:functional  --record --parallel --group functional
+        - yarn test:functional  --record --parallel --group functional-$TRAVIS_BUILD_NUMBER
         - kill $EMBED_PID
     - name: 'Functional Tests (External)'
       if: fork = true AND branch = master
@@ -66,7 +66,7 @@ jobs:
       if: fork = false AND branch = master
       script:
         - yarn serve-demo & export EMBED_PID=$!
-        - yarn test:visual  --record --parallel --group visual
+        - yarn test:visual  --record --parallel --group visual-$TRAVIS_BUILD_NUMBER
         - kill $EMBED_PID
     - stage: 'Release'
       name: 'Deploy Preview to AWS'
