@@ -17,6 +17,7 @@ const defaultOptions = {
   hideScrollbars: false,
   disableTracking: false,
   transferableUrlParameters: [],
+  shareGoogleAnalyticsInstance: false,
   onSubmit: noop,
   onScreenChanged: noop,
 }
@@ -30,6 +31,7 @@ const queryStringKeys = {
   hideHeaders: 'embed-hide-headers',
   opacity: 'embed-opacity',
   disableTracking: 'disable-tracking',
+  shareGoogleAnalyticsInstance: 'share-ga-instance',
 }
 
 export default function makeWidget(element, url, options) {

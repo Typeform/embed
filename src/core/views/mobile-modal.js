@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled, { createGlobalStyle } from 'styled-components'
 
+import setupGoogleAnalyticsInstanceSharingFeature from '../features/google-analytics-instance-sharing'
+
 import CloseIcon from './components/close-icon'
 import Iframe from './components/iframe'
 import {
@@ -52,10 +54,12 @@ class MobileModal extends Component {
     }
 
     this.handleMessage = this.handleMessage.bind(this)
+    this.handleFormReady = callIfEmbedIdMatches(this.handleFormReady.bind(this), this.props.embedId)
     this.handleAutoClose = callIfEmbedIdMatches(this.handleAutoClose.bind(this), this.props.embedId)
     this.handleFormSubmit = callIfEmbedIdMatches(this.handleFormSubmit.bind(this), this.props.embedId)
     this.handleFormTheme = callIfEmbedIdMatches(this.handleFormTheme.bind(this), this.props.embedId)
     this.handleClose = this.handleClose.bind(this)
+    this.setIframeRef = this.setIframeRef.bind(this)
   }
 
   componentDidMount() {
@@ -63,6 +67,7 @@ class MobileModal extends Component {
     this.setState({ originalViewportContent })
 
     window.addEventListener('message', this.handleMessage)
+    window.addEventListener('form-ready', this.handleFormReady)
     window.addEventListener('embed-auto-close-popup', this.handleAutoClose)
     window.addEventListener('form-submit', this.handleFormSubmit)
     window.addEventListener('form-theme', this.handleFormTheme)
@@ -92,6 +97,7 @@ class MobileModal extends Component {
     this.setState({ originalViewportContent: null })
 
     window.removeEventListener('message', this.handleMessage)
+    window.removeEventListener('form-ready', this.handleFormReady)
     window.removeEventListener('embed-auto-close-popup', this.handleAutoClose)
     window.removeEventListener('form-submit', this.handleFormSubmit)
     window.removeEventListener('form-theme', this.handleFormTheme)
@@ -99,6 +105,20 @@ class MobileModal extends Component {
     window.removeEventListener('thank-you-screen-redirect', redirectToUrl)
 
     document.body.classList.remove('__typeform-embed-mobile-modal-open')
+  }
+
+  setIframeRef(node) {
+    this.iframe = node
+  }
+
+  setupGoogleAnalyticsInstanceSharingFeature() {
+    if (this.props.options.shareGoogleAnalyticsInstance) {
+      const { iframeRef } = this.iframe
+      const canPostMessage = this.state.isFormReady && iframeRef.contentWindow != null
+      if (canPostMessage) {
+        setupGoogleAnalyticsInstanceSharingFeature(iframeRef, this.props.embedId)
+      }
+    }
   }
 
   handleMessage(event) {
@@ -149,6 +169,17 @@ class MobileModal extends Component {
     }
   }
 
+  handleFormReady() {
+    this.setState(
+      {
+        isFormReady: true,
+      },
+      () => {
+        this.setupGoogleAnalyticsInstanceSharingFeature()
+      }
+    )
+  }
+
   render() {
     const { embedId, url, open } = this.props
     const { backgroundColor, buttonColor } = this.state
@@ -158,7 +189,7 @@ class MobileModal extends Component {
     return (
       <Wrapper backgroundColor={backgroundColor} data-qa="mobile-modal" open={open} openDelay={this.props.openDelay}>
         <GlobalStyle />
-        {open && <Iframe src={iframeUrl} />}
+        {open && <Iframe ref={this.setIframeRef} src={iframeUrl} />}
         <CloseIcon color={buttonColor} dataQa="close-button-mobile" onClick={this.handleClose} />
       </Wrapper>
     )
@@ -168,6 +199,7 @@ class MobileModal extends Component {
 MobileModal.propTypes = {
   url: PropTypes.string,
   open: PropTypes.bool,
+  options: PropTypes.object,
   isAutoCloseEnabled: PropTypes.bool,
   backgroundColor: PropTypes.string,
   buttonColor: PropTypes.string,
@@ -185,6 +217,7 @@ MobileModal.defaultProps = {
   autoClose: null,
   backgroundColor: 'transparent',
   buttonColor: '#FFF',
+  options: {},
 }
 
 export default MobileModal
