@@ -1,3 +1,18 @@
+# [0.32.0](https://github.com/Typeform/embed/compare/v0.31.1...v0.32.0) (2021-01-04)
+
+
+### Bug Fixes
+
+* **PI-89:** Fix missing binding ([de21178](https://github.com/Typeform/embed/commit/de21178f3a809388e0c4c9ce0ad2bcfad3466157))
+
+
+### Features
+
+* Add data-share-google-analytics-instance attribute to embed ([f4931b3](https://github.com/Typeform/embed/commit/f4931b3ab43405a48e8f4a3dc74c0f635fb3f4b4))
+* Instanciate Google instance sharing feature on form ready ([f96fe17](https://github.com/Typeform/embed/commit/f96fe17849b3f3e0843991a1cd62d699802bef1c))
+* MobileModal Add default empty options prop ([047d3f6](https://github.com/Typeform/embed/commit/047d3f6579b1cee38038e26dc73031653e3396c4))
+* Turns throw error into console.error ([63b4b98](https://github.com/Typeform/embed/commit/63b4b9847ed43ae5ea3b37a9dd7abd4477266a0a))
+
 ## [0.31.1](https://github.com/Typeform/embed/compare/v0.31.0...v0.31.1) (2020-12-15)
 
 
