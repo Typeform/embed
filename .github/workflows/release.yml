@@ -16,6 +16,14 @@ jobs:
     name: Release to NPM
     runs-on: ubuntu-latest # [self-hosted, node-12]
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ~/.cache
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install
       - run: yarn build
       - run: yarn semantic-release
@@ -23,6 +31,14 @@ jobs:
     name: Release to AWS
     runs-on: ubuntu-latest # [self-hosted, node-12]
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ~/.cache
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       # Update registry before installing private package. See CONTRIBUTING.md for more details.
       - run: rm ./.npmrc
       - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
