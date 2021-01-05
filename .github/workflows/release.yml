@@ -10,6 +10,7 @@ env:
   AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
   AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
   PUBLIC_CDN_URL: 'https://embed.typeform.com'
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
   release_npm:
@@ -47,4 +48,4 @@ jobs:
       - run: yarn build
       - run: yarn add @typeform/jarvis
       - run: ./scripts/consolidate-dist.sh
-      - run: DEBUG=jarvis jarvis deploy --path dist
+      - run: DEBUG=jarvis yarn jarvis deploy --path dist
