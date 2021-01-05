@@ -34,7 +34,7 @@ jobs:
       - run: yarn build
       - run: yarn semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_SEMANTIC_RELEASE }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   release_aws:
     name: Release to AWS
     runs-on: ubuntu-latest # [self-hosted, node-12]
