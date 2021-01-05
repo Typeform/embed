@@ -6,7 +6,6 @@ on:
 
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  GH_TOKEN_SEMANTIC_RELEASE: ${{ secrets.GH_TOKEN_SEMANTIC_RELEASE }}
   AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
   AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
   AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
@@ -28,7 +27,9 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install
       - run: yarn build
-      - run: GITHUB_TOKEN=$GH_TOKEN_SEMANTIC_RELEASE yarn semantic-release
+      - run: yarn semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_SEMANTIC_RELEASE }}
   release_aws:
     name: Release to AWS
     runs-on: ubuntu-latest # [self-hosted, node-12]
