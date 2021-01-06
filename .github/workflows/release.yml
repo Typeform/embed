@@ -18,12 +18,6 @@ jobs:
     runs-on: ubuntu-latest # [self-hosted, node-12]
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          # Use custom GITHUB_TOKEN from repo secrets to allow semantic release to push commit:
-          # https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/github-actions.md#pushing-packagejson-changes-to-a-master-branch
-          persist-credentials: false
-          token: ${{ secrets.GH_TOKEN_SEMANTIC_RELEASE }}
       - uses: actions/setup-node@v1
       - uses: actions/cache@v2
         with:
@@ -34,8 +28,6 @@ jobs:
       - run: yarn install
       - run: yarn build
       - run: yarn semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_SEMANTIC_RELEASE }}
   release_aws:
     name: Release to AWS
     runs-on: ubuntu-latest # [self-hosted, node-12]
