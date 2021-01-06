@@ -33,6 +33,11 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install
       - run: yarn build
+      # Update registry and tokens with write access for releasing.
+      - run: rm ./.npmrc
+      - run: npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
+      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+      - run: npm config set @typeform:registry https://npm.pkg.github.com/
       - run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -48,7 +53,7 @@ jobs:
             **/node_modules
             ~/.cache
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      # Update registry before installing private package. See CONTRIBUTING.md for more details.
+      # Update registry before installing private package @typeform/jarvis. See CONTRIBUTING.md for more details.
       - run: rm ./.npmrc
       - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
       - run: npm config set @typeform:registry https://npm.pkg.github.com/
