@@ -1,3 +1,10 @@
+# [0.33.0](https://github.com/Typeform/embed/compare/v0.32.0...v0.33.0) (2021-01-06)
+
+
+### Features
+
+* **DIST-589:** Run CI in Github Actions instead of Travis ([da9b15a](https://github.com/Typeform/embed/commit/da9b15a0dcb8188f80a61b2699f3665fb68ced50))
+
 # [0.32.0](https://github.com/Typeform/embed/compare/v0.31.1...v0.32.0) (2021-01-04)
 
 
