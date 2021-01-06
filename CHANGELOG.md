@@ -1,3 +1,10 @@
+## [0.33.1](https://github.com/Typeform/embed/compare/v0.33.0...v0.33.1) (2021-01-06)
+
+
+### Bug Fixes
+
+* **DIST-589:** Update release Github Action workflow ([6537cb3](https://github.com/Typeform/embed/commit/6537cb309ce0f7a1860f92b906c1b6827c2c40a4))
+
 # [0.33.0](https://github.com/Typeform/embed/compare/v0.32.0...v0.33.0) (2021-01-06)
 
 

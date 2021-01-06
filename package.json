@@ -1,6 +1,6 @@
 {
   "name": "@typeform/embed",
-  "version": "0.33.0",
+  "version": "0.33.1",
   "description": "Library to embed typeform in your website",
   "author": "Typeform",
   "license": "LGPL-3.0-only",
