@@ -1,3 +1,10 @@
+## [0.33.2](https://github.com/Typeform/embed/compare/v0.33.1...v0.33.2) (2021-01-07)
+
+
+### Bug Fixes
+
+* **DIST-589:** Update README ([3798ca6](https://github.com/Typeform/embed/commit/3798ca66962f933778d4315eb6f97b0273d9dfe6))
+
 ## [0.33.1](https://github.com/Typeform/embed/compare/v0.33.0...v0.33.1) (2021-01-06)
 
 
