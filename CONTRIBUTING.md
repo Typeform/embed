@@ -46,6 +46,26 @@ To work with Embed as a developer:
    yarn clean             # delete directories with built files (./dist and ./lib)
    ```
 
+## Tests
+
+In order to run visual tests, you need an applitools key.
+
+- Add a `.env` file in your root, you can look at the `.env.example`
+- Add your api key `EYES_API_KEY=HERE_GOES_YOUR_KEY`
+- (Optional) You can add the url, by default the url is `http://localhost:8080`
+- Start the server `yarn start`
+- Run the tests with `yarn test`
+- - This command will run all the tests. That means **unit tests**, **integration tests** and **visual tests**
+
+This is the list of all the test commands, if you want to run them one by one:
+
+```
+yarn lint               # Run eslint and prettier check
+yarn test:unit          # Runs unit tests
+yarn test:functional    # Runs functional tests with Cypress
+yarn test:visual        # Runs visual tests with Cypress and Applitools
+```
+
 ## Development suggestions
 
 <!-- TODO: add any "wishlist" items you hope someone might develop -->

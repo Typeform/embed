@@ -229,23 +229,6 @@ Although we have no hard limit, we recommend having a height of at least 350px.
 
 We use `position: fixed` to position our modal relative to its containing block established by the viewport. If one of the modal ancestors has a `transform`, `perspective`, or `filter` css property set to something other than `none` the positioning will be relative to it and probably not visible by the user.
 
-## Tests
-
-In order to run visual tests, you need an applitools key.
-
-- Add a `.env` file in your root, you can look at the `.env.example`
-- Add your api key `EYES_API_KEY=HERE_GOES_YOUR_KEY`
-- (Optional) You can add the url, by default the url is `http://localhost:8080`
-- Start the server `yarn start`
-- Run the tests with `yarn test`
-- - This command will run all the tests. That means **unit tests**, **integration tests** and **visual tests**
-
-This is the list of all the test commands, if you want to run them one by one:
-
-- `yarn test:unit` --> Runs unit tests
-- `yarn test:functional` --> Runs functional tests with Cypress
-- `yarn test:visual` --> Runs visual tests with Cypress and Applitools
-
 ## Feedback
 
 We are always open to your [feedback](https://tfproductops.typeform.com/to/RGpsdc).
