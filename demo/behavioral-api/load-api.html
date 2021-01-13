@@ -8,19 +8,19 @@
     <h1>This popup opens on page load (via API)</h1>
     <p>If you see this you very likely already closed the popup.</p>
     <p>If the popup did not open automatically something is broken.</p>
-    <p>Popover embed does not have a close button by default and needs to be explicitly provided when embedding via API. <a href="../popup-api.html">See popup API demo for details.</a></p>
+    <p>
+      Popover embed does not have a close button by default and needs to be explicitly provided when embedding via API.
+      <a href="../popup-api.html">See popup API demo for details.</a>
+    </p>
 
     <script type="text/javascript" src="../embed.js"></script>
     <script>
-      window.typeformEmbed.makePopup(
-        '../form/mock.html#foobar=hello',
-        {
-          mode: 'popover',
-          open: 'load',
-          width: 400,
-          height: 550,
-        }
-      )
+      window.typeformEmbed.makePopup('../form/mock.html#foobar=hello', {
+        mode: 'popover',
+        open: 'load',
+        width: 400,
+        height: 550,
+      })
     </script>
   </body>
 </html>

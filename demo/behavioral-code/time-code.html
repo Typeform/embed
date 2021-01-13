@@ -30,10 +30,10 @@
     <script>
       const param = window.location.search.match(/ms=(\d+)/)
       if (param) {
-        const ms = parseInt(param[1], 10);
-        document.getElementById('popup').dataset.openValue = ms;
-        document.getElementById('time').value = ms;
-        document.getElementById('seconds').innerHTML = Math.round(ms / 1000);
+        const ms = parseInt(param[1], 10)
+        document.getElementById('popup').dataset.openValue = ms
+        document.getElementById('time').value = ms
+        document.getElementById('seconds').innerHTML = Math.round(ms / 1000)
       }
     </script>
 

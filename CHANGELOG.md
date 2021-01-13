@@ -1,3 +1,90 @@
+## [0.33.2](https://github.com/Typeform/embed/compare/v0.33.1...v0.33.2) (2021-01-07)
+
+
+### Bug Fixes
+
+* **DIST-589:** Update README ([3798ca6](https://github.com/Typeform/embed/commit/3798ca66962f933778d4315eb6f97b0273d9dfe6))
+
+## [0.33.1](https://github.com/Typeform/embed/compare/v0.33.0...v0.33.1) (2021-01-06)
+
+
+### Bug Fixes
+
+* **DIST-589:** Update release Github Action workflow ([6537cb3](https://github.com/Typeform/embed/commit/6537cb309ce0f7a1860f92b906c1b6827c2c40a4))
+
+# [0.33.0](https://github.com/Typeform/embed/compare/v0.32.0...v0.33.0) (2021-01-06)
+
+
+### Features
+
+* **DIST-589:** Run CI in Github Actions instead of Travis ([da9b15a](https://github.com/Typeform/embed/commit/da9b15a0dcb8188f80a61b2699f3665fb68ced50))
+
+# [0.32.0](https://github.com/Typeform/embed/compare/v0.31.1...v0.32.0) (2021-01-04)
+
+
+### Bug Fixes
+
+* **PI-89:** Fix missing binding ([de21178](https://github.com/Typeform/embed/commit/de21178f3a809388e0c4c9ce0ad2bcfad3466157))
+
+
+### Features
+
+* Add data-share-google-analytics-instance attribute to embed ([f4931b3](https://github.com/Typeform/embed/commit/f4931b3ab43405a48e8f4a3dc74c0f635fb3f4b4))
+* Instanciate Google instance sharing feature on form ready ([f96fe17](https://github.com/Typeform/embed/commit/f96fe17849b3f3e0843991a1cd62d699802bef1c))
+* MobileModal Add default empty options prop ([047d3f6](https://github.com/Typeform/embed/commit/047d3f6579b1cee38038e26dc73031653e3396c4))
+* Turns throw error into console.error ([63b4b98](https://github.com/Typeform/embed/commit/63b4b9847ed43ae5ea3b37a9dd7abd4477266a0a))
+
+## [0.31.1](https://github.com/Typeform/embed/compare/v0.31.0...v0.31.1) (2020-12-15)
+
+
+### Bug Fixes
+
+* **DIST-584:** Remove www from tracking ([#112](https://github.com/Typeform/embed/issues/112)) ([2a67f57](https://github.com/Typeform/embed/commit/2a67f5728f9ef0418e2d46fc0e6af9619861baf8))
+
+# [0.31.0](https://github.com/Typeform/embed/compare/v0.30.0...v0.31.0) (2020-12-14)
+
+
+### Bug Fixes
+
+* **DIST-568:** Restore viewport when popup is closed ([32f3c9b](https://github.com/Typeform/embed/commit/32f3c9b24179a9f2f408c4ac6f7bd6661386f7b0))
+
+
+### Features
+
+* Update eslint and add prettier ([7745536](https://github.com/Typeform/embed/commit/7745536d7cf56312b2018fb8e019fc4b542f3687))
+
+# [0.30.0](https://github.com/Typeform/embed/compare/v0.29.1...v0.30.0) (2020-12-03)
+
+
+### Features
+
+* **DIST-401:** Add tracking parameters ([2271166](https://github.com/Typeform/embed/commit/22711661ee8fd9b88bafc9c94d3c2c4801ea5934))
+* **DIST-401:** Add trigger type as open value ([4fdb180](https://github.com/Typeform/embed/commit/4fdb180da93b01ee4aa4371ea4aecf3d319b743a))
+* **DIST-401:** Defaults source to hostname ([ae03cc6](https://github.com/Typeform/embed/commit/ae03cc68b780390bfe1362bc2e8e798b0abab9b5))
+
+## [0.29.1](https://github.com/Typeform/embed/compare/v0.29.0...v0.29.1) (2020-11-30)
+
+
+### Bug Fixes
+
+* **DIST-548:** Make side tab button reponsive to text ([#109](https://github.com/Typeform/embed/issues/109)) ([8c47406](https://github.com/Typeform/embed/commit/8c47406672eb003586045cab4f8260855163d890))
+
+# [0.29.0](https://github.com/Typeform/embed/compare/v0.28.0...v0.29.0) (2020-11-24)
+
+
+### Features
+
+* Allow fullscreen for embedded videos ([0e3dc88](https://github.com/Typeform/embed/commit/0e3dc88ec6e2b270c520c18b3b03b894a7333354))
+
+# [0.28.0](https://github.com/Typeform/embed/compare/v0.27.1...v0.28.0) (2020-11-23)
+
+
+### Features
+
+* **WEB-821:** Add onScreenChanged callback to popup ([91cffc9](https://github.com/Typeform/embed/commit/91cffc9ef35caae225a15ab9b235e8935d9c13a9))
+* **WEB-821:** Add onScreenChanged callback to widget ([fed0734](https://github.com/Typeform/embed/commit/fed0734870956bc38cccbe349545b2c2faf4029a))
+* **WEB-821:** Update README file ([3c12277](https://github.com/Typeform/embed/commit/3c1227790aecc01dd581d0249d6766db9223a668))
+
 ## [0.27.1](https://github.com/Typeform/embed/compare/v0.27.0...v0.27.1) (2020-11-18)
 
 

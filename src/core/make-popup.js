@@ -1,21 +1,10 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 
-import {
-  appendParamsToUrl,
-  replaceExistingKeys,
-  ensureMetaViewport,
-  callIfEmbedIdMatches,
-  noop
-} from './utils'
-import {
-  transferUrlParametersToQueryStrings
-} from './utils/url-parameters-transfer'
+import { appendParamsToUrl, replaceExistingKeys, callIfEmbedIdMatches, noop } from './utils'
+import { transferUrlParametersToQueryStrings } from './utils/url-parameters-transfer'
 import randomString from './utils/random-string'
-import {
-  isMobile,
-  isScreenBig
-} from './utils/mobile-detection'
+import { isMobile, isScreenBig } from './utils/mobile-detection'
 import Popup, {
   POPUP,
   POPUP_MODES,
@@ -23,7 +12,7 @@ import Popup, {
   POPOVER,
   DRAWER,
   DRAWER_RIGHT,
-  SIDE_PANEL
+  SIDE_PANEL,
 } from './views/popup'
 import MobileModal from './views/mobile-modal'
 import { getPostMessageHandler } from './utils/get-post-message-handler'
@@ -46,11 +35,14 @@ const buildOptions = (embedId, options) => {
     embedType: POPUP_MODES[options.mode] || POPUP_MODES[POPUP],
     isModalOpen: false,
     autoClose: DEFAULT_AUTOCLOSE_TIMEOUT,
+    medium: 'embed-sdk',
+    source: window?.location?.hostname.replace('wwww.', ''),
     hideFooter: false,
     hideHeaders: false,
     hideScrollbars: false,
     disableTracking: false,
     transferableUrlParameters: options.transferableUrlParameters || [],
+    shareGoogleAnalyticsInstance: options.shareGoogleAnalyticsInstance || false,
     onSubmit: noop,
     open: null,
     openValue: null,
@@ -58,48 +50,34 @@ const buildOptions = (embedId, options) => {
     height: DEFAULT_POPUP_HEIGHT,
     isAutoCloseEnabled: options.autoClose !== undefined,
     size: DEFAULT_POPUP_SIZE_PERCENT,
-    ...options
+    ...options,
   }
 }
 
 const queryStringKeys = {
   embedType: 'typeform-embed',
+  source: 'typeform-source',
+  medium: 'typeform-medium',
+  mediumVersion: 'typeform-medium-version',
+  open: 'typeform-embed-trigger-type',
   hideFooter: 'embed-hide-footer',
   hideHeaders: 'embed-hide-headers',
-  disableTracking: 'disable-tracking'
+  disableTracking: 'disable-tracking',
+  shareGoogleAnalyticsInstance: 'share-ga-instance',
 }
 
 const renderComponent = (params, options) => {
   const { url, domNode, close, icon } = params
-  const {
-    autoClose,
-    buttonText,
-    embedId,
-    isAutoCloseEnabled,
-    onSubmit
-  } = options
+  const { autoClose, buttonText, embedId, isAutoCloseEnabled, onSubmit } = options
 
   let queryStrings = replaceExistingKeys(options, queryStringKeys)
   queryStrings = transferUrlParametersToQueryStrings(options.transferableUrlParameters, queryStrings)
 
-  const urlWithQueryString = appendParamsToUrl(
-    url,
-    queryStrings
-  )
+  const urlWithQueryString = appendParamsToUrl(url, queryStrings)
 
   if (!isMobile(navigator.userAgent) && isScreenBig()) {
-    render(
-      <Popup
-        embedId={embedId}
-        icon={icon}
-        onClose={close}
-        options={options}
-        url={urlWithQueryString}
-      />,
-      domNode
-    )
+    render(<Popup embedId={embedId} icon={icon} onClose={close} options={options} url={urlWithQueryString} />, domNode)
   } else {
-    ensureMetaViewport()
     render(
       <MobileModal
         autoClose={autoClose}
@@ -116,23 +94,25 @@ const renderComponent = (params, options) => {
   }
 }
 
-export default function makePopup (url, userOptions, element) {
+export default function makePopup(url, userOptions, element) {
   const embedId = randomString()
 
-  window.addEventListener('message', callIfEmbedIdMatches(getPostMessageHandler('form-ready', userOptions.onReady), embedId))
-  window.addEventListener('message', callIfEmbedIdMatches(getPostMessageHandler('form-closed', userOptions.onClose), embedId))
+  window.addEventListener(
+    'message',
+    callIfEmbedIdMatches(getPostMessageHandler('form-ready', userOptions.onReady), embedId)
+  )
+  window.addEventListener(
+    'message',
+    callIfEmbedIdMatches(getPostMessageHandler('form-closed', userOptions.onClose), embedId)
+  )
 
   const options = buildOptions(embedId, userOptions)
 
   if (!Number.isSafeInteger(options.width)) {
-    throw new Error(
-      `Whoops! You provided an invalid 'width' option: "${options.width}". It must be a number.`
-    )
+    throw new Error(`Whoops! You provided an invalid 'width' option: "${options.width}". It must be a number.`)
   }
   if (!Number.isSafeInteger(options.height)) {
-    throw new Error(
-      `Whoops! You provided an invalid 'height' option: "${options.height}". It must be a number.`
-    )
+    throw new Error(`Whoops! You provided an invalid 'height' option: "${options.height}". It must be a number.`)
   }
 
   const domNode = document.createElement('div')
@@ -142,7 +122,7 @@ export default function makePopup (url, userOptions, element) {
 
   const popup = {
     element,
-    open (event) {
+    open(event) {
       const currentTarget = event && event.currentTarget ? event.currentTarget : this.element
       const currentUrl = currentTarget && currentTarget.href ? currentTarget.href : url
       const icon = currentTarget && currentTarget.querySelector('span.icon')
@@ -150,7 +130,7 @@ export default function makePopup (url, userOptions, element) {
         domNode,
         icon,
         url: currentUrl,
-        close: this.close.bind(this)
+        close: this.close.bind(this),
       }
 
       const isOpen = domNode.children.length > 0
@@ -163,13 +143,14 @@ export default function makePopup (url, userOptions, element) {
         renderComponent(params, options)
       }
     },
-    close () {
+    close() {
       window.postMessage({ type: 'form-closed', embedId }, '*')
       unmountComponentAtNode(domNode)
-    }
+    },
   }
 
-  if (!options.open && options.autoOpen) { // legacy auto-open attribute
+  if (!options.open && options.autoOpen) {
+    // legacy auto-open attribute
     options.open = 'load'
   }
 

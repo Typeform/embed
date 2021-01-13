@@ -3,9 +3,7 @@ import { render as renderMock } from 'react-dom'
 import UrlParse from 'url-parse'
 
 import makeWidget from './make-widget'
-import {
-  isMobile as isMobileMock
-} from './utils/mobile-detection'
+import { isMobile as isMobileMock } from './utils/mobile-detection'
 import randomString from './utils/random-string'
 
 jest.mock('react-dom')
@@ -20,7 +18,13 @@ randomString.mockImplementation(() => EMBED_ID)
 describe('makeWidget', () => {
   it('renders a Widget component on desktop devices', () => {
     const element = document.createElement('div')
-    const options = { opacity: 5, mandarina: 2 }
+    const options = {
+      opacity: 5,
+      mandarina: 2,
+      source: 'website.com',
+      medium: 'embed-wordpress',
+      mediumVersion: '9999',
+    }
 
     isMobileMock.mockImplementationOnce(() => false)
     renderMock.mockClear()
@@ -35,7 +39,9 @@ describe('makeWidget', () => {
     const { query } = UrlParse(widgetURL, true)
     expect(query['embed-opacity']).toEqual('5')
     expect(query['mandarina']).toBeUndefined()
-
+    expect(query['typeform-source']).toEqual('website.com')
+    expect(query['typeform-medium']).toEqual('embed-wordpress')
+    expect(query['typeform-medium-version']).toEqual('9999')
     expect(component.type.name).toEqual('Widget')
     expect(component.props.options).toEqual(expect.objectContaining(options))
   })

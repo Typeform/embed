@@ -10,7 +10,7 @@
         left: 0;
         width: 100%;
         height: 50px;
-        background: rgba(255,0,0,0.2);
+        background: rgba(255, 0, 0, 0.2);
         pointer-events: none;
       }
     </style>
@@ -44,10 +44,10 @@
     <script>
       const param = window.location.search.match(/threshold=(\d+)/)
       if (param) {
-        const thresholdValue = parseInt(param[1], 10);
-        document.getElementById('popup').dataset.openValue = thresholdValue;
-        document.getElementById('threshold').value = thresholdValue;
-        document.getElementById('visual-threshold').style.height = thresholdValue + 'px';
+        const thresholdValue = parseInt(param[1], 10)
+        document.getElementById('popup').dataset.openValue = thresholdValue
+        document.getElementById('threshold').value = thresholdValue
+        document.getElementById('visual-threshold').style.height = thresholdValue + 'px'
       }
     </script>
 

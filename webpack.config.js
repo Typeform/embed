@@ -2,15 +2,12 @@ const path = require('path')
 
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-const {
-  NODE_ENV = 'production',
-  BUILD_STANDALONE = 'true'
-} = process.env
+const { NODE_ENV = 'production', BUILD_STANDALONE = 'true' } = process.env
 
 module.exports = getWebpackConfig()
 
 // Config implementation
-function getWebpackConfig () {
+function getWebpackConfig() {
   const buildMode = NODE_ENV
   const includeDeps = BUILD_STANDALONE === 'true'
 
@@ -36,7 +33,7 @@ function getWebpackConfig () {
       // Since we upload directly to s3 the bundleded files, all the users have the link
       // https://s3-eu-west-1.amazonaws.com/share.typeform.com/ and we can't change that for historical reasons.
       widget: './src/embed.js',
-      share: './src/embed.js'
+      share: './src/embed.js',
     },
 
     // Output configuration
@@ -53,7 +50,7 @@ function getWebpackConfig () {
       globalObject: 'this',
       // Sets the name of a global variable that will contain the entrypoint
       // when used from a CDN
-      library: 'typeformEmbed'
+      library: 'typeformEmbed',
     },
 
     // Different file loaders configurations
@@ -63,68 +60,64 @@ function getWebpackConfig () {
           test: /\.(js)$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader'
-          }
+            loader: 'babel-loader',
+          },
         },
         {
           test: /\.(gif|png)$/,
           use: {
             loader: 'url-loader',
             options: {
-              limit: 25000
-            }
-          }
+              limit: 25000,
+            },
+          },
         },
         {
           test: /\.css$/i,
-          use: ['css-loader']
-        }
-      ]
+          use: ['css-loader'],
+        },
+      ],
     },
 
     // Exclude stuff from bundle
-    externals: !includeDeps ? {
-      react: 'react',
-      'react-dom': 'react-dom'
-    } : undefined,
+    externals: !includeDeps
+      ? {
+          react: 'react',
+          'react-dom': 'react-dom',
+        }
+      : undefined,
 
     // Replace react with preact for smaller package size
     resolve: {
       alias: {
         react: 'preact/compat',
-        'react-dom': 'preact/compat'
-      }
+        'react-dom': 'preact/compat',
+      },
     },
 
     // Optimization settings
     optimization: {
-      minimizer: [new UglifyJsPlugin({ sourceMap: true })]
+      minimizer: [new UglifyJsPlugin({ sourceMap: true })],
     },
 
     // Remove unnecessary output
     stats: {
       all: false,
       assets: true,
-      errors: true
+      errors: true,
     },
 
     devServer: {
       allowedHosts: [
         // uncomment the following line for access from BrowserStack devices
         // 'bs-local.com'
-      ]
-    }
+      ],
+    },
   }
 }
 
-function getAssetName (includeDeps) {
-  const result = [
-    '[name]',
-    includeDeps ? '' : 'pure',
-    'js'
-  ]
-    .filter((x) => x)
-    .join('.')
+function getAssetName(includeDeps) {
+  const result = ['[name]', includeDeps ? '' : 'pure', 'js'].filter((x) => x).join('.')
 
   return result
 }

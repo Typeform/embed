@@ -5,7 +5,7 @@ import {
   closePopupViaKeyboard,
   closePopupViaButtonOnMobile,
   IFRAME_SELECTOR,
-  openOnMobile
+  openOnMobile,
 } from '../../cypress-utils'
 
 const popupModes = {
@@ -13,17 +13,17 @@ const popupModes = {
   drawer_left: 'Drawer Left',
   drawer_right: 'Drawer Right',
   popover: 'Popover',
-  side_panel: 'Side Panel'
+  side_panel: 'Side Panel',
 }
 
 const pages = {
   '/popup.html?utm_source=facebook  ': 'embed code',
-  '/popup-api.html?utm_source=facebook': 'API'
+  '/popup-api.html?utm_source=facebook': 'API',
 }
 
-Object.keys(popupModes).forEach(popupMode => {
+Object.keys(popupModes).forEach((popupMode) => {
   describe(`${popupModes[popupMode]} Embed Widget`, () => {
-    Object.keys(pages).forEach(pageUrl => {
+    Object.keys(pages).forEach((pageUrl) => {
       describe(`Embedded using ${pages[pageUrl]} (at ${pageUrl})`, () => {
         describe('Desktop', () => {
           before(() => {
@@ -32,11 +32,15 @@ Object.keys(popupModes).forEach(popupMode => {
           })
 
           it('Passes hidden field parameter', () => {
-            cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /foobar=hello/)
+            cy.get(IFRAME_SELECTOR)
+              .should('have.attr', 'src')
+              .and('match', /foobar=hello/)
           })
 
           it('Passes Browser URL parameters', () => {
-            cy.get(IFRAME_SELECTOR).should('have.attr', 'src').and('match', /utm_source=facebook/)
+            cy.get(IFRAME_SELECTOR)
+              .should('have.attr', 'src')
+              .and('match', /utm_source=facebook/)
           })
 
           it('Closes Embed Popup clicking on the close button', () => {
@@ -54,13 +58,28 @@ Object.keys(popupModes).forEach(popupMode => {
         })
 
         describe('Mobile', () => {
+          let viewportContent
+
           before(() => {
             openOnMobile(pageUrl)
+            cy.get('meta[name=viewport]')
+              .invoke('attr', 'content')
+              .then((content) => {
+                viewportContent = content
+              })
             openPopup(`#btn-${popupMode}`)
+          })
+
+          it('Updates viewport meta tag', () => {
+            cy.get('meta[name=viewport]').invoke('attr', 'content').should('not.eq', viewportContent)
           })
 
           it('Closes Embed Popup clicking on close Button', () => {
             closePopupViaButtonOnMobile()
+          })
+
+          it('Restores viewport meta tag', () => {
+            cy.get('meta[name=viewport]').invoke('attr', 'content').should('eq', viewportContent)
           })
         })
       })

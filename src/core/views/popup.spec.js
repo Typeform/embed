@@ -5,13 +5,7 @@ import Adapter from 'enzyme-adapter-react-16'
 
 import * as utils from '../utils'
 
-import Popup, {
-  POPUP,
-  DRAWER,
-  DRAWER_RIGHT,
-  POPOVER,
-  SIDE_PANEL
-} from './popup'
+import Popup, { POPUP, DRAWER, DRAWER_RIGHT, POPOVER, SIDE_PANEL } from './popup'
 import Iframe from './components/iframe'
 
 jest.mock('./components/spinner', () => () => null)
@@ -20,7 +14,7 @@ const URL = 'http://popup.cat'
 const EMBED_ID = '123456'
 
 const popupOptions = {
-  mode: POPUP
+  mode: POPUP,
 }
 
 Enzyme.configure({ adapter: new Adapter() })
@@ -33,11 +27,9 @@ describe('Popup', () => {
     expect(popup.find(Iframe).prop('src')).toEqual(expectedUrl)
   })
 
-  it('calls onClose callback function when close button is clicked', done => {
+  it('calls onClose callback function when close button is clicked', (done) => {
     const onCloseMock = jest.fn()
-    const popup = shallow(
-      <Popup onClose={onCloseMock} options={popupOptions} url={URL} />
-    )
+    const popup = shallow(<Popup onClose={onCloseMock} options={popupOptions} url={URL} />)
 
     jest.useFakeTimers()
 
@@ -62,18 +54,12 @@ describe('Popup', () => {
   })
 
   describe('renders the correct mode', () => {
-    const useCases = [
-      POPUP,
-      DRAWER,
-      DRAWER_RIGHT,
-      POPOVER,
-      SIDE_PANEL
-    ]
+    const useCases = [POPUP, DRAWER, DRAWER_RIGHT, POPOVER, SIDE_PANEL]
 
     useCases.forEach((mode) => {
       it(`for "${mode}" mode`, () => {
         const options = { mode }
-        const popup = shallow(<Popup options={options} url={URL}/>)
+        const popup = shallow(<Popup options={options} url={URL} />)
         expect(popup.find(`[data-qa="popup-mode-${mode}"]`)).toHaveLength(1)
       })
     })
@@ -83,7 +69,7 @@ describe('Popup', () => {
     it('is executed upon typeform submission when embed ID matches', () => {
       const onSubmitMock = jest.fn()
       const options = { ...popupOptions, onSubmit: onSubmitMock }
-      mount(<Popup embedId={EMBED_ID} options={options} url={URL}/>)
+      mount(<Popup embedId={EMBED_ID} options={options} url={URL} />)
 
       window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: EMBED_ID } }))
       expect(onSubmitMock).toHaveBeenCalledTimes(1)
@@ -92,7 +78,7 @@ describe('Popup', () => {
     it('is not executed upon typeform submission when embed ID does not match', () => {
       const onSubmitMock = jest.fn()
       const options = { ...popupOptions, onSubmit: onSubmitMock }
-      mount(<Popup embedId={EMBED_ID} options={options} url={URL}/>)
+      mount(<Popup embedId={EMBED_ID} options={options} url={URL} />)
 
       window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: '098765' } }))
       expect(onSubmitMock).not.toHaveBeenCalled()
@@ -104,10 +90,30 @@ describe('Popup', () => {
       const getSubmitEventDataSpy = jest.spyOn(utils, 'getSubmitEventData')
       const event = new CustomEvent('form-submit', { detail: { embedId: EMBED_ID } })
 
-      shallow(<Popup embedId={EMBED_ID} options={options} url={URL}/>)
+      shallow(<Popup embedId={EMBED_ID} options={options} url={URL} />)
 
       window.dispatchEvent(event)
       expect(getSubmitEventDataSpy).toHaveBeenCalledWith(event)
+    })
+  })
+
+  describe('onScreenChanged callback', () => {
+    it('should be called when the user execute an interaction that triggers a screen change', () => {
+      const onScreenChangedMock = jest.fn()
+      const options = { ...popupOptions, onScreenChanged: onScreenChangedMock }
+      mount(<Popup embedId={EMBED_ID} options={options} url={URL} />)
+
+      window.dispatchEvent(new CustomEvent('form-screen-changed', { detail: { embedId: EMBED_ID } }))
+      expect(onScreenChangedMock).toHaveBeenCalledTimes(1)
+    })
+
+    it("should NOT be called when the user execute an interaction that triggers a screen change and the embed ID doesn't match", () => {
+      const onScreenChangedMock = jest.fn()
+      const options = { ...popupOptions, onScreenChanged: onScreenChangedMock }
+      mount(<Popup embedId={EMBED_ID} options={options} url={URL} />)
+
+      window.dispatchEvent(new CustomEvent('form-screen-changed', { detail: { embedId: '098765' } }))
+      expect(onScreenChangedMock).not.toHaveBeenCalled()
     })
   })
 
@@ -116,15 +122,11 @@ describe('Popup', () => {
     it('does not call onAutoClose callback function when auto close is not enabled', () => {
       onCloseMock = jest.fn()
       const options = { ...popupOptions, isAutoCloseEnabled: false }
-      const popup = mount(
-        <Popup onClose={onCloseMock} options={options} url={URL} />
-      )
+      const popup = mount(<Popup onClose={onCloseMock} options={options} url={URL} />)
 
       jest.useFakeTimers()
 
-      window.dispatchEvent(
-        new CustomEvent('embed-auto-close-popup', { detail: {} })
-      )
+      window.dispatchEvent(new CustomEvent('embed-auto-close-popup', { detail: {} }))
       jest.runAllTimers()
       expect(onCloseMock).not.toHaveBeenCalled()
       popup.unmount()
@@ -144,15 +146,11 @@ describe('Popup', () => {
 
       it(`calls onAutoClose callback function `, () => {
         const options = { ...popupOptions, isAutoCloseEnabled: true }
-        popup = mount(
-          <Popup onClose={onCloseMock} options={options} url={URL} />
-        )
+        popup = mount(<Popup onClose={onCloseMock} options={options} url={URL} />)
 
         jest.useFakeTimers()
 
-        window.dispatchEvent(
-          new CustomEvent('embed-auto-close-popup', { detail: {} })
-        )
+        window.dispatchEvent(new CustomEvent('embed-auto-close-popup', { detail: {} }))
         jest.runAllTimers()
         expect(onCloseMock).toHaveBeenCalled()
       })
@@ -162,17 +160,15 @@ describe('Popup', () => {
         const options = {
           ...popupOptions,
           isAutoCloseEnabled: true,
-          autoClose: autoCloseTimeout
+          autoClose: autoCloseTimeout,
         }
-        popup = mount(
-          <Popup onClose={onCloseMock} options={options} url={URL} />
-        )
+        popup = mount(<Popup onClose={onCloseMock} options={options} url={URL} />)
 
         jest.useFakeTimers()
 
         window.dispatchEvent(
           new CustomEvent('embed-auto-close-popup', {
-            detail: { canSetAutocloseDelay: true }
+            detail: { canSetAutocloseDelay: true },
           })
         )
         jest.runAllTimers()

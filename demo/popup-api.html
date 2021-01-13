@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Popup example</title>
     <link rel="stylesheet" href="demo.css" />
     <style type="text/css">
@@ -15,7 +15,8 @@
 
       /* CSS for wrapper is required */
       .side-panel-wrapper {
-        top: calc(50% - 300px); /* needs to be set manually based on popup size */
+        top: calc(50% - 300px);
+        /* needs to be set manually based on popup size */
         right: 0;
         position: fixed;
         transition: width 300ms ease-out;
@@ -24,17 +25,21 @@
 
       .side-panel {
         position: absolute;
-        top: 300px; /* needs to be set manually based on button size */
-        width: 300px; /* needs to be set manually based on button size */
-        height: 40px;
+        top: 0;
+        left: 0;
+        margin: 0 auto;
+        /* needs to be set manually based on button size */
+        top: 300px;
+        max-height: 40px;
         background: #427fed;
         color: white;
-        padding: 0 20px;
+        white-space: nowrap;
+        padding: 8px 16px;
         margin: 0;
         text-decoration: none;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         cursor: pointer;
         transform: rotate(-90deg);
         transform-origin: bottom left;
@@ -42,17 +47,25 @@
 
       .side-panel > .icon {
         position: relative;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
+        display: block;
+        margin-right: 12px;
+        width: 24px;
+        height: 24px;
       }
 
       .side-panel > .icon > svg {
-        transform-origin: left;
-        transform: translate(10px,-15px) rotate(90deg)
+        width: 100%;
+        height: 100%;
+        transform: rotate(90deg);
+      }
+
+      .side-panel img {
+        position: relative;
+        top: -4px;
+      }
+
+      .side-panel > span {
+        flex-grow: 1;
       }
 
       .popover {
@@ -76,7 +89,8 @@
         display: flex;
       }
 
-      .popover-hint, .side-panel-hint {
+      .popover-hint,
+      .side-panel-hint {
         color: darkgray;
         position: fixed;
         right: 90px;
@@ -107,7 +121,7 @@
 
     <a id="btn-popover" class="popover">
       <span class="icon">
-        <svg width="24" height="24" fill="none" style="margin-top:7px" viewBox="0 0 84 83">
+        <svg width="24" height="24" fill="none" style="margin-top: 7px" viewBox="0 0 84 83">
           <rect width="84" height="56" fill="#fff" rx="8" />
           <path fill="#fff" d="M43 50h41v33L43 50z" opacity=".7" />
         </svg>
@@ -119,7 +133,7 @@
     <div class="side-panel-wrapper">
       <a id="btn-side_panel" class="side-panel">
         <span class="icon">
-          <svg width="24" height="24" fill="none" style="margin-top:7px" viewBox="0 0 84 83">
+          <svg fill="none" viewBox="0 0 84 83">
             <rect width="84" height="56" fill="#fff" rx="8" />
             <path fill="#fff" d="M43 50h41v33L43 50z" opacity=".7" />
           </svg>
@@ -136,38 +150,41 @@
         return window.typeformEmbed.makePopup('./form/mock.html#foobar=hello', options, element)
       }
       window.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('btn-popup').onclick = function(e) {
+        document.getElementById('btn-popup').onclick = function (e) {
           e.preventDefault()
-          makeMockPopup({mode: 'popup', transferableUrlParameters: ['utm_source']}).open()
+          makeMockPopup({ mode: 'popup', transferableUrlParameters: ['utm_source'] }).open()
         }
 
-        document.getElementById('btn-drawer_left').onclick = function(e) {
+        document.getElementById('btn-drawer_left').onclick = function (e) {
           e.preventDefault()
-          makeMockPopup({mode: 'drawer_left', transferableUrlParameters: ['utm_source']}).open()
+          makeMockPopup({ mode: 'drawer_left', transferableUrlParameters: ['utm_source'] }).open()
         }
 
-        document.getElementById('btn-drawer_right').onclick = function(e) {
+        document.getElementById('btn-drawer_right').onclick = function (e) {
           e.preventDefault()
-          makeMockPopup({mode: 'drawer_right', width: 300, transferableUrlParameters: ['utm_source']}).open()
+          makeMockPopup({ mode: 'drawer_right', width: 300, transferableUrlParameters: ['utm_source'] }).open()
         }
 
-        document.getElementById('btn-popup_s').onclick = function(e) {
+        document.getElementById('btn-popup_s').onclick = function (e) {
           e.preventDefault()
-          makeMockPopup({mode: 'popup', transferableUrlParameters: ['utm_source'], size: 75}).open()
+          makeMockPopup({ mode: 'popup', transferableUrlParameters: ['utm_source'], size: 75 }).open()
         }
 
-        document.getElementById('btn-popup_xs').onclick = function(e) {
+        document.getElementById('btn-popup_xs').onclick = function (e) {
           e.preventDefault()
-          makeMockPopup({mode: 'popup', transferableUrlParameters: ['utm_source'], size: 40}).open()
+          makeMockPopup({ mode: 'popup', transferableUrlParameters: ['utm_source'], size: 40 }).open()
         }
 
         const popoverButton = document.getElementById('btn-popover')
-        const popoverPopup = makeMockPopup({
-          mode: 'popover',
-          width: 400,
-          height: 400,
-          transferableUrlParameters: ['utm_source'],
-        }, popoverButton)
+        const popoverPopup = makeMockPopup(
+          {
+            mode: 'popover',
+            width: 400,
+            height: 400,
+            transferableUrlParameters: ['utm_source'],
+          },
+          popoverButton
+        )
         popoverButton.onclick = function (e) {
           e.preventDefault()
           popoverPopup.open()
@@ -175,13 +192,16 @@
 
         const sidePanelContainerElement = document.querySelector('.side-panel-wrapper')
         const sidePanelButton = document.getElementById('btn-side_panel')
-        const sidePanelPopup = makeMockPopup({
-          mode: 'side_panel',
-          width: 400,
-          height: 400,
-          transferableUrlParameters: ['utm_source'],
-          container: sidePanelContainerElement,
-        }, sidePanelButton)
+        const sidePanelPopup = makeMockPopup(
+          {
+            mode: 'side_panel',
+            width: 400,
+            height: 400,
+            transferableUrlParameters: ['utm_source'],
+            container: sidePanelContainerElement,
+          },
+          sidePanelButton
+        )
         sidePanelButton.onclick = function (e) {
           e.preventDefault()
           sidePanelPopup.open()

@@ -10,8 +10,9 @@ import {
   callIfEmbedIdMatches,
   redirectToUrl,
   updateQueryStringParameter,
-  getSubmitEventData
+  getSubmitEventData,
 } from '../utils'
+import setupGoogleAnalyticsInstanceSharingFeature from '../features/google-analytics-instance-sharing'
 
 import Iframe from './components/iframe'
 import Spinner from './components/spinner'
@@ -30,25 +31,26 @@ export const POPUP_MODES = {
   [DRAWER]: 'popup-classic',
   [DRAWER_RIGHT]: 'popup-drawer',
   [POPOVER]: 'popup-popover',
-  [SIDE_PANEL]: 'popup-side-panel'
+  [SIDE_PANEL]: 'popup-side-panel',
 }
 
 const BaseWrapper = styled.div`
-  visibility: ${p => (p.open ? 'visible' : 'hidden')};
-  opacity: ${p => (p.open ? 1 : 0)};
-  position: ${p => (p.isContained ? 'absolute' : 'fixed')};
+  visibility: ${(p) => (p.open ? 'visible' : 'hidden')};
+  opacity: ${(p) => (p.open ? 1 : 0)};
+  position: ${(p) => (p.isContained ? 'absolute' : 'fixed')};
   max-width: 100%;
   z-index: 10001;
+  min-width: 360px;
+  min-height: 360px;
 `
 
 const Overlay = styled.div`
-  visibility: ${p => (p.appearing ? 'hidden' : 'visible')};
-  opacity: ${p => (p.appearing ? 0 : 1)};
-  transition: opacity 200ms ease,
-    visibility 0s linear ${p => (p.appearing ? '200ms' : '0s')};
+  visibility: ${(p) => (p.appearing ? 'hidden' : 'visible')};
+  opacity: ${(p) => (p.appearing ? 0 : 1)};
+  transition: opacity 200ms ease, visibility 0s linear ${(p) => (p.appearing ? '200ms' : '0s')};
   background: rgba(0, 0, 0, 0.85);
-  position: ${p => (p.isContained ? 'absolute' : 'fixed')};
-  overflow: ${p => (p.isContained ? 'hidden' : 'auto')};
+  position: ${(p) => (p.isContained ? 'absolute' : 'fixed')};
+  overflow: ${(p) => (p.isContained ? 'hidden' : 'auto')};
   left: 0;
   top: 0;
   right: 0;
@@ -58,44 +60,36 @@ const Overlay = styled.div`
 `
 
 const popupWrapper = styled(BaseWrapper)`
-  ${p => {
-    const offset = (100 - p.size) / 2
-    if (p.isContained) {
-      return `
-        width: calc(${p.size}% - 80px); 
-        height: calc(${p.size}% - 80px); 
-        top: calc(${offset}% + 40px);
-        left: calc(${offset}% + 40px);
-      `
-    }
-    return `
-      width: calc(${p.size}% - 80px); 
-      height: calc(${p.size}% - 80px); 
-      top: calc(${offset}% + 40px);
-      left: calc(${offset}% + 40px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  ${({ size }) =>
+    size &&
     `
-  }}
+    height: calc(${size}% - 80px); 
+    width: calc(${size}% - 80px); 
+  `}
   transition: all 300ms ease-out;
 `
 
 const drawerWrapper = styled(BaseWrapper)`
   transition: all 400ms ease-out;
-  width: ${p => p.width}px;
+  width: ${(p) => p.width}px;
   height: 100%;
   top: 0;
 `
 
 const drawerLeftWrapper = styled(drawerWrapper)`
-  left: ${p => (!p.open ? -(p.width - CLOSE_BUTTON_WIDTH) : 0)}px;
+  left: ${(p) => (!p.open ? -(p.width - CLOSE_BUTTON_WIDTH) : 0)}px;
 `
 
 const drawerRightWrapper = styled(drawerWrapper)`
-  right: ${p => (!p.open ? -(p.width - CLOSE_BUTTON_WIDTH) : 0)}px;
+  right: ${(p) => (!p.open ? -(p.width - CLOSE_BUTTON_WIDTH) : 0)}px;
 `
 
 const popoverWrapper = styled(BaseWrapper)`
-  width: ${p => p.width}px;
-  height: ${p => p.height}px;
+  width: ${(p) => p.width}px;
+  height: ${(p) => p.height}px;
   transition: all 300ms ease-out;
   bottom: 96px;
   right: 16px;
@@ -105,11 +99,12 @@ const popoverWrapper = styled(BaseWrapper)`
 `
 
 const sidePanelWrapper = styled.div`
-  width: ${p => p.width}px;
-  height: ${p => p.height}px;
-  box-shadow: rgba(0, 0, 0, ${p => p.open ? '0.08' : '0'}) 0px 2px 4px, rgba(0, 0, 0, ${p => p.open ? '0.06' : '0'}) 0px 2px 12px;
+  width: ${(p) => p.width}px;
+  height: ${(p) => p.height}px;
+  box-shadow: rgba(0, 0, 0, ${(p) => (p.open ? '0.08' : '0')}) 0px 2px 4px,
+    rgba(0, 0, 0, ${(p) => (p.open ? '0.06' : '0')}) 0px 2px 12px;
   transition: box-shadow 300ms ease-out;
-  `
+`
 
 const BaseCloseImage = styled.img`
   position: absolute;
@@ -147,18 +142,20 @@ const closeImageRight = styled(BaseCloseImage)`
 `
 
 class Popup extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
       isLoading: true,
+      isFormReady: false,
       frameAnimate: false,
       iframeLoaded: false,
       popupAnimate: true,
-      transitionEnded: false
+      transitionEnded: false,
     }
 
     this.handleMessage = this.handleMessage.bind(this)
+    this.handleFormReady = callIfEmbedIdMatches(this.handleFormReady.bind(this), this.props.embedId)
     this.handleKeyDown = callIfEmbedIdMatches(this.handleKeyDown.bind(this), this.props.embedId)
     this.handleAutoClose = callIfEmbedIdMatches(this.handleAutoClose.bind(this), this.props.embedId)
     this.handleClose = callIfEmbedIdMatches(this.handleClose.bind(this), this.props.embedId)
@@ -167,21 +164,25 @@ class Popup extends Component {
     this.handleAnimateBeforeClose = this.handleAnimateBeforeClose.bind(this)
     this.handleTransitionEnd = this.handleTransitionEnd.bind(this)
     this.setWrapperRef = this.setWrapperRef.bind(this)
+    this.setIframeRef = this.setIframeRef.bind(this)
+    this.handleFormScreenChanged = callIfEmbedIdMatches(this.handleFormScreenChanged.bind(this), this.props.embedId)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     window.addEventListener('message', this.handleMessage)
+    window.addEventListener('form-ready', this.handleFormReady)
     window.addEventListener('keydown', this.handleKeyDown)
     window.addEventListener('form-close', this.handleClose)
     window.addEventListener('form-submit', this.handleFormSubmit)
     window.addEventListener('embed-auto-close-popup', this.handleAutoClose)
     window.addEventListener('redirect-after-submit', redirectToUrl)
     window.addEventListener('thank-you-screen-redirect', redirectToUrl)
+    window.addEventListener('form-screen-changed', this.handleFormScreenChanged)
     window.tfClosePopup = this.handleClose
 
     setTimeout(() => {
       this.setState({
-        popupAnimate: false
+        popupAnimate: false,
       })
     }, 100)
 
@@ -189,22 +190,24 @@ class Popup extends Component {
     this.updateIcon(<Spinner config={spinnerConfig} stopped={this.state.iframeLoaded} />)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.removeEventListener('message', this.handleMessage)
+    window.removeEventListener('form-ready', this.handleFormReady)
     window.removeEventListener('keydown', this.handleKeyDown)
     window.removeEventListener('form-close', this.handleClose)
     window.removeEventListener('form-submit', this.handleFormSubmit)
     window.removeEventListener('embed-auto-close-popup', this.handleAutoClose)
     window.removeEventListener('redirect-after-submit', redirectToUrl)
     window.removeEventListener('thank-you-screen-redirect', redirectToUrl)
+    window.removeEventListener('form-screen-changed', this.handleFormScreenChanged)
     delete window.tfClosePopup
   }
 
-  setWrapperRef (node) {
+  setWrapperRef(node) {
     this.wrapper = node
   }
 
-  getWrapperComponent (mode) {
+  getWrapperComponent(mode) {
     if (mode === DRAWER_RIGHT) return drawerRightWrapper
     if (mode === DRAWER) return drawerLeftWrapper
     if (mode === POPOVER) return popoverWrapper
@@ -212,13 +215,33 @@ class Popup extends Component {
     return popupWrapper
   }
 
-  getCloseImage (mode) {
+  getCloseImage(mode) {
     if (mode === DRAWER_RIGHT) return closeImageRight
     if (mode === DRAWER) return closeImageLeft
     return closeImagePopup
   }
 
-  updateIcon (component) {
+  setIframeRef(node) {
+    this.iframe = node
+  }
+
+  setupGoogleAnalyticsInstanceSharingFeature() {
+    if (this.props.options.shareGoogleAnalyticsInstance) {
+      const { iframeRef } = this.iframe
+      const canPostMessage = this.state.isFormReady && iframeRef.contentWindow != null
+      if (canPostMessage) {
+        setupGoogleAnalyticsInstanceSharingFeature(iframeRef, this.props.embedId)
+      }
+    }
+  }
+
+  handleFormScreenChanged(event) {
+    if (this.props.options.onScreenChanged) {
+      this.props.options.onScreenChanged(event)
+    }
+  }
+
+  updateIcon(component) {
     if (this.props.icon) {
       if (!this.iconHTML) {
         this.iconHTML = this.props.icon.innerHTML
@@ -234,17 +257,11 @@ class Popup extends Component {
     }
   }
 
-  handleIframeLoad (iframeRef) {
+  handleIframeLoad(iframeRef) {
     this.setState({ iframeLoaded: true }, () => {
       setTimeout(() => {
         if (this.state.isLoading) {
-          this.updateIcon(
-            <IconCloseImage
-              alt='close-typeform'
-              data-qa='popup-close-button'
-              src={closeImg}
-            />
-          )
+          this.updateIcon(<IconCloseImage alt="close-typeform" data-qa="popup-close-button" src={closeImg} />)
           this.handleSidePanelOpen()
           this.setState({ frameAnimate: true, isLoading: false })
           if (iframeRef && iframeRef.contentWindow) {
@@ -255,7 +272,7 @@ class Popup extends Component {
     })
   }
 
-  handleAnimateBeforeClose () {
+  handleAnimateBeforeClose() {
     this.updateIcon()
     this.handleSidePanelClose()
     this.setState({ frameAnimate: false, popupAnimate: false }, () => {
@@ -267,27 +284,36 @@ class Popup extends Component {
     })
   }
 
-  handleClose () {
+  handleClose() {
     this.setState({ isLoading: false })
     this.handleAnimateBeforeClose()
   }
 
-  handleKeyDown (event) {
+  handleFormReady() {
+    this.setState(
+      {
+        isFormReady: true,
+      },
+      () => {
+        this.setupGoogleAnalyticsInstanceSharingFeature()
+      }
+    )
+  }
+
+  handleKeyDown(event) {
     if (event.code === 'Escape' || event.which === ESC_KEY_CODE) {
       this.handleAnimateBeforeClose()
     }
   }
 
-  handleMessage (event) {
+  handleMessage(event) {
     broadcastMessage(this.props.embedId, event)
   }
 
-  handleAutoClose (event) {
-    const canSetAutocloseDelay =
-      event.detail.isProPlus || event.detail.canSetAutocloseDelay
+  handleAutoClose(event) {
+    const canSetAutocloseDelay = event.detail.isProPlus || event.detail.canSetAutocloseDelay
     const { isAutoCloseEnabled, autoClose } = this.props.options
-    const timeout =
-      (canSetAutocloseDelay ? autoClose : DEFAULT_AUTOCLOSE_TIMEOUT) * 1000
+    const timeout = (canSetAutocloseDelay ? autoClose : DEFAULT_AUTOCLOSE_TIMEOUT) * 1000
 
     if (isAutoCloseEnabled) {
       setTimeout(() => {
@@ -296,21 +322,21 @@ class Popup extends Component {
     }
   }
 
-  handleTransitionEnd (event) {
+  handleTransitionEnd(event) {
     if (event.target === this.wrapper) {
       this.setState({
-        transitionEnded: this.state.frameAnimate
+        transitionEnded: this.state.frameAnimate,
       })
     }
   }
 
-  handleFormSubmit (event) {
+  handleFormSubmit(event) {
     if (this.props.options.onSubmit) {
       this.props.options.onSubmit(getSubmitEventData(event))
     }
   }
 
-  handleSidePanelOpen () {
+  handleSidePanelOpen() {
     const { mode, container, width, height } = this.props.options
     if (mode === SIDE_PANEL) {
       container.style.width = `${width}px`
@@ -318,21 +344,21 @@ class Popup extends Component {
     }
   }
 
-  handleSidePanelClose () {
+  handleSidePanelClose() {
     const { mode, container } = this.props.options
     if (mode === SIDE_PANEL) {
       container.style.width = 0
     }
   }
 
-  render () {
+  render() {
     let iframeStyles = null
     const { embedId, options, url } = this.props
     const { width, height, hideScrollbars, isContained, mode, size } = options
 
     if (hideScrollbars) {
       iframeStyles = {
-        width: `calc(100% + ${ScrollbarWidth()}px)`
+        width: `calc(100% + ${ScrollbarWidth()}px)`,
       }
     }
 
@@ -340,7 +366,7 @@ class Popup extends Component {
       iframeStyles = {
         ...iframeStyles,
         WebkitMaskImage: '-webkit-radial-gradient(circle, white, black)',
-        WebkitTransform: 'translateZ(0)'
+        WebkitTransform: 'translateZ(0)',
       }
     }
 
@@ -365,18 +391,14 @@ class Popup extends Component {
       >
         {!showSmallPopup && this.state.iframeLoaded && (
           <CloseImage
-            alt='close-typeform'
-            data-qa='popup-close-button'
+            alt="close-typeform"
+            data-qa="popup-close-button"
             mode={mode}
             onClick={this.handleAnimateBeforeClose}
             src={closeImg}
           />
         )}
-        <Iframe
-          onLoad={this.handleIframeLoad}
-          src={iframeUrl}
-          style={iframeStyles}
-        />
+        <Iframe onLoad={this.handleIframeLoad} ref={this.setIframeRef} src={iframeUrl} style={iframeStyles} />
       </Wrapper>
     )
 
@@ -400,7 +422,7 @@ Popup.propTypes = {
   onClose: PropTypes.func,
   options: PropTypes.object.isRequired,
   url: PropTypes.string.isRequired,
-  width: PropTypes.number
+  width: PropTypes.number,
 }
 
 export default Popup

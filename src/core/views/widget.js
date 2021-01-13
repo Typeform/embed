@@ -11,9 +11,10 @@ import {
   updateQueryStringParameter,
   redirectToUrl,
   getSubmitEventData,
-  removeColorTransparency
+  removeColorTransparency,
 } from '../utils'
 import randomString from '../utils/random-string'
+import setupGoogleAnalyticsInstanceSharingFeature from '../features/google-analytics-instance-sharing'
 
 import Iframe from './components/iframe'
 import MobileModal from './mobile-modal'
@@ -76,18 +77,16 @@ const PlaceholderAnimationDisappear = keyframes`
 
 const Placeholder = styled.div`
   position: fixed;
-  top: ${props => props.top}px;
-  left: ${props => props.left}px;
-  height: ${props => (props.height ? `${props.height}px` : '100%')};
-  width: ${props => (props.width ? `${props.width}px` : '100%')};
+  top: ${(props) => props.top}px;
+  left: ${(props) => props.left}px;
+  height: ${(props) => (props.height ? `${props.height}px` : '100%')};
+  width: ${(props) => (props.width ? `${props.width}px` : '100%')};
 
-  animation: ${props =>
-    props.open ? PlaceholderAnimationAppear : PlaceholderAnimationDisappear}
-  1.5s ease;
+  animation: ${(props) => (props.open ? PlaceholderAnimationAppear : PlaceholderAnimationDisappear)} 1.5s ease;
 
-  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
 
-  background: ${props => props.backgroundColor};
+  background: ${(props) => props.backgroundColor};
   opacity: 0;
   pointer-events: none;
 `
@@ -97,11 +96,11 @@ const IframeWrapper = styled.div`
   width: 100%;
 
   overflow: hidden;
-  background: ${props => props.backgroundColor};
+  background: ${(props) => props.backgroundColor};
 `
 
 class Widget extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.embedId = props.embedId || randomString()
@@ -114,7 +113,7 @@ class Widget extends Component {
       isIframeFocused: false,
       isFullscreen: false,
       buttonColor: 'black',
-      backgroundColor: 'transparent'
+      backgroundColor: 'transparent',
     }
 
     this.handleMessage = this.handleMessage.bind(this)
@@ -129,9 +128,10 @@ class Widget extends Component {
     this.debouncedScroll = debounce(this.focusIframe, DEBOUNCE_WAIT, this)
     this.setIframeRef = this.setIframeRef.bind(this)
     this.sendFocusMessageToIframe = this.sendFocusMessageToIframe.bind(this)
+    this.handleFormScreenChanged = this.handleFormScreenChanged.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     window.addEventListener('message', this.handleMessage)
     window.addEventListener('form-ready', this.handleFormReady)
     window.addEventListener('scroll', this.debouncedScroll)
@@ -140,11 +140,12 @@ class Widget extends Component {
     window.addEventListener('welcome-screen-hidden', this.goFullScreen)
     window.addEventListener('redirect-after-submit', redirectToUrl)
     window.addEventListener('thank-you-screen-redirect', redirectToUrl)
+    window.addEventListener('form-screen-changed', this.handleFormScreenChanged)
 
     document.body.appendChild(this.fullScreenModalDiv)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.removeEventListener('message', this.handleMessage)
     window.removeEventListener('form-ready', this.handleFormReady)
     window.removeEventListener('scroll', this.debouncedScroll)
@@ -153,65 +154,83 @@ class Widget extends Component {
     window.removeEventListener('welcome-screen-hidden', this.goFullScreen)
     window.removeEventListener('redirect-after-submit', redirectToUrl)
     window.removeEventListener('thank-you-screen-redirect', redirectToUrl)
+    window.removeEventListener('form-screen-changed', this.handleFormScreenChanged)
 
     document.body.removeChild(this.fullScreenModalDiv)
   }
 
-  setIframeRef (node) {
+  setIframeRef(node) {
     this.iframe = node
   }
 
-  goFullScreen () {
+  setupGoogleAnalyticsInstanceSharingFeature() {
+    if (this.props.options.shareGoogleAnalyticsInstance) {
+      const { iframeRef } = this.iframe
+      const canPostMessage = this.state.isFormReady && iframeRef.contentWindow != null
+      if (canPostMessage) {
+        setupGoogleAnalyticsInstanceSharingFeature(iframeRef, this.props.embedId)
+      }
+    }
+  }
+
+  goFullScreen() {
     if (this.props.enabledFullscreen) {
       this.setState({ isFullscreen: true })
       setTimeout(this.reloadIframe, 500)
     }
   }
 
-  handleClose () {
+  handleClose() {
     this.setState({ isFullscreen: false })
   }
 
-  handleFormReady () {
+  handleFormReady() {
     this.setState(
       {
-        isFormReady: true
+        isFormReady: true,
       },
       () => {
         this.focusIframe()
+        this.setupGoogleAnalyticsInstanceSharingFeature()
       }
     )
   }
 
-  handleFormTheme (event) {
+  handleFormTheme(event) {
     const { theme } = event.detail || {}
     this.setState({
       backgroundColor: theme.backgroundColor,
-      buttonColor: theme.color
+      buttonColor: theme.color,
     })
   }
 
-  handleMessage (event) {
+  handleFormScreenChanged(event) {
+    if (this.props.options.onScreenChanged) {
+      this.props.options.onScreenChanged(event)
+    }
+  }
+
+  handleMessage(event) {
     broadcastMessage(this.embedId, event)
   }
 
-  handleFormSubmit (event) {
+  handleFormSubmit(event) {
     if (this.props.options.onSubmit) {
       this.props.options.onSubmit(getSubmitEventData(event))
     }
   }
 
-  handleMobileFormSubmit (event) {
+  handleMobileFormSubmit(event) {
     this.props.options.onSubmit(event)
   }
 
-  reloadIframe () {
+  reloadIframe() {
     // Re-assign the source of the iframe, makes it reload cross-browser
     // eslint-disable-next-line
     this.iframe.iframeRef.src = this.iframe.iframeRef.src
   }
 
-  focusIframe () {
+  focusIframe() {
     if (this.props.enabledFullscreen) return
 
     const { iframeRef } = this.iframe
@@ -220,38 +239,28 @@ class Widget extends Component {
     }
     const isIframeInViewport = isElementInViewport(iframeRef)
     const canPostMessage =
-      this.state.isFormReady &&
-      !this.state.isIframeFocused &&
-      isIframeInViewport &&
-      iframeRef.contentWindow != null
+      this.state.isFormReady && !this.state.isIframeFocused && isIframeInViewport && iframeRef.contentWindow != null
 
     if (canPostMessage) {
       this.setState({ isIframeFocused: true }, this.sendFocusMessageToIframe)
     }
   }
 
-  sendFocusMessageToIframe () {
+  sendFocusMessageToIframe() {
     const { iframeRef } = this.iframe
-    if (!iframeRef) { return }
+    if (!iframeRef) {
+      return
+    }
 
-    setTimeout(
-      () => iframeRef.contentWindow.postMessage('embed-focus', '*'),
-      100
-    )
+    setTimeout(() => iframeRef.contentWindow.postMessage('embed-focus', '*'), 100)
   }
 
-  render () {
-    const {
-      isFullscreen,
-      backgroundColor,
-      buttonColor,
-      isFormReady
-    } = this.state
+  render() {
+    const { isFullscreen, backgroundColor, buttonColor, isFormReady } = this.state
 
     const { enabledFullscreen, url } = this.props
 
-    const iframePosition =
-      this.iframe && this.iframe.iframeRef.getBoundingClientRect()
+    const iframePosition = this.iframe && this.iframe.iframeRef.getBoundingClientRect()
 
     let inlineIframeUrl = updateQueryStringParameter('typeform-embed-id', this.embedId, url)
 
@@ -270,43 +279,36 @@ class Widget extends Component {
 
     return (
       <WidgetWrapper ref={this.wrapperRef}>
-        <IframeWrapper
-          backgroundColor={enabledFullscreen ? backgroundColor : 'transparent'}
-        >
-          <Iframe
-            frameBorder='0'
-            height='100%'
-            ref={this.setIframeRef}
-            src={inlineIframeUrl}
-            width='100%'
-          />
+        <IframeWrapper backgroundColor={enabledFullscreen ? backgroundColor : 'transparent'}>
+          <Iframe frameBorder="0" height="100%" ref={this.setIframeRef} src={inlineIframeUrl} width="100%" />
         </IframeWrapper>
-        { enabledFullscreen &&
-            <Placeholder
-              backgroundColor={placeholderBackgroundColor}
-              bottom={iframePosition && iframePosition.bottom}
-              height={iframePosition && iframePosition.height}
-              left={iframePosition && iframePosition.left}
-              open={isFullscreen}
-              right={iframePosition && iframePosition.right}
-              top={iframePosition && iframePosition.top}
-              visible={isFormReady}
-              width={iframePosition && iframePosition.width}
-            />
-        }
-        { enabledFullscreen && ReactDOM.createPortal(
-          <MobileModal
-            backgroundColor={backgroundColor}
-            buttonColor={buttonColor}
-            embedId={this.mobileEmbedId}
-            onClose={this.handleClose}
-            onSubmit={this.handleMobileFormSubmit}
+        {enabledFullscreen && (
+          <Placeholder
+            backgroundColor={placeholderBackgroundColor}
+            bottom={iframePosition && iframePosition.bottom}
+            height={iframePosition && iframePosition.height}
+            left={iframePosition && iframePosition.left}
             open={isFullscreen}
-            openDelay={0.3}
-            url={fullscreenIframeUrl}
-          />,
-          this.fullScreenModalDiv
+            right={iframePosition && iframePosition.right}
+            top={iframePosition && iframePosition.top}
+            visible={isFormReady}
+            width={iframePosition && iframePosition.width}
+          />
         )}
+        {enabledFullscreen &&
+          ReactDOM.createPortal(
+            <MobileModal
+              backgroundColor={backgroundColor}
+              buttonColor={buttonColor}
+              embedId={this.mobileEmbedId}
+              onClose={this.handleClose}
+              onSubmit={this.handleMobileFormSubmit}
+              open={isFullscreen}
+              openDelay={0.3}
+              url={fullscreenIframeUrl}
+            />,
+            this.fullScreenModalDiv
+          )}
       </WidgetWrapper>
     )
   }
@@ -316,12 +318,12 @@ Widget.propTypes = {
   url: PropTypes.string,
   options: PropTypes.object.isRequired,
   enabledFullscreen: PropTypes.bool,
-  embedId: PropTypes.string
+  embedId: PropTypes.string,
 }
 
 Widget.defaultProps = {
   options: {},
-  enabledFullscreen: false
+  enabledFullscreen: false,
 }
 
 export default Widget

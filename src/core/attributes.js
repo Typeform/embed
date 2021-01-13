@@ -1,42 +1,70 @@
-const transformLegacyDataMode = dataMode => {
+const transformLegacyDataMode = (dataMode) => {
   const POPUPS_MODES = [
     {
       id: '1',
-      mode: 'popup'
+      mode: 'popup',
     },
     {
       id: '2',
-      mode: 'drawer_left'
+      mode: 'drawer_left',
     },
     {
       id: '3',
-      mode: 'drawer_right'
-    }
+      mode: 'drawer_right',
+    },
   ]
 
-  const element = POPUPS_MODES.find(m => m.id === dataMode)
+  const element = POPUPS_MODES.find((m) => m.id === dataMode)
   return element ? element.mode : dataMode
 }
 
-const parseTransferableUrlParameters = transferableUrlParameters => {
+const parseTransferableUrlParameters = (transferableUrlParameters) => {
   return transferableUrlParameters.replace(/ /g, '').split(',')
 }
 
-const getDataset = element => {
+const getDataset = (element) => {
   const data = {}
-  ;[].forEach.call(element.attributes, attr => {
+  ;[].forEach.call(element.attributes, (attr) => {
     if (/^data-/.test(attr.name)) {
-      const camelCaseName = attr.name
-        .substr(5)
-        .replace(/-(.)/g, ($0, $1) => $1.toUpperCase())
+      const camelCaseName = attr.name.substr(5).replace(/-(.)/g, ($0, $1) => $1.toUpperCase())
       data[camelCaseName] = attr.value
     }
   })
   return data
 }
 
-const sanitizePopupAttributes = data => {
+const sanitizeCommonAttributes = (data) => {
   const obj = {}
+
+  if (data.hideHeaders === '' || data.hideHeaders === 'true') {
+    obj.hideHeaders = true
+  }
+
+  if (data.hideFooter === '' || data.hideFooter === 'true') {
+    obj.hideFooter = true
+  }
+
+  if (data.hideScrollbars === '' || data.hideScrollbars === 'true') {
+    obj.hideScrollbars = true
+  }
+
+  if (data.source) {
+    obj.source = data.source
+  }
+
+  if (data.medium) {
+    obj.medium = data.medium
+  }
+
+  if (data.mediumVersion) {
+    obj.mediumVersion = data.mediumVersion
+  }
+
+  return obj
+}
+
+const sanitizePopupAttributes = (data) => {
+  const obj = sanitizeCommonAttributes(data)
 
   if (data.mode) {
     obj.mode = transformLegacyDataMode(data.mode)
@@ -50,18 +78,6 @@ const sanitizePopupAttributes = data => {
 
   if (data.autoOpen === '' || data.autoOpen === 'true') {
     obj.autoOpen = true
-  }
-
-  if (data.hideHeaders === '' || data.hideHeaders === 'true') {
-    obj.hideHeaders = true
-  }
-
-  if (data.hideFooter === '' || data.hideFooter === 'true') {
-    obj.hideFooter = true
-  }
-
-  if (data.hideScrollbars === '' || data.hideScrollbars === 'true') {
-    obj.hideScrollbars = true
   }
 
   if (data.open) {
@@ -81,6 +97,10 @@ const sanitizePopupAttributes = data => {
     obj.transferableUrlParameters = parseTransferableUrlParameters(data.transferableUrlParameters)
   }
 
+  if (data.shareGoogleAnalyticsInstance === '' || data.shareGoogleAnalyticsInstance === 'true') {
+    obj.shareGoogleAnalyticsInstance = true
+  }
+
   if (data.size) {
     obj.size = parseInt(data.size, 10)
   }
@@ -88,20 +108,8 @@ const sanitizePopupAttributes = data => {
   return obj
 }
 
-const sanitizeWidgetAttributes = data => {
-  const obj = {}
-
-  if (data.hideHeaders === '' || data.hideHeaders === 'true') {
-    obj.hideHeaders = true
-  }
-
-  if (data.hideFooter === '' || data.hideFooter === 'true') {
-    obj.hideFooter = true
-  }
-
-  if (data.hideScrollbars === '' || data.hideScrollbars === 'true') {
-    obj.hideScrollbars = true
-  }
+const sanitizeWidgetAttributes = (data) => {
+  const obj = sanitizeCommonAttributes(data)
 
   const transparency = parseInt(data.transparency, 10)
   if (data.transparency && transparency >= 0 && transparency <= 100) {
@@ -114,6 +122,10 @@ const sanitizeWidgetAttributes = data => {
 
   if (data.transferableUrlParameters) {
     obj.transferableUrlParameters = parseTransferableUrlParameters(data.transferableUrlParameters)
+  }
+
+  if (data.shareGoogleAnalyticsInstance === '' || data.shareGoogleAnalyticsInstance === 'true') {
+    obj.shareGoogleAnalyticsInstance = true
   }
 
   return obj

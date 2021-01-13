@@ -45,6 +45,15 @@ describe('Widget', () => {
     expect(onSubmitMock).not.toHaveBeenCalled()
   })
 
+  it('onScreenChanged callback is executed when the user execute an interaction that triggers a screen change', () => {
+    const onScreenChangedMock = jest.fn()
+    const options = { onScreenChanged: onScreenChangedMock }
+    mount(<Widget options={options} url={URL} />)
+
+    window.dispatchEvent(new CustomEvent('form-screen-changed'))
+    expect(onScreenChangedMock).toHaveBeenCalledTimes(1)
+  })
+
   it('passes event data to onSubmit callback', () => {
     const onSubmitMock = jest.fn()
     const options = { onSubmit: onSubmitMock }
@@ -60,25 +69,23 @@ describe('Widget', () => {
   describe('on fullscreen mode', () => {
     it('onSubmit callback is executed upon typeform submission', () => {
       const MOBILE_EMBED_ID = '098765'
-      randomString
-        .mockImplementationOnce(() => EMBED_ID)
-        .mockImplementationOnce(() => MOBILE_EMBED_ID)
+      randomString.mockImplementationOnce(() => EMBED_ID).mockImplementationOnce(() => MOBILE_EMBED_ID)
       const onSubmitMock = jest.fn()
       const options = { onSubmit: onSubmitMock }
-      mount(<Widget enabledFullscreen options={options} url={URL}/>)
+      mount(<Widget enabledFullscreen options={options} url={URL} />)
 
       window.dispatchEvent(new CustomEvent('form-submit', { detail: { embedId: MOBILE_EMBED_ID } }))
       expect(onSubmitMock).toHaveBeenCalledTimes(1)
     })
 
     it('renders an iframe with disabled submissions', () => {
-      const wrapper = mount(<Widget enabledFullscreen url={URL}/>)
+      const wrapper = mount(<Widget enabledFullscreen url={URL} />)
       expect(wrapper.find(Iframe)).toHaveLength(1)
       expect(wrapper.find(Iframe).props().src.includes('disable-tracking=true')).toBe(true)
     })
 
     it('renders a second iframe after the welcome-screen-hidden event', () => {
-      const wrapper = mount(<Widget enabledFullscreen url={URL}/>)
+      const wrapper = mount(<Widget enabledFullscreen url={URL} />)
 
       let modal = wrapper.find(MobileModal)
       expect(wrapper.find(MobileModal).props().url.includes('typeform-welcome=0')).toBe(true)
