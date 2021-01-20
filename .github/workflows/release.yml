@@ -6,8 +6,8 @@ on:
 
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
   AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
   PUBLIC_CDN_URL: 'https://embed.typeform.com'
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -59,6 +59,6 @@ jobs:
       - run: npm config set @typeform:registry https://npm.pkg.github.com/
       - run: yarn install
       - run: yarn build
-      - run: yarn add @typeform/jarvis
+      - run: yarn add @typeform/jarvis@11.0.0
       - run: ./scripts/consolidate-dist.sh
       - run: DEBUG=jarvis yarn jarvis deploy --path dist

@@ -96,7 +96,7 @@ describe('Open: load (via embed code)', () => {
 
   it('should display close button', () => {
     cy.get('.typeform-share > .icon > img[data-qa="popup-close-button"]').should('be.visible')
-    cy.get('.typeform-share > .icon > svg').should('not.be.visible')
+    cy.get('.typeform-share > .icon > svg').should('not.exist')
   })
 
   describe('when popup is closed', () => {
@@ -109,7 +109,7 @@ describe('Open: load (via embed code)', () => {
     })
 
     it('should display original icon', () => {
-      cy.get('.typeform-share > .icon > img[data-qa="popup-close-button"]').should('not.be.visible')
+      cy.get('.typeform-share > .icon > img[data-qa="popup-close-button"]').should('not.exist')
       cy.get('.typeform-share > .icon > svg').should('be.visible')
     })
   })
