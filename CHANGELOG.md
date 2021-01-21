@@ -1,3 +1,10 @@
+# [0.34.0](https://github.com/Typeform/embed/compare/v0.33.2...v0.34.0) (2021-01-21)
+
+
+### Features
+
+* **DIST-617:** Remove Cypress Dashboard from CI ([ce04718](https://github.com/Typeform/embed/commit/ce04718327400b36a727ec81008cfd96d6acc351))
+
 ## [0.33.2](https://github.com/Typeform/embed/compare/v0.33.1...v0.33.2) (2021-01-07)
 
 
