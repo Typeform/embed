@@ -1,3 +1,10 @@
+## [0.34.1](https://github.com/Typeform/embed/compare/v0.34.0...v0.34.1) (2021-01-27)
+
+
+### Bug Fixes
+
+* **DIST-629:** Update iframe reload logic ([a781a94](https://github.com/Typeform/embed/commit/a781a944b1df10927056be10952ca90472cdf8a1))
+
 # [0.34.0](https://github.com/Typeform/embed/compare/v0.33.2...v0.34.0) (2021-01-21)
 
 
