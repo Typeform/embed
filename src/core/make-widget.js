@@ -48,13 +48,6 @@ export default function makeWidget(element, url, options) {
   let queryStrings = replaceExistingKeys(options, queryStringKeys)
   queryStrings = transferUrlParametersToQueryStrings(options.transferableUrlParameters, queryStrings)
 
-  if (enabledFullscreen) {
-    queryStrings = {
-      ...queryStrings,
-      'add-placeholder-ws': true,
-    }
-  }
-
   const urlWithQueryString = appendParamsToUrl(url, queryStrings)
 
   render(
