@@ -1,6 +1,6 @@
 import { screenSizeDesktop, screenSizeMobile } from './cypress-utils'
 
-const eyesCheck = (name, mobile) => {
+const eyesCheck = async (name, mobile) => {
   const { width, height } = mobile ? screenSizeMobile : screenSizeDesktop
 
   cy.eyesOpen({
@@ -11,6 +11,7 @@ const eyesCheck = (name, mobile) => {
       height,
       name: Cypress.browser.name,
     },
+    batchName: 'Embed',
   })
   cy.eyesCheckWindow(name)
   cy.eyesClose()
