@@ -1,6 +1,6 @@
 import { ActionableOptions, UrlOptions, BehavioralOptions } from '../../base'
 
-export type SidePanelOptions = UrlOptions &
+export type PopupOptions = UrlOptions &
   ActionableOptions &
   BehavioralOptions & {
     /**
