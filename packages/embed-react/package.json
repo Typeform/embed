@@ -7,5 +7,13 @@
   "license": "LGPL-3.0-only",
   "dependencies": {
     "@typeform/embed": "1.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
   }
 }
