@@ -1,0 +1,7 @@
+{
+  "hooks": {
+    "pre-commit": "lerna run lint",
+    "pre-push": "lerna run test",
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+  }
+}

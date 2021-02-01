@@ -1,0 +1,57 @@
+# OSX and ide's folder attributes
+.DS_Store
+Thumbs.db
+.cache
+.project
+.settings
+.tmproj
+*.esproj
+nbproject
+*.sublime-project
+*.sublime-workspace
+*.sublime-*
+jsconfig.json
+.vscode
+.idea
+.env
+
+#  common node files and folders
+#  https://github.com/github/gitignore/blob/master/Node.gitignore
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+build/Release # Compiled binary addons (http://nodejs.org/api/addons.html)
+
+# always-ignore extensions
+*.diff
+*.err
+*.orig
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# nodemon
+.monitor
+
+dist
+build
+node_modules
+
+# tests
+e2e/screenshots

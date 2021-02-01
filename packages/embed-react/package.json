@@ -1,0 +1,11 @@
+{
+  "name": "@typeform/embed-react",
+  "version": "1.0.0",
+  "private": true,
+  "main": "build/index.js",
+  "author": "Typeform",
+  "license": "LGPL-3.0-only",
+  "dependencies": {
+    "@typeform/embed": "1.0.0"
+  }
+}
