@@ -7,22 +7,5 @@ export type BehavioralOptions = {
    * @type {BehavioralType}
    */
   open?: BehavioralType
-  /**
-   * Configuration for behavioral triggers. Exit threshold in pixels.
-   *
-   * @type {number}
-   */
-  openPixelThreshold?: number
-  /**
-   * Configuration for behavioral triggers. % of page scrolled.
-   *
-   * @type {number}
-   */
-  openScrollPercentage?: number
-  /**
-   * Configuration for behavioral triggers. Time in milliseconds.
-   *
-   * @type {number}
-   */
-  openDelay?: number
+  openValue?: number
 }
