@@ -1,5 +1,6 @@
+import { createIframe } from '../../utils'
+
 import { PopupOptions } from './popup-options'
-import { createIframe } from './../../utils'
 
 export const createPopup = (formUrl: string, options: PopupOptions) => {
   const iframe = createIframe(formUrl, 'popup', options)
