@@ -24,6 +24,5 @@
     "typeRoots": ["./types", "./node_modules/@types"],
     "types": ["@types/jest", "node"]
   },
-  "exclude": ["src/*.spec.ts"],
-  "include": ["src/*.ts"]
+  "include": ["src/**/*.ts*"]
 }

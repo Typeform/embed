@@ -13,6 +13,8 @@
     "dev": "tsc -w",
     "demo": "cd ../embed-kitchen-sink && yarn dev",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0",
-    "test": "jest"
+    "test": "jest",
+    "cy:run": "yarn cypress run --browser chrome --headless",
+    "cy:open": "yarn cypress open"
   }
 }
