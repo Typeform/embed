@@ -2,7 +2,13 @@ import { createIframe } from '../../utils'
 
 import { PopupOptions } from './popup-options'
 
-export const createPopup = (formUrl: string, options: PopupOptions) => {
+export type Popup = {
+  open: () => void
+  close: () => void
+  refresh: () => void
+}
+
+export const createPopup = (formUrl: string, options: PopupOptions): Popup => {
   const iframe = createIframe(formUrl, 'popup', options)
 
   const popup = document.createElement('div')

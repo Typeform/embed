@@ -21,7 +21,8 @@
     "esModuleInterop": true,
     "declaration": true,
     "declarationMap": true,
-    "typeRoots": [ "./types", "./node_modules/@types"]
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "types": ["@types/jest", "node"]
   },
   "exclude": ["src/*.spec.ts"],
   "include": ["src/*.ts"]
