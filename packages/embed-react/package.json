@@ -9,7 +9,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@typeform/embed": "1.0.0"
+    "@typeform/embed": "file:../embed"
   },
   "scripts": {
     "build": "tsc",

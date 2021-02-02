@@ -2,7 +2,11 @@ import { createIframe } from '../../utils'
 
 import { WidgetOptions } from './widget-options'
 
-export const createWidget = (formUrl: string, options: WidgetOptions) => {
+export type Widget = {
+  refresh: () => void
+}
+
+export const createWidget = (formUrl: string, options: WidgetOptions): Widget => {
   const iframe = createIframe(formUrl, 'widget', options)
 
   const widget = document.createElement('div')
