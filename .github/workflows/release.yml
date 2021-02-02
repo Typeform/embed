@@ -13,9 +13,25 @@ env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
+  init:
+    name: Init
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.ci-skip-step.outputs.ci-skip }}
+      skip-not: ${{ steps.ci-skip-step.outputs.ci-skip-not }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: mstachniuk/ci-skip@master
+        id: ci-skip-step
+        with:
+          commit-filter: '[skip ci]'
   release_npm:
     name: Release to NPM
-    runs-on: ubuntu-latest # [self-hosted, node-12]
+    runs-on: ubuntu-latest
+    needs: init
+    if: ${{ needs.init.outputs.skip == 'false' }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -43,7 +59,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
   release_aws:
     name: Release to AWS
-    runs-on: ubuntu-latest # [self-hosted, node-12]
+    runs-on: ubuntu-latest
+    needs: init
+    if: ${{ needs.init.outputs.skip == 'false' }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
