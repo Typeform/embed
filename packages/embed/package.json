@@ -5,6 +5,9 @@
   "main": "build/index.js",
   "author": "Typeform",
   "license": "LGPL-3.0-only",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
