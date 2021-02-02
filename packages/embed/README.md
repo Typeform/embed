@@ -26,3 +26,10 @@ Run unit tests
 ```bash
 yarn test
 ```
+
+Run functional tests via Cypress
+
+```bash
+yarn cy:run   # run in background (headless)
+yarn cy:open  # open cypress UI
+```
