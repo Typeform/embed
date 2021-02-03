@@ -1,5 +1,2 @@
 node_modules/
-dist/
 build/
-CHANGELOG.md
-demo/embed.js

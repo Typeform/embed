@@ -12,7 +12,9 @@
     "build": "tsc",
     "dev": "tsc -w",
     "demo": "cd ../embed-kitchen-sink && yarn dev",
-    "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0",
+    "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0 && yarn prettier-check",
+    "prettier-check": "prettier --check . --ignore-path .eslintignore",
+    "prettier": "prettier --write . --ignore-path .eslintignore",
     "test": "jest",
     "cy:run": "yarn cypress run --browser chrome --headless",
     "cy:open": "yarn cypress open"
