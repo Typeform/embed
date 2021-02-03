@@ -17,6 +17,7 @@
     "prettier": "prettier --write . --ignore-path .eslintignore",
     "test": "jest",
     "cy:run": "yarn cypress run --browser chrome --headless",
-    "cy:open": "yarn cypress open"
+    "cy:open": "yarn cypress open",
+    "test:functional": "start-server-and-test demo 6006 cy:run"
   }
 }
