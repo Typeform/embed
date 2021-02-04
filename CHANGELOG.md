@@ -1,3 +1,10 @@
+## [0.34.4](https://github.com/Typeform/embed/compare/v0.34.3...v0.34.4) (2021-02-04)
+
+
+### Bug Fixes
+
+* **DIST-713:** Removed extra timing ([#149](https://github.com/Typeform/embed/issues/149)) ([04d64ab](https://github.com/Typeform/embed/commit/04d64ab189b58ce10d2bea90792c2ebb35d60795))
+
 ## [0.34.3](https://github.com/Typeform/embed/compare/v0.34.2...v0.34.3) (2021-02-04)
 
 
