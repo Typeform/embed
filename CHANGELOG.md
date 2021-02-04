@@ -1,3 +1,10 @@
+## [0.34.2](https://github.com/Typeform/embed/compare/v0.34.1...v0.34.2) (2021-02-04)
+
+
+### Bug Fixes
+
+* **DIST-713:** Force iframe redraw onLoad ([#146](https://github.com/Typeform/embed/issues/146)) ([1c675a0](https://github.com/Typeform/embed/commit/1c675a0b79f089789d934b55668a99bef897c143))
+
 ## [0.34.1](https://github.com/Typeform/embed/compare/v0.34.0...v0.34.1) (2021-01-27)
 
 
