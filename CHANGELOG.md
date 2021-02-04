@@ -1,3 +1,53 @@
+## [0.34.1](https://github.com/Typeform/embed/compare/v0.34.0...v0.34.1) (2021-01-27)
+
+
+### Bug Fixes
+
+* **DIST-629:** Update iframe reload logic ([a781a94](https://github.com/Typeform/embed/commit/a781a944b1df10927056be10952ca90472cdf8a1))
+
+# [0.34.0](https://github.com/Typeform/embed/compare/v0.33.2...v0.34.0) (2021-01-21)
+
+
+### Features
+
+* **DIST-617:** Remove Cypress Dashboard from CI ([ce04718](https://github.com/Typeform/embed/commit/ce04718327400b36a727ec81008cfd96d6acc351))
+
+## [0.33.2](https://github.com/Typeform/embed/compare/v0.33.1...v0.33.2) (2021-01-07)
+
+
+### Bug Fixes
+
+* **DIST-589:** Update README ([3798ca6](https://github.com/Typeform/embed/commit/3798ca66962f933778d4315eb6f97b0273d9dfe6))
+
+## [0.33.1](https://github.com/Typeform/embed/compare/v0.33.0...v0.33.1) (2021-01-06)
+
+
+### Bug Fixes
+
+* **DIST-589:** Update release Github Action workflow ([6537cb3](https://github.com/Typeform/embed/commit/6537cb309ce0f7a1860f92b906c1b6827c2c40a4))
+
+# [0.33.0](https://github.com/Typeform/embed/compare/v0.32.0...v0.33.0) (2021-01-06)
+
+
+### Features
+
+* **DIST-589:** Run CI in Github Actions instead of Travis ([da9b15a](https://github.com/Typeform/embed/commit/da9b15a0dcb8188f80a61b2699f3665fb68ced50))
+
+# [0.32.0](https://github.com/Typeform/embed/compare/v0.31.1...v0.32.0) (2021-01-04)
+
+
+### Bug Fixes
+
+* **PI-89:** Fix missing binding ([de21178](https://github.com/Typeform/embed/commit/de21178f3a809388e0c4c9ce0ad2bcfad3466157))
+
+
+### Features
+
+* Add data-share-google-analytics-instance attribute to embed ([f4931b3](https://github.com/Typeform/embed/commit/f4931b3ab43405a48e8f4a3dc74c0f635fb3f4b4))
+* Instanciate Google instance sharing feature on form ready ([f96fe17](https://github.com/Typeform/embed/commit/f96fe17849b3f3e0843991a1cd62d699802bef1c))
+* MobileModal Add default empty options prop ([047d3f6](https://github.com/Typeform/embed/commit/047d3f6579b1cee38038e26dc73031653e3396c4))
+* Turns throw error into console.error ([63b4b98](https://github.com/Typeform/embed/commit/63b4b9847ed43ae5ea3b37a9dd7abd4477266a0a))
+
 ## [0.31.1](https://github.com/Typeform/embed/compare/v0.31.0...v0.31.1) (2020-12-15)
 
 

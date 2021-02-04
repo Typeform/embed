@@ -78,10 +78,11 @@ describe('Widget', () => {
       expect(onSubmitMock).toHaveBeenCalledTimes(1)
     })
 
-    it('renders an iframe with disabled submissions', () => {
+    it('renders an iframe with disabled submissions and placeholder welcome screen', () => {
       const wrapper = mount(<Widget enabledFullscreen url={URL} />)
       expect(wrapper.find(Iframe)).toHaveLength(1)
       expect(wrapper.find(Iframe).props().src.includes('disable-tracking=true')).toBe(true)
+      expect(wrapper.find(Iframe).props().src.includes('add-placeholder-ws=true')).toBe(true)
     })
 
     it('renders a second iframe after the welcome-screen-hidden event', () => {

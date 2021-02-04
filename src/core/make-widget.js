@@ -17,6 +17,7 @@ const defaultOptions = {
   hideScrollbars: false,
   disableTracking: false,
   transferableUrlParameters: [],
+  shareGoogleAnalyticsInstance: false,
   onSubmit: noop,
   onScreenChanged: noop,
 }
@@ -30,6 +31,7 @@ const queryStringKeys = {
   hideHeaders: 'embed-hide-headers',
   opacity: 'embed-opacity',
   disableTracking: 'disable-tracking',
+  shareGoogleAnalyticsInstance: 'share-ga-instance',
 }
 
 export default function makeWidget(element, url, options) {
@@ -45,13 +47,6 @@ export default function makeWidget(element, url, options) {
 
   let queryStrings = replaceExistingKeys(options, queryStringKeys)
   queryStrings = transferUrlParametersToQueryStrings(options.transferableUrlParameters, queryStrings)
-
-  if (enabledFullscreen) {
-    queryStrings = {
-      ...queryStrings,
-      'add-placeholder-ws': true,
-    }
-  }
 
   const urlWithQueryString = appendParamsToUrl(url, queryStrings)
 

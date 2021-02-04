@@ -17,6 +17,7 @@ describe('Attributes', () => {
       popupMockElem.setAttribute('data-medium', 'embed-snippet')
       popupMockElem.setAttribute('data-medium-version', '0.29.1')
       popupMockElem.setAttribute('data-embed-trigger-type', 'on_page_load')
+      popupMockElem.setAttribute('data-share-google-analytics-instance', true)
 
       const popupOptions = {
         mode: 'popup',
@@ -29,6 +30,7 @@ describe('Attributes', () => {
         source: 'example.com',
         medium: 'embed-snippet',
         mediumVersion: '0.29.1',
+        shareGoogleAnalyticsInstance: true,
       }
 
       expect(sanitizePopupAttributes(getDataset(popupMockElem))).toEqual(popupOptions)
@@ -65,11 +67,13 @@ describe('Attributes', () => {
       widgetMockElem.setAttribute('data-scrollbars', false)
       widgetMockElem.setAttribute('data-invalid-attribute', true)
       widgetMockElem.setAttribute('data-transparency', 20)
+      widgetMockElem.setAttribute('data-share-google-analytics-instance', true)
 
       const widgetOptions = {
         hideHeaders: true,
         hideFooter: true,
         opacity: 100 - 20,
+        shareGoogleAnalyticsInstance: true,
       }
 
       expect(sanitizeWidgetAttributes(getDataset(widgetMockElem))).toEqual(widgetOptions)

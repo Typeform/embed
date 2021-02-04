@@ -97,6 +97,10 @@ const sanitizePopupAttributes = (data) => {
     obj.transferableUrlParameters = parseTransferableUrlParameters(data.transferableUrlParameters)
   }
 
+  if (data.shareGoogleAnalyticsInstance === '' || data.shareGoogleAnalyticsInstance === 'true') {
+    obj.shareGoogleAnalyticsInstance = true
+  }
+
   if (data.size) {
     obj.size = parseInt(data.size, 10)
   }
@@ -118,6 +122,10 @@ const sanitizeWidgetAttributes = (data) => {
 
   if (data.transferableUrlParameters) {
     obj.transferableUrlParameters = parseTransferableUrlParameters(data.transferableUrlParameters)
+  }
+
+  if (data.shareGoogleAnalyticsInstance === '' || data.shareGoogleAnalyticsInstance === 'true') {
+    obj.shareGoogleAnalyticsInstance = true
   }
 
   return obj

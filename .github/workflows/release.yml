@@ -1,0 +1,82 @@
+name: Release
+
+on:
+  push:
+    branches: [master]
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+  AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
+  PUBLIC_CDN_URL: 'https://embed.typeform.com'
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  init:
+    name: Init
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.ci-skip-step.outputs.ci-skip }}
+      skip-not: ${{ steps.ci-skip-step.outputs.ci-skip-not }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: mstachniuk/ci-skip@master
+        id: ci-skip-step
+        with:
+          commit-filter: '[skip ci]'
+  release_npm:
+    name: Release to NPM
+    runs-on: ubuntu-latest
+    needs: init
+    if: ${{ needs.init.outputs.skip == 'false' }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          # Use custom token from repo secrets to allow semantic release to push commit:
+          # https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/github-actions.md#pushing-packagejson-changes-to-a-master-branch
+          persist-credentials: false
+          token: ${{ secrets.GH_TOKEN }}
+      - uses: actions/setup-node@v1
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ~/.cache
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn install
+      - run: yarn build
+      # Update registry and tokens with write access for releasing.
+      - run: rm ./.npmrc
+      - run: npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
+      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+      - run: npm config set @typeform:registry https://npm.pkg.github.com/
+      - run: yarn semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  release_aws:
+    name: Release to AWS
+    runs-on: ubuntu-latest
+    needs: init
+    if: ${{ needs.init.outputs.skip == 'false' }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ~/.cache
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      # Update registry before installing private package @typeform/jarvis. See CONTRIBUTING.md for more details.
+      - run: rm ./.npmrc
+      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+      - run: npm config set @typeform:registry https://npm.pkg.github.com/
+      - run: yarn install
+      - run: yarn build
+      - run: yarn add @typeform/jarvis@11.0.0
+      - run: ./scripts/consolidate-dist.sh
+      - run: DEBUG=jarvis yarn jarvis deploy --path dist

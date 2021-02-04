@@ -14,6 +14,7 @@ import {
   removeColorTransparency,
 } from '../utils'
 import randomString from '../utils/random-string'
+import setupGoogleAnalyticsInstanceSharingFeature from '../features/google-analytics-instance-sharing'
 
 import Iframe from './components/iframe'
 import MobileModal from './mobile-modal'
@@ -56,20 +57,11 @@ const PlaceholderAnimationAppear = keyframes`
 `
 
 const PlaceholderAnimationDisappear = keyframes`
-  100% {
-    opacity: 0;
-  }
-
-  75% {
-    opacity: 1;
-  }
-
-
-  25% {
-    opacity: 1;
-  }
-
   0% {
+    opacity: 1;
+  }
+  
+  100% {
     opacity: 0;
   }
 `
@@ -162,10 +154,20 @@ class Widget extends Component {
     this.iframe = node
   }
 
+  setupGoogleAnalyticsInstanceSharingFeature() {
+    if (this.props.options.shareGoogleAnalyticsInstance) {
+      const { iframeRef } = this.iframe
+      const canPostMessage = this.state.isFormReady && iframeRef.contentWindow != null
+      if (canPostMessage) {
+        setupGoogleAnalyticsInstanceSharingFeature(iframeRef, this.props.embedId)
+      }
+    }
+  }
+
   goFullScreen() {
     if (this.props.enabledFullscreen) {
       this.setState({ isFullscreen: true })
-      setTimeout(this.reloadIframe, 500)
+      this.reloadIframe()
     }
   }
 
@@ -180,6 +182,7 @@ class Widget extends Component {
       },
       () => {
         this.focusIframe()
+        this.setupGoogleAnalyticsInstanceSharingFeature()
       }
     )
   }
@@ -214,8 +217,11 @@ class Widget extends Component {
 
   reloadIframe() {
     // Re-assign the source of the iframe, makes it reload cross-browser
-    // eslint-disable-next-line
-    this.iframe.iframeRef.src = this.iframe.iframeRef.src
+    const originalSrc = this.iframe.iframeRef.src
+    this.iframe.iframeRef.src = ''
+    setTimeout(() => {
+      this.iframe.iframeRef.src = originalSrc
+    }, 250)
   }
 
   focusIframe() {
@@ -254,6 +260,7 @@ class Widget extends Component {
 
     if (enabledFullscreen) {
       inlineIframeUrl = updateQueryStringParameter('disable-tracking', 'true', inlineIframeUrl)
+      inlineIframeUrl = updateQueryStringParameter('add-placeholder-ws', 'true', inlineIframeUrl)
     }
 
     let fullscreenIframeUrl = updateQueryStringParameter('typeform-welcome', '0', url)
