@@ -22,7 +22,7 @@ class Iframe extends Component {
   }
 
   async handleLoad() {
-    this.props.onLoad(this.iframeRef)
+    await Promise.resolve(this.props.onLoad(this.iframeRef))
     await this.triggerIframeRedraw()
   }
 
@@ -42,7 +42,7 @@ class Iframe extends Component {
         setTimeout(() => {
           this.iframeRef.style.display = 'block'
           resolve()
-        }, 500)
+        })
       } catch (err) {
         reject(err)
       }

@@ -66,8 +66,8 @@ const popupWrapper = styled(BaseWrapper)`
   ${({ size }) =>
     size &&
     `
-    height: calc(${size}% - 80px); 
-    width: calc(${size}% - 80px); 
+    height: calc(${size}% - 80px);
+    width: calc(${size}% - 80px);
   `}
   transition: all 300ms ease-out;
 `
@@ -258,17 +258,20 @@ class Popup extends Component {
   }
 
   handleIframeLoad(iframeRef) {
-    this.setState({ iframeLoaded: true }, () => {
-      setTimeout(() => {
-        if (this.state.isLoading) {
-          this.updateIcon(<IconCloseImage alt="close-typeform" data-qa="popup-close-button" src={closeImg} />)
-          this.handleSidePanelOpen()
-          this.setState({ frameAnimate: true, isLoading: false })
-          if (iframeRef && iframeRef.contentWindow) {
-            iframeRef.contentWindow.focus()
+    return new Promise((resolve) => {
+      this.setState({ iframeLoaded: true }, () => {
+        setTimeout(() => {
+          if (this.state.isLoading) {
+            this.updateIcon(<IconCloseImage alt="close-typeform" data-qa="popup-close-button" src={closeImg} />)
+            this.handleSidePanelOpen()
+            this.setState({ frameAnimate: true, isLoading: false })
+            if (iframeRef && iframeRef.contentWindow) {
+              iframeRef.contentWindow.focus()
+            }
           }
-        }
-      }, 500)
+          resolve()
+        }, 500)
+      })
     })
   }
 
