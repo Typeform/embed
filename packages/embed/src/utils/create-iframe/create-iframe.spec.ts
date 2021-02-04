@@ -1,14 +1,18 @@
+import { fireEvent } from '@testing-library/dom'
+
 import { createIframe } from './create-iframe'
-import * as build from './build-iframe-src'
 
 describe('create-iframe', () => {
   describe('#createIframe', () => {
     let iframe: HTMLIFrameElement
-    const buildIframeSrcMock = jest.spyOn(build, 'buildIframeSrc').mockImplementation(() => 'http://iframe-src/')
+    const buildIframeSrcMock = jest
+      .spyOn(require('./../build-iframe-src'), 'buildIframeSrc')
+      .mockImplementation(() => 'http://iframe-src/')
     const createElementMock = jest.spyOn(document, 'createElement')
+    const triggerIframeRedrawMock = jest.spyOn(require('./trigger-iframe-redraw'), 'triggerIframeRedraw')
     const options = {}
 
-    beforeAll(() => {
+    beforeEach(() => {
       iframe = createIframe('url', 'fullpage', options)
     })
 
@@ -22,6 +26,14 @@ describe('create-iframe', () => {
 
     it('should set correct iframe src', () => {
       expect(iframe.src).toBe('http://iframe-src/')
+    })
+
+    it('tell browser to redraw the iframe after the load', () => {
+      expect.assertions(1)
+
+      fireEvent(iframe, new Event('load'))
+
+      expect(triggerIframeRedrawMock).toHaveBeenCalled()
     })
   })
 })
