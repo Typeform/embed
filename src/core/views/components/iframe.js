@@ -9,6 +9,7 @@ class Iframe extends Component {
 
     this.iframeRef = null
     this.handleLoad = this.handleLoad.bind(this)
+    this.triggerIframeRedraw = this.triggerIframeRedraw.bind(this)
     this.getRef = this.getRef.bind(this)
   }
 
@@ -20,8 +21,32 @@ class Iframe extends Component {
     this.iframeRef = node
   }
 
-  handleLoad() {
-    this.props.onLoad && this.props.onLoad(this.iframeRef)
+  async handleLoad() {
+    this.props.onLoad(this.iframeRef)
+    await this.triggerIframeRedraw()
+  }
+
+  /**
+   * Tell browser to redraw the iframe. DIST-713.
+   *
+   */
+  triggerIframeRedraw() {
+    return new Promise((resolve, reject) => {
+      if (!this.iframeRef) {
+        resolve()
+        return
+      }
+
+      try {
+        this.iframeRef.style.display = 'none'
+        setTimeout(() => {
+          this.iframeRef.style.display = 'block'
+          resolve()
+        })
+      } catch (err) {
+        reject(err)
+      }
+    })
   }
 
   render() {
@@ -48,6 +73,10 @@ Iframe.propTypes = {
   src: PropTypes.string.isRequired,
   onLoad: PropTypes.func,
   style: PropTypes.object,
+}
+
+Iframe.defaultProps = {
+  onLoad: () => {},
 }
 
 export default Iframe
