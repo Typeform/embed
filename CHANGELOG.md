@@ -1,3 +1,10 @@
+## [0.34.3](https://github.com/Typeform/embed/compare/v0.34.2...v0.34.3) (2021-02-04)
+
+
+### Bug Fixes
+
+* **DIST-713:** Added timeout value ([#148](https://github.com/Typeform/embed/issues/148)) ([b414af3](https://github.com/Typeform/embed/commit/b414af3b09908f7cfc75c680855e4cb4ba2a11a1))
+
 ## [0.34.2](https://github.com/Typeform/embed/compare/v0.34.1...v0.34.2) (2021-02-04)
 
 
