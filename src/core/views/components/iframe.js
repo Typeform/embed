@@ -42,7 +42,7 @@ class Iframe extends Component {
         setTimeout(() => {
           this.iframeRef.style.display = 'block'
           resolve()
-        })
+        }, 500)
       } catch (err) {
         reject(err)
       }
