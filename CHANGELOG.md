@@ -1,3 +1,10 @@
+## [0.34.5](https://github.com/Typeform/embed/compare/v0.34.4...v0.34.5) (2021-02-05)
+
+
+### Bug Fixes
+
+* added timeout delay for browser redraw ([8fb62d1](https://github.com/Typeform/embed/commit/8fb62d1c23a4c93aa1d036e99c7277d1f2efe0cc))
+
 ## [0.34.4](https://github.com/Typeform/embed/compare/v0.34.3...v0.34.4) (2021-02-04)
 
 
