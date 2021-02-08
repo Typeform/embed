@@ -11,8 +11,9 @@
   },
   "scripts": {
     "build": "webpack",
+    "copy:lib": "mkdir -p ../embed-kitchen-sink/public/ && cp ./build/embed-next.js ../embed-kitchen-sink/public/",
     "dev": "tsc -w",
-    "demo": "cd ../embed-kitchen-sink && yarn dev",
+    "demo": "yarn build && yarn copy:lib && cd ../embed-kitchen-sink && yarn dev",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0 && yarn prettier-check",
     "prettier-check": "prettier --check . --ignore-path .eslintignore",
     "prettier": "prettier --write . --ignore-path .eslintignore",
