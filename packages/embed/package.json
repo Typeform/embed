@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "main": "build/index.js",
-  "browser": "dist/webpack/bundle.js",
+  "browser": "build/embed-next.js",
   "author": "Typeform",
   "license": "LGPL-3.0-only",
   "engines": {

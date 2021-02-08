@@ -2,20 +2,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
 const npmConfig = {
-  mode: "development",
-  devtool: "inline-source-map",
-  entry: "./src/index.ts",
+  mode: 'development',
+  devtool: 'inline-source-map',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'build'),
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
-    rules: [
-      { test: /\.tsx?$/, loader: "ts-loader" }
-    ]
-  }
+    rules: [{ test: /\.tsx?$/, loader: 'ts-loader' }],
+  },
 }
 
 const browserConfig = {
