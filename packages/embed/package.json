@@ -3,18 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "main": "build/index.js",
-  "browser": "dist/webpack/bundle.js",
+  "browser": "build/embed-next.js",
   "author": "Typeform",
   "license": "LGPL-3.0-only",
   "engines": {
     "node": ">=14"
   },
   "scripts": {
-    "build": "tsc",
-    "build:webpack": "MODULE_SYSTEM=commonjs webpack",
-    "copy:lib": "mkdir -p ../embed-kitchen-sink/public/ && cp ./dist/webpack/embed-next.js ../embed-kitchen-sink/public/",
+    "build": "webpack",
+    "copy:lib": "mkdir -p ../embed-kitchen-sink/public/ && cp ./build/embed-next.js ../embed-kitchen-sink/public/",
     "dev": "tsc -w",
-    "demo": "yarn build:webpack && yarn copy:lib && cd ../embed-kitchen-sink && yarn dev",
+    "demo": "yarn build && yarn copy:lib && cd ../embed-kitchen-sink && yarn dev",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0 && yarn prettier-check",
     "prettier-check": "prettier --check . --ignore-path .eslintignore",
     "prettier": "prettier --write . --ignore-path .eslintignore",
