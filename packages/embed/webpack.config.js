@@ -1,7 +1,24 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
-module.exports = {
+const npmConfig = {
+  mode: "development",
+  devtool: "inline-source-map",
+  entry: "./src/index.ts",
+  output: {
+    path: path.resolve(__dirname, 'build'),
+  },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"]
+  },
+  module: {
+    rules: [
+      { test: /\.tsx?$/, loader: "ts-loader" }
+    ]
+  }
+}
+
+const browserConfig = {
   entry: './src/index.ts',
   mode: 'production',
   module: {
@@ -20,8 +37,10 @@ module.exports = {
     filename: 'embed-next.js',
     library: 'tf',
     libraryTarget: 'window',
-    path: path.resolve(__dirname, 'dist/webpack'),
+    path: path.resolve(__dirname, 'build'),
   },
   plugins: [new HtmlWebpackPlugin()],
   externalsType: 'window',
 }
+
+module.exports = [npmConfig, browserConfig]

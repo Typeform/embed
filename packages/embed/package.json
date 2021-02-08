@@ -10,8 +10,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "build": "tsc",
-    "build:webpack": "MODULE_SYSTEM=commonjs webpack",
+    "build": "webpack",
     "dev": "tsc -w",
     "demo": "cd ../embed-kitchen-sink && yarn dev",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0 && yarn prettier-check",
