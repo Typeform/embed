@@ -1,6 +1,7 @@
 import { createIframe } from '../../utils'
 
 import { PopupOptions } from './popup-options'
+import { buildCloseButton, buildPopup } from './elements'
 
 export type Popup = {
   open: () => void
@@ -10,17 +11,28 @@ export type Popup = {
 
 export const createPopup = (formUrl: string, options: PopupOptions): Popup => {
   const iframe = createIframe(formUrl, 'popup', options)
-
-  const popup = document.createElement('div')
-  popup.className = 'typeform-popup'
-  popup.append(iframe)
-
+  const popup = buildPopup(iframe)
   const container = options.container || document.body
-  container.append(popup)
+
+  const open = () => {
+    container.append(popup)
+  }
+
+  const close = () => {
+    if (popup.parentNode) {
+      popup.parentNode.removeChild(popup)
+    }
+  }
+
+  popup.append(buildCloseButton(close))
+
+  const refresh = () => {
+    iframe.contentWindow?.location.reload()
+  }
 
   return {
-    open: () => popup.classList.add('typeform-popup-opened'),
-    close: () => popup.classList.remove('typeform-popup-opened'),
-    refresh: () => iframe.contentWindow?.location.reload(),
+    open,
+    close,
+    refresh,
   }
 }
