@@ -17,7 +17,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    filename: 'embed-sdk.js',
+    filename: 'embed-next.js',
     library: 'tf',
     libraryTarget: 'window',
     path: path.resolve(__dirname, 'dist/webpack'),
