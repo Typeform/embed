@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "main": "build/index.js",
+  "browser": "dist/webpack/bundle.js",
   "author": "Typeform",
   "license": "LGPL-3.0-only",
   "engines": {
@@ -10,6 +11,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "build:webpack": "MODULE_SYSTEM=commonjs webpack",
     "dev": "tsc -w",
     "demo": "cd ../embed-kitchen-sink && yarn dev",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0 && yarn prettier-check",
@@ -19,5 +21,11 @@
     "cy:run": "yarn cypress run --browser chrome --headless",
     "cy:open": "yarn cypress open",
     "test:functional": "start-server-and-test demo 6006 cy:run"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.0.0",
+    "ts-loader": "^8.0.15",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0"
   }
 }
