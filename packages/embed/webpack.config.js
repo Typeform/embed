@@ -1,7 +1,11 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: {
+    popup: './src/factories/create-popup/create-popup.ts',
+    widget: './src/factories/create-widget/create-widget.ts',
+  },
   mode: 'production',
   module: {
     rules: [
@@ -16,9 +20,11 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    filename: 'bundle.js',
-    library: 'embed-sdk',
-    libraryTarget: 'umd',
+    filename: 'tf.[name].js',
+    library: ['tf', '[name]'],
+    libraryTarget: 'window',
     path: path.resolve(__dirname, 'dist/webpack'),
   },
+  plugins: [new HtmlWebpackPlugin()],
+  externalsType: 'window',
 }
