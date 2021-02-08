@@ -2,10 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
 module.exports = {
-  entry: {
-    popup: './src/factories/create-popup/create-popup.ts',
-    widget: './src/factories/create-widget/create-widget.ts',
-  },
+  entry: './src/index.ts',
   mode: 'production',
   module: {
     rules: [
@@ -20,8 +17,8 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    filename: 'tf.[name].js',
-    library: ['tf', '[name]'],
+    filename: 'embed-sdk.js',
+    library: 'tf',
     libraryTarget: 'window',
     path: path.resolve(__dirname, 'dist/webpack'),
   },
