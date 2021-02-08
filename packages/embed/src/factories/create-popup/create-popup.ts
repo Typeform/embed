@@ -9,8 +9,8 @@ export type Popup = {
   refresh: () => void
 }
 
-export const createPopup = (formUrl: string, options: PopupOptions): Popup => {
-  const iframe = createIframe(formUrl, 'popup', options)
+export const createPopup = (formId: string, options: PopupOptions): Popup => {
+  const iframe = createIframe(formId, 'popup', options)
   const popup = buildPopup(iframe)
   const container = options.container || document.body
 
