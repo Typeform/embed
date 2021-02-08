@@ -22,6 +22,23 @@ jobs:
       - run: yarn lerna run build
       - run: yarn lerna run lint
       - run: yarn lerna run test
+  report-size:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ~/.cache
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: cd ./packages/embed
+      - uses: preactjs/compressed-size-action@v2
+        with:
+          repo-token: ${{ secrets.GH_TOKEN }}
   functional:
     runs-on: ubuntu-latest
     steps:
