@@ -1,23 +1,49 @@
-import { createPopup, Popup } from './create-popup'
+import { createPopup } from './create-popup'
 
 describe('create-popup', () => {
   describe('#createPopup', () => {
-    let popup: Popup
+    describe('#open', () => {
+      const container = document.createElement('div')
+      const containerAppendMock = jest.spyOn(container, 'append')
 
-    beforeAll(() => {
-      popup = createPopup('url', {})
+      it('should append typeform popup to the container', () => {
+        createPopup('url', { container }).open()
+        expect(containerAppendMock).toHaveBeenCalledTimes(1)
+      })
     })
 
-    it('should return open method', () => {
-      expect(typeof popup.open).toBe('function')
+    describe('#close', () => {
+      const container = document.createElement('div')
+      const containerRemoveChildMock = jest.spyOn(container, 'removeChild')
+
+      it('should not remove typeform popup from the container if it was not open', () => {
+        createPopup('url', { container }).close()
+        expect(containerRemoveChildMock).toHaveBeenCalledTimes(0)
+      })
+
+      it('should remove typeform popup from the container', () => {
+        const popup = createPopup('url', { container })
+        popup.open()
+        popup.close()
+        expect(containerRemoveChildMock).toHaveBeenCalledTimes(1)
+      })
     })
 
-    it('should return close method', () => {
-      expect(typeof popup.close).toBe('function')
-    })
+    describe('#refresh', () => {
+      const iframeReloadSpy = jest.fn()
 
-    it('should return refresh method', () => {
-      expect(typeof popup.refresh).toBe('function')
+      jest.spyOn(require('../../utils/create-iframe/create-iframe'), 'createIframe').mockImplementation(() => ({
+        contentWindow: {
+          location: {
+            reload: iframeReloadSpy,
+          },
+        },
+      }))
+
+      it('should reload iframe', () => {
+        createPopup('url', {}).refresh()
+        expect(iframeReloadSpy).toHaveBeenCalledTimes(1)
+      })
     })
   })
 })

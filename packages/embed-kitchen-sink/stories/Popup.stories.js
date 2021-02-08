@@ -12,26 +12,16 @@ export default {
 };
 
 const Template = ({ typeformUrl }) => {
-  const container = document.createElement("div");
-
-  const { open, close } = createPopup(typeformUrl, { container });
+  const { open, close } = createPopup(typeformUrl, {});
 
   const button = document.createElement("button");
   button.innerText = "Toggle popup";
   button.onclick = () => {
-    const isOpen = document.querySelectorAll(".typeform-popup-opened").length > 0;
+    const isOpen = document.querySelectorAll(".typeform-popup").length > 0;
     isOpen ? close() : open();
   };
 
-  const style = document.createElement("style");
-  style.innerHTML = "button {padding: 20px} .typeform-popup {display: none} .typeform-popup-opened {display: block}";
-
-  const wrapper = document.createElement("div");
-  wrapper.append(style);
-  wrapper.append(button);
-  wrapper.append(container);
-
-  return wrapper;
+  return button;
 };
 
 export const Popup = Template.bind({});
