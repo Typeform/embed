@@ -56,3 +56,6 @@ node_modules
 # tests
 cypress/screenshots
 cypress/videos
+cypress/fixtures
+
+packages/embed-kitchen-sink/public/*
