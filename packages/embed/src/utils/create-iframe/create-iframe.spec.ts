@@ -13,11 +13,11 @@ describe('create-iframe', () => {
     const options = {}
 
     beforeEach(() => {
-      iframe = createIframe('url', 'fullpage', options)
+      iframe = createIframe('form-id', 'fullpage', options)
     })
 
     it('should call buildIframeSrc', () => {
-      expect(buildIframeSrcMock).toHaveBeenCalledWith('url', 'fullpage', options)
+      expect(buildIframeSrcMock).toHaveBeenCalledWith('form-id', 'fullpage', options)
     })
 
     it('should create new iframe element', () => {

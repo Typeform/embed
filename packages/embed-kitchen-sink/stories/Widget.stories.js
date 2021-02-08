@@ -3,17 +3,17 @@ import { createWidget } from "@typeform/embed/src";
 export default {
   title: "Embed/Widget",
   argTypes: {
-    typeformUrl: {
+    typeformId: {
       name: "Typeform URL",
       control: "text",
-      defaultValue: "https://form.typeform.com/to/moe6aa",
+      defaultValue: "moe6aa",
     },
   },
 };
 
-const Template = ({ typeformUrl }) => {
+const Template = ({ typeformId }) => {
   const container = document.createElement("div");
-  createWidget(typeformUrl, { container });
+  createWidget(typeformId, { container });
   return container;
 };
 

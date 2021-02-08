@@ -1,20 +1,20 @@
 export default {
   title: "Embed/Window",
   argTypes: {
-    typeformUrl: {
+    typeformId: {
       name: "Typeform URL",
       control: "text",
-      defaultValue: "https://form.typeform.com/to/moe6aa",
+      defaultValue: "moe6aa",
     },
   },
 };
 
-const Template = ({ typeformUrl }) => {
+const Template = ({ typeformId }) => {
   return `
     <div id="wrapper"></div>
     <script src="/embed-next.js"></script>
     <script>
-      window.tf.createWidget("${typeformUrl}", { container: document.querySelector("#wrapper")})
+      window.tf.createWidget("${typeformId}", { container: document.querySelector("#wrapper")})
     </script>
   `;
 };
