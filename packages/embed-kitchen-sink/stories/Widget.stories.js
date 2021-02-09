@@ -4,7 +4,7 @@ export default {
   title: "Embed/Widget",
   argTypes: {
     typeformId: {
-      name: "Typeform URL",
+      name: "Typeform ID",
       control: "text",
       defaultValue: "moe6aa",
     },

@@ -11,8 +11,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
   const iframe = createIframe(formId, 'widget', options)
   const widget = buildWidget(iframe)
 
-  const container = options.container || document.body
-  container.append(widget)
+  options.container.append(widget)
 
   return {
     refresh: () => iframe.contentWindow?.location.reload(),

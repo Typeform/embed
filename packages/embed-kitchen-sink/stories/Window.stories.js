@@ -2,7 +2,7 @@ export default {
   title: "Embed/Window",
   argTypes: {
     typeformId: {
-      name: "Typeform URL",
+      name: "Typeform ID",
       control: "text",
       defaultValue: "moe6aa",
     },
