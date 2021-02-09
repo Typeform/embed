@@ -18,9 +18,11 @@
     "prettier-check": "prettier --check . --ignore-path .eslintignore",
     "prettier": "prettier --write . --ignore-path .eslintignore",
     "test": "jest",
-    "cy:run": "yarn cypress run --browser chrome --headless",
+    "cy:functional": "yarn cypress run --spec e2e/spec/functional/**/* --browser chrome --headless",
     "cy:open": "yarn cypress open",
-    "test:functional": "start-server-and-test demo 6006 cy:run"
+    "cy:visual": "yarn cypress run --spec e2e/spec/visual/**/* --browser chrome",
+    "test:functional": "start-server-and-test demo 6006 cy:functional",
+    "test:visual": "start-server-and-test demo 6006 cy:visual"
   },
   "devDependencies": {
     "html-webpack-plugin": "^5.0.0",

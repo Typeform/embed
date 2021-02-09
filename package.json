@@ -9,6 +9,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@applitools/eyes-cypress": "^3.18.7",
     "@babel/core": "^7.12.10",
     "@commitlint/config-conventional": "^11.0.0",
     "@storybook/addon-actions": "^6.1.16",
