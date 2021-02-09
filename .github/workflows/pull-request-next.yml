@@ -4,6 +4,10 @@ on:
   pull_request:
     branches: [next]
 
+env:
+  EYES_API_KEY: ${{ secrets.EYES_API_KEY }}
+  APPLITOOLS_BATCH_ID: ${{ github.event.pull_request.head.sha }}
+
 jobs:
   build-lint-test:
     runs-on: ubuntu-latest
@@ -37,3 +41,19 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install
       - run: yarn lerna run test:functional
+  visual:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+            ~/.cache
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn install
+      - run: yarn lerna run test:visual

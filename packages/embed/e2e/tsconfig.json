@@ -4,5 +4,6 @@
     "noEmit": true,
     "types": ["cypress"]
   },
-  "include": ["../node_modules/cypress", "./**/*.ts"]
+  "include": ["../node_modules/cypress", "./**/*.ts"],
+  "files": ["../../../node_modules/@applitools/eyes-cypress/eyes-index.d.ts"]
 }
