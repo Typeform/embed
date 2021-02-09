@@ -15,7 +15,9 @@ export const createPopup = (formId: string, options: PopupOptions): Popup => {
   const container = options.container || document.body
 
   const open = () => {
-    container.append(popup)
+    if (!popup.parentNode) {
+      container.append(popup)
+    }
   }
 
   const close = () => {

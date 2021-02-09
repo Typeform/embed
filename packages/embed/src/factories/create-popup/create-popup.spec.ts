@@ -1,13 +1,31 @@
-import { createPopup } from './create-popup'
+import { createPopup, Popup } from './create-popup'
 
 describe('create-popup', () => {
   describe('#createPopup', () => {
     describe('#open', () => {
+      let popup: Popup
       const container = document.createElement('div')
       const containerAppendMock = jest.spyOn(container, 'append')
+      const popupMock = document.createElement('div')
+
+      jest.spyOn(require('./elements/build-popup'), 'buildPopup').mockImplementation(() => popupMock)
+
+      beforeAll(() => {
+        popup = createPopup('url', { container })
+        popup.open()
+      })
 
       it('should append typeform popup to the container', () => {
-        createPopup('url', { container }).open()
+        expect(containerAppendMock).toHaveBeenCalledTimes(1)
+        expect(containerAppendMock).toHaveBeenCalledWith(popupMock)
+      })
+
+      it('should render popup in container', () => {
+        expect(popupMock.parentNode).toBe(container)
+      })
+
+      it('should not open the popup twice', () => {
+        popup.open()
         expect(containerAppendMock).toHaveBeenCalledTimes(1)
       })
     })
@@ -31,14 +49,17 @@ describe('create-popup', () => {
 
     describe('#refresh', () => {
       const iframeReloadSpy = jest.fn()
-
-      jest.spyOn(require('../../utils/create-iframe/create-iframe'), 'createIframe').mockImplementation(() => ({
+      const iframeMock = {
         contentWindow: {
           location: {
             reload: iframeReloadSpy,
           },
         },
-      }))
+      }
+
+      jest
+        .spyOn(require('../../utils/create-iframe/create-iframe'), 'createIframe')
+        .mockImplementation(() => iframeMock)
 
       it('should reload iframe', () => {
         createPopup('url', {}).refresh()
