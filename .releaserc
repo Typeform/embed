@@ -1,0 +1,23 @@
+{
+  "branches": [
+    "master",
+    "next"
+  ],
+  extendes: [
+    "semantic-release-monorepo"
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/npm",
+    [
+      "@semantic-release/exec",
+      {
+        "successCmd": "npm config set @typeform:registry https://registry.npmjs.org/ && npm publish"
+      }
+    ],
+    "@semantic-release/git",
+    "@semantic-release/github"
+  ]
+}
