@@ -1,6 +1,5 @@
 {
   "branches": [
-    "master",
     "next"
   ],
   extendes: [

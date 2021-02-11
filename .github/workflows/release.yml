@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    branches: [master, next]
+    branches: [next]
 
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -45,7 +45,8 @@ jobs:
             ~/.cache
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install
-      - run: yarn build
+      - run: yarn lerna bootstrap
+      - run: yarn lerna run build
       # Update registry and tokens with write access for releasing.
       - run: rm ./.npmrc
       - run: npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
