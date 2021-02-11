@@ -1,8 +1,8 @@
 {
   "branches": [
-    "next"
+    { name: 'next', prerelease: true }
   ],
-  extendes: [
+  extends: [
     "semantic-release-monorepo"
   ],
   "plugins": [
