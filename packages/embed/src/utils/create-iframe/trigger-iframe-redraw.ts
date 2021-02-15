@@ -6,8 +6,5 @@ export function triggerIframeRedraw() {
   // @ts-ignore
   const iframe = this as HTMLIFrameElement
 
-  iframe.style.display = 'none'
-  setTimeout(() => {
-    iframe.style.display = 'block'
-  })
+  iframe.style.transform = 'translateZ(0)'
 }
