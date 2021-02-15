@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.0-next.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.1...@typeform/embed-v1.0.0-next.2) (2021-02-15)
+
+
+### Bug Fixes
+
+* **DIST-730:** Fix redraw issue ([a65076d](https://github.com/Typeform/embed/commit/a65076d057e003f1664f701633a43393d3b270cc))
+
 # @typeform/embed-v1.0.0-next.1 (2021-02-11)
 
 ### Bug Fixes

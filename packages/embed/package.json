@@ -1,6 +1,6 @@
 {
   "name": "@typeform/embed",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.2",
   "private": true,
   "main": "build/index.js",
   "browser": "build/embed-next.js",
