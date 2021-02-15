@@ -1,3 +1,10 @@
+## [0.34.6](https://github.com/Typeform/embed/compare/v0.34.5...v0.34.6) (2021-02-15)
+
+
+### Bug Fixes
+
+* **DIST-730:** Remove display toggle that causes flicker ([6d25c11](https://github.com/Typeform/embed/commit/6d25c11e707df2c7cdb788dc8753d38c43d0e50b))
+
 ## [0.34.5](https://github.com/Typeform/embed/compare/v0.34.4...v0.34.5) (2021-02-05)
 
 
