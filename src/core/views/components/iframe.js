@@ -36,13 +36,9 @@ class Iframe extends Component {
         resolve()
         return
       }
-
       try {
-        this.iframeRef.style.display = 'none'
-        setTimeout(() => {
-          this.iframeRef.style.display = 'block'
-          resolve()
-        }, 500)
+        this.iframeRef.style.transform = 'translateZ(0)'
+        resolve()
       } catch (err) {
         reject(err)
       }
