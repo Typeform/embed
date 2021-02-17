@@ -54,6 +54,4 @@ const browserConfig = {
   externalsType: 'window',
 }
 
-// module.exports = [npmConfig, browserConfig]
-
-module.exports = [npmConfig]
+module.exports = [npmConfig, browserConfig]

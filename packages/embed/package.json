@@ -12,14 +12,16 @@
     "clean": "rm -rf ./build",
     "build": "yarn webpack",
     "dev": "yarn build --watch --progress",
+    "demo-html": "cd ../demo-html && yarn start",
+    "demo": "yarn concurrently 'yarn dev' 'yarn demo-html'",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0 && yarn prettier-check",
     "prettier-check": "prettier --check . --ignore-path .eslintignore",
     "prettier": "prettier --write . --ignore-path .eslintignore",
     "test": "jest",
-    "cy:functional": "yarn cypress run --spec e2e/spec/functional/**/* --browser chrome --headless",
     "cy:open": "yarn cypress open",
+    "cy:functional": "yarn cypress run --spec e2e/spec/functional/**/* --browser chrome --headless",
     "cy:visual": "yarn cypress run --spec e2e/spec/visual/**/* --browser chrome",
-    "test:functional": "start-server-and-test demo 6006 cy:functional",
-    "test:visual": "start-server-and-test demo 6006 cy:visual"
+    "test:functional": "start-server-and-test demo 8080 cy:functional",
+    "test:visual": "start-server-and-test demo 8080 cy:visual"
   }
 }

@@ -1,6 +1,6 @@
 describe('Popup', () => {
   before(() => {
-    cy.visit('/iframe.html?id=embed-popup--popup&viewMode=story')
+    cy.visit('/popup-js.html')
   })
 
   it('should not display popup on page load', () => {
