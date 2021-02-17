@@ -54,6 +54,7 @@ build
 node_modules
 
 # tests
-cypress/screenshots
-cypress/videos
-cypress/fixtures
+**/e2e/screenshots
+**/cypress/screenshots
+**/cypress/videos
+**/cypress/fixtures

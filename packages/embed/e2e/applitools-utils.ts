@@ -8,7 +8,7 @@ const eyesCheck = async (name: string, { width, height }: Viewport) => {
       width,
       height,
       name: Cypress.browser.name,
-    },
+    } as any,
     batchName: 'Embed',
   })
   cy.eyesCheckWindow(name)

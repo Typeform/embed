@@ -2,7 +2,7 @@
   "chromeWebSecurity": false,
   "integrationFolder": "./e2e/spec",
   "screenshotsFolder": "./e2e/screenshots",
-  "baseUrl": "http://localhost:6006/",
+  "baseUrl": "http://localhost:8080/",
   "trashAssetsBeforeRuns": true,
   "viewportWidth": 1280,
   "viewportHeight": 1000,
