@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Static HTML Demo</title>
+    <style>
+      #wrapper {
+        width: 600px;
+        height: 400px;
+        margin: 0 auto;
+      }
+    </style>
+    <link rel="stylesheet" href="./lib/css/widget.css" />
+  </head>
+  <body>
+    <div id="wrapper"></div>
+    <script src="./lib/embed-next.js"></script>
+    <script>
+      window.tf.createWidget("moe6aa", { container: document.getElementById("wrapper") });
+    </script>
+  </body>
+</html>
