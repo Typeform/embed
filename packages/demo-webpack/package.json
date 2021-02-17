@@ -1,0 +1,17 @@
+{
+  "name": "demo-webpack",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.js",
+  "author": "Typeform",
+  "license": "LGPL-3.0-only",
+  "scripts": {
+    "start": "NODE_ENV=development yarn concurrently 'yarn dev' 'yarn serve'",
+    "build": "yarn webpack",
+    "dev": "yarn build --watch",
+    "serve": "yarn webpack serve --progress"
+  },
+  "dependencies": {
+    "@typeform/embed": "file:../embed"
+  }
+}
