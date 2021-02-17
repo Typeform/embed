@@ -2,8 +2,13 @@
 
 This is a monorepo for all embed libraries.
 
-Packages:
+Install all dependencies from repository root:
+
+```shell
+yarn
+```
+
+Libraries:
 
 - [Vanilla Embed Library](./packages/embed)
-- [Vanilla Embed Library Kitchen Sink](./packages/embed-kitchen-sink)
 - [React Embed Library](./packages/embed-react)
