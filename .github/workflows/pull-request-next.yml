@@ -25,7 +25,11 @@ jobs:
       - run: yarn install
       - run: yarn lerna run build
       - run: yarn lerna run lint
-      - run: yarn lerna run test
+      - uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: yarn jest --coverage
   functional:
     runs-on: ubuntu-latest
     steps:
