@@ -1,3 +1,15 @@
+# [@typeform/embed-v1.0.0-next.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.1...@typeform/embed-v1.0.0-next.2) (2021-02-17)
+
+
+### Bug Fixes
+
+* **DIST-730:** Fix redraw issue ([a65076d](https://github.com/Typeform/embed/commit/a65076d057e003f1664f701633a43393d3b270cc))
+
+
+### Features
+
+* **DIST-0:** Added config for cc velocity ([#170](https://github.com/Typeform/embed/issues/170)) ([02f7e71](https://github.com/Typeform/embed/commit/02f7e710b6184fe625f2f909a5abead9681acfb6))
+
 # [@typeform/embed-v1.0.0-next.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.1...@typeform/embed-v1.0.0-next.2) (2021-02-15)
 
 ### Bug Fixes
