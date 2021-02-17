@@ -16,3 +16,4 @@ Libraries:
 Demos:
 
 - [HTML](./packages/demo-html)
+- [Webpack](./packages/demo-webpack)
