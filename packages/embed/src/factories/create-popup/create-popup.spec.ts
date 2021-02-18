@@ -5,19 +5,18 @@ describe('create-popup', () => {
     describe('#open', () => {
       let popup: Popup
       const container = document.createElement('div')
-      const containerAppendMock = jest.spyOn(container, 'append')
+      const containerAppendSpy = jest.spyOn(container, 'append')
       const popupMock = document.createElement('div')
 
-      jest.spyOn(require('./elements/build-popup'), 'buildPopup').mockImplementation(() => popupMock)
-
       beforeAll(() => {
+        jest.spyOn(require('./elements/build-popup'), 'buildPopup').mockImplementation(() => popupMock)
         popup = createPopup('url', { container })
         popup.open()
       })
 
       it('should append typeform popup to the container', () => {
-        expect(containerAppendMock).toHaveBeenCalledTimes(1)
-        expect(containerAppendMock).toHaveBeenCalledWith(popupMock)
+        expect(containerAppendSpy).toHaveBeenCalledTimes(1)
+        expect(containerAppendSpy).toHaveBeenCalledWith(popupMock)
       })
 
       it('should render popup in container', () => {
@@ -26,24 +25,49 @@ describe('create-popup', () => {
 
       it('should not open the popup twice', () => {
         popup.open()
-        expect(containerAppendMock).toHaveBeenCalledTimes(1)
+        expect(containerAppendSpy).toHaveBeenCalledTimes(1)
       })
     })
 
     describe('#close', () => {
       const container = document.createElement('div')
-      const containerRemoveChildMock = jest.spyOn(container, 'removeChild')
+      const containerRemoveChildSpy = jest.spyOn(container, 'removeChild')
 
       it('should not remove typeform popup from the container if it was not open', () => {
         createPopup('url', { container }).close()
-        expect(containerRemoveChildMock).toHaveBeenCalledTimes(0)
+        expect(containerRemoveChildSpy).toHaveBeenCalledTimes(0)
       })
 
       it('should remove typeform popup from the container', () => {
         const popup = createPopup('url', { container })
         popup.open()
         popup.close()
-        expect(containerRemoveChildMock).toHaveBeenCalledTimes(1)
+        expect(containerRemoveChildSpy).toHaveBeenCalledTimes(1)
+      })
+    })
+
+    describe('#toggle', () => {
+      const container = document.createElement('div')
+      const containerAppendSpy = jest.spyOn(container, 'append')
+      const containerRemoveChildSpy = jest.spyOn(container, 'removeChild')
+      const popupMock = document.createElement('div')
+
+      beforeAll(() => {
+        jest.spyOn(require('./elements/build-popup'), 'buildPopup').mockImplementation(() => popupMock)
+      })
+
+      it('should open the popup', () => {
+        createPopup('url', { container }).toggle()
+        expect(containerAppendSpy).toHaveBeenCalledTimes(1)
+        expect(containerAppendSpy).toHaveBeenCalledWith(popupMock)
+        expect(popupMock.parentNode).toBe(container)
+      })
+
+      it('should close the popup', () => {
+        const popup = createPopup('url', { container })
+        popup.toggle()
+        popup.toggle()
+        expect(containerRemoveChildSpy).toHaveBeenCalledTimes(1)
       })
     })
 
