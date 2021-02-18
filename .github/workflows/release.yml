@@ -6,7 +6,7 @@ on:
 
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  PUBLIC_CDN_URL: 'https://embed.typeform.com'
+  PUBLIC_CDN_URL: "https://embed.typeform.com"
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
       - uses: mstachniuk/ci-skip@master
         id: ci-skip-step
         with:
-          commit-filter: '[skip ci]'
+          commit-filter: "[skip ci]"
   release_npm:
     name: Release to NPM
     runs-on: ubuntu-latest
@@ -46,7 +46,7 @@ jobs:
             **/node_modules
             ~/.cache
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
       - run: yarn lerna bootstrap
       - run: yarn lerna run build
       # Update registry and tokens with write access for releasing.

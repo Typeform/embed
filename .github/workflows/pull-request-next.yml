@@ -22,7 +22,7 @@ jobs:
             **/node_modules
             ~/.cache
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
+      - run: yarn install  --frozen-lockfile
       - run: yarn lerna run build
       - run: yarn lerna run lint
       - uses: paambaati/codeclimate-action@v2.7.5
@@ -43,7 +43,7 @@ jobs:
             **/node_modules
             ~/.cache
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
+      - run: yarn install  --frozen-lockfile
       - run: yarn lerna run test:functional
   visual:
     runs-on: ubuntu-latest
@@ -59,5 +59,5 @@ jobs:
             **/node_modules
             ~/.cache
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
+      - run: yarn install  --frozen-lockfile
       - run: yarn lerna run test:visual
