@@ -15,10 +15,10 @@ Install dependencies
 yarn
 ```
 
-Run demo in [kitchen sink](../embed-kitchen-sink)
+Build and watch for changes
 
 ```bash
-yarn demo
+yarn dev
 ```
 
 Run unit tests
