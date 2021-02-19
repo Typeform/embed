@@ -7,5 +7,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     mediumVersion: 'string',
     hideFooter: 'boolean',
     hideHeaders: 'boolean',
+    opacity: 'integer',
   })
 }
