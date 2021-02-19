@@ -8,5 +8,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     hideFooter: 'boolean',
     hideHeaders: 'boolean',
     opacity: 'integer',
+    disableTracking: 'boolean',
   })
 }
