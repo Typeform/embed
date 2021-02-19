@@ -17,7 +17,7 @@ describe('create-iframe', () => {
     })
 
     it('should call buildIframeSrc', () => {
-      expect(buildIframeSrcMock).toHaveBeenCalledWith('form-id', 'widget', options)
+      expect(buildIframeSrcMock).toHaveBeenCalledTimes(1)
     })
 
     it('should create new iframe element', () => {
