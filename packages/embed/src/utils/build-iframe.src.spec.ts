@@ -28,6 +28,7 @@ describe('build-iframe-src', () => {
         hideFooter: true,
         hideHeaders: true,
         opacity: 50,
+        disableTracking: true,
       }
       expect(buildIframeSrc('some-id', 'widget', options)).toBe(
         'https://form.typeform.com/to/some-id?typeform-embed=embed-widget' +
@@ -36,7 +37,8 @@ describe('build-iframe-src', () => {
           '&typeform-medium-version=unit-test-version' +
           '&embed-hide-footer=true' +
           '&embed-hide-headers=true' +
-          '&embed-opacity=50'
+          '&embed-opacity=50' +
+          '&disable-tracking=true'
       )
     })
   })
