@@ -11,5 +11,5 @@ export type ActionableOptions = {
   /**
    * Callback function that will be executed once the typeform's active screen changes.
    */
-  onScreenChanged?: () => void
+  onScreenChanged?: (event: any) => void
 }
