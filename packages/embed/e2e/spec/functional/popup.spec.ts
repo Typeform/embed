@@ -13,6 +13,12 @@ describe('Popup', () => {
     cy.get('.typeform-popup iframe').invoke('attr', 'src').should('contain', 'form.typeform.com/to/')
   })
 
+  it('should pass options as query param', () => {
+    cy.get('.typeform-popup iframe')
+      .invoke('attr', 'src')
+      .should('contain', '?typeform-embed=popup-blank&typeform-source=localhost')
+  })
+
   it('should close popup', () => {
     cy.get('a.typeform-close').click()
     cy.get('.typeform-popup').should('not.exist')
