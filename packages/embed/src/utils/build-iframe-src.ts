@@ -17,6 +17,7 @@ const mapOptionsToQueryParams = (type: EmbedType, options: UrlOptions): Record<s
   'typeform-medium-version': options.mediumVersion,
   'embed-hide-footer': options.hideFooter ? 'true' : undefined,
   'embed-hide-headers': options.hideHeaders ? 'true' : undefined,
+  'embed-opacity': options.opacity,
 })
 
 export const buildIframeSrc = (formId: string, type: EmbedType, options: UrlOptions): string => {
