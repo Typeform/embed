@@ -1,3 +1,4 @@
+import { EmbedType } from '../../base'
 import { createIframe } from '../../utils'
 
 import { PopupOptions } from './popup-options'
@@ -17,7 +18,7 @@ interface HTMLElementWithParentNode extends HTMLElement {
 const isOpen = (popup: HTMLElement): popup is HTMLElementWithParentNode => !!popup.parentNode
 
 export const createPopup = (formId: string, options: PopupOptions = {}): Popup => {
-  const iframe = createIframe(formId, 'popup', options)
+  const iframe = createIframe(formId, EmbedType.Popup, options)
   const popup = buildPopup(iframe)
   const container = options.container || document.body
 

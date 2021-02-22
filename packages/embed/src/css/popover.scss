@@ -1,5 +1,26 @@
 .typeform-popover {
-  position: relative;
+  border-radius: 4px;
+  bottom: 96px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 4px, rgba(0, 0, 0, 0.06) 0px 2px 12px;
+  max-width: 100%;
+  min-height: 360px;
+  min-width: 360px;
+  overflow: hidden;
+  opacity: 0;
+  position: fixed;
+  right: 16px;
+  transition: all 300ms ease-out;
+  visibility: hidden;
+  z-index: 10001;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.contained {
+    position: absolute;
+  }
 
   iframe {
     width: 600px;

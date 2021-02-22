@@ -1,4 +1,5 @@
 import { createIframe } from '../../utils'
+import { EmbedType } from '../../base'
 
 import { WidgetOptions } from './widget-options'
 import { buildWidget } from './elements'
@@ -8,7 +9,7 @@ export type Widget = {
 }
 
 export const createWidget = (formId: string, options: WidgetOptions): Widget => {
-  const iframe = createIframe(formId, 'widget', options)
+  const iframe = createIframe(formId, EmbedType.Widget, options)
   const widget = buildWidget(iframe)
 
   options.container.innerHTML = ''

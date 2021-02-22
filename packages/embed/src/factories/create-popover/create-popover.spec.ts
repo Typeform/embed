@@ -9,7 +9,7 @@ describe('create-popover', () => {
       const popupMock = document.createElement('div')
 
       beforeAll(() => {
-        jest.spyOn(require('./elements/build-popover'), 'buildPopup').mockImplementation(() => popupMock)
+        jest.spyOn(require('./elements/build-popover'), 'buildPopover').mockImplementation(() => popupMock)
         popover = createPopover('url', { container })
         popover.open()
       })
@@ -53,7 +53,7 @@ describe('create-popover', () => {
       const popupMock = document.createElement('div')
 
       beforeAll(() => {
-        jest.spyOn(require('./elements/build-popover'), 'buildPopup').mockImplementation(() => popupMock)
+        jest.spyOn(require('./elements/build-popover'), 'buildPopover').mockImplementation(() => popupMock)
       })
 
       it('should open the popover', () => {

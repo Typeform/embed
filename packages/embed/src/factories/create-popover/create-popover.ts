@@ -1,4 +1,5 @@
 import { createIframe } from '../../utils'
+import { EmbedType } from '../../base'
 
 import { PopoverOptions } from './popover-options'
 import { buildPopover } from './elements'
@@ -16,17 +17,23 @@ interface HTMLElementWithParentNode extends HTMLElement {
 
 const isOpen = (popover: HTMLElement): popover is HTMLElementWithParentNode => !!popover.parentNode
 
+const handlePopupOpen = (event: any) => {
+  alert(JSON.stringify(event.data))
+}
+
 export const createPopover = (formId: string, options: PopoverOptions = {}): Popover => {
-  const iframe = createIframe(formId, 'popover', options)
+  const iframe = createIframe(formId, EmbedType.Popover, options)
   const popover = buildPopover(iframe)
   const container = options.container || document.body
 
   const open = () => {
     !isOpen(popover) && container.append(popover)
+    window.addEventListener('message', handlePopupOpen)
   }
 
   const close = () => {
     isOpen(popover) && popover.parentNode.removeChild(popover)
+    window.removeEventListener('message', handlePopupOpen)
   }
 
   const toggle = () => {

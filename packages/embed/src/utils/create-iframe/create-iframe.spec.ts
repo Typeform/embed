@@ -1,5 +1,7 @@
 import { fireEvent } from '@testing-library/dom'
 
+import { EmbedType } from '../../base'
+
 import { createIframe } from './create-iframe'
 
 describe('create-iframe', () => {
@@ -13,7 +15,7 @@ describe('create-iframe', () => {
     const options = {}
 
     beforeEach(() => {
-      iframe = createIframe('form-id', 'widget', options)
+      iframe = createIframe('form-id', EmbedType.Widget, options)
     })
 
     it('should call buildIframeSrc', () => {
