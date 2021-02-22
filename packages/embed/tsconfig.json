@@ -9,6 +9,7 @@
     "sourceMap": true,
     "jsx": "react",
     "keyofStringsOnly": true,
+    "suppressImplicitAnyIndexErrors": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
