@@ -11,6 +11,6 @@ describe('Widget', () => {
   it('should pass options as query param', () => {
     cy.get('.typeform-widget iframe')
       .invoke('attr', 'src')
-      .should('contain', '?typeform-embed=embed-widget&typeform-source=localhost')
+      .should('contain', 'typeform-embed=embed-widget&typeform-source=localhost')
   })
 })
