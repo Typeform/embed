@@ -3,5 +3,6 @@
   "transform": {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
-  "testMatch": ["**/src/**/*.spec.(ts|tsx)"]
+  "testMatch": ["**/src/**/*.spec.(ts|tsx)"],
+  "coverageReporters": [["lcov", { "projectRoot": ".." }]]
 }
