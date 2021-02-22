@@ -13,7 +13,7 @@ describe('create-iframe', () => {
       .mockImplementation(() => 'http://iframe-src/')
     const createElementMock = jest.spyOn(document, 'createElement')
     const triggerIframeRedrawMock = jest.spyOn(require('./trigger-iframe-redraw'), 'triggerIframeRedraw')
-    const options = {}
+    const options = { onReady: jest.fn(), onSubmit: jest.fn(), onQuestionChanged: jest.fn() }
 
     beforeEach(() => {
       iframe = createIframe('form-id', 'widget', options)
@@ -24,7 +24,7 @@ describe('create-iframe', () => {
       expect(buildIframeSrcMock).toHaveBeenCalledWith({
         embedId: 'random-id',
         formId: 'form-id',
-        options: {},
+        options,
         type: 'widget',
       })
     })
@@ -43,6 +43,27 @@ describe('create-iframe', () => {
       fireEvent(iframe, new Event('load'))
 
       expect(triggerIframeRedrawMock).toHaveBeenCalled()
+    })
+
+    it('should call form-ready handler', async () => {
+      window.postMessage({ type: 'form-ready', embedId: 'random-id' }, '*')
+      await new Promise((resolve) => setTimeout(resolve))
+
+      expect(options.onReady).toBeCalled()
+    })
+
+    it('should call form-screen-changed handler', async () => {
+      window.postMessage({ type: 'form-screen-changed', embedId: 'random-id' }, '*')
+      await new Promise((resolve) => setTimeout(resolve))
+
+      expect(options.onQuestionChanged).toBeCalled()
+    })
+
+    it('should call form-submit handler', async () => {
+      window.postMessage({ type: 'form-submit', response_id: 'test-response-id', embedId: 'random-id' }, '*')
+      await new Promise((resolve) => setTimeout(resolve))
+
+      expect(options.onSubmit).toBeCalledWith({ responseId: 'test-response-id' })
     })
   })
 })
