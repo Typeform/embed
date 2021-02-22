@@ -10,7 +10,7 @@ export const camelCaseToKebabCase = (value: string) => {
     .join('')
 }
 
-export type Transformation = 'string' | 'boolean' | 'integer' | 'function'
+export type Transformation = 'string' | 'boolean' | 'integer' | 'function' | 'array'
 
 const transformString = (value: string | null): string | undefined => {
   return value || undefined
@@ -30,6 +30,14 @@ const transformFunction = (value: string | null): Function | undefined => {
   return typeof fn === 'function' ? fn : undefined
 }
 
+const transformArray = (value: string | null): string[] | undefined => {
+  const val = value
+    ?.replace(/\s/g, '')
+    .split(',')
+    .filter((v) => !!v)
+  return value ? val : undefined
+}
+
 export const transformAttributeValue = (value: string | null, transformation: Transformation) => {
   switch (transformation) {
     case 'string':
@@ -40,6 +48,8 @@ export const transformAttributeValue = (value: string | null, transformation: Tr
       return transformInteger(value)
     case 'function':
       return transformFunction(value)
+    case 'array':
+      return transformArray(value)
     default:
       throw new Error(`Invalid attribute transformation ${transformation}`)
   }

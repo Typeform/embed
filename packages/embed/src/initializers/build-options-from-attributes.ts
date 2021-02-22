@@ -15,6 +15,7 @@ export const buildOptionsFromAttributes = (
     onReady: 'function',
     onSubmit: 'function',
     onQuestionChanged: 'function',
+    transitiveSearchParams: 'array',
     ...additionalAttributes,
   })
 }
