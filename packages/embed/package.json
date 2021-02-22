@@ -18,6 +18,7 @@
     "prettier-check": "prettier --check . --ignore-path .eslintignore",
     "prettier": "prettier --write . --ignore-path .eslintignore",
     "test": "jest",
+    "coverage": "jest --coverage",
     "cy:open": "yarn cypress open",
     "cy:open:func": "yarn cy:open -c integrationFolder=./e2e/spec/functional/",
     "cy:functional": "yarn cypress run --spec e2e/spec/functional/**/* --browser chrome --headless",

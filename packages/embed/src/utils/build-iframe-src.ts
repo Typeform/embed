@@ -1,7 +1,5 @@
 import { EmbedType, UrlOptions } from '../base'
 
-import { objectToQueryString } from './object-to-query-string'
-
 const typesToEmbed: Record<EmbedType, string> = {
   widget: 'embed-widget', // TODO: when widget is full page use 'embed-fullpage'
   popup: 'popup-blank',
@@ -21,8 +19,29 @@ const mapOptionsToQueryParams = (type: EmbedType, options: UrlOptions): Record<s
   'disable-tracking': options.disableTracking ? 'true' : undefined,
 })
 
-export const buildIframeSrc = (formId: string, type: EmbedType, options: UrlOptions): string => {
+export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
+  const { formId, type, embedId, options } = params
+
+  const url = new URL(`https://form.typeform.com/to/${formId}`)
+
+  if (embedId) {
+    url.searchParams.set('typeform-embed-id', embedId)
+  }
+
   const queryParams = mapOptionsToQueryParams(type, options)
-  const queryString = objectToQueryString(queryParams)
-  return `https://form.typeform.com/to/${formId}?${queryString}`
+  Object.entries(queryParams).forEach(([paramName, paramValue]) => {
+    if (!paramValue) {
+      return
+    }
+    url.searchParams.set(paramName, paramValue)
+  })
+
+  return url.href
+}
+
+type BuildIframeSrcOptions = {
+  formId: string
+  embedId: string
+  type: EmbedType
+  options: UrlOptions
 }

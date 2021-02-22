@@ -3,4 +3,4 @@ build/
 dist/
 CHANGELOG.md
 **/cypress/fixtures
-
+coverage/

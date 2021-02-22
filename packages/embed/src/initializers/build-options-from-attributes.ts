@@ -9,5 +9,8 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     hideHeaders: 'boolean',
     opacity: 'integer',
     disableTracking: 'boolean',
+    onReady: 'function',
+    onSubmit: 'function',
+    onQuestionChanged: 'function',
   })
 }

@@ -3,21 +3,26 @@ import { buildIframeSrc } from './build-iframe-src'
 describe('build-iframe-src', () => {
   describe('#buildIframeSrc', () => {
     it('should return iframe src', () => {
-      expect(buildIframeSrc('some-id', 'widget', {})).toBe(
+      expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: '', options: {} })).toBe(
         'https://form.typeform.com/to/some-id?typeform-embed=embed-widget'
       )
     })
 
     it('should include url options', () => {
-      expect(buildIframeSrc('some-id', 'widget', { source: 'unit-test-source' })).toBe(
-        'https://form.typeform.com/to/some-id?typeform-embed=embed-widget&typeform-source=unit-test-source'
-      )
+      expect(
+        buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: '', options: { source: 'unit-test-source' } })
+      ).toBe('https://form.typeform.com/to/some-id?typeform-embed=embed-widget&typeform-source=unit-test-source')
     })
 
     it('should omit false url options', () => {
-      expect(buildIframeSrc('some-id', 'widget', { hideFooter: true, hideHeaders: false })).toBe(
-        'https://form.typeform.com/to/some-id?typeform-embed=embed-widget&embed-hide-footer=true'
-      )
+      expect(
+        buildIframeSrc({
+          formId: 'some-id',
+          type: 'widget',
+          embedId: '',
+          options: { hideFooter: true, hideHeaders: false },
+        })
+      ).toBe('https://form.typeform.com/to/some-id?typeform-embed=embed-widget&embed-hide-footer=true')
     })
 
     it('should include all url options', () => {
@@ -30,7 +35,7 @@ describe('build-iframe-src', () => {
         opacity: 50,
         disableTracking: true,
       }
-      expect(buildIframeSrc('some-id', 'widget', options)).toBe(
+      expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: '', options })).toBe(
         'https://form.typeform.com/to/some-id?typeform-embed=embed-widget' +
           '&typeform-source=unit-test-source' +
           '&typeform-medium=unit-test-medium' +

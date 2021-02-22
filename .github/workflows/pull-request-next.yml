@@ -29,7 +29,9 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: yarn jest --coverage
+          coverageCommand: yarn --cwd packages/embed coverage
+          coverageLocations: |
+            ${{github.workspace}}/packages/embed/coverage/lcov.info:lcov
   functional:
     runs-on: ubuntu-latest
     steps:
