@@ -1,5 +1,16 @@
 import { EmbedType, UrlOptions } from '../base'
 
+import { removeUndefinedKeys } from './remove-undefined-keys'
+
+const defaultUrlOptions: UrlOptions = {
+  source: window?.location?.hostname.replace(/^www\./, ''),
+  medium: 'embed-sdk',
+}
+
+const addDefaultUrlOptions = (options: UrlOptions): UrlOptions => {
+  return { ...defaultUrlOptions, ...removeUndefinedKeys(options) }
+}
+
 const typesToEmbed: Record<EmbedType, string> = {
   widget: 'embed-widget', // TODO: when widget is full page use 'embed-fullpage'
   popup: 'popup-blank',
@@ -8,7 +19,8 @@ const typesToEmbed: Record<EmbedType, string> = {
   'side-tab': 'popup-side-panel',
 }
 
-const mapOptionsToQueryParams = (type: EmbedType, options: UrlOptions): Record<string, any> => ({
+const mapOptionsToQueryParams = (type: EmbedType, embedId: string, options: UrlOptions): Record<string, any> => ({
+  'typeform-embed-id': embedId,
   'typeform-embed': typesToEmbed[type],
   'typeform-source': options.source,
   'typeform-medium': options.medium,
@@ -22,19 +34,14 @@ const mapOptionsToQueryParams = (type: EmbedType, options: UrlOptions): Record<s
 export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
   const { formId, type, embedId, options } = params
 
+  const queryParams = mapOptionsToQueryParams(type, embedId, addDefaultUrlOptions(options))
+
   const url = new URL(`https://form.typeform.com/to/${formId}`)
-
-  if (embedId) {
-    url.searchParams.set('typeform-embed-id', embedId)
-  }
-
-  const queryParams = mapOptionsToQueryParams(type, options)
-  Object.entries(queryParams).forEach(([paramName, paramValue]) => {
-    if (!paramValue) {
-      return
-    }
-    url.searchParams.set(paramName, paramValue)
-  })
+  Object.entries(queryParams)
+    .filter(([, paramValue]) => paramValue != null)
+    .forEach(([paramName, paramValue]) => {
+      url.searchParams.set(paramName, paramValue)
+    })
 
   return url.href
 }
