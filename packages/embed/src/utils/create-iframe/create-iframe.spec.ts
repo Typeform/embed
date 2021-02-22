@@ -2,9 +2,12 @@ import { fireEvent } from '@testing-library/dom'
 
 import { createIframe } from './create-iframe'
 
+jest.mock('./generate-embed-id', () => ({ generateEmbedId: () => 'random-id' }))
+
 describe('create-iframe', () => {
   describe('#createIframe', () => {
-    let iframe: HTMLIFrameElement
+    let iframe = null as any
+
     const buildIframeSrcMock = jest
       .spyOn(require('./../build-iframe-src'), 'buildIframeSrc')
       .mockImplementation(() => 'http://iframe-src/')
@@ -18,6 +21,12 @@ describe('create-iframe', () => {
 
     it('should call buildIframeSrc', () => {
       expect(buildIframeSrcMock).toHaveBeenCalledTimes(1)
+      expect(buildIframeSrcMock).toHaveBeenCalledWith({
+        embedId: 'random-id',
+        formId: 'form-id',
+        options: {},
+        type: 'widget',
+      })
     })
 
     it('should create new iframe element', () => {
