@@ -27,7 +27,7 @@ const transformInteger = (value: string | null): number | undefined => {
 
 const transformFunction = (value: string | null): Function | undefined => {
   const fn = value && value in window ? window[value] : undefined
-  return fn
+  return typeof fn === 'function' ? fn : undefined
 }
 
 export const transformAttributeValue = (value: string | null, transformation: Transformation) => {

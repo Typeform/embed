@@ -11,9 +11,17 @@ describe('build-options-from-attributes', () => {
         data-tf-hide-headers="no"
         data-tf-opacity="50"
         data-tf-disable-tracking
+        data-tf-on-ready="onTypeformReady"
+        data-tf-on-submit="onTypeformSubmit"
+        data-tf-on-question-changed="onTypeformQuestionChanged"
       ></div>`
 
     it('should load correct options', () => {
+      const win = window as any
+      win.onTypeformReady = jest.fn()
+      win.onTypeformSubmit = jest.fn()
+      win.onTypeformQuestionChanged = jest.fn()
+
       const spy = jest.spyOn(require('../utils/load-options-from-attributes'), 'loadOptionsFromAttributes')
       const element = wrapper.querySelector('#element') as HTMLElement
       const options = buildOptionsFromAttributes(element)
@@ -26,6 +34,9 @@ describe('build-options-from-attributes', () => {
         hideHeaders: 'boolean',
         opacity: 'integer',
         disableTracking: 'boolean',
+        onReady: 'function',
+        onSubmit: 'function',
+        onQuestionChanged: 'function',
       })
       expect(options).toEqual({
         source: 'unit-test-source',
@@ -35,6 +46,9 @@ describe('build-options-from-attributes', () => {
         hideHeaders: false,
         opacity: 50,
         disableTracking: true,
+        onReady: win.onTypeformReady,
+        onSubmit: win.onTypeformSubmit,
+        onQuestionChanged: win.onTypeformQuestionChanged,
       })
     })
   })
