@@ -32,6 +32,8 @@ describe('build-iframe-src', () => {
         mediumVersion: 'unit-test-version',
         hideFooter: true,
         hideHeaders: true,
+        opacity: 50,
+        disableTracking: true,
       }
       expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: '', options })).toBe(
         'https://form.typeform.com/to/some-id?typeform-embed=embed-widget' +
@@ -39,7 +41,9 @@ describe('build-iframe-src', () => {
           '&typeform-medium=unit-test-medium' +
           '&typeform-medium-version=unit-test-version' +
           '&embed-hide-footer=true' +
-          '&embed-hide-headers=true'
+          '&embed-hide-headers=true' +
+          '&embed-opacity=50' +
+          '&disable-tracking=true'
       )
     })
   })

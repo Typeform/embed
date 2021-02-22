@@ -9,6 +9,8 @@ describe('build-options-from-attributes', () => {
         data-tf-medium-version="unit-test-version"
         data-tf-hide-footer="yes"
         data-tf-hide-headers="no"
+        data-tf-opacity="50"
+        data-tf-disable-tracking
       ></div>`
 
     it('should load correct options', () => {
@@ -22,6 +24,8 @@ describe('build-options-from-attributes', () => {
         mediumVersion: 'string',
         hideFooter: 'boolean',
         hideHeaders: 'boolean',
+        opacity: 'integer',
+        disableTracking: 'boolean',
       })
       expect(options).toEqual({
         source: 'unit-test-source',
@@ -29,6 +33,8 @@ describe('build-options-from-attributes', () => {
         mediumVersion: 'unit-test-version',
         hideFooter: true,
         hideHeaders: false,
+        opacity: 50,
+        disableTracking: true,
       })
     })
   })

@@ -1,5 +1,3 @@
-export type Transformation = 'string' | 'boolean'
-
 export const camelCaseToKebabCase = (value: string) => {
   return value
     .split('')
@@ -12,12 +10,29 @@ export const camelCaseToKebabCase = (value: string) => {
     .join('')
 }
 
+export type Transformation = 'string' | 'boolean' | 'integer'
+
+const transformString = (value: string | null): string | undefined => {
+  return value || undefined
+}
+
+const transformBoolean = (value: string | null): boolean => {
+  return value === '' || value === 'yes' || value === 'true'
+}
+
+const transformInteger = (value: string | null): number | undefined => {
+  const integer = value ? parseInt(value, 10) : NaN
+  return isNaN(integer) ? undefined : integer
+}
+
 export const transformAttributeValue = (value: string | null, transformation: Transformation) => {
   switch (transformation) {
     case 'string':
-      return value || undefined
+      return transformString(value)
     case 'boolean':
-      return value === '' || value === 'yes' || value === 'true'
+      return transformBoolean(value)
+    case 'integer':
+      return transformInteger(value)
     default:
       throw new Error(`Invalid attribute transformation ${transformation}`)
   }

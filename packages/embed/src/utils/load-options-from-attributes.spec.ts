@@ -54,6 +54,32 @@ describe('load-options-from-attributes', () => {
         })
       })
     })
+
+    describe('to integer', () => {
+      it('should return numberic string as integer', () => {
+        expect(transformAttributeValue('1', 'integer')).toBe(1)
+      })
+
+      it('should return string zero "0" as integer', () => {
+        expect(transformAttributeValue('0', 'integer')).toBe(0)
+      })
+
+      it('should return negative numeric string as integer', () => {
+        expect(transformAttributeValue('-1', 'integer')).toBe(-1)
+      })
+
+      it('should transform decimal numeric string to integer (drop the decimal part)', () => {
+        expect(transformAttributeValue('1.999', 'integer')).toBe(1)
+      })
+
+      it('should transform non-numberic string "foo" to undefined', () => {
+        expect(transformAttributeValue('foo', 'integer')).toBe(undefined)
+      })
+
+      it('should transform empty string (attribute with no value) to undefined', () => {
+        expect(transformAttributeValue('', 'integer')).toBe(undefined)
+      })
+    })
   })
 
   describe('#loadOptionsFromAttributes', () => {
