@@ -1,6 +1,7 @@
 import { EmbedType, UrlOptions } from '../base'
 
 import { removeUndefinedKeys } from './remove-undefined-keys'
+import { isDefined } from './is-defined'
 
 const defaultUrlOptions: UrlOptions = {
   source: window?.location?.hostname.replace(/^www\./, ''),
@@ -38,7 +39,7 @@ export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
 
   const url = new URL(`https://form.typeform.com/to/${formId}`)
   Object.entries(queryParams)
-    .filter(([, paramValue]) => paramValue != null)
+    .filter(([, paramValue]) => isDefined(paramValue))
     .forEach(([paramName, paramValue]) => {
       url.searchParams.set(paramName, paramValue)
     })
