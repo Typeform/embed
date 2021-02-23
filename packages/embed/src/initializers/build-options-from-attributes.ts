@@ -1,4 +1,4 @@
-import { loadOptionsFromAttributes } from '../utils/load-options-from-attributes'
+import { loadOptionsFromAttributes } from '../utils'
 
 export const buildOptionsFromAttributes = (element: HTMLElement) => {
   return loadOptionsFromAttributes(element, {
