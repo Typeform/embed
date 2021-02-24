@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.0-next.3](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.2...@typeform/embed-v1.0.0-next.3) (2021-02-24)
+
+
+### Features
+
+* **DIST-708:** Add embed type slider ([cfb11fa](https://github.com/Typeform/embed/commit/cfb11fac05e6237b62bde82380fdab59f3d8699b))
+
 # [@typeform/embed-v1.0.0-next.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.1...@typeform/embed-v1.0.0-next.2) (2021-02-24)
 
 
