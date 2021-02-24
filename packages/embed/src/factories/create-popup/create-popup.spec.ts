@@ -28,9 +28,9 @@ describe('create-popup', () => {
       it('should render the popup', () => {
         const popupElement = container.querySelector('.typeform-popup') as HTMLElement
         expect(popupElement).toBeTruthy()
-        expect(container.querySelector('.typeform-spinner')).toBeTruthy()
-        expect(container.querySelector('.typeform-iframe-wrapper > iframe')).toBeTruthy()
-        expect(container.querySelector('.typeform-iframe-wrapper > .typeform-close')).toBeTruthy()
+        expect(popupElement.querySelector('.typeform-spinner')).toBeTruthy()
+        expect(popupElement.querySelector('.typeform-iframe-wrapper > iframe')).toBeTruthy()
+        expect(popupElement.querySelector('.typeform-iframe-wrapper > .typeform-close')).toBeTruthy()
       })
     })
 

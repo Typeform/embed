@@ -1,8 +1,8 @@
 import { createIframe } from '../../utils'
 
-import { PopupOptions } from './popup-options'
+import { SliderOptions } from './slider-options'
 
-export type Popup = {
+export type Slider = {
   open: () => void
   close: () => void
   toggle: () => void
@@ -15,14 +15,14 @@ interface HTMLElementWithParentNode extends HTMLElement {
 
 const isOpen = (popup: HTMLElement): popup is HTMLElementWithParentNode => !!popup.parentNode
 
-const defaultPopupOptions: PopupOptions = {
-  width: 200,
-  height: 200,
+const defaultSliderOptions: SliderOptions = {
+  position: 'right',
+  width: 800,
 }
 
-const buildPopup = () => {
+const buildSlider = (position: 'right' | 'left') => {
   const popup = document.createElement('div')
-  popup.className = 'typeform-popup'
+  popup.className = `typeform-slider ${position}`
   popup.style.opacity = '0'
   return popup
 }
@@ -33,10 +33,10 @@ const buildSpinner = () => {
   return spinner
 }
 
-const buildWrapper = () => {
+const buildWrapper = (position: 'right' | 'left') => {
   const wrapper = document.createElement('div')
   wrapper.className = 'typeform-iframe-wrapper'
-  wrapper.style.opacity = '0'
+  wrapper.style[position] = '-100%'
   return wrapper
 }
 
@@ -48,49 +48,49 @@ const buildCloseButton = (close: () => void) => {
   return closeButton
 }
 
-export const createPopup = (formId: string, userOptions: PopupOptions): Popup => {
-  const options = { ...defaultPopupOptions, ...userOptions }
+export const createSlider = (formId: string, userOptions: SliderOptions): Slider => {
+  const { position = 'right', ...options } = { ...defaultSliderOptions, ...userOptions }
   const iframe = createIframe(formId, 'popup', options)
 
-  const popup = buildPopup()
+  const slider = buildSlider(position)
   const spinner = buildSpinner()
-  const wrapper = buildWrapper()
+  const wrapper = buildWrapper(position)
 
   wrapper.append(iframe)
-  popup.append(spinner)
-  popup.append(wrapper)
+  slider.append(spinner)
+  slider.append(wrapper)
 
   const container = options.container || document.body
 
   iframe.onload = () => {
-    wrapper.style.opacity = '1'
+    wrapper.style[position] = '0'
     setTimeout(() => {
       spinner.style.display = 'none'
-    }, 250)
+    }, 500)
   }
 
   const open = () => {
-    if (!isOpen(popup)) {
-      container.append(popup)
+    if (!isOpen(slider)) {
+      container.append(slider)
       setTimeout(() => {
-        popup.style.opacity = '1'
+        slider.style.opacity = '1'
       })
     }
   }
 
   const close = () => {
-    if (isOpen(popup)) {
-      popup.style.opacity = '0'
-      wrapper.style.opacity = '0'
+    if (isOpen(slider)) {
+      slider.style.opacity = '0'
+      wrapper.style[position] = '-100%'
       setTimeout(() => {
-        popup.parentNode.removeChild(popup)
+        slider.parentNode.removeChild(slider)
         spinner.style.display = 'block'
-      }, 250)
+      }, 500)
     }
   }
 
   const toggle = () => {
-    isOpen(popup) ? close() : open()
+    isOpen(slider) ? close() : open()
   }
 
   wrapper.append(buildCloseButton(close))

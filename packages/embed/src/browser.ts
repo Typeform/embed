@@ -6,6 +6,7 @@ module.exports = tf
 
 function loadEmbedElements() {
   initializers.initializeWidgets()
+  initializers.initializeSliders()
   initializers.initializePopups()
 }
 
