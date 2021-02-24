@@ -9,14 +9,32 @@
         height: 400px;
         margin: 0 auto;
       }
+      .typeform-button {
+        width: 54px;
+        height: 54px;
+        position: fixed;
+        box-shadow: 0px 2px 12px rgb(0 0 0 / 6%), 0px 2px 4px rgb(0 0 0 / 8%);
+        right: 26px;
+        bottom: 26px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background: #3A7685;
+        overflow: hidden;
+        line-height: 0;
+      }
     </style>
     <link rel="stylesheet" href="./lib/css/popover.css" />
   </head>
   <body>
-    <button id="button">toggle</button>
+    <button class="typeform-button" id="button" >toggle</button>
     <script src="./lib/embed-next.js"></script>
     <script>
-      const { open, close } = window.tf.createPopover("moe6aa");
+      const { open, close } = window.tf.createPopover("moe6aa", {
+        closeElements: [document.getElementById('button')]
+      });
       let isOpen = false;
       document.getElementById("button").onclick = function () {
         const isOpen = !!document.querySelector(".typeform-popover");

@@ -1,5 +1,5 @@
 import { EmbedType } from '../base'
-import { createEmbed } from '../factories/create-embed/create-embed'
+import { createEmbed } from '../factories/create-embed'
 import { includeCss } from '../utils'
 
 export const initializer = (embedType: EmbedType) => {
@@ -15,6 +15,7 @@ export const initializer = (embedType: EmbedType) => {
     if (!formId) {
       throw new Error(`Invalid ${dataAttribute}=${formId} for popup embed #${index}`)
     }
-    createEmbed(formId, embedType, element, {})
+    const closeElements = document.querySelectorAll<HTMLElement>(`[data-tf-close=${formId}]`)
+    createEmbed(formId, embedType, { element, closeElements })
   })
 }

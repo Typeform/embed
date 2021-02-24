@@ -17,7 +17,7 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
   window.addEventListener('message', getFormQuestionChangedHandler(embedId, options))
   window.addEventListener('message', getFormSubmitHandler(embedId, options))
 
-  return iframe
+  return { embedId, iframe }
 }
 
 type CreateIframeOptions = UrlOptions & ActionableOptions

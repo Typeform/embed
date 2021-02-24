@@ -1,16 +1,18 @@
-import { createWidget, Widget } from './create-widget'
+import { EmbedRefreshable } from '../../base'
+
+import { createWidget } from './create-widget'
 
 describe('create-widget', () => {
   describe('#createWidget', () => {
-    let widget: Widget
-    const container = document.createElement('div')
-    const containerAppendMock = jest.spyOn(container, 'append')
+    let widget: EmbedRefreshable
+    const element = document.createElement('div')
+    const containerAppendMock = jest.spyOn(element, 'append')
     const widgetMock = document.createElement('div')
 
-    jest.spyOn(require('./elements/build-widget'), 'buildWidget').mockImplementation(() => widgetMock)
+    jest.spyOn(require('../create-embed/elements/build-embed'), 'buildEmbed').mockImplementation(() => widgetMock)
 
     beforeAll(() => {
-      widget = createWidget('url', { container })
+      widget = createWidget('url', { element })
     })
 
     it('should append widget to the container', () => {
@@ -19,15 +21,18 @@ describe('create-widget', () => {
     })
 
     it('should render widget in container', () => {
-      expect(widgetMock.parentNode).toBe(container)
+      expect(widgetMock.parentNode).toBe(element)
     })
 
     describe('#refresh', () => {
       const iframeReloadSpy = jest.fn()
       const iframeMock = {
-        contentWindow: {
-          location: {
-            reload: iframeReloadSpy,
+        embedId: '123456',
+        iframe: {
+          contentWindow: {
+            location: {
+              reload: iframeReloadSpy,
+            },
           },
         },
       }

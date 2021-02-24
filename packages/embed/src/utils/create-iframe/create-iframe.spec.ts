@@ -18,7 +18,7 @@ describe('create-iframe', () => {
     const options = { onReady: jest.fn(), onSubmit: jest.fn(), onQuestionChanged: jest.fn() }
 
     beforeEach(() => {
-      iframe = createIframe('form-id', EmbedType.Widget, options)
+      iframe = createIframe('form-id', EmbedType.Widget, options).iframe
     })
 
     it('should call buildIframeSrc', () => {

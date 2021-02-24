@@ -1,15 +1,17 @@
-import { createPopup, Popup } from './create-popup'
+import { Embed } from '../../base'
+
+import { createPopup } from './create-popup'
 
 describe('create-popup', () => {
   describe('#createPopup', () => {
     describe('#open', () => {
-      let popup: Popup
+      let popup: Embed
       const container = document.createElement('div')
       const containerAppendSpy = jest.spyOn(container, 'append')
       const popupMock = document.createElement('div')
 
       beforeAll(() => {
-        jest.spyOn(require('./elements/build-popup'), 'buildPopup').mockImplementation(() => popupMock)
+        jest.spyOn(require('../create-embed/elements/build-embed'), 'buildEmbed').mockImplementation(() => popupMock)
         popup = createPopup('url', { container })
         popup.open()
       })
@@ -53,7 +55,7 @@ describe('create-popup', () => {
       const popupMock = document.createElement('div')
 
       beforeAll(() => {
-        jest.spyOn(require('./elements/build-popup'), 'buildPopup').mockImplementation(() => popupMock)
+        jest.spyOn(require('../create-embed/elements/build-embed'), 'buildEmbed').mockImplementation(() => popupMock)
       })
 
       it('should open the popup', () => {
@@ -74,9 +76,12 @@ describe('create-popup', () => {
     describe('#refresh', () => {
       const iframeReloadSpy = jest.fn()
       const iframeMock = {
-        contentWindow: {
-          location: {
-            reload: iframeReloadSpy,
+        embedId: '123456',
+        iframe: {
+          contentWindow: {
+            location: {
+              reload: iframeReloadSpy,
+            },
           },
         },
       }

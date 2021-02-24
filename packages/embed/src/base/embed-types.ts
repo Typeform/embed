@@ -9,17 +9,15 @@ export enum EmbedType {
   Widget = 'widget',
 }
 
-type EmbedRefreshable = {
+export type EmbedRefreshable = {
   refresh: () => void
 }
 
-type EmbedToggleable = EmbedRefreshable & {
+export type Embed = EmbedRefreshable & {
   close: () => void
   open: () => void
   toggle: () => void
 }
-
-export type Embed = EmbedRefreshable | EmbedToggleable
 
 export type ToggleHandlers = 'onclick'
 export type EmbedProperties = {
@@ -30,6 +28,8 @@ export type EmbedProperties = {
 export type EmbedOptions = UrlOptions &
   ActionableOptions & {
     container?: HTMLElement
+    closeElements?: HTMLElement[]
+    element?: HTMLElement
   }
 
 export const EmbedBlueprint: { [key in EmbedType]: EmbedProperties } = {
