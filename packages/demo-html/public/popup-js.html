@@ -16,8 +16,7 @@
     <button id="button">toggle</button>
     <script src="./lib/embed-next.js"></script>
     <script>
-      const { open, close } = window.tf.createPopup("moe6aa");
-      let isOpen = false;
+      const { open, close } = window.tf.createPopup("moe6aa", { medium: "unit-test" });
       document.getElementById("button").onclick = function () {
         const isOpen = !!document.querySelector(".typeform-popup");
         isOpen ? close() : open();

@@ -1,6 +1,13 @@
 describe('Popup', () => {
   before(() => {
-    cy.visit('/popup-js.html')
+    cy.visit('/popup-html.html')
+  })
+
+  it('should expose `tf` on `window`', () => {
+    cy.window().then((win: any) => {
+      expect(typeof win.tf).to.equal('object')
+      expect(typeof win.tf.createPopup).to.equal('function')
+    })
   })
 
   it('should not display popup on page load', () => {

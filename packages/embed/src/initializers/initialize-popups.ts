@@ -2,6 +2,8 @@ import { createPopup } from '../factories/create-popup'
 import { includeCss } from '../utils'
 import { POPUP_ATTRIBUTE } from '../constants'
 
+import { buildOptionsFromAttributes } from './build-options-from-attributes'
+
 export const initializePopups = () => {
   const popupElements = document.querySelectorAll<HTMLElement>(`[${POPUP_ATTRIBUTE}]`)
 
@@ -14,7 +16,7 @@ export const initializePopups = () => {
     if (!formId) {
       throw new Error(`Invalid ${POPUP_ATTRIBUTE}=${formId} for popup embed #${index}`)
     }
-    const { toggle } = createPopup(formId)
+    const { toggle } = createPopup(formId, buildOptionsFromAttributes(button))
     button.onclick = toggle
   })
 }
