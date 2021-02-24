@@ -1,31 +1,36 @@
 import { createPopup, Popup } from './create-popup'
 
+jest.useFakeTimers()
+
 describe('create-popup', () => {
   describe('#createPopup', () => {
     describe('#open', () => {
       let popup: Popup
       const container = document.createElement('div')
       const containerAppendSpy = jest.spyOn(container, 'append')
-      const popupMock = document.createElement('div')
 
       beforeAll(() => {
-        jest.spyOn(require('./elements/build-popup'), 'buildPopup').mockImplementation(() => popupMock)
         popup = createPopup('url', { container })
         popup.open()
+        jest.runAllTimers()
       })
 
       it('should append typeform popup to the container', () => {
         expect(containerAppendSpy).toHaveBeenCalledTimes(1)
-        expect(containerAppendSpy).toHaveBeenCalledWith(popupMock)
-      })
-
-      it('should render popup in container', () => {
-        expect(popupMock.parentNode).toBe(container)
       })
 
       it('should not open the popup twice', () => {
         popup.open()
+        jest.runAllTimers()
         expect(containerAppendSpy).toHaveBeenCalledTimes(1)
+      })
+
+      it('should render the popup', () => {
+        const popupElement = container.querySelector('.typeform-popup') as HTMLElement
+        expect(popupElement).toBeTruthy()
+        expect(container.querySelector('.typeform-spinner')).toBeTruthy()
+        expect(container.querySelector('.typeform-iframe-wrapper > iframe')).toBeTruthy()
+        expect(container.querySelector('.typeform-iframe-wrapper > .typeform-close')).toBeTruthy()
       })
     })
 
@@ -35,13 +40,16 @@ describe('create-popup', () => {
 
       it('should not remove typeform popup from the container if it was not open', () => {
         createPopup('url', { container }).close()
+        jest.runAllTimers()
         expect(containerRemoveChildSpy).toHaveBeenCalledTimes(0)
       })
 
       it('should remove typeform popup from the container', () => {
         const popup = createPopup('url', { container })
         popup.open()
+        jest.runAllTimers()
         popup.close()
+        jest.runAllTimers()
         expect(containerRemoveChildSpy).toHaveBeenCalledTimes(1)
       })
     })
@@ -50,23 +58,19 @@ describe('create-popup', () => {
       const container = document.createElement('div')
       const containerAppendSpy = jest.spyOn(container, 'append')
       const containerRemoveChildSpy = jest.spyOn(container, 'removeChild')
-      const popupMock = document.createElement('div')
-
-      beforeAll(() => {
-        jest.spyOn(require('./elements/build-popup'), 'buildPopup').mockImplementation(() => popupMock)
-      })
 
       it('should open the popup', () => {
         createPopup('url', { container }).toggle()
+        jest.runAllTimers()
         expect(containerAppendSpy).toHaveBeenCalledTimes(1)
-        expect(containerAppendSpy).toHaveBeenCalledWith(popupMock)
-        expect(popupMock.parentNode).toBe(container)
       })
 
       it('should close the popup', () => {
         const popup = createPopup('url', { container })
         popup.toggle()
+        jest.runAllTimers()
         popup.toggle()
+        jest.runAllTimers()
         expect(containerRemoveChildSpy).toHaveBeenCalledTimes(1)
       })
     })
@@ -81,12 +85,13 @@ describe('create-popup', () => {
         },
       }
 
-      jest
-        .spyOn(require('../../utils/create-iframe/create-iframe'), 'createIframe')
-        .mockImplementation(() => iframeMock)
-
       it('should reload iframe', () => {
+        jest
+          .spyOn(require('../../utils/create-iframe/create-iframe'), 'createIframe')
+          .mockImplementation(() => iframeMock)
+
         createPopup('url', {}).refresh()
+        jest.runAllTimers()
         expect(iframeReloadSpy).toHaveBeenCalledTimes(1)
       })
     })
