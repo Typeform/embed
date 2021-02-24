@@ -1,6 +1,9 @@
-import { loadOptionsFromAttributes } from '../utils'
+import { loadOptionsFromAttributes, Transformation } from '../utils'
 
-export const buildOptionsFromAttributes = (element: HTMLElement) => {
+export const buildOptionsFromAttributes = (
+  element: HTMLElement,
+  additionalAttributes: Record<string, Transformation> = {}
+) => {
   return loadOptionsFromAttributes(element, {
     source: 'string',
     medium: 'string',
@@ -12,5 +15,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     onReady: 'function',
     onSubmit: 'function',
     onQuestionChanged: 'function',
+    ...additionalAttributes,
   })
 }
