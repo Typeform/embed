@@ -1,12 +1,10 @@
 import { EmbedType, UrlOptions, ActionableOptions } from '../../base'
 import { buildIframeSrc } from '../build-iframe-src'
 
-import { generateEmbedId } from './generate-embed-id'
 import { getFormReadyHandler, getFormQuestionChangedHandler, getFormSubmitHandler } from './get-form-event-handler'
 import { triggerIframeRedraw } from './trigger-iframe-redraw'
 
-export const createIframe = (formId: string, type: EmbedType, options: CreateIframeOptions) => {
-  const embedId = generateEmbedId()
+export const createIframe = (formId: string, type: EmbedType, embedId: string, options: CreateIframeOptions) => {
   const src = buildIframeSrc({ formId, embedId, type, options })
 
   const iframe = document.createElement('iframe')
@@ -17,7 +15,7 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
   window.addEventListener('message', getFormQuestionChangedHandler(embedId, options))
   window.addEventListener('message', getFormSubmitHandler(embedId, options))
 
-  return { embedId, iframe }
+  return iframe
 }
 
 type CreateIframeOptions = UrlOptions & ActionableOptions

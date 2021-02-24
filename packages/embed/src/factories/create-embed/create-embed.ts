@@ -1,6 +1,7 @@
 import { createIframe } from '../../utils'
 import { Embed, EmbedBlueprint, EmbedOptions, EmbedRefreshable, EmbedType } from '../../base'
 import { getFormReadyHandler } from '../../utils/create-iframe/get-form-event-handler'
+import { generateEmbedId } from '../../utils/create-iframe/generate-embed-id'
 
 import { buildCloseButton, buildEmbed } from './elements'
 
@@ -12,7 +13,8 @@ const isOpen = (embed: HTMLElement): embed is HTMLElementWithParentNode => !!emb
 
 export const createEmbed = (formId: string, embedType: EmbedType, options: EmbedOptions): Embed | EmbedRefreshable => {
   const { closeable, toggleHandlers } = EmbedBlueprint[embedType]
-  const { iframe, embedId } = createIframe(formId, embedType, options)
+  const embedId = generateEmbedId()
+  const iframe = createIframe(formId, embedType, embedId, options)
   const embed = buildEmbed(iframe, `typeform-${embedType}`)
   const element = options.element
   const container = options.container || document.body

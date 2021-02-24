@@ -27,12 +27,9 @@ describe('create-widget', () => {
     describe('#refresh', () => {
       const iframeReloadSpy = jest.fn()
       const iframeMock = {
-        embedId: '123456',
-        iframe: {
-          contentWindow: {
-            location: {
-              reload: iframeReloadSpy,
-            },
+        contentWindow: {
+          location: {
+            reload: iframeReloadSpy,
           },
         },
       }
