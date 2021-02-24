@@ -1,16 +1,16 @@
-import { createWidget, Widget } from './create-widget'
+import { createWidget } from './create-widget'
+
+jest.useFakeTimers()
 
 describe('create-widget', () => {
   describe('#createWidget', () => {
-    let widget: Widget
     const container = document.createElement('div')
     const containerAppendMock = jest.spyOn(container, 'append')
     const widgetMock = document.createElement('div')
 
-    jest.spyOn(require('./elements/build-widget'), 'buildWidget').mockImplementation(() => widgetMock)
-
     beforeAll(() => {
-      widget = createWidget('url', { container })
+      jest.spyOn(require('./elements/build-widget'), 'buildWidget').mockImplementation(() => widgetMock)
+      createWidget('url', { container })
     })
 
     it('should append widget to the container', () => {
@@ -32,12 +32,14 @@ describe('create-widget', () => {
         },
       }
 
-      jest
-        .spyOn(require('../../utils/create-iframe/create-iframe'), 'createIframe')
-        .mockImplementation(() => iframeMock)
-
       it('should reload iframe', () => {
+        jest
+          .spyOn(require('../../utils/create-iframe/create-iframe'), 'createIframe')
+          .mockImplementation(() => iframeMock)
+
+        const widget = createWidget('url', { container })
         widget.refresh()
+        jest.runAllTimers()
         expect(iframeReloadSpy).toHaveBeenCalledTimes(1)
       })
     })

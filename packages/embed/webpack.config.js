@@ -15,7 +15,7 @@ const baseConfig = {
     new CopyPlugin({
       patterns: [
         {
-          from: 'src/**/*.scss',
+          from: 'src/css/*.scss',
           to: 'css/[name].css',
           transform: (content, path) => {
             const result = sass.renderSync({

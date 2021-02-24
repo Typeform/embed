@@ -1,0 +1,39 @@
+$spinner-color: #fff !default;
+$spinner-background-color: #aaa !default;
+$spinner-stroke: 3px !default;
+$spinner-diameter: 40px !default;
+$spinner-sides: 1 !default;
+$spinner-margin: $spinner-diameter / 2px * -1px;
+
+@mixin spinner(
+  $color: $spinner-color,
+  $background-color: $spinner-background-color,
+  $stroke: $spinner-stroke,
+  $diameter: $spinner-diameter,
+  $sides: $spinner-sides
+) {
+  border: $stroke solid $background-color;
+  font-size: $diameter;
+  width: 1em;
+  height: 1em;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  animation: spin 1s linear infinite;
+  border-top-color: $color;
+  @if $sides >= 2 {
+    border-right-color: $color;
+  }
+  @if $sides >= 3 {
+    border-bottom-color: $color;
+  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: $spinner-margin 0 0 $spinner-margin;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
