@@ -16,7 +16,12 @@
     <div id="wrapper"></div>
     <script src="./lib/embed-next.js"></script>
     <script>
-      window.tf.createWidget("moe6aa", { container: document.getElementById("wrapper"), medium: "unit-test" });
+      window.tf.createWidget("moe6aa", {
+        container: document.getElementById("wrapper"),
+        source: "localhost",
+        transitiveSearchParams: ["foo", "bar"],
+        medium: "unit-test",
+      });
     </script>
   </body>
 </html>

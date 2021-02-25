@@ -37,6 +37,7 @@ describe('build-options-from-attributes', () => {
         onReady: 'function',
         onSubmit: 'function',
         onQuestionChanged: 'function',
+        transitiveSearchParams: 'array',
       })
       expect(options).toEqual({
         source: 'unit-test-source',

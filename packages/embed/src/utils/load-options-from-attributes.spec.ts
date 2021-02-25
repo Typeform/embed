@@ -34,7 +34,7 @@ describe('load-options-from-attributes', () => {
       })
     })
 
-    describe('to booolean', () => {
+    describe('to boolean', () => {
       it('should transform "yes" to true', () => {
         expect(transformAttributeValue('yes', 'boolean')).toBe(true)
       })
@@ -79,6 +79,24 @@ describe('load-options-from-attributes', () => {
       it('should transform empty string (attribute with no value) to undefined', () => {
         expect(transformAttributeValue('', 'integer')).toBe(undefined)
       })
+    })
+  })
+
+  describe('to array', () => {
+    it('should transform string as array', () => {
+      expect(transformAttributeValue('a, b', 'array')).toEqual(['a', 'b'])
+    })
+
+    it('should remove empty spaces around text', () => {
+      expect(transformAttributeValue('foo , bar , test', 'array')).toEqual(['foo', 'bar', 'test'])
+    })
+
+    it('should transform malformed string in empty array', () => {
+      expect(transformAttributeValue(',', 'array')).toEqual([])
+    })
+
+    it('should return undefined if no value', () => {
+      expect(transformAttributeValue('', 'array')).toEqual(undefined)
     })
   })
 
