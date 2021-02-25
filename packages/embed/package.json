@@ -10,9 +10,9 @@
   "scripts": {
     "clean": "rm -rf ./build",
     "build": "yarn webpack",
-    "dev": "yarn build --watch --progress",
-    "demo-html": "cd ../demo-html && yarn start",
-    "demo": "yarn concurrently 'yarn dev' 'yarn demo-html'",
+    "dev": "yarn build --watch",
+    "demo-nextjs": "cd ../demo-nextjs && yarn start",
+    "demo": "yarn concurrently 'yarn dev' 'yarn demo-nextjs'",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0 && yarn prettier-check",
     "prettier-check": "prettier --check . --ignore-path .eslintignore",
     "prettier": "prettier --write . --ignore-path .eslintignore",

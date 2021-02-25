@@ -39,6 +39,7 @@ const npmConfig = {
     library: 'embed-next',
     libraryTarget: 'umd',
     path: path.resolve(__dirname, 'build'),
+    globalObject: 'this',
   },
 }
 

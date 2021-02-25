@@ -1,4 +1,4 @@
-import { createIframe } from '../../utils'
+import { createIframe, hasDom } from '../../utils'
 
 import { PopupOptions } from './popup-options'
 
@@ -49,6 +49,15 @@ const buildCloseButton = (close: () => void) => {
 }
 
 export const createPopup = (formId: string, userOptions: PopupOptions): Popup => {
+  if (!hasDom()) {
+    return {
+      open: () => {},
+      close: () => {},
+      toggle: () => {},
+      refresh: () => {},
+    }
+  }
+
   const options = { ...defaultPopupOptions, ...userOptions }
   const iframe = createIframe(formId, 'popup', options)
 

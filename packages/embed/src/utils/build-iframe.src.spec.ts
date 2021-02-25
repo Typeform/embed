@@ -14,7 +14,8 @@ describe('build-iframe-src', () => {
           '?typeform-embed-id=embed-id' +
           '&typeform-embed=embed-widget' +
           '&typeform-source=localhost' +
-          '&typeform-medium=embed-sdk'
+          '&typeform-medium=embed-sdk' +
+          '&typeform-medium-version=next'
       )
     })
 

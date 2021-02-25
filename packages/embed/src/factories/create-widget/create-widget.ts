@@ -1,4 +1,4 @@
-import { createIframe } from '../../utils'
+import { createIframe, hasDom } from '../../utils'
 
 import { WidgetOptions } from './widget-options'
 import { buildWidget } from './elements'
@@ -8,6 +8,12 @@ export type Widget = {
 }
 
 export const createWidget = (formId: string, options: WidgetOptions): Widget => {
+  if (!hasDom()) {
+    return {
+      refresh: () => {},
+    }
+  }
+
   const iframe = createIframe(formId, 'widget', options)
   const widget = buildWidget(iframe)
 
