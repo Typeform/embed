@@ -1,10 +1,10 @@
-# React App Demo
+# Next.js App Demo
 
-Typeform can be embedded in react apps.
+Typeform can be embedded in server-side rendered Next.js apps.
 
 **Note:** We recommend using `@typeform/embed-react`, it will be rady soon :)
 
-You can use the `@typeform/embed` directly in react apps:
+You can use the `@typeform/embed` directly in Next.js apps:
 
 ```javascript
 import { createWidget } from "@typeform/embed";

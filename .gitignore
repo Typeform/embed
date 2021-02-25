@@ -49,6 +49,8 @@ coverage
 # nodemon
 .monitor
 
+.next
+out
 dist
 build
 node_modules
