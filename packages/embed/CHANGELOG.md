@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.0-next.6](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.5...@typeform/embed-v1.0.0-next.6) (2021-02-25)
+
+
+### Features
+
+* Allow server-side import ([bbdda96](https://github.com/Typeform/embed/commit/bbdda9686cdee8ce98d7a628379faa9e20c43b2e))
+
 # [@typeform/embed-v1.0.0-next.5](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.4...@typeform/embed-v1.0.0-next.5) (2021-02-25)
 
 
