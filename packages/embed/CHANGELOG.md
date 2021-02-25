@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.0-next.4](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.3...@typeform/embed-v1.0.0-next.4) (2021-02-25)
+
+
+### Features
+
+* **DIST-700:** Add transitiveSearchParams ([#179](https://github.com/Typeform/embed/issues/179)) ([b3d6694](https://github.com/Typeform/embed/commit/b3d6694392595180800704f5da059f3cc7067d22))
+
 # [@typeform/embed-v1.0.0-next.3](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.2...@typeform/embed-v1.0.0-next.3) (2021-02-24)
 
 
