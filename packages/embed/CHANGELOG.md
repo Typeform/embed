@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.0-next.5](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.4...@typeform/embed-v1.0.0-next.5) (2021-02-25)
+
+
+### Features
+
+* Add Next.js demo (with server side rendering) ([b26d6d6](https://github.com/Typeform/embed/commit/b26d6d6ddf39c2bd0ed93b78d457ba6a067dd59d))
+
 # [@typeform/embed-v1.0.0-next.4](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.3...@typeform/embed-v1.0.0-next.4) (2021-02-25)
 
 
