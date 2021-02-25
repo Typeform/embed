@@ -23,7 +23,7 @@ describe('Popup', () => {
   it('should pass options as query param', () => {
     cy.get('.typeform-popup iframe')
       .invoke('attr', 'src')
-      .should('contain', 'typeform-embed=popup-blank&typeform-source=localhost&typeform-medium=unit-test')
+      .should('contain', 'typeform-embed=popup-blank&typeform-source=localhost&typeform-medium=demo-test')
   })
 
   it('should close popup', () => {

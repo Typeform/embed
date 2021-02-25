@@ -17,3 +17,5 @@ Demos:
 
 - [HTML](./packages/demo-html)
 - [Webpack](./packages/demo-webpack)
+- [React](./packages/demo-react)
+- [Next.js](./packages/demo-nextjs)
