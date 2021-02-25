@@ -1,5 +1,6 @@
 export * from './build-iframe-src'
 export * from './create-iframe'
+export * from './has-dom'
 export * from './include-css'
 export * from './is-defined'
 export * from './load-options-from-attributes'

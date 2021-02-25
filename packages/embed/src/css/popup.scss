@@ -1,4 +1,5 @@
 @import 'includes/spinner';
+@import 'includes/close';
 
 .typeform-popup {
   position: fixed;
@@ -26,22 +27,10 @@
   }
 
   .typeform-close {
-    position: absolute;
+    @include close;
+
     top: -34px;
     right: -34px;
-    color: white;
-    font-size: 36px;
-    line-height: 24px;
-    width: 24px;
-    height: 24px;
-    text-align: center;
-    cursor: pointer;
-    opacity: 0.75;
-    transition: opacity 0.25s ease-in-out;
-
-    &:hover {
-      opacity: 1;
-    }
   }
 
   .typeform-spinner {

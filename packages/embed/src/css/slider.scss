@@ -1,4 +1,5 @@
 @import 'includes/spinner';
+@import 'includes/close';
 
 .typeform-slider {
   position: fixed;
@@ -24,18 +25,10 @@
   }
 
   .typeform-close {
-    position: absolute;
+    @include close;
+
     top: 10px;
     left: -34px;
-    color: white;
-    font-size: 36px;
-    line-height: 24px;
-    width: 24px;
-    height: 24px;
-    text-align: center;
-    cursor: pointer;
-    opacity: 0.75;
-    transition: opacity 0.25s ease-in-out;
 
     &:hover {
       opacity: 1;

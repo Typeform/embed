@@ -1,4 +1,4 @@
-import { createIframe } from '../../utils'
+import { createIframe, hasDom } from '../../utils'
 
 import { SliderOptions } from './slider-options'
 
@@ -49,8 +49,17 @@ const buildCloseButton = (close: () => void) => {
 }
 
 export const createSlider = (formId: string, userOptions: SliderOptions): Slider => {
+  if (!hasDom()) {
+    return {
+      open: () => {},
+      close: () => {},
+      toggle: () => {},
+      refresh: () => {},
+    }
+  }
+
   const { position = 'right', ...options } = { ...defaultSliderOptions, ...userOptions }
-  const iframe = createIframe(formId, 'popup', options)
+  const iframe = createIframe(formId, 'slider', options)
 
   const slider = buildSlider(position)
   const spinner = buildSpinner()

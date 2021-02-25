@@ -4,13 +4,14 @@ import { removeUndefinedKeys } from './remove-undefined-keys'
 import { isDefined } from './is-defined'
 import { getTransitiveSearchParams } from './get-transitive-search-params'
 
-const defaultUrlOptions: UrlOptions = {
+const getDefaultUrlOptions = (): UrlOptions => ({
   source: window?.location?.hostname.replace(/^www\./, ''),
   medium: 'embed-sdk',
-}
+  mediumVersion: 'next',
+})
 
 const addDefaultUrlOptions = (options: UrlOptions): UrlOptions => {
-  return { ...defaultUrlOptions, ...removeUndefinedKeys(options) }
+  return { ...getDefaultUrlOptions(), ...removeUndefinedKeys(options) }
 }
 
 const typesToEmbed: Record<EmbedType, string> = {
