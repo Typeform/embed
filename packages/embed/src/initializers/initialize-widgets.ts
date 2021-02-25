@@ -8,7 +8,7 @@ export const initializeWidgets = () => {
   const widgetElements = document.querySelectorAll<HTMLElement>(`[${WIDGET_ATTRIBUTE}]`)
 
   if (widgetElements.length > 0) {
-    includeCss('./lib/css/widget.css')
+    includeCss('widget.css')
   }
 
   Array.from(widgetElements).forEach((container, index) => {

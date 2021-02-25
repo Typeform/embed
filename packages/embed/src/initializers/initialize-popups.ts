@@ -8,7 +8,7 @@ export const initializePopups = () => {
   const popupElements = document.querySelectorAll<HTMLElement>(`[${POPUP_ATTRIBUTE}]`)
 
   if (popupElements.length > 0) {
-    includeCss('./lib/css/popup.css')
+    includeCss('popup.css')
   }
 
   Array.from(popupElements).forEach((button, index) => {

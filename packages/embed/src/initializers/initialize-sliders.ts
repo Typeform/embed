@@ -8,7 +8,7 @@ export const initializeSliders = () => {
   const sliderElements = document.querySelectorAll<HTMLElement>(`[${SLIDER_ATTRIBUTE}]`)
 
   if (sliderElements.length > 0) {
-    includeCss('./lib/css/slider.css')
+    includeCss('slider.css')
   }
 
   Array.from(sliderElements).forEach((button, index) => {
