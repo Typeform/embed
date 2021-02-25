@@ -1,10 +1,14 @@
 const path = require('path')
 
 const sass = require('node-sass')
+const webpack = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin')
 
+const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development'
+const isProd = mode === 'production'
+
 const baseConfig = {
-  mode: 'development',
+  mode,
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
@@ -20,6 +24,7 @@ const baseConfig = {
           transform: (content, path) => {
             const result = sass.renderSync({
               file: path,
+              outputStyle: isProd ? 'compressed' : 'expanded',
             })
 
             return result.css.toString()
@@ -27,13 +32,18 @@ const baseConfig = {
         },
       ],
     }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        CSS_URL: JSON.stringify(isProd ? '://embed.typeform.com/next/css/' : './lib/css/'),
+      },
+    }),
   ],
 }
 
 const npmConfig = {
   ...baseConfig,
   entry: './src/index.ts',
-  devtool: 'inline-source-map',
+  devtool: isProd ? false : 'inline-source-map',
   output: {
     filename: 'index.js',
     library: 'embed-next',

@@ -53,6 +53,7 @@ coverage
 out
 dist
 build
+build-aws
 node_modules
 
 # tests
