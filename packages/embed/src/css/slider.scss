@@ -1,5 +1,6 @@
 @import 'includes/spinner';
 @import 'includes/close';
+@import 'includes/iframe';
 
 .typeform-slider {
   position: fixed;
@@ -18,11 +19,8 @@
     transition: right 0.5s ease-in-out, left 0.5s ease-in-out;
 
     iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 4px 0 0 4px;
-      overflow: hidden;
+      @include iframe;
+      border-radius: 8px 0 0 8px;
     }
   }
 
@@ -43,7 +41,7 @@
 
   &.left {
     .typeform-iframe-wrapper iframe {
-      border-radius: 0 4px 4px 0;
+      border-radius: 0 8px 8px 0;
     }
 
     .typeform-close {
