@@ -6,7 +6,7 @@
   "author": "Typeform",
   "license": "LGPL-3.0-only",
   "engines": {
-    "node": ">=14"
+    "node": ">=10"
   },
   "dependencies": {
     "@typeform/embed": "file:../embed"

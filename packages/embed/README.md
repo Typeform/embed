@@ -6,7 +6,7 @@ Core library written in Typescript. Compiles to vanilla JavaScript.
 
 Requirements:
 
-- node >= 14
+- node >= 10
 - yarn
 
 Install dependencies
