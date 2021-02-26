@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.0-next.11](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.10...@typeform/embed-v1.0.0-next.11) (2021-02-26)
+
+
+### Features
+
+* Add size, width and height to options ([59c38a5](https://github.com/Typeform/embed/commit/59c38a5c2458634c3b448010da5fd9366260a007))
+
 # [@typeform/embed-v1.0.0-next.10](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.9...@typeform/embed-v1.0.0-next.10) (2021-02-26)
 
 
