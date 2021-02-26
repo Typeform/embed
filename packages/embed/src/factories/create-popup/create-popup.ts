@@ -1,4 +1,5 @@
-import { createIframe, hasDom } from '../../utils'
+import { createIframe, hasDom, isDefined } from '../../utils'
+import { POPUP_SIZE } from '../../constants'
 
 import { PopupOptions } from './popup-options'
 
@@ -15,11 +16,6 @@ interface HTMLElementWithParentNode extends HTMLElement {
 
 const isOpen = (popup: HTMLElement): popup is HTMLElementWithParentNode => !!popup.parentNode
 
-const defaultPopupOptions: PopupOptions = {
-  width: 200,
-  height: 200,
-}
-
 const buildPopup = () => {
   const popup = document.createElement('div')
   popup.className = 'typeform-popup'
@@ -33,10 +29,18 @@ const buildSpinner = () => {
   return spinner
 }
 
-const buildWrapper = () => {
+const buildWrapper = (width?: number, height?: number, size?: number) => {
   const wrapper = document.createElement('div')
   wrapper.className = 'typeform-iframe-wrapper'
   wrapper.style.opacity = '0'
+
+  if (isDefined(width) && isDefined(height)) {
+    wrapper.style.width = `${width}px`
+    wrapper.style.height = `${height}px`
+  } else {
+    wrapper.style.width = `calc(${size}% - 80px)`
+    wrapper.style.height = `calc(${size}% - 80px)`
+  }
   return wrapper
 }
 
@@ -58,12 +62,12 @@ export const createPopup = (formId: string, userOptions: PopupOptions): Popup =>
     }
   }
 
-  const options = { ...defaultPopupOptions, ...userOptions }
+  const { width, height, size = POPUP_SIZE, ...options } = userOptions
   const iframe = createIframe(formId, 'popup', options)
 
   const popup = buildPopup()
   const spinner = buildSpinner()
-  const wrapper = buildWrapper()
+  const wrapper = buildWrapper(width, height, size)
 
   wrapper.append(iframe)
   popup.append(spinner)

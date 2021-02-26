@@ -10,7 +10,7 @@ describe('create-popup', () => {
       const containerAppendSpy = jest.spyOn(container, 'append')
 
       beforeAll(() => {
-        popup = createPopup('url', { container })
+        popup = createPopup('url', { container, width: 200, height: 100 })
         popup.open()
         jest.runAllTimers()
       })
@@ -27,10 +27,13 @@ describe('create-popup', () => {
 
       it('should render the popup', () => {
         const popupElement = container.querySelector('.typeform-popup') as HTMLElement
+        const wrapper = popupElement.querySelector('.typeform-iframe-wrapper') as HTMLElement
         expect(popupElement).toBeTruthy()
         expect(popupElement.querySelector('.typeform-spinner')).toBeTruthy()
-        expect(popupElement.querySelector('.typeform-iframe-wrapper > iframe')).toBeTruthy()
-        expect(popupElement.querySelector('.typeform-iframe-wrapper > .typeform-close')).toBeTruthy()
+        expect(wrapper.querySelector('iframe')).toBeTruthy()
+        expect(wrapper.querySelector('.typeform-close')).toBeTruthy()
+        expect(wrapper.style.width).toBe('200px')
+        expect(wrapper.style.height).toBe('100px')
       })
     })
 

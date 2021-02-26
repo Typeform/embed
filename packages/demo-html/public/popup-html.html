@@ -3,16 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <title>Static HTML Demo</title>
-    <style>
-      #wrapper {
-        width: 600px;
-        height: 400px;
-        margin: 0 auto;
-      }
-    </style>
   </head>
   <body>
-    <button data-tf-popup="moe6aa" data-tf-medium="demo-test">toggle</button>
+    <button id="button" data-tf-popup="moe6aa" data-tf-medium="demo-test">toggle default (large)</button>
+    <button data-tf-popup="moe6aa" data-tf-medium="demo-test" data-tf-size="80">toggle medium</button>
+    <button data-tf-popup="moe6aa" data-tf-medium="demo-test" data-tf-size="45">toggle small</button>
+    <button data-tf-popup="moe6aa" data-tf-medium="demo-test" data-tf-width="380" data-tf-height="300">
+      toggle custom 380 x 300 pixels
+    </button>
     <script src="./lib/embed-next.js"></script>
   </body>
 </html>

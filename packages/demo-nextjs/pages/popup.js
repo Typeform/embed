@@ -20,7 +20,9 @@ export default function Popup() {
         <p>Embed popup &lt;3 Next.js ✨</p>
 
         <p>
-          <button onClick={openPopup}>open popup</button>
+          <button id="button" onClick={openPopup}>
+            open popup
+          </button>
         </p>
       </main>
     </div>

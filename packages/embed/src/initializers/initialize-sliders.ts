@@ -18,6 +18,7 @@ export const initializeSliders = () => {
     }
     const options = buildOptionsFromAttributes(button, {
       position: 'string',
+      width: 'integer',
     })
     const { toggle } = createSlider(formId, options)
     button.onclick = toggle

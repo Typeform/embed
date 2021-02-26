@@ -1,4 +1,5 @@
 import { createIframe, hasDom } from '../../utils'
+import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
 
 import { SliderOptions } from './slider-options'
 
@@ -15,11 +16,6 @@ interface HTMLElementWithParentNode extends HTMLElement {
 
 const isOpen = (popup: HTMLElement): popup is HTMLElementWithParentNode => !!popup.parentNode
 
-const defaultSliderOptions: SliderOptions = {
-  position: 'right',
-  width: 800,
-}
-
 const buildSlider = (position: 'right' | 'left') => {
   const popup = document.createElement('div')
   popup.className = `typeform-slider ${position}`
@@ -33,10 +29,11 @@ const buildSpinner = () => {
   return spinner
 }
 
-const buildWrapper = (position: 'right' | 'left') => {
+const buildWrapper = (position: 'right' | 'left', width: number) => {
   const wrapper = document.createElement('div')
   wrapper.className = 'typeform-iframe-wrapper'
   wrapper.style[position] = '-100%'
+  wrapper.style.width = `${width}px`
   return wrapper
 }
 
@@ -58,12 +55,12 @@ export const createSlider = (formId: string, userOptions: SliderOptions): Slider
     }
   }
 
-  const { position = 'right', ...options } = { ...defaultSliderOptions, ...userOptions }
+  const { position = SLIDER_POSITION, width = SLIDER_WIDTH, ...options } = userOptions
   const iframe = createIframe(formId, 'slider', options)
 
   const slider = buildSlider(position)
   const spinner = buildSpinner()
-  const wrapper = buildWrapper(position)
+  const wrapper = buildWrapper(position, width)
 
   wrapper.append(iframe)
   slider.append(spinner)
