@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.0-next.7](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.6...@typeform/embed-v1.0.0-next.7) (2021-02-26)
+
+
+### Features
+
+* Deploy to AWS S3 ([56ddbb2](https://github.com/Typeform/embed/commit/56ddbb2e73a736767ae89fc2d89810fce009416b))
+
 # [@typeform/embed-v1.0.0-next.6](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.5...@typeform/embed-v1.0.0-next.6) (2021-02-25)
 
 
