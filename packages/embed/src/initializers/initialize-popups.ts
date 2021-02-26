@@ -16,7 +16,12 @@ export const initializePopups = () => {
     if (!formId) {
       throw new Error(`Invalid ${POPUP_ATTRIBUTE}=${formId} for popup embed #${index}`)
     }
-    const { toggle } = createPopup(formId, buildOptionsFromAttributes(button))
+    const options = buildOptionsFromAttributes(button, {
+      size: 'integer',
+      width: 'integer',
+      height: 'integer',
+    })
+    const { toggle } = createPopup(formId, options)
     button.onclick = toggle
   })
 }

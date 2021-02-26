@@ -10,7 +10,7 @@ describe('create-slider', () => {
       const containerAppendSpy = jest.spyOn(container, 'append')
 
       beforeAll(() => {
-        slider = createSlider('url', { container })
+        slider = createSlider('url', { container, width: 250 })
         slider.open()
         jest.runAllTimers()
       })
@@ -34,6 +34,7 @@ describe('create-slider', () => {
         expect(wrapper.querySelector('iframe')).toBeTruthy()
         expect(wrapper.querySelector('.typeform-close')).toBeTruthy()
         expect(sliderElement.querySelectorAll('.typeform-slider.left').length).toBe(0)
+        expect(wrapper.style.width).toBe('250px')
       })
 
       it('should open and render the slider from left', () => {
