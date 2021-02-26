@@ -34,7 +34,7 @@ const baseConfig = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        CSS_URL: JSON.stringify(isProd ? '://embed.typeform.com/next/css/' : './lib/css/'),
+        CSS_URL: JSON.stringify(isProd ? 'https://embed.typeform.com/next/css/' : './lib/css/'),
       },
     }),
   ],
