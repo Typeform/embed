@@ -41,8 +41,6 @@ jobs:
           persist-credentials: false
           token: ${{ secrets.GH_TOKEN }}
       - uses: actions/setup-node@v1
-        with:
-          node-version: "14"
       - uses: actions/cache@v2
         with:
           path: |
@@ -70,8 +68,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-        with:
-          node-version: "14"
       - uses: actions/cache@v2
         with:
           path: |
