@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.0-next.9](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.8...@typeform/embed-v1.0.0-next.9) (2021-02-26)
+
+
+### Features
+
+* Update CSS for embeds ([c77baf5](https://github.com/Typeform/embed/commit/c77baf5c63be7887186569539602efbd75ca0b9f))
+
 # [@typeform/embed-v1.0.0-next.8](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.7...@typeform/embed-v1.0.0-next.8) (2021-02-26)
 
 
