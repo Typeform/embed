@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.0-next.10](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.9...@typeform/embed-v1.0.0-next.10) (2021-02-26)
+
+
+### Features
+
+* Update CSS border-radius ([19b3048](https://github.com/Typeform/embed/commit/19b3048229294bd315f6bdcb43360ed766a62ce9))
+
 # [@typeform/embed-v1.0.0-next.9](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.8...@typeform/embed-v1.0.0-next.9) (2021-02-26)
 
 
