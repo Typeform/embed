@@ -1,0 +1,69 @@
+@import 'includes/spinner';
+
+.typeform-sidetab {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  width: 400px;
+  height: 580px;
+  transform: translate(100%, -50%);
+  transition: transform 250ms ease-in-out;
+  will-change: transform;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  &-wrapper {
+    height: 100%;
+  }
+
+  &-button {
+    position: absolute;
+    top: 50%;
+    transform: rotate(-90deg);
+    transform-origin: bottom left;
+    width: 200px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px 4px 0px 0px;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
+    background-color: #3a7685;
+    cursor: pointer;
+    border: 0;
+    text-decoration: none;
+    outline: none;
+
+    &-text {
+      flex: 1;
+      font-size: 18px;
+      font-family: Helvetica, Arial, sans-serif;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &-icon {
+      width: 24px;
+      height: 24px;
+      font-size: 24px;
+      transform: rotate(90deg);
+      margin-right: 12px;
+      position: relative;
+      order: -1;
+    }
+  }
+
+  .typeform-spinner {
+    @include spinner($diameter: 24px);
+    top: 0;
+    left: 0;
+    margin: 0;
+  }
+}

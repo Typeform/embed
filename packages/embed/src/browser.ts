@@ -8,6 +8,7 @@ function loadEmbedElements() {
   initializers.initializeWidgets()
   initializers.initializeSliders()
   initializers.initializePopups()
+  initializers.initializeSidetabs()
 }
 
 document.addEventListener('DOMContentLoaded', loadEmbedElements, false)
