@@ -2,8 +2,8 @@ import Head from "next/head";
 import { createPopover } from "@typeform/embed";
 
 export default function Popover() {
-  const openPopover = (event) => {
-    createPopover("moe6aa", { element: event.target, medium: "demo-test" }).open();
+  const openPopover = () => {
+    createPopover("moe6aa", { element: document.getElementById('popover-icon'), medium: "demo-test" }).open();
   };
 
   const popoverButtonStyle = {
@@ -37,7 +37,7 @@ export default function Popover() {
         <p>Embed popover &lt;3 Next.js ✨</p>
 
         <p>
-          <button style={popoverButtonStyle} onClick={openPopover}>popover</button>
+          <button style={popoverButtonStyle} onClick={openPopover}><div id='popover-icon'>icon</div></button>
         </p>
       </main>
     </div>

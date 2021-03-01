@@ -48,23 +48,22 @@ const buildCloseButton = (close: () => void) => {
 export const createPopover = (formId: string, userOptions: PopoverOptions): Popover => {
   const spinner = buildSpinner()
   const element = userOptions.element
-  const elementIcon = element?.children[0]
+  const parentNode = element?.parentNode
   const close = () => {
     if (isOpen(popover)) {
       popover.style.opacity = '0'
       wrapper.style.opacity = '0'
-      if (element) {
-      }
       setTimeout(() => {
         popover.parentNode.removeChild(popover)
-        closeButton.style.display = 'none'
+        spinner.parentNode?.removeChild(spinner)
+        closeButton.parentNode?.removeChild(closeButton)
       }, 250)
     }
   }
 
   const closeButton = buildCloseButton(close)
-  element?.append(spinner)
-  element?.append(closeButton)
+  parentNode?.append(spinner)
+  parentNode?.append(closeButton)
   const popover = buildPopover()
 
   const onReady = () => {
@@ -92,7 +91,9 @@ export const createPopover = (formId: string, userOptions: PopoverOptions): Popo
     if (!isOpen(popover)) {
       container.append(popover)
       spinner.style.display = 'block'
-      elementIcon?.parentNode?.removeChild(elementIcon)
+      if (parentNode && element) {
+        parentNode.removeChild(element)
+      }
     }
   }
 
