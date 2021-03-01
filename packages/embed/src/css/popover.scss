@@ -22,6 +22,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     transition: opacity 0.25s ease-in-out;
+    height: 500px;
+    width: 320px;
 
     iframe {
       @include iframe;

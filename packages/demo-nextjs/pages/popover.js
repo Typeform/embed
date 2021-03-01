@@ -3,7 +3,7 @@ import { createPopover } from "@typeform/embed";
 
 export default function Popover() {
   const openPopover = () => {
-    createPopover("moe6aa", { element: document.getElementById('popover-icon'), medium: "demo-test" }).open();
+    createPopover("moe6aa", { element: document.getElementById('popover-icon'), medium: "demo-test" }).toggle();
   };
 
   const popoverButtonStyle = {

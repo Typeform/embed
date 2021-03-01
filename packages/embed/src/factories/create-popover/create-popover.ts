@@ -36,12 +36,11 @@ const buildWrapper = () => {
   return wrapper
 }
 
-const buildCloseButton = (close: () => void) => {
+const buildCloseButton = () => {
   const closeButton = document.createElement('a')
   closeButton.className = 'typeform-close'
   closeButton.style.display = 'none'
   closeButton.innerHTML = '&times;'
-  closeButton.onclick = close
   return closeButton
 }
 
@@ -61,9 +60,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions): Popo
     }
   }
 
-  const closeButton = buildCloseButton(close)
-  parentNode?.append(spinner)
-  parentNode?.append(closeButton)
+  const closeButton = buildCloseButton()
   const popover = buildPopover()
 
   const onReady = () => {
@@ -92,6 +89,8 @@ export const createPopover = (formId: string, userOptions: PopoverOptions): Popo
       container.append(popover)
       spinner.style.display = 'block'
       if (parentNode && element) {
+        parentNode.append(spinner)
+        parentNode.append(closeButton)
         parentNode.removeChild(element)
       }
     }
@@ -100,8 +99,6 @@ export const createPopover = (formId: string, userOptions: PopoverOptions): Popo
   const toggle = () => {
     isOpen(popover) ? close() : open()
   }
-
-  wrapper.append(buildCloseButton(close))
 
   const refresh = () => {
     iframe.contentWindow?.location.reload()
