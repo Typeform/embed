@@ -56,6 +56,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions): Popo
         popover.parentNode.removeChild(popover)
         spinner.parentNode?.removeChild(spinner)
         closeButton.parentNode?.removeChild(closeButton)
+        element && parentNode?.append(element)
       }, 250)
     }
   }
