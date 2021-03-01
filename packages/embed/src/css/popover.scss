@@ -2,6 +2,28 @@
 @import 'includes/close';
 @import 'includes/iframe';
 
+.typeform-popover-button {
+  width: 54px;
+  height: 54px;
+  position: fixed;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.06), 0px 2px 4px rgba(0, 0, 0, 0.08);
+  right: 26px;
+  bottom: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #3a7685;
+  overflow: hidden;
+  line-height: 0;
+  border: none;
+
+  &-icon {
+    margin-top: 6px;
+  }
+}
+
 .typeform-popover {
   border-radius: 4px;
   bottom: 96px;
@@ -30,14 +52,12 @@
       border-radius: 8px;
     }
   }
-
-  .typeform-close {
-    @include close;
-
-    top: -34px;
-    right: 0px;
-  }
 }
 .typeform-spinner {
   @include spinner();
+}
+.typeform-close {
+  color: white;
+  font-size: 24px;
+  text-decoration: none;
 }

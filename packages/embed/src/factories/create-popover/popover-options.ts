@@ -39,5 +39,4 @@ export type PopoverOptions = UrlOptions &
      * @type {HTMLElement}
      */
     container?: HTMLElement
-    element?: HTMLElement
   }
