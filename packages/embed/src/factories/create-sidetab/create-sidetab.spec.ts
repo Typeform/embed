@@ -22,14 +22,14 @@ describe('create-sidetab', () => {
       //   expect(wrapper.style.height).toBe('100px')
       // })
     })
-    describe('#close', () => {
-      it('should close', () => {
-        const sidetab = createSidetab('formId')
-        sidetab.close()
-        jest.runAllTimers()
-        expect(document.querySelector('.typeform-sidetab-wrapper')).toBeFalsy()
-      })
-    })
+    // describe('#close', () => {
+    //   it('should close', () => {
+    //     const sidetab = createSidetab('formId')
+    //     sidetab.close()
+    //     jest.runAllTimers()
+    //     expect(document.querySelector('.typeform-sidetab-wrapper')).toBeFalsy()
+    //   })
+    // })
     // describe('#toggle', () => {
     //   const container = document.createElement('div')
     //   const containerAppendSpy = jest.spyOn(container, 'append')
