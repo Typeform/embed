@@ -28,8 +28,8 @@ describe('create-popup', () => {
       it('should render the popup', () => {
         const popupElement = container.querySelector('.typeform-popup') as HTMLElement
         const wrapper = popupElement.querySelector('.typeform-iframe-wrapper') as HTMLElement
-        expect(popupElement).toBeTruthy()
-        expect(popupElement.querySelector('.typeform-spinner')).toBeTruthy()
+        expect(popupElement).toBeVisible()
+        expect(popupElement.querySelector('.typeform-spinner')).toBeVisible()
         expect(wrapper.querySelector('iframe')).toBeTruthy()
         expect(wrapper.querySelector('.typeform-close')).toBeTruthy()
         expect(wrapper.style.width).toBe('200px')
