@@ -14,6 +14,8 @@ describe('build-options-from-attributes', () => {
         data-tf-on-ready="onTypeformReady"
         data-tf-on-submit="onTypeformSubmit"
         data-tf-on-question-changed="onTypeformQuestionChanged"
+        data-tf-open="exit"
+        data-tf-open-value="3000"
       ></div>`
 
     it('should load correct options', () => {
@@ -30,6 +32,8 @@ describe('build-options-from-attributes', () => {
         source: 'string',
         medium: 'string',
         mediumVersion: 'string',
+        open: 'string',
+        openValue: 'integer',
         hideFooter: 'boolean',
         hideHeaders: 'boolean',
         opacity: 'integer',
