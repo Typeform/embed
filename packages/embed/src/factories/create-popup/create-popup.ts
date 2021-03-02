@@ -1,5 +1,6 @@
 import { createIframe, hasDom, isDefined } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
+import { handleCustomOpen } from '../../utils/create-custom-launch-options'
 
 import { PopupOptions } from './popup-options'
 
@@ -110,6 +111,10 @@ export const createPopup = (formId: string, userOptions: PopupOptions): Popup =>
 
   const refresh = () => {
     iframe.contentWindow?.location.reload()
+  }
+
+  if (options.open && !isOpen(popup)) {
+    handleCustomOpen(open, options.open, options.openValue)
   }
 
   return {

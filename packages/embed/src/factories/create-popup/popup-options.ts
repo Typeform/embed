@@ -39,4 +39,16 @@ export type PopupOptions = UrlOptions &
      * @type {HTMLElement}
      */
     container?: HTMLElement
+    /**
+     * Specify custom launch options for Popup
+     *
+     * @type {string}
+     */
+    open?: 'exit' | 'load' | 'scroll' | 'time'
+    /**
+     * Specify threshold for trigger custom launch option
+     *
+     * @type {string}
+     */
+    openValue?: number
   }
