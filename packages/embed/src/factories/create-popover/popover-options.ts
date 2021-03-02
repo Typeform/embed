@@ -34,6 +34,18 @@ export type PopoverOptions = UrlOptions &
      */
     size?: number
     /**
+     * Specify the color of the popover button
+     *
+     * @type {string}
+     */
+    buttonColor?: string
+    /**
+     * Specify the image url for the popover trigger button icon
+     *
+     * @type {string}
+     */
+    customIcon?: string
+    /**
      * Element to place the popover into. Optional.
      *
      * @type {HTMLElement}

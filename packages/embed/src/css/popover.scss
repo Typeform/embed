@@ -20,7 +20,15 @@
   border: none;
 
   &-icon {
-    margin-top: 6px;
+    svg {
+      margin-top: 6px;
+    }
+
+    svg,
+    img {
+      max-height: 54px;
+      max-width: 54px;
+    }
   }
 }
 
