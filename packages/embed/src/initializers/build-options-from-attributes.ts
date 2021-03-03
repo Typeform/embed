@@ -8,6 +8,8 @@ export const buildOptionsFromAttributes = (
     source: 'string',
     medium: 'string',
     mediumVersion: 'string',
+    open: 'string',
+    openValue: 'integer',
     hideFooter: 'boolean',
     hideHeaders: 'boolean',
     opacity: 'integer',
