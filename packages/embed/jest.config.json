@@ -4,5 +4,6 @@
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
   "testMatch": ["**/src/**/*.spec.(ts|tsx)"],
-  "coverageReporters": [["lcov", { "projectRoot": "../.." }]]
+  "coverageReporters": [["lcov", { "projectRoot": "../.." }]],
+  "setupFilesAfterEnv": ["<rootDir>/jest-setup.ts"]
 }
