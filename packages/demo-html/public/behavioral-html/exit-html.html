@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Open: exit (via embed code)</title>
+    <style>
+      #visual-threshold {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        background: rgba(255, 0, 0, 0.2);
+        pointer-events: none;
+      }
+    </style>
+    <link rel="stylesheet" href="/lib/css/popup.css" />
+  </head>
+  <body>
+    <div id="visual-threshold"></div>
+    <h1>This popup opens on exit intent (via embed code)</h1>
+    <p>If a user wants to navigate away from your page, they usually need to access the browser toolbar.</p>
+    <p>We detect mouse movement in top part of the page - if the mouse is moving "up", we open the popup.</p>
+    <p>The popup is opened only once (on first detected exit intent).</p>
+    <button
+      id="popup"
+      class="typeform-share"
+      data-tf-popup="moe6aa"
+      data-tf-medium="unit-test"
+      data-tf-open="exit"
+      data-tf-open-value="50"
+    >
+      Open the popup manually instead
+    </button>
+
+    <h2>Technical stuff</h2>
+    <p>This is not available for customization on "Share" page, but the embed lib allows it.</p>
+    <form action="" method="get">
+      <label for="threshold">Pixels from top</label>
+      <input id="threshold" name="threshold" type="number" value="50" step="10" min="10" max="250" />
+      <button type="submit">Set</button>
+    </form>
+    <script src="../lib/embed-next.js"></script>
+    <script>
+      const threshold = parseInt(new URL(window.location.href).searchParams.get("threshold"), 10);
+      if (threshold) {
+        document.getElementById("visual-threshold").style.height = threshold + "px";
+        document.getElementById("popup").dataset.tfOpenValue = threshold;
+        document.getElementById("threshold").value = threshold;
+      }
+    </script>
+  </body>
+</html>
