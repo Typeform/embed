@@ -16,33 +16,43 @@ interface HTMLElementWithParentNode extends HTMLElement {
 
 const isOpen = (popover: HTMLElement): popover is HTMLElementWithParentNode => !!popover.parentNode
 
+const replaceIcon = (iconToReplace: HTMLElement, newIcon: HTMLElement) => {
+  const element = iconToReplace.parentNode
+  if (element) {
+    element.removeChild(iconToReplace)
+    element.appendChild(newIcon)
+  }
+}
+
 const buildPopover = () => {
-  const popover = document.createElement('div')
-  popover.className = 'typeform-popover'
-  popover.style.opacity = '0'
-  return popover
+  const popup = document.createElement('div')
+  popup.className = 'typeform-popover'
+  return popup
+}
+
+const buildWrapper = () => {
+  const wrapper = document.createElement('div')
+  wrapper.className = 'typeform-popover-wrapper'
+  wrapper.dataset.testid = 'typeform-popover-wrapper'
+  return wrapper
 }
 
 const buildSpinner = () => {
   const spinner = document.createElement('div')
   spinner.className = 'typeform-spinner'
-  spinner.style.display = 'none'
-  return spinner
+  const icon = document.createElement('div')
+  icon.className = 'typeform-popover-button-icon'
+  icon.dataset.testid = 'spinner-icon'
+  icon.append(spinner)
+  return icon
 }
 
-const buildWrapper = () => {
-  const wrapper = document.createElement('div')
-  wrapper.className = 'typeform-iframe-wrapper'
-  wrapper.style.opacity = '0'
-  return wrapper
-}
-
-const buildCloseButton = () => {
-  const closeButton = document.createElement('a')
-  closeButton.className = 'typeform-close'
-  closeButton.style.display = 'none'
-  closeButton.innerHTML = '&times;'
-  return closeButton
+const buildCloseIcon = () => {
+  const icon = document.createElement('div')
+  icon.className = 'typeform-popover-button-icon'
+  icon.innerHTML = '&times;'
+  icon.dataset.testid = 'close-icon'
+  return icon
 }
 
 const buildIcon = (customIcon?: string) => {
@@ -58,67 +68,69 @@ const buildIcon = (customIcon?: string) => {
     7.42125 14.25 8.25C14.25 9.07875 13.578 9.75 12.75 9.75ZM18 9.75C17.172 9.75 16.5 9.07875 16.5 8.25C16.5 7.42125
     17.172 6.75 18 6.75C18.828 6.75 19.5 7.42125 19.5 8.25C19.5 9.07875 18.828 9.75 18 9.75Z" fill="white"></path>
     </svg>`
+  triggerIcon.dataset.testid = 'default-icon'
   return triggerIcon
 }
 
-const buildTriggerButton = (color: string = '#3a7685') => {
+const buildTriggerButton = (color: string) => {
   const button = document.createElement('button')
   button.className = 'typeform-popover-button'
   button.style.backgroundColor = color
   return button
 }
 
-export const createPopover = (formId: string, options: PopoverOptions): Popover => {
-  const closeButton = buildCloseButton()
-  const popover = buildPopover()
-  const spinner = buildSpinner()
-  const wrapper = buildWrapper()
+const defaultOptions = {
+  buttonColor: '#3a7685',
+}
 
+const unmountElement = (element: HTMLElement) => {
+  element.parentNode?.removeChild(element)
+}
+
+export const createPopover = (formId: string, options: PopoverOptions = defaultOptions): Popover => {
   const iframe = createIframe(formId, 'popover', options)
+
+  const popover = buildPopover()
+  const wrapper = buildWrapper()
   const icon = buildIcon(options.customIcon)
-  const button = buildTriggerButton(options.buttonColor)
+  const spinner = buildSpinner()
+  const closeIcon = buildCloseIcon()
+  const button = buildTriggerButton(options.buttonColor || defaultOptions.buttonColor)
 
   const container = options.container || document.body
 
+  container.append(popover)
   wrapper.append(iframe)
-  popover.append(wrapper)
+  popover.append(button)
   button.append(icon)
-  container.append(button)
 
   iframe.onload = () => {
-    setTimeout(() => {
-      wrapper.style.opacity = '1'
-      popover.style.opacity = '1'
-      button.removeChild(spinner)
-      button.append(closeButton)
-      closeButton.style.display = 'block'
-    }, 250)
+    popover.classList.add('open')
+    replaceIcon(spinner, closeIcon)
   }
 
   const open = () => {
-    if (!isOpen(popover)) {
-      container.append(popover)
-      spinner.style.display = 'block'
-      button.append(spinner)
-      button.removeChild(icon)
+    if (!isOpen(wrapper)) {
+      setTimeout(() => {
+        popover.append(wrapper)
+        wrapper.style.opacity = '1'
+        replaceIcon(icon, spinner)
+      })
     }
   }
 
   const close = () => {
     if (isOpen(popover)) {
-      popover.style.opacity = '0'
-      wrapper.style.opacity = '0'
       setTimeout(() => {
-        popover.parentNode.removeChild(popover)
-        spinner.parentNode?.removeChild(spinner)
-        button.removeChild(closeButton)
-        button.append(icon)
+        unmountElement(wrapper)
+        popover.classList.remove('open')
+        replaceIcon(closeIcon, icon)
       }, 250)
     }
   }
 
   const toggle = () => {
-    isOpen(popover) ? close() : open()
+    isOpen(wrapper) ? close() : open()
   }
 
   const refresh = () => {
@@ -126,7 +138,7 @@ export const createPopover = (formId: string, options: PopoverOptions): Popover 
   }
 
   const unmount = () => {
-    popover.parentNode?.removeChild(popover)
+    unmountElement(popover)
   }
 
   button.onclick = toggle
