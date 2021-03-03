@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.0-next.12](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.11...@typeform/embed-v1.0.0-next.12) (2021-03-03)
+
+
+### Features
+
+* **DIST-705:** Add behavioural triggers ([#192](https://github.com/Typeform/embed/issues/192)) ([15c21da](https://github.com/Typeform/embed/commit/15c21da1c1599c3df8bcb3b75bab4c353ff8728b))
+
 # [@typeform/embed-v1.0.0-next.11](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.10...@typeform/embed-v1.0.0-next.11) (2021-02-26)
 
 
