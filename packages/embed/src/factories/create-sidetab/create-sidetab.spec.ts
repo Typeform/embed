@@ -1,70 +1,44 @@
-import { createSidetab } from './create-sidetab'
+import { screen, waitForElementToBeRemoved, fireEvent } from '@testing-library/dom'
 
-jest.useFakeTimers()
+import { createSidetab, Sidetab } from './create-sidetab'
+
+let sidetab: Sidetab
+
+beforeEach(() => {
+  jest.useFakeTimers()
+  sidetab = createSidetab('formId')
+})
+
+afterEach(() => {
+  sidetab.unmount()
+})
 
 describe('create-sidetab', () => {
   describe('#createPopup', () => {
     describe('#open', () => {
       it('should open', () => {
-        const sidetab = createSidetab('formId')
+        sidetab.open()
+        expect(screen.getByTestId('typeform-sidetab-wrapper')).toBeInTheDocument()
+      })
+
+      it('should show the icons', async () => {
+        expect(screen.getByTestId('default-icon')).toBeInTheDocument()
+        sidetab.open()
+        expect(screen.getByTestId('spinner-icon')).toBeInTheDocument()
+        jest.runAllTimers()
+        const iframe = screen.getByTestId('iframe')
+        fireEvent(iframe, new Event('load'))
+        expect(screen.getByTestId('close-icon')).toBeInTheDocument()
+      })
+    })
+
+    describe('#close', () => {
+      it('should close', async () => {
         sidetab.open()
         jest.runAllTimers()
-        expect(document.querySelector('.typeform-sidetab-wrapper')).toBeTruthy()
+        sidetab.close()
+        await waitForElementToBeRemoved(() => screen.queryByTestId('typeform-sidetab-wrapper'))
       })
-      // it('should render the popup', () => {
-      //   const popupElement = container.querySelector('.typeform-popup') as HTMLElement
-      //   const wrapper = popupElement.querySelector('.typeform-iframe-wrapper') as HTMLElement
-      //   expect(popupElement).toBeTruthy()
-      //   expect(popupElement.querySelector('.typeform-spinner')).toBeTruthy()
-      //   expect(wrapper.querySelector('iframe')).toBeTruthy()
-      //   expect(wrapper.querySelector('.typeform-close')).toBeTruthy()
-      //   expect(wrapper.style.width).toBe('200px')
-      //   expect(wrapper.style.height).toBe('100px')
-      // })
     })
-    // describe('#close', () => {
-    //   it('should close', () => {
-    //     const sidetab = createSidetab('formId')
-    //     sidetab.close()
-    //     jest.runAllTimers()
-    //     expect(document.querySelector('.typeform-sidetab-wrapper')).toBeFalsy()
-    //   })
-    // })
-    // describe('#toggle', () => {
-    //   const container = document.createElement('div')
-    //   const containerAppendSpy = jest.spyOn(container, 'append')
-    //   const containerRemoveChildSpy = jest.spyOn(container, 'removeChild')
-    //   it('should open the popup', () => {
-    //     createPopup('url', { container }).toggle()
-    //     jest.runAllTimers()
-    //     expect(containerAppendSpy).toHaveBeenCalledTimes(1)
-    //   })
-    //   it('should close the popup', () => {
-    //     const popup = createPopup('url', { container })
-    //     popup.toggle()
-    //     jest.runAllTimers()
-    //     popup.toggle()
-    //     jest.runAllTimers()
-    //     expect(containerRemoveChildSpy).toHaveBeenCalledTimes(1)
-    //   })
-    // })
-    // describe('#refresh', () => {
-    //   const iframeReloadSpy = jest.fn()
-    //   const iframeMock = {
-    //     contentWindow: {
-    //       location: {
-    //         reload: iframeReloadSpy,
-    //       },
-    //     },
-    //   }
-    //   it('should reload iframe', () => {
-    //     jest
-    //       .spyOn(require('../../utils/create-iframe/create-iframe'), 'createIframe')
-    //       .mockImplementation(() => iframeMock)
-    //     createPopup('url', {}).refresh()
-    //     jest.runAllTimers()
-    //     expect(iframeReloadSpy).toHaveBeenCalledTimes(1)
-    //   })
-    // })
   })
 })
