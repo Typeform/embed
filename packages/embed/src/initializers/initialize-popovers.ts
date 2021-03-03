@@ -16,7 +16,13 @@ export const initializePopovers = () => {
     if (!formId) {
       throw new Error(`Invalid ${POPOVER_ATTRIBUTE}=${formId} for popover embed #${index}`)
     }
-    const { toggle } = createPopover(formId, buildOptionsFromAttributes(button))
+    const { toggle } = createPopover(
+      formId,
+      buildOptionsFromAttributes(button, {
+        buttonColor: 'string',
+        customIcon: 'string',
+      })
+    )
     button.onclick = toggle
   })
 }
