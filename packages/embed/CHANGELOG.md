@@ -1,3 +1,26 @@
+# [@typeform/embed-v1.0.0-next.14](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.13...@typeform/embed-v1.0.0-next.14) (2021-03-04)
+
+
+### Features
+
+* Sidetab ([e2de4cd](https://github.com/Typeform/embed/commit/e2de4cdfdf58d8d8f4c3e1c962cc63ad38f3c76f))
+* Sidetab ([1a7c639](https://github.com/Typeform/embed/commit/1a7c639b0fa2c044fc167b9cea927b5313e73f9b))
+* **DIST-710:** Add custom icon support to sidetab ([1c8e7c0](https://github.com/Typeform/embed/commit/1c8e7c0de84382bf0f453cf9656c9ee0c6266507))
+
+# [@typeform/embed-v1.0.0-next.13](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.12...@typeform/embed-v1.0.0-next.13) (2021-03-04)
+
+
+### Features
+
+* **DIST-725:** Add custom icon and color options to popover ([de64e50](https://github.com/Typeform/embed/commit/de64e50f5d12dab6c79ee59d900e3e6ae4020544))
+* **DIST-725:** Add popover ([5e3b556](https://github.com/Typeform/embed/commit/5e3b556e4d2c35a3ed9bf129717d8a40453234ef))
+* **DIST-725:** Apply PR comment fixes ([4eb5023](https://github.com/Typeform/embed/commit/4eb5023ce82f3529513cf7855fe63d317d7f16ab))
+* **DIST-725:** Fix popover toggling ref ([da57f94](https://github.com/Typeform/embed/commit/da57f94d62ba1ab92f5c241738b3659ec6f7d6de))
+* **DIST-725:** Improve popover demo code ([db2ee42](https://github.com/Typeform/embed/commit/db2ee4287806180fdded47554f9baedac5e6364d))
+* **DIST-725:** Improve toggle logic ([ac4b8d8](https://github.com/Typeform/embed/commit/ac4b8d8bb4c7b755ec8f6a20c87544795e2aa71e))
+* **DIST-725:** Move default options to function body ([fc8296b](https://github.com/Typeform/embed/commit/fc8296b05d1119c5c32355fe7876f5535a70d74c))
+* **DIST-725:** Remove popover elements on close ([0aba61b](https://github.com/Typeform/embed/commit/0aba61bacd12d93f6f0225897f36d456382b650c))
+
 # [@typeform/embed-v1.0.0-next.12](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.11...@typeform/embed-v1.0.0-next.12) (2021-03-03)
 
 
