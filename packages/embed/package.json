@@ -1,6 +1,6 @@
 {
   "name": "@typeform/embed",
-  "version": "1.0.0-next.12",
+  "version": "1.0.0-next.13",
   "main": "./build/index.js",
   "author": "Typeform",
   "license": "LGPL-3.0-only",
