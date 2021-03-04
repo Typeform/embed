@@ -88,7 +88,8 @@ const unmountElement = (element: HTMLElement) => {
   element.parentNode?.removeChild(element)
 }
 
-export const createSidetab = (formId: string, options: SidetabOptions = defaultOptions): Sidetab => {
+export const createSidetab = (formId: string, userOptions: SidetabOptions = {}): Sidetab => {
+  const options = { ...defaultOptions, ...userOptions }
   const iframe = createIframe(formId, 'side-tab', options)
 
   const sidetab = buildSidetab()

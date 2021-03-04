@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Static HTML Demo</title>
+    <style>
+    </style>
+    <link rel="stylesheet" href="./lib/css/popover.css" />
+  </head>
+  <body>
+    <button id="button">toggle</button>
+    <script src="./lib/embed-next.js"></script>
+    <script>
+      const { open, close } = window.tf.createPopover("moe6aa", { medium: "demo-test" });
+      document.getElementById("button").onclick = function () {
+        const isOpen = !!document.querySelector(".typeform-popover");
+        isOpen ? close() : open();
+      };
+    </script>
+  </body>
+</html>
