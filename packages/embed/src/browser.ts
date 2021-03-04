@@ -1,13 +1,14 @@
-import * as initializers from './initializers'
+import { initializePopovers, initializePopups, initializeSliders, initializeWidgets } from './initializers'
 
 import * as tf from './index'
 
 module.exports = tf
 
 function loadEmbedElements() {
-  initializers.initializeWidgets()
-  initializers.initializeSliders()
-  initializers.initializePopups()
+  initializePopovers()
+  initializePopups()
+  initializeSliders()
+  initializeWidgets()
 }
 
 document.addEventListener('DOMContentLoaded', loadEmbedElements, false)

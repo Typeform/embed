@@ -11,6 +11,7 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
 
   const iframe = document.createElement('iframe')
   iframe.src = src
+  iframe.dataset.testid = 'iframe'
   iframe.addEventListener('load', triggerIframeRedraw, { once: true })
 
   window.addEventListener('message', getFormReadyHandler(embedId, options))
