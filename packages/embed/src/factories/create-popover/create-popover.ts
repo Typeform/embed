@@ -87,7 +87,8 @@ const unmountElement = (element: HTMLElement) => {
   element.parentNode?.removeChild(element)
 }
 
-export const createPopover = (formId: string, options: PopoverOptions = defaultOptions): Popover => {
+export const createPopover = (formId: string, userOptions: PopoverOptions = {}): Popover => {
+  const options = { ...defaultOptions, ...userOptions }
   const iframe = createIframe(formId, 'popover', options)
 
   const popover = buildPopover()
