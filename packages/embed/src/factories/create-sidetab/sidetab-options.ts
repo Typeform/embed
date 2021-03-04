@@ -15,4 +15,10 @@ export type SidetabOptions = UrlOptions &
      * @type {string}
      */
     buttonColor?: string
+    /**
+     * Specify the image url for the sidetab trigger button icon
+     *
+     * @type {string}
+     */
+    customIcon?: string
   }
