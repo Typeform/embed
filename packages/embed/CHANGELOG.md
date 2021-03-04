@@ -1,3 +1,12 @@
+# [@typeform/embed-v1.0.0-next.14](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.13...@typeform/embed-v1.0.0-next.14) (2021-03-04)
+
+
+### Features
+
+* Sidetab ([e2de4cd](https://github.com/Typeform/embed/commit/e2de4cdfdf58d8d8f4c3e1c962cc63ad38f3c76f))
+* Sidetab ([1a7c639](https://github.com/Typeform/embed/commit/1a7c639b0fa2c044fc167b9cea927b5313e73f9b))
+* **DIST-710:** Add custom icon support to sidetab ([1c8e7c0](https://github.com/Typeform/embed/commit/1c8e7c0de84382bf0f453cf9656c9ee0c6266507))
+
 # [@typeform/embed-v1.0.0-next.13](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.12...@typeform/embed-v1.0.0-next.13) (2021-03-04)
 
 
