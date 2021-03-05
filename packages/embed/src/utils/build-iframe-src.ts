@@ -34,6 +34,7 @@ const mapOptionsToQueryParams = (type: EmbedType, embedId: string, options: UrlO
     'embed-hide-headers': options.hideHeaders ? 'true' : undefined,
     'embed-opacity': options.opacity,
     'disable-tracking': options.disableTracking ? 'true' : undefined,
+    'disable-auto-focus': options.disableAutoFocus ? 'true' : undefined,
   }
   return { ...params, ...transitiveParams }
 }

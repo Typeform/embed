@@ -11,6 +11,7 @@ describe('build-options-from-attributes', () => {
         data-tf-hide-headers="no"
         data-tf-opacity="50"
         data-tf-disable-tracking
+        data-tf-disable-auto-focus
         data-tf-on-ready="onTypeformReady"
         data-tf-on-submit="onTypeformSubmit"
         data-tf-on-question-changed="onTypeformQuestionChanged"

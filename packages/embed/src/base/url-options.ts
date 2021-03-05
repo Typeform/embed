@@ -53,4 +53,10 @@ export type UrlOptions = {
    * @type {boolean}
    */
   shareGoogleAnalyticsInstance?: boolean
+  /**
+   * Disables form auto focusing.
+   *
+   * @type {boolean}
+   */
+  disableAutoFocus?: boolean
 }
