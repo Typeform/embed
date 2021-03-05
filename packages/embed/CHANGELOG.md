@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.0-next.15](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.14...@typeform/embed-v1.0.0-next.15) (2021-03-05)
+
+
+### Features
+
+* **DIST-771:** Added disableAutoFocus param support ([#198](https://github.com/Typeform/embed/issues/198)) ([98c3595](https://github.com/Typeform/embed/commit/98c359586d026486bb02df9c7dd2c5a134702201))
+
 # [@typeform/embed-v1.0.0-next.14](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.13...@typeform/embed-v1.0.0-next.14) (2021-03-04)
 
 
