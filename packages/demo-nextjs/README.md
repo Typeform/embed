@@ -21,4 +21,4 @@ const MyTypeformEmbed = () => {
 };
 ```
 
-Use `yarn start` to run the demo in browser: http://localhost:8080
+Run `yarn build` in [embed package](../embed). Then run `yarn start` to run the demo in browser: http://localhost:8080

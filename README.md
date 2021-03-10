@@ -8,12 +8,16 @@ Install all dependencies from repository root:
 yarn
 ```
 
-Libraries:
+# Libraries
 
-- [Vanilla Embed Library](./packages/embed)
+For usage see README of each library:
+
+- [Vanilla JavaScript Embed Library](./packages/embed)
 - [React Embed Library](./packages/embed-react)
 
-Demos:
+# Demos
+
+We have demo projects to show how the libraries work:
 
 - [HTML](./packages/demo-html)
 - [Webpack](./packages/demo-webpack)
