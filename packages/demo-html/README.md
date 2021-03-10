@@ -17,4 +17,4 @@ For more control you can use provided javascript methods:
 </script>
 ```
 
-Use `yarn start` to run the demo in browser: http://localhost:8080
+Run `yarn build` in [embed package](../embed). Then run `yarn start` in this package to run the demo in browser: http://localhost:8080
