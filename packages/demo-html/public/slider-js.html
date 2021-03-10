@@ -19,14 +19,12 @@
     <script>
       const sliderRight = window.tf.createSlider("moe6aa", { medium: "demo-test" });
       document.getElementById("button").onclick = function () {
-        const isOpen = !!document.querySelector(".typeform-slider");
-        isOpen ? sliderRight.close() : sliderRight.open();
+        sliderRight.toggle();
       };
 
       const sliderleft = window.tf.createSlider("moe6aa", { medium: "demo-test" });
       document.getElementById("button-left").onclick = function () {
-        const isOpen = !!document.querySelector(".typeform-slider");
-        isOpen ? sliderleft.close() : sliderleft.open();
+        sliderleft.toggle();
       };
     </script>
   </body>

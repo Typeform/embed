@@ -10,6 +10,7 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.75);
   transition: opacity 0.25s ease-in-out;
+  z-index: 10001;
 
   .typeform-iframe-wrapper {
     position: absolute;
@@ -28,7 +29,7 @@
     @include close;
 
     top: -34px;
-    right: 0px;
+    right: 0;
   }
 
   .typeform-spinner {

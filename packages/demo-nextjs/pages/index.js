@@ -17,6 +17,7 @@ export default function Home() {
       container: container.current,
       medium: "demo-test",
       transitiveSearchParams: ["foo", "bar"],
+      hidden: { foo: "foo value", bar: "bar value" },
     });
   }, [container.current]);
 

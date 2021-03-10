@@ -51,6 +51,10 @@ describe('build-iframe-src', () => {
         opacity: 50,
         disableTracking: true,
         disableAutoFocus: true,
+        hidden: {
+          foo: 'foo value',
+          bar: '@bar&value?',
+        },
       }
       expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toBe(
         'https://form.typeform.com/to/some-id' +
@@ -63,7 +67,8 @@ describe('build-iframe-src', () => {
           '&embed-hide-headers=true' +
           '&embed-opacity=50' +
           '&disable-tracking=true' +
-          '&disable-auto-focus=true'
+          '&disable-auto-focus=true' +
+          '#foo=foo+value&bar=%40bar%26value%3F'
       )
     })
   })

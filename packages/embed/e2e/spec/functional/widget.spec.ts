@@ -18,7 +18,11 @@ function testWidget(path: string, title: string) {
     it('should pass options as query param', () => {
       cy.get('.typeform-widget iframe')
         .invoke('attr', 'src')
-        .should('contain', 'typeform-embed=embed-widget&typeform-source=localhost&typeform-medium=demo' + '-test')
+        .should('contain', 'typeform-embed=embed-widget&typeform-source=localhost&typeform-medium=demo-test')
+    })
+
+    it('should pass hidden fields as hash', () => {
+      cy.get('.typeform-widget iframe').invoke('attr', 'src').should('contain', '#foo=foo+value&bar=bar+value')
     })
 
     it('should pass params from options to the iframe', () => {
