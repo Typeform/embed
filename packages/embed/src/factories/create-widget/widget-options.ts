@@ -1,6 +1,7 @@
-import { ActionableOptions, UrlOptions } from '../../base'
+import { ActionableOptions, BaseOptions, UrlOptions } from '../../base'
 
-export type WidgetOptions = UrlOptions &
+export type WidgetOptions = BaseOptions &
+  UrlOptions &
   ActionableOptions & {
     container: HTMLElement
   }

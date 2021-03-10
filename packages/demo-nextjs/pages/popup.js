@@ -3,7 +3,7 @@ import { createPopup, createSlider } from "@typeform/embed";
 
 export default function Popup() {
   const openPopup = () => {
-    createPopup("moe6aa", { medium: "demo-test" }).open();
+    createPopup("moe6aa", { medium: "demo-test", hidden: { foo: "foo value", bar: "bar value" } }).open();
   };
 
   return (

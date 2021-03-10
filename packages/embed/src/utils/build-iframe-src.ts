@@ -1,4 +1,5 @@
-import { EmbedType, UrlOptions } from '../base'
+import { BaseOptions, EmbedType, UrlOptions } from '../base'
+import { FORM_BASE_URL } from '../constants'
 
 import { removeUndefinedKeys } from './remove-undefined-keys'
 import { isDefined } from './is-defined'
@@ -43,13 +44,27 @@ export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
   const { formId, type, embedId, options } = params
   const queryParams = mapOptionsToQueryParams(type, embedId, addDefaultUrlOptions(options))
 
-  const url = new URL(`https://form.typeform.com/to/${formId}`)
+  const url = new URL(`${FORM_BASE_URL}/to/${formId}`)
 
   Object.entries(queryParams)
     .filter(([, paramValue]) => isDefined(paramValue))
     .forEach(([paramName, paramValue]) => {
       url.searchParams.set(paramName, paramValue)
     })
+
+  if (options.hidden) {
+    const tmpHashUrl = new URL(FORM_BASE_URL)
+    Object.entries(options.hidden)
+      .filter(([, paramValue]) => isDefined(paramValue))
+      .forEach(([paramName, paramValue]) => {
+        tmpHashUrl.searchParams.set(paramName, paramValue)
+      })
+    const hiddenFields = tmpHashUrl.searchParams.toString()
+    if (hiddenFields) {
+      url.hash = hiddenFields
+    }
+  }
+
   return url.href
 }
 
@@ -57,5 +72,5 @@ type BuildIframeSrcOptions = {
   formId: string
   embedId: string
   type: EmbedType
-  options: UrlOptions
+  options: BaseOptions & UrlOptions
 }

@@ -21,7 +21,7 @@
     opacity: 0;
     transition: opacity 0.25s ease-in-out;
     border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 4px, rgba(0, 0, 0, 0.06) 0px 2px 12px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0 2px 4px, rgba(0, 0, 0, 0.06) 0 2px 12px;
 
     iframe {
       @include iframe;
@@ -33,7 +33,7 @@
     width: 54px;
     height: 54px;
     position: fixed;
-    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.06), 0px 2px 4px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.08);
     color: white;
     right: 26px;
     bottom: 26px;

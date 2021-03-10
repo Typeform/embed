@@ -17,6 +17,7 @@ describe('build-options-from-attributes', () => {
         data-tf-on-question-changed="onTypeformQuestionChanged"
         data-tf-open="exit"
         data-tf-open-value="3000"
+        data-tf-hidden="foo=foo value,bar=some bar value"
       ></div>`
 
     it('should load correct options', () => {
@@ -43,6 +44,7 @@ describe('build-options-from-attributes', () => {
         onSubmit: 'function',
         onQuestionChanged: 'function',
         transitiveSearchParams: 'array',
+        hidden: 'record',
       })
       expect(options).toEqual({
         source: 'unit-test-source',
@@ -57,6 +59,10 @@ describe('build-options-from-attributes', () => {
         onQuestionChanged: win.onTypeformQuestionChanged,
         open: 'exit',
         openValue: 3000,
+        hidden: {
+          foo: 'foo value',
+          bar: 'some bar value',
+        },
       })
     })
   })

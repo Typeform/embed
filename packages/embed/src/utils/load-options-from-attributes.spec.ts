@@ -100,6 +100,28 @@ describe('load-options-from-attributes', () => {
     })
   })
 
+  describe('to record (object)', () => {
+    it('should transform string as record', () => {
+      expect(transformAttributeValue('a=aa, b=bb', 'record')).toEqual({ a: 'aa', b: 'bb' })
+    })
+
+    it('should remove empty spaces in values, not around keys', () => {
+      expect(transformAttributeValue('foo key=foo value , bar =bar value , test key = test=value ', 'record')).toEqual({
+        'foo key': 'foo value ',
+        bar: 'bar value ',
+        'test key': ' test=value ',
+      })
+    })
+
+    it('should transform malformed string in empty record', () => {
+      expect(transformAttributeValue(',', 'record')).toEqual({})
+    })
+
+    it('should return undefined if no value', () => {
+      expect(transformAttributeValue('', 'record')).toEqual(undefined)
+    })
+  })
+
   describe('#loadOptionsFromAttributes', () => {
     const wrapper = document.createElement('div')
     wrapper.innerHTML = `<div id="element"

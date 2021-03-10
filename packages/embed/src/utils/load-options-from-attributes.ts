@@ -10,7 +10,7 @@ export const camelCaseToKebabCase = (value: string) => {
     .join('')
 }
 
-export type Transformation = 'string' | 'boolean' | 'integer' | 'function' | 'array'
+export type Transformation = 'string' | 'boolean' | 'integer' | 'function' | 'array' | 'record'
 
 const transformString = (value: string | null): string | undefined => {
   return value || undefined
@@ -31,11 +31,28 @@ const transformFunction = (value: string | null): Function | undefined => {
 }
 
 const transformArray = (value: string | null): string[] | undefined => {
-  const val = value
+  if (!value) {
+    return undefined
+  }
+  return value
     ?.replace(/\s/g, '')
     .split(',')
     .filter((v) => !!v)
-  return value ? val : undefined
+}
+
+const transformRecord = (value: string | null): Record<string, string> | undefined => {
+  if (!value) {
+    return undefined
+  }
+  const arrayOfRecordStrings = value.split(',').filter((v) => !!v)
+  return arrayOfRecordStrings.reduce((record, recordString) => {
+    const match = recordString.match(/^([^=]+)=(.*)$/)
+    if (match) {
+      const [, key, value] = match
+      return { ...record, [key.trim()]: value }
+    }
+    return record
+  }, {})
 }
 
 export const transformAttributeValue = (value: string | null, transformation: Transformation) => {
@@ -50,6 +67,8 @@ export const transformAttributeValue = (value: string | null, transformation: Tr
       return transformFunction(value)
     case 'array':
       return transformArray(value)
+    case 'record':
+      return transformRecord(value)
     default:
       throw new Error(`Invalid attribute transformation ${transformation}`)
   }

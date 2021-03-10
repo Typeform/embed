@@ -1,6 +1,7 @@
-import { ActionableOptions, UrlOptions, BehavioralOptions } from '../../base'
+import { ActionableOptions, BaseOptions, UrlOptions, BehavioralOptions } from '../../base'
 
-export type SliderOptions = UrlOptions &
+export type SliderOptions = BaseOptions &
+  UrlOptions &
   ActionableOptions &
   BehavioralOptions & {
     /**

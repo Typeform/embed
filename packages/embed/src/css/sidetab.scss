@@ -1,4 +1,5 @@
 @import 'includes/spinner';
+@import 'includes/iframe';
 
 .typeform-sidetab {
   position: fixed;
@@ -10,11 +11,11 @@
   transition: transform 250ms ease-in-out;
   will-change: transform;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
+  z-index: 10001;
 
   iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+    @include iframe;
+    border-radius: 8px 0 0 8px;
   }
 
   &.open {
@@ -35,7 +36,7 @@
     display: flex;
     align-items: center;
     padding: 0 16px;
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 8px 8px 0 0;
     color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
     background-color: #3a7685;

@@ -9,10 +9,12 @@
     <button id="button">toggle</button>
     <script src="./lib/embed-next.js"></script>
     <script>
-      const { open, close } = window.tf.createPopup("moe6aa", { medium: "demo-test" });
+      const { toggle } = window.tf.createPopup("moe6aa", {
+        medium: "demo-test",
+        hidden: { foo: "foo value", bar: "bar value" },
+      });
       document.getElementById("button").onclick = function () {
-        const isOpen = !!document.querySelector(".typeform-popup");
-        isOpen ? close() : open();
+        toggle();
       };
     </script>
   </body>

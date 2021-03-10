@@ -26,6 +26,10 @@ function testPopup(path: string, title: string) {
         .should('contain', 'typeform-embed=popup-blank&typeform-source=localhost&typeform-medium=demo-test')
     })
 
+    it('should pass hidden fields as hash', () => {
+      cy.get('.typeform-popup iframe').invoke('attr', 'src').should('contain', '#foo=foo+value&bar=bar+value')
+    })
+
     it('should close popup', () => {
       cy.get('a.typeform-close').click()
       cy.get('.typeform-popup').should('not.exist')
