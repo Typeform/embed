@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.0-next.16](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.15...@typeform/embed-v1.0.0-next.16) (2021-03-12)
+
+
+### Features
+
+* Add support for hidden fields ([49a661a](https://github.com/Typeform/embed/commit/49a661a3b00ce56878018e1617135e78c9dff032))
+
 # [@typeform/embed-v1.0.0-next.15](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0-next.14...@typeform/embed-v1.0.0-next.15) (2021-03-05)
 
 
