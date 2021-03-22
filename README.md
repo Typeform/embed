@@ -1,8 +1,6 @@
 # Embed
 
-[![Release](https://github.com/Typeform/embed/workflows/Release/badge.svg)](https://github.com/Typeform/embed/actions?query=workflow%3ARelease)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/@typeform/embed)](https://www.npmjs.com/package/@typeform/embed)
-[![npm](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/@typeform/embed)
+⚠️ **Important:** This is docs for old embed library. Please use the new version here: https://github.com/Typeform/embed
 
 **Typeform/embed** is the client-side script and a [CommonJS module](http://webpack.github.io/docs/commonjs.html) that allows you to integrate a typeform into your website easily.
 
