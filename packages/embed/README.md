@@ -123,11 +123,7 @@ You can find examples for specific use-cases in our demos:
 - [React demo](../../packages/demo-react)
 - [Next.js demo](../../packages/demo-nextjs)
 
-## Development and Contribution
-
-Do you need a specific feature in embed library? Do you think others might benefit from it as well? This is a section for you! We appreciate your help.
-
-### Local setup
+## Local setup and development
 
 [Fork and clone](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) this Github repo: https://github.com/Typeform/embed
 
@@ -154,12 +150,6 @@ Build and watch for changes:
 yarn dev
 ```
 
-### Submitting your changes
-
-To submit your changes you can [submit a pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) to this repo.
-
-Before you do, make sure your code works by running tests on your local machine.
-
 Run unit tests:
 
 ```bash
@@ -173,4 +163,4 @@ yarn cy:run   # run in background (headless)
 yarn cy:open  # open cypress UI
 ```
 
-Then you can open a new pull request: https://github.com/Typeform/embed/pulls
+See details on [contributing to this repo](https://github.com/Typeform/embed#contribution).

@@ -2,18 +2,14 @@
 
 This is a monorepo for all embed libraries.
 
-Install all dependencies from repository root:
-
-```shell
-yarn
-```
-
 # Libraries
 
-For usage see README of each library:
+Pick a library you want to use:
 
-- [Vanilla JavaScript Embed Library](./packages/embed)
-- [React Embed Library](./packages/embed-react)
+- [React Embed Library](./packages/embed-react) if you are building an app in React _(coming very soon)_
+- [Vanilla JavaScript Embed Library](./packages/embed) if you are not using React
+
+Support for other libraries coming later. [You can help us if you want 😉](#contribution)
 
 # Demos
 
@@ -23,3 +19,24 @@ We have demo projects to show how the libraries work:
 - [Webpack](./packages/demo-webpack)
 - [React](./packages/demo-react)
 - [Next.js](./packages/demo-nextjs)
+
+## Contribution
+
+Do you need a specific feature in embed library? Do you think others might benefit from it as well? Do you want to create embed library for another library? This is a section for you! We appreciate your help.
+
+[Fork and clone](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) this Github repo: https://github.com/Typeform/embed
+
+Submit your changes [through a pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) to this repo.
+
+Before you do, make sure your code works on your local machine:
+
+```bash
+yarn install
+yarn lerna run build
+yarn lerna run lint
+yarn lerna run test:functional
+```
+
+For details see README for specific library.
+
+Then you can open a new pull request: https://github.com/Typeform/embed/pulls

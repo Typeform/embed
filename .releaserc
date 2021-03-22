@@ -1,7 +1,6 @@
 {
   "branches": [
-    "master",
-    { name: "next", prerelease: true }
+    "main"
   ],
   extends: [
     "semantic-release-monorepo"
