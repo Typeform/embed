@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Widget example</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <link rel="stylesheet" href="demo.css" />
+  </head>
+  <body>
+    <p>A typeform widget will load below</p>
+    <ul>
+      <li><a href="#" onClick="openTab(0)">form one</a></li>
+      <li><a href="#" onClick="openTab(1)">form two</a></li>
+      <li><a href="#" onClick="openTab(2)">form three</a></li>
+      <li><a href="#" onClick="openTab(3)">form four</a></li>
+    </ul>
+    <div id="content"></div>
+
+    <script type="text/javascript" src="embed.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
+
+    <script>
+      const forms = [
+        '//betatests.typeform.com/to/Z9k3bK',
+        '//betatests.typeform.com/to/qPu9dB',
+        '//lednicky.typeform.com/to/Cqrg7cgL',
+        '//lednicky.typeform.com/to/jAJ5qj',
+      ]
+      function openTab(index) {
+        const elm = document.querySelector('#content')
+        elm.innerHTML = ''
+
+        const widget = document.createElement('div')
+        elm.append(widget)
+        window.typeformEmbed.makeWidget(widget, forms[index])
+      }
+    </script>
+  </body>
+</html>

@@ -246,7 +246,11 @@ class Widget extends Component {
       return
     }
 
-    setTimeout(() => iframeRef.contentWindow.postMessage('embed-focus', '*'), 100)
+    setTimeout(() => {
+      if (iframeRef && iframeRef.contentWindow) {
+        iframeRef.contentWindow.postMessage('embed-focus', '*')
+      }
+    }, 100)
   }
 
   render() {

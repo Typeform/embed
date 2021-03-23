@@ -6,7 +6,7 @@
   "license": "LGPL-3.0-only",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Typeform/embed.git"
+    "url": "git@github.com:Typeform/embed.git"
   },
   "main": "build/lib.pure.js",
   "module": "build/lib.pure.js",
