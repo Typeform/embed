@@ -1,3 +1,10 @@
+## [0.34.7](https://github.com/Typeform/embed/compare/v0.34.6...v0.34.7) (2021-03-23)
+
+
+### Bug Fixes
+
+* **DIST-682:** Send post message only if the form is present on page ([3d3c5a5](https://github.com/Typeform/embed/commit/3d3c5a599b43a1280ea9cc8acfd7716a0358679e))
+
 ## [0.34.6](https://github.com/Typeform/embed/compare/v0.34.5...v0.34.6) (2021-02-15)
 
 
