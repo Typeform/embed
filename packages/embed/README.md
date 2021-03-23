@@ -9,7 +9,7 @@
 Install:
 
 ```shell
-yarn add @typeform/embed@next
+yarn add @typeform/embed
 ```
 
 Import the lib, CSS and create your embed:

@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0...@typeform/embed-v1.0.1) (2021-03-23)
+
+
+### Bug Fixes
+
+* Update readme ([4475f84](https://github.com/Typeform/embed/commit/4475f845ad6973e433a86cf0455b8d44f53b45d2))
+
 # @typeform/embed-v1.0.0 (2021-03-22)
 
 
