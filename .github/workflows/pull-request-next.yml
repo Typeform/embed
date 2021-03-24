@@ -38,7 +38,7 @@ jobs:
       - run: yarn install  --frozen-lockfile
       - run: yarn lerna run build
       - run: yarn lerna run lint
-      - run: yarn leran run test
+      - run: yarn lerna run test
   functional:
     runs-on: ubuntu-latest
     steps:
