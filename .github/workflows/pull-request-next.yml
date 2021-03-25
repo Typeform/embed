@@ -38,13 +38,7 @@ jobs:
       - run: yarn install  --frozen-lockfile
       - run: yarn lerna run build
       - run: yarn lerna run lint
-      - uses: paambaati/codeclimate-action@v2.7.5
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: yarn --cwd packages/embed coverage
-          coverageLocations: |
-            ${{github.workspace}}/packages/embed/coverage/lcov.info:lcov
+      - run: yarn lerna run test
   functional:
     runs-on: ubuntu-latest
     steps:
