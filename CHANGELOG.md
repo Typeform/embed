@@ -1,3 +1,10 @@
+## [0.34.8](https://github.com/Typeform/embed/compare/v0.34.7...v0.34.8) (2021-03-29)
+
+
+### Bug Fixes
+
+* **DIST-804:** Fix small render glitch in Safari browsers ([#207](https://github.com/Typeform/embed/issues/207)) ([a745f36](https://github.com/Typeform/embed/commit/a745f36f5f491087010c71a4b9160d72b3f2f7ca))
+
 ## [0.34.7](https://github.com/Typeform/embed/compare/v0.34.6...v0.34.7) (2021-03-23)
 
 
