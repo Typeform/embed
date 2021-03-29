@@ -37,7 +37,7 @@ class Iframe extends Component {
         return
       }
       try {
-        this.iframeRef.style.transform = 'translateZ(0)'
+        this.iframeRef.style.transform = 'rotateZ(0)'
         resolve()
       } catch (err) {
         reject(err)
