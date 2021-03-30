@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.0.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.1...@typeform/embed-v1.0.2) (2021-03-30)
+
+
+### Bug Fixes
+
+* **DIST-835:** Fixed typings generation ([#206](https://github.com/Typeform/embed/issues/206)) ([c0e10aa](https://github.com/Typeform/embed/commit/c0e10aaffaa899b18963f106e771f9a7a3135849))
+
 # [@typeform/embed-v1.0.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.0...@typeform/embed-v1.0.1) (2021-03-23)
 
 
