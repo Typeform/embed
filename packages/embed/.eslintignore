@@ -2,6 +2,7 @@ node_modules/
 build/
 build-aws/
 dist/
+types/
 CHANGELOG.md
 **/cypress/fixtures
 coverage/

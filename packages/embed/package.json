@@ -2,6 +2,7 @@
   "name": "@typeform/embed",
   "version": "1.0.1",
   "main": "./build/index.js",
+  "types": "./types/index.d.ts",
   "author": "Typeform",
   "license": "LGPL-3.0-only",
   "engines": {
@@ -10,6 +11,7 @@
   "scripts": {
     "clean": "rm -rf ./build",
     "build": "yarn webpack",
+    "postbuild": "tsc -p tsconfig.json --emitDeclarationOnly --declaration --declarationDir types --skipLibCheck",
     "dev": "yarn build --watch",
     "demo-nextjs": "cd ../demo-nextjs && yarn start",
     "demo": "yarn concurrently 'yarn dev' 'yarn demo-nextjs'",
@@ -24,5 +26,9 @@
     "cy:visual": "yarn cypress run --spec e2e/spec/visual/**/* --browser chrome",
     "test:functional": "start-server-and-test demo 8080 cy:functional",
     "test:visual": "start-server-and-test demo 8080 cy:visual"
-  }
+  },
+  "files": [
+    "build",
+    "types"
+  ]
 }

@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
-    "sourceRoot": "src",
     "outDir": "build",
     "target": "es5",
     "module": "CommonJS",
     "lib": ["esnext", "dom"],
     "moduleResolution": "node",
-    "sourceMap": true,
     "jsx": "react",
     "keyofStringsOnly": true,
     "suppressImplicitAnyIndexErrors": true,
@@ -20,10 +18,9 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "declaration": true,
-    "declarationMap": true,
     "typeRoots": ["./types", "./node_modules/@types"],
     "types": ["@types/jest", "node"]
   },
-  "include": ["src/**/*.ts*", "./jest-setup.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts"]
 }

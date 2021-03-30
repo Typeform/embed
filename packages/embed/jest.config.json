@@ -1,4 +1,9 @@
 {
+  "globals": {
+    "ts-jest": {
+      "tsconfig": "tsconfig.jest.json"
+    }
+  },
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json"],
   "transform": {
     "^.+\\.(ts|tsx)$": "ts-jest"

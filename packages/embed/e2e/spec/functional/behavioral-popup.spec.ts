@@ -104,7 +104,7 @@ describe('Open: load (via embed code)', () => {
     })
 
     it('should not display the popup', () => {
-      cy.get('iframe').should('not.be.visible')
+      cy.get('iframe').should('not.exist')
     })
   })
 })
