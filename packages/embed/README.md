@@ -1,6 +1,6 @@
 # 🛠 Typeform Vanilla Embed Library
 
-**Typeform/embed@next** is the core embed library that lets you embed typeforms to your website using vanilla Javascript.
+**Typeform/embed** is the core embed library that lets you embed typeforms to your website using vanilla Javascript.
 
 ## Installation
 
@@ -15,7 +15,7 @@ yarn add @typeform/embed
 Import the lib, CSS and create your embed:
 
 ```javascript
-import { createWidget } from '@typeform/embed@next'
+import { createWidget } from '@typeform/embed'
 import '@typeform/embed/build/css/widget.css'
 createWidget('<form-id>', { container: document.querySelector('#form') })
 ```
@@ -113,7 +113,7 @@ Properties `open` and `openValue` apply only to embed types that are opened by u
   - `openValue` percentage of page scrolled (0 - 100) to open the form
 - after time elapsed
   - `open: 'time'`
-  - `openValue` number of seconds to wait before opening the form
+  - `openValue` number of milliseconds to wait before opening the form
 
 For details see [behavioral demo](../demo-html/public/behavioral-html).
 
