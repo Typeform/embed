@@ -8,7 +8,7 @@ export const initializeSidetabs = () => {
   const sidetabElements = document.querySelectorAll<HTMLElement>(`[${SIDETAB_ATTRIBUTE}]`)
 
   if (sidetabElements.length) {
-    includeCss('./lib/css/sidetab.css')
+    includeCss('sidetab.css')
   }
 
   Array.from(sidetabElements).forEach((button, index) => {
@@ -18,6 +18,11 @@ export const initializeSidetabs = () => {
       throw new Error(`Invalid ${SIDETAB_ATTRIBUTE}=${formId} for sidetab embed #${index}`)
     }
 
-    createSidetab(formId, buildOptionsFromAttributes(button))
+    createSidetab(
+      formId,
+      buildOptionsFromAttributes(button, {
+        buttonText: 'string',
+      })
+    )
   })
 }

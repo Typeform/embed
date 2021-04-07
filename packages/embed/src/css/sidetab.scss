@@ -8,10 +8,13 @@
   width: 400px;
   height: 580px;
   transform: translate(100%, -50%);
-  transition: transform 250ms ease-in-out;
-  will-change: transform;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
   z-index: 10001;
+
+  &.ready {
+    transition: transform 250ms ease-in-out;
+    will-change: transform;
+  }
 
   iframe {
     @include iframe;

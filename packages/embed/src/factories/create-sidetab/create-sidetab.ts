@@ -110,6 +110,10 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   button.append(icon)
   button.append(buttonText)
 
+  setTimeout(() => {
+    sidetab.classList.add('ready')
+  }, 250)
+
   iframe.onload = () => {
     sidetab.classList.add('open')
     replaceElementChild(spinner, closeIcon)
