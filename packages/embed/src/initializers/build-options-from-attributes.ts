@@ -19,6 +19,7 @@ export const buildOptionsFromAttributes = (
     onQuestionChanged: 'function',
     transitiveSearchParams: 'array',
     hidden: 'record',
+    chat: 'boolean',
     ...additionalAttributes,
   })
 }
