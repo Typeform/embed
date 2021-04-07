@@ -3,27 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <title>Static HTML Demo</title>
-    <style>
-      #button {
-        width: 54px;
-        height: 54px;
-        position: fixed;
-        box-shadow: 0px 2px 12px rgb(0 0 0 / 6%), 0px 2px 4px rgb(0 0 0 / 8%);
-        right: 26px;
-        bottom: 26px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        background: #3A7685;
-        overflow: hidden;
-        line-height: 0;
-      }
-    </style>
   </head>
   <body>
-    <button data-tf-popover="moe6aa" data-tf-medium="demo-test" id="button">toggle</button>
+    <div
+      data-tf-popover="moe6aa"
+      data-tf-medium="demo-test"
+      data-tf-hidden="foo=foo value,bar=bar value"
+      id="button"
+    ></div>
     <script src="./lib/embed-next.js"></script>
   </body>
 </html>

@@ -4,7 +4,14 @@ import { createSidetab } from "@typeform/embed";
 
 export default function Sidetab() {
   useEffect(() => {
-    const { unmount } = createSidetab("moe6aa", { medium: "demo-test" });
+    const { unmount } = createSidetab("moe6aa", {
+      medium: "demo-test",
+      buttonText: "open sidetab",
+      hidden: {
+        foo: "foo value",
+        bar: "bar value",
+      },
+    });
 
     return () => unmount();
   }, []);

@@ -1,10 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import Head from "next/head";
 import { createPopover } from "@typeform/embed";
 
 export default function Popover() {
   useEffect(() => {
-    const { unmount } = createPopover("moe6aa", { medium: "demo-test" });
+    const { unmount } = createPopover("moe6aa", {
+      medium: "demo-test",
+      hidden: {
+        foo: "foo value",
+        bar: "bar value",
+      },
+    });
 
     return () => unmount();
   }, []);
@@ -22,8 +28,7 @@ export default function Popover() {
 
         <p>Embed popover &lt;3 Next.js ✨</p>
 
-        <p>
-        </p>
+        <p></p>
       </main>
     </div>
   );

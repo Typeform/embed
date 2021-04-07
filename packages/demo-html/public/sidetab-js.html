@@ -15,7 +15,14 @@
   <body>
     <script src="./lib/embed-next.js"></script>
     <script>
-      window.tf.createSidetab("moe6aa", { medium: "unit-test", buttonText: "open sidetab" });
+      window.tf.createSidetab("moe6aa", {
+        medium: "demo-test",
+        hidden: {
+          foo: "foo value",
+          bar: "bar value",
+        },
+        buttonText: "open sidetab",
+      });
     </script>
   </body>
 </html>
