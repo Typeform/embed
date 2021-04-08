@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.1.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.3...@typeform/embed-v1.1.0) (2021-04-08)
+
+
+### Features
+
+* **DIST-857:** Allow embedding chat UI ([31a89cb](https://github.com/Typeform/embed/commit/31a89cbb37c0657c65084a17e02495ec6758c5e9))
+
 # [@typeform/embed-v1.0.3](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.2...@typeform/embed-v1.0.3) (2021-04-07)
 
 
