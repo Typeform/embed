@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Static HTML Demo</title>
+    <style>
+      #wrapper {
+        width: 600px;
+        height: 400px;
+        margin: 0 auto;
+      }
+    </style>
+
+    <!-- popup css needs to be included manually because popup is initialized via JS, not HTML -->
+    <link rel="stylesheet" href="./lib/css/popup.css" />
+  </head>
+  <body>
+    <h1>this is an experimental feature</h1>
+
+    <p>
+      you can use embed lib to embed the form with chat UI, however not all features are yet supported (eg. callbacks)
+    </p>
+
+    <div
+      id="wrapper"
+      data-tf-widget="moe6aa"
+      data-tf-medium="demo-test"
+      data-tf-transitive-search-params="foo,bar"
+      data-tf-hidden="foo=foo value,bar=bar value"
+      data-tf-opacity="50"
+      data-tf-chat
+    ></div>
+
+    <p>
+      <button id="button">open popup</button>
+    </p>
+
+    <p>
+      <button data-tf-slider="moe6aa" data-tf-medium="demo-test" data-tf-chat>open slider</button>
+    </p>
+
+    <div data-tf-popover="moe6aa" data-tf-medium="demo-test" data-tf-chat></div>
+
+    <div data-tf-sidetab="moe6aa" data-tf-medium="demo-test" data-tf-chat data-tf-button-text="open sidetab"></div>
+
+    <script src="./lib/embed-next.js"></script>
+
+    <script>
+      const { toggle } = window.tf.createPopup("moe6aa", {
+        medium: "demo-test",
+        chat: true,
+        width: 400,
+        height: 600,
+      });
+      document.getElementById("button").onclick = toggle;
+    </script>
+  </body>
+</html>

@@ -26,15 +26,15 @@ As HTML. CSS is imported automatically. Place this code where you want to displa
 
 ```html
 <div data-tf-widget="<form-id>"></div>
-<script src="://embed.typeform.com/next/embed.js"></script>
+<script src="//embed.typeform.com/next/embed.js"></script>
 ```
 
 Via JavaScript for more control and specific integration.
 
 ```html
 <button id="button">open form</button>
-<script src="://embed.typeform.com/next/embed.js"></script>
-<link rel="stylesheet" href="://embed.typeform.com/next/css/popup.css" />
+<script src="//embed.typeform.com/next/embed.js"></script>
+<link rel="stylesheet" href="//embed.typeform.com/next/css/popup.css" />
 <script>
   const { open, close, toggle, refresh } = window.tf.createPopup('<form-id>')
   document.querySelector('#button').click = toggle

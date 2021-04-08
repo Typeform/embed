@@ -18,6 +18,7 @@ describe('build-options-from-attributes', () => {
         data-tf-open="exit"
         data-tf-open-value="3000"
         data-tf-hidden="foo=foo value,bar=some bar value"
+        data-tf-chat
       ></div>`
 
     it('should load correct options', () => {
@@ -39,6 +40,7 @@ describe('build-options-from-attributes', () => {
         hideFooter: 'boolean',
         hideHeaders: 'boolean',
         opacity: 'integer',
+        chat: 'boolean',
         disableTracking: 'boolean',
         onReady: 'function',
         onSubmit: 'function',
@@ -63,6 +65,7 @@ describe('build-options-from-attributes', () => {
           foo: 'foo value',
           bar: 'some bar value',
         },
+        chat: true,
       })
     })
   })
