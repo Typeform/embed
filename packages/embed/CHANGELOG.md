@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.1.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.1.0...@typeform/embed-v1.1.1) (2021-04-08)
+
+
+### Bug Fixes
+
+* Fix onSubmit type ([58e6409](https://github.com/Typeform/embed/commit/58e640944da5f2d297ef4a2a0558b56d4a5c8fc7))
+
 # [@typeform/embed-v1.1.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.0.3...@typeform/embed-v1.1.0) (2021-04-08)
 
 
