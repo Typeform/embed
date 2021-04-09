@@ -18,7 +18,6 @@ const defaultOptions = {
   disableTracking: false,
   transferableUrlParameters: [],
   shareGoogleAnalyticsInstance: false,
-  forceFullscreen: false,
   onSubmit: noop,
   onScreenChanged: noop,
 }
@@ -44,7 +43,7 @@ export default function makeWidget(element, url, options) {
     callIfEmbedIdMatches(getPostMessageHandler('form-ready', options.onReady), embedId)
   )
 
-  const enabledFullscreen = options.forceFullscreen || isMobile(navigator.userAgent)
+  const enabledFullscreen = window.forceFullscreen || isMobile(navigator.userAgent)
 
   let queryStrings = replaceExistingKeys(options, queryStringKeys)
   queryStrings = transferUrlParametersToQueryStrings(options.transferableUrlParameters, queryStrings)
