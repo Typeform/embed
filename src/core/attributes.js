@@ -60,10 +60,6 @@ const sanitizeCommonAttributes = (data) => {
     obj.mediumVersion = data.mediumVersion
   }
 
-  if (data.forceFullscreen) {
-    obj.forceFullscreen = true
-  }
-
   return obj
 }
 

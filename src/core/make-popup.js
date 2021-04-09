@@ -68,14 +68,14 @@ const queryStringKeys = {
 
 const renderComponent = (params, options) => {
   const { url, domNode, close, icon } = params
-  const { autoClose, buttonText, embedId, isAutoCloseEnabled, onSubmit, forceFullscreen } = options
+  const { autoClose, buttonText, embedId, isAutoCloseEnabled, onSubmit } = options
 
   let queryStrings = replaceExistingKeys(options, queryStringKeys)
   queryStrings = transferUrlParametersToQueryStrings(options.transferableUrlParameters, queryStrings)
 
   const urlWithQueryString = appendParamsToUrl(url, queryStrings)
 
-  if (forceFullscreen || (isMobile(navigator.userAgent) && !isScreenBig())) {
+  if (window.forceFullscreen || (isMobile(navigator.userAgent) && !isScreenBig())) {
     render(
       <MobileModal
         autoClose={autoClose}
