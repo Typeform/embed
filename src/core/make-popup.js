@@ -68,16 +68,14 @@ const queryStringKeys = {
 
 const renderComponent = (params, options) => {
   const { url, domNode, close, icon } = params
-  const { autoClose, buttonText, embedId, isAutoCloseEnabled, onSubmit } = options
+  const { autoClose, buttonText, embedId, isAutoCloseEnabled, onSubmit, forceFullscreen } = options
 
   let queryStrings = replaceExistingKeys(options, queryStringKeys)
   queryStrings = transferUrlParametersToQueryStrings(options.transferableUrlParameters, queryStrings)
 
   const urlWithQueryString = appendParamsToUrl(url, queryStrings)
 
-  if (!isMobile(navigator.userAgent) && isScreenBig()) {
-    render(<Popup embedId={embedId} icon={icon} onClose={close} options={options} url={urlWithQueryString} />, domNode)
-  } else {
+  if (forceFullscreen || (isMobile(navigator.userAgent) && !isScreenBig())) {
     render(
       <MobileModal
         autoClose={autoClose}
@@ -91,12 +89,13 @@ const renderComponent = (params, options) => {
       />,
       domNode
     )
+  } else {
+    render(<Popup embedId={embedId} icon={icon} onClose={close} options={options} url={urlWithQueryString} />, domNode)
   }
 }
 
 export default function makePopup(url, userOptions, element) {
   const embedId = randomString()
-
   window.addEventListener(
     'message',
     callIfEmbedIdMatches(getPostMessageHandler('form-ready', userOptions.onReady), embedId)
