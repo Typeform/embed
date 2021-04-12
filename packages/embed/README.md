@@ -61,8 +61,6 @@ Or from admin panel URL:
 - sidetab: `createSidetab('<form-id>', options)`
 - popover: `createPopover('<form-id>', options)`
 
-`form-id` is string, you can find it in your typeform URL `https://form.typeform.com/to/<form-id>`
-
 ### Options
 
 `options` is an object with optional properties:
