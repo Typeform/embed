@@ -11,6 +11,8 @@ Pick a library you want to use:
 
 Support for other libraries coming later. [You can help us if you want 😉](#contribution)
 
+If you need documentation for previous version of embed lib (version 0) [see old README here](https://github.com/Typeform/embed/tree/master#readme).
+
 # Demos
 
 We have demo projects to show how the libraries work:
