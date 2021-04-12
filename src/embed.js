@@ -15,7 +15,7 @@ const initializePopup = (element) => {
   const dataset = getDataset(element)
   const data = sanitizePopupAttributes(dataset)
   if (data.mode === SIDE_PANEL && !data.container) {
-    data.container = element.parentNode.parentNode
+    data.container = element.parentNode
   }
 
   const popup = makePopup(url, data, element)
