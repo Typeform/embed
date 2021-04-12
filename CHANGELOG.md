@@ -1,3 +1,18 @@
+# [0.35.0](https://github.com/Typeform/embed/compare/v0.34.8...v0.35.0) (2021-04-12)
+
+
+### Bug Fixes
+
+* Cypress popup test ([326cd67](https://github.com/Typeform/embed/commit/326cd678e2fe8c5e8c2e775b3c0f7601d4a3cb5a))
+* Cypress visual test ([740d654](https://github.com/Typeform/embed/commit/740d6546a98f969a393eb1c3db15fd4d135be380))
+* Force fullscreen ([6a8db66](https://github.com/Typeform/embed/commit/6a8db66b702f49d96a96c461fbc48d48475ce287))
+* Popup test ([80539ca](https://github.com/Typeform/embed/commit/80539ca17ecfc02f47e55a33fbf16f2b773041b4))
+
+
+### Features
+
+* Force fullscreen attribute ([c334bfc](https://github.com/Typeform/embed/commit/c334bfc812207f1fedc23f2481205ed79566c63b))
+
 ## [0.34.8](https://github.com/Typeform/embed/compare/v0.34.7...v0.34.8) (2021-03-29)
 
 
