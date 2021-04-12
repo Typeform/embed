@@ -1,3 +1,10 @@
+## [0.35.1](https://github.com/Typeform/embed/compare/v0.35.0...v0.35.1) (2021-04-12)
+
+
+### Bug Fixes
+
+* Update semantic release config ([05d720e](https://github.com/Typeform/embed/commit/05d720e5177aaeac817366a821c78ae6671e7393))
+
 # [0.35.0](https://github.com/Typeform/embed/compare/v0.34.8...v0.35.0) (2021-04-12)
 
 
