@@ -50,6 +50,12 @@ export const openOnMobile = (url) => {
       Object.defineProperty(win.navigator, 'userAgent', {
         value: 'Cypress mobile browser',
       })
+      Object.defineProperty(win.screen, 'width', {
+        value: screenSizeMobile.width,
+      })
+      Object.defineProperty(win.screen, 'height', {
+        value: screenSizeMobile.height,
+      })
     },
   })
 }

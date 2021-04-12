@@ -75,9 +75,7 @@ const renderComponent = (params, options) => {
 
   const urlWithQueryString = appendParamsToUrl(url, queryStrings)
 
-  if (!isMobile(navigator.userAgent) && isScreenBig()) {
-    render(<Popup embedId={embedId} icon={icon} onClose={close} options={options} url={urlWithQueryString} />, domNode)
-  } else {
+  if (window.forceFullscreen || (isMobile(navigator.userAgent) && !isScreenBig())) {
     render(
       <MobileModal
         autoClose={autoClose}
@@ -91,12 +89,13 @@ const renderComponent = (params, options) => {
       />,
       domNode
     )
+  } else {
+    render(<Popup embedId={embedId} icon={icon} onClose={close} options={options} url={urlWithQueryString} />, domNode)
   }
 }
 
 export default function makePopup(url, userOptions, element) {
   const embedId = randomString()
-
   window.addEventListener(
     'message',
     callIfEmbedIdMatches(getPostMessageHandler('form-ready', userOptions.onReady), embedId)

@@ -16,10 +16,9 @@ const EMBED_ID = '123456'
 
 randomString.mockImplementation(() => EMBED_ID)
 
-isScreenBigMock.mockImplementation(() => true)
-
 const instantiatePopup = (options) => {
   isMobileMock.mockImplementation(() => false)
+  isScreenBigMock.mockImplementation(() => true)
   renderMock.mockClear()
 
   return makePopup(URL, options)
@@ -58,6 +57,7 @@ const renderMobileModalComponent = (autoOpen = false) => {
   }
 
   isMobileMock.mockImplementation(() => true)
+  isScreenBigMock.mockImplementation(() => false)
   renderMock.mockClear()
 
   const popup = makePopup(URL, options)

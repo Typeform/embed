@@ -43,7 +43,7 @@ export default function makeWidget(element, url, options) {
     callIfEmbedIdMatches(getPostMessageHandler('form-ready', options.onReady), embedId)
   )
 
-  const enabledFullscreen = isMobile(navigator.userAgent)
+  const enabledFullscreen = window.forceFullscreen || isMobile(navigator.userAgent)
 
   let queryStrings = replaceExistingKeys(options, queryStringKeys)
   queryStrings = transferUrlParametersToQueryStrings(options.transferableUrlParameters, queryStrings)
