@@ -1,6 +1,6 @@
 # 🛠 Typeform Vanilla Embed Library
 
-**Typeform/embed** is the core embed library that lets you embed typeforms to your website using vanilla Javascript.
+**Typeform/embed** is the core embed library that lets you embed typeforms to your website using vanilla JavaScript.
 
 ## Installation
 
