@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.1.4](https://github.com/Typeform/embed/compare/@typeform/embed-v1.1.3...@typeform/embed-v1.1.4) (2021-04-14)
+
+
+### Bug Fixes
+
+* **DIST-871:** Custom launch options ([5e1909e](https://github.com/Typeform/embed/commit/5e1909ecdda0635ee63f964f673c2a3c3ecdf4c1))
+
 # [@typeform/embed-v1.1.3](https://github.com/Typeform/embed/compare/@typeform/embed-v1.1.2...@typeform/embed-v1.1.3) (2021-04-12)
 
 
