@@ -1,5 +1,6 @@
 import { createIframe, hasDom } from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
+import { handleCustomOpen } from '../../utils/create-custom-launch-options'
 
 import { SliderOptions } from './slider-options'
 
@@ -45,7 +46,7 @@ const buildCloseButton = (close: () => void) => {
   return closeButton
 }
 
-export const createSlider = (formId: string, userOptions: SliderOptions): Slider => {
+export const createSlider = (formId: string, userOptions: SliderOptions = {}): Slider => {
   if (!hasDom()) {
     return {
       open: () => {},
@@ -103,6 +104,10 @@ export const createSlider = (formId: string, userOptions: SliderOptions): Slider
 
   const refresh = () => {
     iframe.contentWindow?.location.reload()
+  }
+
+  if (options.open && !isOpen(slider)) {
+    handleCustomOpen(open, options.open, options.openValue)
   }
 
   return {

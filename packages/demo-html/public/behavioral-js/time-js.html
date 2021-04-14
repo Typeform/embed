@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <title>Open: time (via API)</title>
-    <link rel="stylesheet" href="../lib/css/popup.css" />
+    <link rel="stylesheet" href="../lib/css/sidetab.css" />
   </head>
   <body>
-    <h1>This popup opens in <span id="seconds">5</span> seconds (via API)</h1>
-    <p>The popup is opened automatically after the given time has passed.</p>
+    <h1>This sidetab opens in <span id="seconds">5</span> seconds (via API)</h1>
+    <p>The sidetab is opened automatically after the given time has passed.</p>
 
     <h2>Customize the time</h2>
     <p>This can be set on "Share" page as well.</p>
@@ -18,14 +18,15 @@
 
     <script src="../lib/embed-next.js"></script>
     <script>
-      const ms = parseInt(new URL(window.location.href).searchParams.get("ms"), 10) || document.getElementById("time").value;
+      const ms =
+        parseInt(new URL(window.location.href).searchParams.get("ms"), 10) || document.getElementById("time").value;
 
       if (ms) {
         document.getElementById("time").value = ms;
         document.getElementById("seconds").innerHTML = Math.round(ms / 1000);
         document.getElementById("seconds").innerHTML = Math.round(ms / 1000);
       }
-      window.tf.createPopup("moe6aa", {
+      window.tf.createSidetab("moe6aa", {
         open: "time",
         openValue: ms,
       });

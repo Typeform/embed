@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Open: scroll (via API)</title>
-    <link rel="stylesheet" href="../lib/css/popup.css" />
+    <link rel="stylesheet" href="../lib/css/popover.css" />
     <style>
       .scroll-indicator {
         position: fixed;
@@ -20,12 +20,12 @@
   </head>
   <body>
     <div class="scroll-indicator">
-      The popup will open at <span id="percent">30</span>%<br />
+      The popover will open at <span id="percent">30</span>%<br />
       You scrolled <span id="scroll-pixels">0</span>px, that is <span id="scroll-percentage">0.00</span>% of the page
     </div>
-    <h1>This popup opens on scroll - at <span id="percent-title">30</span>% (via API)</h1>
-    <p>The popup is opened automatically when you scroll past given percentage of the page height.</p>
-    <p>The popup is opened only once (when you scroll past the given percentage for the first time).</p>
+    <h1>This popover opens on scroll - at <span id="percent-title">30</span>% (via API)</h1>
+    <p>The popover is opened automatically when you scroll past given percentage of the page height.</p>
+    <p>The popover is opened only once (when you scroll past the given percentage for the first time).</p>
 
     <h2>Customize the percentage</h2>
     <p>This can be set on "Share" page as well.</p>
@@ -44,10 +44,13 @@
         const pageHeight = document.documentElement.scrollHeight;
         const scrollTopPercentage = (scrollTopPixels / pageHeight) * 100;
         document.getElementById("scroll-pixels").innerHTML = scrollTopPixels;
-        document.getElementById("scroll-percentage").innerHTML = (Math.round(scrollTopPercentage * 100) / 100).toFixed(2);
+        document.getElementById("scroll-percentage").innerHTML = (Math.round(scrollTopPercentage * 100) / 100).toFixed(
+          2
+        );
       });
       const percent =
-        parseInt(new URL(window.location.href).searchParams.get("percent"), 10) || document.getElementById("threshold").value;
+        parseInt(new URL(window.location.href).searchParams.get("percent"), 10) ||
+        document.getElementById("threshold").value;
 
       if (percent) {
         document.getElementById("threshold").value = percent;
@@ -55,9 +58,9 @@
         document.getElementById("percent-title").innerHTML = percent;
       }
 
-      window.tf.createPopup("moe6aa", {
+      window.tf.createPopover("moe6aa", {
         medium: "unit-test",
-        mode: "popup",
+        mode: "popover",
         open: "scroll",
         openValue: percent,
       });
@@ -66,50 +69,65 @@
     <div class="lorem-ipsum">
       <h2>Random text to make the page long</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra aliquam augue vitae volutpat. Integer eu turpis elit.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra aliquam augue vitae volutpat. Integer eu
+        turpis elit.
       </p>
-      <p>Mauris nec lobortis metus. Quisque commodo quis neque sed volutpat. Integer a bibendum ante, at dapibus arcu.</p>
       <p>
-        Curabitur at suscipit enim. Aliquam ut urna nunc. Praesent nisl elit, iaculis nec lectus vitae, posuere aliquet velit.
+        Mauris nec lobortis metus. Quisque commodo quis neque sed volutpat. Integer a bibendum ante, at dapibus arcu.
+      </p>
+      <p>
+        Curabitur at suscipit enim. Aliquam ut urna nunc. Praesent nisl elit, iaculis nec lectus vitae, posuere aliquet
+        velit.
       </p>
       <p>Aenean id porttitor nisi. Phasellus vel fermentum elit. In ut maximus risus, quis lobortis elit.</p>
       <p>
-        Phasellus pellentesque placerat turpis ac semper. Duis ligula enim, vulputate sed erat vitae, vehicula bibendum turpis.
+        Phasellus pellentesque placerat turpis ac semper. Duis ligula enim, vulputate sed erat vitae, vehicula bibendum
+        turpis.
       </p>
       <p>Donec nibh purus, vehicula at mauris volutpat, placerat molestie diam.</p>
       <p>Mauris tristique posuere ipsum vitae venenatis. Donec ut orci id massa ullamcorper pulvinar.</p>
       <p>
-        Morbi pulvinar ante mauris, at sollicitudin lorem molestie sit amet. Morbi tellus nisi, rutrum ut lectus et, luctus
-        eleifend mi.
+        Morbi pulvinar ante mauris, at sollicitudin lorem molestie sit amet. Morbi tellus nisi, rutrum ut lectus et,
+        luctus eleifend mi.
       </p>
       <p>Quisque felis enim, blandit in convallis in, bibendum non metus. Proin consectetur ut ante nec malesuada.</p>
       <p>Pellentesque interdum id metus condimentum varius. Nullam fringilla lacinia posuere.</p>
       <p>
-        Morbi pellentesque ante vitae tellus ullamcorper sollicitudin. Proin leo dolor, molestie quis diam id, tempor ullamcorper
-        diam.
+        Morbi pellentesque ante vitae tellus ullamcorper sollicitudin. Proin leo dolor, molestie quis diam id, tempor
+        ullamcorper diam.
       </p>
-      <p>Donec sed pulvinar nunc, et posuere purus. Morbi ornare, diam eget blandit molestie, massa leo sollicitudin nisi.</p>
-      <p>Id tempus ex nisi quis lectus. Etiam laoreet dui est, quis tempus augue pharetra et. Nullam sed elit turpis.</p>
+      <p>
+        Donec sed pulvinar nunc, et posuere purus. Morbi ornare, diam eget blandit molestie, massa leo sollicitudin
+        nisi.
+      </p>
+      <p>
+        Id tempus ex nisi quis lectus. Etiam laoreet dui est, quis tempus augue pharetra et. Nullam sed elit turpis.
+      </p>
       <p>Donec et mi tellus. Aliquam ut interdum dolor. Aliquam dapibus velit non nunc porttitor finibus.</p>
       <p>Proin elementum risus et molestie aliquam.</p>
       <p>Duis a egestas lectus, sed mattis nisl. Ut ultricies id mi vel varius. Donec nec laoreet orci.</p>
       <p>
-        Morbi pulvinar ante mauris, at sollicitudin lorem molestie sit amet. Morbi tellus nisi, rutrum ut lectus et, luctus
-        eleifend mi.
+        Morbi pulvinar ante mauris, at sollicitudin lorem molestie sit amet. Morbi tellus nisi, rutrum ut lectus et,
+        luctus eleifend mi.
       </p>
       <p>Quisque felis enim, blandit in convallis in, bibendum non metus. Proin consectetur ut ante nec malesuada.</p>
       <p>Pellentesque interdum id metus condimentum varius. Nullam fringilla lacinia posuere.</p>
       <p>
-        Morbi pellentesque ante vitae tellus ullamcorper sollicitudin. Proin leo dolor, molestie quis diam id, tempor ullamcorper
-        diam.
+        Morbi pellentesque ante vitae tellus ullamcorper sollicitudin. Proin leo dolor, molestie quis diam id, tempor
+        ullamcorper diam.
       </p>
-      <p>Donec sed pulvinar nunc, et posuere purus. Morbi ornare, diam eget blandit molestie, massa leo sollicitudin nisi.</p>
-      <p>Id tempus ex nisi quis lectus. Etiam laoreet dui est, quis tempus augue pharetra et. Nullam sed elit turpis.</p>
+      <p>
+        Donec sed pulvinar nunc, et posuere purus. Morbi ornare, diam eget blandit molestie, massa leo sollicitudin
+        nisi.
+      </p>
+      <p>
+        Id tempus ex nisi quis lectus. Etiam laoreet dui est, quis tempus augue pharetra et. Nullam sed elit turpis.
+      </p>
       <p>Donec et mi tellus. Aliquam ut interdum dolor. Aliquam dapibus velit non nunc porttitor finibus.</p>
       <p>Proin elementum risus et molestie aliquam.</p>
       <p>
-        Phasellus sagittis iaculis nisi at molestie. Aliquam id justo orci. Aenean cursus nulla sit amet lectus consequat
-        vestibulum.
+        Phasellus sagittis iaculis nisi at molestie. Aliquam id justo orci. Aenean cursus nulla sit amet lectus
+        consequat vestibulum.
       </p>
       <p>In volutpat neque at egestas pellentesque. Vivamus in viverra eros, non facilisis mi.</p>
       <p>
@@ -118,40 +136,56 @@
       </p>
       <p>Odio tortor consequat nisi, et feugiat lectus odio sit amet nisi. Curabitur et tempor purus.</p>
       <p>Maecenas commodo lorem augue, sed varius est maximus auctor. Proin finibus justo eu ante bibendum mollis.</p>
-      <p>Proin laoreet dapibus lorem a euismod. Integer dignissim eleifend efficitur. Pellentesque vitae pellentesque nisl.</p>
+      <p>
+        Proin laoreet dapibus lorem a euismod. Integer dignissim eleifend efficitur. Pellentesque vitae pellentesque
+        nisl.
+      </p>
       <p>Suspendisse vitae sem vitae risus sollicitudin sagittis ac sed urna.</p>
       <p>
-        In hac habitasse platea dictumst. Nulla sit amet mauris elit. Maecenas consectetur imperdiet nisl, a vestibulum lectus
-        maximus vel.
+        In hac habitasse platea dictumst. Nulla sit amet mauris elit. Maecenas consectetur imperdiet nisl, a vestibulum
+        lectus maximus vel.
       </p>
       <p>Nulla sagittis tempus arcu id vestibulum. Donec at nulla congue, luctus orci sit amet, scelerisque ante.</p>
-      <p>Praesent faucibus, lacus et varius cursus, turpis nibh scelerisque est, sit amet lacinia sapien metus vitae tellus.</p>
       <p>
-        Phasellus pellentesque placerat turpis ac semper. Duis ligula enim, vulputate sed erat vitae, vehicula bibendum turpis.
+        Praesent faucibus, lacus et varius cursus, turpis nibh scelerisque est, sit amet lacinia sapien metus vitae
+        tellus.
+      </p>
+      <p>
+        Phasellus pellentesque placerat turpis ac semper. Duis ligula enim, vulputate sed erat vitae, vehicula bibendum
+        turpis.
       </p>
       <p>Donec nibh purus, vehicula at mauris volutpat, placerat molestie diam.</p>
       <p>Mauris tristique posuere ipsum vitae venenatis. Donec ut orci id massa ullamcorper pulvinar.</p>
       <p>Mauris aliquam erat feugiat ligula faucibus, eu imperdiet ante molestie.</p>
-      <p>Donec convallis, nisi at molestie fringilla, mi dolor suscipit risus, vitae gravida nulla libero vitae urna.</p>
       <p>
-        Vestibulum id nisi mauris. In faucibus vitae massa eget feugiat. Morbi in arcu congue, iaculis eros ac, fermentum purus.
+        Donec convallis, nisi at molestie fringilla, mi dolor suscipit risus, vitae gravida nulla libero vitae urna.
       </p>
       <p>
-        Fusce lectus tortor, facilisis tincidunt varius ac, sodales quis eros. Pellentesque quis nulla a nisl feugiat pretium.
+        Vestibulum id nisi mauris. In faucibus vitae massa eget feugiat. Morbi in arcu congue, iaculis eros ac,
+        fermentum purus.
+      </p>
+      <p>
+        Fusce lectus tortor, facilisis tincidunt varius ac, sodales quis eros. Pellentesque quis nulla a nisl feugiat
+        pretium.
       </p>
       <p>Duis et magna finibus, hendrerit ligula non, rutrum nunc.</p>
       <p>Pellentesque interdum id metus condimentum varius. Nullam fringilla lacinia posuere.</p>
       <p>
-        Morbi pellentesque ante vitae tellus ullamcorper sollicitudin. Proin leo dolor, molestie quis diam id, tempor ullamcorper
-        diam.
+        Morbi pellentesque ante vitae tellus ullamcorper sollicitudin. Proin leo dolor, molestie quis diam id, tempor
+        ullamcorper diam.
       </p>
-      <p>Donec sed pulvinar nunc, et posuere purus. Morbi ornare, diam eget blandit molestie, massa leo sollicitudin nisi.</p>
-      <p>Id tempus ex nisi quis lectus. Etiam laoreet dui est, quis tempus augue pharetra et. Nullam sed elit turpis.</p>
+      <p>
+        Donec sed pulvinar nunc, et posuere purus. Morbi ornare, diam eget blandit molestie, massa leo sollicitudin
+        nisi.
+      </p>
+      <p>
+        Id tempus ex nisi quis lectus. Etiam laoreet dui est, quis tempus augue pharetra et. Nullam sed elit turpis.
+      </p>
       <p>Donec et mi tellus. Aliquam ut interdum dolor. Aliquam dapibus velit non nunc porttitor finibus.</p>
       <p>Proin elementum risus et molestie aliquam.</p>
       <p>
-        Phasellus sagittis iaculis nisi at molestie. Aliquam id justo orci. Aenean cursus nulla sit amet lectus consequat
-        vestibulum.
+        Phasellus sagittis iaculis nisi at molestie. Aliquam id justo orci. Aenean cursus nulla sit amet lectus
+        consequat vestibulum.
       </p>
       <p>In volutpat neque at egestas pellentesque. Vivamus in viverra eros, non facilisis mi.</p>
       <p>
@@ -160,36 +194,48 @@
       </p>
       <p>Odio tortor consequat nisi, et feugiat lectus odio sit amet nisi. Curabitur et tempor purus.</p>
       <p>Maecenas commodo lorem augue, sed varius est maximus auctor. Proin finibus justo eu ante bibendum mollis.</p>
-      <p>Proin laoreet dapibus lorem a euismod. Integer dignissim eleifend efficitur. Pellentesque vitae pellentesque nisl.</p>
+      <p>
+        Proin laoreet dapibus lorem a euismod. Integer dignissim eleifend efficitur. Pellentesque vitae pellentesque
+        nisl.
+      </p>
       <p>Suspendisse vitae sem vitae risus sollicitudin sagittis ac sed urna.</p>
       <p>
-        In hac habitasse platea dictumst. Nulla sit amet mauris elit. Maecenas consectetur imperdiet nisl, a vestibulum lectus
-        maximus vel.
+        In hac habitasse platea dictumst. Nulla sit amet mauris elit. Maecenas consectetur imperdiet nisl, a vestibulum
+        lectus maximus vel.
       </p>
       <p>Nulla sagittis tempus arcu id vestibulum. Donec at nulla congue, luctus orci sit amet, scelerisque ante.</p>
-      <p>Praesent faucibus, lacus et varius cursus, turpis nibh scelerisque est, sit amet lacinia sapien metus vitae tellus.</p>
       <p>
-        Phasellus pellentesque placerat turpis ac semper. Duis ligula enim, vulputate sed erat vitae, vehicula bibendum turpis.
+        Praesent faucibus, lacus et varius cursus, turpis nibh scelerisque est, sit amet lacinia sapien metus vitae
+        tellus.
+      </p>
+      <p>
+        Phasellus pellentesque placerat turpis ac semper. Duis ligula enim, vulputate sed erat vitae, vehicula bibendum
+        turpis.
       </p>
       <p>Donec nibh purus, vehicula at mauris volutpat, placerat molestie diam.</p>
       <p>Mauris tristique posuere ipsum vitae venenatis. Donec ut orci id massa ullamcorper pulvinar.</p>
       <p>
-        Morbi pulvinar ante mauris, at sollicitudin lorem molestie sit amet. Morbi tellus nisi, rutrum ut lectus et, luctus
-        eleifend mi.
+        Morbi pulvinar ante mauris, at sollicitudin lorem molestie sit amet. Morbi tellus nisi, rutrum ut lectus et,
+        luctus eleifend mi.
       </p>
       <p>Quisque felis enim, blandit in convallis in, bibendum non metus. Proin consectetur ut ante nec malesuada.</p>
       <p>Pellentesque interdum id metus condimentum varius. Nullam fringilla lacinia posuere.</p>
       <p>
-        Morbi pellentesque ante vitae tellus ullamcorper sollicitudin. Proin leo dolor, molestie quis diam id, tempor ullamcorper
-        diam.
+        Morbi pellentesque ante vitae tellus ullamcorper sollicitudin. Proin leo dolor, molestie quis diam id, tempor
+        ullamcorper diam.
       </p>
-      <p>Donec sed pulvinar nunc, et posuere purus. Morbi ornare, diam eget blandit molestie, massa leo sollicitudin nisi.</p>
-      <p>Id tempus ex nisi quis lectus. Etiam laoreet dui est, quis tempus augue pharetra et. Nullam sed elit turpis.</p>
+      <p>
+        Donec sed pulvinar nunc, et posuere purus. Morbi ornare, diam eget blandit molestie, massa leo sollicitudin
+        nisi.
+      </p>
+      <p>
+        Id tempus ex nisi quis lectus. Etiam laoreet dui est, quis tempus augue pharetra et. Nullam sed elit turpis.
+      </p>
       <p>Donec et mi tellus. Aliquam ut interdum dolor. Aliquam dapibus velit non nunc porttitor finibus.</p>
       <p>Proin elementum risus et molestie aliquam.</p>
       <p>
-        Phasellus sagittis iaculis nisi at molestie. Aliquam id justo orci. Aenean cursus nulla sit amet lectus consequat
-        vestibulum.
+        Phasellus sagittis iaculis nisi at molestie. Aliquam id justo orci. Aenean cursus nulla sit amet lectus
+        consequat vestibulum.
       </p>
       <p>In volutpat neque at egestas pellentesque. Vivamus in viverra eros, non facilisis mi.</p>
       <p>
@@ -198,7 +244,10 @@
       </p>
       <p>Odio tortor consequat nisi, et feugiat lectus odio sit amet nisi. Curabitur et tempor purus.</p>
       <p>Maecenas commodo lorem augue, sed varius est maximus auctor. Proin finibus justo eu ante bibendum mollis.</p>
-      <p>Proin laoreet dapibus lorem a euismod. Integer dignissim eleifend efficitur. Pellentesque vitae pellentesque nisl.</p>
+      <p>
+        Proin laoreet dapibus lorem a euismod. Integer dignissim eleifend efficitur. Pellentesque vitae pellentesque
+        nisl.
+      </p>
       <p>Suspendisse vitae sem vitae risus sollicitudin sagittis ac sed urna.</p>
       <p>Mauris aliquam erat feugiat ligula faucibus, eu imperdiet ante molestie.</p>
     </div>

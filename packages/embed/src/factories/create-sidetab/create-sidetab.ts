@@ -1,4 +1,5 @@
 import { createIframe } from '../../utils'
+import { handleCustomOpen } from '../../utils/create-custom-launch-options'
 
 import { SidetabOptions } from './sidetab-options'
 
@@ -149,6 +150,10 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   }
 
   button.onclick = toggle
+
+  if (options.open && !isOpen(wrapper)) {
+    handleCustomOpen(open, options.open, options.openValue)
+  }
 
   return {
     open,

@@ -2,20 +2,20 @@
 <html lang="en">
   <head>
     <title>Open: time (via embed code)</title>
-    <link rel="stylesheet" href="../lib/css/popup.css" />
+    <link rel="stylesheet" href="../lib/css/sidetab.css" />
   </head>
   <body>
-    <h1>This popup opens in <span id="seconds">5</span> seconds (via embed code)</h1>
-    <p>The popup is opened automatically after the given time has passed.</p>
+    <h1>This sidetab opens in <span id="seconds">5</span> seconds (via embed code)</h1>
+    <p>The sidetab is opened automatically after the given time has passed.</p>
     <a
-      id="popup"
+      id="sidetab"
       class="typeform-share"
-      data-tf-popup="moe6aa"
+      data-tf-sidetab="moe6aa"
       data-tf-medium="unit-test"
       data-tf-open="time"
       data-tf-open-value="5000"
     >
-      Open the popup manually instead
+      Open the sidetab manually instead
     </a>
 
     <h2>Customize the time</h2>
@@ -29,7 +29,7 @@
     <script>
       const ms = parseInt(new URL(window.location.href).searchParams.get("ms"), 10);
       if (ms) {
-        document.getElementById("popup").dataset.tfOpenValue = ms;
+        document.getElementById("sidetab").dataset.tfOpenValue = ms;
         document.getElementById("time").value = ms;
         document.getElementById("seconds").innerHTML = Math.round(ms / 1000);
       }

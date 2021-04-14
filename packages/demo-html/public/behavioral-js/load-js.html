@@ -2,20 +2,16 @@
 <html lang="en">
   <head>
     <title>Open: load (via API)</title>
-    <link rel="stylesheet" href="../lib/css/popup.css" />
+    <link rel="stylesheet" href="../lib/css/slider.css" />
   </head>
   <body>
-    <h1>This popup opens on page load (via API)</h1>
-    <p>If you see this you very likely already closed the popup.</p>
-    <p>If the popup did not open automatically something is broken.</p>
-    <p>
-      Popover embed does not have a close button by default and needs to be explicitly provided when embedding via API.
-      <a href="../popup-js.html">See popup API demo for details.</a>
-    </p>
+    <h1>This slider opens on page load (via API)</h1>
+    <p>If you see this you very likely already closed the slider.</p>
+    <p>If the slider did not open automatically something is broken.</p>
 
     <script src="../lib/embed-next.js"></script>
     <script>
-      window.tf.createPopup("moe6aa", {
+      window.tf.createSlider("moe6aa", {
         medium: "unit-test",
         open: "load",
         width: 400,
