@@ -53,7 +53,7 @@ const buildCloseButton = (close: () => void) => {
   return closeButton
 }
 
-export const createPopup = (formId: string, userOptions: PopupOptions): Popup => {
+export const createPopup = (formId: string, userOptions: PopupOptions = {}): Popup => {
   if (!hasDom()) {
     return {
       open: () => {},

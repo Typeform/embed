@@ -1,4 +1,5 @@
 import { createIframe } from '../../utils'
+import { handleCustomOpen } from '../../utils/create-custom-launch-options'
 
 import { PopoverOptions } from './popover-options'
 
@@ -143,6 +144,10 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   }
 
   button.onclick = toggle
+
+  if (options.open && !isOpen(wrapper)) {
+    handleCustomOpen(open, options.open, options.openValue)
+  }
 
   return {
     open,
