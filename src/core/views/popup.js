@@ -57,18 +57,19 @@ const Overlay = styled.div`
   bottom: 0;
   z-index: 10001;
   min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const popupWrapper = styled(BaseWrapper)`
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   ${({ size }) =>
     size &&
     `
     height: calc(${size}% - 80px);
     width: calc(${size}% - 80px);
   `}
+  position: relative;
   transition: all 300ms ease-out;
 `
 
