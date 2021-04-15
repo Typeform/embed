@@ -84,4 +84,4 @@ jobs:
           NODE_ENV: "production"
       - run: yarn add -W @typeform/jarvis
       - run: sh ./packages/embed/scripts/prepare-release.sh
-      - run: DEBUG=jarvis yarn run jarvis deploy --path ./packages/embed/build-aws --version next --preview
+      - run: DEBUG=jarvis yarn run jarvis deploy --path ./packages/embed/build-aws --version next
