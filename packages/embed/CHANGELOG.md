@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.1.5](https://github.com/Typeform/embed/compare/@typeform/embed-v1.1.4...@typeform/embed-v1.1.5) (2021-04-16)
+
+
+### Bug Fixes
+
+* **DIST-858:** Popup position ([57ff1aa](https://github.com/Typeform/embed/commit/57ff1aa9947a59d25eaace97c603d088b8d2b4c0))
+
 # [@typeform/embed-v1.1.4](https://github.com/Typeform/embed/compare/@typeform/embed-v1.1.3...@typeform/embed-v1.1.4) (2021-04-14)
 
 
