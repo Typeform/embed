@@ -1,3 +1,10 @@
+## [0.35.2](https://github.com/Typeform/embed/compare/v0.35.1...v0.35.2) (2021-04-16)
+
+
+### Bug Fixes
+
+* **DIST-858:** Popup position ([08ea1e5](https://github.com/Typeform/embed/commit/08ea1e5d6758be75e7b2a60c8e0f2c6b009517c1))
+
 ## [0.35.1](https://github.com/Typeform/embed/compare/v0.35.0...v0.35.1) (2021-04-12)
 
 
