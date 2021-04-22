@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { createGlobalStyle } from 'styled-components'
 
@@ -18,6 +18,7 @@ import {
 import { DEFAULT_AUTOCLOSE_TIMEOUT } from './popup'
 
 const Wrapper = styled.div`
+  height: ${({ height }) => (height ? height : '100%')};
   visibility: ${(p) => (p.open ? 'visible' : 'hidden')};
   opacity: ${(p) => (p.open ? 1 : 0)};
   background-color: ${(p) => p.backgroundColor};
@@ -25,10 +26,9 @@ const Wrapper = styled.div`
   z-index: 10001;
   left: 0 !important;
   right: 0 !important;
-  top: 0 !important;
+  top: 80px !important;
   bottom: 0 !important;
   overflow: hidden !important;
-  height: 100%;
   transition: all 400ms ease ${(props) => props.openDelay}s;
 `
 
@@ -51,6 +51,7 @@ class MobileModal extends Component {
       backgroundColor: props.backgroundColor,
       buttonColor: props.buttonColor,
       originalViewportContent: null,
+      height: null,
     }
 
     this.handleMessage = this.handleMessage.bind(this)
@@ -60,11 +61,18 @@ class MobileModal extends Component {
     this.handleFormTheme = callIfEmbedIdMatches(this.handleFormTheme.bind(this), this.props.embedId)
     this.handleClose = this.handleClose.bind(this)
     this.setIframeRef = this.setIframeRef.bind(this)
+    this.wrapperRef = createRef()
   }
 
   componentDidMount() {
     const originalViewportContent = setMobileMetaViewport()
     this.setState({ originalViewportContent })
+
+    if (this.wrapperRef.current) {
+      this.setState({
+        height: `${document.documentElement.clientHeight - this.wrapperRef.current.offsetTop}px`,
+      })
+    }
 
     window.addEventListener('message', this.handleMessage)
     window.addEventListener('form-ready', this.handleFormReady)
@@ -187,7 +195,14 @@ class MobileModal extends Component {
     const iframeUrl = updateQueryStringParameter('typeform-embed-id', embedId, url)
 
     return (
-      <Wrapper backgroundColor={backgroundColor} data-qa="mobile-modal" open={open} openDelay={this.props.openDelay}>
+      <Wrapper
+        backgroundColor={backgroundColor}
+        data-qa="mobile-modal"
+        height={this.state.height}
+        open={open}
+        openDelay={this.props.openDelay}
+        ref={this.wrapperRef}
+      >
         <GlobalStyle />
         {open && <Iframe ref={this.setIframeRef} src={iframeUrl} />}
         <CloseIcon color={buttonColor} dataQa="close-button-mobile" onClick={this.handleClose} />
