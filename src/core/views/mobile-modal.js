@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   z-index: 10001;
   left: 0 !important;
   right: 0 !important;
-  top: 80px !important;
+  top: 0 !important;
   bottom: 0 !important;
   overflow: hidden !important;
   transition: all 400ms ease ${(props) => props.openDelay}s;
