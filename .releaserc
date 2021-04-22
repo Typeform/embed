@@ -1,6 +1,6 @@
 {
   "branches": [
-    "master"
+    {name: "master", channel: "@release-0.x"}
   ],
   "plugins": [
     "@semantic-release/commit-analyzer",
