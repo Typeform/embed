@@ -60,7 +60,7 @@ const buildIcon = (customIcon?: string) => {
   const triggerIcon = document.createElement('div')
   triggerIcon.className = 'typeform-popover-button-icon'
   triggerIcon.innerHTML = customIcon
-    ? `<img alt='popover trigger icon button' src='${customIcon}'/>`
+    ? `<img alt='popover trigger icon button' style='max-width: 32px; max-height:32px;' src='${customIcon}'/>`
     : `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
     xmlns="http://www.w3.org/2000/svg">
       <path d="M21 0H0V9L10.5743 24V16.5H21C22.6567 16.5 24 15.1567 24 13.5V3C24 1.34325 22.6567 0 21 0ZM7.5
