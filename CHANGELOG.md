@@ -1,3 +1,10 @@
+## [0.35.3](https://github.com/Typeform/embed/compare/v0.35.2...v0.35.3) (2021-04-22)
+
+
+### Bug Fixes
+
+* **DIST-865:** Do not release v0 to npm on dist-tag "latest" ([#224](https://github.com/Typeform/embed/issues/224)) ([dc300d4](https://github.com/Typeform/embed/commit/dc300d4e509d0417c108bd9493c9a5609eb32cbb))
+
 ## [0.35.2](https://github.com/Typeform/embed/compare/v0.35.1...v0.35.2) (2021-04-16)
 
 
