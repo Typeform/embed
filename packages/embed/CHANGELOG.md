@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.1.6](https://github.com/Typeform/embed/compare/@typeform/embed-v1.1.5...@typeform/embed-v1.1.6) (2021-04-22)
+
+
+### Bug Fixes
+
+* **DIST-862:** Custom icon style ([#226](https://github.com/Typeform/embed/issues/226)) ([0d12c29](https://github.com/Typeform/embed/commit/0d12c29991bf63327c3d6efa614b461cc3139c27))
+
 # [@typeform/embed-v1.1.5](https://github.com/Typeform/embed/compare/@typeform/embed-v1.1.4...@typeform/embed-v1.1.5) (2021-04-16)
 
 
