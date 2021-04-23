@@ -13,16 +13,19 @@
   </head>
   <body>
     <script>
-      function onTypeformReady() {
-        alert('onReady')
+      function onTypeformReady(data) {
+        alert("onReady");
+        console.log("form ready", data);
       }
 
-      function onTypeformSubmit() {
-        alert('onSubmit')
+      function onTypeformSubmit(data) {
+        alert("onSubmit");
+        console.log("form submitted", data);
       }
 
-      function onTypeformQuestionChanged() {
-        alert('onQuestionChanged')
+      function onTypeformQuestionChanged(data) {
+        alert("onQuestionChanged");
+        console.log("form question changed", data);
       }
     </script>
     <div

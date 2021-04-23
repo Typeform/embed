@@ -68,6 +68,7 @@ Or from admin panel URL:
 | name                   | type        | description                                                                                                                | default                                                       |
 | ---------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
 | container              | HTMLElement | specify element to place the embed into, only for widget, required                                                         | current element when embedding as HTML, otherwise `undefined` |
+| chat                   | boolean     | embed the typeform as [Chat UI](https://help.typeform.com/hc/en-us/articles/360034224732-Turn-your-typeform-into-a-chat)   | `false`                                                       |
 | size                   | number      | size of the popup in percentage                                                                                            | `100` (100% size, fullscreen popup)                           |
 | width                  | number      | width of the popup in pixels (instead of `size`, also specify `height`)                                                    | `undefined`                                                   |
 | height                 | number      | height of the popup in pixels (instead of `size`, also specify `width`)                                                    | `undefined`                                                   |
@@ -76,8 +77,8 @@ Or from admin panel URL:
 | medium                 | string      | name of the plugin built on top of the SDK                                                                                 | `"embed-sdk"`                                                 |
 | mediumVersion          | string      | version of the plugin built on top of the SDK                                                                              | `"next"`                                                      |
 | transitiveSearchParams | string[]    | search parameters to be forwarded from host page to form                                                                   | `undefined`                                                   |
-| hideFooter             | boolean     | hide form progress bar and navigation buttons                                                                              | `false`                                                       |
-| hideHeaders            | boolean     | hide header that appears when you have a question group, or a long question                                                | `false`                                                       |
+| hideFooter             | boolean     | hide form progress bar and navigation buttons (does not apply to Chat UI)                                                  | `false`                                                       |
+| hideHeaders            | boolean     | hide header that appears when you have a question group, or a long question (does not apply to Chat UI)                    | `false`                                                       |
 | opacity                | number      | form background opacity, number from 0 (fully transparent) 100 (fully opaque)                                              | `100`                                                         |
 | disableAutoFocus       | boolean     | disable form auto focus when loaded                                                                                        | `false`                                                       |
 | open                   | string      | open embed based on user action (see below)                                                                                | `undefined`                                                   |
@@ -114,6 +115,44 @@ Properties `open` and `openValue` apply only to embed types that are opened by u
   - `openValue` number of milliseconds to wait before opening the form
 
 For details see [behavioral demo](../demo-html/public/behavioral-html).
+
+### Callbacks
+
+You can listen to form events by providing callback methods:
+
+```html
+<div id="wrapper"></div>
+<script src="//embed.typeform.com/next/embed.js"></script>
+<link rel="stylesheet" href="//embed.typeform.com/next/css/widget.css" />
+<script>
+  window.tf.createWidget('<form-id>', {
+    container: document.getElementById("wrapper"),
+    onReady: () => {
+      console.log('form ready')
+    }
+    onQuestionChanged: (data) => {
+      console.log('question changed to ref:', data.ref)
+    }
+    onSubmit: (data) => {
+      console.log('forms submitted with id:', data.responseId)
+      // to retrieve the response use `data.responseId` (you have to do it server-side)
+      // more details: https://developer.typeform.com/responses/
+    }
+  })
+</script>
+```
+
+Callback method receive payload object from the form:
+
+- onReady
+  - empty object
+- onQuestionChanged
+  - `ref` (string) identifies currenttly displayed question
+- onReady
+  - `responseId` (string) identifies the response, can be retrieved via [Responses API](https://developer.typeform.com/responses/)
+  - `response_id` (string) same as above (for backward comaptibility with old embed SDK)
+
+See [callbacks example in demo package](../../packages/demo-html/public/callbacks.html).
 
 ### Examples
 

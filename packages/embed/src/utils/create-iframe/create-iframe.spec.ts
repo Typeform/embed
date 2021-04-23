@@ -60,7 +60,7 @@ describe('create-iframe', () => {
     })
 
     it('should call form-submit handler', async () => {
-      window.postMessage({ type: 'form-submit', response_id: 'test-response-id', embedId: 'random-id' }, '*')
+      window.postMessage({ type: 'form-submit', responseId: 'test-response-id', embedId: 'random-id' }, '*')
       await new Promise((resolve) => setTimeout(resolve))
 
       expect(options.onSubmit).toBeCalledWith({ responseId: 'test-response-id' })
