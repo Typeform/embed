@@ -9,25 +9,19 @@ export const getFormQuestionChangedHandler = (embedId: string, options: Actionab
 }
 
 export const getFormSubmitHandler = (embedId: string, options: ActionableOptions) => {
-  const getEventPayload = (ev: any) => ({ responseId: ev?.data?.response_id })
-
-  return getFormEventHandler('form-submit', embedId, options.onSubmit, getEventPayload)
+  return getFormEventHandler('form-submit', embedId, options.onSubmit)
 }
 
-export function getFormEventHandler(
-  eventType: string,
-  embedId: string,
-  callback?: (ev: any) => void,
-  transformEventPayload: (ev: any) => any = () => undefined
-) {
+export function getFormEventHandler(eventType: string, expectedEmbedId: string, callback?: (ev: any) => void) {
   return (event: any) => {
-    if (event.data.type !== eventType) {
+    const { type, embedId, ...data } = event.data
+    if (type !== eventType) {
       return
     }
-    if (event.data.embedId !== embedId) {
+    if (embedId !== expectedEmbedId) {
       return
     }
-    const transformedEvent = transformEventPayload(event)
-    callback?.(transformedEvent)
+
+    callback?.(data)
   }
 }
