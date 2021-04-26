@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.2.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.1.6...@typeform/embed-v1.2.0) (2021-04-26)
+
+
+### Features
+
+* **DIST-891:** Update event handler and add CUI docs and examples ([#227](https://github.com/Typeform/embed/issues/227)) ([aed1914](https://github.com/Typeform/embed/commit/aed19145792bdc58fbcef5310a28b4cad3d0363d))
+
 # [@typeform/embed-v1.1.6](https://github.com/Typeform/embed/compare/@typeform/embed-v1.1.5...@typeform/embed-v1.1.6) (2021-04-22)
 
 
