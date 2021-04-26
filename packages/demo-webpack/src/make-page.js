@@ -7,7 +7,5 @@ export const makePage = (wrapper, title, text, moreContent) => {
   p.innerHTML = text;
   wrapper.append(p);
 
-  console.log("moreContent", moreContent);
-
   wrapper.append(moreContent);
 };

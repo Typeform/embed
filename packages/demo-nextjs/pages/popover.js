@@ -1,20 +1,14 @@
-import { useEffect } from "react";
 import Head from "next/head";
-import { createPopover } from "@typeform/embed";
+import { Popover } from "@typeform/embed-react";
 
-export default function Popover() {
-  useEffect(() => {
-    const { unmount } = createPopover("moe6aa", {
-      medium: "demo-test",
-      hidden: {
-        foo: "foo value",
-        bar: "bar value",
-      },
-    });
+import Sparkle from "../components/sparkle";
 
-    return () => unmount();
-  }, []);
+const handleOnReady = () => {
+  // eslint-disable-next-line no-console
+  console.log("form ready");
+};
 
+export default function PopoverPage() {
   return (
     <div>
       <Head>
@@ -26,9 +20,16 @@ export default function Popover() {
           This is an example <a href="https://nextjs.org">Next.js</a> app.
         </h1>
 
-        <p>Embed popover &lt;3 Next.js ✨</p>
+        <p>
+          Embed popover &lt;3 Next.js <Sparkle />
+        </p>
 
-        <p></p>
+        <Popover
+          id="moe6aa"
+          onReady={handleOnReady}
+          medium="demo-test"
+          hidden={{ foo: "foo value", bar: "bar value" }}
+        />
       </main>
     </div>
   );

@@ -10,11 +10,5 @@
 
 .App-container {
   background: #282c34;
-  padding: 60px 20px;
-}
-
-.App-embed {
-  width: 500px;
-  height: 400px;
-  margin: 0 auto;
+  padding: 20px 20px;
 }

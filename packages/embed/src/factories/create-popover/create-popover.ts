@@ -1,5 +1,4 @@
-import { createIframe, setElementSize } from '../../utils'
-import { handleCustomOpen } from '../../utils/create-custom-launch-options'
+import { createIframe, setElementSize, handleCustomOpen, unmountElement } from '../../utils'
 
 import { PopoverOptions } from './popover-options'
 import { buildNotificationDot, canBuildNotificationDot, saveNotificationDotHideUntilTime } from './notification-days'
@@ -106,10 +105,6 @@ const defaultOptions = {
   buttonColor: '#3a7685',
 }
 
-const unmountElement = (element: HTMLElement) => {
-  element.parentNode?.removeChild(element)
-}
-
 export const createPopover = (formId: string, userOptions: PopoverOptions = {}): Popover => {
   const options = { ...defaultOptions, ...userOptions }
   const iframe = createIframe(formId, 'popover', options)
@@ -135,7 +130,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     if (tooltip && tooltip.parentNode) {
       tooltip.classList.add('closing')
       setTimeout(() => {
-        tooltip.parentNode && tooltip.parentNode.removeChild(tooltip)
+        unmountElement(tooltip)
       }, 250)
     }
   }
@@ -149,7 +144,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
       }
 
       setTimeout(() => {
-        notificationDot.remove()
+        unmountElement(notificationDot)
       }, 250)
     }
   }

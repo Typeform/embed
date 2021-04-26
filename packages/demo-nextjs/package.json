@@ -1,8 +1,10 @@
 {
   "name": "demo-nextjs",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "yarn next dev -p 8080"
+    "start": "yarn next dev -p 8080",
+    "lint": "yarn eslint --ignore-path ../../.gitignore .",
+    "clean": "rm -rf ./.next"
   }
 }

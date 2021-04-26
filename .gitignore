@@ -49,12 +49,13 @@ coverage
 # nodemon
 .monitor
 
+# project specific
 .next
-out
-dist
+node_modules
 build
 build-aws
-node_modules
+types
+lib
 
 # tests
 **/e2e/screenshots

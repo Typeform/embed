@@ -2,23 +2,17 @@
 
 Typeform can be embedded in server-side rendered Next.js apps.
 
-**Note:** We recommend using `@typeform/embed-react`, it will be rady soon :)
-
-You can use the `@typeform/embed` directly in Next.js apps:
+Use [@typeform/embed-react](../embed-react) in Next.js apps:
 
 ```javascript
-import { createWidget } from "@typeform/embed";
-import "@typeform/embed/build/css/widget.css"; // import necessary CSS
+import { Widget } from "@typeform/embed-react";
 
-const MyTypeformEmbed = () => {
-  const container = useRef();
-
-  useEffect(() => {
-    createWidget("<form id>", { container: container.current });
-  }, []);
-
-  return <div ref={container} />;
-};
+export default function MyPage() {
+  return <Widget id="<form-id>" style={{ width: "50%" }} className="my-form" />;
+}
 ```
 
-Run `yarn build` in [embed package](../embed). Then run `yarn start` to run the demo in browser: http://localhost:8080
+## Run demo locally
+
+1. Run `yarn build` in repository root to build all packages
+2. Then run `yarn start` here to run this demo in browser: http://localhost:8080

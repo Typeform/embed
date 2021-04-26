@@ -1,9 +1,10 @@
 {
   "name": "demo-react",
-  "version": "1.0.0-next.1",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "SKIP_PREFLIGHT_CHECK=true PORT=8080 yarn react-scripts start"
+    "start": "SKIP_PREFLIGHT_CHECK=true PORT=8080 yarn react-scripts start",
+    "lint": "yarn eslint --ignore-path ../../.gitignore ."
   },
   "browserslist": {
     "production": [

@@ -1,5 +1,4 @@
-import { createIframe, setElementSize } from '../../utils'
-import { handleCustomOpen } from '../../utils/create-custom-launch-options'
+import { createIframe, setElementSize, handleCustomOpen, unmountElement } from '../../utils'
 
 import { SidetabOptions } from './sidetab-options'
 
@@ -88,10 +87,6 @@ const replaceElementChild = (childToReplace: HTMLElement, newChild: HTMLElement)
   }
 }
 
-const unmountElement = (element: HTMLElement) => {
-  element.parentNode?.removeChild(element)
-}
-
 export const createSidetab = (formId: string, userOptions: SidetabOptions = {}): Sidetab => {
   const options = { ...defaultOptions, ...userOptions }
   const iframe = createIframe(formId, 'side-tab', options)
@@ -130,9 +125,9 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
 
   const close = () => {
     if (isOpen(wrapper)) {
+      sidetab.classList.remove('open')
       setTimeout(() => {
         unmountElement(wrapper)
-        sidetab.classList.remove('open')
         replaceElementChild(closeIcon, icon)
       }, 250)
     }
