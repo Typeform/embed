@@ -11,7 +11,7 @@ env:
   AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
   PUBLIC_CDN_URL: 'https://embed.typeform.com'
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  AWS_CLOUDFRONT_DIST: "E3IUO95IYL1RI3"
+  AWS_CLOUDFRONT_DIST: 'E3IUO95IYL1RI3'
 
 jobs:
   init:
