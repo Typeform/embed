@@ -11,6 +11,7 @@ env:
   AWS_ASSETS_BUCKET: "typeform-public-assets/embed"
   PUBLIC_CDN_URL: "https://embed.typeform.com"
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  SEGMENT_WRITE_KEY: ${{ secrets.DEPLOYMENT_SEGMENT_WRITE_KEY }}
 
 jobs:
   init:
@@ -82,6 +83,6 @@ jobs:
       - run: yarn lerna run build
         env:
           NODE_ENV: "production"
-      - run: yarn add -W @typeform/jarvis@12.0.0
+      - run: yarn add -W @typeform/jarvis@12.1.2-alpha.1
       - run: sh ./packages/embed/scripts/prepare-release.sh
-      - run: DEBUG=jarvis yarn run jarvis deploy --path ./packages/embed/build-aws --version next --preview
+      - run: DEBUG=jarvis yarn run jarvis deploy --path ./packages/embed/build-aws --version next
