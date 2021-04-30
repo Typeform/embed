@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.2.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.2.0...@typeform/embed-v1.2.1) (2021-04-30)
+
+
+### Bug Fixes
+
+* **DIST-899:** Popover opening visual bug ([#232](https://github.com/Typeform/embed/issues/232)) ([7e32d40](https://github.com/Typeform/embed/commit/7e32d4054a68026ebb731c4e3e99c941751e23af))
+
 # [@typeform/embed-v1.2.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.1.6...@typeform/embed-v1.2.0) (2021-04-26)
 
 
