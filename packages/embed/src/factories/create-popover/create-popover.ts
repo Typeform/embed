@@ -108,6 +108,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   iframe.onload = () => {
     popover.classList.add('open')
+    wrapper.style.opacity = '1'
     replaceIcon(spinner, closeIcon)
   }
 
@@ -115,7 +116,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     if (!isOpen(wrapper)) {
       setTimeout(() => {
         popover.append(wrapper)
-        wrapper.style.opacity = '1'
+        wrapper.style.opacity = '0'
         replaceIcon(icon, spinner)
       })
     }
