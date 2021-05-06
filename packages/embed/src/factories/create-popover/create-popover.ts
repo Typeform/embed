@@ -77,6 +77,7 @@ const buildIcon = (customIcon?: string) => {
 const buildTriggerButton = (color: string) => {
   const button = document.createElement('button')
   button.className = 'typeform-popover-button'
+  button.dataset.testid = 'typeform-popover-button'
   button.style.backgroundColor = color
   return button
 }

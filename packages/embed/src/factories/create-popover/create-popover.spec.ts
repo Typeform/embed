@@ -69,6 +69,22 @@ describe('#createSidetab', () => {
     })
   })
 
+  describe('#buttonColor', () => {
+    it('should show a default button color', () => {
+      const defaultColor = 'rgb(58, 118, 133)'
+      const triggerButton = screen.queryByTestId('typeform-popover-button')
+      expect(triggerButton).toHaveStyle(`background-color: ${defaultColor}`)
+    })
+
+    it('should show the custom button color', () => {
+      const white = 'rgb(255, 255, 255)'
+      popover.unmount()
+      createPopover('formId', { buttonColor: white })
+      const triggerButton = screen.queryByTestId('typeform-popover-button')
+      expect(triggerButton).toHaveStyle(`background-color: ${white}`)
+    })
+  })
+
   describe('#size', () => {
     it('should render popover with size', async () => {
       popover.unmount()
