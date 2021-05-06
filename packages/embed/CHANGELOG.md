@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.3.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.2.1...@typeform/embed-v1.3.0) (2021-05-06)
+
+
+### Features
+
+* **DIST-828:** Widget, popover, sidetab sizes params ([#235](https://github.com/Typeform/embed/issues/235)) ([5ccae84](https://github.com/Typeform/embed/commit/5ccae848af0afef3ea07de65160664928f15d1a9))
+
 # [@typeform/embed-v1.2.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.2.0...@typeform/embed-v1.2.1) (2021-04-30)
 
 
