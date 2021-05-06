@@ -22,4 +22,16 @@ export type SidetabOptions = BaseOptions &
      * @type {string}
      */
     customIcon?: string
+    /**
+     * Specify the width of the widget
+     *
+     * @type {number}
+     */
+    width?: number
+    /**
+     * Specify the height of the widget
+     *
+     * @type {number}
+     */
+    height?: number
   }

@@ -1,4 +1,4 @@
-import { createIframe } from '../../utils'
+import { createIframe, setElementSize } from '../../utils'
 import { handleCustomOpen } from '../../utils/create-custom-launch-options'
 
 import { SidetabOptions } from './sidetab-options'
@@ -22,10 +22,11 @@ interface HTMLElementWithParentNode extends HTMLElement {
 
 const isOpen = (element: HTMLElement): element is HTMLElementWithParentNode => !!element.parentNode
 
-const buildSidetab = () => {
+const buildSidetab = (width?: number, height?: number) => {
   const popup = document.createElement('div')
   popup.className = 'typeform-sidetab'
-  return popup
+  popup.dataset.testid = 'typeform-sidetab'
+  return setElementSize(popup, { width, height })
 }
 
 const buildWrapper = () => {
@@ -95,7 +96,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   const options = { ...defaultOptions, ...userOptions }
   const iframe = createIframe(formId, 'side-tab', options)
 
-  const sidetab = buildSidetab()
+  const sidetab = buildSidetab(options.width, options.height)
   const wrapper = buildWrapper()
   const spinner = buildSpinner()
   const button = buildTriggerButton(options.buttonColor || defaultOptions.buttonColor)

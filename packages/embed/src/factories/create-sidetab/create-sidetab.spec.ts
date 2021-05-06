@@ -66,4 +66,14 @@ describe('#createSidetab', () => {
       await waitForElementToBeRemoved(() => screen.queryByTestId('typeform-sidetab-wrapper'))
     })
   })
+
+  describe('#size', () => {
+    it('should render popover with size', async () => {
+      sidetab.unmount()
+      sidetab = createSidetab('formId', { width: 400, height: 600 })
+      sidetab.open()
+      jest.runAllTimers()
+      expect(screen.getByTestId('typeform-sidetab')).toHaveStyle({ width: '400px', height: '600px' })
+    })
+  })
 })

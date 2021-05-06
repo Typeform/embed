@@ -1,4 +1,4 @@
-import { createIframe } from '../../utils'
+import { createIframe, setElementSize } from '../../utils'
 import { handleCustomOpen } from '../../utils/create-custom-launch-options'
 
 import { PopoverOptions } from './popover-options'
@@ -25,10 +25,11 @@ const replaceIcon = (iconToReplace: HTMLElement, newIcon: HTMLElement) => {
   }
 }
 
-const buildPopover = () => {
+const buildPopover = (width?: number, height?: number) => {
   const popup = document.createElement('div')
   popup.className = 'typeform-popover'
-  return popup
+  popup.dataset.testid = 'typeform-popover'
+  return setElementSize(popup, { width, height })
 }
 
 const buildWrapper = () => {
@@ -92,7 +93,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   const options = { ...defaultOptions, ...userOptions }
   const iframe = createIframe(formId, 'popover', options)
 
-  const popover = buildPopover()
+  const popover = buildPopover(options.width, options.height)
   const wrapper = buildWrapper()
   const icon = buildIcon(options.customIcon)
   const spinner = buildSpinner()

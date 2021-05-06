@@ -16,6 +16,12 @@ export const initializeWidgets = () => {
     if (!formId) {
       throw new Error(`Invalid ${WIDGET_ATTRIBUTE}=${formId} for widget embed #${index}`)
     }
-    createWidget(formId, { ...buildOptionsFromAttributes(container), container })
+    createWidget(formId, {
+      ...buildOptionsFromAttributes(container, {
+        width: 'integer',
+        height: 'integer',
+      }),
+      container,
+    })
   })
 }

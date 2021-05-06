@@ -21,6 +21,8 @@ export const initializePopovers = () => {
       buildOptionsFromAttributes(button, {
         buttonColor: 'string',
         customIcon: 'string',
+        width: 'integer',
+        height: 'integer',
       })
     )
     button.onclick = toggle

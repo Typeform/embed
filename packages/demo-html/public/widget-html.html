@@ -4,10 +4,9 @@
     <meta charset="utf-8" />
     <title>Static HTML Demo</title>
     <style>
-      #wrapper {
-        width: 600px;
-        height: 400px;
-        margin: 0 auto;
+      body {
+        display: flex;
+        justify-content: center;
       }
     </style>
   </head>
@@ -19,6 +18,8 @@
       data-tf-transitive-search-params="foo,bar"
       data-tf-hidden="foo=foo value,bar=bar value"
       data-tf-opacity="50"
+      data-tf-width="600"
+      data-tf-height="400"
     ></div>
     <script src="./lib/embed-next.js"></script>
   </body>

@@ -22,6 +22,8 @@ export const initializeSidetabs = () => {
       formId,
       buildOptionsFromAttributes(button, {
         buttonText: 'string',
+        width: 'integer',
+        height: 'integer',
       })
     )
   })
