@@ -1,9 +1,6 @@
-import { loadOptionsFromAttributes, Transformation } from '../utils'
+import { loadOptionsFromAttributes } from '../utils'
 
-export const buildOptionsFromAttributes = (
-  element: HTMLElement,
-  additionalAttributes: Record<string, Transformation> = {}
-) => {
+export const buildOptionsFromAttributes = (element: HTMLElement) => {
   return loadOptionsFromAttributes(element, {
     source: 'string',
     medium: 'string',
@@ -20,6 +17,12 @@ export const buildOptionsFromAttributes = (
     transitiveSearchParams: 'array',
     hidden: 'record',
     chat: 'boolean',
-    ...additionalAttributes,
+    buttonColor: 'string',
+    customIcon: 'string',
+    width: 'integer',
+    height: 'integer',
+    size: 'integer',
+    buttonText: 'string',
+    position: 'string',
   })
 }

@@ -12,5 +12,13 @@ describe('build-widget', () => {
     it('should render iframe', () => {
       expect(iframe.parentNode).toBe(widget)
     })
+
+    it('should render widget with size', () => {
+      const widget = buildWidget(iframe, 200, 400)
+      expect(widget).toHaveStyle({
+        width: '200px',
+        height: '400px',
+      })
+    })
   })
 })

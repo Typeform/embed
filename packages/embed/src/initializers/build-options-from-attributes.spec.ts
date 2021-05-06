@@ -47,7 +47,15 @@ describe('build-options-from-attributes', () => {
         onQuestionChanged: 'function',
         transitiveSearchParams: 'array',
         hidden: 'record',
+        buttonColor: 'string',
+        customIcon: 'string',
+        width: 'integer',
+        height: 'integer',
+        size: 'integer',
+        buttonText: 'string',
+        position: 'string',
       })
+
       expect(options).toEqual({
         source: 'unit-test-source',
         medium: 'unit-test-medium',

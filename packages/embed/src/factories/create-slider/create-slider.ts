@@ -1,4 +1,4 @@
-import { createIframe, hasDom } from '../../utils'
+import { createIframe, hasDom, setElementSize } from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
 import { handleCustomOpen } from '../../utils/create-custom-launch-options'
 
@@ -34,8 +34,7 @@ const buildWrapper = (position: 'right' | 'left', width: number) => {
   const wrapper = document.createElement('div')
   wrapper.className = 'typeform-iframe-wrapper'
   wrapper.style[position] = '-100%'
-  wrapper.style.width = `${width}px`
-  return wrapper
+  return setElementSize(wrapper, { width })
 }
 
 const buildCloseButton = (close: () => void) => {

@@ -1,9 +1,10 @@
-import { ActionableOptions, BaseOptions, UrlOptions, BehavioralOptions } from '../../base'
+import { ActionableOptions, BaseOptions, UrlOptions, BehavioralOptions, SizeableOptions } from '../../base'
 
 export type SidetabOptions = BaseOptions &
   UrlOptions &
   ActionableOptions &
-  BehavioralOptions & {
+  BehavioralOptions &
+  SizeableOptions & {
     /**
      * Specify the button text
      *

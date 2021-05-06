@@ -1,4 +1,4 @@
-import { createIframe, hasDom, isDefined } from '../../utils'
+import { createIframe, hasDom, isDefined, setElementSize } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
 import { handleCustomOpen } from '../../utils/create-custom-launch-options'
 
@@ -36,12 +36,12 @@ const buildWrapper = (width?: number, height?: number, size?: number) => {
   wrapper.style.opacity = '0'
 
   if (isDefined(width) && isDefined(height)) {
-    wrapper.style.width = `${width}px`
-    wrapper.style.height = `${height}px`
-  } else {
-    wrapper.style.width = `calc(${size}% - 80px)`
-    wrapper.style.height = `calc(${size}% - 80px)`
+    return setElementSize(wrapper, { width, height })
   }
+
+  wrapper.style.width = `calc(${size}% - 80px)`
+  wrapper.style.height = `calc(${size}% - 80px)`
+
   return wrapper
 }
 
