@@ -24,5 +24,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     size: 'integer',
     buttonText: 'string',
     position: 'string',
+    enableSandbox: 'boolean',
   })
 }

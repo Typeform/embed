@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Static HTML Demo</title>
+    <style>
+      #wrapper {
+        width: 600px;
+        height: 400px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Sandbox Typefom</h1>
+    <p>Submissions are disabled for this form.</p>
+    <div id="wrapper" data-tf-widget="jAJ5qj" data-tf-enable-sandbox data-tf-on-submit="handleSubmit"></div>
+    <script src="./lib/embed-next.js"></script>
+    <script>
+      function handleSubmit() {
+        console.log("----- SUBMIT -----");
+        console.log("form was not actually submitted thanks to 'data-tf-enable-sandbox'");
+        console.log("submit event fired for compatibility reasons");
+      }
+    </script>
+  </body>
+</html>

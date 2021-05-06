@@ -55,6 +55,7 @@ describe('build-iframe-src', () => {
           foo: 'foo value',
           bar: '@bar&value?',
         },
+        enableSandbox: true,
       }
       expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toBe(
         'https://form.typeform.com/to/some-id' +
@@ -68,6 +69,7 @@ describe('build-iframe-src', () => {
           '&embed-opacity=50' +
           '&disable-tracking=true' +
           '&disable-auto-focus=true' +
+          '&__dangerous-disable-submissions=true' +
           '#foo=foo+value&bar=%40bar%26value%3F'
       )
     })
