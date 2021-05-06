@@ -4,9 +4,10 @@
     <meta charset="utf-8" />
     <title>Static HTML Demo</title>
     <style>
-      body {
-        display: flex;
-        justify-content: center;
+      #wrapper {
+        width: 600px;
+        height: 400px;
+        margin: 0 auto;
       }
     </style>
     <link rel="stylesheet" href="./lib/css/widget.css" />
@@ -20,8 +21,6 @@
         transitiveSearchParams: ["foo", "bar"],
         medium: "demo-test",
         hidden: { foo: "foo value", bar: "bar value" },
-        width: 600,
-        height: 400,
       });
     </script>
   </body>

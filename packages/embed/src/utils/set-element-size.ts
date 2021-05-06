@@ -1,4 +1,9 @@
-export const setElementSize = (element: HTMLElement, { width, height }: { width?: number; height?: number }) => {
+interface ElementSize {
+  width?: number
+  height?: number
+}
+
+export const setElementSize = (element: HTMLElement, { width, height }: ElementSize) => {
   if (width) {
     element.style.width = `${width}px`
   }

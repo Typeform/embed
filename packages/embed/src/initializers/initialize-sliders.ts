@@ -16,10 +16,7 @@ export const initializeSliders = () => {
     if (!formId) {
       throw new Error(`Invalid ${SLIDER_ATTRIBUTE}=${formId} for popup embed #${index}`)
     }
-    const options = buildOptionsFromAttributes(button, {
-      position: 'string',
-      width: 'integer',
-    })
+    const options = buildOptionsFromAttributes(button)
     const { toggle } = createSlider(formId, options)
     button.onclick = toggle
   })

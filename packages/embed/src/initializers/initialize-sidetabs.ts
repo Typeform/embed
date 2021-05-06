@@ -18,13 +18,6 @@ export const initializeSidetabs = () => {
       throw new Error(`Invalid ${SIDETAB_ATTRIBUTE}=${formId} for sidetab embed #${index}`)
     }
 
-    createSidetab(
-      formId,
-      buildOptionsFromAttributes(button, {
-        buttonText: 'string',
-        width: 'integer',
-        height: 'integer',
-      })
-    )
+    createSidetab(formId, buildOptionsFromAttributes(button))
   })
 }
