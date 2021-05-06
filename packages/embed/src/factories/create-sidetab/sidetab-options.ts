@@ -1,9 +1,10 @@
-import { ActionableOptions, BaseOptions, UrlOptions, BehavioralOptions } from '../../base'
+import { ActionableOptions, BaseOptions, UrlOptions, BehavioralOptions, SizeableOptions } from '../../base'
 
 export type SidetabOptions = BaseOptions &
   UrlOptions &
   ActionableOptions &
-  BehavioralOptions & {
+  BehavioralOptions &
+  SizeableOptions & {
     /**
      * Specify the button text
      *
@@ -22,16 +23,4 @@ export type SidetabOptions = BaseOptions &
      * @type {string}
      */
     customIcon?: string
-    /**
-     * Specify the width of the widget
-     *
-     * @type {number}
-     */
-    width?: number
-    /**
-     * Specify the height of the widget
-     *
-     * @type {number}
-     */
-    height?: number
   }

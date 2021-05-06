@@ -6,7 +6,6 @@ let sidetab: Sidetab
 
 beforeEach(() => {
   jest.useFakeTimers()
-  sidetab = createSidetab('formId')
 })
 
 afterEach(() => {
@@ -16,11 +15,13 @@ afterEach(() => {
 describe('#createSidetab', () => {
   describe('#open', () => {
     it('should open', () => {
+      sidetab = createSidetab('formId')
       sidetab.open()
       expect(screen.getByTestId('typeform-sidetab-wrapper')).toBeInTheDocument()
     })
 
     it('should show the icons', async () => {
+      sidetab = createSidetab('formId')
       expect(screen.getByTestId('default-icon')).toBeInTheDocument()
       sidetab.open()
       expect(screen.getByTestId('spinner-icon')).toBeInTheDocument()
@@ -33,6 +34,7 @@ describe('#createSidetab', () => {
 
   describe('#close', () => {
     it('should close', async () => {
+      sidetab = createSidetab('formId')
       sidetab.open()
       jest.runAllTimers()
       sidetab.close()
@@ -40,6 +42,7 @@ describe('#createSidetab', () => {
     })
 
     it('should show the icons', async () => {
+      sidetab = createSidetab('formId')
       expect(screen.getByTestId('default-icon')).toBeInTheDocument()
       sidetab.open()
       expect(screen.getByTestId('spinner-icon')).toBeInTheDocument()
@@ -55,11 +58,13 @@ describe('#createSidetab', () => {
 
   describe('#toggle', () => {
     it('should open when closed', async () => {
+      sidetab = createSidetab('formId')
       sidetab.toggle()
       expect(screen.getByTestId('typeform-sidetab-wrapper')).toBeInTheDocument()
     })
 
     it('should close when opened', async () => {
+      sidetab = createSidetab('formId')
       sidetab.open()
       jest.runAllTimers()
       sidetab.toggle()
@@ -69,7 +74,6 @@ describe('#createSidetab', () => {
 
   describe('#size', () => {
     it('should render popover with size', async () => {
-      sidetab.unmount()
       sidetab = createSidetab('formId', { width: 400, height: 600 })
       sidetab.open()
       jest.runAllTimers()

@@ -1,9 +1,10 @@
-import { ActionableOptions, BaseOptions, UrlOptions, BehavioralOptions } from '../../base'
+import { ActionableOptions, BaseOptions, UrlOptions, BehavioralOptions, SizeableOptions } from '../../base'
 
 export type PopoverOptions = BaseOptions &
   UrlOptions &
   ActionableOptions &
-  BehavioralOptions & {
+  BehavioralOptions &
+  SizeableOptions & {
     /**
      * Time until the embedded typeform will automatically close after a respondent clicks the Submit button. The default time is 5 seconds. PRO+ users can change the autoClose time.
      *
@@ -16,18 +17,6 @@ export type PopoverOptions = BaseOptions &
      * @type {boolean}
      */
     hideScrollbars?: boolean
-    /**
-     * Specify the width of the drawer or popover (only applies if using mode "drawer_left" or "drawer_right" or "popover" or "side_panel").
-     *
-     * @type {number}
-     */
-    width?: number
-    /**
-     * Specify the height of the popover (only applies if using mode "popover" or "side_panel").
-     *
-     * @type {number}
-     */
-    height?: number
     /**
      * Specify the size of the popover (only applies if using mode "popover").
      *

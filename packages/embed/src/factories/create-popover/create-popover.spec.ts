@@ -6,7 +6,6 @@ let popover: Popover
 
 beforeEach(() => {
   jest.useFakeTimers()
-  popover = createPopover('formId')
 })
 
 afterEach(() => {
@@ -16,12 +15,14 @@ afterEach(() => {
 describe('#createSidetab', () => {
   describe('#open', () => {
     it('should open', () => {
+      popover = createPopover('formId')
       popover.open()
       jest.runAllTimers()
       expect(screen.getByTestId('typeform-popover-wrapper')).toBeInTheDocument()
     })
 
     it('should show the icons', async () => {
+      popover = createPopover('formId')
       expect(screen.getByTestId('default-icon')).toBeInTheDocument()
       popover.open()
       jest.runAllTimers()
@@ -34,6 +35,7 @@ describe('#createSidetab', () => {
 
   describe('#close', () => {
     it('should close', async () => {
+      popover = createPopover('formId')
       popover.open()
       jest.runAllTimers()
       popover.close()
@@ -41,6 +43,7 @@ describe('#createSidetab', () => {
     })
 
     it('should show the icons', async () => {
+      popover = createPopover('formId')
       expect(screen.getByTestId('default-icon')).toBeInTheDocument()
       popover.open()
       jest.runAllTimers()
@@ -56,12 +59,14 @@ describe('#createSidetab', () => {
 
   describe('#toggle', () => {
     it('should open when closed', async () => {
+      popover = createPopover('formId')
       popover.toggle()
       jest.runAllTimers()
       expect(screen.getByTestId('typeform-popover-wrapper')).toBeInTheDocument()
     })
 
     it('should close when opened', async () => {
+      popover = createPopover('formId')
       popover.open()
       jest.runAllTimers()
       popover.toggle()
@@ -71,6 +76,7 @@ describe('#createSidetab', () => {
 
   describe('#buttonColor', () => {
     it('should show a default button color', () => {
+      popover = createPopover('formId')
       const defaultColor = 'rgb(58, 118, 133)'
       const triggerButton = screen.queryByTestId('typeform-popover-button')
       expect(triggerButton).toHaveStyle(`background-color: ${defaultColor}`)
@@ -78,8 +84,7 @@ describe('#createSidetab', () => {
 
     it('should show the custom button color', () => {
       const white = 'rgb(255, 255, 255)'
-      popover.unmount()
-      createPopover('formId', { buttonColor: white })
+      popover = createPopover('formId', { buttonColor: white })
       const triggerButton = screen.queryByTestId('typeform-popover-button')
       expect(triggerButton).toHaveStyle(`background-color: ${white}`)
     })
@@ -87,7 +92,6 @@ describe('#createSidetab', () => {
 
   describe('#size', () => {
     it('should render popover with size', async () => {
-      popover.unmount()
       popover = createPopover('formId', { width: 400, height: 600 })
       popover.open()
       jest.runAllTimers()

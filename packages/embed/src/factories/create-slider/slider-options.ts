@@ -1,9 +1,10 @@
-import { ActionableOptions, BaseOptions, UrlOptions, BehavioralOptions } from '../../base'
+import { ActionableOptions, BaseOptions, UrlOptions, BehavioralOptions, WidthOption } from '../../base'
 
 export type SliderOptions = BaseOptions &
   UrlOptions &
   ActionableOptions &
-  BehavioralOptions & {
+  BehavioralOptions &
+  WidthOption & {
     /**
      * Slider position. Indicates from which side of the screen it will open.
      *
@@ -22,12 +23,6 @@ export type SliderOptions = BaseOptions &
      * @type {boolean}
      */
     hideScrollbars?: boolean
-    /**
-     * Specify the width of the drawer or popup (only applies if using mode "drawer_left" or "drawer_right" or "popover" or "side_panel").
-     *
-     * @type {number}
-     */
-    width?: number
     /**
      * Element to place the popup into. Optional. Required only for "side_panel" mode.
      *
