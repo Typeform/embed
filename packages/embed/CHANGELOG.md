@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.5.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.4.0...@typeform/embed-v1.5.0) (2021-05-07)
+
+
+### Features
+
+* **DIST-826:** Add tooltip for popover embed ([#240](https://github.com/Typeform/embed/issues/240)) ([1ef5a76](https://github.com/Typeform/embed/commit/1ef5a76613035240017b6ef6d70606a93d1ae20a))
+
 # [@typeform/embed-v1.4.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.3.0...@typeform/embed-v1.4.0) (2021-05-07)
 
 
