@@ -59,4 +59,11 @@ export type UrlOptions = {
    * @type {boolean}
    */
   disableAutoFocus?: boolean
+  /**
+   * Enable sandbox mode for the form.
+   * Allow testing without adding an entry to results or affecting metrics.
+   *
+   * @type {boolean}
+   */
+  enableSandbox?: boolean
 }

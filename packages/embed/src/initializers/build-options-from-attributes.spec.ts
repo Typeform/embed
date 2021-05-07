@@ -27,36 +27,10 @@ describe('build-options-from-attributes', () => {
       win.onTypeformSubmit = jest.fn()
       win.onTypeformQuestionChanged = jest.fn()
 
-      const spy = jest.spyOn(require('../utils/load-options-from-attributes'), 'loadOptionsFromAttributes')
       const element = wrapper.querySelector('#element') as HTMLElement
       const options = buildOptionsFromAttributes(element)
 
-      expect(spy).toHaveBeenCalledWith(element, {
-        source: 'string',
-        medium: 'string',
-        mediumVersion: 'string',
-        open: 'string',
-        openValue: 'integer',
-        hideFooter: 'boolean',
-        hideHeaders: 'boolean',
-        opacity: 'integer',
-        chat: 'boolean',
-        disableTracking: 'boolean',
-        onReady: 'function',
-        onSubmit: 'function',
-        onQuestionChanged: 'function',
-        transitiveSearchParams: 'array',
-        hidden: 'record',
-        buttonColor: 'string',
-        customIcon: 'string',
-        width: 'integer',
-        height: 'integer',
-        size: 'integer',
-        buttonText: 'string',
-        position: 'string',
-      })
-
-      expect(options).toEqual({
+      expect(options).toMatchObject({
         source: 'unit-test-source',
         medium: 'unit-test-medium',
         mediumVersion: 'unit-test-version',
