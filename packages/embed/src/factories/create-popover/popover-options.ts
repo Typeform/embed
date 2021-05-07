@@ -41,4 +41,10 @@ export type PopoverOptions = BaseOptions &
      * @type {HTMLElement}
      */
     container?: HTMLElement
+    /**
+     * Message to dislay next to the button.
+     *
+     * @type {string}
+     */
+    tooltip?: string
   }

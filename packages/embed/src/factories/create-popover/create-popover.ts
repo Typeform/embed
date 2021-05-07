@@ -26,10 +26,10 @@ const replaceIcon = (iconToReplace: HTMLElement, newIcon: HTMLElement) => {
 }
 
 const buildPopover = (width?: number, height?: number) => {
-  const popup = document.createElement('div')
-  popup.className = 'typeform-popover'
-  popup.dataset.testid = 'typeform-popover'
-  return setElementSize(popup, { width, height })
+  const popover = document.createElement('div')
+  popover.className = 'typeform-popover'
+  popover.dataset.testid = 'typeform-popover'
+  return setElementSize(popover, { width, height })
 }
 
 const buildWrapper = () => {
@@ -82,6 +82,21 @@ const buildTriggerButton = (color: string) => {
   return button
 }
 
+const buildTooltip = (message: string, hide: () => void) => {
+  const icon = document.createElement('span')
+  icon.className = 'typeform-popover-tooltip-close'
+  icon.dataset.testid = 'typeform-popover-tooltip-close'
+  icon.innerHTML = '&times;'
+  icon.onclick = hide
+
+  const container = document.createElement('div')
+  container.className = 'typeform-popover-tooltip'
+  container.innerHTML = message
+  container.dataset.testid = 'typeform-popover-tooltip'
+  container.appendChild(icon)
+  return container
+}
+
 const defaultOptions = {
   buttonColor: '#3a7685',
 }
@@ -108,6 +123,21 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   popover.append(button)
   button.append(icon)
 
+  let tooltip: HTMLDivElement
+  const hideTooltip = () => {
+    if (tooltip && tooltip.parentNode) {
+      tooltip.classList.add('closing')
+      setTimeout(() => {
+        tooltip.parentNode && tooltip.parentNode.removeChild(tooltip)
+      }, 250)
+    }
+  }
+
+  if (options.tooltip && options.tooltip.length > 0) {
+    tooltip = buildTooltip(options.tooltip, hideTooltip)
+    popover.append(tooltip)
+  }
+
   iframe.onload = () => {
     popover.classList.add('open')
     wrapper.style.opacity = '1'
@@ -116,6 +146,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const open = () => {
     if (!isOpen(wrapper)) {
+      hideTooltip()
       setTimeout(() => {
         popover.append(wrapper)
         wrapper.style.opacity = '0'
