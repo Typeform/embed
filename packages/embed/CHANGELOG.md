@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.4.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.3.0...@typeform/embed-v1.4.0) (2021-05-07)
+
+
+### Features
+
+* **DIST-945:** Allow sandbox mode for embedded forms ([#237](https://github.com/Typeform/embed/issues/237)) ([e655bc3](https://github.com/Typeform/embed/commit/e655bc3056a6ec8f97b2e1841eed1868a9043443))
+
 # [@typeform/embed-v1.3.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.2.1...@typeform/embed-v1.3.0) (2021-05-06)
 
 
