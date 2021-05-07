@@ -112,7 +112,7 @@ describe('#createSidetab', () => {
 
       it('should close tooltip with close icon', () => {
         popover = createPopover('formId', { tooltip: 'foobar' })
-        fireEvent(screen.getByTestId('typeform-popover-tooltip-close'), new MouseEvent('click'))
+        fireEvent.click(screen.getByTestId('typeform-popover-tooltip-close'))
         jest.runAllTimers()
         expect(screen.queryByTestId('typeform-popover-tooltip')).toBeNull()
       })
