@@ -101,5 +101,28 @@ describe('#createSidetab', () => {
         expect(screen.getByTestId('typeform-popover')).toHaveStyle({ width: '400px', height: '600px' })
       })
     })
+
+    describe('#tooltip', () => {
+      it('should render tooltip', async () => {
+        popover = createPopover('formId', { tooltip: 'foobar' })
+        const tooltip = screen.getByTestId('typeform-popover-tooltip')
+        expect(tooltip).toHaveTextContent('foobar')
+        expect(tooltip).toBeVisible()
+      })
+
+      it('should close tooltip with close icon', () => {
+        popover = createPopover('formId', { tooltip: 'foobar' })
+        fireEvent.click(screen.getByTestId('typeform-popover-tooltip-close'))
+        jest.runAllTimers()
+        expect(screen.queryByTestId('typeform-popover-tooltip')).toBeNull()
+      })
+
+      it('should close tooltip when popover is opened', () => {
+        popover = createPopover('formId', { tooltip: 'foobar' })
+        popover.open()
+        jest.runAllTimers()
+        expect(screen.queryByTestId('typeform-popover-tooltip')).toBeNull()
+      })
+    })
   })
 })

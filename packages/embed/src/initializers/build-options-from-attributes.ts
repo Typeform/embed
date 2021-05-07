@@ -25,5 +25,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     buttonText: 'string',
     position: 'string',
     enableSandbox: 'boolean',
+    tooltip: 'string',
   })
 }
