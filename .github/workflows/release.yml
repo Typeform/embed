@@ -29,8 +29,8 @@ jobs:
         id: ci-skip-step
         with:
           commit-filter: "[skip ci]"
-  release_npm:
-    name: Release to NPM
+  release:
+    name: Release
     runs-on: ubuntu-latest
     needs: init
     if: ${{ needs.init.outputs.skip == 'false' }}
@@ -58,32 +58,10 @@ jobs:
       - run: rm ./.npmrc
       - run: npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
       - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
-      - run: npm config set @typeform:registry https://npm.pkg.github.com/
-      - run: cd ./packages/embed && yarn semantic-release
+      - run: npm config set @typeform:registry https://npm.pkg.github.com/ # install jarvis from github
+      - run: yarn add -W @typeform/jarvis
+      - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json (the file is committed by semantic-release to bump version)
+      - run: npm config set @typeform:registry https://registry.npmjs.org/ # release embed lib to npm
+      - run: yarn lerna run release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-  release_aws:
-    name: Release to AWS S3
-    runs-on: ubuntu-latest
-    needs: init
-    if: ${{ needs.init.outputs.skip == 'false' }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
-        with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: rm ./.npmrc
-      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
-      - run: npm config set @typeform:registry https://npm.pkg.github.com/
-      - run: yarn install --frozen-lockfile
-      - run: yarn lerna bootstrap
-      - run: yarn lerna run build
-        env:
-          NODE_ENV: "production"
-      - run: yarn add -W @typeform/jarvis
-      - run: sh ./packages/embed/scripts/prepare-release.sh
-      - run: DEBUG=jarvis yarn run jarvis deploy --path ./packages/embed/build-aws --version next
