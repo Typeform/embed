@@ -3,7 +3,6 @@ $spinner-background-color: #aaa !default;
 $spinner-stroke: 3px !default;
 $spinner-diameter: 40px !default;
 $spinner-sides: 1 !default;
-$spinner-margin: $spinner-diameter / 2px * -1px;
 
 @mixin spinner(
   $color: $spinner-color,
@@ -12,6 +11,7 @@ $spinner-margin: $spinner-diameter / 2px * -1px;
   $diameter: $spinner-diameter,
   $sides: $spinner-sides
 ) {
+  $spinner-margin: $diameter / 2px * -1px;
   border: $stroke solid $background-color;
   font-size: $diameter;
   width: 1em;
