@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.5.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.5.0...@typeform/embed-v1.5.1) (2021-05-19)
+
+
+### Bug Fixes
+
+* **DIST-974:** Mobile popover improvements ([#245](https://github.com/Typeform/embed/issues/245)) ([af919eb](https://github.com/Typeform/embed/commit/af919ebba3d27e09b0fe20f3a63930a90db46645))
+
 # [@typeform/embed-v1.5.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.4.0...@typeform/embed-v1.5.0) (2021-05-07)
 
 
