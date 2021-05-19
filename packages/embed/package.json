@@ -26,6 +26,7 @@
     "cy:visual": "yarn cypress run --spec e2e/spec/visual/**/* --browser chrome",
     "test:functional": "start-server-and-test demo 8080 cy:functional",
     "test:visual": "start-server-and-test demo 8080 cy:visual",
+    "release": "yarn semantic-release",
     "post-release": "yarn release:aws:prepare && yarn release:aws:deploy",
     "release:aws:prepare": "sh ./packages/embed/scripts/prepare-release.sh",
     "release:aws:deploy": "DEBUG=jarvis yarn run jarvis deploy --path ./packages/embed/build-aws --version next"
