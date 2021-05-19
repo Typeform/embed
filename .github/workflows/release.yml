@@ -60,23 +60,3 @@ jobs:
       - run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-  release_aws:
-    name: Release to AWS
-    runs-on: ubuntu-latest
-    needs: init
-    if: ${{ needs.init.outputs.skip == 'false' }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
-        with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      # Update registry before installing private package @typeform/jarvis. See CONTRIBUTING.md for more details.
-      - run: rm ./.npmrc
-      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
-      - run: npm config set @typeform:registry https://npm.pkg.github.com/
-      - run: yarn install
-      - run: yarn build
