@@ -55,7 +55,8 @@ jobs:
       - run: npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
       - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
       - run: npm config set @typeform:registry https://npm.pkg.github.com/ # install jarvis from github
-      - run: yarn add -W @typeform/jarvis
+      - run: yarn add  @typeform/jarvis
+      - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json (the file is committed by semantic-release to bump version)
       - run: npm config set @typeform:registry https://registry.npmjs.org/ # release embed lib to npm
       - run: yarn semantic-release
         env:
