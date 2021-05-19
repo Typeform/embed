@@ -1,3 +1,11 @@
+# [@typeform/embed-v1.6.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.5.1...@typeform/embed-v1.6.0) (2021-05-19)
+
+
+### Features
+
+* **DIST-752:** Add release script for embed package ([9af3120](https://github.com/Typeform/embed/commit/9af31206867c32cec8734731245e3c5c8fd3cc57))
+* **DIST-752:** Release to CDN on relevant changes only ([#243](https://github.com/Typeform/embed/issues/243)) ([b1633cc](https://github.com/Typeform/embed/commit/b1633cc032d2482ba73476defaa60bfee967ffd4))
+
 # [@typeform/embed-v1.5.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.5.0...@typeform/embed-v1.5.1) (2021-05-19)
 
 
