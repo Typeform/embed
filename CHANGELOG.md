@@ -1,3 +1,10 @@
+# [0.36.0](https://github.com/Typeform/embed/compare/v0.35.3...v0.36.0) (2021-05-19)
+
+
+### Features
+
+* **DIST-752:** Release v0 to CDN on relevant changes only ([#244](https://github.com/Typeform/embed/issues/244)) ([95b979f](https://github.com/Typeform/embed/commit/95b979f5a3c52b2eb4bcbab8f074c891607b72f6))
+
 ## [0.35.3](https://github.com/Typeform/embed/compare/v0.35.2...v0.35.3) (2021-04-22)
 
 
