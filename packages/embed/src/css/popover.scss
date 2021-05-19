@@ -1,6 +1,7 @@
 @import 'includes/spinner';
 @import 'includes/close';
 @import 'includes/iframe';
+@import 'includes/mobile';
 
 .typeform-popover {
   bottom: 96px;
@@ -77,6 +78,7 @@
     font-size: 14px;
     font-family: Helvetica, Arial, sans-serif;
     line-height: 22px;
+    word-break: break-all;
 
     &::before {
       background-color: #ffffff;
@@ -115,6 +117,57 @@
     }
   }
 }
+
 .typeform-spinner {
-  @include spinner();
+  @include spinner;
+}
+
+@include mobile {
+  .typeform-popover {
+    bottom: 68px;
+    right: 8px;
+    left: 8px;
+
+    &.open {
+      max-width: 100%;
+      min-width: calc(100% - 16px);
+    }
+
+    &-button {
+      width: 44px;
+      height: 44px;
+      right: 8px;
+      bottom: 8px;
+
+      &-icon {
+        font-size: 20px;
+
+        svg {
+          margin-top: 4px;
+        }
+
+        svg,
+        img {
+          max-height: 24px;
+          max-width: 24px;
+        }
+      }
+    }
+
+    &-tooltip {
+      position: fixed;
+      right: 66px;
+      bottom: 8px;
+      left: 8px;
+      font-size: 12px;
+
+      &::before {
+        bottom: 14px;
+      }
+    }
+  }
+
+  .typeform-spinner {
+    @include spinner($diameter: 32px);
+  }
 }

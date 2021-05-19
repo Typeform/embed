@@ -2,10 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Static HTML Demo</title>
     <style>
       #wrapper {
-        width: 600px;
+        max-width: 600px;
         height: 400px;
         margin: 0 auto;
       }
@@ -40,7 +41,12 @@
       <button data-tf-slider="moe6aa" data-tf-medium="demo-test" data-tf-chat>open slider</button>
     </p>
 
-    <div data-tf-popover="moe6aa" data-tf-medium="demo-test" data-tf-chat></div>
+    <div
+      data-tf-popover="moe6aa"
+      data-tf-medium="demo-test"
+      data-tf-chat
+      data-tf-tooltip="Reallylonglongwidetooltipwordfortestingthebreakwordbehaviour"
+    ></div>
 
     <div data-tf-sidetab="moe6aa" data-tf-medium="demo-test" data-tf-chat data-tf-button-text="open sidetab"></div>
 
