@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.6.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.6.0...@typeform/embed-v1.6.1) (2021-05-19)
+
+
+### Bug Fixes
+
+* **DIST-752:** Update AWS release script for embed package ([422b67c](https://github.com/Typeform/embed/commit/422b67ce7f8b5589544ade77133cd1e339a099ca))
+
 # [@typeform/embed-v1.6.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.5.1...@typeform/embed-v1.6.0) (2021-05-19)
 
 
