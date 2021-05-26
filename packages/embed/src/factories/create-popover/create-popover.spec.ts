@@ -4,8 +4,18 @@ import { createPopover, Popover } from './create-popover'
 
 let popover: Popover
 
+const mockedLocalStorage = (function () {
+  return {
+    getItem: jest.fn(),
+    setItem: jest.fn(),
+  }
+})()
+
 beforeEach(() => {
   jest.useFakeTimers()
+  Object.defineProperty(window, 'localStorage', {
+    value: mockedLocalStorage,
+  })
 })
 
 afterEach(() => {
@@ -122,6 +132,26 @@ describe('#createSidetab', () => {
         popover.open()
         jest.runAllTimers()
         expect(screen.queryByTestId('typeform-popover-tooltip')).toBeNull()
+      })
+    })
+
+    describe('#notificationDot', () => {
+      it('should render notificationDot', () => {
+        popover = createPopover('formId', { notificationDays: 1 })
+        expect(screen.getByTestId('typeform-popover-unread-dot')).toBeInTheDocument()
+      })
+
+      it('should hide notificationDot on form open', () => {
+        popover = createPopover('formId', { notificationDays: 2 })
+        fireEvent.click(screen.getByTestId('typeform-popover-button'))
+        jest.runAllTimers()
+        expect(screen.queryByTestId('typeform-popover-unread-dot')).toBeNull()
+      })
+
+      it('should store #notificationDot data in localStorage', () => {
+        popover = createPopover('formId', { notificationDays: 2 })
+        jest.runAllTimers()
+        expect(window.localStorage.setItem).toHaveBeenCalled()
       })
     })
   })
