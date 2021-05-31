@@ -73,5 +73,25 @@ describe('build-iframe-src', () => {
           '#foo=foo+value&bar=%40bar%26value%3F'
       )
     })
+
+    it('should disable tracking and submission on sandbox mode', () => {
+      const options = {
+        source: 'unit-test-source',
+        medium: 'unit-test-medium',
+        mediumVersion: 'unit-test-version',
+        enableSandbox: true,
+      }
+
+      expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toBe(
+        'https://form.typeform.com/to/some-id' +
+          '?typeform-embed-id=embed-id' +
+          '&typeform-embed=embed-widget' +
+          '&typeform-source=unit-test-source' +
+          '&typeform-medium=unit-test-medium' +
+          '&typeform-medium-version=unit-test-version' +
+          '&disable-tracking=true' +
+          '&__dangerous-disable-submissions=true'
+      )
+    })
   })
 })
