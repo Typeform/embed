@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.7.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.6.1...@typeform/embed-v1.7.0) (2021-05-31)
+
+
+### Features
+
+* **DIST-979:** Disable tracking in sandbox mode ([#251](https://github.com/Typeform/embed/issues/251)) ([56328e0](https://github.com/Typeform/embed/commit/56328e0f53a101b36d8694797d8142af74e23eb4))
+
 # [@typeform/embed-v1.6.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.6.0...@typeform/embed-v1.6.1) (2021-05-19)
 
 
