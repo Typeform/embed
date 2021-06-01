@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.8.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.8.1...@typeform/embed-v1.8.2) (2021-06-01)
+
+
+### Bug Fixes
+
+* **DIST-923:** Show notification dot in sandbox mode regardless of hide until time ([#254](https://github.com/Typeform/embed/issues/254)) ([66e9b49](https://github.com/Typeform/embed/commit/66e9b495bb9744a0a76293d7a031a8f91bc6d892))
+
 # [@typeform/embed-v1.8.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.8.0...@typeform/embed-v1.8.1) (2021-06-01)
 
 
