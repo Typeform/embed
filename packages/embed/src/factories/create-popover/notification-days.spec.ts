@@ -25,10 +25,6 @@ describe('notification-days', () => {
   })
 
   describe('#canBuildNotificationDot', () => {
-    it('should return false when the option is not enabled', () => {
-      expect(canBuildNotificationDot('myFormId', undefined)).toBe(false)
-    })
-
     it('should return true when "hide until time" is not set in local storage', () => {
       getItemMock.mockReturnValue(
         JSON.stringify({
@@ -37,7 +33,7 @@ describe('notification-days', () => {
           },
         })
       )
-      expect(canBuildNotificationDot('myFormId', 1)).toBe(true)
+      expect(canBuildNotificationDot('myFormId')).toBe(true)
     })
 
     it('should return true when "hide until time" is in local storage and in past and clear it', () => {
@@ -52,7 +48,7 @@ describe('notification-days', () => {
         })
       )
 
-      expect(canBuildNotificationDot('myFormId', 1)).toBe(true)
+      expect(canBuildNotificationDot('myFormId')).toBe(true)
       expect(setItemMock).toHaveBeenCalledWith('tfNotificationData', '{"otherFormId":{"hideUntilTime":0}}')
     })
 
@@ -65,7 +61,7 @@ describe('notification-days', () => {
         })
       )
 
-      expect(canBuildNotificationDot('myFormId', 1)).toBe(false)
+      expect(canBuildNotificationDot('myFormId')).toBe(false)
     })
   })
 })

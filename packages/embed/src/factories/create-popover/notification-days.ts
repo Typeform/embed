@@ -36,16 +36,14 @@ const clearNotificationDotHideUntilTime = (formId: string) => {
   saveToLocalStorage(data)
 }
 
-export const canBuildNotificationDot = (formId: string, days?: number) => {
-  if (days && days >= 0) {
-    const hideUntilTime = getNotificationDotHideUntilTime(formId)
-    const now = new Date().getTime()
-    if (now > hideUntilTime) {
-      if (hideUntilTime) {
-        clearNotificationDotHideUntilTime(formId)
-      }
-      return true
+export const canBuildNotificationDot = (formId: string) => {
+  const hideUntilTime = getNotificationDotHideUntilTime(formId)
+  const now = new Date().getTime()
+  if (now > hideUntilTime) {
+    if (hideUntilTime) {
+      clearNotificationDotHideUntilTime(formId)
     }
+    return true
   }
   return false
 }
