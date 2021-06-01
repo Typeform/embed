@@ -3,6 +3,11 @@
 @import 'includes/iframe';
 @import 'includes/mobile';
 
+@mixin closingAnimation {
+  transition: opacity 0.25s ease-in-out;
+  opacity: 0;
+}
+
 .typeform-popover {
   bottom: 96px;
   position: fixed;
@@ -47,7 +52,6 @@
     justify-content: center;
     cursor: pointer;
     background: #3a7685;
-    overflow: hidden;
     line-height: 0;
     border: none;
 
@@ -112,8 +116,21 @@
     }
 
     &.closing {
-      transition: opacity 0.25s ease-in-out;
-      opacity: 0;
+      @include closingAnimation;
+    }
+  }
+  &-unread-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #fa6b05;
+    border: 2px solid #fff;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+
+    &.closing {
+      @include closingAnimation;
     }
   }
 }

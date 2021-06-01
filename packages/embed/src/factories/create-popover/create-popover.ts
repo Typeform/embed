@@ -97,6 +97,47 @@ const buildTooltip = (message: string, hide: () => void) => {
   return container
 }
 
+const LOCAL_STORAGE_NOTIFICATION_DATA = 'tfNotificationData'
+
+type LocalStorageCUIData = {
+  formId: string
+  expireDate: number
+}
+const today = new Date().getTime()
+
+const getLocalStorageData = () => {
+  const data = localStorage.getItem(LOCAL_STORAGE_NOTIFICATION_DATA)
+  return data && JSON.parse(data)
+}
+
+function saveToLocalStorage(data: LocalStorageCUIData) {
+  data && localStorage.setItem(LOCAL_STORAGE_NOTIFICATION_DATA, JSON.stringify(data))
+}
+
+function canBuildNotificationDot(formId: string, days: number) {
+  const localStorageData = getLocalStorageData()
+  if (localStorageData && localStorageData.expireDate) {
+    return today > localStorageData.expireDate
+  }
+  const expireDate = new Date()
+  expireDate.setDate(expireDate.getDate() + days)
+
+  saveToLocalStorage({
+    formId,
+    expireDate: expireDate.getTime(),
+  })
+
+  return true
+}
+
+const buildNotificationDot = () => {
+  const dot = document.createElement('span')
+  dot.className = 'typeform-popover-unread-dot'
+  dot.dataset.testid = 'typeform-popover-unread-dot'
+
+  return dot
+}
+
 const defaultOptions = {
   buttonColor: '#3a7685',
 }
@@ -124,6 +165,8 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   button.append(icon)
 
   let tooltip: HTMLDivElement
+  let notificationDot: HTMLSpanElement
+
   const hideTooltip = () => {
     if (tooltip && tooltip.parentNode) {
       tooltip.classList.add('closing')
@@ -133,9 +176,28 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     }
   }
 
+  const hideNotificationDot = () => {
+    if (notificationDot) {
+      notificationDot.classList.add('closing')
+      setTimeout(() => {
+        notificationDot.remove()
+      }, 250)
+    }
+  }
+
   if (options.tooltip && options.tooltip.length > 0) {
     tooltip = buildTooltip(options.tooltip, hideTooltip)
     popover.append(tooltip)
+  }
+
+  if (options.notificationDays) {
+    const expireDate = new Date()
+    expireDate.setDate(expireDate.getDate() + options.notificationDays)
+
+    if (canBuildNotificationDot(formId, options.notificationDays)) {
+      notificationDot = buildNotificationDot()
+      button.append(notificationDot)
+    }
   }
 
   iframe.onload = () => {
@@ -147,6 +209,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   const open = () => {
     if (!isOpen(wrapper)) {
       hideTooltip()
+      hideNotificationDot()
       setTimeout(() => {
         popover.append(wrapper)
         wrapper.style.opacity = '0'

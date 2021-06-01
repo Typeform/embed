@@ -47,4 +47,10 @@ export type PopoverOptions = BaseOptions &
      * @type {string}
      */
     tooltip?: string
+    /**
+     * Unread notification on the chat button
+     *
+     * @type {number}
+     */
+    notificationDays?: number
   }

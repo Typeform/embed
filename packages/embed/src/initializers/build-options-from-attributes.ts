@@ -26,5 +26,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     position: 'string',
     enableSandbox: 'boolean',
     tooltip: 'string',
+    notificationDays: 'integer',
   })
 }
