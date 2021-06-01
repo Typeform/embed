@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.8.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.7.0...@typeform/embed-v1.8.0) (2021-06-01)
+
+
+### Features
+
+* **DIST-923:** Add notification dot to chat ([#248](https://github.com/Typeform/embed/issues/248)) ([0e660c7](https://github.com/Typeform/embed/commit/0e660c776aae89a96495158dcedab02884e9ab59))
+
 # [@typeform/embed-v1.7.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.6.1...@typeform/embed-v1.7.0) (2021-05-31)
 
 
