@@ -144,7 +144,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     if (notificationDot) {
       notificationDot.classList.add('closing')
 
-      if (options.notificationDays && options.notificationDays > 0) {
+      if (options.notificationDays && !options.enableSandbox) {
         saveNotificationDotHideUntilTime(formId, options.notificationDays)
       }
 
@@ -159,7 +159,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     popover.append(tooltip)
   }
 
-  if (canBuildNotificationDot(formId, options.notificationDays)) {
+  if (options.notificationDays && (options.enableSandbox || canBuildNotificationDot(formId))) {
     notificationDot = buildNotificationDot()
     button.append(notificationDot)
   }
