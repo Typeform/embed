@@ -4,12 +4,10 @@ import { createPopover, Popover } from './create-popover'
 
 let popover: Popover
 
-const mockedLocalStorage = (function () {
-  return {
-    getItem: jest.fn(),
-    setItem: jest.fn(),
-  }
-})()
+const mockedLocalStorage = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+}
 
 beforeEach(() => {
   jest.useFakeTimers()
