@@ -4,12 +4,14 @@ import { createPopover, Popover } from './create-popover'
 
 let popover: Popover
 
-const mockedLocalStorage = (function () {
-  return {
-    getItem: jest.fn(),
-    setItem: jest.fn(),
-  }
-})()
+const mockedLocalStorage = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+}
+
+beforeAll(() => {
+  jest.useFakeTimers('modern').setSystemTime(new Date('2021-06-01 00:00:00').getTime())
+})
 
 beforeEach(() => {
   jest.useFakeTimers()
@@ -20,12 +22,13 @@ beforeEach(() => {
 
 afterEach(() => {
   popover.unmount()
+  mockedLocalStorage.getItem.mockReset()
+  mockedLocalStorage.setItem.mockReset()
 })
 
 describe('#createSidetab', () => {
   describe('no params', () => {
     beforeEach(() => {
-      jest.useFakeTimers()
       popover = createPopover('formId')
     })
 
@@ -136,22 +139,32 @@ describe('#createSidetab', () => {
     })
 
     describe('#notificationDot', () => {
-      it('should render notificationDot', () => {
+      it('should render notification dot', () => {
         popover = createPopover('formId', { notificationDays: 1 })
         expect(screen.getByTestId('typeform-popover-unread-dot')).toBeInTheDocument()
       })
 
-      it('should hide notificationDot on form open', () => {
+      it('should hide notification dot on form open', () => {
         popover = createPopover('formId', { notificationDays: 2 })
         fireEvent.click(screen.getByTestId('typeform-popover-button'))
         jest.runAllTimers()
         expect(screen.queryByTestId('typeform-popover-unread-dot')).toBeNull()
       })
 
-      it('should store #notificationDot data in localStorage', () => {
+      it('should not store "hide until time" data in localStorage', () => {
         popover = createPopover('formId', { notificationDays: 2 })
         jest.runAllTimers()
-        expect(window.localStorage.setItem).toHaveBeenCalled()
+        expect(mockedLocalStorage.setItem).toHaveBeenCalledTimes(0)
+      })
+
+      it('should store "hide until time" data in localStorage on open', () => {
+        popover = createPopover('formId', { notificationDays: 2 })
+        popover.open()
+        jest.runAllTimers()
+        expect(mockedLocalStorage.setItem).toHaveBeenCalledWith(
+          'tfNotificationData',
+          `{"formId":{"hideUntilTime":${new Date('2021-06-03 00:00:00').getTime()}}}`
+        )
       })
     })
   })

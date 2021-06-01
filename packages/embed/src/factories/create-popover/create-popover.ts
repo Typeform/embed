@@ -2,6 +2,7 @@ import { createIframe, setElementSize } from '../../utils'
 import { handleCustomOpen } from '../../utils/create-custom-launch-options'
 
 import { PopoverOptions } from './popover-options'
+import { buildNotificationDot, canBuildNotificationDot, saveNotificationDotHideUntilTime } from './notification-days'
 
 export type Popover = {
   open: () => void
@@ -89,53 +90,16 @@ const buildTooltip = (message: string, hide: () => void) => {
   icon.innerHTML = '&times;'
   icon.onclick = hide
 
+  const textContainer = document.createElement('div')
+  textContainer.className = 'typeform-popover-tooltip-text'
+  textContainer.innerHTML = message
+
   const container = document.createElement('div')
   container.className = 'typeform-popover-tooltip'
-  container.innerHTML = message
   container.dataset.testid = 'typeform-popover-tooltip'
+  container.appendChild(textContainer)
   container.appendChild(icon)
   return container
-}
-
-const LOCAL_STORAGE_NOTIFICATION_DATA = 'tfNotificationData'
-
-type LocalStorageCUIData = {
-  formId: string
-  expireDate: number
-}
-const today = new Date().getTime()
-
-const getLocalStorageData = () => {
-  const data = localStorage.getItem(LOCAL_STORAGE_NOTIFICATION_DATA)
-  return data && JSON.parse(data)
-}
-
-function saveToLocalStorage(data: LocalStorageCUIData) {
-  data && localStorage.setItem(LOCAL_STORAGE_NOTIFICATION_DATA, JSON.stringify(data))
-}
-
-function canBuildNotificationDot(formId: string, days: number) {
-  const localStorageData = getLocalStorageData()
-  if (localStorageData && localStorageData.expireDate) {
-    return today > localStorageData.expireDate
-  }
-  const expireDate = new Date()
-  expireDate.setDate(expireDate.getDate() + days)
-
-  saveToLocalStorage({
-    formId,
-    expireDate: expireDate.getTime(),
-  })
-
-  return true
-}
-
-const buildNotificationDot = () => {
-  const dot = document.createElement('span')
-  dot.className = 'typeform-popover-unread-dot'
-  dot.dataset.testid = 'typeform-popover-unread-dot'
-
-  return dot
 }
 
 const defaultOptions = {
@@ -179,6 +143,11 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   const hideNotificationDot = () => {
     if (notificationDot) {
       notificationDot.classList.add('closing')
+
+      if (options.notificationDays && options.notificationDays > 0) {
+        saveNotificationDotHideUntilTime(formId, options.notificationDays)
+      }
+
       setTimeout(() => {
         notificationDot.remove()
       }, 250)
@@ -190,14 +159,9 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     popover.append(tooltip)
   }
 
-  if (options.notificationDays) {
-    const expireDate = new Date()
-    expireDate.setDate(expireDate.getDate() + options.notificationDays)
-
-    if (canBuildNotificationDot(formId, options.notificationDays)) {
-      notificationDot = buildNotificationDot()
-      button.append(notificationDot)
-    }
+  if (canBuildNotificationDot(formId, options.notificationDays)) {
+    notificationDot = buildNotificationDot()
+    button.append(notificationDot)
   }
 
   iframe.onload = () => {
