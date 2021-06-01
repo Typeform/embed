@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.8.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.8.0...@typeform/embed-v1.8.1) (2021-06-01)
+
+
+### Bug Fixes
+
+* **DIST-923:** Fix notification dot functionality ([#253](https://github.com/Typeform/embed/issues/253)) ([e67c1ca](https://github.com/Typeform/embed/commit/e67c1caa580745437bcbac845ecabddf01c1cbd6))
+
 # [@typeform/embed-v1.8.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.7.0...@typeform/embed-v1.8.0) (2021-06-01)
 
 
