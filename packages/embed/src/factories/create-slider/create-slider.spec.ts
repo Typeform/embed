@@ -25,6 +25,10 @@ describe('create-slider', () => {
         expect(containerAppendSpy).toHaveBeenCalledTimes(1)
       })
 
+      it('should disable the document scroll', () => {
+        expect(document.body.style.overflow).toBe('hidden')
+      })
+
       it('should render the slider from right', () => {
         const sliderElement = container.querySelector('.typeform-slider') as HTMLElement
         const wrapper = sliderElement.querySelector('.typeform-iframe-wrapper') as HTMLElement
@@ -68,6 +72,16 @@ describe('create-slider', () => {
         slider.close()
         jest.runAllTimers()
         expect(containerRemoveChildSpy).toHaveBeenCalledTimes(1)
+      })
+
+      it('should set back the initial scrollbar state', () => {
+        const scrollInitialState = document.body.style.overflow
+        const slider = createSlider('url', { container })
+        slider.open()
+        jest.runAllTimers()
+        slider.close()
+        jest.runAllTimers()
+        expect(document.body.style.overflow).toBe(scrollInitialState)
       })
     })
 

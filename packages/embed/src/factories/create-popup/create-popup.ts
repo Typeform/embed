@@ -65,6 +65,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
 
   const { width, height, size = POPUP_SIZE, ...options } = userOptions
   const iframe = createIframe(formId, 'popup', options)
+  const scrollInitialState = document.body.style.overflow
 
   const popup = buildPopup()
   const spinner = buildSpinner()
@@ -86,6 +87,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
   const open = () => {
     if (!isOpen(popup)) {
       container.append(popup)
+      document.body.style.overflow = 'hidden'
       setTimeout(() => {
         popup.style.opacity = '1'
       })
@@ -96,6 +98,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
     if (isOpen(popup)) {
       popup.style.opacity = '0'
       wrapper.style.opacity = '0'
+      document.body.style.overflow = scrollInitialState
       setTimeout(() => {
         popup.parentNode.removeChild(popup)
         spinner.style.display = 'block'
