@@ -74,8 +74,14 @@ describe('create-slider', () => {
         expect(containerRemoveChildSpy).toHaveBeenCalledTimes(1)
       })
 
-      it('should enable the document scroll', () => {
-        expect(document.body.style.overflow).toBe('initial')
+      it('should set back the initial scrollbar state', () => {
+        const scrollInitialState = document.body.style.overflow
+        const slider = createSlider('url', { container })
+        slider.open()
+        jest.runAllTimers()
+        slider.close()
+        jest.runAllTimers()
+        expect(document.body.style.overflow).toBe(scrollInitialState)
       })
     })
 
