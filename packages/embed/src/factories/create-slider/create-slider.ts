@@ -78,6 +78,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
   const open = () => {
     if (!isOpen(slider)) {
       container.append(slider)
+      document.body.style.overflow = 'hidden'
       setTimeout(() => {
         slider.style.opacity = '1'
       })
@@ -88,6 +89,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
     if (isOpen(slider)) {
       slider.style.opacity = '0'
       wrapper.style[position] = '-100%'
+      document.body.style.overflow = 'initial'
       setTimeout(() => {
         slider.parentNode.removeChild(slider)
         spinner.style.display = 'block'
