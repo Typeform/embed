@@ -86,6 +86,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
   const open = () => {
     if (!isOpen(popup)) {
       container.append(popup)
+      document.body.style.overflow = 'hidden'
       setTimeout(() => {
         popup.style.opacity = '1'
       })
@@ -96,6 +97,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
     if (isOpen(popup)) {
       popup.style.opacity = '0'
       wrapper.style.opacity = '0'
+      document.body.style.overflow = 'initial'
       setTimeout(() => {
         popup.parentNode.removeChild(popup)
         spinner.style.display = 'block'

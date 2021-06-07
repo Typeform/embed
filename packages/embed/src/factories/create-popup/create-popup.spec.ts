@@ -25,6 +25,10 @@ describe('create-popup', () => {
         expect(containerAppendSpy).toHaveBeenCalledTimes(1)
       })
 
+      it('should disable the document scroll', () => {
+        expect(document.body.style.overflow).toBe('hidden')
+      })
+
       it('should render the popup', () => {
         const popupElement = container.querySelector('.typeform-popup') as HTMLElement
         const wrapper = popupElement.querySelector('.typeform-iframe-wrapper') as HTMLElement
@@ -54,6 +58,10 @@ describe('create-popup', () => {
         popup.close()
         jest.runAllTimers()
         expect(containerRemoveChildSpy).toHaveBeenCalledTimes(1)
+      })
+
+      it('should enable the document scroll', () => {
+        expect(document.body.style.overflow).toBe('initial')
       })
     })
 
