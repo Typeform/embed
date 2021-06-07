@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.9.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.8.2...@typeform/embed-v1.9.0) (2021-06-07)
+
+
+### Features
+
+* **WEB-1974:** Disable scroll for popup and slider ([#257](https://github.com/Typeform/embed/issues/257)) ([e604c01](https://github.com/Typeform/embed/commit/e604c0130784ef797ac2277295ef5ba7912620c7))
+
 # [@typeform/embed-v1.8.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.8.1...@typeform/embed-v1.8.2) (2021-06-01)
 
 
