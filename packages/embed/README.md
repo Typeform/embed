@@ -22,7 +22,7 @@ createWidget('<form-id>', { container: document.querySelector('#form') })
 
 ### From CDN
 
-As HTML. CSS is imported automatically. Place this code where you want to display your form.
+As HTML, the CSS is imported automatically. Place this code where you want to display your form.
 
 ```html
 <div data-tf-widget="<form-id>"></div>
@@ -97,7 +97,7 @@ Or from admin panel URL:
 - set a boolean property to `true` by omitting attribute value, (eg. `<div ... data-tf-disable-footer></div>`
 - pass function name for callbacks, eg. `data-tf-on-ready="myReadyFunction"` if this function is available on global scope (eg. `window`)
 - to pass `string[]` use coma-separated string, eg. `transitiveSearchParams: ['foo', 'bar']` becomes `data-tf-transitive-search-params="foo,bar"`
-- to pass `object` pass coma-separated key=value pairs, eg. `hidden: { foo: "f", bar: "b" }` becomse `data-tf-hidden="foo=f,bar=b"`
+- to pass `object` pass coma-separated key=value pairs, eg. `hidden: { foo: "f", bar: "b" }` becomes `data-tf-hidden="foo=f,bar=b"`
 
 ### Custom Launch Options
 
@@ -109,7 +109,7 @@ Properties `open` and `openValue` apply only to embed types that are opened by u
 - when user tries to leave the page
   - `open: 'exit'`
   - `openValue` specify the sensitivity threshold
-  - To detect user is trying to exit the page we detect upwards mouse movement in top part of the website. The threshold defines height of this area. Usefull when you have navigation in top part of your website and mouse movement in that area does not necessarily indicate exit intent.
+  - To detect user is trying to exit the page we detect upwards mouse movement in top part of the website. The threshold defines height of this area. Useful when you have navigation in top part of your website and mouse movement in that area does not necessarily indicate exit intent.
 - when a user scrolls the page
   - `open: 'scroll'`
   - `openValue` percentage of page scrolled (0 - 100) to open the form
