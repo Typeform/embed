@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.9.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.9.1...@typeform/embed-v1.9.2) (2021-06-08)
+
+
+### Bug Fixes
+
+* Release package to both Github and npmjs ([a361fbc](https://github.com/Typeform/embed/commit/a361fbc03e4d4ed321f6cd1d31a2f1ea041330bb))
+
 # [@typeform/embed-v1.9.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.9.0...@typeform/embed-v1.9.1) (2021-06-08)
 
 
