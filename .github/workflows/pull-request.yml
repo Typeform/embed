@@ -20,42 +20,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
-        with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
+      - uses: bahmutov/npm-install@v1
       - run: yarn lint
   unit:
     name: Unit Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
-        with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
+      - uses: bahmutov/npm-install@v1
       - run: yarn test:unit
   functional:
     name: Functional Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
-        with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
+      - uses: bahmutov/npm-install@v1
       - run: yarn build
       - run: yarn ci:functional
   visual:
@@ -64,14 +43,7 @@ jobs:
     if: github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
-        with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
+      - uses: bahmutov/npm-install@v1
       - run: yarn build
       - run: yarn ci:visual
   deploy_preview:
@@ -81,18 +53,10 @@ jobs:
     needs: [lint, unit, functional, visual]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
-        with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      # Update registry before installing private package. See CONTRIBUTING.md for more details.
       - run: rm ./.npmrc
       - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
       - run: npm config set @typeform:registry https://npm.pkg.github.com/
-      - run: yarn install
+      - uses: bahmutov/npm-install@v1
       - run: yarn build
       - run: yarn add @typeform/jarvis@11.0.0
       - run: ./scripts/consolidate-dist.sh
