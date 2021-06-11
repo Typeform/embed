@@ -19,81 +19,169 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
         with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
+          node-version: 12
+
+      - name: Set GitHub packages registry
+        run: |
+          npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+          npm config set @typeform:registry https://npm.pkg.github.com/
+      - name: Get yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+
+      - name: Install Node.js dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
       - run: yarn lint
+
   unit:
     name: Unit Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
         with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
+          node-version: 12
+
+      - name: Set GitHub packages registry
+        run: |
+          npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+          npm config set @typeform:registry https://npm.pkg.github.com/
+      - name: Get yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+
+      - name: Install Node.js dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
       - run: yarn test:unit
+
   functional:
     name: Functional Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
         with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
+          node-version: 12
+
+      - name: Set GitHub packages registry
+        run: |
+          npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+          npm config set @typeform:registry https://npm.pkg.github.com/
+      - name: Get yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+
+      - name: Install Node.js dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
       - run: yarn build
-      - run: yarn ci:functional
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn serve-demo
+          wait-on: 'http://localhost:8080'
+          command: yarn test:functional
+
   visual:
     name: Visual Tests
     runs-on: ubuntu-latest
     if: github.event.pull_request.head.repo.full_name == github.repository
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
         with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
+          node-version: 12
+
+      - name: Set GitHub packages registry
+        run: |
+          npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+          npm config set @typeform:registry https://npm.pkg.github.com/
+      - name: Get yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+
+      - name: Install Node.js dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
       - run: yarn build
-      - run: yarn ci:visual
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn serve-demo
+          wait-on: 'http://localhost:8080'
+          command: yarn test:visual
+
   deploy_preview:
     name: Deploy Preview to AWS
     runs-on: ubuntu-latest
     if: github.event.pull_request.head.repo.full_name == github.repository
     needs: [lint, unit, functional, visual]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
         with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      # Update registry before installing private package. See CONTRIBUTING.md for more details.
+          node-version: 12
+
       - run: rm ./.npmrc
-      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
-      - run: npm config set @typeform:registry https://npm.pkg.github.com/
-      - run: yarn install
+
+      - name: Set GitHub packages registry
+        run: |
+          npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+          npm config set @typeform:registry https://npm.pkg.github.com/
+
+      - name: Get yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+
+      - name: Install Node.js dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
       - run: yarn build
-      - run: yarn add @typeform/jarvis@11.0.0
-      - run: ./scripts/consolidate-dist.sh
-      - run: DEBUG=jarvis yarn run jarvis deploy --path dist --preview --notify-preview
+
+      - name: Deploy with jarvis
+        run: |
+          yarn add @typeform/jarvis@11.0.0
+          ./scripts/consolidate-dist.sh
+          DEBUG=jarvis yarn run jarvis deploy --path dist --preview --notify-preview
