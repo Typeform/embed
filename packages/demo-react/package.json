@@ -17,5 +17,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@typeform/embed-react": "^1.0.3"
   }
 }

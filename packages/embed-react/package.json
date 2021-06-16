@@ -19,7 +19,7 @@
     "post-release": "echo 'there is no post-release action for embed-react'"
   },
   "dependencies": {
-    "@typeform/embed": "file:../embed"
+    "@typeform/embed": "^1.10.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0"
