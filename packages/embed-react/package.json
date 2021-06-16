@@ -16,7 +16,7 @@
     "coverage": "jest --coverage",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0",
     "release": "npm config set @typeform:registry https://registry.npmjs.org/ && yarn semantic-release",
-    "post-release": "echo 'there is no post-release action for embed-react"
+    "post-release": "echo 'there is no post-release action for embed-react'"
   },
   "dependencies": {
     "@typeform/embed": "file:../embed"
