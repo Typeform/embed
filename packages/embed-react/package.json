@@ -15,7 +15,7 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0",
-    "release": "yarn semantic-release"
+    "release": "npm config set @typeform:registry https://registry.npmjs.org/ && yarn semantic-release"
   },
   "dependencies": {
     "@typeform/embed": "file:../embed"
