@@ -22,10 +22,13 @@ jobs:
       skip: ${{ steps.ci-skip-step.outputs.ci-skip }}
       skip-not: ${{ steps.ci-skip-step.outputs.ci-skip-not }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out Git repository
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: mstachniuk/ci-skip@master
+
+      - name: Check if we should skip CI based on commit message
+        uses: mstachniuk/ci-skip@master
         id: ci-skip-step
         with:
           commit-filter: "[skip ci]"
@@ -35,23 +38,35 @@ jobs:
     needs: init
     if: ${{ needs.init.outputs.skip == 'false' }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out Git repository
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
           # Use custom token from repo secrets to allow semantic release to push commit:
           # https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/github-actions.md#pushing-packagejson-changes-to-a-master-branch
           persist-credentials: false
           token: ${{ secrets.GH_TOKEN }}
-      - uses: actions/setup-node@v1
-      - uses: actions/cache@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Get yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
         with:
           path: |
             **/node_modules
             ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install --frozen-lockfile
+          key: ${{ runner.os }}-node-12-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+
+      - name: Install Node.js dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
       - run: yarn lerna bootstrap
-      - run: yarn lerna run build
+      - run: yarn build
         env:
           NODE_ENV: "production"
       # Update registry and tokens with write access for releasing.
@@ -61,7 +76,7 @@ jobs:
       - run: npm config set @typeform:registry https://npm.pkg.github.com/ # install jarvis from github
       - run: yarn add -W @typeform/jarvis
       - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json (the file is committed by semantic-release to bump version)
-      - run: yarn lerna run release
+      - run: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - uses: ravsamhq/notify-slack-action@v1

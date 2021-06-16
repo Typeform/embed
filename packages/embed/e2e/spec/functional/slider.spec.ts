@@ -15,7 +15,7 @@ function testSlider(path: string, title: string) {
     })
 
     it('should open slider', () => {
-      cy.get('#button').click()
+      cy.get('button').first().click()
       cy.get('.typeform-slider').should('be.visible')
       cy.get('.typeform-slider iframe').invoke('attr', 'src').should('contain', 'form.typeform.com/to/')
     })

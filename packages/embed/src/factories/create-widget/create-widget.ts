@@ -1,16 +1,18 @@
-import { createIframe, hasDom } from '../../utils'
+import { createIframe, hasDom, unmountElement } from '../../utils'
 
 import { WidgetOptions } from './widget-options'
 import { buildWidget } from './elements'
 
 export type Widget = {
   refresh: () => void
+  unmount: () => void
 }
 
 export const createWidget = (formId: string, options: WidgetOptions): Widget => {
   if (!hasDom()) {
     return {
       refresh: () => {},
+      unmount: () => {},
     }
   }
 
@@ -22,5 +24,6 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
 
   return {
     refresh: () => iframe.contentWindow?.location.reload(),
+    unmount: () => unmountElement(widget),
   }
 }

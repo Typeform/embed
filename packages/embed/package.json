@@ -9,7 +9,7 @@
     "node": ">=10"
   },
   "scripts": {
-    "clean": "rm -rf ./build",
+    "clean": "rm -rf ./build ./build-aws ./types",
     "build": "yarn webpack",
     "postbuild": "tsc -p tsconfig.json --emitDeclarationOnly --declaration --declarationDir types --skipLibCheck",
     "dev": "yarn build --watch",

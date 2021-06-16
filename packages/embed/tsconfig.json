@@ -18,7 +18,7 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "typeRoots": ["./types", "./node_modules/@types"],
+    "typeRoots": ["./types", "./node_modules/@types", "../../node_modules/@types"],
     "types": ["@types/jest", "node"]
   },
   "include": ["src/**/*.ts"],

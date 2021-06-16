@@ -1,6 +1,7 @@
+import { createWidget, createPopup } from "@typeform/embed";
+
 import { makePage } from "./make-page";
 import { makeNavigation } from "./make-navigation";
-import { createWidget, createPopup } from "@typeform/embed";
 
 import "./style.css";
 import "@typeform/embed/build/css/popup.css";

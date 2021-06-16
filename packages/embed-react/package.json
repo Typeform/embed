@@ -1,22 +1,30 @@
 {
   "name": "@typeform/embed-react",
   "version": "1.0.0",
-  "private": true,
-  "main": "build/index.js",
+  "main": "./build/index.js",
+  "types": "./types/index.d.ts",
   "author": "Typeform",
   "license": "LGPL-3.0-only",
   "engines": {
     "node": ">=10"
   },
+  "scripts": {
+    "clean": "rm -rf ./build",
+    "build": "yarn webpack",
+    "dev": "yarn build --watch",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0",
+    "release": "yarn semantic-release"
+  },
   "dependencies": {
     "@typeform/embed": "file:../embed"
   },
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsc -w",
-    "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0"
-  },
   "peerDependencies": {
     "react": ">=16.8.0"
-  }
+  },
+  "files": [
+    "build",
+    "types"
+  ]
 }

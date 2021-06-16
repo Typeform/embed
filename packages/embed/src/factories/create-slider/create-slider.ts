@@ -1,6 +1,5 @@
-import { createIframe, hasDom, setElementSize } from '../../utils'
+import { createIframe, hasDom, setElementSize, handleCustomOpen, unmountElement } from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
-import { handleCustomOpen } from '../../utils/create-custom-launch-options'
 
 import { SliderOptions } from './slider-options'
 
@@ -9,6 +8,7 @@ export type Slider = {
   close: () => void
   toggle: () => void
   refresh: () => void
+  unmount: () => void
 }
 
 interface HTMLElementWithParentNode extends HTMLElement {
@@ -52,6 +52,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
       close: () => {},
       toggle: () => {},
       refresh: () => {},
+      unmount: () => {},
     }
   }
 
@@ -102,6 +103,10 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
     isOpen(slider) ? close() : open()
   }
 
+  const unmount = () => {
+    unmountElement(slider)
+  }
+
   wrapper.append(buildCloseButton(close))
 
   const refresh = () => {
@@ -117,5 +122,6 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
     close,
     toggle,
     refresh,
+    unmount,
   }
 }

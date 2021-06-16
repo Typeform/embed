@@ -1,34 +1,35 @@
 import Link from "next/link";
+import PropTypes from "prop-types";
 import "../styles/globals.css";
-import "@typeform/embed/build/css/popover.css";
-import "@typeform/embed/build/css/popup.css";
-import "@typeform/embed/build/css/slider.css";
-import "@typeform/embed/build/css/widget.css";
-import "@typeform/embed/build/css/sidetab.css";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <div className="menu">
         <Link href="/">
-          <a>widget</a>
+          <a href="/">widget</a>
         </Link>
         <Link href="/popup">
-          <a>popup</a>
+          <a href="/popup">popup</a>
         </Link>
         <Link href="/slider">
-          <a>slider</a>
+          <a href="/slider">slider</a>
         </Link>
         <Link href="/sidetab">
-          <a>sidetab</a>
+          <a href="/sidetab">sidetab</a>
         </Link>
         <Link href="/popover">
-          <a>popover</a>
+          <a href="/popover">popover</a>
         </Link>
       </div>
       <Component {...pageProps} />
     </>
   );
 }
+
+MyApp.propTypes = {
+  Component: PropTypes.any,
+  pageProps: PropTypes.any,
+};
 
 export default MyApp;

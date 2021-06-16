@@ -19,54 +19,85 @@ jobs:
     strategy:
       matrix:
         node_version:
-          - 10 # end of life 2021-04-30
           - 12 # end of life 2022-04-30
           - 14 # end of life 2023-04-30
-          - 15 # current
+          - 16 # end of life 2024-04-30
     name: build-lint-test - node ${{ matrix.node_version }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node_version }}
-      - uses: actions/cache@v2
+
+      - name: Get yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
         with:
           path: |
             **/node_modules
             ~/.cache
-          key: ${{ runner.os }}-node-${{ matrix.node_version }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install  --frozen-lockfile
-      - run: yarn lerna run build
-      - run: yarn lerna run lint
-      - run: yarn lerna run test
+          key: ${{ runner.os }}-node-${{ matrix.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+
+      - name: Install Node.js dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
+      - run: yarn build
+      - run: yarn lint
+      - run: yarn test
   functional:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
         with:
           node-version: 12
-      - uses: actions/cache@v2
+
+      - name: Get yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
         with:
           path: |
             **/node_modules
             ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install  --frozen-lockfile
-      - run: yarn lerna run test:functional
+          key: ${{ runner.os }}-node-12-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+
+      - name: Install Node.js dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
+      - run: yarn build
+      - run: yarn test:functional
   visual:
     runs-on: ubuntu-latest
     if: github.event.pull_request.head.repo.full_name == github.repository
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
         with:
           node-version: 12
-      - uses: actions/cache@v2
+
+      - name: Get yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
         with:
           path: |
             **/node_modules
             ~/.cache
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install  --frozen-lockfile
-      - run: yarn lerna run test:visual
+          key: ${{ runner.os }}-node-12-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+
+      - name: Install Node.js dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
+      - run: yarn build
+      - run: yarn test:visual

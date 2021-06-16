@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "sourceRoot": "src",
     "outDir": "build",
     "target": "es5",
     "module": "CommonJS",
@@ -21,8 +20,9 @@
     "esModuleInterop": true,
     "declaration": true,
     "declarationMap": true,
-    "typeRoots": [ "./types", "./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types", "../../node_modules/@types"],
+    "types": ["@types/jest", "node"]
   },
-  "exclude": ["src/*.spec.ts"],
-  "include": ["src/*.ts"]
+  "exclude": ["src/*.spec.ts*"],
+  "include": ["src/*.ts*"]
 }

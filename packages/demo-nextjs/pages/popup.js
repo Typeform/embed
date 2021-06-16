@@ -1,9 +1,17 @@
 import Head from "next/head";
-import { createPopup, createSlider } from "@typeform/embed";
+import { PopupButton } from "@typeform/embed-react";
 
-export default function Popup() {
-  const openPopup = () => {
-    createPopup("moe6aa", { medium: "demo-test", hidden: { foo: "foo value", bar: "bar value" } }).open();
+import Sparkle from "../components/sparkle";
+
+export default function PopupPage() {
+  const buttonStyle = {
+    padding: "10px 20px",
+    borderRadius: 10,
+    border: "none",
+    background: "navy",
+    color: "white",
+    fontSize: 16,
+    cursor: "pointer",
   };
 
   return (
@@ -17,12 +25,20 @@ export default function Popup() {
           This is an example <a href="https://nextjs.org">Next.js</a> app.
         </h1>
 
-        <p>Embed popup &lt;3 Next.js ✨</p>
+        <p>
+          Embed popup &lt;3 Next.js <Sparkle />
+        </p>
 
         <p>
-          <button id="button" onClick={openPopup}>
+          <PopupButton
+            id="moe6aa"
+            style={buttonStyle}
+            size={66}
+            medium="demo-test"
+            hidden={{ foo: "foo value", bar: "bar value" }}
+          >
             open popup
-          </button>
+          </PopupButton>
         </p>
       </main>
     </div>

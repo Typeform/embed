@@ -1,6 +1,5 @@
-import { createIframe, hasDom, isDefined, setElementSize } from '../../utils'
+import { createIframe, hasDom, isDefined, setElementSize, handleCustomOpen, unmountElement } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
-import { handleCustomOpen } from '../../utils/create-custom-launch-options'
 
 import { PopupOptions } from './popup-options'
 
@@ -9,6 +8,7 @@ export type Popup = {
   close: () => void
   toggle: () => void
   refresh: () => void
+  unmount: () => void
 }
 
 interface HTMLElementWithParentNode extends HTMLElement {
@@ -60,6 +60,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
       close: () => {},
       toggle: () => {},
       refresh: () => {},
+      unmount: () => {},
     }
   }
 
@@ -100,7 +101,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
       wrapper.style.opacity = '0'
       document.body.style.overflow = scrollInitialState
       setTimeout(() => {
-        popup.parentNode.removeChild(popup)
+        unmount()
         spinner.style.display = 'block'
       }, 250)
     }
@@ -116,6 +117,10 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
     iframe.contentWindow?.location.reload()
   }
 
+  const unmount = () => {
+    unmountElement(popup)
+  }
+
   if (options.open && !isOpen(popup)) {
     handleCustomOpen(open, options.open, options.openValue)
   }
@@ -125,5 +130,6 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
     close,
     toggle,
     refresh,
+    unmount,
   }
 }

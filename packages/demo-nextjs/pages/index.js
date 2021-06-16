@@ -1,25 +1,14 @@
 import Head from "next/head";
-import { useEffect, useRef } from "react";
-import { createWidget } from "@typeform/embed";
+import { Widget } from "@typeform/embed-react";
 
-export default function Home() {
-  const container = useRef();
+import Sparkle from "../components/sparkle";
 
+export default function HomePage() {
   const widgetContainerStyle = {
     width: 500,
     height: 400,
     margin: "20px auto",
   };
-
-  // this is not ideal and we recommend using embed-react lib once it is ready :)
-  useEffect(() => {
-    createWidget("moe6aa", {
-      container: container.current,
-      medium: "demo-test",
-      transitiveSearchParams: ["foo", "bar"],
-      hidden: { foo: "foo value", bar: "bar value" },
-    });
-  }, [container.current]);
 
   return (
     <div>
@@ -32,9 +21,17 @@ export default function Home() {
           This is an example <a href="https://nextjs.org">Next.js</a> app.
         </h1>
 
-        <p>Embed widget &lt;3 Next.js ✨</p>
+        <p>
+          Embed widget &lt;3 Next.js <Sparkle />
+        </p>
 
-        <div style={widgetContainerStyle} ref={container} />
+        <Widget
+          id="moe6aa"
+          style={widgetContainerStyle}
+          medium="demo-test"
+          hidden={{ foo: "foo value", bar: "bar value" }}
+          transitiveSearchParams={["foo", "bar"]}
+        />
       </main>
     </div>
   );

@@ -1,21 +1,9 @@
-import { useEffect } from "react";
 import Head from "next/head";
-import { createSidetab } from "@typeform/embed";
+import { Sidetab } from "@typeform/embed-react";
 
-export default function Sidetab() {
-  useEffect(() => {
-    const { unmount } = createSidetab("moe6aa", {
-      medium: "demo-test",
-      buttonText: "open sidetab",
-      hidden: {
-        foo: "foo value",
-        bar: "bar value",
-      },
-    });
+import Sparkle from "../components/sparkle";
 
-    return () => unmount();
-  }, []);
-
+export default function SidetabPage() {
   return (
     <div>
       <Head>
@@ -27,7 +15,16 @@ export default function Sidetab() {
           This is an example <a href="https://nextjs.org">Next.js</a> app.
         </h1>
 
-        <p>Embed slider &lt;3 Next.js ✨</p>
+        <p>
+          Embed slider &lt;3 Next.js <Sparkle />
+        </p>
+
+        <Sidetab
+          id="moe6aa"
+          medium="demo-test"
+          hidden={{ foo: "foo value", bar: "bar value" }}
+          buttonText="open sidetab"
+        />
       </main>
     </div>
   );

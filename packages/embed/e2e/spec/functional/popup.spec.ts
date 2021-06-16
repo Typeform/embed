@@ -15,7 +15,7 @@ function testPopup(path: string, title: string) {
     })
 
     it('should open popup', () => {
-      cy.get('#button').click()
+      cy.get('button').first().click()
       cy.get('.typeform-popup').should('be.visible')
       cy.get('.typeform-popup iframe').invoke('attr', 'src').should('contain', 'form.typeform.com/to/')
     })
