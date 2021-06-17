@@ -16,7 +16,7 @@ export default function SidetabPage() {
         </h1>
 
         <p>
-          Embed slider &lt;3 Next.js <Sparkle />
+          Embed sidetab &lt;3 Next.js <Sparkle />
         </p>
 
         <Sidetab

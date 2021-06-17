@@ -1,8 +1,6 @@
 # React App Demo
 
-Typeform can be embedded in React apps.
-
-Use [@typeform/embed-react](../embed-react) in React apps:
+Typeform can be embedded in React apps using [@typeform/embed-react](../embed-react):
 
 ```javascript
 import { Widget } from "@typeform/embed-react";
