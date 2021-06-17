@@ -1,6 +1,6 @@
 {
   "name": "@typeform/embed-react",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "main": "./build/index.js",
   "types": "./types/index.d.ts",
   "author": "Typeform",
@@ -15,10 +15,11 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0",
-    "release": "yarn semantic-release"
+    "release": "npm config set @typeform:registry https://registry.npmjs.org/ && yarn semantic-release",
+    "post-release": "echo 'there is no post-release action for embed-react'"
   },
   "dependencies": {
-    "@typeform/embed": "file:../embed"
+    "@typeform/embed": "^1.10.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0"
