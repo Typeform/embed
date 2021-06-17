@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.10.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.9.2...@typeform/embed-v1.10.0) (2021-06-16)
+
+
+### Features
+
+* **DIST-779:** React lib ([#242](https://github.com/Typeform/embed/issues/242)) ([976eaa9](https://github.com/Typeform/embed/commit/976eaa9d693dac9e6c2b1171d89024b49a62f78f))
+
 # [@typeform/embed-v1.9.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.9.1...@typeform/embed-v1.9.2) (2021-06-08)
 
 
