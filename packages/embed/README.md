@@ -6,10 +6,16 @@
 
 ### As NPM package
 
-Install:
+Install using your favourite package manager:
 
 ```shell
 yarn add @typeform/embed
+```
+
+or
+
+```shell
+npm install --save @typeform/embed
 ```
 
 Import the lib, CSS and create your embed:
