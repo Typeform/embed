@@ -6,5 +6,8 @@
     "start": "yarn next dev -p 8080",
     "lint": "yarn eslint --ignore-path ../../.gitignore .",
     "clean": "rm -rf ./.next"
+  },
+  "dependencies": {
+    "@typeform/embed-react": "^1.0.3"
   }
 }
