@@ -1,14 +1,14 @@
-import Head from "next/head";
-import { Widget } from "@typeform/embed-react";
+import Head from 'next/head'
+import { Widget } from '@typeform/embed-react'
 
-import Sparkle from "../components/sparkle";
+import Sparkle from '../components/sparkle'
 
 export default function HomePage() {
   const widgetContainerStyle = {
     width: 500,
     height: 400,
-    margin: "20px auto",
-  };
+    margin: '20px auto',
+  }
 
   return (
     <div>
@@ -29,10 +29,10 @@ export default function HomePage() {
           id="moe6aa"
           style={widgetContainerStyle}
           medium="demo-test"
-          hidden={{ foo: "foo value", bar: "bar value" }}
-          transitiveSearchParams={["foo", "bar"]}
+          hidden={{ foo: 'foo value', bar: 'bar value' }}
+          transitiveSearchParams={['foo', 'bar']}
         />
       </main>
     </div>
-  );
+  )
 }

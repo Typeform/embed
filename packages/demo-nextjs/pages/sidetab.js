@@ -1,7 +1,7 @@
-import Head from "next/head";
-import { Sidetab } from "@typeform/embed-react";
+import Head from 'next/head'
+import { Sidetab } from '@typeform/embed-react'
 
-import Sparkle from "../components/sparkle";
+import Sparkle from '../components/sparkle'
 
 export default function SidetabPage() {
   return (
@@ -22,10 +22,10 @@ export default function SidetabPage() {
         <Sidetab
           id="moe6aa"
           medium="demo-test"
-          hidden={{ foo: "foo value", bar: "bar value" }}
+          hidden={{ foo: 'foo value', bar: 'bar value' }}
           buttonText="open sidetab"
         />
       </main>
     </div>
-  );
+  )
 }

@@ -1,17 +1,17 @@
-import React from "react";
-import "./App.css";
-import { Widget, PopupButton, SliderButton, Popover, Sidetab } from "@typeform/embed-react";
+import React from 'react'
+import './App.css'
+import { Widget, PopupButton, SliderButton, Popover, Sidetab } from '@typeform/embed-react'
 
 const AtomIcon = () => (
   <span role="img" aria-label="atom">
     ⚛️
   </span>
-);
+)
 
 const handleOnReady = () => {
   // eslint-disable-next-line no-console
-  console.log("form ready");
-};
+  console.log('form ready')
+}
 
 function App() {
   return (
@@ -36,7 +36,7 @@ function App() {
       <div className="App-container">
         <Widget
           id="moe6aa"
-          style={{ margin: "0 auto", width: 500, height: 400 }}
+          style={{ margin: '0 auto', width: 500, height: 400 }}
           onReady={handleOnReady}
           enableSandbox
         />
@@ -44,7 +44,7 @@ function App() {
       <Popover id="moe6aa" tooltip="Hello there!<br/>General Kenobi" />
       <Sidetab id="moe6aa" buttonText="Open form" />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

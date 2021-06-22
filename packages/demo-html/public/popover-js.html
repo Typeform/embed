@@ -15,29 +15,29 @@
     </p>
     <script src="./lib/embed-next.js"></script>
     <script>
-      const { toggle, unmount: basicUnmount } = window.tf.createPopover("moe6aa", {
-        medium: "demo-test",
+      const { toggle, unmount: basicUnmount } = window.tf.createPopover('moe6aa', {
+        medium: 'demo-test',
         hidden: {
-          foo: "foo value",
-          bar: "bar value",
+          foo: 'foo value',
+          bar: 'bar value',
         },
-      });
+      })
 
-      document.getElementById("button").onclick = toggle;
+      document.getElementById('button').onclick = toggle
 
       const toggleCustomIcon = () => {
-        basicUnmount();
-        const { toggle } = window.tf.createPopover("moe6aa", {
-          medium: "demo-test",
+        basicUnmount()
+        const { toggle } = window.tf.createPopover('moe6aa', {
+          medium: 'demo-test',
           hidden: {
-            foo: "foo value",
-            bar: "bar value",
+            foo: 'foo value',
+            bar: 'bar value',
           },
-          customIcon: "https://images.typeform.com/images/dUMgPyHJHM4B",
-        });
-      };
+          customIcon: 'https://images.typeform.com/images/dUMgPyHJHM4B',
+        })
+      }
 
-      document.getElementById("button-custom-icon").onclick = toggleCustomIcon;
+      document.getElementById('button-custom-icon').onclick = toggleCustomIcon
     </script>
   </body>
 </html>

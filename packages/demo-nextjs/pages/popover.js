@@ -1,12 +1,12 @@
-import Head from "next/head";
-import { Popover } from "@typeform/embed-react";
+import Head from 'next/head'
+import { Popover } from '@typeform/embed-react'
 
-import Sparkle from "../components/sparkle";
+import Sparkle from '../components/sparkle'
 
 const handleOnReady = () => {
   // eslint-disable-next-line no-console
-  console.log("form ready");
-};
+  console.log('form ready')
+}
 
 export default function PopoverPage() {
   return (
@@ -28,9 +28,9 @@ export default function PopoverPage() {
           id="moe6aa"
           onReady={handleOnReady}
           medium="demo-test"
-          hidden={{ foo: "foo value", bar: "bar value" }}
+          hidden={{ foo: 'foo value', bar: 'bar value' }}
         />
       </main>
     </div>
-  );
+  )
 }
