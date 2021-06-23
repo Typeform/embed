@@ -59,23 +59,23 @@
     </form>
     <script src="../lib/embed-next.js"></script>
     <script>
-      const percent = parseInt(new URL(window.location.href).searchParams.get("percent"), 10);
+      const percent = parseInt(new URL(window.location.href).searchParams.get('percent'), 10)
       if (percent) {
-        document.getElementById("popover").dataset.tfCustomOpenValue = percent;
-        document.getElementById("threshold").value = percent;
+        document.getElementById('popover').dataset.tfCustomOpenValue = percent
+        document.getElementById('threshold').value = percent
       }
 
-      document.addEventListener("scroll", function () {
-        const offsetTop = window.pageYOffset || document.documentElement.scrollTop;
-        const clientTop = document.documentElement.clientTop || 0;
-        const scrollTopPixels = offsetTop - clientTop;
-        const pageHeight = document.documentElement.scrollHeight;
-        const scrollTopPercentage = (scrollTopPixels / pageHeight) * 100;
-        document.getElementById("scroll-pixels").innerHTML = scrollTopPixels;
-        document.getElementById("scroll-percentage").innerHTML = (Math.round(scrollTopPercentage * 100) / 100).toFixed(
+      document.addEventListener('scroll', function () {
+        const offsetTop = window.pageYOffset || document.documentElement.scrollTop
+        const clientTop = document.documentElement.clientTop || 0
+        const scrollTopPixels = offsetTop - clientTop
+        const pageHeight = document.documentElement.scrollHeight
+        const scrollTopPercentage = (scrollTopPixels / pageHeight) * 100
+        document.getElementById('scroll-pixels').innerHTML = scrollTopPixels
+        document.getElementById('scroll-percentage').innerHTML = (Math.round(scrollTopPercentage * 100) / 100).toFixed(
           2
-        );
-      });
+        )
+      })
     </script>
 
     <div class="lorem-ipsum">
