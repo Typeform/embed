@@ -139,10 +139,10 @@ You can listen to form events by providing callback methods:
     container: document.getElementById("wrapper"),
     onReady: () => {
       console.log('form ready')
-    }
+    },
     onQuestionChanged: (data) => {
       console.log('question changed to ref:', data.ref)
-    }
+    },
     onSubmit: (data) => {
       console.log('forms submitted with id:', data.responseId)
       // to retrieve the response use `data.responseId` (you have to do it server-side)
