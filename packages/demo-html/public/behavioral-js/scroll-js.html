@@ -37,33 +37,33 @@
 
     <script src="../lib/embed-next.js"></script>
     <script>
-      document.addEventListener("scroll", function () {
-        const offsetTop = window.pageYOffset || document.documentElement.scrollTop;
-        const clientTop = document.documentElement.clientTop || 0;
-        const scrollTopPixels = offsetTop - clientTop;
-        const pageHeight = document.documentElement.scrollHeight;
-        const scrollTopPercentage = (scrollTopPixels / pageHeight) * 100;
-        document.getElementById("scroll-pixels").innerHTML = scrollTopPixels;
-        document.getElementById("scroll-percentage").innerHTML = (Math.round(scrollTopPercentage * 100) / 100).toFixed(
+      document.addEventListener('scroll', function () {
+        const offsetTop = window.pageYOffset || document.documentElement.scrollTop
+        const clientTop = document.documentElement.clientTop || 0
+        const scrollTopPixels = offsetTop - clientTop
+        const pageHeight = document.documentElement.scrollHeight
+        const scrollTopPercentage = (scrollTopPixels / pageHeight) * 100
+        document.getElementById('scroll-pixels').innerHTML = scrollTopPixels
+        document.getElementById('scroll-percentage').innerHTML = (Math.round(scrollTopPercentage * 100) / 100).toFixed(
           2
-        );
-      });
+        )
+      })
       const percent =
-        parseInt(new URL(window.location.href).searchParams.get("percent"), 10) ||
-        document.getElementById("threshold").value;
+        parseInt(new URL(window.location.href).searchParams.get('percent'), 10) ||
+        document.getElementById('threshold').value
 
       if (percent) {
-        document.getElementById("threshold").value = percent;
-        document.getElementById("percent").innerHTML = percent;
-        document.getElementById("percent-title").innerHTML = percent;
+        document.getElementById('threshold').value = percent
+        document.getElementById('percent').innerHTML = percent
+        document.getElementById('percent-title').innerHTML = percent
       }
 
-      window.tf.createPopover("moe6aa", {
-        medium: "unit-test",
-        mode: "popover",
-        open: "scroll",
+      window.tf.createPopover('moe6aa', {
+        medium: 'unit-test',
+        mode: 'popover',
+        open: 'scroll',
         openValue: percent,
-      });
+      })
     </script>
 
     <div class="lorem-ipsum">
