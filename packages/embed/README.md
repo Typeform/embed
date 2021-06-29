@@ -136,7 +136,7 @@ You can listen to form events by providing callback methods:
 <link rel="stylesheet" href="//embed.typeform.com/next/css/widget.css" />
 <script>
   window.tf.createWidget('<form-id>', {
-    container: document.getElementById("wrapper"),
+    container: document.getElementById('wrapper'),
     onReady: () => {
       console.log('form ready')
     },
@@ -147,7 +147,7 @@ You can listen to form events by providing callback methods:
       console.log('forms submitted with id:', data.responseId)
       // to retrieve the response use `data.responseId` (you have to do it server-side)
       // more details: https://developer.typeform.com/responses/
-    }
+    },
   })
 </script>
 ```
