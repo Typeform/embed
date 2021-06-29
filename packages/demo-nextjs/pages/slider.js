@@ -1,18 +1,18 @@
-import Head from "next/head";
-import { SliderButton } from "@typeform/embed-react";
+import Head from 'next/head'
+import { SliderButton } from '@typeform/embed-react'
 
-import Sparkle from "../components/sparkle";
+import Sparkle from '../components/sparkle'
 
 export default function Slider() {
   const buttonStyle = {
-    padding: "10px 20px",
+    padding: '10px 20px',
     borderRadius: 4,
-    border: "none",
-    background: "lightgray",
-    color: "black",
+    border: 'none',
+    background: 'lightgray',
+    color: 'black',
     fontSize: 16,
-    cursor: "pointer",
-  };
+    cursor: 'pointer',
+  }
 
   return (
     <div>
@@ -34,7 +34,7 @@ export default function Slider() {
             id="moe6aa"
             style={buttonStyle}
             medium="demo-test"
-            hidden={{ foo: "foo value", bar: "bar value" }}
+            hidden={{ foo: 'foo value', bar: 'bar value' }}
           >
             open slider (right)
           </SliderButton>
@@ -47,5 +47,5 @@ export default function Slider() {
         </p>
       </main>
     </div>
-  );
+  )
 }

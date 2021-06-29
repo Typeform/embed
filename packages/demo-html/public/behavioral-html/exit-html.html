@@ -41,11 +41,11 @@
     </form>
     <script src="../lib/embed-next.js"></script>
     <script>
-      const threshold = parseInt(new URL(window.location.href).searchParams.get("threshold"), 10);
+      const threshold = parseInt(new URL(window.location.href).searchParams.get('threshold'), 10)
       if (threshold) {
-        document.getElementById("visual-threshold").style.height = threshold + "px";
-        document.getElementById("popup").dataset.tfOpenValue = threshold;
-        document.getElementById("threshold").value = threshold;
+        document.getElementById('visual-threshold').style.height = threshold + 'px'
+        document.getElementById('popup').dataset.tfOpenValue = threshold
+        document.getElementById('threshold').value = threshold
       }
     </script>
   </body>

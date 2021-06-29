@@ -6,7 +6,7 @@ This is a monorepo for all embed libraries.
 
 Pick a library you want to use:
 
-- [React Embed Library](./packages/embed-react) if you are building an app in React _(coming very soon)_
+- [React Embed Library](./packages/embed-react) if you are building an app in React **✨ NEW**
 - [Vanilla JavaScript Embed Library](./packages/embed) if you are not using React
 
 Support for other libraries coming later. [You can help us if you want 😉](#contribution)

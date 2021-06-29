@@ -6,8 +6,7 @@ on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
     branches:
-      - main 
-  
+      - main
 
 jobs:
   ci-standard-checks:
@@ -22,6 +21,6 @@ jobs:
       - name: CI Standard Checks
         uses: Typeform/ci-standard-checks@v1
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}        
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
           dockerUsername: ${{ secrets.GITLEAKS_DOCKER_USERNAME }}
           dockerPassword: ${{ secrets.GITLEAKS_DOCKER_PASSWORD }}
