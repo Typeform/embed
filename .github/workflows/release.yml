@@ -8,11 +8,11 @@ env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
-  AWS_ASSETS_BUCKET: "typeform-public-assets/embed"
-  PUBLIC_CDN_URL: "https://embed.typeform.com"
+  AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
+  PUBLIC_CDN_URL: 'https://embed.typeform.com'
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   SEGMENT_WRITE_KEY: ${{ secrets.DEPLOYMENT_SEGMENT_WRITE_KEY }}
-  AWS_CLOUDFRONT_DIST: "E3IUO95IYL1RI3"
+  AWS_CLOUDFRONT_DIST: 'E3IUO95IYL1RI3'
 
 jobs:
   init:
@@ -31,7 +31,7 @@ jobs:
         uses: mstachniuk/ci-skip@master
         id: ci-skip-step
         with:
-          commit-filter: "[skip ci]"
+          commit-filter: '[skip ci]'
   release:
     name: Release
     runs-on: ubuntu-latest
@@ -68,7 +68,7 @@ jobs:
       - run: yarn lerna bootstrap
       - run: yarn build
         env:
-          NODE_ENV: "production"
+          NODE_ENV: 'production'
       # Update registry and tokens with write access for releasing.
       - run: rm ./.npmrc
       - run: npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
@@ -83,6 +83,6 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
-          notify_when: "failure"
+          notify_when: 'failure'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.ACTION_MONITORING_SLACK }}

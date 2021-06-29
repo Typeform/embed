@@ -1,18 +1,18 @@
-import Head from "next/head";
-import { PopupButton } from "@typeform/embed-react";
+import Head from 'next/head'
+import { PopupButton } from '@typeform/embed-react'
 
-import Sparkle from "../components/sparkle";
+import Sparkle from '../components/sparkle'
 
 export default function PopupPage() {
   const buttonStyle = {
-    padding: "10px 20px",
+    padding: '10px 20px',
     borderRadius: 10,
-    border: "none",
-    background: "navy",
-    color: "white",
+    border: 'none',
+    background: 'navy',
+    color: 'white',
     fontSize: 16,
-    cursor: "pointer",
-  };
+    cursor: 'pointer',
+  }
 
   return (
     <div>
@@ -35,12 +35,12 @@ export default function PopupPage() {
             style={buttonStyle}
             size={66}
             medium="demo-test"
-            hidden={{ foo: "foo value", bar: "bar value" }}
+            hidden={{ foo: 'foo value', bar: 'bar value' }}
           >
             open popup
           </PopupButton>
         </p>
       </main>
     </div>
-  );
+  )
 }

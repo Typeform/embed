@@ -54,22 +54,22 @@
     <script src="./lib/embed-next.js"></script>
 
     <script>
-      const { toggle } = window.tf.createPopup("moe6aa", {
-        medium: "demo-test",
+      const { toggle } = window.tf.createPopup('moe6aa', {
+        medium: 'demo-test',
         chat: true,
         width: 400,
         height: 600,
         onReady: (data) => {
-          console.log("chat ready", data);
+          console.log('chat ready', data)
         },
         onSubmit: (data) => {
-          console.log("chat submitted", data);
+          console.log('chat submitted', data)
         },
         onQuestionChanged: (data) => {
-          console.log("chat question changed", data);
+          console.log('chat question changed', data)
         },
-      });
-      document.getElementById("button").onclick = toggle;
+      })
+      document.getElementById('button').onclick = toggle
     </script>
   </body>
 </html>

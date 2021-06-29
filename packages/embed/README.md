@@ -6,10 +6,16 @@
 
 ### As NPM package
 
-Install:
+Install using your favourite package manager:
 
 ```shell
 yarn add @typeform/embed
+```
+
+or
+
+```shell
+npm install --save @typeform/embed
 ```
 
 Import the lib, CSS and create your embed:
@@ -133,10 +139,10 @@ You can listen to form events by providing callback methods:
     container: document.getElementById("wrapper"),
     onReady: () => {
       console.log('form ready')
-    }
+    },
     onQuestionChanged: (data) => {
       console.log('question changed to ref:', data.ref)
-    }
+    },
     onSubmit: (data) => {
       console.log('forms submitted with id:', data.responseId)
       // to retrieve the response use `data.responseId` (you have to do it server-side)

@@ -27,11 +27,11 @@
     </form>
 
     <script>
-      const ms = parseInt(new URL(window.location.href).searchParams.get("ms"), 10);
+      const ms = parseInt(new URL(window.location.href).searchParams.get('ms'), 10)
       if (ms) {
-        document.getElementById("sidetab").dataset.tfOpenValue = ms;
-        document.getElementById("time").value = ms;
-        document.getElementById("seconds").innerHTML = Math.round(ms / 1000);
+        document.getElementById('sidetab').dataset.tfOpenValue = ms
+        document.getElementById('time').value = ms
+        document.getElementById('seconds').innerHTML = Math.round(ms / 1000)
       }
     </script>
 

@@ -1,35 +1,38 @@
-import Link from "next/link";
-import PropTypes from "prop-types";
-import "../styles/globals.css";
+import Link from 'next/link'
+import PropTypes from 'prop-types'
+import '../styles/globals.css'
+
+// import CSS for vanilla lib
+import '@typeform/embed/build/css/popup.css'
+import '@typeform/embed/build/css/widget.css'
 
 function MyApp({ Component, pageProps }) {
+  const links = {
+    '/': 'widget',
+    '/popup': 'popup',
+    '/slider': 'slider',
+    '/sidetab': 'sidetab',
+    '/popover': 'popover',
+    '/vanilla': 'vanilla library in react',
+  }
+
   return (
     <>
       <div className="menu">
-        <Link href="/">
-          <a href="/">widget</a>
-        </Link>
-        <Link href="/popup">
-          <a href="/popup">popup</a>
-        </Link>
-        <Link href="/slider">
-          <a href="/slider">slider</a>
-        </Link>
-        <Link href="/sidetab">
-          <a href="/sidetab">sidetab</a>
-        </Link>
-        <Link href="/popover">
-          <a href="/popover">popover</a>
-        </Link>
+        {Object.keys(links).map((path) => (
+          <Link key={path} href={path}>
+            <a href={path}>{links[path]}</a>
+          </Link>
+        ))}
       </div>
       <Component {...pageProps} />
     </>
-  );
+  )
 }
 
 MyApp.propTypes = {
   Component: PropTypes.any,
   pageProps: PropTypes.any,
-};
+}
 
-export default MyApp;
+export default MyApp
