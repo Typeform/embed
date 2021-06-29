@@ -37,4 +37,10 @@ describe('transferUrlParametersToQueryStrings', () => {
       'embed-hide-footer': true,
     })
   })
+
+  it('skip missing url params', () => {
+    const randomParameter = `random-${Math.random()}`
+    const queryStringWithTransferedUrlParameters = transferUrlParametersToQueryStrings([randomParameter, 'foo'], {})
+    expect(queryStringWithTransferedUrlParameters).toStrictEqual({ foo: 'jason' })
+  })
 })
