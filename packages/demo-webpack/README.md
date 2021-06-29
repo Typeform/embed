@@ -3,10 +3,10 @@
 If you use bundler such as webpack, you can include the embed library in your bundle:
 
 ```javascript
-import { createWidget } from "@typeform/embed";
-import "@typeform/embed/build/css/widget.css";
+import { createWidget } from '@typeform/embed'
+import '@typeform/embed/build/css/widget.css'
 
-createWidget("<form id>", { container: document.querySelector("#container") });
+createWidget('<form id>', { container: document.querySelector('#container') })
 ```
 
 ## Run demo locally

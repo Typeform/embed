@@ -10,13 +10,13 @@
     <button id="button">toggle</button>
     <script src="./lib/embed-next.js"></script>
     <script>
-      const { toggle } = window.tf.createPopup("moe6aa", {
-        medium: "demo-test",
-        hidden: { foo: "foo value", bar: "bar value" },
-      });
-      document.getElementById("button").onclick = function () {
-        toggle();
-      };
+      const { toggle } = window.tf.createPopup('moe6aa', {
+        medium: 'demo-test',
+        hidden: { foo: 'foo value', bar: 'bar value' },
+      })
+      document.getElementById('button').onclick = function () {
+        toggle()
+      }
     </script>
   </body>
 </html>

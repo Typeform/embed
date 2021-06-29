@@ -4,10 +4,16 @@ Embed library for [React](https://reactjs.org/).
 
 ## Installation
 
-Install as NPM package:
+Install as NPM package using your favourite package manager:
 
 ```shell
 yarn add @typeform/embed-react
+```
+
+or
+
+```shell
+npm install --save @typeform/embed-react
 ```
 
 ## Usage

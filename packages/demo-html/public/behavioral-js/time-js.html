@@ -19,17 +19,17 @@
     <script src="../lib/embed-next.js"></script>
     <script>
       const ms =
-        parseInt(new URL(window.location.href).searchParams.get("ms"), 10) || document.getElementById("time").value;
+        parseInt(new URL(window.location.href).searchParams.get('ms'), 10) || document.getElementById('time').value
 
       if (ms) {
-        document.getElementById("time").value = ms;
-        document.getElementById("seconds").innerHTML = Math.round(ms / 1000);
-        document.getElementById("seconds").innerHTML = Math.round(ms / 1000);
+        document.getElementById('time').value = ms
+        document.getElementById('seconds').innerHTML = Math.round(ms / 1000)
+        document.getElementById('seconds').innerHTML = Math.round(ms / 1000)
       }
-      window.tf.createSidetab("moe6aa", {
-        open: "time",
+      window.tf.createSidetab('moe6aa', {
+        open: 'time',
         openValue: ms,
-      });
+      })
     </script>
   </body>
 </html>

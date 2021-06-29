@@ -32,15 +32,16 @@
     <script src="../lib/embed-next.js"></script>
     <script>
       const threshold =
-        parseInt(new URL(window.location.href).searchParams.get("threshold"), 10) || document.getElementById("threshold").value;
+        parseInt(new URL(window.location.href).searchParams.get('threshold'), 10) ||
+        document.getElementById('threshold').value
       if (threshold) {
-        document.getElementById("threshold").value = threshold;
-        document.getElementById("visual-threshold").style.height = threshold + "px";
-        window.tf.createPopup("moe6aa", {
-          medium: "unit-test",
-          open: "exit",
+        document.getElementById('threshold').value = threshold
+        document.getElementById('visual-threshold').style.height = threshold + 'px'
+        window.tf.createPopup('moe6aa', {
+          medium: 'unit-test',
+          open: 'exit',
           openValue: threshold,
-        });
+        })
       }
     </script>
   </body>
