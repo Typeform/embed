@@ -60,7 +60,7 @@ const PlaceholderAnimationDisappear = keyframes`
   0% {
     opacity: 1;
   }
-  
+
   100% {
     opacity: 0;
   }
@@ -265,6 +265,7 @@ class Widget extends Component {
     if (enabledFullscreen) {
       inlineIframeUrl = updateQueryStringParameter('disable-tracking', 'true', inlineIframeUrl)
       inlineIframeUrl = updateQueryStringParameter('add-placeholder-ws', 'true', inlineIframeUrl)
+      inlineIframeUrl = updateQueryStringParameter('__dangerous-disable-submissions', 'true', inlineIframeUrl)
     }
 
     let fullscreenIframeUrl = updateQueryStringParameter('typeform-welcome', '0', url)
