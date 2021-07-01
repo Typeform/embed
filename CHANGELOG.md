@@ -1,3 +1,10 @@
+## [0.36.1](https://github.com/Typeform/embed/compare/v0.36.0...v0.36.1) (2021-07-01)
+
+
+### Bug Fixes
+
+* **#274:** Omit variables from transferableUrlParameters when not present in query string ([#277](https://github.com/Typeform/embed/issues/277)) ([22d27c1](https://github.com/Typeform/embed/commit/22d27c1c51b5d204ff438454ed2e1a908213ec08)), closes [#274](https://github.com/Typeform/embed/issues/274)
+
 # [0.36.0](https://github.com/Typeform/embed/compare/v0.35.3...v0.36.0) (2021-05-19)
 
 
