@@ -29,6 +29,16 @@ export const urls = [
     params: { mandarina: 'apple' },
     expected: 'https://url.com?mandarina=apple#naranja=yum',
   },
+  {
+    url: 'https://url.com#naranja=gracias',
+    params: { undefinedValue: undefined },
+    expected: 'https://url.com?undefinedValue=#naranja=gracias',
+  },
+  {
+    url: 'https://url.com#naranja=yummy',
+    params: { nullValue: null },
+    expected: 'https://url.com?nullValue=#naranja=yummy',
+  },
 ]
 
 export const userAgents = [
