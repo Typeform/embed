@@ -29,7 +29,9 @@ export const appendParamsToUrl = (url, params) => {
   const parameters = Object.assign({}, query, params)
 
   Object.keys(parameters).forEach((key) => {
-    queryParameters.push(`${encodeURIComponent(key)}=${encodeURIComponent(parameters[key])}`)
+    queryParameters.push(
+      `${encodeURIComponent(key)}=${parameters[key] == null ? '' : encodeURIComponent(parameters[key])}`
+    )
   })
 
   return `${origin}${path}?${queryParameters.join('&')}${hash}`

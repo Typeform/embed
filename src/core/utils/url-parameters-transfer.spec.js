@@ -37,4 +37,17 @@ describe('transferUrlParametersToQueryStrings', () => {
       'embed-hide-footer': true,
     })
   })
+
+  it('skip missing url params', () => {
+    const randomParameter = `random-${Math.random()}`
+    const queryStringWithTransferedUrlParameters = transferUrlParametersToQueryStrings([randomParameter, 'foo'], {})
+    expect(queryStringWithTransferedUrlParameters).toStrictEqual({ foo: 'jason' })
+  })
+
+  it('ensure empty url params are accepted', () => {
+    window.location = { search: '?empty-param=&filled=value' }
+    const urlParameters = ['empty-param', 'filled']
+    const queryStringWithTransferedUrlParameters = transferUrlParametersToQueryStrings(urlParameters, {})
+    expect(queryStringWithTransferedUrlParameters).toStrictEqual({ 'empty-param': '', filled: 'value' })
+  })
 })
