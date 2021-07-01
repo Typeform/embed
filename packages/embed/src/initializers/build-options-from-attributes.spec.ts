@@ -19,6 +19,7 @@ describe('build-options-from-attributes', () => {
         data-tf-open-value="3000"
         data-tf-hidden="foo=foo value,bar=some bar value"
         data-tf-chat
+        data-tf-share-ga-instance
       ></div>`
 
     it('should load correct options', () => {
@@ -48,6 +49,7 @@ describe('build-options-from-attributes', () => {
           bar: 'some bar value',
         },
         chat: true,
+        shareGaInstance: true,
       })
     })
   })

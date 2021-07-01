@@ -96,6 +96,7 @@ Or from admin panel URL:
 | onReady                | function    | fires when the form is loaded                                                                                              | `undefined`                                                   |
 | onSubmit               | function    | fires when user submits the form                                                                                           | `undefined`                                                   |
 | onQuestionChanged      | function    | fires when user navigates between form questions                                                                           | `undefined`                                                   |
+| shareGaInstance        | function    | shares Google Analytics instance of the host page with embedded typeform                                                   | `false`                                                       |
 
 ### Options in plain HTML embed
 

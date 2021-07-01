@@ -1,7 +1,9 @@
-import { ActionableOptions } from '../../base'
+import { ActionableOptions, UrlOptions } from '../../base'
 
-export const getFormReadyHandler = (embedId: string, options: ActionableOptions) => {
-  return getFormEventHandler('form-ready', embedId, options.onReady)
+export interface FormReadyOptionTypes extends ActionableOptions, UrlOptions {}
+
+export const getFormReadyHandler = (embedId: string, callback?: () => void) => {
+  return getFormEventHandler('form-ready', embedId, callback)
 }
 
 export const getFormQuestionChangedHandler = (embedId: string, options: ActionableOptions) => {
