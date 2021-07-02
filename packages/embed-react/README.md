@@ -93,3 +93,39 @@ You can find examples for specific use-cases with React in our demos:
 
 - [React demo](../../packages/demo-react)
 - [Next.js demo](../../packages/demo-nextjs)
+
+## Local setup and development
+
+[Fork and clone](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) this Github repo: https://github.com/Typeform/embed
+
+Requirements:
+
+- node >= 12
+- yarn
+
+Install dependencies:
+
+```bash
+yarn
+```
+
+We recommend you work in a branch:
+
+```bash
+git checkout -b cool-new-feature
+```
+
+Build and watch for changes:
+
+```bash
+yarn dev # in this package
+yarn dev # in embed package if you are working on it too
+```
+
+Run unit tests:
+
+```bash
+yarn test
+```
+
+See details on [contributing to this repo](https://github.com/Typeform/embed#contribution).

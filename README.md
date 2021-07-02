@@ -28,15 +28,17 @@ Do you need a specific feature in embed library? Do you think others might benef
 
 [Fork and clone](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) this Github repo: https://github.com/Typeform/embed
 
-Submit your changes [through a pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) to this repo.
+We recommend you to [open an issue first](https://github.com/Typeform/embed/issues) and discuss your proposed change. Then you can submit your changes [through a pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) to this repo.
 
 Before you do, make sure your code works on your local machine:
 
 ```bash
 yarn install
-yarn lerna run build
-yarn lerna run lint
-yarn lerna run test:functional
+yarn build
+yarn lint
+yarn test
+yarn test:functional
+yarn test:visual
 ```
 
 For details see README for specific library.
