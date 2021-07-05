@@ -28,5 +28,10 @@
   "files": [
     "build",
     "types"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Typeform/embed.git",
+    "directory": "packages/embed-react"
+  }
 }
