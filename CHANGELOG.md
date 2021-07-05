@@ -1,3 +1,10 @@
+## [0.36.2](https://github.com/Typeform/embed/compare/v0.36.1...v0.36.2) (2021-07-05)
+
+
+### Bug Fixes
+
+* **DIST-1042:** Add disable submission to fake welcome screen on mobile ([#278](https://github.com/Typeform/embed/issues/278)) ([8c50eca](https://github.com/Typeform/embed/commit/8c50ecaad8786681e1247a55e8c0e1b91df1ca70))
+
 ## [0.36.1](https://github.com/Typeform/embed/compare/v0.36.0...v0.36.1) (2021-07-01)
 
 
