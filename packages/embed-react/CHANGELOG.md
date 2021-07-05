@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v1.0.7](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.0.6...@typeform/embed-react-v1.0.7) (2021-07-05)
+
+
+### Bug Fixes
+
+* **DIST-1066:** Github deploy ([#283](https://github.com/Typeform/embed/issues/283)) ([1f1c223](https://github.com/Typeform/embed/commit/1f1c2239b33da7e318578578dbaef40639a5f29c))
+
 # [@typeform/embed-react-v1.0.6](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.0.5...@typeform/embed-react-v1.0.6) (2021-07-02)
 
 
