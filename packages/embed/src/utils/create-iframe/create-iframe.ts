@@ -14,11 +14,11 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
   iframe.dataset.testid = 'iframe'
   iframe.addEventListener('load', triggerIframeRedraw, { once: true })
 
-  window.addEventListener('message', getFormReadyHandler(embedId, options))
-  window.addEventListener('message', getFormQuestionChangedHandler(embedId, options))
-  window.addEventListener('message', getFormSubmitHandler(embedId, options))
+  window.addEventListener('message', getFormReadyHandler(embedId, options.onReady))
+  window.addEventListener('message', getFormQuestionChangedHandler(embedId, options.onQuestionChanged))
+  window.addEventListener('message', getFormSubmitHandler(embedId, options.onSubmit))
 
-  return iframe
+  return { iframe, embedId }
 }
 
 type CreateIframeOptions = UrlOptions & ActionableOptions

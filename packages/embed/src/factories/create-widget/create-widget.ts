@@ -16,7 +16,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     }
   }
 
-  const iframe = createIframe(formId, 'widget', options)
+  const { iframe } = createIframe(formId, 'widget', options)
   const widget = buildWidget(iframe, options.width, options.height)
 
   options.container.innerHTML = ''

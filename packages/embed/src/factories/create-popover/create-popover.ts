@@ -1,4 +1,4 @@
-import { createIframe, setElementSize, handleCustomOpen, unmountElement } from '../../utils'
+import { createIframe, setElementSize, handleCustomOpen, unmountElement, setAutoClose } from '../../utils'
 
 import { PopoverOptions } from './popover-options'
 import { buildNotificationDot, canBuildNotificationDot, saveNotificationDotHideUntilTime } from './notification-days'
@@ -107,7 +107,7 @@ const defaultOptions = {
 
 export const createPopover = (formId: string, userOptions: PopoverOptions = {}): Popover => {
   const options = { ...defaultOptions, ...userOptions }
-  const iframe = createIframe(formId, 'popover', options)
+  const { iframe, embedId } = createIframe(formId, 'popover', options)
 
   const popover = buildPopover(options.width, options.height)
   const wrapper = buildWrapper()
@@ -186,6 +186,8 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
       }, 250)
     }
   }
+
+  setAutoClose(embedId, options.autoClose, close)
 
   const toggle = () => {
     isOpen(wrapper) ? close() : open()
