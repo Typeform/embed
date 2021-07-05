@@ -83,6 +83,7 @@ describe('Widget', () => {
       expect(wrapper.find(Iframe)).toHaveLength(1)
       expect(wrapper.find(Iframe).props().src.includes('disable-tracking=true')).toBe(true)
       expect(wrapper.find(Iframe).props().src.includes('add-placeholder-ws=true')).toBe(true)
+      expect(wrapper.find(Iframe).props().src.includes('__dangerous-disable-submissions=true')).toBe(true)
     })
 
     it('renders a second iframe after the welcome-screen-hidden event', () => {
@@ -99,6 +100,9 @@ describe('Widget', () => {
       modal = wrapper.find(MobileModal)
       expect(wrapper.find(MobileModal).props().url.includes('typeform-welcome=0')).toBe(true)
       expect(wrapper.find(MobileModal).props().open).toBe(true)
+      expect(wrapper.find(MobileModal).find(Iframe).props().src.includes('__dangerous-disable-submissions=true')).toBe(
+        false
+      )
     })
   })
 })
