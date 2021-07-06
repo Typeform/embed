@@ -27,5 +27,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     enableSandbox: 'boolean',
     tooltip: 'string',
     notificationDays: 'integer',
+    shareGaInstance: 'boolean',
   })
 }
