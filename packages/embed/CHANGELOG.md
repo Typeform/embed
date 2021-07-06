@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.11.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.10.1...@typeform/embed-v1.11.0) (2021-07-06)
+
+
+### Features
+
+* **DIST-704:** Add shareGoogleAnalyticsInstance option ([#279](https://github.com/Typeform/embed/issues/279)) ([1f1e48f](https://github.com/Typeform/embed/commit/1f1e48f14023df2fc19c3476520b5482dc182d5e))
+
 # [@typeform/embed-v1.10.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.10.0...@typeform/embed-v1.10.1) (2021-07-02)
 
 
