@@ -28,5 +28,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     tooltip: 'string',
     notificationDays: 'integer',
     autoClose: 'integerOrBoolean',
+    shareGaInstance: 'boolean',
   })
 }
