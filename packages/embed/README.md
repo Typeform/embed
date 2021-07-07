@@ -160,7 +160,7 @@ Callback method receive payload object from the form:
   - empty object
 - onQuestionChanged
   - `ref` (string) identifies currenttly displayed question
-- onReady
+- onSubmit
   - `responseId` (string) identifies the response, can be retrieved via [Responses API](https://developer.typeform.com/responses/)
   - `response_id` (string) same as above (for backward comaptibility with old embed SDK)
 
