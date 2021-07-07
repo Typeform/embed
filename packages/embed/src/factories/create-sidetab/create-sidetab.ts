@@ -1,4 +1,4 @@
-import { createIframe, setElementSize, handleCustomOpen, unmountElement } from '../../utils'
+import { createIframe, setElementSize, handleCustomOpen, unmountElement, setAutoClose } from '../../utils'
 
 import { SidetabOptions } from './sidetab-options'
 
@@ -89,7 +89,7 @@ const replaceElementChild = (childToReplace: HTMLElement, newChild: HTMLElement)
 
 export const createSidetab = (formId: string, userOptions: SidetabOptions = {}): Sidetab => {
   const options = { ...defaultOptions, ...userOptions }
-  const iframe = createIframe(formId, 'side-tab', options)
+  const { iframe, embedId } = createIframe(formId, 'side-tab', options)
 
   const sidetab = buildSidetab(options.width, options.height)
   const wrapper = buildWrapper()
@@ -132,6 +132,8 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
       }, 250)
     }
   }
+
+  setAutoClose(embedId, options.autoClose, close)
 
   const toggle = () => {
     isOpen(wrapper) ? close() : open()

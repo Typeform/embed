@@ -1,4 +1,4 @@
-import { createIframe, hasDom, setElementSize, handleCustomOpen, unmountElement } from '../../utils'
+import { createIframe, hasDom, setElementSize, handleCustomOpen, unmountElement, setAutoClose } from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
 
 import { SliderOptions } from './slider-options'
@@ -57,7 +57,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
   }
 
   const { position = SLIDER_POSITION, width = SLIDER_WIDTH, ...options } = userOptions
-  const iframe = createIframe(formId, 'slider', options)
+  const { iframe, embedId } = createIframe(formId, 'slider', options)
   const scrollInitialState = document.body.style.overflow
 
   const slider = buildSlider(position)
@@ -98,6 +98,8 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
       }, 500)
     }
   }
+
+  setAutoClose(embedId, options.autoClose, close)
 
   const toggle = () => {
     isOpen(slider) ? close() : open()

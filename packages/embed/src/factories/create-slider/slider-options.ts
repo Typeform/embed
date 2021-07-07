@@ -12,7 +12,7 @@ export type SliderOptions = BaseOptions &
      */
     position?: 'right' | 'left'
     /**
-     * Time until the embedded typeform will automatically close after a respondent clicks the Submit button. The default time is 5 seconds. PRO+ users can change the autoClose time.
+     * Time (ms) until the embedded typeform will automatically close after a respondent clicks the Submit button.
      *
      * @type {number}
      */

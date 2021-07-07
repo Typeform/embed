@@ -23,4 +23,10 @@ export type SidetabOptions = BaseOptions &
      * @type {string}
      */
     customIcon?: string
+    /**
+     * Time (ms) until the embedded typeform will automatically close after a respondent clicks the Submit button.
+     *
+     * @type {number}
+     */
+    autoClose?: number
   }

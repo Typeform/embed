@@ -122,6 +122,24 @@ describe('load-options-from-attributes', () => {
     })
   })
 
+  describe('to integerOrBoolean', () => {
+    it('should return an integer if value is provided', () => {
+      expect(transformAttributeValue('1000', 'integerOrBoolean')).toEqual(1000)
+    })
+
+    it('should return an integer if value is zero', () => {
+      expect(transformAttributeValue('0', 'integerOrBoolean')).toEqual(0)
+    })
+
+    it('should return true if empty string is provided', () => {
+      expect(transformAttributeValue('', 'integerOrBoolean')).toEqual(true)
+    })
+
+    it('should return false if no value is provided', () => {
+      expect(transformAttributeValue(null, 'integerOrBoolean')).toEqual(false)
+    })
+  })
+
   describe('#loadOptionsFromAttributes', () => {
     const wrapper = document.createElement('div')
     wrapper.innerHTML = `<div id="element"
