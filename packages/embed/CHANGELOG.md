@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.12.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.11.0...@typeform/embed-v1.12.0) (2021-07-07)
+
+
+### Features
+
+* **DIST-1002:** Auto close ([#285](https://github.com/Typeform/embed/issues/285)) ([fd3fbc8](https://github.com/Typeform/embed/commit/fd3fbc884611e9de68c6dd5771eb4c36e4fd5e89))
+
 # [@typeform/embed-v1.11.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.10.1...@typeform/embed-v1.11.0) (2021-07-06)
 
 
