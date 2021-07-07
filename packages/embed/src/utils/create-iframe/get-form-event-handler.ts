@@ -1,20 +1,18 @@
-import { ActionableOptions, UrlOptions } from '../../base'
+type callbackFn = (ev?: any) => void
 
-export interface FormReadyOptionTypes extends ActionableOptions, UrlOptions {}
-
-export const getFormReadyHandler = (embedId: string, callback?: () => void) => {
+export const getFormReadyHandler = (embedId: string, callback?: callbackFn) => {
   return getFormEventHandler('form-ready', embedId, callback)
 }
 
-export const getFormQuestionChangedHandler = (embedId: string, options: ActionableOptions) => {
-  return getFormEventHandler('form-screen-changed', embedId, options.onQuestionChanged)
+export const getFormQuestionChangedHandler = (embedId: string, callback?: callbackFn) => {
+  return getFormEventHandler('form-screen-changed', embedId, callback)
 }
 
-export const getFormSubmitHandler = (embedId: string, options: ActionableOptions) => {
-  return getFormEventHandler('form-submit', embedId, options.onSubmit)
+export const getFormSubmitHandler = (embedId: string, callback?: callbackFn) => {
+  return getFormEventHandler('form-submit', embedId, callback)
 }
 
-export function getFormEventHandler(eventType: string, expectedEmbedId: string, callback?: (ev: any) => void) {
+export function getFormEventHandler(eventType: string, expectedEmbedId: string, callback?: callbackFn) {
   return (event: any) => {
     const { type, embedId, ...data } = event.data
     if (type !== eventType) {

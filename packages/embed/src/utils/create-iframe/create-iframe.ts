@@ -16,10 +16,9 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
   iframe.addEventListener('load', triggerIframeRedraw, { once: true })
 
   window.addEventListener('message', getFormReadyHandler(embedId, options.onReady))
-  window.addEventListener('message', getFormQuestionChangedHandler(embedId, options))
-  window.addEventListener('message', getFormSubmitHandler(embedId, options))
+  window.addEventListener('message', getFormQuestionChangedHandler(embedId, options.onQuestionChanged))
+  window.addEventListener('message', getFormSubmitHandler(embedId, options.onSubmit))
 
-  // Get GA instance
   if (options.shareGaInstance) {
     window.addEventListener(
       'message',
@@ -28,7 +27,8 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
       })
     )
   }
-  return iframe
+
+  return { iframe, embedId }
 }
 
 type CreateIframeOptions = UrlOptions & ActionableOptions

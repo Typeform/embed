@@ -1,4 +1,12 @@
-import { createIframe, hasDom, isDefined, setElementSize, handleCustomOpen, unmountElement } from '../../utils'
+import {
+  createIframe,
+  hasDom,
+  isDefined,
+  setElementSize,
+  handleCustomOpen,
+  unmountElement,
+  setAutoClose,
+} from '../../utils'
 import { POPUP_SIZE } from '../../constants'
 
 import { PopupOptions } from './popup-options'
@@ -65,7 +73,8 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
   }
 
   const { width, height, size = POPUP_SIZE, ...options } = userOptions
-  const iframe = createIframe(formId, 'popup', options)
+
+  const { iframe, embedId } = createIframe(formId, 'popup', options)
   const scrollInitialState = document.body.style.overflow
 
   const popup = buildPopup()
@@ -107,11 +116,13 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
     }
   }
 
+  wrapper.append(buildCloseButton(close))
+
+  setAutoClose(embedId, options.autoClose, close)
+
   const toggle = () => {
     isOpen(popup) ? close() : open()
   }
-
-  wrapper.append(buildCloseButton(close))
 
   const refresh = () => {
     iframe.contentWindow?.location.reload()

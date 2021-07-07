@@ -95,9 +95,11 @@ describe('create-popup', () => {
     describe('#refresh', () => {
       const iframeReloadSpy = jest.fn()
       const iframeMock = {
-        contentWindow: {
-          location: {
-            reload: iframeReloadSpy,
+        iframe: {
+          contentWindow: {
+            location: {
+              reload: iframeReloadSpy,
+            },
           },
         },
       }
