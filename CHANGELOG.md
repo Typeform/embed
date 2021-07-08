@@ -1,3 +1,10 @@
+## [0.36.3](https://github.com/Typeform/embed/compare/v0.36.2...v0.36.3) (2021-07-08)
+
+
+### Bug Fixes
+
+* **DIST-1042:** Allow embedding inline widget on mobile ([#290](https://github.com/Typeform/embed/issues/290)) ([d81c9d6](https://github.com/Typeform/embed/commit/d81c9d60cdecabbb38f26ffca439aca80f9bbb1b))
+
 ## [0.36.2](https://github.com/Typeform/embed/compare/v0.36.1...v0.36.2) (2021-07-05)
 
 
