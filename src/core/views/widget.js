@@ -261,7 +261,7 @@ class Widget extends Component {
 
     let inlineIframeUrl = updateQueryStringParameter('typeform-embed-id', this.embedId, url)
 
-    if (enabledFullscreen) {
+    if (enabledFullscreen && !inlineIframeUrl.includes('typeform-welcome=0')) {
       inlineIframeUrl = updateQueryStringParameter('disable-tracking', 'true', inlineIframeUrl)
       inlineIframeUrl = updateQueryStringParameter('add-placeholder-ws', 'true', inlineIframeUrl)
       inlineIframeUrl = updateQueryStringParameter('__dangerous-disable-submissions', 'true', inlineIframeUrl)
