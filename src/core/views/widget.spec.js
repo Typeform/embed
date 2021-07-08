@@ -86,6 +86,14 @@ describe('Widget', () => {
       expect(wrapper.find(Iframe).props().src.includes('__dangerous-disable-submissions=true')).toBe(true)
     })
 
+    it('renders an iframe without disabled submissions and placeholder welcome screen when URL contains "typeform-welcome=0"', () => {
+      const wrapper = mount(<Widget enabledFullscreen url={`${URL}?typeform-welcome=0`} />)
+      expect(wrapper.find(Iframe)).toHaveLength(1)
+      expect(wrapper.find(Iframe).props().src.includes('disable-tracking=true')).toBe(false)
+      expect(wrapper.find(Iframe).props().src.includes('add-placeholder-ws=true')).toBe(false)
+      expect(wrapper.find(Iframe).props().src.includes('__dangerous-disable-submissions=true')).toBe(false)
+    })
+
     it('renders a second iframe after the welcome-screen-hidden event', () => {
       const wrapper = mount(<Widget enabledFullscreen url={URL} />)
 
