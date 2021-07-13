@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.12.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.12.0...@typeform/embed-v1.12.1) (2021-07-13)
+
+
+### Bug Fixes
+
+* **DIST-1068:** Image icon size fix ([#291](https://github.com/Typeform/embed/issues/291)) ([4741364](https://github.com/Typeform/embed/commit/4741364286353594ff8e5fb5c3758d40945d1008))
+
 # [@typeform/embed-v1.12.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.11.0...@typeform/embed-v1.12.0) (2021-07-07)
 
 
