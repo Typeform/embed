@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.13.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.12.1...@typeform/embed-v1.13.0) (2021-07-13)
+
+
+### Features
+
+* **DIST-1068:** Force touch option ([#292](https://github.com/Typeform/embed/issues/292)) ([7431aaa](https://github.com/Typeform/embed/commit/7431aaa50ed58d7b851556b91c97ca89f22bbae6))
+
 # [@typeform/embed-v1.12.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.12.0...@typeform/embed-v1.12.1) (2021-07-13)
 
 
