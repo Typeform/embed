@@ -66,4 +66,10 @@ export type UrlOptions = {
    * @type {boolean}
    */
   enableSandbox?: boolean
+  /**
+   * Forces mobile for the form
+   *
+   * @type {boolean}
+   */
+  forceTouch?: boolean
 }

@@ -29,5 +29,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     notificationDays: 'integer',
     autoClose: 'integerOrBoolean',
     shareGaInstance: 'boolean',
+    forceTouch: 'boolean',
   })
 }

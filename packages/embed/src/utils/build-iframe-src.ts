@@ -38,6 +38,7 @@ const mapOptionsToQueryParams = (type: EmbedType, embedId: string, options: UrlO
     'disable-auto-focus': options.disableAutoFocus ? 'true' : undefined,
     '__dangerous-disable-submissions': options.enableSandbox ? 'true' : undefined,
     'share-ga-instance': options.shareGaInstance ? 'true' : undefined,
+    'force-touch': options.forceTouch ? 'true' : undefined,
   }
   return { ...params, ...transitiveParams }
 }
