@@ -1,4 +1,11 @@
-import { createIframe, setElementSize, handleCustomOpen, unmountElement, setAutoClose } from '../../utils'
+import {
+  createIframe,
+  setElementSize,
+  handleCustomOpen,
+  unmountElement,
+  setAutoClose,
+  addCustomKeyboardListener,
+} from '../../utils'
 
 import { PopoverOptions } from './popover-options'
 import { buildNotificationDot, canBuildNotificationDot, saveNotificationDotHideUntilTime } from './notification-days'
@@ -163,6 +170,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     popover.classList.add('open')
     wrapper.style.opacity = '1'
     replaceIcon(spinner, closeIcon)
+    addCustomKeyboardListener(close)
   }
 
   const open = () => {
