@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.14.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.13.0...@typeform/embed-v1.14.0) (2021-07-15)
+
+
+### Features
+
+* **DIST-1005:** Close embed on Keyboard event ([#294](https://github.com/Typeform/embed/issues/294)) ([c3aa34f](https://github.com/Typeform/embed/commit/c3aa34f3bc9038665740822f85ff36b9bcf02eb0))
+
 # [@typeform/embed-v1.13.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.12.1...@typeform/embed-v1.13.0) (2021-07-13)
 
 
