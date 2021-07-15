@@ -1,4 +1,12 @@
-import { createIframe, hasDom, setElementSize, handleCustomOpen, unmountElement, setAutoClose } from '../../utils'
+import {
+  createIframe,
+  hasDom,
+  setElementSize,
+  handleCustomOpen,
+  unmountElement,
+  setAutoClose,
+  addCustomKeyboardListener,
+} from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
 
 import { SliderOptions } from './slider-options'
@@ -75,6 +83,8 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
     setTimeout(() => {
       spinner.style.display = 'none'
     }, 500)
+
+    addCustomKeyboardListener(close)
   }
 
   const open = () => {

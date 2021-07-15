@@ -6,6 +6,7 @@ import {
   handleCustomOpen,
   unmountElement,
   setAutoClose,
+  addCustomKeyboardListener,
 } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
 
@@ -92,6 +93,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
     setTimeout(() => {
       spinner.style.display = 'none'
     }, 250)
+    addCustomKeyboardListener(close)
   }
 
   const open = () => {

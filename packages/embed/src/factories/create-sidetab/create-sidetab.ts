@@ -1,4 +1,11 @@
-import { createIframe, setElementSize, handleCustomOpen, unmountElement, setAutoClose } from '../../utils'
+import {
+  createIframe,
+  setElementSize,
+  handleCustomOpen,
+  unmountElement,
+  setAutoClose,
+  addCustomKeyboardListener,
+} from '../../utils'
 
 import { SidetabOptions } from './sidetab-options'
 
@@ -114,6 +121,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   iframe.onload = () => {
     sidetab.classList.add('open')
     replaceElementChild(spinner, closeIcon)
+    addCustomKeyboardListener(close)
   }
 
   const open = () => {
