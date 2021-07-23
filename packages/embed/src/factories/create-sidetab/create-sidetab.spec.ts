@@ -31,7 +31,7 @@ describe('#createSidetab', () => {
         jest.runAllTimers()
         const iframe = screen.getByTestId('iframe')
         fireEvent(iframe, new Event('load'))
-        expect(screen.getByTestId('close-icon')).toBeInTheDocument()
+        expect(screen.getByTestId('typeform-sidetab-button-icon')).toBeInTheDocument()
       })
     })
 
@@ -50,7 +50,7 @@ describe('#createSidetab', () => {
         jest.runAllTimers()
         const iframe = screen.getByTestId('iframe')
         fireEvent(iframe, new Event('load'))
-        expect(screen.getByTestId('close-icon')).toBeInTheDocument()
+        expect(screen.getByTestId('typeform-sidetab-button-icon')).toBeInTheDocument()
         sidetab.close()
         await waitForElementToBeRemoved(() => screen.queryByTestId('typeform-sidetab-wrapper'))
         expect(screen.getByTestId('default-icon')).toBeInTheDocument()

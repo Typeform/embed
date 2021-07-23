@@ -46,7 +46,7 @@ describe('#createSidetab', () => {
         expect(screen.getByTestId('spinner-icon')).toBeInTheDocument()
         const iframe = screen.getByTestId('iframe')
         fireEvent(iframe, new Event('load'))
-        expect(screen.getByTestId('close-icon')).toBeInTheDocument()
+        expect(screen.getByTestId('typeform-popover-button-icon')).toBeInTheDocument()
       })
     })
 
@@ -65,7 +65,7 @@ describe('#createSidetab', () => {
         expect(screen.getByTestId('spinner-icon')).toBeInTheDocument()
         const iframe = screen.getByTestId('iframe')
         fireEvent(iframe, new Event('load'))
-        expect(screen.getByTestId('close-icon')).toBeInTheDocument()
+        expect(screen.getByTestId('typeform-popover-button-icon')).toBeInTheDocument()
         popover.close()
         await waitForElementToBeRemoved(() => screen.queryByTestId('typeform-popover-wrapper'))
         expect(screen.getByTestId('default-icon')).toBeInTheDocument()

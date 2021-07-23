@@ -38,6 +38,10 @@
     }
   }
 
+  &-close {
+    display: none;
+  }
+
   &-button {
     width: 54px;
     height: 54px;
@@ -144,13 +148,34 @@
 
 @include mobile {
   .typeform-popover {
-    bottom: 68px;
-    right: 8px;
-    left: 8px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
 
     &.open {
-      max-width: 100%;
-      min-width: calc(100% - 16px);
+      .typeform-popover-close {
+        display: block;
+      }
+    }
+
+    &-wrapper {
+      border-radius: 0;
+      box-shadow: none;
+
+      iframe {
+        border-radius: 0;
+      }
+    }
+
+    &-close {
+      @include close(#737373);
+      top: 6px;
+      right: 8px;
+      z-index: 1;
+      opacity: 0;
     }
 
     &-button {
@@ -178,7 +203,7 @@
       position: fixed;
       right: 66px;
       bottom: 8px;
-      left: 8px;
+      left: auto;
       font-size: 12px;
 
       &::before {
