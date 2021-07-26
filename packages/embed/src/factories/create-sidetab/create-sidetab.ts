@@ -78,11 +78,11 @@ const buildIcon = (customIcon?: string) => {
   return triggerIcon
 }
 
-const buildCloseIcon = () => {
-  const closeButton = document.createElement('div')
-  closeButton.className = 'typeform-sidetab-button-icon'
+const buildCloseIcon = (element = 'div', className = 'typeform-sidetab-button-icon') => {
+  const closeButton = document.createElement(element)
+  closeButton.className = className
   closeButton.innerHTML = '&times;'
-  closeButton.dataset.testid = 'close-icon'
+  closeButton.dataset.testid = className
   return closeButton
 }
 
@@ -105,12 +105,14 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   const buttonText = buildTriggerButtonText(options.buttonText || defaultOptions.buttonText)
   const icon = buildIcon(options.customIcon)
   const closeIcon = buildCloseIcon()
+  const closeModal = buildCloseIcon('a', 'typeform-sidetab-close')
 
   const container = document.body
 
   container.append(sidetab)
   wrapper.append(iframe)
   sidetab.append(button)
+  sidetab.append(closeModal)
   button.append(icon)
   button.append(buttonText)
 
@@ -156,6 +158,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   }
 
   button.onclick = toggle
+  closeModal.onclick = close
 
   if (options.open && !isOpen(wrapper)) {
     handleCustomOpen(open, options.open, options.openValue)

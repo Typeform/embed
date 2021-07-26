@@ -1,6 +1,7 @@
 @import 'includes/spinner';
 @import 'includes/close';
 @import 'includes/iframe';
+@import 'includes/mobile';
 
 .typeform-slider {
   position: fixed;
@@ -47,6 +48,30 @@
     .typeform-close {
       left: auto;
       right: -24px;
+    }
+  }
+}
+
+@include mobile {
+  .typeform-slider {
+    width: 100vw;
+    height: 100vh;
+
+    .typeform-iframe-wrapper {
+      width: 100% !important;
+      height: 100%;
+      transition: unset;
+
+      iframe {
+        border-radius: none;
+      }
+    }
+
+    .typeform-close {
+      @include close(#737373);
+      top: 6px;
+      right: 8px;
+      left: auto;
     }
   }
 }

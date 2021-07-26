@@ -1,5 +1,7 @@
 @import 'includes/spinner';
 @import 'includes/iframe';
+@import 'includes/mobile';
+@import 'includes/close';
 
 .typeform-sidetab {
   position: fixed;
@@ -10,10 +12,10 @@
   transform: translate(100%, -50%);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
   z-index: 10001;
+  will-change: transform;
 
   &.ready {
     transition: transform 250ms ease-in-out;
-    will-change: transform;
   }
 
   iframe {
@@ -68,10 +70,42 @@
     }
   }
 
+  &-close {
+    display: none;
+  }
+
   .typeform-spinner {
     @include spinner($diameter: 24px);
     top: 0;
     left: 0;
     margin: 0;
+  }
+}
+
+@include mobile {
+  .typeform-sidetab {
+    transition: unset;
+
+    &.ready {
+      transition: unset;
+    }
+
+    &.open {
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transform: translate(0, 0);
+    }
+
+    &-close {
+      @include close(#737373);
+      display: block;
+      top: 6px;
+      right: 8px;
+      z-index: 1;
+    }
   }
 }
