@@ -152,8 +152,8 @@
     left: 0;
     bottom: 0;
     right: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100vw !important;
+    height: 100vh !important;
 
     &.open {
       .typeform-popover-close {

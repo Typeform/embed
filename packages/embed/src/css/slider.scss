@@ -54,8 +54,8 @@
 
 @include mobile {
   .typeform-slider {
-    width: 100vw;
-    height: 100vh;
+    width: 100vw !important;
+    height: 100vh !important;
 
     .typeform-iframe-wrapper {
       width: 100% !important;
