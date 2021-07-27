@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import PropTypes from 'prop-types'
 import { Popover } from '@typeform/embed-react'
 
 import Sparkle from '../components/sparkle'
@@ -8,7 +9,7 @@ const handleOnReady = () => {
   console.log('form ready')
 }
 
-export default function PopoverPage() {
+export default function PopoverPage({ id }) {
   return (
     <div>
       <Head>
@@ -33,4 +34,8 @@ export default function PopoverPage() {
       </main>
     </div>
   )
+}
+
+PopoverPage.propTypes = {
+  id: PropTypes.string,
 }

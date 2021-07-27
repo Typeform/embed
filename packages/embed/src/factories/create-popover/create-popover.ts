@@ -39,6 +39,14 @@ const buildPopover = (width?: number, height?: number) => {
   return setElementSize(popover, { width, height })
 }
 
+const buildCloseIcon = (element = 'div', className = 'typeform-popover-button-icon') => {
+  const icon = document.createElement(element)
+  icon.className = className
+  icon.innerHTML = '&times;'
+  icon.dataset.testid = className
+  return icon
+}
+
 const buildWrapper = () => {
   const wrapper = document.createElement('div')
   wrapper.className = 'typeform-popover-wrapper'
@@ -53,14 +61,6 @@ const buildSpinner = () => {
   icon.className = 'typeform-popover-button-icon'
   icon.dataset.testid = 'spinner-icon'
   icon.append(spinner)
-  return icon
-}
-
-const buildCloseIcon = () => {
-  const icon = document.createElement('div')
-  icon.className = 'typeform-popover-button-icon'
-  icon.innerHTML = '&times;'
-  icon.dataset.testid = 'close-icon'
   return icon
 }
 
@@ -121,6 +121,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   const icon = buildIcon(options.customIcon)
   const spinner = buildSpinner()
   const closeIcon = buildCloseIcon()
+  const closeModal = buildCloseIcon('a', 'typeform-popover-close')
   const button = buildTriggerButton(options.buttonColor || defaultOptions.buttonColor)
 
   const container = options.container || document.body
@@ -128,6 +129,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   container.append(popover)
   wrapper.append(iframe)
   popover.append(button)
+  popover.append(closeModal)
   button.append(icon)
 
   let tooltip: HTMLDivElement
@@ -169,6 +171,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   iframe.onload = () => {
     popover.classList.add('open')
     wrapper.style.opacity = '1'
+    closeModal.style.opacity = '1'
     replaceIcon(spinner, closeIcon)
     addCustomKeyboardListener(close)
   }
@@ -180,6 +183,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
       setTimeout(() => {
         popover.append(wrapper)
         wrapper.style.opacity = '0'
+        closeModal.style.opacity = '0'
         replaceIcon(icon, spinner)
       })
     }
@@ -210,6 +214,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   }
 
   button.onclick = toggle
+  closeModal.onclick = close
 
   if (options.open && !isOpen(wrapper)) {
     handleCustomOpen(open, options.open, options.openValue)

@@ -25,7 +25,7 @@ function testSidetab(path: string, title: string) {
       cy.get('.typeform-sidetab-wrapper').should('be.visible')
       cy.get('.typeform-sidetab-wrapper iframe').invoke('attr', 'src').should('contain', 'form.typeform.com/to/')
       cy.get('.typeform-sidetab-button [data-testid="default-icon"]').should('not.exist')
-      cy.get('.typeform-sidetab-button [data-testid="close-icon"]').should('exist')
+      cy.get('.typeform-sidetab-button [data-testid="typeform-sidetab-button-icon"]').should('exist')
     })
 
     it('should pass options as query param', () => {
@@ -41,7 +41,7 @@ function testSidetab(path: string, title: string) {
     it('should close sidetab', () => {
       cy.get('.typeform-sidetab-button').click()
       cy.get('.typeform-sidetab-button [data-testid="default-icon"]').should('exist')
-      cy.get('.typeform-sidetab-button [data-testid="close-icon"]').should('not.exist')
+      cy.get('.typeform-sidetab-button [data-testid="typeform-sidetab-button-icon"]').should('not.exist')
       cy.get('.typeform-sidetab-wrapper').should('not.exist')
     })
   })

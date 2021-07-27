@@ -1,3 +1,17 @@
+# [@typeform/embed-v1.15.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.15.0...@typeform/embed-v1.15.1) (2021-07-27)
+
+
+### Bug Fixes
+
+* **DIST-1089:** Use important for width and height ([#299](https://github.com/Typeform/embed/issues/299)) ([21940b1](https://github.com/Typeform/embed/commit/21940b16c38cb0c2392639db50543b36d1318ecc))
+
+# [@typeform/embed-v1.15.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.14.0...@typeform/embed-v1.15.0) (2021-07-26)
+
+
+### Features
+
+* **DIST-1089:** Full screen on mobile ([#297](https://github.com/Typeform/embed/issues/297)) ([ba49695](https://github.com/Typeform/embed/commit/ba496957d37ca903f4495e80423832442586c7b2))
+
 # [@typeform/embed-v1.14.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.13.0...@typeform/embed-v1.14.0) (2021-07-15)
 
 
