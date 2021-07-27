@@ -1,9 +1,10 @@
 import Head from 'next/head'
+import PropTypes from 'prop-types'
 import { PopupButton } from '@typeform/embed-react'
 
 import Sparkle from '../components/sparkle'
 
-export default function PopupPage() {
+export default function PopupPage({ id }) {
   const buttonStyle = {
     padding: '10px 20px',
     borderRadius: 10,
@@ -31,7 +32,7 @@ export default function PopupPage() {
 
         <p>
           <PopupButton
-            id="moe6aa"
+            id={id}
             style={buttonStyle}
             size={66}
             medium="demo-test"
@@ -43,4 +44,8 @@ export default function PopupPage() {
       </main>
     </div>
   )
+}
+
+PopupPage.propTypes = {
+  id: PropTypes.string,
 }

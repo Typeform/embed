@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import '../styles/globals.css'
 
@@ -7,6 +8,10 @@ import '@typeform/embed/build/css/popup.css'
 import '@typeform/embed/build/css/widget.css'
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter()
+  const id = router.query?.id || 'moe6aa'
+  const idparam = `?id=${id}`
+  const props = { id, ...pageProps }
   const links = {
     '/': 'widget',
     '/popup': 'popup',
@@ -20,12 +25,12 @@ function MyApp({ Component, pageProps }) {
     <>
       <div className="menu">
         {Object.keys(links).map((path) => (
-          <Link key={path} href={path}>
+          <Link key={path} href={path + idparam}>
             <a href={path}>{links[path]}</a>
           </Link>
         ))}
       </div>
-      <Component {...pageProps} />
+      <Component {...props} />
     </>
   )
 }

@@ -1,9 +1,10 @@
 import Head from 'next/head'
+import PropTypes from 'prop-types'
 import { SliderButton } from '@typeform/embed-react'
 
 import Sparkle from '../components/sparkle'
 
-export default function Slider() {
+export default function Slider({ id }) {
   const buttonStyle = {
     padding: '10px 20px',
     borderRadius: 4,
@@ -30,12 +31,7 @@ export default function Slider() {
         </p>
 
         <p>
-          <SliderButton
-            id="moe6aa"
-            style={buttonStyle}
-            medium="demo-test"
-            hidden={{ foo: 'foo value', bar: 'bar value' }}
-          >
+          <SliderButton id={id} style={buttonStyle} medium="demo-test" hidden={{ foo: 'foo value', bar: 'bar value' }}>
             open slider (right)
           </SliderButton>
         </p>
@@ -48,4 +44,8 @@ export default function Slider() {
       </main>
     </div>
   )
+}
+
+Slider.propTypes = {
+  id: PropTypes.string,
 }
