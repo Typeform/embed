@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
 import Head from 'next/head'
 import { createPopup, createWidget } from '@typeform/embed'
 
 import Flex from '../components/flex'
 
 // with @typeform/embed-react lib this component could be as short as <Widget id="moe6aa" />
-const Widget = () => {
+const Widget = ({ id }) => {
   const container = useRef()
 
   const widgetContainerStyle = {
@@ -15,13 +16,13 @@ const Widget = () => {
   }
 
   useEffect(() => {
-    createWidget('moe6aa', {
+    createWidget(id, {
       container: container.current,
       medium: 'demo-test',
       transitiveSearchParams: ['foo', 'bar'],
       hidden: { foo: 'foo value', bar: 'bar value' },
     })
-  }, [])
+  }, [id])
 
   return <div style={widgetContainerStyle} ref={container} />
 }
@@ -41,7 +42,7 @@ const PopupButton = () => {
   )
 }
 
-export default function Popup() {
+export default function Popup({ id }) {
   return (
     <div>
       <Head>
@@ -59,8 +60,16 @@ export default function Popup() {
 
         <PopupButton />
 
-        <Widget />
+        <Widget id={id} />
       </main>
     </div>
   )
+}
+
+Popup.propTypes = {
+  id: PropTypes.string,
+}
+
+Widget.propTypes = {
+  id: PropTypes.string,
 }

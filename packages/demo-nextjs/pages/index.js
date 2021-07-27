@@ -1,9 +1,10 @@
 import Head from 'next/head'
+import PropTypes from 'prop-types'
 import { Widget } from '@typeform/embed-react'
 
 import Sparkle from '../components/sparkle'
 
-export default function HomePage() {
+export default function HomePage({ id }) {
   const widgetContainerStyle = {
     width: 500,
     height: 400,
@@ -26,7 +27,7 @@ export default function HomePage() {
         </p>
 
         <Widget
-          id="moe6aa"
+          id={id}
           style={widgetContainerStyle}
           medium="demo-test"
           hidden={{ foo: 'foo value', bar: 'bar value' }}
@@ -35,4 +36,8 @@ export default function HomePage() {
       </main>
     </div>
   )
+}
+
+HomePage.propTypes = {
+  id: PropTypes.string,
 }
