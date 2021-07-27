@@ -1,6 +1,6 @@
-@mixin close {
+@mixin close($color: #fff) {
   position: absolute;
-  color: white;
+  color: $color;
   font-size: 24px;
   line-height: 24px;
   width: 14px;

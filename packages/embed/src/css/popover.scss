@@ -2,6 +2,7 @@
 @import 'includes/close';
 @import 'includes/iframe';
 @import 'includes/mobile';
+@import 'includes/fullsize';
 
 @mixin closingAnimation {
   transition: opacity 0.25s ease-in-out;
@@ -36,6 +37,10 @@
       @include iframe;
       border-radius: 8px;
     }
+  }
+
+  &-close {
+    display: none;
   }
 
   &-button {
@@ -144,13 +149,33 @@
 
 @include mobile {
   .typeform-popover {
-    bottom: 68px;
-    right: 8px;
-    left: 8px;
-
     &.open {
-      max-width: 100%;
-      min-width: calc(100% - 16px);
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      @include fullsize;
+
+      .typeform-popover-close {
+        display: block;
+      }
+    }
+
+    &-wrapper {
+      border-radius: 0;
+      box-shadow: none;
+
+      iframe {
+        border-radius: 0;
+      }
+    }
+
+    &-close {
+      @include close(#737373);
+      top: 6px;
+      right: 8px;
+      z-index: 1;
+      opacity: 0;
     }
 
     &-button {
@@ -178,7 +203,7 @@
       position: fixed;
       right: 66px;
       bottom: 8px;
-      left: 8px;
+      left: auto;
       font-size: 12px;
 
       &::before {

@@ -43,7 +43,7 @@ Via JavaScript for more control and specific integration.
 <link rel="stylesheet" href="//embed.typeform.com/next/css/popup.css" />
 <script>
   const { open, close, toggle, refresh } = window.tf.createPopup('<form-id>')
-  document.querySelector('#button').click = toggle
+  document.querySelector('#button').onclick = toggle
 </script>
 ```
 

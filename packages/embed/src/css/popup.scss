@@ -1,6 +1,8 @@
 @import 'includes/spinner';
 @import 'includes/close';
 @import 'includes/iframe';
+@import 'includes/mobile';
+@import 'includes/fullsize';
 
 .typeform-popup {
   position: fixed;
@@ -36,5 +38,28 @@
 
   .typeform-spinner {
     @include spinner();
+  }
+}
+
+@include mobile {
+  .typeform-popup {
+    @include fullsize;
+
+    .typeform-iframe-wrapper {
+      position: relative;
+      transition: opacity 0.25s ease-in-out;
+      min-width: 100%;
+      min-height: 100%;
+
+      iframe {
+        border-radius: 0;
+      }
+    }
+
+    .typeform-close {
+      @include close(#737373);
+      top: 6px;
+      right: 8px;
+    }
   }
 }

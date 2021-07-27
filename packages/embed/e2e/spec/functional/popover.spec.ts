@@ -24,7 +24,7 @@ function testPopover(path: string, title: string) {
       cy.get('.typeform-popover-wrapper').should('be.visible')
       cy.get('.typeform-popover-wrapper iframe').invoke('attr', 'src').should('contain', 'form.typeform.com/to/')
       cy.get('.typeform-popover-button [data-testid="default-icon"]').should('not.exist')
-      cy.get('.typeform-popover-button [data-testid="close-icon"]').should('exist')
+      cy.get('.typeform-popover-button [data-testid="typeform-popover-button-icon"]').should('exist')
     })
 
     it('should pass options as query param', () => {
@@ -40,7 +40,7 @@ function testPopover(path: string, title: string) {
     it('should close popover', () => {
       cy.get('.typeform-popover-button').click()
       cy.get('.typeform-popover-button [data-testid="default-icon"]').should('exist')
-      cy.get('.typeform-popover-button [data-testid="close-icon"]').should('not.exist')
+      cy.get('.typeform-popover-button [data-testid="typeform-popover-button-icon"]').should('not.exist')
       cy.get('.typeform-popover-wrapper').should('not.exist')
     })
   })
