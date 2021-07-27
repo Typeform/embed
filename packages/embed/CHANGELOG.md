@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.15.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.15.0...@typeform/embed-v1.15.1) (2021-07-27)
+
+
+### Bug Fixes
+
+* **DIST-1089:** Use important for width and height ([#299](https://github.com/Typeform/embed/issues/299)) ([21940b1](https://github.com/Typeform/embed/commit/21940b16c38cb0c2392639db50543b36d1318ecc))
+
 # [@typeform/embed-v1.15.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.14.0...@typeform/embed-v1.15.0) (2021-07-26)
 
 
