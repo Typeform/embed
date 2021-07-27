@@ -2,6 +2,7 @@
 @import 'includes/iframe';
 @import 'includes/mobile';
 @import 'includes/close';
+@import 'includes/fullsize';
 
 .typeform-sidetab {
   position: fixed;
@@ -91,13 +92,12 @@
     }
 
     &.open {
-      width: 100vw;
-      height: 100vh;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
       transform: translate(0, 0);
+      @include fullsize;
     }
 
     &-close {

@@ -2,6 +2,7 @@
 @import 'includes/close';
 @import 'includes/iframe';
 @import 'includes/mobile';
+@import 'includes/fullsize';
 
 @mixin closingAnimation {
   transition: opacity 0.25s ease-in-out;
@@ -148,14 +149,13 @@
 
 @include mobile {
   .typeform-popover {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100vw;
-    height: 100vh;
-
     &.open {
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      @include fullsize;
+
       .typeform-popover-close {
         display: block;
       }

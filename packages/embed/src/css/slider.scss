@@ -2,6 +2,7 @@
 @import 'includes/close';
 @import 'includes/iframe';
 @import 'includes/mobile';
+@import 'includes/fullsize';
 
 .typeform-slider {
   position: fixed;
@@ -54,8 +55,7 @@
 
 @include mobile {
   .typeform-slider {
-    width: 100vw;
-    height: 100vh;
+    @include fullsize;
 
     .typeform-iframe-wrapper {
       width: 100% !important;
