@@ -1,4 +1,4 @@
-import { createIframe, hasDom, unmountElement } from '../../utils'
+import { createIframe, hasDom, isFullscreen, unmountElement } from '../../utils'
 
 import { WidgetOptions } from './widget-options'
 import { buildWidget } from './elements'
@@ -16,7 +16,12 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     }
   }
 
-  const { iframe } = createIframe(formId, 'widget', options)
+  const widgetOptions = options
+  if (isFullscreen()) {
+    widgetOptions.enableFullscreen = true
+  }
+
+  const { iframe } = createIframe(formId, 'widget', widgetOptions)
   const widget = buildWidget(iframe, options.width, options.height)
 
   options.container.innerHTML = ''

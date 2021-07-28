@@ -39,6 +39,7 @@ const mapOptionsToQueryParams = (type: EmbedType, embedId: string, options: UrlO
     '__dangerous-disable-submissions': options.enableSandbox ? 'true' : undefined,
     'share-ga-instance': options.shareGaInstance ? 'true' : undefined,
     'force-touch': options.forceTouch ? 'true' : undefined,
+    'add-placeholder-ws': type === 'widget' && options.enableFullscreen ? 'true' : undefined,
   }
   return { ...params, ...transitiveParams }
 }

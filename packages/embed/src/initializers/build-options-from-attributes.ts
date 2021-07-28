@@ -30,5 +30,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     autoClose: 'integerOrBoolean',
     shareGaInstance: 'boolean',
     forceTouch: 'boolean',
+    enableFullscreen: 'boolean',
   })
 }
