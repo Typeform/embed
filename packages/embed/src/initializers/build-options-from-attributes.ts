@@ -31,5 +31,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     shareGaInstance: 'boolean',
     forceTouch: 'boolean',
     enableFullscreen: 'boolean',
+    inlineOnMobile: 'boolean',
   })
 }

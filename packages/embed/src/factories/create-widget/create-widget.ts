@@ -9,11 +9,11 @@ export type Widget = {
   unmount: () => void
 }
 
-const buildCloseButton = (close: () => void) => {
+const buildCloseButton = () => {
   const closeButton = document.createElement('a')
   closeButton.className = 'typeform-widget-close'
   closeButton.innerHTML = '&times;'
-  closeButton.onclick = close
+  // closeButton.onclick = close
   return closeButton
 }
 
@@ -26,7 +26,8 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
   }
 
   const widgetOptions = options
-  if (isFullscreen()) {
+
+  if (isFullscreen() && !options.inlineOnMobile) {
     widgetOptions.enableFullscreen = true
     widgetOptions.forceTouch = true
   }
@@ -40,10 +41,17 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
   if (widgetOptions.enableFullscreen) {
     const { container } = options
     window.addEventListener('message', getWelcomeScreenHiddenHandler(embedId, container))
+    const closeButton = buildCloseButton()
+
     const close = () => {
       container.classList.remove('typeform-widget-fullscreen')
+      options.container.innerHTML = ''
+      options.container.append(widget)
+      container.append(closeButton)
     }
-    container.append(buildCloseButton(close))
+
+    closeButton.onclick = close
+    container.append(closeButton)
   }
 
   return {
