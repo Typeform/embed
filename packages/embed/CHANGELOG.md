@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.15.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.15.1...@typeform/embed-v1.15.2) (2021-07-29)
+
+
+### Bug Fixes
+
+* **DIST-1112:** Update custom icon to fit button size ([#296](https://github.com/Typeform/embed/issues/296)) ([7d68329](https://github.com/Typeform/embed/commit/7d683298d7d5f475015a0017cfb57826ac85efba))
+
 # [@typeform/embed-v1.15.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.15.0...@typeform/embed-v1.15.1) (2021-07-27)
 
 
