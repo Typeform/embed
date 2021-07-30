@@ -2,7 +2,7 @@
   "name": "@typeform/embed-react",
   "version": "1.0.7",
   "main": "./build/index.js",
-  "types": "./types/index.d.ts",
+  "types": "./build/index.d.ts",
   "author": "Typeform",
   "license": "LGPL-3.0-only",
   "engines": {
