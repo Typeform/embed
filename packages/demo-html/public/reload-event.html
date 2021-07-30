@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Static HTML Demo</title>
+    <style>
+      .column {
+        float: left;
+        width: 46%;
+        padding: 0 2%;
+      }
+      .form {
+        width: 100%;
+        height: 400px;
+        margin: 0 auto;
+      }
+    </style>
+    <script src="./lib/embed-next.js"></script>
+  </head>
+  <body>
+    <div class="column">
+      <h1>Async widget</h1>
+      <div id="wrapper">
+        <p>We will inject embed code here 3 seconds after the page has loaded.</p>
+        <p>Click the buttons below when this text is gone.</p>
+      </div>
+      <p></p>
+    </div>
+    <div class="column">
+      <h1>Standard widget</h1>
+      <div data-tf-widget="jAJ5qj" class="form"></div>
+    </div>
+    <div style="clear: both"></div>
+    <p>Use the buttons below when new widget is injected into the left column.</p>
+    <p>Load new embeds only: <button onClick="window.tf.load()">load</button></p>
+    <p>Reload all embeds in the page: <button onClick="window.tf.reload()">reload</button></p>
+
+    <script>
+      window.onload = () => {
+        setTimeout(() => {
+          document.querySelector('#wrapper').innerHTML = '<div data-tf-widget="jAJ5qj" class="form"></div>'
+        }, 3000)
+      }
+    </script>
+  </body>
+</html>
