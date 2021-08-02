@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.16.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.15.2...@typeform/embed-v1.16.0) (2021-08-02)
+
+
+### Features
+
+* **DIST-1126:** Allow reloading and loading snippets in page ([#302](https://github.com/Typeform/embed/issues/302)) ([46ae8b9](https://github.com/Typeform/embed/commit/46ae8b9483b1abda87dbe2299d33ab85f41e8f62))
+
 # [@typeform/embed-v1.15.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.15.1...@typeform/embed-v1.15.2) (2021-07-29)
 
 
