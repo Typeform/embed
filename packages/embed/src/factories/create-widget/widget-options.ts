@@ -15,5 +15,5 @@ export type WidgetOptions = BaseOptions &
      *
      * @type {boolean}
      */
-    inlineOnMobile: boolean
+    inlineOnMobile?: boolean
   }
