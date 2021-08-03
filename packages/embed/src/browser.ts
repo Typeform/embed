@@ -6,16 +6,24 @@ import {
   initializeWidgets,
 } from './initializers'
 
-import * as tf from './index'
+import * as lib from './index'
 
-module.exports = tf
-
-function loadEmbedElements() {
-  initializePopovers()
-  initializePopups()
-  initializeSidetabs()
-  initializeSliders()
-  initializeWidgets()
+function loadEmbedElements(forceReload: boolean = false) {
+  initializePopovers(forceReload)
+  initializePopups(forceReload)
+  initializeSidetabs(forceReload)
+  initializeSliders(forceReload)
+  initializeWidgets(forceReload)
 }
 
-document.addEventListener('DOMContentLoaded', loadEmbedElements, false)
+const reload = () => loadEmbedElements(true)
+
+const load = () => loadEmbedElements(false)
+
+module.exports = {
+  ...lib,
+  load,
+  reload,
+}
+
+document.addEventListener('DOMContentLoaded', load, false)
