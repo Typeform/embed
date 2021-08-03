@@ -20,7 +20,13 @@ export const openOnMobile = (url: string) => {
   cy.visit(url, {
     onBeforeLoad: (win) => {
       Object.defineProperty(win.navigator, 'userAgent', {
-        value: 'Cypress mobile browser',
+        value: 'cypress mobile browser',
+      })
+      Object.defineProperty(win.screen, 'width', {
+        value: screenSizeMobile.width,
+      })
+      Object.defineProperty(win.screen, 'height', {
+        value: screenSizeMobile.height,
       })
     },
   })
