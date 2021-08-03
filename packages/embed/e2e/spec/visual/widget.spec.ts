@@ -19,6 +19,11 @@ describe('Embed Widget', () => {
       })
 
       it('Basic Embed Widget - Mobile', () => {
+        cy.get('iframe').then(($iframe) => {
+          const $body = $iframe.contents().find('body')
+          cy.wrap($body).find('[data-qa="start-button"]').click()
+          cy.get('.typeform-widget-close').click()
+        })
         eyesCheckMobile('Embed')
       })
     })
@@ -29,6 +34,11 @@ describe('Embed Widget', () => {
       })
 
       it('Basic Embed Widget - Mobile', () => {
+        cy.get('iframe').then(($iframe) => {
+          const $body = $iframe.contents().find('body')
+          cy.wrap($body).find('[data-qa="start-button"]').click()
+          cy.get('.typeform-widget-close').click()
+        })
         eyesCheckMobile('Embed')
       })
     })

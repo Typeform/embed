@@ -13,7 +13,6 @@ const buildCloseButton = () => {
   const closeButton = document.createElement('a')
   closeButton.className = 'typeform-widget-close'
   closeButton.innerHTML = '&times;'
-  // closeButton.onclick = close
   return closeButton
 }
 
