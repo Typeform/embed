@@ -13,12 +13,24 @@ describe('Embed Widget', () => {
   })
 
   describe('Mobile', () => {
-    before(() => {
-      openOnMobile('/widget-js.html')
+    describe('with fullscreen view', () => {
+      before(() => {
+        openOnMobile('/widget-js.html')
+      })
+
+      it('Basic Embed Widget - Mobile', () => {
+        eyesCheckMobile('Embed')
+      })
     })
 
-    it('Basic Embed Widget - Mobile', () => {
-      eyesCheckMobile('Embed')
+    describe('with inline view', () => {
+      before(() => {
+        openOnMobile('/widget-js.html?inlineOnMobile')
+      })
+
+      it('Basic Embed Widget - Mobile', () => {
+        eyesCheckMobile('Embed')
+      })
     })
   })
 })
