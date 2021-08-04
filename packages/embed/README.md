@@ -166,6 +166,25 @@ Callback method receive payload object from the form:
 
 See [callbacks example in demo package](../../packages/demo-html/public/callbacks.html).
 
+### Loading and reloading embedded forms
+
+When the library loads it will initialize all HTML embed codes already present in the page.
+However sometimes you might want to add HTML snippet to your page later and initialize it after it was added.
+
+To load new snippets use:
+
+```javascript
+window.tf.load()
+```
+
+If you need to reload all snippets in the page:
+
+```javascript
+window.tf.reload()
+```
+
+You can see an example of this in [reload-event.html](../demo-html/public/reload-event.htm).
+
 ### Examples
 
 You can find examples for specific use-cases in our demos:
