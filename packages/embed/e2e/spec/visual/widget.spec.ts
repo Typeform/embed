@@ -13,12 +13,30 @@ describe('Embed Widget', () => {
   })
 
   describe('Mobile', () => {
-    before(() => {
-      openOnMobile('/widget-js.html')
+    describe('with fullscreen view', () => {
+      before(() => {
+        openOnMobile('/widget-js.html')
+      })
+
+      it('Basic Embed Widget - Mobile fullscreen view', () => {
+        cy.get('iframe').then(($iframe) => {
+          const $body = $iframe.contents().find('body')
+          cy.wrap($body).find('[data-qa="start-button"]').click()
+        })
+        cy.wait(1000)
+        eyesCheckMobile('Embed')
+      })
     })
 
-    it('Basic Embed Widget - Mobile', () => {
-      eyesCheckMobile('Embed')
+    describe('with inline view', () => {
+      before(() => {
+        openOnMobile('/widget-inline.html')
+      })
+
+      it('Basic Embed Widget - Mobile inline view', () => {
+        cy.wait(1000)
+        eyesCheckMobile('Embed')
+      })
     })
   })
 })

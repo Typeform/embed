@@ -12,6 +12,13 @@ export const getFormSubmitHandler = (embedId: string, callback?: callbackFn) => 
   return getFormEventHandler('form-submit', embedId, callback)
 }
 
+export const getWelcomeScreenHiddenHandler = (embedId: string, element: HTMLElement) => {
+  const callback = () => {
+    element.classList.add('typeform-widget-fullscreen')
+  }
+  return getFormEventHandler('welcome-screen-hidden', embedId, callback)
+}
+
 export function getFormEventHandler(eventType: string, expectedEmbedId: string, callback?: callbackFn) {
   return (event: any) => {
     const { type, embedId, ...data } = event.data

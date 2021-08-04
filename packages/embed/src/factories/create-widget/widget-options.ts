@@ -10,4 +10,10 @@ export type WidgetOptions = BaseOptions &
      * @type {HTMLElement}
      */
     container: HTMLElement
+    /**
+     * Overrides fullscreen modal on mobile.
+     *
+     * @type {boolean}
+     */
+    inlineOnMobile?: boolean
   }

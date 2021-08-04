@@ -72,4 +72,10 @@ export type UrlOptions = {
    * @type {boolean}
    */
   forceTouch?: boolean
+  /**
+   * Enables fullscreen iframe
+   *
+   * @type {boolean}
+   */
+  enableFullscreen?: boolean
 }
