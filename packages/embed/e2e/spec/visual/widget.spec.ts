@@ -18,12 +18,12 @@ describe('Embed Widget', () => {
         openOnMobile('/widget-js.html')
       })
 
-      it('Basic Embed Widget - Mobile', () => {
+      it('Basic Embed Widget - Mobile fullscreen view', () => {
         cy.get('iframe').then(($iframe) => {
           const $body = $iframe.contents().find('body')
           cy.wrap($body).find('[data-qa="start-button"]').click()
-          cy.get('.typeform-widget-close').click()
         })
+        cy.wait(1000)
         eyesCheckMobile('Embed')
       })
     })
@@ -33,12 +33,12 @@ describe('Embed Widget', () => {
         openOnMobile('/widget-js.html?inlineOnMobile')
       })
 
-      it('Basic Embed Widget - Mobile', () => {
+      it('Basic Embed Widget - Mobile inline view', () => {
         cy.get('iframe').then(($iframe) => {
           const $body = $iframe.contents().find('body')
           cy.wrap($body).find('[data-qa="start-button"]').click()
-          cy.get('.typeform-widget-close').click()
         })
+        cy.wait(1000)
         eyesCheckMobile('Embed')
       })
     })
