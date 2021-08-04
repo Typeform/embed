@@ -22,8 +22,8 @@ describe('Embed Widget', () => {
         cy.get('iframe').then(($iframe) => {
           const $body = $iframe.contents().find('body')
           cy.wrap($body).find('[data-qa="start-button"]').click()
-          cy.get('.typeform-widget-close').click()
         })
+        cy.wait(1000)
         eyesCheckMobile('Embed')
       })
     })
@@ -37,8 +37,8 @@ describe('Embed Widget', () => {
         cy.get('iframe').then(($iframe) => {
           const $body = $iframe.contents().find('body')
           cy.wrap($body).find('[data-qa="start-button"]').click()
-          cy.get('.typeform-widget-close').click()
         })
+        cy.wait(1000)
         eyesCheckMobile('Embed')
       })
     })
