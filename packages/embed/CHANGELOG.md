@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.17.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.16.1...@typeform/embed-v1.17.0) (2021-08-04)
+
+
+### Features
+
+* **DIST-1090:** Add widget mobile full screen handling ([#305](https://github.com/Typeform/embed/issues/305)) ([fbd7e20](https://github.com/Typeform/embed/commit/fbd7e20aac1a0bfae6f23ed62e645566eca8431c))
+
 # [@typeform/embed-v1.16.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.16.0...@typeform/embed-v1.16.1) (2021-08-04)
 
 
