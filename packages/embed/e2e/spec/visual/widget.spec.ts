@@ -30,14 +30,10 @@ describe('Embed Widget', () => {
 
     describe('with inline view', () => {
       before(() => {
-        openOnMobile('/widget-js.html?inlineOnMobile')
+        openOnMobile('/widget-inline.html')
       })
 
       it('Basic Embed Widget - Mobile inline view', () => {
-        cy.get('iframe').then(($iframe) => {
-          const $body = $iframe.contents().find('body')
-          cy.wrap($body).find('[data-qa="start-button"]').click()
-        })
         cy.wait(1000)
         eyesCheckMobile('Embed')
       })
