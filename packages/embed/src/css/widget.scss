@@ -1,3 +1,4 @@
+@import 'includes/close';
 @import 'includes/iframe';
 
 .typeform-widget {
@@ -7,5 +8,28 @@
   iframe {
     @include iframe;
     border-radius: 8px;
+  }
+}
+
+.typeform-widget-close {
+  display: none;
+}
+
+.typeform-widget-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 100% !important;
+  width: 100% !important;
+
+  .typeform-widget-close {
+    display: block;
+    @include close(#737373);
+
+    top: 4px;
+    right: 6px;
   }
 }

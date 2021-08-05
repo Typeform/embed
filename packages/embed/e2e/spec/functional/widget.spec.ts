@@ -1,7 +1,14 @@
+import { openOnMobile } from '../../cypress-utils'
+
 describe('Widget', () => {
   testWidget('/widget-html.html', 'html')
   testWidget('/widget-js.html', 'javascript')
   testWidget('/', 'server-side rendering')
+})
+
+describe('Widget - Mobile', () => {
+  testMobile('/widget-html.html', 'html')
+  testMobile('/widget-js.html', 'javascript')
 })
 
 function testWidget(path: string, title: string) {
@@ -31,6 +38,27 @@ function testWidget(path: string, title: string) {
 
     it('should not pass params not in the list to the iframe', () => {
       cy.get('.typeform-widget iframe').invoke('attr', 'src').should('not.contain', 'baz=baz')
+    })
+  })
+}
+
+function testMobile(path: string, title: string) {
+  describe(`Widget - ${title}`, () => {
+    before(() => {
+      openOnMobile(`${path}?foo=foo&bar=bar&baz=baz`)
+    })
+
+    it('should reset the form when closing it', () => {
+      cy.get('iframe').then(($iframe) => {
+        const $body = $iframe.contents().find('body')
+        cy.wrap($body).find('[data-qa="start-button"]').click()
+        cy.get('.typeform-widget-close').click()
+      })
+      cy.wait(500)
+      cy.get('iframe').then(($iframe) => {
+        const $body = $iframe.contents().find('body')
+        cy.wrap($body).find('[data-qa="start-button"]').should('exist')
+      })
     })
   })
 }

@@ -1,3 +1,17 @@
+# [@typeform/embed-v1.17.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.16.1...@typeform/embed-v1.17.0) (2021-08-04)
+
+
+### Features
+
+* **DIST-1090:** Add widget mobile full screen handling ([#305](https://github.com/Typeform/embed/issues/305)) ([fbd7e20](https://github.com/Typeform/embed/commit/fbd7e20aac1a0bfae6f23ed62e645566eca8431c))
+
+# [@typeform/embed-v1.16.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.16.0...@typeform/embed-v1.16.1) (2021-08-04)
+
+
+### Bug Fixes
+
+* **DIST-1138:** Custom icon aspect ratio ([#307](https://github.com/Typeform/embed/issues/307)) ([e774c15](https://github.com/Typeform/embed/commit/e774c15c5e1b0c8b32e073b3dfac99d073e2d47e))
+
 # [@typeform/embed-v1.16.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.15.2...@typeform/embed-v1.16.0) (2021-08-02)
 
 
