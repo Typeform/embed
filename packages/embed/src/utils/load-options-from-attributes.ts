@@ -30,21 +30,29 @@ const transformFunction = (value: string | null): Function | undefined => {
   return typeof fn === 'function' ? fn : undefined
 }
 
+const COMMA_PLACEHOLDER = '%ESCAPED_COMMA%'
+
 const transformArray = (value: string | null): string[] | undefined => {
   if (!value) {
     return undefined
   }
   return value
-    ?.replace(/\s/g, '')
+    .replace(/\s/g, '')
+    .replace(/\\,/g, COMMA_PLACEHOLDER)
     .split(',')
     .filter((v) => !!v)
+    .map((v) => v.replace(COMMA_PLACEHOLDER, ','))
 }
 
 const transformRecord = (value: string | null): Record<string, string> | undefined => {
   if (!value) {
     return undefined
   }
-  const arrayOfRecordStrings = value.split(',').filter((v) => !!v)
+  const arrayOfRecordStrings = value
+    .replace(/\\,/g, COMMA_PLACEHOLDER)
+    .split(',')
+    .filter((v) => !!v)
+    .map((v) => v.replace(COMMA_PLACEHOLDER, ','))
   return arrayOfRecordStrings.reduce((record, recordString) => {
     const match = recordString.match(/^([^=]+)=(.*)$/)
     if (match) {
