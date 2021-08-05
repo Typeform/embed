@@ -98,6 +98,7 @@ Or from admin panel URL:
 | onSubmit               | function         | fires when user submits the form                                                                                                       | `undefined`                                                   |
 | onQuestionChanged      | function         | fires when user navigates between form questions                                                                                       | `undefined`                                                   |
 | shareGaInstance        | function         | shares Google Analytics instance of the host page with embedded typeform                                                               | `false`                                                       |
+| inlineOnMobile         | function         | removes placeholder welcome screen in mobile and makes form show inline instead of fullscreen                                          | `undefined`                                                   |
 
 ### Options in plain HTML embed
 
