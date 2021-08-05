@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.17.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.1...@typeform/embed-v1.17.2) (2021-08-05)
+
+
+### Bug Fixes
+
+* **DIST-1131:** Allow comas in hidden fields ([#310](https://github.com/Typeform/embed/issues/310)) ([38a279d](https://github.com/Typeform/embed/commit/38a279d973069ae5c116f1696e7f850fc915d608))
+
 # [@typeform/embed-v1.17.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.0...@typeform/embed-v1.17.1) (2021-08-05)
 
 
