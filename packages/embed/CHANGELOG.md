@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.17.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.0...@typeform/embed-v1.17.1) (2021-08-05)
+
+
+### Bug Fixes
+
+* **DIST-1112:** Fix custom icon on mobile ([#303](https://github.com/Typeform/embed/issues/303)) ([dcc5b3e](https://github.com/Typeform/embed/commit/dcc5b3e73e00939582be1e7ea4739eb53e9be3d3))
+
 # [@typeform/embed-v1.17.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.16.1...@typeform/embed-v1.17.0) (2021-08-04)
 
 
