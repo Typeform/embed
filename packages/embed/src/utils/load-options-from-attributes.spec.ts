@@ -87,6 +87,10 @@ describe('load-options-from-attributes', () => {
       expect(transformAttributeValue('a, b', 'array')).toEqual(['a', 'b'])
     })
 
+    it('should transform string with escaped commas as array', () => {
+      expect(transformAttributeValue('a, b, c\\,d', 'array')).toEqual(['a', 'b', 'c,d'])
+    })
+
     it('should remove empty spaces around text', () => {
       expect(transformAttributeValue('foo , bar , test', 'array')).toEqual(['foo', 'bar', 'test'])
     })
@@ -103,6 +107,10 @@ describe('load-options-from-attributes', () => {
   describe('to record (object)', () => {
     it('should transform string as record', () => {
       expect(transformAttributeValue('a=aa, b=bb', 'record')).toEqual({ a: 'aa', b: 'bb' })
+    })
+
+    it('should transform string with escaped commas as record', () => {
+      expect(transformAttributeValue('a=a\\,a, b\\,b=bb', 'record')).toEqual({ a: 'a,a', 'b,b': 'bb' })
     })
 
     it('should remove empty spaces in values, not around keys', () => {
