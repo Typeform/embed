@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.17.3](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.2...@typeform/embed-v1.17.3) (2021-08-09)
+
+
+### Bug Fixes
+
+* **DIST-1068:** Force fullscreen when force touch enabled ([#312](https://github.com/Typeform/embed/issues/312)) ([7c4f736](https://github.com/Typeform/embed/commit/7c4f736bfc50fd1ed49448071910b79c8fa0683f))
+
 # [@typeform/embed-v1.17.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.1...@typeform/embed-v1.17.2) (2021-08-05)
 
 
