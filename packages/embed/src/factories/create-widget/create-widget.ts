@@ -26,7 +26,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
 
   const widgetOptions = options
 
-  if (isFullscreen() && !options.inlineOnMobile) {
+  if (!options.inlineOnMobile && (options.forceTouch || isFullscreen())) {
     widgetOptions.enableFullscreen = true
     widgetOptions.forceTouch = true
   }
