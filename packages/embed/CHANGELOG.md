@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.17.4](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.3...@typeform/embed-v1.17.4) (2021-08-18)
+
+
+### Bug Fixes
+
+* **DIST-1127:** Fix text colors on bright backgrounds ([#316](https://github.com/Typeform/embed/issues/316)) ([7c6370e](https://github.com/Typeform/embed/commit/7c6370eff2d90932cab947448a2aa34dc0bd4dbc))
+
 # [@typeform/embed-v1.17.3](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.2...@typeform/embed-v1.17.3) (2021-08-09)
 
 
