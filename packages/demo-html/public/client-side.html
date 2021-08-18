@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Client-side Snippet Demo</title>
+    <style>
+      #wrapper {
+        width: 100%;
+        max-width: 600px;
+        height: 400px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>This page will inject embed code client-side with JS</h1>
+    <p>This embed code is inserted before the JS lib is loaded and will load automatically.</p>
+    <div id="content"></div>
+    <p>
+      Embed code here is inserted later, after the JS lib is loaded and needs to be loaded manually via
+      <code>window.tf.load()</code>.
+    </p>
+    <div id="more-content"></div>
+    <script>
+      // add snippet
+      const contentElm = document.querySelector('#content')
+      contentElm.innerHTML = '<div id="wrapper" data-tf-widget="moe6aa"></div>'
+
+      // add script (we can not add scripts via innerHTML)
+      const scriptElm = document.createElement('script')
+      scriptElm.src = './lib/embed-next.js'
+      document.querySelector('body').append(scriptElm)
+
+      setTimeout(() => {
+        const moreContentElm = document.querySelector('#more-content')
+        moreContentElm.innerHTML =
+          'Embed code inserted but not loaded. <button onclick="window.tf.load()">run <code>window.tf.load()</code></button>' +
+          '<div id="wrapper" data-tf-widget="moe6aa"></div>'
+      }, 2000)
+    </script>
+  </body>
+</html>
