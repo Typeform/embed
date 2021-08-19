@@ -55,7 +55,7 @@
     "next": "10.0.7",
     "node-sass": "^6.0.0",
     "postcss-loader": "^5.0.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.2",
     "prop-types": "^15.7.2",
     "raw-loader": "^4.0.2",
     "react": "^16.8.0",
