@@ -20,7 +20,7 @@
   "devDependencies": {
     "@applitools/eyes-cypress": "^3.18.7",
     "@babel/core": "^7.12.10",
-    "@commitlint/config-conventional": "^11.0.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/exec": "^5.0.0",
