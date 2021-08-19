@@ -43,7 +43,7 @@
     "css-minimizer-webpack-plugin": "^1.2.0",
     "cypress": "6",
     "eslint": "^7.28.0",
-    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-cypress": "^2.11.3",
     "eslint-plugin-prettier": "^3.3.1",
     "html-webpack-plugin": "^5.1.0",
     "http-server": "^0.12.3",
