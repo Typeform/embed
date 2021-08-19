@@ -18,7 +18,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@applitools/eyes-cypress": "^3.18.7",
+    "@applitools/eyes-cypress": "^3.22.3",
     "@babel/core": "^7.12.10",
     "@commitlint/config-conventional": "^11.0.0",
     "@semantic-release/changelog": "^5.0.1",
