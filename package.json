@@ -64,7 +64,7 @@
     "sass-loader": "^11.0.1",
     "semantic-release": "^17.3.8",
     "semantic-release-monorepo": "^7.0.4",
-    "start-server-and-test": "^1.12.5",
+    "start-server-and-test": "^1.13.1",
     "style-loader": "^2.0.0",
     "ts-jest": "^26.5.0",
     "ts-loader": "^8.0.15",
