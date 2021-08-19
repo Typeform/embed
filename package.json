@@ -40,7 +40,7 @@
     "concurrently": "^5.3.0",
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.2",
-    "css-minimizer-webpack-plugin": "^1.2.0",
+    "css-minimizer-webpack-plugin": "^3.0.2",
     "cypress": "6",
     "eslint": "^7.28.0",
     "eslint-plugin-cypress": "^2.11.2",
