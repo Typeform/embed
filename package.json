@@ -44,7 +44,7 @@
     "cypress": "6",
     "eslint": "^7.28.0",
     "eslint-plugin-cypress": "^2.11.2",
-    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-prettier": "^3.4.0",
     "html-webpack-plugin": "^5.1.0",
     "http-server": "^0.12.3",
     "husky": "^4.3.8",
