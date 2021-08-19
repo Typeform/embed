@@ -169,7 +169,6 @@
       bottom: 0;
       right: 0;
       @include fullsize;
-      max-height: -webkit-fill-available;
 
       .typeform-popover-close {
         display: block;
