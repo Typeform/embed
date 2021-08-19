@@ -7,7 +7,7 @@ import { getTransitiveSearchParams } from './get-transitive-search-params'
 import { getHubspotHiddenFields } from './hubspot'
 
 const getDefaultUrlOptions = (): UrlOptions => ({
-  source: window?.location?.hostname.replace(/^www\./, ''),
+  source: document.referrer || window?.location?.hostname.replace(/^www\./, ''),
   medium: 'embed-sdk',
   mediumVersion: 'next',
 })
