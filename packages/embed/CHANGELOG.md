@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.17.6](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.5...@typeform/embed-v1.17.6) (2021-08-19)
+
+
+### Bug Fixes
+
+* **DIST-1161:** Fix height on mobile ([#317](https://github.com/Typeform/embed/issues/317)) ([bde52af](https://github.com/Typeform/embed/commit/bde52afaf98522886f149202d90012888fa9cc27))
+
 # [@typeform/embed-v1.17.5](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.4...@typeform/embed-v1.17.5) (2021-08-18)
 
 
