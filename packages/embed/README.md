@@ -97,7 +97,8 @@ Or from admin panel URL:
 | onReady                | function         | fires when the form is loaded                                                                                                          | `undefined`                                                   |
 | onSubmit               | function         | fires when user submits the form                                                                                                       | `undefined`                                                   |
 | onQuestionChanged      | function         | fires when user navigates between form questions                                                                                       | `undefined`                                                   |
-| shareGaInstance        | function         | shares Google Analytics instance of the host page with embedded typeform                                                               | `false`                                                       |
+| shareGaInstance        | boolean          | shares Google Analytics instance of the host page with embedded typeform                                                               | `false`                                                       |
+| inlineOnMobile         | function         | removes placeholder welcome screen in mobile and makes form show inline instead of fullscreen                                          | `undefined`                                                   |
 
 ### Options in plain HTML embed
 
@@ -105,8 +106,9 @@ Or from admin panel URL:
 - define options as data attributes with `data-tf-` prefix and dashes in name (eg. `disableAutoFocus` becomes `data-tf-disable-autofocus`)
 - set a boolean property to `true` by omitting attribute value, (eg. `<div ... data-tf-disable-footer></div>`
 - pass function name for callbacks, eg. `data-tf-on-ready="myReadyFunction"` if this function is available on global scope (eg. `window`)
-- to pass `string[]` use coma-separated string, eg. `transitiveSearchParams: ['foo', 'bar']` becomes `data-tf-transitive-search-params="foo,bar"`
-- to pass `object` pass coma-separated key=value pairs, eg. `hidden: { foo: "f", bar: "b" }` becomes `data-tf-hidden="foo=f,bar=b"`
+- to pass `string[]` use comma-separated string, eg. `transitiveSearchParams: ['foo', 'bar']` becomes `data-tf-transitive-search-params="foo,bar"`
+- to pass `object` pass comma-separated key=value pairs, eg. `hidden: { foo: "f", bar: "b" }` becomes `data-tf-hidden="foo=f,bar=b"`
+  - **Note:** since commas `,` are used as delimiter for each value you will need to escape them with backward slash, eg. `data-tf-hidden="foo=foo\,bar"`. In JavaScript you don't need to escape it.
 
 ### Custom Launch Options
 
@@ -162,7 +164,7 @@ Callback method receive payload object from the form:
   - `ref` (string) identifies currenttly displayed question
 - onSubmit
   - `responseId` (string) identifies the response, can be retrieved via [Responses API](https://developer.typeform.com/responses/)
-  - `response_id` (string) same as above (for backward comaptibility with old embed SDK)
+  - `response_id` (string) same as above (for backward compatibility with old embed SDK)
 
 See [callbacks example in demo package](../../packages/demo-html/public/callbacks.html).
 

@@ -1,3 +1,45 @@
+# [@typeform/embed-v1.17.6](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.5...@typeform/embed-v1.17.6) (2021-08-19)
+
+
+### Bug Fixes
+
+* **DIST-1161:** Fix height on mobile ([#317](https://github.com/Typeform/embed/issues/317)) ([bde52af](https://github.com/Typeform/embed/commit/bde52afaf98522886f149202d90012888fa9cc27))
+
+# [@typeform/embed-v1.17.5](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.4...@typeform/embed-v1.17.5) (2021-08-18)
+
+
+### Bug Fixes
+
+* **DIST-1183:** Load embed elements on lib load ([#320](https://github.com/Typeform/embed/issues/320)) ([69cb717](https://github.com/Typeform/embed/commit/69cb7179f779c1b662621007270c1c2737cb1c2f))
+
+# [@typeform/embed-v1.17.4](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.3...@typeform/embed-v1.17.4) (2021-08-18)
+
+
+### Bug Fixes
+
+* **DIST-1127:** Fix text colors on bright backgrounds ([#316](https://github.com/Typeform/embed/issues/316)) ([7c6370e](https://github.com/Typeform/embed/commit/7c6370eff2d90932cab947448a2aa34dc0bd4dbc))
+
+# [@typeform/embed-v1.17.3](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.2...@typeform/embed-v1.17.3) (2021-08-09)
+
+
+### Bug Fixes
+
+* **DIST-1068:** Force fullscreen when force touch enabled ([#312](https://github.com/Typeform/embed/issues/312)) ([7c4f736](https://github.com/Typeform/embed/commit/7c4f736bfc50fd1ed49448071910b79c8fa0683f))
+
+# [@typeform/embed-v1.17.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.1...@typeform/embed-v1.17.2) (2021-08-05)
+
+
+### Bug Fixes
+
+* **DIST-1131:** Allow comas in hidden fields ([#310](https://github.com/Typeform/embed/issues/310)) ([38a279d](https://github.com/Typeform/embed/commit/38a279d973069ae5c116f1696e7f850fc915d608))
+
+# [@typeform/embed-v1.17.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.0...@typeform/embed-v1.17.1) (2021-08-05)
+
+
+### Bug Fixes
+
+* **DIST-1112:** Fix custom icon on mobile ([#303](https://github.com/Typeform/embed/issues/303)) ([dcc5b3e](https://github.com/Typeform/embed/commit/dcc5b3e73e00939582be1e7ea4739eb53e9be3d3))
+
 # [@typeform/embed-v1.17.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.16.1...@typeform/embed-v1.17.0) (2021-08-04)
 
 
