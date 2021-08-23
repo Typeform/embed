@@ -27,3 +27,5 @@ module.exports = {
 }
 
 document.addEventListener('DOMContentLoaded', load, false)
+
+load()

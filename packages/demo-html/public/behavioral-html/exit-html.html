@@ -39,8 +39,8 @@
       <input id="threshold" name="threshold" type="number" value="50" step="10" min="10" max="250" />
       <button type="submit">Set</button>
     </form>
-    <script src="../lib/embed-next.js"></script>
     <script>
+      // if we want to modify embed code snippets we need to do it before loading embed-next.js
       const threshold = parseInt(new URL(window.location.href).searchParams.get('threshold'), 10)
       if (threshold) {
         document.getElementById('visual-threshold').style.height = threshold + 'px'
@@ -48,5 +48,6 @@
         document.getElementById('threshold').value = threshold
       }
     </script>
+    <script src="../lib/embed-next.js"></script>
   </body>
 </html>
