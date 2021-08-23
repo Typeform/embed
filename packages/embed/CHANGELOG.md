@@ -1,3 +1,24 @@
+# [@typeform/embed-v1.17.6](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.5...@typeform/embed-v1.17.6) (2021-08-19)
+
+
+### Bug Fixes
+
+* **DIST-1161:** Fix height on mobile ([#317](https://github.com/Typeform/embed/issues/317)) ([bde52af](https://github.com/Typeform/embed/commit/bde52afaf98522886f149202d90012888fa9cc27))
+
+# [@typeform/embed-v1.17.5](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.4...@typeform/embed-v1.17.5) (2021-08-18)
+
+
+### Bug Fixes
+
+* **DIST-1183:** Load embed elements on lib load ([#320](https://github.com/Typeform/embed/issues/320)) ([69cb717](https://github.com/Typeform/embed/commit/69cb7179f779c1b662621007270c1c2737cb1c2f))
+
+# [@typeform/embed-v1.17.4](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.3...@typeform/embed-v1.17.4) (2021-08-18)
+
+
+### Bug Fixes
+
+* **DIST-1127:** Fix text colors on bright backgrounds ([#316](https://github.com/Typeform/embed/issues/316)) ([7c6370e](https://github.com/Typeform/embed/commit/7c6370eff2d90932cab947448a2aa34dc0bd4dbc))
+
 # [@typeform/embed-v1.17.3](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.2...@typeform/embed-v1.17.3) (2021-08-09)
 
 

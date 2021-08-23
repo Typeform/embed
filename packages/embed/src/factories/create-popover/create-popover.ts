@@ -5,6 +5,7 @@ import {
   unmountElement,
   setAutoClose,
   addCustomKeyboardListener,
+  getTextColor,
 } from '../../utils'
 
 import { PopoverOptions } from './popover-options'
@@ -64,7 +65,8 @@ const buildSpinner = () => {
   return icon
 }
 
-const buildIcon = (customIcon?: string) => {
+const buildIcon = (customIcon?: string, color?: string) => {
+  const fillColor = getTextColor(color)
   const triggerIcon = document.createElement('div')
   triggerIcon.className = 'typeform-popover-button-icon'
   triggerIcon.innerHTML = customIcon
@@ -75,17 +77,19 @@ const buildIcon = (customIcon?: string) => {
     9.75C6.672 9.75 6 9.07875 6 8.25C6 7.42125 6.672 6.75 7.5 6.75C8.328 6.75 9 7.42125 9 8.25C9 9.07875 8.328 9.75
     7.5 9.75ZM12.75 9.75C11.922 9.75 11.25 9.07875 11.25 8.25C11.25 7.42125 11.922 6.75 12.75 6.75C13.578 6.75 14.25
     7.42125 14.25 8.25C14.25 9.07875 13.578 9.75 12.75 9.75ZM18 9.75C17.172 9.75 16.5 9.07875 16.5 8.25C16.5 7.42125
-    17.172 6.75 18 6.75C18.828 6.75 19.5 7.42125 19.5 8.25C19.5 9.07875 18.828 9.75 18 9.75Z" fill="white"></path>
+    17.172 6.75 18 6.75C18.828 6.75 19.5 7.42125 19.5 8.25C19.5 9.07875 18.828 9.75 18 9.75Z" fill="${fillColor}"></path>
     </svg>`
   triggerIcon.dataset.testid = 'default-icon'
   return triggerIcon
 }
 
 const buildTriggerButton = (color: string) => {
+  const textColor = getTextColor(color)
   const button = document.createElement('button')
   button.className = 'typeform-popover-button'
   button.dataset.testid = 'typeform-popover-button'
   button.style.backgroundColor = color
+  button.style.color = textColor
   return button
 }
 
@@ -118,7 +122,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const popover = buildPopover(options.width, options.height)
   const wrapper = buildWrapper()
-  const icon = buildIcon(options.customIcon)
+  const icon = buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
   const spinner = buildSpinner()
   const closeIcon = buildCloseIcon()
   const closeModal = buildCloseIcon('a', 'typeform-popover-close')
