@@ -1,3 +1,10 @@
+## [0.36.4](https://github.com/Typeform/embed/compare/v0.36.3...v0.36.4) (2021-08-23)
+
+
+### Bug Fixes
+
+* package.json & yarn.lock to reduce vulnerabilities ([#304](https://github.com/Typeform/embed/issues/304)) ([f262c20](https://github.com/Typeform/embed/commit/f262c20577368fb2a015e31fd2d29ce8ddb8e442))
+
 ## [0.36.3](https://github.com/Typeform/embed/compare/v0.36.2...v0.36.3) (2021-07-08)
 
 
