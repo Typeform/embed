@@ -27,17 +27,22 @@
       const contentElm = document.querySelector('#content')
       contentElm.innerHTML = '<div id="wrapper" data-tf-widget="moe6aa"></div>'
 
-      // add script (we can not add scripts via innerHTML)
-      const scriptElm = document.createElement('script')
-      scriptElm.src = './lib/embed-next.js'
-      document.querySelector('body').append(scriptElm)
+      setTimeout(() => {
+        console.log('Is document already loaded?', document.readyState === 'complete' ? 'YES' : 'NO')
+        console.log('document.readyState =', document.readyState)
+
+        // add script (we can not add scripts via innerHTML)
+        const scriptElm = document.createElement('script')
+        scriptElm.src = './lib/embed-next.js'
+        document.querySelector('body').append(scriptElm)
+      }, 500)
 
       setTimeout(() => {
         const moreContentElm = document.querySelector('#more-content')
         moreContentElm.innerHTML =
           'Embed code inserted but not loaded. <button onclick="window.tf.load()">run <code>window.tf.load()</code></button>' +
           '<div id="wrapper" data-tf-widget="moe6aa"></div>'
-      }, 2000)
+      }, 3000)
     </script>
   </body>
 </html>

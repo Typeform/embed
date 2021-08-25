@@ -28,4 +28,6 @@ module.exports = {
 
 document.addEventListener('DOMContentLoaded', load, false)
 
-load()
+if (document.readyState === 'interactive' || document.readyState === 'complete') {
+  load()
+}
