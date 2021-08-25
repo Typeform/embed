@@ -13,7 +13,19 @@
     </style>
   </head>
   <body>
+    <div
+      id="wrapper"
+      data-tf-widget="moe6aa"
+      data-tf-source="localhost"
+      data-tf-on-ready="onTypeformReady"
+      data-tf-on-submit="onTypeformSubmit"
+      data-tf-on-question-changed="onTypeformQuestionChanged"
+    ></div>
+    <script src="./lib/embed-next.js"></script>
     <script>
+      // customers are often defining callbacks AFTER embedding the form
+      // https://github.com/Typeform/embed/issues/363
+
       function onTypeformReady(data) {
         alert('onReady')
         console.log('form ready', data)
@@ -29,14 +41,5 @@
         console.log('form question changed', data)
       }
     </script>
-    <div
-      id="wrapper"
-      data-tf-widget="moe6aa"
-      data-tf-source="localhost"
-      data-tf-on-ready="onTypeformReady"
-      data-tf-on-submit="onTypeformSubmit"
-      data-tf-on-question-changed="onTypeformQuestionChanged"
-    ></div>
-    <script src="./lib/embed-next.js"></script>
   </body>
 </html>
