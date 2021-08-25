@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.17.7](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.6...@typeform/embed-v1.17.7) (2021-08-25)
+
+
+### Bug Fixes
+
+* **DIST-1195:** Load embed snippets after the page has loaded ([#369](https://github.com/Typeform/embed/issues/369)) ([d8c5246](https://github.com/Typeform/embed/commit/d8c5246da9f35c0f17a63621826b5c07b4a38c21))
+
 # [@typeform/embed-v1.17.6](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.5...@typeform/embed-v1.17.6) (2021-08-19)
 
 
