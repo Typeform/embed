@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.17.8](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.7...@typeform/embed-v1.17.8) (2021-08-26)
+
+
+### Bug Fixes
+
+* **DIST-1212:** Widget fullscreen uses fullsize mixin ([#370](https://github.com/Typeform/embed/issues/370)) ([cc9cb05](https://github.com/Typeform/embed/commit/cc9cb052afb444cefa849abf1ee13cd3d621884c))
+
 # [@typeform/embed-v1.17.7](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.6...@typeform/embed-v1.17.7) (2021-08-25)
 
 
