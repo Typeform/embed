@@ -1,5 +1,6 @@
 @import 'includes/close';
 @import 'includes/iframe';
+@import 'includes/fullsize';
 
 .typeform-widget {
   width: 100%;
@@ -22,8 +23,7 @@
   right: 0;
   bottom: 0;
 
-  height: 100% !important;
-  width: 100% !important;
+  @include fullsize;
 
   .typeform-widget-close {
     display: block;
