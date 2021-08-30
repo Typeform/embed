@@ -11,10 +11,23 @@
         height: 400px;
         margin: 0 auto;
       }
+      .element {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background: red;
+        color: white;
+        padding: 10px;
+        width: 200px;
+        height: 60px;
+        line-height: 40px;
+        z-index: 10000;
+      }
     </style>
     <link rel="stylesheet" href="./lib/css/widget.css" />
   </head>
   <body>
+    <div class="element">I have z-index 10k</div>
     <div id="wrapper"></div>
     <script src="./lib/embed-next.js"></script>
     <script>

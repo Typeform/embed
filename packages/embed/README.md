@@ -98,7 +98,7 @@ Or from admin panel URL:
 | onSubmit               | function         | fires when user submits the form                                                                                                       | `undefined`                                                   |
 | onQuestionChanged      | function         | fires when user navigates between form questions                                                                                       | `undefined`                                                   |
 | shareGaInstance        | boolean          | shares Google Analytics instance of the host page with embedded typeform                                                               | `false`                                                       |
-| inlineOnMobile         | function         | removes placeholder welcome screen in mobile and makes form show inline instead of fullscreen                                          | `undefined`                                                   |
+| inlineOnMobile         | boolean          | removes placeholder welcome screen in mobile and makes form show inline instead of fullscreen                                          | `false`                                                       |
 
 ### Options in plain HTML embed
 
@@ -167,6 +167,20 @@ Callback method receive payload object from the form:
   - `response_id` (string) same as above (for backward compatibility with old embed SDK)
 
 See [callbacks example in demo package](../../packages/demo-html/public/callbacks.html).
+
+### Positioning and overlapping
+
+All embeds that are intended to be displayed over existing content in the website have **z-index set to 10001**.
+If you want to display content over your typeform you need to make sure it has higher z-index. However if you want
+your typeform to display over other content in your website you need to set its z-index to a value of 10000 or lower.
+
+This is related to all embeds:
+
+- popup
+- slider
+- sidetab
+- popover
+- widget - on mobile devices widget opens in fullscreen modal window (unless `inlineOnMobile` is set)
 
 ### Loading and reloading embedded forms
 

@@ -22,6 +22,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 10001;
 
   @include fullsize;
 
@@ -31,5 +32,9 @@
 
     top: 4px;
     right: 6px;
+  }
+
+  iframe {
+    border-radius: 0;
   }
 }
