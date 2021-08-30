@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.17.9](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.8...@typeform/embed-v1.17.9) (2021-08-30)
+
+
+### Bug Fixes
+
+* **DIST-1220:** Set correct z-index for fullscreen widget on mobile ([#371](https://github.com/Typeform/embed/issues/371)) ([ad59cbc](https://github.com/Typeform/embed/commit/ad59cbc9b9f5e55725a0095b7242baa787e96834))
+
 # [@typeform/embed-v1.17.8](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.7...@typeform/embed-v1.17.8) (2021-08-26)
 
 
