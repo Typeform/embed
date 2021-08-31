@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.17.10](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.9...@typeform/embed-v1.17.10) (2021-08-31)
+
+
+### Bug Fixes
+
+* **DIST-1233:** Fix data-tf-disable-auto-focus attribute ([#372](https://github.com/Typeform/embed/issues/372)) ([1bb220a](https://github.com/Typeform/embed/commit/1bb220a2ff0c716586adcba394891f38df6c02c5))
+
 # [@typeform/embed-v1.17.9](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.8...@typeform/embed-v1.17.9) (2021-08-30)
 
 
