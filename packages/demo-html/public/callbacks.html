@@ -20,7 +20,18 @@
       data-tf-on-ready="onTypeformReady"
       data-tf-on-submit="onTypeformSubmit"
       data-tf-on-question-changed="onTypeformQuestionChanged"
+      data-tf-on-close="onTypeformClose"
     ></div>
+    <button
+      data-tf-popup="moe6aa"
+      data-tf-source="localhost"
+      data-tf-on-ready="onTypeformReady"
+      data-tf-on-submit="onTypeformSubmit"
+      data-tf-on-question-changed="onTypeformQuestionChanged"
+      data-tf-on-close="onTypeformClose"
+    >
+      open popup
+    </button>
     <script src="./lib/embed-next.js"></script>
     <script>
       // customers are often defining callbacks AFTER embedding the form
@@ -39,6 +50,11 @@
       function onTypeformQuestionChanged(data) {
         alert('onQuestionChanged')
         console.log('form question changed', data)
+      }
+
+      function onTypeformClose(data) {
+        alert('onClose')
+        console.log('modal window closed', data)
       }
     </script>
   </body>

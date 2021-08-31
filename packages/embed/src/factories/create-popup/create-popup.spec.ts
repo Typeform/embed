@@ -69,6 +69,14 @@ describe('create-popup', () => {
         jest.runAllTimers()
         expect(document.body.style.overflow).toBe(scrollInitialState)
       })
+
+      it('should run onClose callback if provided', () => {
+        const onClose = jest.fn()
+        const popup = createPopup('url', { container, onClose })
+        popup.open()
+        popup.close()
+        expect(onClose).toHaveBeenCalledTimes(1)
+      })
     })
 
     describe('#toggle', () => {

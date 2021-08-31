@@ -70,6 +70,15 @@ describe('#createSidetab', () => {
         await waitForElementToBeRemoved(() => screen.queryByTestId('typeform-popover-wrapper'))
         expect(screen.getByTestId('default-icon')).toBeInTheDocument()
       })
+
+      it('should run onClose callback if provided', () => {
+        const onClose = jest.fn()
+        const popover = createPopover('formId', { onClose })
+        popover.open()
+        popover.close()
+        expect(onClose).toHaveBeenCalledTimes(1)
+        popover.unmount()
+      })
     })
 
     describe('#toggle', () => {

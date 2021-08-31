@@ -73,7 +73,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
     }
   }
 
-  const { width, height, size = POPUP_SIZE, ...options } = userOptions
+  const { width, height, size = POPUP_SIZE, onClose, ...options } = userOptions
 
   const { iframe, embedId } = createIframe(formId, 'popup', options)
   const scrollInitialState = document.body.style.overflow
@@ -108,6 +108,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
 
   const close = () => {
     if (isOpen(popup)) {
+      onClose?.()
       popup.style.opacity = '0'
       wrapper.style.opacity = '0'
       document.body.style.overflow = scrollInitialState

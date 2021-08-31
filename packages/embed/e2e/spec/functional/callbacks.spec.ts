@@ -6,5 +6,17 @@ describe('Callbacks', () => {
     cy.visit('/callbacks.html').then(() => {
       expect(stub).to.be.calledWith('onReady')
     })
+
+    cy.get('button')
+      .click()
+      .then(() => {
+        expect(stub).to.be.calledWith('onReady')
+      })
+
+    cy.get('a.typeform-close')
+      .click()
+      .then(() => {
+        expect(stub).to.be.calledWith('onClose')
+      })
   })
 })

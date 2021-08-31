@@ -96,6 +96,7 @@ Or from admin panel URL:
 | autoClose              | number / boolean | time (ms) until the embedded typeform will automatically close after a respondent clicks the Submit button. (all embeds except widget) | `undefined`                                                   |
 | onReady                | function         | fires when the form is loaded                                                                                                          | `undefined`                                                   |
 | onSubmit               | function         | fires when user submits the form                                                                                                       | `undefined`                                                   |
+| onClose                | function         | fires when the form is closed (when opened in modal window)                                                                            | `undefined`                                                   |
 | onQuestionChanged      | function         | fires when user navigates between form questions                                                                                       | `undefined`                                                   |
 | shareGaInstance        | boolean          | shares Google Analytics instance of the host page with embedded typeform                                                               | `false`                                                       |
 | inlineOnMobile         | boolean          | removes placeholder welcome screen in mobile and makes form show inline instead of fullscreen                                          | `false`                                                       |
@@ -165,6 +166,8 @@ Callback method receive payload object from the form:
 - onSubmit
   - `responseId` (string) identifies the response, can be retrieved via [Responses API](https://developer.typeform.com/responses/)
   - `response_id` (string) same as above (for backward compatibility with old embed SDK)
+- onClose
+  - no payload
 
 See [callbacks example in demo package](../../packages/demo-html/public/callbacks.html).
 

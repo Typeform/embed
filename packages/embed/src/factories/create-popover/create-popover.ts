@@ -195,6 +195,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const close = () => {
     if (isOpen(popover)) {
+      userOptions.onClose?.()
       setTimeout(() => {
         unmountElement(wrapper)
         popover.classList.remove('open')

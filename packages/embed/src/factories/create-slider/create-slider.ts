@@ -64,7 +64,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
     }
   }
 
-  const { position = SLIDER_POSITION, width = SLIDER_WIDTH, ...options } = userOptions
+  const { position = SLIDER_POSITION, width = SLIDER_WIDTH, onClose, ...options } = userOptions
   const { iframe, embedId } = createIframe(formId, 'slider', options)
   const scrollInitialState = document.body.style.overflow
 
@@ -99,6 +99,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
 
   const close = () => {
     if (isOpen(slider)) {
+      onClose?.()
       slider.style.opacity = '0'
       wrapper.style[position] = '-100%'
       document.body.style.overflow = scrollInitialState
