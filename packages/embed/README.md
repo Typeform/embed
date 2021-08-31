@@ -103,7 +103,7 @@ Or from admin panel URL:
 ### Options in plain HTML embed
 
 - to embed via HTML without writing JavaScript code, use `data-tf-widget="<form-id>"` for widget embed (see example above)
-- define options as data attributes with `data-tf-` prefix and dashes in name (eg. `disableAutoFocus` becomes `data-tf-disable-autofocus`)
+- define options as data attributes with `data-tf-` prefix and dashes in name (eg. `disableAutoFocus` becomes `data-tf-disable-auto-focus`)
 - set a boolean property to `true` by omitting attribute value, (eg. `<div ... data-tf-disable-footer></div>`
 - pass function name for callbacks, eg. `data-tf-on-ready="myReadyFunction"` if this function is available on global scope (eg. `window`)
 - to pass `string[]` use comma-separated string, eg. `transitiveSearchParams: ['foo', 'bar']` becomes `data-tf-transitive-search-params="foo,bar"`
