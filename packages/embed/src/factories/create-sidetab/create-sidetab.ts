@@ -138,6 +138,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
 
   const close = () => {
     if (isOpen(wrapper)) {
+      options.onClose?.()
       sidetab.classList.remove('open')
       setTimeout(() => {
         unmountElement(wrapper)

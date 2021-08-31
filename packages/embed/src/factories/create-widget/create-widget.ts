@@ -43,6 +43,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     const closeButton = buildCloseButton()
 
     const close = () => {
+      options.onClose?.()
       container.classList.remove('typeform-widget-fullscreen')
       options.container.innerHTML = ''
       options.container.append(widget)

@@ -55,6 +55,15 @@ describe('#createSidetab', () => {
         await waitForElementToBeRemoved(() => screen.queryByTestId('typeform-sidetab-wrapper'))
         expect(screen.getByTestId('default-icon')).toBeInTheDocument()
       })
+
+      it('should run onClose callback if provided', () => {
+        const onClose = jest.fn()
+        const sidetab = createSidetab('formId', { onClose })
+        sidetab.open()
+        sidetab.close()
+        expect(onClose).toHaveBeenCalledTimes(1)
+        sidetab.unmount()
+      })
     })
 
     describe('#toggle', () => {

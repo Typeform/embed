@@ -83,6 +83,14 @@ describe('create-slider', () => {
         jest.runAllTimers()
         expect(document.body.style.overflow).toBe(scrollInitialState)
       })
+
+      it('should run onClose callback if provided', () => {
+        const onClose = jest.fn()
+        const slider = createSlider('url', { container, onClose })
+        slider.open()
+        slider.close()
+        expect(onClose).toHaveBeenCalledTimes(1)
+      })
     })
 
     describe('#toggle', () => {
