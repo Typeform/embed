@@ -4,7 +4,7 @@ import { InlineStyle } from './inline-style'
 
 type ButtonComponentBaseProps = {
   id: string
-  as: keyof ReactHTML
+  as?: keyof ReactHTML
   style?: CSSProperties
   className?: string
   children: ReactNode
