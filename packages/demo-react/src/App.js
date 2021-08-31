@@ -22,7 +22,7 @@ function App() {
       </p>
       <div className="App-spacer" />
       <div className="App-container">
-        <PopupButton asHtml={null} id="moe6aa" style={{ padding: 12, fontSize: 16 }} size={80}>
+        <PopupButton id="moe6aa" style={{ padding: 12, fontSize: 16 }} size={80}>
           click to open in popup
         </PopupButton>
       </div>
