@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v1.1.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.0.7...@typeform/embed-react-v1.1.0) (2021-08-31)
+
+
+### Features
+
+* **DIST-1234:** Customizable html for PopupButton ([#373](https://github.com/Typeform/embed/issues/373)) ([7057fd5](https://github.com/Typeform/embed/commit/7057fd5248ec922e97cd793a534e77a04cbbf836))
+
 # [@typeform/embed-react-v1.0.7](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.0.6...@typeform/embed-react-v1.0.7) (2021-07-05)
 
 
