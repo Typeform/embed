@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.18.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.10...@typeform/embed-v1.18.0) (2021-08-31)
+
+
+### Features
+
+* **DIST-1235:** Add onClose callback for embed ([#374](https://github.com/Typeform/embed/issues/374)) ([b12374d](https://github.com/Typeform/embed/commit/b12374da1145be74f5462a3b2fd0c099668b09a9))
+
 # [@typeform/embed-v1.17.10](https://github.com/Typeform/embed/compare/@typeform/embed-v1.17.9...@typeform/embed-v1.17.10) (2021-08-31)
 
 
