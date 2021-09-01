@@ -1,6 +1,6 @@
 {
   "name": "@typeform/embed-react",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "author": "Typeform",
@@ -33,5 +33,17 @@
     "type": "git",
     "url": "git@github.com:Typeform/embed.git",
     "directory": "packages/embed-react"
-  }
+  },
+  "homepage": "https://github.com/Typeform/embed/blob/main/packages/embed-react#readme",
+  "bugs": "https://github.com/Typeform/embed/issues",
+  "keywords": [
+    "typeform",
+    "embed",
+    "form",
+    "widget",
+    "slider",
+    "sidetab",
+    "popover",
+    "react"
+  ]
 }
