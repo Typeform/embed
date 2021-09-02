@@ -1,10 +1,26 @@
 {
   "name": "@typeform/embed",
-  "version": "1.18.0",
+  "version": "1.18.1",
   "main": "./build/index.js",
   "types": "./types/index.d.ts",
   "author": "Typeform",
   "license": "LGPL-3.0-only",
+  "homepage": "https://github.com/Typeform/embed/blob/main/packages/embed#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Typeform/embed.git",
+    "directory": "packages/embed"
+  },
+  "bugs": "https://github.com/Typeform/embed/issues",
+  "keywords": [
+    "typeform",
+    "embed",
+    "form",
+    "widget",
+    "slider",
+    "sidetab",
+    "popover"
+  ],
   "engines": {
     "node": ">=10"
   },
