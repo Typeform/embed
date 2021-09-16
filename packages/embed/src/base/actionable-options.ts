@@ -6,6 +6,8 @@ export type ActionableOptions = {
 
   /**
    * Callback function that will be executed right after the typeform is successfully submitted.
+   * @param {string} responseId - Response ID string.
+   * @param {string} response_id - DEPRECATED.
    */
   onSubmit?: (payload: { responseId: string }) => void
   /**
