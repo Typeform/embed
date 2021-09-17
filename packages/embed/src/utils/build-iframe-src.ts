@@ -24,24 +24,40 @@ const typesToEmbed: Record<EmbedType, string> = {
 }
 
 const mapOptionsToQueryParams = (type: EmbedType, embedId: string, options: UrlOptions): Record<string, any> => {
-  const transitiveParams = getTransitiveSearchParams(options.transitiveSearchParams)
+  const {
+    transitiveSearchParams,
+    source,
+    medium,
+    mediumVersion,
+    hideFooter,
+    hideHeaders,
+    opacity,
+    disableTracking,
+    enableSandbox,
+    disableAutoFocus,
+    shareGaInstance,
+    forceTouch,
+    enableFullscreen,
+    tracking,
+  } = options
+  const transitiveParams = getTransitiveSearchParams(transitiveSearchParams)
   const params = {
     'typeform-embed-id': embedId,
     'typeform-embed': typesToEmbed[type],
-    'typeform-source': options.source,
-    'typeform-medium': options.medium,
-    'typeform-medium-version': options.mediumVersion,
-    'embed-hide-footer': options.hideFooter ? 'true' : undefined,
-    'embed-hide-headers': options.hideHeaders ? 'true' : undefined,
-    'embed-opacity': options.opacity,
-    'disable-tracking': options.disableTracking || options.enableSandbox ? 'true' : undefined,
-    'disable-auto-focus': options.disableAutoFocus ? 'true' : undefined,
-    '__dangerous-disable-submissions': options.enableSandbox ? 'true' : undefined,
-    'share-ga-instance': options.shareGaInstance ? 'true' : undefined,
-    'force-touch': options.forceTouch ? 'true' : undefined,
-    'add-placeholder-ws': type === 'widget' && options.enableFullscreen ? 'true' : undefined,
+    'typeform-source': source,
+    'typeform-medium': medium,
+    'typeform-medium-version': mediumVersion,
+    'embed-hide-footer': hideFooter ? 'true' : undefined,
+    'embed-hide-headers': hideHeaders ? 'true' : undefined,
+    'embed-opacity': opacity,
+    'disable-tracking': disableTracking || enableSandbox ? 'true' : undefined,
+    'disable-auto-focus': disableAutoFocus ? 'true' : undefined,
+    '__dangerous-disable-submissions': enableSandbox ? 'true' : undefined,
+    'share-ga-instance': shareGaInstance ? 'true' : undefined,
+    'force-touch': forceTouch ? 'true' : undefined,
+    'add-placeholder-ws': type === 'widget' && enableFullscreen ? 'true' : undefined,
   }
-  return { ...params, ...transitiveParams }
+  return { ...params, ...transitiveParams, ...tracking }
 }
 
 const getBaseUrl = (formId: string, chat: boolean = false): URL => {

@@ -21,6 +21,7 @@ const Widget = ({ id }) => {
       medium: 'demo-test',
       transitiveSearchParams: ['foo', 'bar'],
       hidden: { foo: 'foo value', bar: 'bar value' },
+      tracking: { utm_medium: 'fb', tracking: 'bar value' },
     })
   }, [id])
 
