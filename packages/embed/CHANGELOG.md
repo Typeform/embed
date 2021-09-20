@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.19.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.18.1...@typeform/embed-v1.19.0) (2021-09-20)
+
+
+### Features
+
+* **DIST-1217:** Add tracking as url option ([#389](https://github.com/Typeform/embed/issues/389)) ([27a649d](https://github.com/Typeform/embed/commit/27a649d15c655d8e7ef2ef7959390214ff189f89))
+
 # [@typeform/embed-v1.18.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.18.0...@typeform/embed-v1.18.1) (2021-09-01)
 
 
