@@ -78,4 +78,10 @@ export type UrlOptions = {
    * @type {boolean}
    */
   enableFullscreen?: boolean
+  /**
+   * List of tracking query strings
+   *
+   * @type {Record<string,string>}
+   */
+  tracking?: Record<string, string>
 }

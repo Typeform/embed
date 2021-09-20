@@ -56,6 +56,10 @@ describe('build-iframe-src', () => {
           bar: '@bar&value?',
         },
         enableSandbox: true,
+        tracking: {
+          utm_foo: 'utm foo value',
+          foobar: 'foobar&value',
+        },
       }
       expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toBe(
         'https://form.typeform.com/to/some-id' +
@@ -70,6 +74,7 @@ describe('build-iframe-src', () => {
           '&disable-tracking=true' +
           '&disable-auto-focus=true' +
           '&__dangerous-disable-submissions=true' +
+          '&utm_foo=utm+foo+value&foobar=foobar%26value' +
           '#foo=foo+value&bar=%40bar%26value%3F'
       )
     })

@@ -34,5 +34,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     enableFullscreen: 'boolean',
     inlineOnMobile: 'boolean',
     disableAutoFocus: 'boolean',
+    tracking: 'record',
   })
 }
