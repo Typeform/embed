@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v1.1.2](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.1.1...@typeform/embed-react-v1.1.2) (2021-09-20)
+
+
+### Bug Fixes
+
+* **DIST-1269:** Pass props to button component ([#383](https://github.com/Typeform/embed/issues/383)) ([9d87f78](https://github.com/Typeform/embed/commit/9d87f78180b5c4e282ea97d98667879b1dcab991))
+
 # [@typeform/embed-react-v1.1.1](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.1.0...@typeform/embed-react-v1.1.1) (2021-09-01)
 
 
