@@ -16,14 +16,19 @@ describe('#makeButtonComponent', () => {
     }
     const Button = makeButtonComponent<Props>(createFn, 'popup')
     render(
-      <Button id="form-id" foo="bar">
-        click
-      </Button>
+      <>
+        <Button id="form-id" foo="bar" buttonProps={{ 'aria-label': 'aria-value-btn', 'data-custom': 'value-custom' }}>
+          click
+        </Button>
+      </>
     )
   })
 
   it('should render button', () => {
-    expect(screen.getByText('click')).toBeTruthy()
+    const btn = screen.getByText('click')
+    expect(btn).toBeTruthy()
+    expect(btn.getAttribute('aria-label')).toBe('aria-value-btn')
+    expect(btn.getAttribute('data-custom')).toBe('value-custom')
   })
 
   it('should open embed on click', () => {

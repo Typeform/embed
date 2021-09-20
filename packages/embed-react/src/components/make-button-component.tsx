@@ -1,10 +1,20 @@
-import React, { CSSProperties, MutableRefObject, ReactNode, useEffect, useMemo, useRef, ReactHTML } from 'react'
+import React, {
+  CSSProperties,
+  MutableRefObject,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  ReactHTML,
+  HTMLAttributes,
+} from 'react'
 
 import { InlineStyle } from './inline-style'
 
 type ButtonComponentBaseProps = {
   id: string
   as?: keyof ReactHTML
+  buttonProps?: HTMLAttributes<HTMLElement> & Record<string, string>
   style?: CSSProperties
   className?: string
   children: ReactNode
@@ -27,7 +37,15 @@ const emptyEmbed: GenericEmbed = {
 }
 
 function makeButtonComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
-  return ({ id, children, as = 'button', style = {}, className = '', ...props }: ButtonComponentProps<T>) => {
+  return ({
+    id,
+    children,
+    as = 'button',
+    style = {},
+    className = '',
+    buttonProps,
+    ...props
+  }: ButtonComponentProps<T>) => {
     const ref: MutableRefObject<GenericEmbed> = useRef(emptyEmbed)
     useEffect(() => {
       ref.current = createFn(id, props)
@@ -41,6 +59,7 @@ function makeButtonComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
       className,
       onClick: handleClick,
       children,
+      ...buttonProps,
     })
 
     return (
