@@ -12,7 +12,8 @@
     "test": "yarn lerna run test",
     "test:functional": "yarn lerna run test:functional",
     "test:visual": "yarn lerna run test:visual",
-    "release": "yarn lerna run release"
+    "release": "yarn lerna run release",
+    "start": "cd packages/demo-html && yarn start"
   },
   "workspaces": [
     "packages/*"

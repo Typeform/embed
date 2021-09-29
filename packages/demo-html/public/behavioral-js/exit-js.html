@@ -13,7 +13,7 @@
         pointer-events: none;
       }
     </style>
-    <link rel="stylesheet" href="../lib/css/popup.css" />
+    <link rel="stylesheet" href=".//embed.typeform.com/next/css/popup.css" />
   </head>
   <body>
     <div id="visual-threshold"></div>
@@ -29,7 +29,7 @@
       <input id="threshold" name="threshold" type="number" value="50" step="10" min="10" max="250" />
       <button type="submit">Set</button>
     </form>
-    <script src="../lib/embed-next.js"></script>
+    <script src=".//embed.typeform.com/next/embed.js"></script>
     <script>
       const threshold =
         parseInt(new URL(window.location.href).searchParams.get('threshold'), 10) ||

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Open: scroll (via embed code)</title>
-    <link rel="stylesheet" href="../lib/css/popover.css" />
+    <link rel="stylesheet" href=".//embed.typeform.com/next/css/popover.css" />
     <style>
       html {
         overflow-y: scroll;
@@ -57,7 +57,7 @@
       <input id="threshold" name="percent" type="number" value="30" step="10" min="10" />
       <button type="submit">Set</button>
     </form>
-    <script src="../lib/embed-next.js"></script>
+    <script src=".//embed.typeform.com/next/embed.js"></script>
     <script>
       const percent = parseInt(new URL(window.location.href).searchParams.get('percent'), 10)
       if (percent) {
