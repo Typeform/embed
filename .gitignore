@@ -14,6 +14,7 @@ jsconfig.json
 .vscode
 .idea
 .env
+.tmp
 
 #  common node files and folders
 #  https://github.com/github/gitignore/blob/master/Node.gitignore

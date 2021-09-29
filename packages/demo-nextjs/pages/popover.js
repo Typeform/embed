@@ -25,12 +25,7 @@ export default function PopoverPage({ id }) {
           Embed popover &lt;3 Next.js <Sparkle />
         </p>
 
-        <Popover
-          id="moe6aa"
-          onReady={handleOnReady}
-          medium="demo-test"
-          hidden={{ foo: 'foo value', bar: 'bar value' }}
-        />
+        <Popover id={id} onReady={handleOnReady} medium="demo-test" hidden={{ foo: 'foo value', bar: 'bar value' }} />
       </main>
     </div>
   )
