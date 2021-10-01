@@ -2,7 +2,7 @@ name: Trigger Demos Update
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   trigger-embed-demos-update:
