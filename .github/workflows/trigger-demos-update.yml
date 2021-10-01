@@ -5,7 +5,7 @@ on:
       - master
 
 jobs:
-  trigger-typings-generation:
+  trigger-embed-demos-update:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
