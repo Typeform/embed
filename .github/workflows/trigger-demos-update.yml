@@ -1,0 +1,17 @@
+name: Trigger Demos Update
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  trigger-embed-demos-update:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          repository: Typeform/embed-demo
+          event-type: update_embed_demos
