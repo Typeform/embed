@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "SKIP_PREFLIGHT_CHECK=true PORT=8080 yarn react-scripts start",
-    "lint": "yarn eslint --ignore-path ../../.gitignore ."
+    "start": "PORT=8080 react-scripts start",
+    "lint": "yarn eslint --ignore-path ../../.gitignore .",
+    "build": "react-scripts build"
   },
   "browserslist": {
     "production": [
