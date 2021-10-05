@@ -61,11 +61,47 @@ Or from admin panel URL:
 
 ### Embed types
 
-- widget: `createWidget('<form-id>', options)`
+#### Widget
+
+```html
+<div id="form"></div>
+<script>
+  const { refresh, unmount } = createWidget('<form-id>', {
+    container: document.querySelector('#form'),
+    ...options,
+  })
+</script>
+```
+
+The `createWidget` method returns 2 functions:
+
+- **refresh** - reloads the form
+- **unmount** - unmounts the form (you should use this when you implement this lib in React manually)
+
+#### Modal windows: popup, slider, sidetab, popover
+
 - popup: `createPopup('<form-id>', options)`
 - slider: `createSlider('<form-id>', options)`
 - sidetab: `createSidetab('<form-id>', options)`
 - popover: `createPopover('<form-id>', options)`
+
+```html
+<button id="button">open form</button>
+<script>
+  const { open, close, toggle, refresh } = createPopup('<form-id>')
+  document.querySelector('#button').onclick = toggle
+</script>
+```
+
+Each of the `create*` methods for modal windows return 4 functions:
+
+- **open** - open the modal window (popup, slider, sidetab or popover) and display the form
+- **close** - close the modal window and hide the form
+- **toggle** - open when closed, close when opened
+- **refresh** - reloads the form
+- **unmount** - unmounts the form (you should use this when you implement this lib in React manually)
+
+Closing and opening a typeform in modal window will restart the progress from the beginning. However answers will be saved in browsers local storage.
 
 ### Options
 
