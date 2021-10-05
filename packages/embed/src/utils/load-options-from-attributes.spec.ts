@@ -148,6 +148,20 @@ describe('load-options-from-attributes', () => {
     })
   })
 
+  describe('to stringOrBoolean', () => {
+    it('should return a string if value is provided', () => {
+      expect(transformAttributeValue('hello', 'stringOrBoolean')).toEqual('hello')
+    })
+
+    it('should return true if empty string is provided', () => {
+      expect(transformAttributeValue('', 'integerOrBoolean')).toEqual(true)
+    })
+
+    it('should return false if no value is provided', () => {
+      expect(transformAttributeValue(null, 'integerOrBoolean')).toEqual(false)
+    })
+  })
+
   describe('#loadOptionsFromAttributes', () => {
     const wrapper = document.createElement('div')
     wrapper.innerHTML = `<div id="element"

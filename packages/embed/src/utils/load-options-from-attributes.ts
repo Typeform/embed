@@ -10,7 +10,15 @@ export const camelCaseToKebabCase = (value: string) => {
     .join('')
 }
 
-export type Transformation = 'string' | 'boolean' | 'integer' | 'function' | 'array' | 'record' | 'integerOrBoolean'
+export type Transformation =
+  | 'string'
+  | 'boolean'
+  | 'integer'
+  | 'function'
+  | 'array'
+  | 'record'
+  | 'integerOrBoolean'
+  | 'stringOrBoolean'
 
 const transformString = (value: string | null): string | undefined => {
   return value || undefined
@@ -79,6 +87,8 @@ export const transformAttributeValue = (value: string | null, transformation: Tr
       return transformRecord(value)
     case 'integerOrBoolean':
       return transformInteger(value) ?? transformBoolean(value)
+    case 'stringOrBoolean':
+      return transformString(value) ?? transformBoolean(value)
     default:
       throw new Error(`Invalid attribute transformation ${transformation}`)
   }

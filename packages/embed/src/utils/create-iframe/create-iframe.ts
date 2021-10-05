@@ -28,7 +28,7 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
     window.addEventListener(
       'message',
       getFormReadyHandler(embedId, () => {
-        setupGaInstance(iframe, embedId)
+        setupGaInstance(iframe, embedId, options.shareGaInstance)
       })
     )
   }

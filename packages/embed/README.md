@@ -135,7 +135,7 @@ Closing and opening a typeform in modal window will restart the progress from th
 | onSubmit               | function         | fires when user submits the form                                                                                                                                                                                  | `undefined`                                                   |
 | onClose                | function         | fires when the form is closed (when opened in modal window)                                                                                                                                                       | `undefined`                                                   |
 | onQuestionChanged      | function         | fires when user navigates between form questions                                                                                                                                                                  | `undefined`                                                   |
-| shareGaInstance        | boolean          | shares Google Analytics instance of the host page with embedded typeform                                                                                                                                          | `false`                                                       |
+| shareGaInstance        | string / boolean | shares Google Analytics instance of the host page with embedded typeform, you can provide your Google Analytics ID to specify which instance to share (if you have more than one in your page)                    | `false`                                                       |
 | inlineOnMobile         | boolean          | removes placeholder welcome screen in mobile and makes form show inline instead of fullscreen                                                                                                                     | `false`                                                       |
 
 ### Options in plain HTML embed
@@ -167,6 +167,22 @@ Properties `open` and `openValue` apply only to embed types that are opened by u
   - `openValue` number of milliseconds to wait before opening the form
 
 For details see [behavioral demo](../demo-html/public/behavioral-html).
+
+### Share Google Analytics Instance
+
+You can use `shareGaInstance: true` (or `data-tf-share-ga-instance`) attribute if both your page and your typeform are using Google Analytics. This will make sure the session is shared and Google Analytics will track only 1 user when they visit you page with an embedded typeform.
+
+If you have more than 1 Google Analytics tracking codes in your website you can provide an ID to specify which tracker to use, eg:
+
+```html
+<div data-tf-widget="<form-id>" data-tf-share-ga-instance="UA-XXXXXX-XX"></div>
+```
+
+or
+
+```javascript
+createPopup('<form-id>', { container, shareGaInstance: 'UA-XXXXXX-XX' })
+```
 
 ### Callbacks
 
