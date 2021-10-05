@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.19.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.19.0...@typeform/embed-v1.19.1) (2021-10-05)
+
+
+### Bug Fixes
+
+* **TYP-5406:** Fix shareGaInstance feature ([#399](https://github.com/Typeform/embed/issues/399)) ([a956974](https://github.com/Typeform/embed/commit/a956974bb3cce963c62260ce873ee87834e1ae36))
+
 # [@typeform/embed-v1.19.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.18.1...@typeform/embed-v1.19.0) (2021-09-20)
 
 
