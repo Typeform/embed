@@ -29,7 +29,7 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     tooltip: 'string',
     notificationDays: 'integer',
     autoClose: 'integerOrBoolean',
-    shareGaInstance: 'boolean',
+    shareGaInstance: 'stringOrBoolean',
     forceTouch: 'boolean',
     enableFullscreen: 'boolean',
     inlineOnMobile: 'boolean',

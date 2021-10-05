@@ -49,10 +49,11 @@ export type UrlOptions = {
   disableTracking?: boolean
   /**
    * Allows to share the Google instance of the page with the Typeform in the embed.
+   * If string value is provided it specifies which Google Analytics instance to share (in case there are more in the host page).
    *
-   * @type {boolean}
+   * @type {string | boolean}
    */
-  shareGaInstance?: boolean
+  shareGaInstance?: string | boolean
   /**
    * Disables form auto focusing.
    *

@@ -19,7 +19,7 @@ describe('build-options-from-attributes', () => {
         data-tf-open-value="3000"
         data-tf-hidden="foo=foo value,bar=some bar value"
         data-tf-chat
-        data-tf-share-ga-instance
+        data-tf-share-ga-instance="ua-hello-1"
         data-tf-tracking="utm_foo=utm foo value,foobar=foobar value"
       ></div>`
 
@@ -50,7 +50,7 @@ describe('build-options-from-attributes', () => {
           bar: 'some bar value',
         },
         chat: true,
-        shareGaInstance: true,
+        shareGaInstance: 'ua-hello-1',
         tracking: {
           utm_foo: 'utm foo value',
           foobar: 'foobar value',
