@@ -32,6 +32,7 @@ export default function HomePage({ id }) {
           medium="demo-test"
           hidden={{ foo: 'foo value', bar: 'bar value' }}
           transitiveSearchParams={['foo', 'bar']}
+          iframeProps={{ title: 'Foo Bar' }}
         />
       </main>
     </div>

@@ -1,10 +1,18 @@
-import { ActionableOptions, BaseOptions, UrlOptions, BehavioralOptions, SizeableOptions } from '../../base'
+import {
+  ActionableOptions,
+  BaseOptions,
+  UrlOptions,
+  BehavioralOptions,
+  SizeableOptions,
+  IframeOptions,
+} from '../../base'
 
 export type PopupOptions = BaseOptions &
   UrlOptions &
   ActionableOptions &
   BehavioralOptions &
-  SizeableOptions & {
+  SizeableOptions &
+  IframeOptions & {
     /**
      * Time (ms) until the embedded typeform will automatically close after a respondent clicks the Submit button.
      *

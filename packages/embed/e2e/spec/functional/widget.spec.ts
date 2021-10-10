@@ -39,6 +39,10 @@ function testWidget(path: string, title: string) {
     it('should not pass params not in the list to the iframe', () => {
       cy.get('.typeform-widget iframe').invoke('attr', 'src').should('not.contain', 'baz=baz')
     })
+
+    it('should pass additional iframe props', () => {
+      cy.get('.typeform-widget iframe').invoke('attr', 'title').should('equal', 'Foo Bar')
+    })
   })
 }
 

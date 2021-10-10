@@ -1,10 +1,11 @@
-import { ActionableOptions, BaseOptions, UrlOptions, BehavioralOptions, WidthOption } from '../../base'
+import { ActionableOptions, BaseOptions, UrlOptions, BehavioralOptions, WidthOption, IframeOptions } from '../../base'
 
 export type SliderOptions = BaseOptions &
   UrlOptions &
   ActionableOptions &
   BehavioralOptions &
-  WidthOption & {
+  WidthOption &
+  IframeOptions & {
     /**
      * Slider position. Indicates from which side of the screen it will open.
      *

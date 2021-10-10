@@ -13,7 +13,12 @@ describe('create-iframe', () => {
       .mockImplementation(() => 'http://iframe-src/')
     const createElementMock = jest.spyOn(document, 'createElement')
     const triggerIframeRedrawMock = jest.spyOn(require('./trigger-iframe-redraw'), 'triggerIframeRedraw')
-    const options = { onReady: jest.fn(), onSubmit: jest.fn(), onQuestionChanged: jest.fn() }
+    const options = {
+      onReady: jest.fn(),
+      onSubmit: jest.fn(),
+      onQuestionChanged: jest.fn(),
+      iframeProps: { title: 'hello' },
+    }
 
     beforeEach(() => {
       iframe = createIframe('form-id', 'widget', options).iframe
@@ -35,6 +40,14 @@ describe('create-iframe', () => {
 
     it('should set correct iframe src', () => {
       expect(iframe.src).toBe('http://iframe-src/')
+    })
+
+    it('should set default iframe test id', () => {
+      expect(iframe.getAttribute('data-testid')).toBe('iframe')
+    })
+
+    it('should set correct iframe title', () => {
+      expect(iframe.getAttribute('title')).toBe('hello')
     })
 
     it('tell browser to redraw the iframe after the load', () => {

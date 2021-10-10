@@ -1,4 +1,4 @@
-import { EmbedType, UrlOptions, ActionableOptions } from '../../base'
+import { EmbedType, UrlOptions, ActionableOptions, IframeOptions } from '../../base'
 import { buildIframeSrc } from '../build-iframe-src'
 import { setupGaInstance } from '../'
 
@@ -9,26 +9,32 @@ import { dispatchCustomKeyEventFromIframe } from './setup-custom-keyboard-close'
 
 export const createIframe = (formId: string, type: EmbedType, options: CreateIframeOptions) => {
   const embedId = generateEmbedId()
+  const { iframeProps = {}, onReady, onQuestionChanged, onSubmit, shareGaInstance } = options
   const src = buildIframeSrc({ formId, embedId, type, options })
 
   const iframe = document.createElement('iframe')
   iframe.src = src
   iframe.dataset.testid = 'iframe'
+
+  Object.keys(iframeProps).forEach((key) => {
+    iframe.setAttribute(key, iframeProps[key])
+  })
+
   iframe.addEventListener('load', triggerIframeRedraw, { once: true })
 
-  window.addEventListener('message', getFormReadyHandler(embedId, options.onReady))
-  window.addEventListener('message', getFormQuestionChangedHandler(embedId, options.onQuestionChanged))
-  window.addEventListener('message', getFormSubmitHandler(embedId, options.onSubmit))
+  window.addEventListener('message', getFormReadyHandler(embedId, onReady))
+  window.addEventListener('message', getFormQuestionChangedHandler(embedId, onQuestionChanged))
+  window.addEventListener('message', getFormSubmitHandler(embedId, onSubmit))
 
   if (type !== 'widget') {
     window.addEventListener('message', dispatchCustomKeyEventFromIframe)
   }
 
-  if (options.shareGaInstance) {
+  if (shareGaInstance) {
     window.addEventListener(
       'message',
       getFormReadyHandler(embedId, () => {
-        setupGaInstance(iframe, embedId, options.shareGaInstance)
+        setupGaInstance(iframe, embedId, shareGaInstance)
       })
     )
   }
@@ -36,4 +42,4 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
   return { iframe, embedId }
 }
 
-type CreateIframeOptions = UrlOptions & ActionableOptions
+type CreateIframeOptions = UrlOptions & ActionableOptions & IframeOptions

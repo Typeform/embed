@@ -35,5 +35,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     inlineOnMobile: 'boolean',
     disableAutoFocus: 'boolean',
     tracking: 'record',
+    iframeProps: 'record',
   })
 }

@@ -137,6 +137,7 @@ Closing and opening a typeform in modal window will restart the progress from th
 | onQuestionChanged      | function         | fires when user navigates between form questions                                                                                                                                                                  | `undefined`                                                   |
 | shareGaInstance        | string / boolean | shares Google Analytics instance of the host page with embedded typeform, you can provide your Google Analytics ID to specify which instance to share (if you have more than one in your page)                    | `false`                                                       |
 | inlineOnMobile         | boolean          | removes placeholder welcome screen in mobile and makes form show inline instead of fullscreen                                                                                                                     | `false`                                                       |
+| iframeProps            | object           | HTML attributes to be passed directly to the <iframe> with typeform                                                                                                                                               | `undefined`                                                   |
 
 ### Options in plain HTML embed
 

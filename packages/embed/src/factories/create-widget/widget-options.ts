@@ -1,9 +1,10 @@
-import { ActionableOptions, BaseOptions, UrlOptions, SizeableOptions } from '../../base'
+import { ActionableOptions, BaseOptions, UrlOptions, SizeableOptions, IframeOptions } from '../../base'
 
 export type WidgetOptions = BaseOptions &
   UrlOptions &
   ActionableOptions &
-  SizeableOptions & {
+  SizeableOptions &
+  IframeOptions & {
     /**
      * Element to place the widget into.
      *
