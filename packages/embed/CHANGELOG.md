@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.20.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.19.1...@typeform/embed-v1.20.0) (2021-10-11)
+
+
+### Features
+
+* **DIST-1328:** Pass HTML attributes to the iframe ([#402](https://github.com/Typeform/embed/issues/402)) ([9319b39](https://github.com/Typeform/embed/commit/9319b39459062e6f29d1981110fec75a4ac1c7f5))
+
 # [@typeform/embed-v1.19.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.19.0...@typeform/embed-v1.19.1) (2021-10-05)
 
 
