@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.20.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.20.0...@typeform/embed-v1.20.1) (2021-10-12)
+
+
+### Bug Fixes
+
+* **DIST-1332:** Remove react type dependency from vanilla lib ([#404](https://github.com/Typeform/embed/issues/404)) ([70e5b07](https://github.com/Typeform/embed/commit/70e5b07da808ae1ab77aec7f7b2070bcd166b562))
+
 # [@typeform/embed-v1.20.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.19.1...@typeform/embed-v1.20.0) (2021-10-11)
 
 
