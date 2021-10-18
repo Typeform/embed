@@ -1,4 +1,5 @@
-import React, { CSSProperties, useEffect, useRef } from 'react'
+import React, { CSSProperties, useEffect, useRef, memo } from 'react'
+import equal from 'fast-deep-equal'
 import { createWidget, WidgetOptions } from '@typeform/embed'
 
 import { InlineStyle } from './inline-style'
@@ -9,7 +10,11 @@ type WidgetProps = Omit<WidgetOptions, 'container'> & {
   className?: string
 }
 
-export const Widget = ({ id, style = {}, className = '', ...props }: WidgetProps) => {
+function areEqual(prevProps: WidgetProps, nextProps: WidgetProps) {
+  return equal(prevProps, nextProps)
+}
+
+export const Widget = memo(({ id, style = {}, className = '', ...props }: WidgetProps) => {
   const container = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -27,4 +32,4 @@ export const Widget = ({ id, style = {}, className = '', ...props }: WidgetProps
       <div style={style} className={className} ref={container} />
     </>
   )
-}
+}, areEqual)
