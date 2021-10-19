@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v1.1.3](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.1.2...@typeform/embed-react-v1.1.3) (2021-10-19)
+
+
+### Bug Fixes
+
+* **DIST-1337:** Use React.memo to prevent unwanted re-renders ([#408](https://github.com/Typeform/embed/issues/408)) ([f6c37d2](https://github.com/Typeform/embed/commit/f6c37d25a1f774b01b3870263bfca1167b271004))
+
 # [@typeform/embed-react-v1.1.2](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.1.1...@typeform/embed-react-v1.1.2) (2021-09-20)
 
 
