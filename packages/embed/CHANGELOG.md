@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.20.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.20.1...@typeform/embed-v1.20.2) (2021-10-29)
+
+
+### Bug Fixes
+
+* **DIST-1395:** Removed border flashing ([#411](https://github.com/Typeform/embed/issues/411)) ([8757335](https://github.com/Typeform/embed/commit/8757335d2db4732270e2f43e036304f7a2f1d51c))
+
 # [@typeform/embed-v1.20.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.20.0...@typeform/embed-v1.20.1) (2021-10-12)
 
 
