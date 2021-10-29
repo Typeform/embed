@@ -15,6 +15,7 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
   const iframe = document.createElement('iframe')
   iframe.src = src
   iframe.dataset.testid = 'iframe'
+  iframe.style.border = '0px'
 
   Object.keys(iframeProps).forEach((key) => {
     iframe.setAttribute(key, iframeProps[key])
