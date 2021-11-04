@@ -1,0 +1,9 @@
+.http-warning-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba($color: red, $alpha: 0.75);
+  padding: 10px 15px;
+  box-sizing: border-box;
+}

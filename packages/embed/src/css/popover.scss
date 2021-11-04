@@ -3,6 +3,7 @@
 @import 'includes/iframe';
 @import 'includes/mobile';
 @import 'includes/fullsize';
+@import 'includes/http-banner';
 
 @mixin closingAnimation {
   transition: opacity 0.25s ease-in-out;
