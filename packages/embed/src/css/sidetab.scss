@@ -3,6 +3,7 @@
 @import 'includes/mobile';
 @import 'includes/close';
 @import 'includes/fullsize';
+@import 'includes/http-banner';
 
 .typeform-sidetab {
   position: fixed;
@@ -29,6 +30,7 @@
   }
 
   &-wrapper {
+    position: relative;
     height: 100%;
   }
 
