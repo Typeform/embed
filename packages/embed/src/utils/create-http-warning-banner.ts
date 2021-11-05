@@ -1,6 +1,5 @@
 export const createHttpWarningBanner = () => {
-  const url = new URL(window.location?.href)
-  const isWarningNeeded = url.protocol !== 'https' && url.hostname !== 'localhost'
+  const isWarningNeeded = getIsWarningNeeded()
 
   if (isWarningNeeded) {
     showConsoleWarning()
@@ -8,6 +7,12 @@ export const createHttpWarningBanner = () => {
 
   const result = isWarningNeeded ? createBannerElement() : createFakeBannerElement()
 
+  return result
+}
+
+export const getIsWarningNeeded = () => {
+  const url = new URL(window.location?.href)
+  const result = url.protocol !== 'https:' && url.hostname !== 'localhost'
   return result
 }
 
