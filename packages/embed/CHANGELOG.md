@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.21.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.21.0...@typeform/embed-v1.21.1) (2021-11-05)
+
+
+### Bug Fixes
+
+* Revert "feat(DIST-1336): Show CSP warning for http users ([#412](https://github.com/Typeform/embed/issues/412))" ([34cc5d6](https://github.com/Typeform/embed/commit/34cc5d6379c32012dee58daf40a41d46da959597))
+
 # [@typeform/embed-v1.21.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.20.2...@typeform/embed-v1.21.0) (2021-11-05)
 
 
