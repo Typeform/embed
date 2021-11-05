@@ -30,5 +30,4 @@ const showConsoleWarning = () => {
 }
 
 const getWarningMessage = () =>
-  `ERROR: Typeform forms can be embedded only on sites served over HTTPS,
- while this site is using HTTP.`
+  `ERROR: Typeform forms can be embedded only on sites served over HTTPS, while this site is using HTTP.`
