@@ -6,6 +6,7 @@ import {
   setAutoClose,
   addCustomKeyboardListener,
   getTextColor,
+  createHttpWarningBanner,
 } from '../../utils'
 
 import { PopoverOptions } from './popover-options'
@@ -127,11 +128,13 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   const closeIcon = buildCloseIcon()
   const closeModal = buildCloseIcon('a', 'typeform-popover-close')
   const button = buildTriggerButton(options.buttonColor || defaultOptions.buttonColor)
+  const httpWarningBanner = createHttpWarningBanner()
 
   const container = options.container || document.body
 
   container.append(popover)
   wrapper.append(iframe)
+  wrapper.append(httpWarningBanner)
   popover.append(button)
   popover.append(closeModal)
   button.append(icon)
