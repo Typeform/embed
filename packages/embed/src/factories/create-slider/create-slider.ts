@@ -6,7 +6,6 @@ import {
   unmountElement,
   setAutoClose,
   addCustomKeyboardListener,
-  createHttpWarningBanner,
 } from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
 
@@ -72,10 +71,8 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
   const slider = buildSlider(position)
   const spinner = buildSpinner()
   const wrapper = buildWrapper(position, width)
-  const httpWarningBanner = createHttpWarningBanner()
 
   wrapper.append(iframe)
-  wrapper.append(httpWarningBanner)
   slider.append(spinner)
   slider.append(wrapper)
 
