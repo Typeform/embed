@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.22.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.22.0...@typeform/embed-v1.22.1) (2021-11-08)
+
+
+### Reverts
+
+* Revert "feat(DIST-1336): Show http warning (#413)" ([35c5b6a](https://github.com/Typeform/embed/commit/35c5b6afd6f18f03065be8e1b6caa080c792d8fd)), closes [#413](https://github.com/Typeform/embed/issues/413)
+
 # [@typeform/embed-v1.22.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.21.1...@typeform/embed-v1.22.0) (2021-11-08)
 
 
