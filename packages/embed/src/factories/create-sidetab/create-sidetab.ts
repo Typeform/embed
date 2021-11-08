@@ -6,7 +6,6 @@ import {
   setAutoClose,
   addCustomKeyboardListener,
   getTextColor,
-  createHttpWarningBanner,
 } from '../../utils'
 
 import { SidetabOptions } from './sidetab-options'
@@ -110,13 +109,11 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   const icon = buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
   const closeIcon = buildCloseIcon()
   const closeModal = buildCloseIcon('a', 'typeform-sidetab-close')
-  const httpWarningBanner = createHttpWarningBanner()
 
   const container = document.body
 
   container.append(sidetab)
   wrapper.append(iframe)
-  wrapper.append(httpWarningBanner)
   sidetab.append(button)
   sidetab.append(closeModal)
   button.append(icon)
