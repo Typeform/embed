@@ -37,7 +37,7 @@ export default function Slider({ id }) {
         </p>
 
         <p>
-          <SliderButton id="moe6aa" position="left" width="400" style={buttonStyle}>
+          <SliderButton id="HLjqXS5W" position="left" width="400" style={buttonStyle}>
             open slider (small from left)
           </SliderButton>
         </p>

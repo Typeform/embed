@@ -9,7 +9,7 @@ import '@typeform/embed/build/css/widget.css'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
-  const id = router.query?.id || 'moe6aa'
+  const id = router.query?.id || 'HLjqXS5W'
   const idparam = `?id=${id}`
   const props = { id, ...pageProps }
   const links = {

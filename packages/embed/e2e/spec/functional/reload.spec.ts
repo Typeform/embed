@@ -8,10 +8,10 @@ describe('Reload and reload methods', () => {
       cy.get('iframe')
         .first()
         .invoke('attr', 'src')
-        .should('match', /form\.typeform\.com\/to\/moe6aa/)
+        .should('match', /form\.typeform\.com\/to\/HLjqXS5W/)
 
       cy.window().then((win) => {
-        win.document.querySelector('body')!.innerHTML += '<div data-tf-widget="jAJ5qj"></div>'
+        win.document.querySelector('body')!.innerHTML += '<div data-tf-widget="HLjqXS5W"></div>'
         ;(win as any).tf.load()
 
         cy.get('iframe').should('have.length', 2)
@@ -19,11 +19,11 @@ describe('Reload and reload methods', () => {
         cy.get('iframe')
           .first()
           .invoke('attr', 'src')
-          .should('match', /form\.typeform\.com\/to\/moe6aa/)
+          .should('match', /form\.typeform\.com\/to\/HLjqXS5W/)
         cy.get('iframe')
           .eq(1)
           .invoke('attr', 'src')
-          .should('match', /form\.typeform\.com\/to\/jAJ5qj/)
+          .should('match', /form\.typeform\.com\/to\/HLjqXS5W/)
       })
     })
   })
