@@ -1,8 +1,11 @@
 @import 'includes/close';
 @import 'includes/iframe';
 @import 'includes/fullsize';
+@import 'includes/http-banner';
 
 .typeform-widget {
+  position: relative;
+
   width: 100%;
   height: 100%;
 

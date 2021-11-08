@@ -7,6 +7,7 @@ import {
   unmountElement,
   setAutoClose,
   addCustomKeyboardListener,
+  createHttpWarningBanner,
 } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
 
@@ -81,8 +82,10 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
   const popup = buildPopup()
   const spinner = buildSpinner()
   const wrapper = buildWrapper(width, height, size)
+  const httpWarningBanner = createHttpWarningBanner()
 
   wrapper.append(iframe)
+  wrapper.append(httpWarningBanner)
   popup.append(spinner)
   popup.append(wrapper)
 
