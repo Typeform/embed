@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.22.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.21.1...@typeform/embed-v1.22.0) (2021-11-08)
+
+
+### Features
+
+* **DIST-1336:** Show http warning ([#413](https://github.com/Typeform/embed/issues/413)) ([1e54063](https://github.com/Typeform/embed/commit/1e54063e835716c1f523d70a3f6c7cf0cbb92c7d))
+
 # [@typeform/embed-v1.21.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.21.0...@typeform/embed-v1.21.1) (2021-11-05)
 
 
