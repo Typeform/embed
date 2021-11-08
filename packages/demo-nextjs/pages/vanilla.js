@@ -5,7 +5,7 @@ import { createPopup, createWidget } from '@typeform/embed'
 
 import Flex from '../components/flex'
 
-// with @typeform/embed-react lib this component could be as short as <Widget id="moe6aa" />
+// with @typeform/embed-react lib this component could be as short as <Widget id="HLjqXS5W" />
 const Widget = ({ id }) => {
   const container = useRef()
 
@@ -28,10 +28,10 @@ const Widget = ({ id }) => {
   return <div style={widgetContainerStyle} ref={container} />
 }
 
-// with @typeform/embed-react lib this component could be as short as <PopupButton id="moe6aa">click</PopupButton>
+// with @typeform/embed-react lib this component could be as short as <PopupButton id="HLjqXS5W">click</PopupButton>
 const PopupButton = () => {
   const openPopup = () => {
-    createPopup('moe6aa', { medium: 'demo-test', hidden: { foo: 'foo value', bar: 'bar value' } }).open()
+    createPopup('HLjqXS5W', { medium: 'demo-test', hidden: { foo: 'foo value', bar: 'bar value' } }).open()
   }
 
   return (

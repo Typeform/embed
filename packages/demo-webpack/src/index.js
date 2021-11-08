@@ -19,9 +19,9 @@ root.append(content)
 
 const widget = document.createElement('div')
 widget.id = 'widget'
-createWidget('moe6aa', { container: widget })
+createWidget('HLjqXS5W', { container: widget })
 
-const { open } = createPopup('moe6aa')
+const { open } = createPopup('HLjqXS5W')
 const popupButton = document.createElement('button')
 popupButton.id = 'popup'
 popupButton.innerHTML = 'Open Popup'

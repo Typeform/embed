@@ -26,7 +26,7 @@ export default function PopoverPage({ id }) {
         </p>
 
         <Popover
-          id="moe6aa"
+          id="HLjqXS5W"
           onReady={handleOnReady}
           medium="demo-test"
           hidden={{ foo: 'foo value', bar: 'bar value' }}

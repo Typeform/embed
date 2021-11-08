@@ -22,27 +22,27 @@ function App() {
       </p>
       <div className="App-spacer" />
       <div className="App-container">
-        <PopupButton id="moe6aa" style={{ padding: 12, fontSize: 16 }} size={80}>
+        <PopupButton id="HLjqXS5W" style={{ padding: 12, fontSize: 16 }} size={80}>
           click to open in popup
         </PopupButton>
       </div>
       <div className="App-spacer" />
       <div className="App-container">
-        <SliderButton id="moe6aa" style={{ padding: 10, fontSize: 14 }} width={600} position="left">
+        <SliderButton id="HLjqXS5W" style={{ padding: 10, fontSize: 14 }} width={600} position="left">
           slide the form from left
         </SliderButton>
       </div>
       <div className="App-spacer" />
       <div className="App-container">
         <Widget
-          id="moe6aa"
+          id="HLjqXS5W"
           style={{ margin: '0 auto', width: 500, height: 400 }}
           onReady={handleOnReady}
           enableSandbox
         />
       </div>
-      <Popover id="moe6aa" tooltip="Hello there!<br/>General Kenobi" />
-      <Sidetab id="moe6aa" buttonText="Open form" />
+      <Popover id="HLjqXS5W" tooltip="Hello there!<br/>General Kenobi" />
+      <Sidetab id="HLjqXS5W" buttonText="Open form" />
     </div>
   )
 }
