@@ -6,7 +6,7 @@ This is a monorepo for all embed libraries.
 
 Pick a library you want to use:
 
-- [React Embed Library](./packages/embed-react) if you are building an app in React **✨ NEW**
+- [React Embed Library](./packages/embed-react) if you are building an app in React
 - [Vanilla JavaScript Embed Library](./packages/embed) if you are not using React
 
 Support for other libraries coming later. [You can help us if you want 😉](#contribution)
@@ -15,7 +15,7 @@ If you need documentation for previous version of embed lib (version 0) [see old
 
 ### Typeform Embed SDK for specific framework
 
-We are constantly trying to improve developer experience. Which framework would you like us to support next? [Vote for the next framework in this typeform.](https://survey.typeform.com/to/QrC0uX2f)
+We are constantly trying to improve developer experience. Which framework would you like us to support next? [Vote for the next framework in this typeform.](https://survey.typeform.com/to/BLNXtGno)
 
 # Demos
 
