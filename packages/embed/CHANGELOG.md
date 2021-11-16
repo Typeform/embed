@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.22.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.22.0...@typeform/embed-v1.22.1) (2021-11-16)
+
+
+### Bug Fixes
+
+* **DIST-1336:** Revert show http warning ([#413](https://github.com/Typeform/embed/issues/413)) ([5603c84](https://github.com/Typeform/embed/commit/5603c84ce36770d4a8f0f291e5f0f067591be057))
+
 # [@typeform/embed-v1.22.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.21.1...@typeform/embed-v1.22.0) (2021-11-08)
 
 
