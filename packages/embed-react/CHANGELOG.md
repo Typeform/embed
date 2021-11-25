@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v1.1.4](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.1.3...@typeform/embed-react-v1.1.4) (2021-11-25)
+
+
+### Bug Fixes
+
+* Update embed dependency ([7384691](https://github.com/Typeform/embed/commit/7384691aa8e5efeb0ee02ce0f4b01df3b150ac1f))
+
 # [@typeform/embed-react-v1.1.3](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.1.2...@typeform/embed-react-v1.1.3) (2021-10-19)
 
 
