@@ -6,7 +6,7 @@ jest.mock('./generate-embed-id', () => ({ generateEmbedId: () => 'random-id' }))
 
 describe('create-iframe', () => {
   describe('#createIframe', () => {
-    let iframe = null as any
+    let iframe: HTMLIFrameElement
 
     const buildIframeSrcMock = jest
       .spyOn(require('./../build-iframe-src'), 'buildIframeSrc')
@@ -48,6 +48,10 @@ describe('create-iframe', () => {
 
     it('should set correct iframe title', () => {
       expect(iframe.getAttribute('title')).toBe('hello')
+    })
+
+    it('should set correct iframe permissions', () => {
+      expect(iframe.allow).toBe('microphone; camera')
     })
 
     it('tell browser to redraw the iframe after the load', () => {
