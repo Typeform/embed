@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.23.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.23.0...@typeform/embed-v1.23.1) (2021-11-25)
+
+
+### Bug Fixes
+
+* **DIST-1431:** Allow camera and mic for iframe ([#420](https://github.com/Typeform/embed/issues/420)) ([f08b18d](https://github.com/Typeform/embed/commit/f08b18dc3f682d292b0a82a0dd06b9797cb9a556))
+
 # [@typeform/embed-v1.23.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.22.0...@typeform/embed-v1.23.0) (2021-11-23)
 
 
