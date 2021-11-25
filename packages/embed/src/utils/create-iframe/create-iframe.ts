@@ -16,6 +16,7 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
   iframe.src = src
   iframe.dataset.testid = 'iframe'
   iframe.style.border = '0px'
+  iframe.allow = 'microphone; camera'
 
   Object.keys(iframeProps).forEach((key) => {
     iframe.setAttribute(key, iframeProps[key])
