@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.24.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.23.1...@typeform/embed-v1.24.0) (2021-11-29)
+
+
+### Features
+
+* **TYP-6029:** Change CSS classnames prefixes ([#423](https://github.com/Typeform/embed/issues/423)) ([ee652e4](https://github.com/Typeform/embed/commit/ee652e474d72586be72f72e7fc9ea316fd146fc7))
+
 # [@typeform/embed-v1.23.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.23.0...@typeform/embed-v1.23.1) (2021-11-25)
 
 
