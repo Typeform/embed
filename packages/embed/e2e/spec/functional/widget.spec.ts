@@ -18,30 +18,30 @@ function testWidget(path: string, title: string) {
     })
 
     it('should display widget', () => {
-      cy.get('.typeform-widget iframe').should('be.visible')
-      cy.get('.typeform-widget iframe').invoke('attr', 'src').should('contain', 'form.typeform.com/to/')
+      cy.get('.tf-v1-widget iframe').should('be.visible')
+      cy.get('.tf-v1-widget iframe').invoke('attr', 'src').should('contain', 'form.typeform.com/to/')
     })
 
     it('should pass options as query param', () => {
-      cy.get('.typeform-widget iframe')
+      cy.get('.tf-v1-widget iframe')
         .invoke('attr', 'src')
         .should('contain', 'typeform-embed=embed-widget&typeform-source=localhost&typeform-medium=demo-test')
     })
 
     it('should pass hidden fields as hash', () => {
-      cy.get('.typeform-widget iframe').invoke('attr', 'src').should('contain', '#foo=foo+value&bar=bar+value')
+      cy.get('.tf-v1-widget iframe').invoke('attr', 'src').should('contain', '#foo=foo+value&bar=bar+value')
     })
 
     it('should pass params from options to the iframe', () => {
-      cy.get('.typeform-widget iframe').invoke('attr', 'src').should('contain', 'foo=foo&bar=bar')
+      cy.get('.tf-v1-widget iframe').invoke('attr', 'src').should('contain', 'foo=foo&bar=bar')
     })
 
     it('should not pass params not in the list to the iframe', () => {
-      cy.get('.typeform-widget iframe').invoke('attr', 'src').should('not.contain', 'baz=baz')
+      cy.get('.tf-v1-widget iframe').invoke('attr', 'src').should('not.contain', 'baz=baz')
     })
 
     it('should pass additional iframe props', () => {
-      cy.get('.typeform-widget iframe').invoke('attr', 'title').should('equal', 'Foo Bar')
+      cy.get('.tf-v1-widget iframe').invoke('attr', 'title').should('equal', 'Foo Bar')
     })
   })
 }
@@ -56,7 +56,7 @@ function testMobile(path: string, title: string) {
       cy.get('iframe').then(($iframe) => {
         const $body = $iframe.contents().find('body')
         cy.wrap($body).find('[data-qa="start-button"]').click()
-        cy.get('.typeform-widget-close').click()
+        cy.get('.tf-v1-widget-close').click()
       })
       cy.wait(500)
       cy.get('iframe').then(($iframe) => {

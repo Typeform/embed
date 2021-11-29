@@ -11,7 +11,7 @@ export type Widget = {
 
 const buildCloseButton = () => {
   const closeButton = document.createElement('a')
-  closeButton.className = 'typeform-widget-close'
+  closeButton.className = 'tf-v1-widget-close'
   closeButton.innerHTML = '&times;'
   return closeButton
 }
@@ -44,7 +44,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
 
     const close = () => {
       options.onClose?.()
-      container.classList.remove('typeform-widget-fullscreen')
+      container.classList.remove('tf-v1-widget-fullscreen')
       options.container.innerHTML = ''
       options.container.append(widget)
       container.append(closeButton)

@@ -30,14 +30,14 @@ describe('create-slider', () => {
       })
 
       it('should render the slider from right', () => {
-        const sliderElement = container.querySelector('.typeform-slider') as HTMLElement
-        const wrapper = sliderElement.querySelector('.typeform-iframe-wrapper') as HTMLElement
+        const sliderElement = container.querySelector('.tf-v1-slider') as HTMLElement
+        const wrapper = sliderElement.querySelector('.tf-v1-iframe-wrapper') as HTMLElement
 
         expect(sliderElement).toBeTruthy()
-        expect(sliderElement.querySelector('.typeform-spinner')).toBeTruthy()
+        expect(sliderElement.querySelector('.tf-v1-spinner')).toBeTruthy()
         expect(wrapper.querySelector('iframe')).toBeTruthy()
-        expect(wrapper.querySelector('.typeform-close')).toBeTruthy()
-        expect(sliderElement.querySelectorAll('.typeform-slider.left').length).toBe(0)
+        expect(wrapper.querySelector('.tf-v1-close')).toBeTruthy()
+        expect(sliderElement.querySelectorAll('.tf-v1-slider.left').length).toBe(0)
         expect(wrapper.style.width).toBe('250px')
       })
 
@@ -45,13 +45,13 @@ describe('create-slider', () => {
         const containerLeft = document.createElement('div')
         createSlider('url', { container: containerLeft, position: 'left' }).open()
 
-        const sliderElement = containerLeft.querySelector('.typeform-slider.left') as HTMLElement
-        const wrapper = sliderElement.querySelector('.typeform-iframe-wrapper') as HTMLElement
+        const sliderElement = containerLeft.querySelector('.tf-v1-slider.left') as HTMLElement
+        const wrapper = sliderElement.querySelector('.tf-v1-iframe-wrapper') as HTMLElement
 
         expect(sliderElement).toBeTruthy()
-        expect(sliderElement.querySelector('.typeform-spinner')).toBeTruthy()
+        expect(sliderElement.querySelector('.tf-v1-spinner')).toBeTruthy()
         expect(wrapper.querySelector('iframe')).toBeTruthy()
-        expect(wrapper.querySelector('.typeform-close')).toBeTruthy()
+        expect(wrapper.querySelector('.tf-v1-close')).toBeTruthy()
       })
     })
 

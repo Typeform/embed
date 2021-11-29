@@ -36,12 +36,12 @@ const replaceIcon = (iconToReplace: HTMLElement, newIcon: HTMLElement) => {
 
 const buildPopover = (width?: number, height?: number) => {
   const popover = document.createElement('div')
-  popover.className = 'typeform-popover'
-  popover.dataset.testid = 'typeform-popover'
+  popover.className = 'tf-v1-popover'
+  popover.dataset.testid = 'tf-v1-popover'
   return setElementSize(popover, { width, height })
 }
 
-const buildCloseIcon = (element = 'div', className = 'typeform-popover-button-icon') => {
+const buildCloseIcon = (element = 'div', className = 'tf-v1-popover-button-icon') => {
   const icon = document.createElement(element)
   icon.className = className
   icon.innerHTML = '&times;'
@@ -51,16 +51,16 @@ const buildCloseIcon = (element = 'div', className = 'typeform-popover-button-ic
 
 const buildWrapper = () => {
   const wrapper = document.createElement('div')
-  wrapper.className = 'typeform-popover-wrapper'
-  wrapper.dataset.testid = 'typeform-popover-wrapper'
+  wrapper.className = 'tf-v1-popover-wrapper'
+  wrapper.dataset.testid = 'tf-v1-popover-wrapper'
   return wrapper
 }
 
 const buildSpinner = () => {
   const spinner = document.createElement('div')
-  spinner.className = 'typeform-spinner'
+  spinner.className = 'tf-v1-spinner'
   const icon = document.createElement('div')
-  icon.className = 'typeform-popover-button-icon'
+  icon.className = 'tf-v1-popover-button-icon'
   icon.dataset.testid = 'spinner-icon'
   icon.append(spinner)
   return icon
@@ -69,7 +69,7 @@ const buildSpinner = () => {
 const buildIcon = (customIcon?: string, color?: string) => {
   const fillColor = getTextColor(color)
   const triggerIcon = document.createElement('div')
-  triggerIcon.className = 'typeform-popover-button-icon'
+  triggerIcon.className = 'tf-v1-popover-button-icon'
   triggerIcon.innerHTML = customIcon
     ? `<img alt='popover trigger icon button' src='${customIcon}'/>`
     : `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -87,8 +87,8 @@ const buildIcon = (customIcon?: string, color?: string) => {
 const buildTriggerButton = (color: string) => {
   const textColor = getTextColor(color)
   const button = document.createElement('button')
-  button.className = 'typeform-popover-button'
-  button.dataset.testid = 'typeform-popover-button'
+  button.className = 'tf-v1-popover-button'
+  button.dataset.testid = 'tf-v1-popover-button'
   button.style.backgroundColor = color
   button.style.color = textColor
   return button
@@ -96,18 +96,18 @@ const buildTriggerButton = (color: string) => {
 
 const buildTooltip = (message: string, hide: () => void) => {
   const icon = document.createElement('span')
-  icon.className = 'typeform-popover-tooltip-close'
-  icon.dataset.testid = 'typeform-popover-tooltip-close'
+  icon.className = 'tf-v1-popover-tooltip-close'
+  icon.dataset.testid = 'tf-v1-popover-tooltip-close'
   icon.innerHTML = '&times;'
   icon.onclick = hide
 
   const textContainer = document.createElement('div')
-  textContainer.className = 'typeform-popover-tooltip-text'
+  textContainer.className = 'tf-v1-popover-tooltip-text'
   textContainer.innerHTML = message
 
   const container = document.createElement('div')
-  container.className = 'typeform-popover-tooltip'
-  container.dataset.testid = 'typeform-popover-tooltip'
+  container.className = 'tf-v1-popover-tooltip'
+  container.dataset.testid = 'tf-v1-popover-tooltip'
   container.appendChild(textContainer)
   container.appendChild(icon)
   return container
@@ -126,7 +126,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   const icon = buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
   const spinner = buildSpinner()
   const closeIcon = buildCloseIcon()
-  const closeModal = buildCloseIcon('a', 'typeform-popover-close')
+  const closeModal = buildCloseIcon('a', 'tf-v1-popover-close')
   const button = buildTriggerButton(options.buttonColor || defaultOptions.buttonColor)
   const httpWarningBanner = createHttpWarningBanner()
 

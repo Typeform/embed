@@ -95,12 +95,12 @@ describe('Open: load (via embed code)', () => {
   })
 
   it('should display close button', () => {
-    cy.get('.typeform-close').should('be.visible')
+    cy.get('.tf-v1-close').should('be.visible')
   })
 
   describe('when popup is closed', () => {
     before(() => {
-      cy.get('.typeform-close').click()
+      cy.get('.tf-v1-close').click()
     })
 
     it('should not display the popup', () => {

@@ -5,7 +5,7 @@
 @import 'includes/fullsize';
 @import 'includes/http-banner';
 
-.typeform-popup {
+.tf-v1-popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
 
-  .typeform-iframe-wrapper {
+  .tf-v1-iframe-wrapper {
     position: relative;
     transition: opacity 0.25s ease-in-out;
     min-width: 360px;
@@ -30,23 +30,23 @@
     }
   }
 
-  .typeform-close {
+  .tf-v1-close {
     @include close;
 
     top: -34px;
     right: 0;
   }
 
-  .typeform-spinner {
+  .tf-v1-spinner {
     @include spinner();
   }
 }
 
 @include mobile {
-  .typeform-popup {
+  .tf-v1-popup {
     @include fullsize;
 
-    .typeform-iframe-wrapper {
+    .tf-v1-iframe-wrapper {
       position: relative;
       transition: opacity 0.25s ease-in-out;
       min-width: 100%;
@@ -57,7 +57,7 @@
       }
     }
 
-    .typeform-close {
+    .tf-v1-close {
       @include close(#737373);
       top: 6px;
       right: 8px;

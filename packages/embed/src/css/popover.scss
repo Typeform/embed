@@ -10,7 +10,7 @@
   opacity: 0;
 }
 
-.typeform-popover {
+.tf-v1-popover {
   bottom: 96px;
   position: fixed;
   right: 16px;
@@ -158,12 +158,12 @@
   }
 }
 
-.typeform-spinner {
+.tf-v1-spinner {
   @include spinner;
 }
 
 @include mobile {
-  .typeform-popover {
+  .tf-v1-popover {
     &.open {
       top: 0;
       left: 0;
@@ -171,7 +171,7 @@
       right: 0;
       @include fullsize;
 
-      .typeform-popover-close {
+      .tf-v1-popover-close {
         display: block;
       }
     }
@@ -231,7 +231,7 @@
     }
   }
 
-  .typeform-spinner {
+  .tf-v1-spinner {
     @include spinner($diameter: 32px);
   }
 }

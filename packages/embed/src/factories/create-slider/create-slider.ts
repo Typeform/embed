@@ -28,27 +28,27 @@ const isOpen = (popup: HTMLElement): popup is HTMLElementWithParentNode => !!pop
 
 const buildSlider = (position: 'right' | 'left') => {
   const popup = document.createElement('div')
-  popup.className = `typeform-slider ${position}`
+  popup.className = `tf-v1-slider ${position}`
   popup.style.opacity = '0'
   return popup
 }
 
 const buildSpinner = () => {
   const spinner = document.createElement('div')
-  spinner.className = 'typeform-spinner'
+  spinner.className = 'tf-v1-spinner'
   return spinner
 }
 
 const buildWrapper = (position: 'right' | 'left', width: number) => {
   const wrapper = document.createElement('div')
-  wrapper.className = 'typeform-iframe-wrapper'
+  wrapper.className = 'tf-v1-iframe-wrapper'
   wrapper.style[position] = '-100%'
   return setElementSize(wrapper, { width })
 }
 
 const buildCloseButton = (close: () => void) => {
   const closeButton = document.createElement('a')
-  closeButton.className = 'typeform-close'
+  closeButton.className = 'tf-v1-close'
   closeButton.innerHTML = '&times;'
   closeButton.onclick = close
   return closeButton

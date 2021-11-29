@@ -29,20 +29,20 @@ const isOpen = (popup: HTMLElement): popup is HTMLElementWithParentNode => !!pop
 
 const buildPopup = () => {
   const popup = document.createElement('div')
-  popup.className = 'typeform-popup'
+  popup.className = 'tf-v1-popup'
   popup.style.opacity = '0'
   return popup
 }
 
 const buildSpinner = () => {
   const spinner = document.createElement('div')
-  spinner.className = 'typeform-spinner'
+  spinner.className = 'tf-v1-spinner'
   return spinner
 }
 
 const buildWrapper = (width?: number, height?: number, size?: number) => {
   const wrapper = document.createElement('div')
-  wrapper.className = 'typeform-iframe-wrapper'
+  wrapper.className = 'tf-v1-iframe-wrapper'
   wrapper.style.opacity = '0'
 
   if (isDefined(width) && isDefined(height)) {
@@ -57,7 +57,7 @@ const buildWrapper = (width?: number, height?: number, size?: number) => {
 
 const buildCloseButton = (close: () => void) => {
   const closeButton = document.createElement('a')
-  closeButton.className = 'typeform-close'
+  closeButton.className = 'tf-v1-close'
   closeButton.innerHTML = '&times;'
   closeButton.onclick = close
   return closeButton

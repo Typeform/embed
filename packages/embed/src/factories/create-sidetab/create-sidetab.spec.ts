@@ -21,7 +21,7 @@ describe('#createSidetab', () => {
     describe('#open', () => {
       it('should open', () => {
         sidetab.open()
-        expect(screen.getByTestId('typeform-sidetab-wrapper')).toBeInTheDocument()
+        expect(screen.getByTestId('tf-v1-sidetab-wrapper')).toBeInTheDocument()
       })
 
       it('should show the icons', async () => {
@@ -31,7 +31,7 @@ describe('#createSidetab', () => {
         jest.runAllTimers()
         const iframe = screen.getByTestId('iframe')
         fireEvent(iframe, new Event('load'))
-        expect(screen.getByTestId('typeform-sidetab-button-icon')).toBeInTheDocument()
+        expect(screen.getByTestId('tf-v1-sidetab-button-icon')).toBeInTheDocument()
       })
     })
 
@@ -40,7 +40,7 @@ describe('#createSidetab', () => {
         sidetab.open()
         jest.runAllTimers()
         sidetab.close()
-        await waitForElementToBeRemoved(() => screen.queryByTestId('typeform-sidetab-wrapper'))
+        await waitForElementToBeRemoved(() => screen.queryByTestId('tf-v1-sidetab-wrapper'))
       })
 
       it('should show the icons', async () => {
@@ -50,9 +50,9 @@ describe('#createSidetab', () => {
         jest.runAllTimers()
         const iframe = screen.getByTestId('iframe')
         fireEvent(iframe, new Event('load'))
-        expect(screen.getByTestId('typeform-sidetab-button-icon')).toBeInTheDocument()
+        expect(screen.getByTestId('tf-v1-sidetab-button-icon')).toBeInTheDocument()
         sidetab.close()
-        await waitForElementToBeRemoved(() => screen.queryByTestId('typeform-sidetab-wrapper'))
+        await waitForElementToBeRemoved(() => screen.queryByTestId('tf-v1-sidetab-wrapper'))
         expect(screen.getByTestId('default-icon')).toBeInTheDocument()
       })
 
@@ -69,14 +69,14 @@ describe('#createSidetab', () => {
     describe('#toggle', () => {
       it('should open when closed', async () => {
         sidetab.toggle()
-        expect(screen.getByTestId('typeform-sidetab-wrapper')).toBeInTheDocument()
+        expect(screen.getByTestId('tf-v1-sidetab-wrapper')).toBeInTheDocument()
       })
 
       it('should close when opened', async () => {
         sidetab.open()
         jest.runAllTimers()
         sidetab.toggle()
-        await waitForElementToBeRemoved(() => screen.queryByTestId('typeform-sidetab-wrapper'))
+        await waitForElementToBeRemoved(() => screen.queryByTestId('tf-v1-sidetab-wrapper'))
       })
     })
   })
@@ -86,7 +86,7 @@ describe('#createSidetab', () => {
       sidetab = createSidetab('formId', { width: 400, height: 600 })
       sidetab.open()
       jest.runAllTimers()
-      expect(screen.getByTestId('typeform-sidetab')).toHaveStyle({ width: '400px', height: '600px' })
+      expect(screen.getByTestId('tf-v1-sidetab')).toHaveStyle({ width: '400px', height: '600px' })
     })
   })
 })

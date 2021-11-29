@@ -3,7 +3,7 @@
 @import 'includes/fullsize';
 @import 'includes/http-banner';
 
-.typeform-widget {
+.tf-v1-widget {
   width: 100%;
   height: 100%;
   position: relative;
@@ -14,11 +14,11 @@
   }
 }
 
-.typeform-widget-close {
+.tf-v1-widget-close {
   display: none;
 }
 
-.typeform-widget-fullscreen {
+.tf-v1-widget-fullscreen {
   position: fixed;
   top: 0;
   left: 0;
@@ -28,7 +28,7 @@
 
   @include fullsize;
 
-  .typeform-widget-close {
+  .tf-v1-widget-close {
     display: block;
     @include close(#737373);
 

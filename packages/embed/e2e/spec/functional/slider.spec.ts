@@ -11,24 +11,24 @@ function testSlider(path: string, title: string) {
     })
 
     it('should not display popup on page load', () => {
-      cy.get('.typeform-slider').should('not.exist')
+      cy.get('.tf-v1-slider').should('not.exist')
     })
 
     it('should open slider', () => {
       cy.get('button').first().click()
-      cy.get('.typeform-slider').should('be.visible')
-      cy.get('.typeform-slider iframe').invoke('attr', 'src').should('contain', 'form.typeform.com/to/')
+      cy.get('.tf-v1-slider').should('be.visible')
+      cy.get('.tf-v1-slider iframe').invoke('attr', 'src').should('contain', 'form.typeform.com/to/')
     })
 
     it('should pass options as query param', () => {
-      cy.get('.typeform-slider iframe')
+      cy.get('.tf-v1-slider iframe')
         .invoke('attr', 'src')
         .should('contain', 'typeform-embed=popup-drawer&typeform-source=localhost&typeform-medium=demo-test')
     })
 
     it('should close slider', () => {
-      cy.get('a.typeform-close').click()
-      cy.get('.typeform-slider').should('not.exist')
+      cy.get('a.tf-v1-close').click()
+      cy.get('.tf-v1-slider').should('not.exist')
     })
   })
 }
