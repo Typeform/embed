@@ -36,7 +36,7 @@ describe('#createSidetab', () => {
       it('should open', () => {
         popover.open()
         jest.runAllTimers()
-        expect(screen.getByTestId('typeform-popover-wrapper')).toBeInTheDocument()
+        expect(screen.getByTestId('tf-v1-popover-wrapper')).toBeInTheDocument()
       })
 
       it('should show the icons', async () => {
@@ -46,7 +46,7 @@ describe('#createSidetab', () => {
         expect(screen.getByTestId('spinner-icon')).toBeInTheDocument()
         const iframe = screen.getByTestId('iframe')
         fireEvent(iframe, new Event('load'))
-        expect(screen.getByTestId('typeform-popover-button-icon')).toBeInTheDocument()
+        expect(screen.getByTestId('tf-v1-popover-button-icon')).toBeInTheDocument()
       })
     })
 
@@ -55,7 +55,7 @@ describe('#createSidetab', () => {
         popover.open()
         jest.runAllTimers()
         popover.close()
-        await waitForElementToBeRemoved(() => screen.queryByTestId('typeform-popover-wrapper'))
+        await waitForElementToBeRemoved(() => screen.queryByTestId('tf-v1-popover-wrapper'))
       })
 
       it('should show the icons', async () => {
@@ -65,9 +65,9 @@ describe('#createSidetab', () => {
         expect(screen.getByTestId('spinner-icon')).toBeInTheDocument()
         const iframe = screen.getByTestId('iframe')
         fireEvent(iframe, new Event('load'))
-        expect(screen.getByTestId('typeform-popover-button-icon')).toBeInTheDocument()
+        expect(screen.getByTestId('tf-v1-popover-button-icon')).toBeInTheDocument()
         popover.close()
-        await waitForElementToBeRemoved(() => screen.queryByTestId('typeform-popover-wrapper'))
+        await waitForElementToBeRemoved(() => screen.queryByTestId('tf-v1-popover-wrapper'))
         expect(screen.getByTestId('default-icon')).toBeInTheDocument()
       })
 
@@ -85,21 +85,21 @@ describe('#createSidetab', () => {
       it('should open when closed', async () => {
         popover.toggle()
         jest.runAllTimers()
-        expect(screen.getByTestId('typeform-popover-wrapper')).toBeInTheDocument()
+        expect(screen.getByTestId('tf-v1-popover-wrapper')).toBeInTheDocument()
       })
 
       it('should close when opened', async () => {
         popover.open()
         jest.runAllTimers()
         popover.toggle()
-        await waitForElementToBeRemoved(() => screen.queryByTestId('typeform-popover-wrapper'))
+        await waitForElementToBeRemoved(() => screen.queryByTestId('tf-v1-popover-wrapper'))
       })
     })
 
     describe('#buttonColor', () => {
       it('should show a default button color', () => {
         const defaultColor = 'rgb(58, 118, 133)'
-        const triggerButton = screen.queryByTestId('typeform-popover-button')
+        const triggerButton = screen.queryByTestId('tf-v1-popover-button')
         expect(triggerButton).toHaveStyle(`background-color: ${defaultColor}`)
       })
     })
@@ -110,7 +110,7 @@ describe('#createSidetab', () => {
       it('should show the custom button color', () => {
         const white = 'rgb(255, 255, 255)'
         popover = createPopover('formId', { buttonColor: white })
-        const triggerButton = screen.queryByTestId('typeform-popover-button')
+        const triggerButton = screen.queryByTestId('tf-v1-popover-button')
         expect(triggerButton).toHaveStyle(`background-color: ${white}`)
       })
     })
@@ -120,44 +120,44 @@ describe('#createSidetab', () => {
         popover = createPopover('formId', { width: 400, height: 600 })
         popover.open()
         jest.runAllTimers()
-        expect(screen.getByTestId('typeform-popover')).toHaveStyle({ width: '400px', height: '600px' })
+        expect(screen.getByTestId('tf-v1-popover')).toHaveStyle({ width: '400px', height: '600px' })
       })
     })
 
     describe('#tooltip', () => {
       it('should render tooltip', async () => {
         popover = createPopover('formId', { tooltip: 'foobar' })
-        const tooltip = screen.getByTestId('typeform-popover-tooltip')
+        const tooltip = screen.getByTestId('tf-v1-popover-tooltip')
         expect(tooltip).toHaveTextContent('foobar')
         expect(tooltip).toBeVisible()
       })
 
       it('should close tooltip with close icon', () => {
         popover = createPopover('formId', { tooltip: 'foobar' })
-        fireEvent.click(screen.getByTestId('typeform-popover-tooltip-close'))
+        fireEvent.click(screen.getByTestId('tf-v1-popover-tooltip-close'))
         jest.runAllTimers()
-        expect(screen.queryByTestId('typeform-popover-tooltip')).toBeNull()
+        expect(screen.queryByTestId('tf-v1-popover-tooltip')).toBeNull()
       })
 
       it('should close tooltip when popover is opened', () => {
         popover = createPopover('formId', { tooltip: 'foobar' })
         popover.open()
         jest.runAllTimers()
-        expect(screen.queryByTestId('typeform-popover-tooltip')).toBeNull()
+        expect(screen.queryByTestId('tf-v1-popover-tooltip')).toBeNull()
       })
     })
 
     describe('#notificationDot', () => {
       it('should render notification dot', () => {
         popover = createPopover('formId', { notificationDays: 1 })
-        expect(screen.getByTestId('typeform-popover-unread-dot')).toBeInTheDocument()
+        expect(screen.getByTestId('tf-v1-popover-unread-dot')).toBeInTheDocument()
       })
 
       it('should hide notification dot on form open', () => {
         popover = createPopover('formId', { notificationDays: 2 })
-        fireEvent.click(screen.getByTestId('typeform-popover-button'))
+        fireEvent.click(screen.getByTestId('tf-v1-popover-button'))
         jest.runAllTimers()
-        expect(screen.queryByTestId('typeform-popover-unread-dot')).toBeNull()
+        expect(screen.queryByTestId('tf-v1-popover-unread-dot')).toBeNull()
       })
 
       it('should not store "hide until time" data in localStorage', () => {

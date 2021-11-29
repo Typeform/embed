@@ -13,7 +13,7 @@ describe('Callbacks', () => {
         expect(stub).to.be.calledWith('onReady')
       })
 
-    cy.get('a.typeform-close')
+    cy.get('a.tf-v1-close')
       .click()
       .then(() => {
         expect(stub).to.be.calledWith('onClose')

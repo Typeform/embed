@@ -18,7 +18,7 @@ describe('Mobile Embeds', () => {
 
   it('Sidetab fullscreen', () => {
     openOnMobile('/sidetab-js.html')
-    cy.get('button.typeform-sidetab-button').click({ force: true })
+    cy.get('button.tf-v1-sidetab-button').click({ force: true })
     cy.get('[data-testid="iframe"]').should('be.visible')
     eyesCheckMobile('Sidetab Mobile')
   })

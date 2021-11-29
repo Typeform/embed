@@ -11,28 +11,28 @@ function testPopup(path: string, title: string) {
     })
 
     it('should not display popup on page load', () => {
-      cy.get('.typeform-popup').should('not.exist')
+      cy.get('.tf-v1-popup').should('not.exist')
     })
 
     it('should open popup', () => {
       cy.get('button').first().click()
-      cy.get('.typeform-popup').should('be.visible')
-      cy.get('.typeform-popup iframe').invoke('attr', 'src').should('contain', 'form.typeform.com/to/')
+      cy.get('.tf-v1-popup').should('be.visible')
+      cy.get('.tf-v1-popup iframe').invoke('attr', 'src').should('contain', 'form.typeform.com/to/')
     })
 
     it('should pass options as query param', () => {
-      cy.get('.typeform-popup iframe')
+      cy.get('.tf-v1-popup iframe')
         .invoke('attr', 'src')
         .should('contain', 'typeform-embed=popup-blank&typeform-source=localhost&typeform-medium=demo-test')
     })
 
     it('should pass hidden fields as hash', () => {
-      cy.get('.typeform-popup iframe').invoke('attr', 'src').should('contain', '#foo=foo+value&bar=bar+value')
+      cy.get('.tf-v1-popup iframe').invoke('attr', 'src').should('contain', '#foo=foo+value&bar=bar+value')
     })
 
     it('should close popup', () => {
-      cy.get('a.typeform-close').click()
-      cy.get('.typeform-popup').should('not.exist')
+      cy.get('a.tf-v1-close').click()
+      cy.get('.tf-v1-popup').should('not.exist')
     })
   })
 }

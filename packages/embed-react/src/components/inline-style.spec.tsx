@@ -7,7 +7,7 @@ describe('<InlineStyle />', () => {
   it('should render inline CSS', () => {
     render(
       <>
-        <div className="typeform-widget" data-testid="wrapper">
+        <div className="tf-v1-widget" data-testid="wrapper">
           <iframe title="foo" data-testid="iframe" />
         </div>
         <InlineStyle filename="widget" />

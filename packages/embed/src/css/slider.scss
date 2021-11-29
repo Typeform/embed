@@ -5,7 +5,7 @@
 @import 'includes/fullsize';
 @import 'includes/http-banner';
 
-.typeform-slider {
+.tf-v1-slider {
   position: fixed;
   top: 0;
   left: 0;
@@ -15,7 +15,7 @@
   transition: opacity 0.25s ease-in-out;
   z-index: 10001;
 
-  .typeform-iframe-wrapper {
+  .tf-v1-iframe-wrapper {
     height: 100%;
     position: absolute;
     top: 0;
@@ -27,7 +27,7 @@
     }
   }
 
-  .typeform-close {
+  .tf-v1-close {
     @include close;
 
     top: 4px;
@@ -38,16 +38,16 @@
     }
   }
 
-  .typeform-spinner {
+  .tf-v1-spinner {
     @include spinner();
   }
 
   &.left {
-    .typeform-iframe-wrapper iframe {
+    .tf-v1-iframe-wrapper iframe {
       border-radius: 0 8px 8px 0;
     }
 
-    .typeform-close {
+    .tf-v1-close {
       left: auto;
       right: -24px;
     }
@@ -55,10 +55,10 @@
 }
 
 @include mobile {
-  .typeform-slider {
+  .tf-v1-slider {
     @include fullsize;
 
-    .typeform-iframe-wrapper {
+    .tf-v1-iframe-wrapper {
       width: 100% !important;
       height: 100%;
       transition: unset;
@@ -68,7 +68,7 @@
       }
     }
 
-    .typeform-close {
+    .tf-v1-close {
       @include close(#737373);
       top: 6px;
       right: 8px;

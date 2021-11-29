@@ -6,7 +6,7 @@ describe('build-widget', () => {
     const widget = buildWidget(iframe)
 
     it('should render widget wrapper', () => {
-      expect(widget.className).toBe('typeform-widget')
+      expect(widget.className).toBe('tf-v1-widget')
     })
 
     it('should render iframe', () => {

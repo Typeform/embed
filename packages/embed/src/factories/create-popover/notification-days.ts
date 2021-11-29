@@ -50,8 +50,8 @@ export const canBuildNotificationDot = (formId: string) => {
 
 export const buildNotificationDot = () => {
   const dot = document.createElement('span')
-  dot.className = 'typeform-popover-unread-dot'
-  dot.dataset.testid = 'typeform-popover-unread-dot'
+  dot.className = 'tf-v1-popover-unread-dot'
+  dot.dataset.testid = 'tf-v1-popover-unread-dot'
 
   return dot
 }

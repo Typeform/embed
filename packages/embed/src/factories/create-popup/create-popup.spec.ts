@@ -30,12 +30,12 @@ describe('create-popup', () => {
       })
 
       it('should render the popup', () => {
-        const popupElement = container.querySelector('.typeform-popup') as HTMLElement
-        const wrapper = popupElement.querySelector('.typeform-iframe-wrapper') as HTMLElement
+        const popupElement = container.querySelector('.tf-v1-popup') as HTMLElement
+        const wrapper = popupElement.querySelector('.tf-v1-iframe-wrapper') as HTMLElement
         expect(popupElement).toBeVisible()
-        expect(popupElement.querySelector('.typeform-spinner')).toBeVisible()
+        expect(popupElement.querySelector('.tf-v1-spinner')).toBeVisible()
         expect(wrapper.querySelector('iframe')).toBeTruthy()
-        expect(wrapper.querySelector('.typeform-close')).toBeTruthy()
+        expect(wrapper.querySelector('.tf-v1-close')).toBeTruthy()
         expect(wrapper.style.width).toBe('200px')
         expect(wrapper.style.height).toBe('100px')
       })

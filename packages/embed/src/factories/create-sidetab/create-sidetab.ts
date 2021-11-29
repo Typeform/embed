@@ -32,23 +32,23 @@ const isOpen = (element: HTMLElement): element is HTMLElementWithParentNode => !
 
 const buildSidetab = (width?: number, height?: number) => {
   const popup = document.createElement('div')
-  popup.className = 'typeform-sidetab'
-  popup.dataset.testid = 'typeform-sidetab'
+  popup.className = 'tf-v1-sidetab'
+  popup.dataset.testid = 'tf-v1-sidetab'
   return setElementSize(popup, { width, height })
 }
 
 const buildWrapper = () => {
   const wrapper = document.createElement('div')
-  wrapper.className = 'typeform-sidetab-wrapper'
-  wrapper.dataset.testid = 'typeform-sidetab-wrapper'
+  wrapper.className = 'tf-v1-sidetab-wrapper'
+  wrapper.dataset.testid = 'tf-v1-sidetab-wrapper'
   return wrapper
 }
 
 const buildSpinner = () => {
   const spinner = document.createElement('div')
-  spinner.className = 'typeform-spinner'
+  spinner.className = 'tf-v1-spinner'
   const icon = document.createElement('div')
-  icon.className = 'typeform-sidetab-button-icon'
+  icon.className = 'tf-v1-sidetab-button-icon'
   icon.dataset.testid = 'spinner-icon'
   icon.append(spinner)
   return icon
@@ -57,7 +57,7 @@ const buildSpinner = () => {
 const buildTriggerButton = (color: string) => {
   const textColor = getTextColor(color)
   const button = document.createElement('button')
-  button.className = 'typeform-sidetab-button'
+  button.className = 'tf-v1-sidetab-button'
   button.style.backgroundColor = color
   button.style.color = textColor
   return button
@@ -65,7 +65,7 @@ const buildTriggerButton = (color: string) => {
 
 const buildTriggerButtonText = (text: string) => {
   const buttonText = document.createElement('span')
-  buttonText.className = 'typeform-sidetab-button-text'
+  buttonText.className = 'tf-v1-sidetab-button-text'
   buttonText.innerHTML = text
   return buttonText
 }
@@ -73,7 +73,7 @@ const buildTriggerButtonText = (text: string) => {
 const buildIcon = (customIcon?: string, color?: string) => {
   const fillColor = getTextColor(color)
   const triggerIcon = document.createElement('div')
-  triggerIcon.className = 'typeform-sidetab-button-icon'
+  triggerIcon.className = 'tf-v1-sidetab-button-icon'
   triggerIcon.innerHTML = customIcon
     ? `<img alt='sidetab trigger icon button' src='${customIcon}' style="max-width: 100%; max-height: 100%" />`
     : `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +83,7 @@ const buildIcon = (customIcon?: string, color?: string) => {
   return triggerIcon
 }
 
-const buildCloseIcon = (element = 'div', className = 'typeform-sidetab-button-icon') => {
+const buildCloseIcon = (element = 'div', className = 'tf-v1-sidetab-button-icon') => {
   const closeButton = document.createElement(element)
   closeButton.className = className
   closeButton.innerHTML = '&times;'
@@ -109,7 +109,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   const buttonText = buildTriggerButtonText(options.buttonText || defaultOptions.buttonText)
   const icon = buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
   const closeIcon = buildCloseIcon()
-  const closeModal = buildCloseIcon('a', 'typeform-sidetab-close')
+  const closeModal = buildCloseIcon('a', 'tf-v1-sidetab-close')
   const httpWarningBanner = createHttpWarningBanner()
 
   const container = document.body

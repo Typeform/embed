@@ -14,7 +14,7 @@ export const getFormSubmitHandler = (embedId: string, callback?: callbackFn) => 
 
 export const getWelcomeScreenHiddenHandler = (embedId: string, element: HTMLElement) => {
   const callback = () => {
-    element.classList.add('typeform-widget-fullscreen')
+    element.classList.add('tf-v1-widget-fullscreen')
   }
   return getFormEventHandler('welcome-screen-hidden', embedId, callback)
 }
