@@ -37,9 +37,11 @@
   &-button {
     position: absolute;
     top: 50%;
-    transform: rotate(-90deg);
-    transform-origin: bottom left;
-    width: 200px;
+    left: -48px;
+    transform: rotate(-90deg) translateX(-50%);
+    transform-origin: left top;
+    min-width: 100px;
+    max-width: 540px;
     height: 48px;
     display: flex;
     align-items: center;
