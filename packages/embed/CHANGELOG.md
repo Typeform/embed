@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.24.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.24.0...@typeform/embed-v1.24.1) (2021-11-30)
+
+
+### Bug Fixes
+
+* **DIST-1432:** Prevent text from being hidden by ellipsis in side tab ([#422](https://github.com/Typeform/embed/issues/422)) ([45a45ad](https://github.com/Typeform/embed/commit/45a45adfa9637478184f71d34ff349b572f36bcc))
+
 # [@typeform/embed-v1.24.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.23.1...@typeform/embed-v1.24.0) (2021-11-29)
 
 
