@@ -1,4 +1,4 @@
-import { createIframe, hasDom, isFullscreen, unmountElement } from '../../utils'
+import { createIframe, hasDom, isFullscreen, unmountElement, lazyInitialize } from '../../utils'
 import { getWelcomeScreenHiddenHandler } from '../../utils/create-iframe/get-form-event-handler'
 
 import { WidgetOptions } from './widget-options'
@@ -34,8 +34,15 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
   const { embedId, iframe } = createIframe(formId, 'widget', widgetOptions)
   const widget = buildWidget(iframe, options.width, options.height)
 
+  const appendWidget = () => options.container.append(widget)
+
   options.container.innerHTML = ''
-  options.container.append(widget)
+
+  if (options.lazy) {
+    lazyInitialize(options.container, appendWidget)
+  } else {
+    appendWidget()
+  }
 
   if (widgetOptions.enableFullscreen) {
     const { container } = options
@@ -46,7 +53,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
       options.onClose?.()
       container.classList.remove('tf-v1-widget-fullscreen')
       options.container.innerHTML = ''
-      options.container.append(widget)
+      appendWidget()
       container.append(closeButton)
     }
 
