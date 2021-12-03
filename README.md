@@ -11,7 +11,7 @@ Pick a library you want to use:
 
 Support for other libraries coming later. [You can help us if you want 😉](#contribution)
 
-If you need documentation for previous version of embed lib (version 0) [see old README here](https://github.com/Typeform/embed/tree/master#readme).
+⚠️ **Important:** This library it is not compatible with the previous version of embed lib - [version 0](https://github.com/Typeform/embed/tree/master). If you need documentation for previous version [see old README here](https://github.com/Typeform/embed/tree/master#readme).
 
 ### Typeform Embed SDK for specific framework
 
