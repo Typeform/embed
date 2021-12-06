@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Static HTML Demo</title>
+    <style>
+      body {
+        max-width: 550px;
+        padding: 0 20px;
+        margin: 0 auto;
+        font-size: 16px;
+        line-height: 30px;
+        font-family: sans-serif;
+      }
+      h1,
+      h2 {
+        margin: 30px 0;
+      }
+      p {
+        margin: 20px 0;
+      }
+      p.mute {
+        opacity: 0.5;
+      }
+      #wrapper {
+        width: 100%;
+        max-width: 600px;
+        height: 400px;
+        margin: 0 auto;
+        background-color: lime; /* this is placeholder background color until your form is laoded */
+        border-radius: 8px; /* add round corcers to make sure the background does not overflow when form is loaded */
+      }
+      .status {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background: red;
+        color: white;
+        padding: 10px;
+        width: 150px;
+        height: 40px;
+        line-height: 40px;
+        z-index: 10000;
+      }
+      .status.ready {
+        background: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="status">form not loaded yet</div>
+    <h1>There is a widget down below</h1>
+    <p>The widget is <strong>lazy-loaded</strong>. It is not loaded yet. It will be loaded when you scroll to it.</p>
+    <p>
+      When the form is ready the onReady callback will display a console.log output. Also the status indicator in bottom
+      right will change.
+    </p>
+    <h2>More text</h2>
+    <p>
+      The text here is not relevant. It's only purpose is not make sure the widget is displayed "below the fold" and not
+      loaded on page load.
+    </p>
+    <p class="mute">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel turpis felis. In non dictum libero, quis dictum
+      leo. Maecenas ultrices, felis ut eleifend mollis, augue leo commodo ipsum, vel congue neque dolor sit amet tortor.
+      Proin in fermentum risus, id varius felis. Nam ut diam blandit, pharetra neque quis, convallis erat. Etiam
+      vehicula imperdiet sem fringilla vehicula. Aliquam erat volutpat. Cras consequat tempor lorem eu consequat. Sed ut
+      mauris eget metus consequat vehicula sit amet id mi. Vivamus tellus erat, blandit at cursus eget, imperdiet eu
+      neque. Donec accumsan nulla et dui placerat, in posuere mi hendrerit. Mauris hendrerit tempus tempor. Etiam sed
+      odio nibh.
+    </p>
+    <p class="mute">
+      In venenatis accumsan nibh, eu scelerisque ex blandit vel. Integer ornare elementum porta. Fusce tempus quam a
+      risus volutpat, nec bibendum est fermentum. Etiam vel ornare erat, eu maximus purus. Cras semper odio nec interdum
+      dictum. Nam sollicitudin, sapien a porttitor molestie, ante ligula finibus mauris, at vestibulum tellus magna vel
+      nulla. Quisque non risus lectus. Aliquam interdum convallis sem sit amet euismod. In commodo nisi et dolor
+      tincidunt, a facilisis lacus dapibus.
+    </p>
+    <p class="mute">
+      Nam nec lorem consequat odio fringilla sagittis eu sed nisi. Vestibulum rutrum magna sit amet eros iaculis
+      elementum. Phasellus vitae erat non ligula gravida aliquet. Duis dui ante, dictum sit amet neque ut, tristique
+      bibendum lacus. Nunc eget arcu ac nisi finibus fermentum ac vitae tellus. Nunc vulputate feugiat quam ut
+      fermentum. Ut vel felis tellus. Nam tristique ac dui sed luctus. Integer mattis non odio nec facilisis. Nullam
+      cursus ligula tortor. Pellentesque bibendum, mauris eget ultrices egestas, orci lorem dictum ante, ut semper sem
+      ante sit amet velit. Donec in accumsan purus, viverra tincidunt eros. Pellentesque est neque, faucibus a magna
+      quis, dignissim ultricies lacus. Nullam commodo lorem sed quam congue congue.
+    </p>
+    <p class="mute">
+      Duis nisi tortor, ornare in nisi nec, dictum dapibus metus. Proin eu porttitor ex. In nec aliquet erat, ut
+      placerat lorem. Ut molestie ligula et efficitur sodales. Nam sollicitudin, massa ac imperdiet dapibus, enim nisi
+      pretium libero, id sagittis dui quam hendrerit nulla. Suspendisse pharetra nibh sed nulla bibendum, sit amet
+      vestibulum nisi faucibus. Nulla nec dignissim ante.
+    </p>
+    <p class="mute">
+      Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce lacinia nunc augue, ac consequat diam sagittis
+      et. In eget urna tristique, elementum lacus sed, scelerisque justo. Ut et erat nisl. Curabitur dignissim ante vel
+      massa aliquam dapibus. Nullam in leo libero. In hac habitasse platea dictumst. Donec sit amet purus orci.
+      Suspendisse laoreet, velit nec varius mattis, magna orci venenatis odio, ut pharetra nulla nisl eu ligula.
+    </p>
+    <h2>The widget is here</h2>
+    <div
+      id="wrapper"
+      data-tf-widget="HLjqXS5W"
+      data-tf-medium="demo-test"
+      data-tf-on-ready="formIsReady"
+      data-tf-lazy
+    ></div>
+    <script src="./lib/embed-next.js"></script>
+    <script>
+      function formIsReady() {
+        console.log('form is ready')
+
+        const statusElm = document.querySelector('.status')
+        statusElm.innerText = 'form is ready now'
+        statusElm.classList.add('ready')
+      }
+    </script>
+  </body>
+</html>
