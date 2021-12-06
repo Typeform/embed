@@ -52,9 +52,20 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     const close = () => {
       options.onClose?.()
       container.classList.remove('tf-v1-widget-fullscreen')
-      options.container.innerHTML = ''
-      appendWidget()
-      container.append(closeButton)
+
+      if (options.keepSession) {
+        const overlay = document.createElement('div')
+        overlay.className = 'tf-v1-widget-iframe-overlay'
+        overlay.onclick = () => {
+          container.classList.add('tf-v1-widget-fullscreen')
+          unmountElement(overlay)
+        }
+        widget.append(overlay)
+      } else {
+        options.container.innerHTML = ''
+        appendWidget()
+        container.append(closeButton)
+      }
     }
 
     closeButton.onclick = close

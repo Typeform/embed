@@ -73,5 +73,6 @@
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
   },
-  "prettier": "@typeform/eslint-config/prettier"
+  "prettier": "@typeform/eslint-config/prettier",
+  "dependencies": {}
 }
