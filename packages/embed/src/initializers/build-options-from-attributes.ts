@@ -36,5 +36,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     disableAutoFocus: 'boolean',
     tracking: 'record',
     iframeProps: 'record',
+    lazy: 'boolean',
   })
 }

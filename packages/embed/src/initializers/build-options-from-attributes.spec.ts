@@ -21,6 +21,7 @@ describe('build-options-from-attributes', () => {
         data-tf-chat
         data-tf-share-ga-instance="ua-hello-1"
         data-tf-tracking="utm_foo=utm foo value,foobar=foobar value"
+        data-tf-lazy
       ></div>`
 
     it('should load correct options', () => {
@@ -55,6 +56,7 @@ describe('build-options-from-attributes', () => {
           utm_foo: 'utm foo value',
           foobar: 'foobar value',
         },
+        lazy: true,
       })
     })
   })
