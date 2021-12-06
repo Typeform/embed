@@ -18,7 +18,7 @@ export type WidgetOptions = BaseOptions &
      */
     inlineOnMobile?: boolean
     /**
-     * Lazy loads the widget element untill it's visible
+     * Lazy loads the widget element when it's visible
      *
      * @type {boolean}
      */

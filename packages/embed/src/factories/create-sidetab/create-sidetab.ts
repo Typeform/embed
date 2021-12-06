@@ -112,7 +112,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   const closeModal = buildCloseIcon('a', 'tf-v1-sidetab-close')
   const httpWarningBanner = createHttpWarningBanner()
 
-  const container = document.body
+  const container = options.container || document.body
 
   container.append(sidetab)
   wrapper.append(iframe)
