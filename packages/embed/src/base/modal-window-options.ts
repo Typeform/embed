@@ -11,4 +11,8 @@ export type ModalWindowOptions = {
    * @type {number}
    */
   autoClose?: number
+  /**
+   * Reopen the modal window with form in the same state as it wos when closed.
+   */
+  keepSession?: boolean
 }

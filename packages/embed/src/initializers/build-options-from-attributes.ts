@@ -37,5 +37,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     tracking: 'record',
     iframeProps: 'record',
     lazy: 'boolean',
+    keepSession: 'boolean',
   })
 }
