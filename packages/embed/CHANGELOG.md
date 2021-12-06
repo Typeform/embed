@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.25.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.24.1...@typeform/embed-v1.25.0) (2021-12-06)
+
+
+### Features
+
+* **DIST-582:** Widget lazy loading ([#428](https://github.com/Typeform/embed/issues/428)) ([a93abe5](https://github.com/Typeform/embed/commit/a93abe5bf7094fa48ec99330907bfd9555a77788))
+
 # [@typeform/embed-v1.24.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.24.0...@typeform/embed-v1.24.1) (2021-11-30)
 
 
