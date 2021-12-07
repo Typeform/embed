@@ -4,7 +4,7 @@
   "private": true,
   "main": "index.js",
   "author": "Typeform",
-  "license": "LGPL-3.0-only",
+  "license": "MIT",
   "scripts": {
     "start": "yarn http-server -p 8080 -c-1 ./public"
   }
