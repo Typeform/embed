@@ -4,7 +4,7 @@
   "main": "./build/index.js",
   "types": "./types/index.d.ts",
   "author": "Typeform",
-  "license": "LGPL-3.0-only",
+  "license": "MIT",
   "homepage": "https://github.com/Typeform/embed/blob/main/packages/embed#readme",
   "repository": {
     "type": "git",
