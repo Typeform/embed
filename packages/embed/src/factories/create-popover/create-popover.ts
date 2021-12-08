@@ -7,6 +7,8 @@ import {
   addCustomKeyboardListener,
   getTextColor,
   createHttpWarningBanner,
+  isOpen,
+  isInPage,
 } from '../../utils'
 
 import { PopoverOptions } from './popover-options'
@@ -19,12 +21,6 @@ export type Popover = {
   refresh: () => void
   unmount: () => void
 }
-
-interface HTMLElementWithParentNode extends HTMLElement {
-  parentNode: Node & ParentNode
-}
-
-const isOpen = (popover: HTMLElement): popover is HTMLElementWithParentNode => !!popover.parentNode
 
 const replaceIcon = (iconToReplace: HTMLElement, newIcon: HTMLElement) => {
   const element = iconToReplace.parentNode
@@ -188,10 +184,22 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
       hideTooltip()
       hideNotificationDot()
       setTimeout(() => {
-        popover.append(wrapper)
-        wrapper.style.opacity = '0'
-        closeModal.style.opacity = '0'
-        replaceIcon(icon, spinner)
+        if (!isInPage(wrapper)) {
+          popover.append(wrapper)
+          replaceIcon(icon, spinner)
+          wrapper.style.opacity = '0'
+          closeModal.style.opacity = '0'
+        } else {
+          wrapper.style.opacity = '0'
+          closeModal.style.opacity = '0'
+          wrapper.style.display = 'flex'
+          setTimeout(() => {
+            popover.classList.add('open')
+            wrapper.style.opacity = '1'
+            closeModal.style.opacity = '1'
+          })
+          replaceIcon(icon, closeIcon)
+        }
       })
     }
   }
@@ -200,7 +208,11 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     if (isOpen(popover)) {
       userOptions.onClose?.()
       setTimeout(() => {
-        unmountElement(wrapper)
+        if (options.keepSession) {
+          wrapper.style.display = 'none'
+        } else {
+          unmountElement(wrapper)
+        }
         popover.classList.remove('open')
         replaceIcon(closeIcon, icon)
       }, 250)

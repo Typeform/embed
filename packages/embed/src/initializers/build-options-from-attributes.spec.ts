@@ -22,6 +22,7 @@ describe('build-options-from-attributes', () => {
         data-tf-share-ga-instance="ua-hello-1"
         data-tf-tracking="utm_foo=utm foo value,foobar=foobar value"
         data-tf-lazy
+        data-tf-keep-session
       ></div>`
 
     it('should load correct options', () => {
@@ -57,6 +58,7 @@ describe('build-options-from-attributes', () => {
           foobar: 'foobar value',
         },
         lazy: true,
+        keepSession: true,
       })
     })
   })

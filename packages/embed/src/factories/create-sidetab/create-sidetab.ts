@@ -7,6 +7,8 @@ import {
   addCustomKeyboardListener,
   getTextColor,
   createHttpWarningBanner,
+  isOpen,
+  isInPage,
 } from '../../utils'
 
 import { SidetabOptions } from './sidetab-options'
@@ -23,12 +25,6 @@ const defaultOptions = {
   buttonColor: '#3a7685',
   buttonText: 'Launch me',
 }
-
-interface HTMLElementWithParentNode extends HTMLElement {
-  parentNode: Node & ParentNode
-}
-
-const isOpen = (element: HTMLElement): element is HTMLElementWithParentNode => !!element.parentNode
 
 const buildSidetab = (width?: number, height?: number) => {
   const popup = document.createElement('div')
@@ -112,7 +108,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   const closeModal = buildCloseIcon('a', 'tf-v1-sidetab-close')
   const httpWarningBanner = createHttpWarningBanner()
 
-  const container = document.body
+  const container = options.container || document.body
 
   container.append(sidetab)
   wrapper.append(iframe)
@@ -134,8 +130,14 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
 
   const open = () => {
     if (!isOpen(wrapper)) {
-      sidetab.append(wrapper)
-      replaceElementChild(icon, spinner)
+      if (!isInPage(wrapper)) {
+        sidetab.append(wrapper)
+        replaceElementChild(icon, spinner)
+      } else {
+        wrapper.style.display = 'flex'
+        sidetab.classList.add('open')
+        replaceElementChild(icon, closeIcon)
+      }
     }
   }
 
@@ -144,7 +146,11 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
       options.onClose?.()
       sidetab.classList.remove('open')
       setTimeout(() => {
-        unmountElement(wrapper)
+        if (options.keepSession) {
+          wrapper.style.display = 'none'
+        } else {
+          unmountElement(wrapper)
+        }
         replaceElementChild(closeIcon, icon)
       }, 250)
     }

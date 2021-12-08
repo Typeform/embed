@@ -10,6 +10,7 @@ import {
   createHttpWarningBanner,
 } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
+import { isInPage, isOpen } from '../../utils'
 
 import { PopupOptions } from './popup-options'
 
@@ -20,12 +21,6 @@ export type Popup = {
   refresh: () => void
   unmount: () => void
 }
-
-interface HTMLElementWithParentNode extends HTMLElement {
-  parentNode: Node & ParentNode
-}
-
-const isOpen = (popup: HTMLElement): popup is HTMLElementWithParentNode => !!popup.parentNode
 
 const buildPopup = () => {
   const popup = document.createElement('div')
@@ -101,7 +96,12 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
 
   const open = () => {
     if (!isOpen(popup)) {
-      container.append(popup)
+      if (!isInPage(popup)) {
+        spinner.style.display = 'block'
+        container.append(popup)
+      } else {
+        popup.style.display = 'flex'
+      }
       document.body.style.overflow = 'hidden'
       setTimeout(() => {
         popup.style.opacity = '1'
@@ -113,11 +113,13 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
     if (isOpen(popup)) {
       onClose?.()
       popup.style.opacity = '0'
-      wrapper.style.opacity = '0'
       document.body.style.overflow = scrollInitialState
       setTimeout(() => {
-        unmount()
-        spinner.style.display = 'block'
+        if (options.keepSession) {
+          popup.style.display = 'none'
+        } else {
+          unmount()
+        }
       }, 250)
     }
   }

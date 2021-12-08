@@ -5,26 +5,16 @@ import {
   BehavioralOptions,
   SizeableOptions,
   IframeOptions,
+  ModalWindowOptions,
 } from '../../base'
 
 export type PopoverOptions = BaseOptions &
+  ModalWindowOptions &
   UrlOptions &
   ActionableOptions &
   BehavioralOptions &
   SizeableOptions &
   IframeOptions & {
-    /**
-     * Time (ms) until the embedded typeform will automatically close after a respondent clicks the Submit button.
-     *
-     * @type {number}
-     */
-    autoClose?: number
-    /**
-     * Hide fixed scrollbars.
-     *
-     * @type {boolean}
-     */
-    hideScrollbars?: boolean
     /**
      * Specify the size of the popover (only applies if using mode "popover").
      *
@@ -43,12 +33,6 @@ export type PopoverOptions = BaseOptions &
      * @type {string}
      */
     customIcon?: string
-    /**
-     * Element to place the popover into. Optional.
-     *
-     * @type {HTMLElement}
-     */
-    container?: HTMLElement
     /**
      * Message to dislay next to the button.
      *

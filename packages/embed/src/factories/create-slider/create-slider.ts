@@ -7,6 +7,8 @@ import {
   setAutoClose,
   addCustomKeyboardListener,
   createHttpWarningBanner,
+  isOpen,
+  isInPage,
 } from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
 
@@ -19,12 +21,6 @@ export type Slider = {
   refresh: () => void
   unmount: () => void
 }
-
-interface HTMLElementWithParentNode extends HTMLElement {
-  parentNode: Node & ParentNode
-}
-
-const isOpen = (popup: HTMLElement): popup is HTMLElementWithParentNode => !!popup.parentNode
 
 const buildSlider = (position: 'right' | 'left') => {
   const popup = document.createElement('div')
@@ -92,7 +88,15 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
 
   const open = () => {
     if (!isOpen(slider)) {
-      container.append(slider)
+      if (!isInPage(slider)) {
+        container.append(slider)
+        spinner.style.display = 'block'
+      } else {
+        slider.style.display = 'flex'
+        setTimeout(() => {
+          wrapper.style[position] = '0'
+        })
+      }
       document.body.style.overflow = 'hidden'
       setTimeout(() => {
         slider.style.opacity = '1'
@@ -107,8 +111,11 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
       wrapper.style[position] = '-100%'
       document.body.style.overflow = scrollInitialState
       setTimeout(() => {
-        slider.parentNode.removeChild(slider)
-        spinner.style.display = 'block'
+        if (options.keepSession) {
+          slider.style.display = 'none'
+        } else {
+          unmount()
+        }
       }, 500)
     }
   }

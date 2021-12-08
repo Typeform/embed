@@ -18,6 +18,14 @@
   display: none;
 }
 
+.tf-v1-widget-iframe-overlay {
+  @include iframe;
+  border-radius: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .tf-v1-widget-fullscreen {
   position: fixed;
   top: 0;

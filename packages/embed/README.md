@@ -139,6 +139,7 @@ Closing and opening a typeform in modal window will restart the progress from th
 | inlineOnMobile         | boolean          | removes placeholder welcome screen in mobile and makes form show inline instead of fullscreen                                                                                                                     | `false`                                                       |
 | iframeProps            | object           | HTML attributes to be passed directly to the iframe with typeform                                                                                                                                                 | `undefined`                                                   |
 | lazy                   | boolean          | enable lazy loading (for widget only), typeform starts loading when user scrolls to it, [see demo](../demo-html/public/widget-lazy-html.html)                                                                     | `false`                                                       |
+| keepSession            | boolean          | preserve form state when modal window is closed (and re-opened)                                                                                                                                                   | `false`                                                       |
 
 ### Options in plain HTML embed
 
