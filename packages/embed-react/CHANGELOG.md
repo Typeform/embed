@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v1.2.2](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.2.1...@typeform/embed-react-v1.2.2) (2021-12-08)
+
+
+### Bug Fixes
+
+* Update license metadata ([#430](https://github.com/Typeform/embed/issues/430)) ([c5ebbfa](https://github.com/Typeform/embed/commit/c5ebbfad26a55efdb6911c0f9269529fd008dbb1))
+
 # [@typeform/embed-react-v1.2.1](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.2.0...@typeform/embed-react-v1.2.1) (2021-11-29)
 
 
