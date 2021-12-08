@@ -1,3 +1,15 @@
+# [@typeform/embed-v1.26.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.25.0...@typeform/embed-v1.26.0) (2021-12-08)
+
+
+### Bug Fixes
+
+* Update license metadata ([#430](https://github.com/Typeform/embed/issues/430)) ([c5ebbfa](https://github.com/Typeform/embed/commit/c5ebbfad26a55efdb6911c0f9269529fd008dbb1))
+
+
+### Features
+
+* **DIST-664:** Add option to keep session  ([#429](https://github.com/Typeform/embed/issues/429)) ([309f1b6](https://github.com/Typeform/embed/commit/309f1b66d1567c45bdb43a668eeb0d922b051ec3)), closes [#127](https://github.com/Typeform/embed/issues/127)
+
 # [@typeform/embed-v1.25.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.24.1...@typeform/embed-v1.25.0) (2021-12-06)
 
 
