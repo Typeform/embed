@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v1.2.3](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.2.2...@typeform/embed-react-v1.2.3) (2021-12-10)
+
+
+### Bug Fixes
+
+* **DIST-1150:** Update embed dependency ([1b4dccc](https://github.com/Typeform/embed/commit/1b4dccca8d3db2faf040ce3fe7a7a2441410f240))
+
 # [@typeform/embed-react-v1.2.2](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.2.1...@typeform/embed-react-v1.2.2) (2021-12-08)
 
 
