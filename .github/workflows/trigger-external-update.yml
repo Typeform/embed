@@ -5,13 +5,20 @@ on:
       - main
 
 jobs:
-  trigger-embed-demos-update:
+  trigger-external-update:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
-      - name: Repository Dispatch
+      - name: update_embed_demos
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.GH_TOKEN }}
           repository: Typeform/embed-demo
           event-type: update_embed_demos
+
+      - name: update_embed_docs
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          repository: Typeform/dev-portal-content
+          event-type: update_embed_docs
