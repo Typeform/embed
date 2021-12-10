@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.26.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.26.0...@typeform/embed-v1.26.1) (2021-12-10)
+
+
+### Bug Fixes
+
+* **DIST-1150:** Update HTTP warning logic ([#432](https://github.com/Typeform/embed/issues/432)) ([de81567](https://github.com/Typeform/embed/commit/de81567ec74dcbf6a2d59034f944ab6e86911fac))
+
 # [@typeform/embed-v1.26.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.25.0...@typeform/embed-v1.26.0) (2021-12-08)
 
 
