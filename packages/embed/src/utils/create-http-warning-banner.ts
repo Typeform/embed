@@ -1,6 +1,9 @@
 export const getIsWarningNeeded = () => {
-  const url = new URL(window.location?.href)
-  return url.protocol !== 'https:' && url.href !== 'about:srcdoc' && url.hostname !== 'localhost'
+  const href = window.location?.href
+  const isSecure = href.startsWith('https://')
+  const isIframeSrc = href === 'about:srcdoc'
+  const isLocalhost = !!href.match(/^[a-z]+:\/\/localhost($|\/|:|\?)/)
+  return !isSecure && !isIframeSrc && !isLocalhost
 }
 
 export const createHttpWarningBanner = () => {
