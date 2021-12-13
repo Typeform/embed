@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.26.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.26.1...@typeform/embed-v1.26.2) (2021-12-13)
+
+
+### Bug Fixes
+
+* **TYP-6098:** Remove warning for non-HTTPS websites ([#434](https://github.com/Typeform/embed/issues/434)) ([b153fc2](https://github.com/Typeform/embed/commit/b153fc2d857b7271830bfeef181685f363cc910a))
+
 # [@typeform/embed-v1.26.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.26.0...@typeform/embed-v1.26.1) (2021-12-10)
 
 
