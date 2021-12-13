@@ -6,7 +6,6 @@ import {
   setAutoClose,
   addCustomKeyboardListener,
   getTextColor,
-  createHttpWarningBanner,
   isOpen,
   isInPage,
 } from '../../utils'
@@ -106,13 +105,11 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   const icon = buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
   const closeIcon = buildCloseIcon()
   const closeModal = buildCloseIcon('a', 'tf-v1-sidetab-close')
-  const httpWarningBanner = createHttpWarningBanner()
 
   const container = options.container || document.body
 
   container.append(sidetab)
   wrapper.append(iframe)
-  wrapper.append(httpWarningBanner)
   sidetab.append(button)
   sidetab.append(closeModal)
   button.append(icon)
