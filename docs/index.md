@@ -31,7 +31,15 @@ The Embed SDK exposes an API that lets you create and customize the widget or po
 
 To create your own typeforms to embed, you need a Typeform account. Head to [www.typeform.com](https://www.typeform.com) to register. You can create typeforms with the Typeform admin panel or the [Create API](/create/).
 
-You can find the [list of supported browsers here](https://help.typeform.com/hc/en-us/articles/360029423551-FAQ).
+## Limitations
+
+For security purposes we prevent embedding typeorms in unsecure pages (via [CSP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)).
+You can embed your typeform on pages served over HTTPS or via HTTP on localhost. You can also [embed in wrapped progressive web apps](https://developer.typeform.com/embed/native-mobile-apps/).
+
+## Supported browsers
+
+We support all modern browsers on most used platforms. You can [see list of supported browsers here](https://help.typeform.com/hc/en-us/articles/360029423551-FAQ).
+
 ---
 
 **NOTE:** If you're not comfortable with front-end development, use the instructions in [this Help Center article](https://www.typeform.com/help/embed-a-typeform/) to embed with a code snippet instead.
