@@ -57,6 +57,11 @@ Or from admin panel URL:
 
 - `https://admin.typeform.com/form/<form-id>/*`
 
+### Limitations
+
+For security purposes we prevent embedding typeorms in unsecure pages (via [CSP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)).
+You can embed your typeform on pages served over HTTPS or via HTTP on localhost. You can also [embed in wrapped progressive web apps](https://developer.typeform.com/embed/mobile-apps/).
+
 ## Configuration
 
 ### Embed types
