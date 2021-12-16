@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.26.3](https://github.com/Typeform/embed/compare/@typeform/embed-v1.26.2...@typeform/embed-v1.26.3) (2021-12-16)
+
+
+### Bug Fixes
+
+* **ts:** ModalWindowOptions['autoClose'] can also be a boolean ([#436](https://github.com/Typeform/embed/issues/436)) ([33b1ff2](https://github.com/Typeform/embed/commit/33b1ff23a582b26073523825091ebed458177631))
+
 # [@typeform/embed-v1.26.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.26.1...@typeform/embed-v1.26.2) (2021-12-13)
 
 
