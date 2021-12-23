@@ -9,6 +9,7 @@ nav_order: 12
 You can embed typeform in a modal window. The modal window will be displayed over your website. It is ussually opened by user action such as clicking the button.
 
 There are multiple modal embeds available:
+
 - popup
 - slider
 - sidetab
@@ -22,11 +23,12 @@ To embed as a popup via JavaScript:
 import { createPopup } from '@typeform/embed'
 import '@typeform/embed/build/css/popup.css'
 
-const { toggle } = createPopup("<form-id>")
-document.getElementById("button").onclick = toggle
+const { toggle } = createPopup('<form-id>')
+document.getElementById('button').onclick = toggle
 ```
 
 Or via HTML:
+
 ```html
 <button data-tf-popup="<form-id>">open form</button>
 <script src="//embed.typeform.com/next/embed.js"></script>
@@ -34,7 +36,7 @@ Or via HTML:
 
 ## Other modal embeds
 
-If you want to use a different modal embed type use one of the methods below. 
+If you want to use a different modal embed type use one of the methods below.
 
 Slider:
 
@@ -45,7 +47,7 @@ createSlider('<form-id>', options)
 ```
 
 ```html
-<a data-tf-slider="<form-id>">...</a>
+<a data-tf-slider="<form-id>">click to open</a>
 ```
 
 Side tab:
@@ -57,7 +59,7 @@ createSidetab('<form-id>', options)
 ```
 
 ```html
-<a data-tf-sidetab="<form-id>">...</a>
+<div data-tf-sidetab="<form-id>" data-tf-button-text="click to open"></div>
 ```
 
 Popover:
@@ -69,12 +71,12 @@ createPopover('<form-id>', options)
 ```
 
 ```html
-<a data-tf-popover="<form-id>">...</a>
+<div data-tf-popover="<form-id>"></div>
 ```
 
 ## Examples
 
-You can find [working examples in the repository](https://github.com/Typeform/embed/tree/main/packages/demo-html).
+You can find [live editable examples in the embed-demo repository](https://github.com/Typeform/embed-demo).
 
 ## What's next?
 

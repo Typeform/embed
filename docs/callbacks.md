@@ -81,7 +81,7 @@ Or in HTML:
 
 The `onClose` callback will execute after a respondent closes the modal window the typeform is embedded in.
 
-The event sent regardless of whether the form submissions was successful.
+The event is sent regardless of whether the form submissions was successful.
 
 In JavaScript
 
@@ -90,7 +90,7 @@ import { createPopup } from '@typeform/embed'
 import '@typeform/embed/build/css/popup.css'
 
 createPopup('<form-id>', {
-  onSubmit: () => {
+  onClose: () => {
     console.log('Modal window closed')
   },
 })

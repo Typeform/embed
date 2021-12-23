@@ -12,10 +12,16 @@ nav_order: 10
 
 ### As NPM package
 
-Install:
+Install using your favourite package manager:
 
 ```shell
 yarn add @typeform/embed
+```
+
+or
+
+```shell
+npm install --save @typeform/embed
 ```
 
 Import the lib, CSS and create your embed:
@@ -28,14 +34,14 @@ createWidget('<form-id>', { container: document.querySelector('#form') })
 
 ### From CDN
 
-If you use the lib ss HTML, the CSS is imported automatically. Place this code where you want to display your form.
+As HTML, the CSS is imported automatically. Place this code where you want to display your form.
 
 ```html
 <div data-tf-widget="<form-id>"></div>
 <script src="//embed.typeform.com/next/embed.js"></script>
 ```
 
-You can embed via JavaScript for more control and specific integration.
+Via JavaScript for more control and specific integration.
 
 ```html
 <button id="button">open form</button>
@@ -43,7 +49,7 @@ You can embed via JavaScript for more control and specific integration.
 <link rel="stylesheet" href="//embed.typeform.com/next/css/popup.css" />
 <script>
   const { open, close, toggle, refresh } = window.tf.createPopup('<form-id>')
-  document.querySelector('#button').click = toggle
+  document.querySelector('#button').onclick = toggle
 </script>
 ```
 
@@ -60,9 +66,11 @@ Or from admin panel URL:
 ## Embed types
 
 Embed typeform [inline in page](/embed/inline):
+
 - widget: `createWidget('<form-id>', options)`
 
 Embed typeform [in modal window](/embed/modal):
+
 - popup: `createPopup('<form-id>', options)`
 - slider: `createSlider('<form-id>', options)`
 - sidetab: `createSidetab('<form-id>', options)`
@@ -75,4 +83,3 @@ Embed typeform [in modal window](/embed/modal):
 Learn how to embed typeform [inline in page](/embed/inline) or open it [in modal window](/embed/modal). Or, if your embedded typeform isn't displaying the way you expected, check [Troubleshooting and errors](/troubleshooting/#embed-sdk) for solutions.
 
 If you want to create a form so you can embed it, sign up for a [Typeform](https://typeform.com) account or head to our documentation for the [Create API](/create/).
-
