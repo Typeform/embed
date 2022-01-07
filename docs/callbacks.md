@@ -133,7 +133,7 @@ createSlider('<form-id>', {
 Or in HTML:
 
 ```html
-<button data-tf-slider="<form-id>" data-tf-on-quesion-changed="changed">open</button>
+<button data-tf-slider="<form-id>" data-tf-on-question-changed="changed">open</button>
 <script src="//embed.typeform.com/next/embed.js"></script>
 <script>
   // this function needs to be available on global scope (window)
