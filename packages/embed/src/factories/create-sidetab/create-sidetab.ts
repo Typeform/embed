@@ -96,7 +96,7 @@ const replaceElementChild = (childToReplace: HTMLElement, newChild: HTMLElement)
 
 export const createSidetab = (formId: string, userOptions: SidetabOptions = {}): Sidetab => {
   const options = { ...defaultOptions, ...userOptions }
-  const { iframe, embedId } = createIframe(formId, 'side-tab', options)
+  const { iframe, embedId, refresh } = createIframe(formId, 'side-tab', options)
   const sidetab = buildSidetab(options.width, options.height)
   const wrapper = buildWrapper()
   const spinner = buildSpinner()
@@ -157,10 +157,6 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
 
   const toggle = () => {
     isOpen(wrapper) ? close() : open()
-  }
-
-  const refresh = () => {
-    iframe.contentWindow?.location.reload()
   }
 
   const unmount = () => {

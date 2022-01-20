@@ -31,7 +31,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     widgetOptions.forceTouch = true
   }
 
-  const { embedId, iframe } = createIframe(formId, 'widget', widgetOptions)
+  const { embedId, iframe, refresh } = createIframe(formId, 'widget', widgetOptions)
   const widget = buildWidget(iframe, options.width, options.height)
 
   const appendWidget = () => options.container.append(widget)
@@ -73,7 +73,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
   }
 
   return {
-    refresh: () => iframe.contentWindow?.location.reload(),
+    refresh,
     unmount: () => unmountElement(widget),
   }
 }
