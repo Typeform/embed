@@ -6,6 +6,7 @@ import { generateEmbedId } from './generate-embed-id'
 import { getFormReadyHandler, getFormQuestionChangedHandler, getFormSubmitHandler } from './get-form-event-handler'
 import { triggerIframeRedraw } from './trigger-iframe-redraw'
 import { dispatchCustomKeyEventFromIframe } from './setup-custom-keyboard-close'
+import { refreshIframe } from './refresh-iframe'
 
 export const createIframe = (formId: string, type: EmbedType, options: CreateIframeOptions) => {
   const embedId = generateEmbedId()
@@ -41,7 +42,9 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
     )
   }
 
-  return { iframe, embedId }
+  const refresh = () => refreshIframe(iframe)
+
+  return { iframe, embedId, refresh }
 }
 
 type CreateIframeOptions = UrlOptions & ActionableOptions & IframeOptions

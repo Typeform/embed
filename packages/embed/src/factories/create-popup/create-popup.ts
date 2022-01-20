@@ -70,7 +70,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
 
   const { width, height, size = POPUP_SIZE, onClose, ...options } = userOptions
 
-  const { iframe, embedId } = createIframe(formId, 'popup', options)
+  const { iframe, embedId, refresh } = createIframe(formId, 'popup', options)
   const scrollInitialState = document.body.style.overflow
 
   const popup = buildPopup()
@@ -127,10 +127,6 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
 
   const toggle = () => {
     isOpen(popup) ? close() : open()
-  }
-
-  const refresh = () => {
-    iframe.contentWindow?.location.reload()
   }
 
   const unmount = () => {

@@ -114,7 +114,7 @@ const defaultOptions = {
 
 export const createPopover = (formId: string, userOptions: PopoverOptions = {}): Popover => {
   const options = { ...defaultOptions, ...userOptions }
-  const { iframe, embedId } = createIframe(formId, 'popover', options)
+  const { iframe, embedId, refresh } = createIframe(formId, 'popover', options)
 
   const popover = buildPopover(options.width, options.height)
   const wrapper = buildWrapper()
@@ -220,10 +220,6 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const toggle = () => {
     isOpen(wrapper) ? close() : open()
-  }
-
-  const refresh = () => {
-    iframe.contentWindow?.location.reload()
   }
 
   const unmount = () => {

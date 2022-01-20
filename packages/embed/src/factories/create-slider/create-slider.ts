@@ -61,7 +61,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
   }
 
   const { position = SLIDER_POSITION, width = SLIDER_WIDTH, onClose, ...options } = userOptions
-  const { iframe, embedId } = createIframe(formId, 'slider', options)
+  const { iframe, embedId, refresh } = createIframe(formId, 'slider', options)
   const scrollInitialState = document.body.style.overflow
 
   const slider = buildSlider(position)
@@ -128,10 +128,6 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
   }
 
   wrapper.append(buildCloseButton(close))
-
-  const refresh = () => {
-    iframe.contentWindow?.location.reload()
-  }
 
   if (options.open && !isOpen(slider)) {
     handleCustomOpen(open, options.open, options.openValue)

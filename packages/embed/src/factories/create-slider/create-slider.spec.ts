@@ -113,28 +113,5 @@ describe('create-slider', () => {
         expect(containerRemoveChildSpy).toHaveBeenCalledTimes(1)
       })
     })
-
-    describe('#refresh', () => {
-      const iframeReloadSpy = jest.fn()
-      const iframeMock = {
-        iframe: {
-          contentWindow: {
-            location: {
-              reload: iframeReloadSpy,
-            },
-          },
-        },
-      }
-
-      it('should reload iframe', () => {
-        jest
-          .spyOn(require('../../utils/create-iframe/create-iframe'), 'createIframe')
-          .mockImplementation(() => iframeMock)
-
-        createSlider('url', {}).refresh()
-        jest.runAllTimers()
-        expect(iframeReloadSpy).toHaveBeenCalledTimes(1)
-      })
-    })
   })
 })
