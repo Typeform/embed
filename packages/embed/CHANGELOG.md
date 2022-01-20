@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.27.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.26.3...@typeform/embed-v1.27.0) (2022-01-20)
+
+
+### Features
+
+* **DIST-1483:** Refresh iframe util ([#444](https://github.com/Typeform/embed/issues/444)) ([1e726e0](https://github.com/Typeform/embed/commit/1e726e0d5183fee625f5edf91e3f2978b77b6de1))
+
 # [@typeform/embed-v1.26.3](https://github.com/Typeform/embed/compare/@typeform/embed-v1.26.2...@typeform/embed-v1.26.3) (2021-12-16)
 
 
