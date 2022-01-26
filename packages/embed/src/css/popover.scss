@@ -185,9 +185,9 @@
     }
 
     &-close {
-      @include close(#737373);
-      top: 6px;
-      right: 8px;
+      @include close();
+      top: 0.5rem;
+      right: 0.5rem;
       z-index: 1;
       opacity: 0;
     }

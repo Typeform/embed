@@ -37,7 +37,7 @@
 
   .tf-v1-widget-close {
     display: block;
-    @include close(#737373);
+    @include close();
 
     top: 4px;
     right: 6px;
