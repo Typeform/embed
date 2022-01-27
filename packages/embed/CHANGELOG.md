@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.27.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.27.0...@typeform/embed-v1.27.1) (2022-01-27)
+
+
+### Bug Fixes
+
+* **DIST-1494:** Fix close icon color ([#448](https://github.com/Typeform/embed/issues/448)) ([0b9d72f](https://github.com/Typeform/embed/commit/0b9d72fe7a1b1401cccbb6b5c05f7ce72077aa13))
+
 # [@typeform/embed-v1.27.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.26.3...@typeform/embed-v1.27.0) (2022-01-20)
 
 
