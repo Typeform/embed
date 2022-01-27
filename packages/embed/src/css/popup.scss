@@ -57,7 +57,7 @@
     }
 
     .tf-v1-close {
-      @include close(#737373);
+      @include close();
       top: 6px;
       right: 8px;
     }
