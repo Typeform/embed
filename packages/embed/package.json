@@ -44,7 +44,7 @@
     "cy:visual": "yarn cypress run --spec e2e/spec/visual/**/* --browser chrome",
     "test:functional": "start-server-and-test demo 8080 cy:functional",
     "test:visual": "start-server-and-test demo 8080 cy:visual",
-    "release": "npm config set @typeform:registry https://registry.npmjs.org/ && yarn semantic-release",
+    "release-vanilla": "npm config set @typeform:registry https://registry.npmjs.org/ && yarn semantic-release",
     "post-release": "yarn release:github && yarn release:aws",
     "release:github": "npm config set @typeform:registry https://npm.pkg.github.com/ && npm publish",
     "release:aws": "yarn release:aws:prepare && yarn release:aws:deploy",

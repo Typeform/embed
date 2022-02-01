@@ -12,7 +12,12 @@
     "test": "yarn lerna run test",
     "test:functional": "yarn lerna run test:functional",
     "test:visual": "yarn lerna run test:visual",
-    "release": "yarn lerna run release"
+    "release": "yarn lerna run release-vanilla && yarn bump-vanilla && yarn lerna run release && yarn bump-react",
+    "bump-vanilla": "yarn upgrade-vanilla-lib && yarn git-commit-changes",
+    "upgrade-vanilla-lib": "yarn lerna exec --scope embed-* --scope demo-* --concurrency 1 'yarn upgrade @typeform/embed'",
+    "bump-react": "yarn upgrade-react-lib && yarn git-commit-changes",
+    "upgrade-react-lib": "yarn lerna exec --scope demo-* --concurrency 1 'yarn upgrade @typeform/embed-react'",
+    "git-commit-changes": "git add . && git commit -m 'fix: Bump SDK dependency' && git push origin"
   },
   "workspaces": [
     "packages/*"
