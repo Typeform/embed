@@ -8,7 +8,14 @@
     "clean": "rm -rf ./.next"
   },
   "dependencies": {
-    "@typeform/embed": "^1.23.1",
+    "@typeform/embed": "1.27.1",
     "@typeform/embed-react": "^1.1.4"
+  },
+  "devDependencies": {
+    "@typeform/eslint-config": "^3.0.2",
+    "eslint": "^7.28.0",
+    "next": "11.1.3",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   }
 }

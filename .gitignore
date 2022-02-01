@@ -52,6 +52,7 @@ coverage
 # project specific
 .next
 node_modules
+dist
 build
 build-aws
 types
