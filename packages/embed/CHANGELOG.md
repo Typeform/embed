@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.27.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.27.1...@typeform/embed-v1.27.2) (2022-02-02)
+
+
+### Bug Fixes
+
+* **DIST-1443:** Revert release script changes and bump version to re-release ([faf423d](https://github.com/Typeform/embed/commit/faf423d0b66912621bf5deba2f7e53e5b9015c01))
+
 # [@typeform/embed-v1.27.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.27.0...@typeform/embed-v1.27.1) (2022-01-27)
 
 
