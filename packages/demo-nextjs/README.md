@@ -14,3 +14,7 @@ export default function MyPage() {
 
 1. Run `yarn build` in repository root to build all packages
 2. Then run `yarn start` here to run this demo in browser: http://localhost:8080
+
+## Run demo in CodeSandbox
+
+See [embed-demo repository](https://github.com/Typeform/embed-demo#react-nextjs) for standalone examples deployable to [CodeSandbox](https://codesandbox.io/).

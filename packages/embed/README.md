@@ -305,6 +305,12 @@ We recommend you work in a branch:
 git checkout -b cool-new-feature
 ```
 
+Build, watch for changes and start a demo server too (using `demo-nextjs`)
+
+```bash
+yarn demo
+```
+
 Build and watch for changes:
 
 ```bash

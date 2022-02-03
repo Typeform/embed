@@ -115,11 +115,16 @@ We recommend you work in a branch:
 git checkout -b cool-new-feature
 ```
 
-Build and watch for changes:
+Build, watch for changes (in both `@typeform/embed` and `@typeform/embed-react` packages) and start a demo server too (using `demo-nextjs`):
 
 ```bash
-yarn dev # in this package
-yarn dev # in embed package if you are working on it too
+yarn demo
+```
+
+Build and watch for changes (in `@typeform/embed-react` only):
+
+```bash
+yarn dev
 ```
 
 Run unit tests:
