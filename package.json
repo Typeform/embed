@@ -6,13 +6,14 @@
     "node": ">=12"
   },
   "scripts": {
+    "postinstall": "yarn lerna bootstrap",
     "clean": "yarn lerna run clean",
     "build": "yarn lerna run build",
     "lint": "yarn lerna run lint",
     "test": "yarn lerna run test",
     "test:functional": "yarn lerna run test:functional",
     "test:visual": "yarn lerna run test:visual",
-    "release": "yarn lerna run release"
+    "release": "sh ./scripts/release.sh"
   },
   "workspaces": [
     "packages/*"

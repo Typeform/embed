@@ -11,7 +11,10 @@
   "scripts": {
     "clean": "rm -rf ./build",
     "build": "yarn webpack",
-    "dev": "yarn build --watch",
+    "dev": "concurrently 'yarn build --watch' 'yarn dev-vanilla'",
+    "dev-vanilla": "cd ../embed && yarn dev",
+    "demo-nextjs": "cd ../demo-nextjs && yarn start",
+    "demo": "yarn concurrently 'yarn dev' 'yarn demo-nextjs'",
     "test": "jest",
     "coverage": "jest --coverage",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0",
