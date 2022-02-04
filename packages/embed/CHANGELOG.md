@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.28.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.27.2...@typeform/embed-v1.28.0) (2022-02-04)
+
+
+### Features
+
+* **DIST-1481:** Accept text and svg markup as icon ([#450](https://github.com/Typeform/embed/issues/450)) ([67e9b6c](https://github.com/Typeform/embed/commit/67e9b6c3e32d13f4bb5c9320a6ee84b3a9f27a64))
+
 # [@typeform/embed-v1.27.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.27.1...@typeform/embed-v1.27.2) (2022-02-02)
 
 
