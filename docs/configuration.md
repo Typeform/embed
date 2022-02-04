@@ -54,7 +54,7 @@ If you embed via HTML, you need to pass optinos as attributes with `data-tf-` pr
 | openValue              | number           | based on `open` (see below)                                                                                                                                                                                       | `undefined`                                                   |
 | enableSandbox          | boolean          | enable [sandbox mode](https://help.typeform.com/hc/en-us/articles/360029295952) (disables submissions and tracking)                                                                                               | `false`                                                       |
 | buttonText             | string           | customize the button text (sidetab only)                                                                                                                                                                          | `"Launch me"`                                                 |
-| customIcon             | string           | customize the message icon (popover, sidetab) )                                                                                                                                                                   | `undefined`                                                   |
+| customIcon             | string           | customize the message icon (popover, sidetab) [more info](#custom-icon)                                                                                                                                           | `undefined`                                                   |
 | tooltip                | string           | display tooltip text next to the button (popover only)                                                                                                                                                            | `undefined`                                                   |
 | notificationDays       | number           | display red notification dot, hide for given number of days since popover is open (popover only)                                                                                                                  | `undefined`                                                   |
 | autoClose              | number / boolean | time (ms) until the embedded typeform will automatically close after a respondent clicks the Submit button. (all embeds except widget)                                                                            | `undefined`                                                   |
@@ -124,3 +124,11 @@ Or in HTML:
 ```
 
 You can [read more about this feature in our Help Center](https://www.typeform.com/help/a/advanced-embed-options-360049535352/).
+
+### Custom icon
+
+Custom icon provided string supports:
+
+- URL (used as an img src)
+- Text and Emojis
+- HTML Markup

@@ -134,7 +134,7 @@ Closing and opening a typeform in modal window will restart the progress from th
 | openValue              | number           | based on `open` (see below)                                                                                                                                                                                       | `undefined`                                                   |
 | enableSandbox          | boolean          | enable [sandbox mode](https://help.typeform.com/hc/en-us/articles/360029295952) (disables submissions and tracking)                                                                                               | `false`                                                       |
 | buttonText             | string           | customize the button text (sidetab only)                                                                                                                                                                          | `"Launch me"`                                                 |
-| customIcon             | string           | customize the message icon (popover, sidetab) )                                                                                                                                                                   | `undefined`                                                   |
+| customIcon             | string           | customize the message icon (popover, sidetab) [more info](#custom-icon)                                                                                                                                           | `undefined`                                                   |
 | tooltip                | string           | display tooltip text next to the button (popover only)                                                                                                                                                            | `undefined`                                                   |
 | notificationDays       | number           | display red notification dot, hide for given number of days since popover is open (popover only)                                                                                                                  | `undefined`                                                   |
 | autoClose              | number / boolean | time (ms) until the embedded typeform will automatically close after a respondent clicks the Submit button. (all embeds except widget)                                                                            | `undefined`                                                   |
@@ -233,6 +233,14 @@ Callback method receive payload object from the form:
   - no payload
 
 See [callbacks example in demo package](../../packages/demo-html/public/callbacks.html).
+
+### Custom icon
+
+Custom icon provided string supports:
+
+- URL (used as an img src)
+- Text and Emojis
+- HTML Markup
 
 ### Positioning and overlapping
 
