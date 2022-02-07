@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v1.2.6](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.2.5...@typeform/embed-react-v1.2.6) (2022-02-07)
+
+
+### Bug Fixes
+
+* **DIST-1443:** Custom release script ([cbb3cbe](https://github.com/Typeform/embed/commit/cbb3cbe0d36f9e2156420e093325e0e4037c6aef))
+
 # [@typeform/embed-react-v1.2.5](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.2.4...@typeform/embed-react-v1.2.5) (2022-02-07)
 
 
