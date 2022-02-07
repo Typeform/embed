@@ -5,9 +5,13 @@ REPO_ROOT="${GITHUB_WORKSPACE:=$THIS_DIR}"
 cd $REPO_ROOT
 echo "Repo root directory: $(pwd)"
 
+# Setup git
+git config --global user.email "you@example.com"
+git config --global user.name "Github Action"
+
 # release vanilla lib
-#cd $REPO_ROOT/packages/embed
-#yarn release-vanilla
+cd $REPO_ROOT/packages/embed
+yarn release-vanilla
 
 # bump vanilla lib
 cd $REPO_ROOT/packages/embed-react
