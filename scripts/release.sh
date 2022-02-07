@@ -17,13 +17,7 @@ yarn release-vanilla
 cd $REPO_ROOT/packages/embed-react
 yarn upgrade @typeform/embed
 
-# commit vanilla lib bump
-cd $REPO_ROOT
-git add .
-git commit -m 'fix: Bump @typeform/embed dependency'
-git push origin
-
-# release react lib
+# release react lib, will also commit all changes in react lib including vanilla lib bump
 cd $REPO_ROOT/packages/embed-react
 yarn release
 
@@ -40,6 +34,6 @@ yarn upgrade @typeform/embed
 
 # commit vanilla and react lib bumps in demos
 cd $REPO_ROOT
-git add .
+git add packages/demo-*
 git commit -m 'chore: Bump @typeform/embed and @typeform/embed-react in demo packages'
 git push origin
