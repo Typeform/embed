@@ -10,7 +10,8 @@
   },
   "scripts": {
     "clean": "rm -rf ./build",
-    "build": "yarn webpack",
+    "build": "yarn build-embed-css && yarn webpack",
+    "build-embed-css": "cd ../embed && yarn build",
     "dev": "concurrently 'yarn build --watch' 'yarn dev-vanilla'",
     "dev-vanilla": "cd ../embed && yarn dev",
     "demo-nextjs": "cd ../demo-nextjs && yarn start",
