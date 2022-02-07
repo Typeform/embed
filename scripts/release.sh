@@ -5,10 +5,6 @@ REPO_ROOT="${GITHUB_WORKSPACE:=$THIS_DIR}"
 cd $REPO_ROOT
 echo "Repo root directory: $(pwd)"
 
-# Setup git
-git config --global user.email "you@example.com"
-git config --global user.name "Github Action"
-
 # release vanilla lib
 cd $REPO_ROOT/packages/embed
 yarn release-vanilla
@@ -32,8 +28,12 @@ yarn upgrade @typeform/embed-react
 cd $REPO_ROOT/packages/demo-webpack
 yarn upgrade @typeform/embed
 
+# setup git
+git config --global user.email "you@example.com"
+git config --global user.name "Github Action"
+
 # commit vanilla and react lib bumps in demos
 cd $REPO_ROOT
 git add packages/demo-*
 git commit -m 'chore: Bump @typeform/embed and @typeform/embed-react in demo packages'
-git push origin
+git push git push https://$GITHUB_TOKEN@github.com/Typeform/embed.git
