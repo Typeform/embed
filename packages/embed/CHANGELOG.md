@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.28.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.28.1...@typeform/embed-v1.28.2) (2022-02-07)
+
+
+### Bug Fixes
+
+* **DIST-1443:** Custom release script ([46b38bf](https://github.com/Typeform/embed/commit/46b38bfa7894a43012138a2b9ed03336cae60a7a))
+
 # [@typeform/embed-v1.28.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.27.2...@typeform/embed-v1.28.0) (2022-02-07)
 
 
