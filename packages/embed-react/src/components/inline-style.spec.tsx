@@ -3,6 +3,14 @@ import { render, screen } from '@testing-library/react'
 
 import { InlineStyle } from './inline-style'
 
+declare global {
+  namespace NodeJS {
+    interface Global {
+      __webpack_nonce__: string
+    }
+  }
+}
+
 describe('<InlineStyle />', () => {
   it('should render inline CSS', () => {
     render(
@@ -23,5 +31,20 @@ describe('<InlineStyle />', () => {
     expect(iframeStyle.height).toBe('100%')
     expect(iframeStyle.overflow).toBe('hidden')
     expect(iframeStyle.borderRadius).toBe('8px')
+  })
+
+  it('should support __webpack_nonce__', () => {
+    global.__webpack_nonce__ = 'AA=='
+
+    render(
+      <>
+        <div data-testid="style">
+          <InlineStyle filename="widget" />
+        </div>
+      </>
+    )
+
+    const styleElement = screen.getByTestId('style').getElementsByTagName('style')[0]
+    expect(styleElement.nonce).toBe('AA==')
   })
 })
