@@ -87,6 +87,10 @@ Pass options as props to the component.
 
 See all available options in [Vanilla JavaScript Embed Library README file](../embed/README.md#options).
 
+#### CSP nonce support
+
+If the global `__webpack_nonce__` is set, its value will be used for a `nonce` attribute on the inline `<style>` block. See [#458](https://github.com/Typeform/embed/issues/458) for details.
+
 ### Examples
 
 You can find examples for specific use-cases with React in our demos:
