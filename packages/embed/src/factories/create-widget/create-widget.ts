@@ -24,6 +24,9 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     }
   }
 
+  // eslint-disable-next-line no-console
+  console.log('Creating widget:', formId, options)
+
   const widgetOptions = options
 
   if (!options.inlineOnMobile && (options.forceTouch || isFullscreen())) {
@@ -45,6 +48,9 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
   }
 
   if (widgetOptions.enableFullscreen) {
+    // eslint-disable-next-line no-console
+    console.log('Mobile device detected. Widget will open in fullscreen modal window.')
+
     const { container } = options
     window.addEventListener('message', getWelcomeScreenHiddenHandler(embedId, container))
     const closeButton = buildCloseButton()
