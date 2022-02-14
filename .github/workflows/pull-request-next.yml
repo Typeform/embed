@@ -42,7 +42,8 @@ jobs:
           key: ${{ runner.os }}-node-${{ matrix.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
       - name: Install Node.js dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        # skip when cache found and PR is not external (build fails for external PRs if dependencies are not installed)
+        if: steps.yarn-cache.outputs.cache-hit != 'true' && github.event.pull_request.head.repo.full_name == github.repository
         run: yarn install --frozen-lockfile
 
       - run: yarn build
@@ -76,6 +77,7 @@ jobs:
       - run: yarn test:functional
   visual:
     runs-on: ubuntu-latest
+    # skip for external PRs
     if: github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - name: Check out Git repository
