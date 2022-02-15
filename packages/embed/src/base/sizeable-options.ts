@@ -14,4 +14,10 @@ export type SizeableOptions = WidthOption & {
    * @type {number}
    */
   height?: number
+  /**
+   * Automatically resize embed to always fit the whole form.
+   *
+   * @type {boolean | string}
+   */
+  autoResize?: boolean | string
 }

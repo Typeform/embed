@@ -20,6 +20,7 @@
       data-tf-on-ready="onTypeformReady"
       data-tf-on-submit="onTypeformSubmit"
       data-tf-on-question-changed="onTypeformQuestionChanged"
+      data-tf-on-height-changed="onTypeformHeightChanged"
       data-tf-on-close="onTypeformClose"
     ></div>
     <button
@@ -48,8 +49,13 @@
       }
 
       function onTypeformQuestionChanged(data) {
-        alert('onQuestionChanged')
+        alert(`onQuestionChanged: ${data.ref}`)
         console.log('form question changed', data)
+      }
+
+      function onTypeformHeightChanged(data) {
+        alert(`onHeightChanged: ${data.height}px`)
+        console.log('form height changed', data)
       }
 
       function onTypeformClose(data) {

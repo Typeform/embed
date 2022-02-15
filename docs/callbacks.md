@@ -14,6 +14,7 @@ There are 3 available callbacks:
 - **onSubmit** fires when user submits the form
 - **onClose** fires when user closes the modal window
 - **onQuestionChanged** fires when user navigates between form questions
+- **onHeightChanged** fires when height of currently displayed question changes
 
 ## onReady
 
@@ -115,7 +116,7 @@ To get a full response, you need to retrieve it via [Responses API](responses/re
 
 The `onQuestionChanged` callback will execute whenever respondent navigates between questions. The event is sent when navigating in the form forward or backward.
 
-At the moment it is not possible to identify which question is displayed to respondent.
+Payload contains `ref` to identify which question is displayed.
 
 In JavaScript:
 
@@ -124,8 +125,8 @@ import { createSlider } from '@typeform/embed'
 import '@typeform/embed/build/css/slider.css'
 
 createSlider('<form-id>', {
-  onQuestionChanged: () => {
-    console.log('Question changed')
+  onQuestionChanged: ({ ref }) => {
+    console.log('Question changed to:', ref)
   },
 })
 ```
@@ -137,11 +138,45 @@ Or in HTML:
 <script src="//embed.typeform.com/next/embed.js"></script>
 <script>
   // this function needs to be available on global scope (window)
-  function changed() {
-    console.log('Question changed')
+  function changed({ ref }) {
+    console.log('Question changed to:', ref)
   }
 </script>
 ```
+
+## onHeightChanged
+
+The `onHeightChanged` callback will execute whenever displayed question height changes - eg. when respondent navigates between questions, error message is displayed, etc.
+
+Payload contains `ref` to identify which question is displayed and `height` with current height.
+
+In JavaScript:
+
+```javascript
+import { createSlider } from '@typeform/embed'
+import '@typeform/embed/build/css/slider.css'
+
+createSlider('<form-id>', {
+  onHeightChanged: ({ ref, height }) => {
+    console.log(`Question ${ref} now has height ${height}px`)
+  },
+})
+```
+
+Or in HTML:
+
+```html
+<button data-tf-slider="<form-id>" data-tf-on-height-changed="changed">open</button>
+<script src="//embed.typeform.com/next/embed.js"></script>
+<script>
+  // this function needs to be available on global scope (window)
+  function changed({ ref, height }) {
+    console.log(`Question ${ref} now has height ${height}px`)
+  }
+</script>
+```
+
+**Tip:** To automatically resize widget embed to fit typeform height, use `autoResize` option. You can specify minimum and maximum heights in pixels, eg. `data-tf-auto-resize="300,800"`.
 
 ## What's next?
 

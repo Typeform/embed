@@ -15,6 +15,8 @@ describe('build-options-from-attributes', () => {
         data-tf-on-ready="onTypeformReady"
         data-tf-on-submit="onTypeformSubmit"
         data-tf-on-question-changed="onTypeformQuestionChanged"
+        data-tf-on-height-changed="onTypeformHeightChanged"
+        data-tf-auto-resize="100,300"
         data-tf-open="exit"
         data-tf-open-value="3000"
         data-tf-hidden="foo=foo value,bar=some bar value"
@@ -30,6 +32,7 @@ describe('build-options-from-attributes', () => {
       win.onTypeformReady = jest.fn()
       win.onTypeformSubmit = jest.fn()
       win.onTypeformQuestionChanged = jest.fn()
+      win.onTypeformHeightChanged = jest.fn()
 
       const element = wrapper.querySelector('#element') as HTMLElement
       const options = buildOptionsFromAttributes(element)
@@ -45,6 +48,8 @@ describe('build-options-from-attributes', () => {
         onReady: win.onTypeformReady,
         onSubmit: win.onTypeformSubmit,
         onQuestionChanged: win.onTypeformQuestionChanged,
+        onHeightChanged: win.onTypeformHeightChanged,
+        autoResize: '100,300',
         open: 'exit',
         openValue: 3000,
         hidden: {

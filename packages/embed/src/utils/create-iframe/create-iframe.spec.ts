@@ -17,6 +17,7 @@ describe('create-iframe', () => {
       onReady: jest.fn(),
       onSubmit: jest.fn(),
       onQuestionChanged: jest.fn(),
+      onHeightChanged: jest.fn(),
       iframeProps: { title: 'hello' },
     }
 
@@ -74,6 +75,13 @@ describe('create-iframe', () => {
       await new Promise((resolve) => setTimeout(resolve))
 
       expect(options.onQuestionChanged).toBeCalled()
+    })
+
+    it('should call form-height-changed handler', async () => {
+      window.postMessage({ type: 'form-height-changed', embedId: 'random-id' }, '*')
+      await new Promise((resolve) => setTimeout(resolve))
+
+      expect(options.onHeightChanged).toBeCalled()
     })
 
     it('should call form-submit handler', async () => {

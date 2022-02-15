@@ -14,6 +14,8 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     onReady: 'function',
     onSubmit: 'function',
     onQuestionChanged: 'function',
+    onHeightChanged: 'function',
+    autoResize: 'stringOrBoolean',
     onClose: 'function',
     transitiveSearchParams: 'array',
     hidden: 'record',
