@@ -39,7 +39,7 @@ jobs:
           path: |
             **/node_modules
             ~/.cache
-          key: ${{ runner.os }}-node-${{ matrix.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+          key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-${{ matrix.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
       - name: Install Node.js dependencies
         # run when cache not found or PR is external (build fails for external PRs if dependencies are not installed)
@@ -67,11 +67,10 @@ jobs:
           path: |
             **/node_modules
             ~/.cache
-          key: ${{ runner.os }}-node-12-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+          key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-12-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
       - name: Install Node.js dependencies
-        # run when cache not found or PR is external (build fails for external PRs if dependencies are not installed)
-        if: steps.yarn-cache.outputs.cache-hit != 'true' || github.event.pull_request.head.repo.full_name != github.repository
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
       - run: yarn build
@@ -99,8 +98,7 @@ jobs:
           key: ${{ runner.os }}-node-12-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
       - name: Install Node.js dependencies
-        # run when cache not found or PR is external (build fails for external PRs if dependencies are not installed)
-        if: steps.yarn-cache.outputs.cache-hit != 'true' || github.event.pull_request.head.repo.full_name != github.repository
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
       - run: yarn build

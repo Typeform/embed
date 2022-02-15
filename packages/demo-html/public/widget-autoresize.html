@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Static HTML Demo</title>
+    <style>
+      #parent {
+        position: relative;
+        background: #ccc;
+      }
+      #wrapper {
+        width: 100%;
+        max-width: 600px;
+        height: 400px;
+        margin: 0 auto;
+      }
+      #height {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: black;
+        color: white;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Widget with <code>autoResize</code> / <code>data-tf-auto-resize</code></h1>
+    <p>Typeform below will be automatically resized to fit question and avoid displaying scrollbars.</p>
+    <p>It has limits of <strong>minimum height 500px</strong> and <strong>maximum height 800px</strong>.</p>
+    <div id="parent">
+      <div
+        id="wrapper"
+        data-tf-widget="sbEeLvXG"
+        data-tf-medium="demo-test"
+        data-tf-auto-resize="500, 800"
+        data-tf-on-height-changed="onTypeformHeightChanged"
+      ></div>
+      <div id="height">&nbsp;<br />&nbsp;</div>
+    </div>
+    <script src="./lib/embed-next.js"></script>
+    <script>
+      function onTypeformHeightChanged({ ref, height }) {
+        console.log(`Changed to question ref ${ref}, current question height is ${height}px.`)
+
+        setTimeout(() => {
+          const parentHeight = document.querySelector('#parent').clientHeight
+          document.querySelector(
+            '#height'
+          ).innerHTML = `Question height ${height}px.<br />Embed resized to ${parentHeight}px.`
+        }, 250)
+      }
+    </script>
+  </body>
+</html>

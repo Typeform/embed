@@ -1,5 +1,8 @@
 import { createIframe, hasDom, isFullscreen, unmountElement, lazyInitialize } from '../../utils'
-import { getWelcomeScreenHiddenHandler } from '../../utils/create-iframe/get-form-event-handler'
+import {
+  getFormHeightChangedHandler,
+  getWelcomeScreenHiddenHandler,
+} from '../../utils/create-iframe/get-form-event-handler'
 
 import { WidgetOptions } from './widget-options'
 import { buildWidget } from './elements'
@@ -33,6 +36,24 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
 
   const { embedId, iframe, refresh } = createIframe(formId, 'widget', widgetOptions)
   const widget = buildWidget(iframe, options.width, options.height)
+
+  if (widgetOptions.autoResize) {
+    const [minHeight, maxHeight] =
+      typeof widgetOptions.autoResize === 'string'
+        ? widgetOptions.autoResize.split(',').map((value) => parseInt(value))
+        : []
+
+    window.addEventListener(
+      'message',
+      getFormHeightChangedHandler(embedId, (data) => {
+        let containerHeight = Math.max(data.height + 20, minHeight || 0)
+        if (maxHeight) {
+          containerHeight = Math.min(containerHeight, maxHeight)
+        }
+        options.container.style.height = `${containerHeight}px`
+      })
+    )
+  }
 
   const appendWidget = () => options.container.append(widget)
 

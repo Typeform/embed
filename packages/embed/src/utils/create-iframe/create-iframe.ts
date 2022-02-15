@@ -3,14 +3,19 @@ import { buildIframeSrc } from '../build-iframe-src'
 import { setupGaInstance } from '../'
 
 import { generateEmbedId } from './generate-embed-id'
-import { getFormReadyHandler, getFormQuestionChangedHandler, getFormSubmitHandler } from './get-form-event-handler'
+import {
+  getFormReadyHandler,
+  getFormQuestionChangedHandler,
+  getFormSubmitHandler,
+  getFormHeightChangedHandler,
+} from './get-form-event-handler'
 import { triggerIframeRedraw } from './trigger-iframe-redraw'
 import { dispatchCustomKeyEventFromIframe } from './setup-custom-keyboard-close'
 import { refreshIframe } from './refresh-iframe'
 
 export const createIframe = (formId: string, type: EmbedType, options: CreateIframeOptions) => {
   const embedId = generateEmbedId()
-  const { iframeProps = {}, onReady, onQuestionChanged, onSubmit, shareGaInstance } = options
+  const { iframeProps = {}, onReady, onQuestionChanged, onHeightChanged, onSubmit, shareGaInstance } = options
   const src = buildIframeSrc({ formId, embedId, type, options })
 
   const iframe = document.createElement('iframe')
@@ -27,6 +32,7 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
 
   window.addEventListener('message', getFormReadyHandler(embedId, onReady))
   window.addEventListener('message', getFormQuestionChangedHandler(embedId, onQuestionChanged))
+  window.addEventListener('message', getFormHeightChangedHandler(embedId, onHeightChanged))
   window.addEventListener('message', getFormSubmitHandler(embedId, onSubmit))
 
   if (type !== 'widget') {

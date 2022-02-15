@@ -8,6 +8,10 @@ export const getFormQuestionChangedHandler = (embedId: string, callback?: callba
   return getFormEventHandler('form-screen-changed', embedId, callback)
 }
 
+export const getFormHeightChangedHandler = (embedId: string, callback?: callbackFn) => {
+  return getFormEventHandler('form-height-changed', embedId, callback)
+}
+
 export const getFormSubmitHandler = (embedId: string, callback?: callbackFn) => {
   return getFormEventHandler('form-submit', embedId, callback)
 }
@@ -19,7 +23,7 @@ export const getWelcomeScreenHiddenHandler = (embedId: string, element: HTMLElem
   return getFormEventHandler('welcome-screen-hidden', embedId, callback)
 }
 
-export function getFormEventHandler(eventType: string, expectedEmbedId: string, callback?: callbackFn) {
+function getFormEventHandler(eventType: string, expectedEmbedId: string, callback?: callbackFn) {
   return (event: any) => {
     const { type, embedId, ...data } = event.data
     if (type !== eventType) {

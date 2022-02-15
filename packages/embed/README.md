@@ -142,6 +142,8 @@ Closing and opening a typeform in modal window will restart the progress from th
 | onSubmit               | function         | fires when user submits the form                                                                                                                                                                                  | `undefined`                                                   |
 | onClose                | function         | fires when the form is closed (when opened in modal window)                                                                                                                                                       | `undefined`                                                   |
 | onQuestionChanged      | function         | fires when user navigates between form questions                                                                                                                                                                  | `undefined`                                                   |
+| onHeightChanged        | function         | fires when form question height changes (eg. on navigation between questions or on error message)                                                                                                                 | `undefined`                                                   |
+| autoResize             | string / boolean | resize form to always fit the displayed question height, avoid scrollbars in the form (inline widget only), set min and max height separated by coma, eg. `"200,600"`                                             | `false`                                                       |
 | shareGaInstance        | string / boolean | shares Google Analytics instance of the host page with embedded typeform, you can provide your Google Analytics ID to specify which instance to share (if you have more than one in your page)                    | `false`                                                       |
 | inlineOnMobile         | boolean          | removes placeholder welcome screen in mobile and makes form show inline instead of fullscreen                                                                                                                     | `false`                                                       |
 | iframeProps            | object           | HTML attributes to be passed directly to the iframe with typeform                                                                                                                                                 | `undefined`                                                   |
@@ -211,6 +213,9 @@ You can listen to form events by providing callback methods:
     onQuestionChanged: (data) => {
       console.log('question changed to ref:', data.ref)
     },
+    onHeightChanged: (data) => {
+      console.log(`height of question ${data.ref} changed to ${data.height}px`)
+    },
     onSubmit: (data) => {
       console.log('forms submitted with id:', data.responseId)
       // to retrieve the response use `data.responseId` (you have to do it server-side)
@@ -225,7 +230,10 @@ Callback method receive payload object from the form:
 - onReady
   - empty object
 - onQuestionChanged
-  - `ref` (string) identifies currenttly displayed question
+  - `ref` (string) identifies currently displayed question
+- onHeightChanged
+  - `ref` (string) identifies currently displayed question
+  - `height` (number) current height of currently displayed question
 - onSubmit
   - `responseId` (string) identifies the response, can be retrieved via [Responses API](https://developer.typeform.com/responses/)
   - `response_id` (string) same as above (for backward compatibility with old embed SDK)
