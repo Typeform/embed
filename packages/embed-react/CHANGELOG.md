@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v1.3.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.2.6...@typeform/embed-react-v1.3.0) (2022-02-15)
+
+
+### Features
+
+* attach __webpack_nonce__ to inline <style> if set ([b63f37b](https://github.com/Typeform/embed/commit/b63f37b83f2cf7ea308777e5f5fab74520a2d866))
+
 # [@typeform/embed-react-v1.2.6](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.2.5...@typeform/embed-react-v1.2.6) (2022-02-07)
 
 
