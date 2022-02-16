@@ -5,6 +5,11 @@ REPO_ROOT="${GITHUB_WORKSPACE:=$THIS_DIR}"
 cd $REPO_ROOT
 echo "Repo root directory: $(pwd)"
 
+# setup git
+echo "-- setup git"
+git config --global user.email "you@example.com"
+git config --global user.name "Github Action"
+
 # release vanilla lib
 echo "-- release vanilla lib"
 cd $REPO_ROOT/packages/embed
@@ -14,6 +19,13 @@ yarn release-vanilla
 echo "-- bump vanilla lib"
 cd $REPO_ROOT/packages/embed-react
 yarn upgrade @typeform/embed
+
+# commit vanilla bump in react lib
+echo "-- commit vanilla lib bump in react lib"
+cd $REPO_ROOT
+git add packages/embed-react
+git commit -m 'feat: Bump @typeform/embed in @typeform/embed-react package [skip ci]'
+git push https://$GITHUB_TOKEN@github.com/Typeform/embed.git
 
 # release react lib, will also commit all changes in react lib including vanilla lib bump
 echo "-- release react lib, will also commit all changes in react lib including vanilla lib bump"
@@ -31,11 +43,6 @@ yarn upgrade @typeform/embed-react
 
 cd $REPO_ROOT/packages/demo-webpack
 yarn upgrade @typeform/embed
-
-# setup git
-echo "-- setup git"
-git config --global user.email "you@example.com"
-git config --global user.name "Github Action"
 
 # commit vanilla and react lib bumps in demos
 echo "-- commit vanilla and react lib bumps in demos"
