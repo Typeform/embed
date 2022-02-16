@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.29.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.28.2...@typeform/embed-v1.29.0) (2022-02-16)
+
+
+### Features
+
+* **DIST-1530:** Automatically resize widget height based on current question ([8ae9f5e](https://github.com/Typeform/embed/commit/8ae9f5ea0e010aca7b522d23e17978bd64ca7c26))
+
 # [@typeform/embed-v1.28.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.28.1...@typeform/embed-v1.28.2) (2022-02-07)
 
 
