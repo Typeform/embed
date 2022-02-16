@@ -60,9 +60,13 @@ const mapOptionsToQueryParams = (type: EmbedType, embedId: string, options: UrlO
   return { ...params, ...transitiveParams, ...tracking }
 }
 
-const getBaseUrl = (formId: string, chat: boolean = false): URL => {
+const getBaseUrl = (formString: string, chat: boolean = false): URL => {
   const prefix = chat ? 'c' : 'to'
-  return new URL(`${FORM_BASE_URL}/${prefix}/${formId}`)
+  return new URL(
+    formString.startsWith('http://') || formString.startsWith('https://')
+      ? formString
+      : `${FORM_BASE_URL}/${prefix}/${formString}`
+  )
 }
 
 export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {

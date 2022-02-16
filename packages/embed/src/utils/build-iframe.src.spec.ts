@@ -8,15 +8,32 @@ describe('build-iframe-src', () => {
       )
     })
 
-    it('should include default url options', () => {
-      expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options: {} })).toBe(
-        'https://form.typeform.com/to/some-id' +
+    describe('when formID is just an ID', () => {
+      it('should include default url options', () => {
+        expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options: {} })).toBe(
+          'https://form.typeform.com/to/some-id' +
+            '?typeform-embed-id=embed-id' +
+            '&typeform-embed=embed-widget' +
+            '&typeform-source=localhost' +
+            '&typeform-medium=embed-sdk' +
+            '&typeform-medium-version=next'
+        )
+      })
+    })
+
+    describe('when formID is a URL', () => {
+      it('should include the full url', () => {
+        const formId = 'https://custom-domain.com/form-id'
+        const iframeSrcParams =
           '?typeform-embed-id=embed-id' +
           '&typeform-embed=embed-widget' +
           '&typeform-source=localhost' +
           '&typeform-medium=embed-sdk' +
           '&typeform-medium-version=next'
-      )
+        expect(buildIframeSrc({ formId, type: 'widget', embedId: 'embed-id', options: {} })).toBe(
+          `${formId}${iframeSrcParams}`
+        )
+      })
     })
 
     it('should override default url options if value is explicitly supplied', () => {

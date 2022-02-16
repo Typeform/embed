@@ -95,7 +95,7 @@ jobs:
           path: |
             **/node_modules
             ~/.cache
-          key: ${{ runner.os }}-node-12-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+          key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-${{ matrix.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
       - name: Install Node.js dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
