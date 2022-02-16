@@ -37,6 +37,7 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     inlineOnMobile: 'boolean',
     disableAutoFocus: 'boolean',
     tracking: 'record',
+    redirectTarget: 'string',
     iframeProps: 'record',
     lazy: 'boolean',
     keepSession: 'boolean',
