@@ -39,6 +39,7 @@ const mapOptionsToQueryParams = (type: EmbedType, embedId: string, options: UrlO
     forceTouch,
     enableFullscreen,
     tracking,
+    redirectTarget,
   } = options
   const transitiveParams = getTransitiveSearchParams(transitiveSearchParams)
   const params = {
@@ -56,6 +57,7 @@ const mapOptionsToQueryParams = (type: EmbedType, embedId: string, options: UrlO
     'share-ga-instance': shareGaInstance ? 'true' : undefined,
     'force-touch': forceTouch ? 'true' : undefined,
     'add-placeholder-ws': type === 'widget' && enableFullscreen ? 'true' : undefined,
+    'typeform-embed-redirect-target': redirectTarget,
   }
   return { ...params, ...transitiveParams, ...tracking }
 }

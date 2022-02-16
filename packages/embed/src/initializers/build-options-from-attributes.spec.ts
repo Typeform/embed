@@ -23,6 +23,7 @@ describe('build-options-from-attributes', () => {
         data-tf-chat
         data-tf-share-ga-instance="ua-hello-1"
         data-tf-tracking="utm_foo=utm foo value,foobar=foobar value"
+        data-tf-redirect-target="_blank"
         data-tf-lazy
         data-tf-keep-session
       ></div>`
@@ -62,6 +63,7 @@ describe('build-options-from-attributes', () => {
           utm_foo: 'utm foo value',
           foobar: 'foobar value',
         },
+        redirectTarget: '_blank',
         lazy: true,
         keepSession: true,
       })

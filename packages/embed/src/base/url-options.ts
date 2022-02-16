@@ -85,4 +85,14 @@ export type UrlOptions = {
    * @type {Record<string,string>}
    */
   tracking?: Record<string, string>
+  /**
+   * Redirect target for redirect on submit or redirect from thank you page.
+   *
+   * Browser Compatibility Note:
+   * Target "_blank" will be blocked in some browsers: Safari on dekstop and iOS, Chrome on Android.
+   * Redirecting in new tab works in Chrome and Firefox on desktop.
+   *
+   * @type {'_self' | '_top' | '_blank' | '_parent'}
+   */
+  redirectTarget?: '_self' | '_top' | '_blank' | '_parent'
 }
