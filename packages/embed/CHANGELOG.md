@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.30.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.29.0...@typeform/embed-v1.30.0) (2022-02-16)
+
+
+### Features
+
+* **DIST-1486:** Allow full url in iframe src ([#465](https://github.com/Typeform/embed/issues/465)) ([346a7a8](https://github.com/Typeform/embed/commit/346a7a8908137359348cf17ed548cd0a64f1cd69))
+
 # [@typeform/embed-v1.29.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.28.2...@typeform/embed-v1.29.0) (2022-02-16)
 
 
