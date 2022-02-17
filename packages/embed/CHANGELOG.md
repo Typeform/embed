@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.31.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.30.0...@typeform/embed-v1.31.0) (2022-02-17)
+
+
+### Features
+
+* **DIST-1482:** Specify redirect target ([fadd9ab](https://github.com/Typeform/embed/commit/fadd9abb1bc6533eeb4688752e97093ea43254f7))
+
 # [@typeform/embed-v1.30.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.29.0...@typeform/embed-v1.30.0) (2022-02-16)
 
 
