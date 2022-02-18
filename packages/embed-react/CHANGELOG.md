@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v1.6.1](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.6.0...@typeform/embed-react-v1.6.1) (2022-02-18)
+
+
+### Bug Fixes
+
+* **DIST-1525:** read the nonce from a bundler-safe location ([02b898c](https://github.com/Typeform/embed/commit/02b898c4ac0d0f3d7b514962e65b2a65210f3500))
+
 # [@typeform/embed-react-v1.6.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.5.0...@typeform/embed-react-v1.6.0) (2022-02-17)
 
 
