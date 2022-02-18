@@ -3,14 +3,6 @@ import { render, screen } from '@testing-library/react'
 
 import { InlineStyle } from './inline-style'
 
-declare global {
-  namespace NodeJS {
-    interface Global {
-      __webpack_nonce__: string
-    }
-  }
-}
-
 describe('<InlineStyle />', () => {
   it('should render inline CSS', () => {
     render(

@@ -1,5 +1,11 @@
-declare let __webpack_nonce__: string
+declare global {
+  namespace NodeJS {
+    interface Global {
+      __webpack_nonce__: string
+    }
+  }
+}
 
 export default function getNonce() {
-  return typeof __webpack_nonce__ !== 'undefined' ? __webpack_nonce__ : null
+  return typeof global.__webpack_nonce__ !== 'undefined' ? global.__webpack_nonce__ : null
 }
