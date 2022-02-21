@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.31.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.31.0...@typeform/embed-v1.31.1) (2022-02-21)
+
+
+### Bug Fixes
+
+* **TYP-6436:** Image contain for sidetab icon ([#472](https://github.com/Typeform/embed/issues/472)) ([85f7846](https://github.com/Typeform/embed/commit/85f784601b63336166ff13e912c9792fbb742221))
+
 # [@typeform/embed-v1.31.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.30.0...@typeform/embed-v1.31.0) (2022-02-17)
 
 
