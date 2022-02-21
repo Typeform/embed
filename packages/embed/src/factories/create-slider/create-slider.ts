@@ -8,6 +8,7 @@ import {
   addCustomKeyboardListener,
   isOpen,
   isInPage,
+  setIconColor,
 } from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
 
@@ -46,6 +47,7 @@ const buildCloseButton = (close: () => void) => {
   closeButton.className = 'tf-v1-close'
   closeButton.innerHTML = '&times;'
   closeButton.onclick = close
+  setIconColor(closeButton)
   return closeButton
 }
 
