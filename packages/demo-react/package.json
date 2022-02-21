@@ -20,6 +20,6 @@
     ]
   },
   "dependencies": {
-    "@typeform/embed-react": "1.6.1"
+    "@typeform/embed-react": "1.7.0"
   }
 }
