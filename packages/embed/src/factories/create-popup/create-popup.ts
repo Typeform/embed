@@ -7,7 +7,6 @@ import {
   unmountElement,
   setAutoClose,
   addCustomKeyboardListener,
-  setIconColor,
 } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
 import { isInPage, isOpen } from '../../utils'
@@ -52,9 +51,8 @@ const buildWrapper = (width?: number, height?: number, size?: number) => {
 
 const buildCloseButton = (close: () => void) => {
   const closeButton = document.createElement('a')
-  closeButton.className = 'tf-v1-close'
+  closeButton.className = 'tf-v1-close tf-v1-close-icon'
   closeButton.innerHTML = '&times;'
-  setIconColor(closeButton)
   closeButton.onclick = close
   return closeButton
 }

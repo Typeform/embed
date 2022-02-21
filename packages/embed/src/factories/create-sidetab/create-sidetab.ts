@@ -8,7 +8,6 @@ import {
   getTextColor,
   isOpen,
   isInPage,
-  setIconColor,
 } from '../../utils'
 
 import { SidetabOptions } from './sidetab-options'
@@ -86,10 +85,9 @@ const buildIcon = (customIcon?: string, color?: string) => {
 
 const buildCloseIcon = (element = 'div', className = 'tf-v1-sidetab-button-icon') => {
   const closeButton = document.createElement(element)
-  closeButton.className = className
+  closeButton.className = `${className} tf-v1-close-icon`
   closeButton.innerHTML = '&times;'
   closeButton.dataset.testid = className
-  setIconColor(closeButton)
   return closeButton
 }
 
