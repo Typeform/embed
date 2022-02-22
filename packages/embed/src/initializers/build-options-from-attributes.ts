@@ -17,6 +17,7 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     onHeightChanged: 'function',
     autoResize: 'stringOrBoolean',
     onClose: 'function',
+    onEndingButtonClick: 'function',
     transitiveSearchParams: 'array',
     hidden: 'record',
     chat: 'boolean',

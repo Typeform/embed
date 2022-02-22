@@ -3,6 +3,7 @@ import {
   getFormQuestionChangedHandler,
   getFormReadyHandler,
   getFormSubmitHandler,
+  getThankYouScreenButtonClickHandler,
   getWelcomeScreenHiddenHandler,
 } from './get-form-event-handler'
 
@@ -116,6 +117,15 @@ describe('get-form-event-handler', () => {
     it('should not add class to the element for different event type', () => {
       handler({ data: { type: 'form-ready', embedId, ...data } })
       expect(element.className).toBe('')
+    })
+  })
+
+  describe('#getThankYouScreenButtonClickHandler', () => {
+    const handler = getThankYouScreenButtonClickHandler(embedId, spy)
+
+    it('should call the callback function', () => {
+      handler({ data: { type: 'thank-you-screen-button-click', embedId } })
+      expect(spy).toHaveBeenCalledTimes(1)
     })
   })
 })
