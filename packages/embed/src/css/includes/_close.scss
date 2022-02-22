@@ -9,8 +9,7 @@
   opacity: 0.75;
   transition: opacity 0.25s ease-in-out;
   text-decoration: none;
-  filter: #{'invert(1)'};
-  mix-blend-mode: difference;
+  color: #000;
   &:hover {
     opacity: 1;
   }

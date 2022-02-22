@@ -14,7 +14,7 @@ export type Widget = {
 
 const buildCloseButton = () => {
   const closeButton = document.createElement('a')
-  closeButton.className = 'tf-v1-widget-close'
+  closeButton.className = 'tf-v1-widget-close tf-v1-close-icon'
   closeButton.innerHTML = '&times;'
   return closeButton
 }

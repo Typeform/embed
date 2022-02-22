@@ -23,6 +23,17 @@ export const getWelcomeScreenHiddenHandler = (embedId: string, element: HTMLElem
   return getFormEventHandler('welcome-screen-hidden', embedId, callback)
 }
 
+export const getFormThemeHandler = (embedId: string) => {
+  return getFormEventHandler('form-theme', embedId, (data) => {
+    if (data?.theme) {
+      const closeButtonElement = document.querySelector('.tf-v1-close-icon') as HTMLElement
+      if (closeButtonElement) {
+        closeButtonElement.style.color = data.theme?.color
+      }
+    }
+  })
+}
+
 function getFormEventHandler(eventType: string, expectedEmbedId: string, callback?: callbackFn) {
   return (event: any) => {
     const { type, embedId, ...data } = event.data

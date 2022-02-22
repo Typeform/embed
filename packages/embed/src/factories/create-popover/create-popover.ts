@@ -38,7 +38,7 @@ const buildPopover = (width?: number, height?: number) => {
 
 const buildCloseIcon = (element = 'div', className = 'tf-v1-popover-button-icon') => {
   const icon = document.createElement(element)
-  icon.className = className
+  icon.className = `${className} tf-v1-close-icon`
   icon.innerHTML = '&times;'
   icon.dataset.testid = className
   return icon
