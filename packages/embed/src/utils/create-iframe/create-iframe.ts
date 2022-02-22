@@ -9,6 +9,7 @@ import {
   getFormSubmitHandler,
   getFormHeightChangedHandler,
   getFormThemeHandler,
+  getThankYouScreenButtonClickHandler,
 } from './get-form-event-handler'
 import { triggerIframeRedraw } from './trigger-iframe-redraw'
 import { dispatchCustomKeyEventFromIframe } from './setup-custom-keyboard-close'
@@ -16,7 +17,15 @@ import { refreshIframe } from './refresh-iframe'
 
 export const createIframe = (formId: string, type: EmbedType, options: CreateIframeOptions) => {
   const embedId = generateEmbedId()
-  const { iframeProps = {}, onReady, onQuestionChanged, onHeightChanged, onSubmit, shareGaInstance } = options
+  const {
+    iframeProps = {},
+    onReady,
+    onQuestionChanged,
+    onHeightChanged,
+    onSubmit,
+    onEndingButtonClick,
+    shareGaInstance,
+  } = options
   const src = buildIframeSrc({ formId, embedId, type, options })
 
   const iframe = document.createElement('iframe')
@@ -36,6 +45,7 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
   window.addEventListener('message', getFormHeightChangedHandler(embedId, onHeightChanged))
   window.addEventListener('message', getFormSubmitHandler(embedId, onSubmit))
   window.addEventListener('message', getFormThemeHandler(embedId))
+  window.addEventListener('message', getThankYouScreenButtonClickHandler(embedId, onEndingButtonClick))
 
   if (type !== 'widget') {
     window.addEventListener('message', dispatchCustomKeyEventFromIframe)

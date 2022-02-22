@@ -22,6 +22,7 @@
       data-tf-on-question-changed="onTypeformQuestionChanged"
       data-tf-on-height-changed="onTypeformHeightChanged"
       data-tf-on-close="onTypeformClose"
+      data-tf-on-ending-button-click="onTypeformEndingButtonClick"
     ></div>
     <button
       data-tf-popup="HLjqXS5W"
@@ -30,6 +31,7 @@
       data-tf-on-submit="onTypeformSubmit"
       data-tf-on-question-changed="onTypeformQuestionChanged"
       data-tf-on-close="onTypeformClose"
+      data-tf-on-ending-button-click="onTypeformEndingButtonClick"
     >
       open popup
     </button>
@@ -61,6 +63,11 @@
       function onTypeformClose(data) {
         alert('onClose')
         console.log('modal window closed', data)
+      }
+
+      function onTypeformEndingButtonClick() {
+        alert('onEndingButtonClick')
+        console.log('button on ending screen clicked')
       }
     </script>
   </body>

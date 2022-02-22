@@ -34,6 +34,10 @@ export const getFormThemeHandler = (embedId: string) => {
   })
 }
 
+export const getThankYouScreenButtonClickHandler = (embedId: string, callback?: callbackFn) => {
+  return getFormEventHandler('thank-you-screen-button-click', embedId, callback)
+}
+
 function getFormEventHandler(eventType: string, expectedEmbedId: string, callback?: callbackFn) {
   return (event: any) => {
     const { type, embedId, ...data } = event.data
