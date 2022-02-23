@@ -5,3 +5,9 @@ $mobile-width: 480px;
     @content;
   }
 }
+
+@mixin desktop {
+  @media (min-width: #{$mobile-width + 1}) {
+    @content;
+  }
+}
