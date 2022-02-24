@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.32.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.31.1...@typeform/embed-v1.32.0) (2022-02-24)
+
+
+### Features
+
+* **DIST-1070:** Callback for ending button click ([213023c](https://github.com/Typeform/embed/commit/213023c695782d4c478fb6f6092491cbfcee28cb))
+
 # [@typeform/embed-v1.31.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.31.0...@typeform/embed-v1.31.1) (2022-02-21)
 
 
