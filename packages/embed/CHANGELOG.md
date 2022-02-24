@@ -1,3 +1,11 @@
+# [@typeform/embed-v1.32.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.32.0...@typeform/embed-v1.32.1) (2022-02-24)
+
+
+### Bug Fixes
+
+* **DIST-1549:** Close button color on desktop ([57917d2](https://github.com/Typeform/embed/commit/57917d232aa07d2ac9c97fd20f51678a447037d3))
+* **DIST-1550:** Center custom icon in popover button ([eeee86e](https://github.com/Typeform/embed/commit/eeee86e70bfca398024ae0a39f10b9fcfd137dd2))
+
 # [@typeform/embed-v1.32.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.31.1...@typeform/embed-v1.32.0) (2022-02-24)
 
 
