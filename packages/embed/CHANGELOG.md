@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.32.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.32.1...@typeform/embed-v1.32.2) (2022-03-09)
+
+
+### Bug Fixes
+
+* **TYP-6447:** Slider close button and border radius on mobile ([1663614](https://github.com/Typeform/embed/commit/166361468155600d91fc99187f9dadd24b325d1e))
+
 # [@typeform/embed-v1.32.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.32.0...@typeform/embed-v1.32.1) (2022-02-24)
 
 
