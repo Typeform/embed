@@ -22,15 +22,20 @@
 
     iframe {
       @include iframe;
-      border-radius: 8px 0 0 8px;
+
+      @include desktop {
+        border-radius: 8px 0 0 8px;
+      }
     }
   }
 
   .tf-v1-close {
     @include close;
 
-    top: 4px;
-    left: -24px;
+    @include desktop {
+      top: 4px;
+      left: -24px;
+    }
 
     &:hover {
       opacity: 1;
@@ -42,13 +47,15 @@
   }
 
   &.left {
-    .tf-v1-iframe-wrapper iframe {
-      border-radius: 0 8px 8px 0;
-    }
+    @include desktop {
+      .tf-v1-iframe-wrapper iframe {
+        border-radius: 0 8px 8px 0;
+      }
 
-    .tf-v1-close {
-      left: auto;
-      right: -24px;
+      .tf-v1-close {
+        left: auto;
+        right: -24px;
+      }
     }
   }
 }
