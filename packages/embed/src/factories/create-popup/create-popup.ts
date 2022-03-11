@@ -24,6 +24,7 @@ export type Popup = {
 const buildPopup = () => {
   const popup = document.createElement('div')
   popup.className = 'tf-v1-popup'
+  popup.dataset.testid = 'tf-v1-popup'
   popup.style.opacity = '0'
   return popup
 }
