@@ -1,3 +1,11 @@
+# [@typeform/embed-react-v1.12.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.11.0...@typeform/embed-react-v1.12.0) (2022-03-11)
+
+
+### Features
+
+* Bump @typeform/embed in @typeform/embed-react package [skip ci] ([734d450](https://github.com/Typeform/embed/commit/734d450b015041ab89b366ca2abe83a8f72777d7))
+* **DIST-965:** button test id ([ce00878](https://github.com/Typeform/embed/commit/ce00878c2c5d442d8ebed0e5c1bef565d87153e4))
+
 # [@typeform/embed-react-v1.11.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.10.0...@typeform/embed-react-v1.11.0) (2022-03-11)
 
 
