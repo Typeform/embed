@@ -22,10 +22,11 @@ export type Slider = {
 }
 
 const buildSlider = (position: 'right' | 'left') => {
-  const popup = document.createElement('div')
-  popup.className = `tf-v1-slider ${position}`
-  popup.style.opacity = '0'
-  return popup
+  const slider = document.createElement('div')
+  slider.className = `tf-v1-slider ${position}`
+  slider.dataset.testid = 'tf-v1-slider'
+  slider.style.opacity = '0'
+  return slider
 }
 
 const buildSpinner = () => {
