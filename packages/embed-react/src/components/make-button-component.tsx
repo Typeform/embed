@@ -58,6 +58,7 @@ function makeButtonComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
       style,
       className,
       onClick: handleClick,
+      'data-testid': `tf-v1-${cssFilename}`,
       children,
       ...buttonProps,
     })

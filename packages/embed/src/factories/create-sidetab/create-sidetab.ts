@@ -26,10 +26,10 @@ const defaultOptions = {
 }
 
 const buildSidetab = (width?: number, height?: number) => {
-  const popup = document.createElement('div')
-  popup.className = 'tf-v1-sidetab'
-  popup.dataset.testid = 'tf-v1-sidetab'
-  return setElementSize(popup, { width, height })
+  const sidetab = document.createElement('div')
+  sidetab.className = 'tf-v1-sidetab'
+  sidetab.dataset.testid = 'tf-v1-sidetab'
+  return setElementSize(sidetab, { width, height })
 }
 
 const buildWrapper = () => {
