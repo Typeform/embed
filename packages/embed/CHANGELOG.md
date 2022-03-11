@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.33.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.32.2...@typeform/embed-v1.33.0) (2022-03-11)
+
+
+### Features
+
+* **DIST-965:** TestId ([3e1fca7](https://github.com/Typeform/embed/commit/3e1fca7b01ef2245e8e367c6405fb1ef97ba752f))
+
 # [@typeform/embed-v1.32.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.32.1...@typeform/embed-v1.32.2) (2022-03-09)
 
 
