@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.34.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.34.0...@typeform/embed-v1.34.1) (2022-03-15)
+
+
+### Bug Fixes
+
+* **DIST-1564:** Remove event listeners on unmount ([#485](https://github.com/Typeform/embed/issues/485)) ([c04ee86](https://github.com/Typeform/embed/commit/c04ee86260fa94a416f42425142a6311e4899664))
+
 # [@typeform/embed-v1.34.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.33.0...@typeform/embed-v1.34.0) (2022-03-11)
 
 
