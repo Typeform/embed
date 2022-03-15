@@ -8,6 +8,7 @@ import {
   setAutoClose,
   addCustomKeyboardListener,
 } from '../../utils'
+import type { RemoveHandler } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
 import { isInPage, isOpen } from '../../utils'
 
@@ -73,6 +74,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
 
   const { iframe, embedId, refresh } = createIframe(formId, 'popup', options)
   const scrollInitialState = document.body.style.overflow
+  let openHandler: RemoveHandler
 
   const popup = buildPopup()
   const spinner = buildSpinner()
@@ -130,12 +132,15 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
     isOpen(popup) ? close() : open()
   }
 
-  const unmount = () => {
-    unmountElement(popup)
+  if (options.open && !isOpen(popup)) {
+    openHandler = handleCustomOpen(open, options.open, options.openValue)
   }
 
-  if (options.open && !isOpen(popup)) {
-    handleCustomOpen(open, options.open, options.openValue)
+  const unmount = () => {
+    unmountElement(popup)
+    if (options.open && openHandler?.remove) {
+      openHandler.remove()
+    }
   }
 
   return {

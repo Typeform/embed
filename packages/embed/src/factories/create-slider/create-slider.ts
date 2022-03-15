@@ -9,6 +9,7 @@ import {
   isOpen,
   isInPage,
 } from '../../utils'
+import type { RemoveHandler } from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
 
 import { SliderOptions } from './slider-options'
@@ -64,6 +65,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
   const { position = SLIDER_POSITION, width = SLIDER_WIDTH, onClose, ...options } = userOptions
   const { iframe, embedId, refresh } = createIframe(formId, 'slider', options)
   const scrollInitialState = document.body.style.overflow
+  let openHandler: RemoveHandler
 
   const slider = buildSlider(position)
   const spinner = buildSpinner()
@@ -124,14 +126,17 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
     isOpen(slider) ? close() : open()
   }
 
-  const unmount = () => {
-    unmountElement(slider)
-  }
-
   wrapper.append(buildCloseButton(close))
 
   if (options.open && !isOpen(slider)) {
-    handleCustomOpen(open, options.open, options.openValue)
+    openHandler = handleCustomOpen(open, options.open, options.openValue)
+  }
+
+  const unmount = () => {
+    unmountElement(slider)
+    if (options.open && openHandler?.remove) {
+      openHandler.remove()
+    }
   }
 
   return {
