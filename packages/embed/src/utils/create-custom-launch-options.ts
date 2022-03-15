@@ -1,19 +1,29 @@
-const openOnExit = (exitThreshold: number, open: () => void) => {
+export type RemoveHandler = { remove: () => void }
+
+const emptyHandler: RemoveHandler = { remove: () => {} }
+
+const openOnExit = (exitThreshold: number, open: () => void): RemoveHandler => {
   let prevY = 0
+
   const handleMouseMove = (event: MouseEvent) => {
     // open popup  if the mouse is in top part of the page and moving towards top of the screen
     if (event.clientY < exitThreshold && event.clientY < prevY) {
-      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mousemove', handleMouseMove, true)
       open()
     } else {
       prevY = event.clientY
     }
   }
-  document.addEventListener('mousemove', handleMouseMove)
+
+  document.addEventListener('mousemove', handleMouseMove, true)
+
+  return {
+    remove: () => document.removeEventListener('mousemove', handleMouseMove, true),
+  }
 }
 
-const openOnScroll = (scrollThreshold: number, open: () => void) => {
-  const handleScroll = () => {
+const openOnScroll = (scrollThreshold: number, open: () => void): RemoveHandler => {
+  function handleScroll() {
     const offsetTop = window.pageYOffset || document.documentElement.scrollTop
     const clientTop = document.documentElement.clientTop || 0
     const pageHeight = document.documentElement.scrollHeight
@@ -26,27 +36,36 @@ const openOnScroll = (scrollThreshold: number, open: () => void) => {
       document.removeEventListener('scroll', handleScroll)
     }
   }
+
   document.addEventListener('scroll', handleScroll)
+
+  return {
+    remove: () => document.removeEventListener('scroll', handleScroll),
+  }
 }
 
 export const handleCustomOpen = (open: () => void, openType: string, value?: number) => {
   switch (openType) {
     case 'load':
       open()
-      break
+      return emptyHandler
     case 'exit':
-      value && openOnExit(value, open)
-      break
+      if (value) {
+        return openOnExit(value, open)
+      }
+      return emptyHandler
     case 'time':
       setTimeout(() => {
         open()
       }, value)
-      break
+      return emptyHandler
     case 'scroll':
-      value && openOnScroll(value, open)
-      break
+      if (value) {
+        return openOnScroll(value, open)
+      }
+      return emptyHandler
     default:
-      // do not open automatically
-      break
+      return emptyHandler
+    // do not open automatically
   }
 }

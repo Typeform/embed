@@ -9,6 +9,7 @@ import {
   isOpen,
   isInPage,
 } from '../../utils'
+import type { RemoveHandler } from '../../utils'
 
 import { PopoverOptions } from './popover-options'
 import { buildNotificationDot, canBuildNotificationDot, saveNotificationDotHideUntilTime } from './notification-days'
@@ -120,6 +121,8 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   const options = { ...defaultOptions, ...userOptions }
   const { iframe, embedId, refresh } = createIframe(formId, 'popover', options)
 
+  let openHandler: RemoveHandler
+
   const popover = buildPopover(options.width, options.height)
   const wrapper = buildWrapper()
   const icon = buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
@@ -228,13 +231,16 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const unmount = () => {
     unmountElement(popover)
+    if (options.open && openHandler?.remove) {
+      openHandler.remove()
+    }
   }
 
   button.onclick = toggle
   closeModal.onclick = close
 
   if (options.open && !isOpen(wrapper)) {
-    handleCustomOpen(open, options.open, options.openValue)
+    openHandler = handleCustomOpen(open, options.open, options.openValue)
   }
 
   return {

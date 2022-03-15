@@ -9,6 +9,7 @@ import {
   isOpen,
   isInPage,
 } from '../../utils'
+import type { RemoveHandler } from '../../utils'
 
 import { SidetabOptions } from './sidetab-options'
 
@@ -112,6 +113,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   const closeModal = buildCloseIcon('a', 'tf-v1-sidetab-close')
 
   const container = options.container || document.body
+  let openHandler: RemoveHandler
 
   container.append(sidetab)
   wrapper.append(iframe)
@@ -164,15 +166,18 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
     isOpen(wrapper) ? close() : open()
   }
 
-  const unmount = () => {
-    unmountElement(sidetab)
-  }
-
   button.onclick = toggle
   closeModal.onclick = close
 
   if (options.open && !isOpen(wrapper)) {
-    handleCustomOpen(open, options.open, options.openValue)
+    openHandler = handleCustomOpen(open, options.open, options.openValue)
+  }
+
+  const unmount = () => {
+    unmountElement(sidetab)
+    if (options.open && openHandler?.remove) {
+      openHandler.remove()
+    }
   }
 
   return {
