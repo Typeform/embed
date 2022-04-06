@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.34.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.34.1...@typeform/embed-v1.34.2) (2022-04-06)
+
+
+### Bug Fixes
+
+* **DIST-1554:** Autoprefix warning ([#492](https://github.com/Typeform/embed/issues/492)) ([1d3da57](https://github.com/Typeform/embed/commit/1d3da57df0379ece2fc3e4872e02a6d1afc59541))
+
 # [@typeform/embed-v1.34.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.34.0...@typeform/embed-v1.34.1) (2022-03-15)
 
 
