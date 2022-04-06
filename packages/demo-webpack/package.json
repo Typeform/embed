@@ -13,6 +13,6 @@
     "clean": "rm -rf ./dist"
   },
   "dependencies": {
-    "@typeform/embed": "1.34.1"
+    "@typeform/embed": "1.34.2"
   }
 }
