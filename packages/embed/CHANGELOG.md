@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.35.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.34.2...@typeform/embed-v1.35.0) (2022-04-13)
+
+
+### Features
+
+* **DIST-1571:** Allow setting iframe style directly as string ([06685f5](https://github.com/Typeform/embed/commit/06685f581b2c0fc135ac6aba0bd95679035e4e65))
+
 # [@typeform/embed-v1.34.2](https://github.com/Typeform/embed/compare/@typeform/embed-v1.34.1...@typeform/embed-v1.34.2) (2022-04-06)
 
 
