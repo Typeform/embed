@@ -1,4 +1,4 @@
-import { createIframe, hasDom, isFullscreen, unmountElement, lazyInitialize } from '../../utils'
+import { createIframe, hasDom, isFullscreen, unmountElement, lazyInitialize, makeAutoResize } from '../../utils'
 import {
   getFormHeightChangedHandler,
   getWelcomeScreenHiddenHandler,
@@ -67,10 +67,19 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
 
   if (widgetOptions.enableFullscreen) {
     const { container } = options
-    window.addEventListener('message', getWelcomeScreenHiddenHandler(embedId, container))
+    const autoResize = makeAutoResize(container)
+    const originalHeight = container.style.height
+    const openPopup = () => {
+      container.classList.add('tf-v1-widget-fullscreen')
+      autoResize()
+      window.addEventListener('resize', autoResize)
+    }
+    window.addEventListener('message', getWelcomeScreenHiddenHandler(embedId, openPopup))
     const closeButton = buildCloseButton()
 
     const close = () => {
+      window.removeEventListener('resize', autoResize)
+      container.style.height = originalHeight
       options.onClose?.()
       container.classList.remove('tf-v1-widget-fullscreen')
 

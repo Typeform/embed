@@ -8,6 +8,7 @@ import {
   getTextColor,
   isOpen,
   isInPage,
+  makeAutoResize,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 
@@ -132,8 +133,12 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
     addCustomKeyboardListener(close)
   }
 
+  const autoResize = makeAutoResize(sidetab)
+
   const open = () => {
     if (!isOpen(wrapper)) {
+      autoResize()
+      window.addEventListener('resize', autoResize)
       if (!isInPage(wrapper)) {
         sidetab.append(wrapper)
         replaceElementChild(icon, spinner)
@@ -175,6 +180,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
 
   const unmount = () => {
     unmountElement(sidetab)
+    window.removeEventListener('resize', autoResize)
     if (options.open && openHandler?.remove) {
       openHandler.remove()
     }

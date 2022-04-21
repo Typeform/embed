@@ -8,6 +8,7 @@ import {
   addCustomKeyboardListener,
   isOpen,
   isInPage,
+  makeAutoResize,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
@@ -86,8 +87,12 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
     addCustomKeyboardListener(close)
   }
 
+  const autoResize = makeAutoResize(slider)
+
   const open = () => {
     if (!isOpen(slider)) {
+      autoResize()
+      window.addEventListener('resize', autoResize)
       if (!isInPage(slider)) {
         container.append(slider)
         spinner.style.display = 'block'
@@ -134,6 +139,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
 
   const unmount = () => {
     unmountElement(slider)
+    window.removeEventListener('resize', autoResize)
     if (options.open && openHandler?.remove) {
       openHandler.remove()
     }
