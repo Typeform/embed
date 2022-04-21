@@ -82,7 +82,7 @@ describe('#createSidetab', () => {
   })
 
   describe('#size', () => {
-    it('should render popover with size', async () => {
+    it('should render sidetab with size', async () => {
       sidetab = createSidetab('formId', { width: 400, height: 600 })
       sidetab.open()
       jest.runAllTimers()

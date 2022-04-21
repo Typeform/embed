@@ -97,26 +97,22 @@ describe('get-form-event-handler', () => {
   })
 
   describe('#getWelcomeScreenHiddenHandler', () => {
-    const element = document.createElement('div')
-    const handler = getWelcomeScreenHiddenHandler(embedId, element)
+    const handler = getWelcomeScreenHiddenHandler(embedId, spy)
 
-    beforeEach(() => {
-      element.className = ''
-    })
-
-    it('should add class to the element', () => {
+    it('should call the callback function', () => {
       handler({ data: { type: 'welcome-screen-hidden', embedId, ...data } })
-      expect(element.className).toBe('tf-v1-widget-fullscreen')
+      expect(spy).toHaveBeenCalledTimes(1)
+      expect(spy).toHaveBeenCalledWith(data)
     })
 
-    it('should not add class to the element for mismatched embed id', () => {
-      handler({ data: { type: 'form-submit', embedId: 'other', ...data } })
-      expect(element.className).toBe('')
+    it('should not call the callback function for mismatched embed id', () => {
+      handler({ data: { type: 'welcome-screen-hidden', embedId: 'other', ...data } })
+      expect(spy).toHaveBeenCalledTimes(0)
     })
 
-    it('should not add class to the element for different event type', () => {
+    it('should not call the callback function for different event type', () => {
       handler({ data: { type: 'form-ready', embedId, ...data } })
-      expect(element.className).toBe('')
+      expect(spy).toHaveBeenCalledTimes(0)
     })
   })
 
