@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.35.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.35.0...@typeform/embed-v1.35.1) (2022-04-21)
+
+
+### Bug Fixes
+
+* **TYP-6955:** Autoresize fullscreen popup on mobile ([91b436a](https://github.com/Typeform/embed/commit/91b436a5098d9ae0be62bd5643678b44ab36f766))
+
 # [@typeform/embed-v1.35.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.34.2...@typeform/embed-v1.35.0) (2022-04-13)
 
 
