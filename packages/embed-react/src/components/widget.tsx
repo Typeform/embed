@@ -24,7 +24,7 @@ export const Widget = ({ id, style = {}, className = '', ...props }: WidgetProps
   return (
     <>
       <InlineStyle filename="widget" />
-      <div style={style} className={className} ref={container} />
+      <div style={style} className={className} ref={container} data-testid="tf-v1-widget-container" />
     </>
   )
 }
