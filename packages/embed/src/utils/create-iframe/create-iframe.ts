@@ -40,11 +40,20 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
 
   iframe.addEventListener('load', triggerIframeRedraw, { once: true })
 
+  const onTheme = (data: any) => {
+    if (data?.theme) {
+      const closeButtonElement = document.querySelector('.tf-v1-close-icon') as HTMLElement
+      if (closeButtonElement) {
+        closeButtonElement.style.color = data.theme?.color
+      }
+    }
+  }
+
   window.addEventListener('message', getFormReadyHandler(embedId, onReady))
   window.addEventListener('message', getFormQuestionChangedHandler(embedId, onQuestionChanged))
   window.addEventListener('message', getFormHeightChangedHandler(embedId, onHeightChanged))
   window.addEventListener('message', getFormSubmitHandler(embedId, onSubmit))
-  window.addEventListener('message', getFormThemeHandler(embedId))
+  window.addEventListener('message', getFormThemeHandler(embedId, onTheme))
   window.addEventListener('message', getThankYouScreenButtonClickHandler(embedId, onEndingButtonClick))
 
   if (type !== 'widget') {
