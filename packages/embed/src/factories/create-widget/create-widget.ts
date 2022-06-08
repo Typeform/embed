@@ -1,6 +1,15 @@
-import { createIframe, hasDom, isFullscreen, unmountElement, lazyInitialize, makeAutoResize } from '../../utils'
+import {
+  createIframe,
+  hasDom,
+  isFullscreen,
+  unmountElement,
+  lazyInitialize,
+  makeAutoResize,
+  changeColorOpacity,
+} from '../../utils'
 import {
   getFormHeightChangedHandler,
+  getFormThemeHandler,
   getWelcomeScreenHiddenHandler,
 } from '../../utils/create-iframe/get-form-event-handler'
 
@@ -66,15 +75,23 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
   }
 
   if (widgetOptions.enableFullscreen) {
+    let backgroundColor = ''
     const { container } = options
     const autoResize = makeAutoResize(container)
     const originalHeight = container.style.height
     const openPopup = () => {
       container.classList.add('tf-v1-widget-fullscreen')
+      if (options.opacity !== undefined) {
+        container.style.backgroundColor = backgroundColor
+      }
       autoResize()
       window.addEventListener('resize', autoResize)
     }
+    const onTheme = (data: any) => {
+      backgroundColor = changeColorOpacity(data?.theme?.backgroundColor)
+    }
     window.addEventListener('message', getWelcomeScreenHiddenHandler(embedId, openPopup))
+    window.addEventListener('message', getFormThemeHandler(embedId, onTheme))
     const closeButton = buildCloseButton()
 
     const close = () => {
@@ -82,6 +99,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
       container.style.height = originalHeight
       options.onClose?.()
       container.classList.remove('tf-v1-widget-fullscreen')
+      container.style.backgroundColor = ''
 
       if (options.keepSession) {
         const overlay = document.createElement('div')
