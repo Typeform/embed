@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.36.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.35.1...@typeform/embed-v1.36.0) (2022-06-08)
+
+
+### Features
+
+* **DIST-1607:** Use opaque background color for widget when opened as popup on mobile ([c755fcc](https://github.com/Typeform/embed/commit/c755fcc118244f05c7a97ccd8c0d346f4a8e1067))
+
 # [@typeform/embed-v1.35.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.35.0...@typeform/embed-v1.35.1) (2022-04-21)
 
 
