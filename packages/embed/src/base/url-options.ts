@@ -95,4 +95,10 @@ export type UrlOptions = {
    * @type {'_self' | '_top' | '_blank' | '_parent'}
    */
   redirectTarget?: '_self' | '_top' | '_blank' | '_parent'
+
+  /**
+   * Makes the watermark and navigation messages smaller for NPS typeforms.
+   * @type {boolean}
+   */
+  nps?: boolean
 }
