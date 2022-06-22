@@ -18,4 +18,9 @@ export type BaseOptions = {
    * For widget this applies only on mobile (without displayOnMobile option).
    */
   keepSession?: boolean
+
+  /**
+   * Do the Clippy magic!
+   */
+  clippy?: boolean
 }

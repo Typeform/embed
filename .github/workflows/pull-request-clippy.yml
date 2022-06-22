@@ -19,12 +19,9 @@ jobs:
     strategy:
       matrix:
         node_version:
-          - 12 # end of life 2022-04-30
-          - 14 # end of life 2023-04-30
+          #- 12 # end of life 2022-04-30
+          #- 14 # end of life 2023-04-30
           - 16 # end of life 2023-09-11
-          - 18 # end of life 2025-04-30
-          - 19 # end of life 2023-06-01
-          - 20 # end of life 2026-04-30
     name: build-lint-test - node ${{ matrix.node_version }}
     steps:
       - name: Check out Git repository
@@ -52,29 +49,29 @@ jobs:
       - run: yarn build
       - run: yarn lint
       - run: yarn test
-  functional:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-
-      - name: Get yarn cache
-        uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-12-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
-
-      - name: Install Node.js dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
-
-      - run: yarn build
-      - run: yarn test:functional
+#  functional:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Check out Git repository
+#        uses: actions/checkout@v2
+#
+#      - name: Set up Node.js
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 12
+#
+#      - name: Get yarn cache
+#        uses: actions/cache@v2
+#        id: yarn-cache
+#        with:
+#          path: |
+#            **/node_modules
+#            ~/.cache
+#          key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-12-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+#
+#      - name: Install Node.js dependencies
+#        if: steps.yarn-cache.outputs.cache-hit != 'true'
+#        run: yarn install --frozen-lockfile
+#
+#      - run: yarn build
+#      - run: yarn test:functional

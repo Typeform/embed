@@ -118,6 +118,12 @@ const defaultOptions = {
   buttonColor: '#3a7685',
 }
 
+const buildClippy = () => {
+  const clippy = document.createElement('div')
+  clippy.innerText = '📎'
+  return clippy
+}
+
 export const createPopover = (formId: string, userOptions: PopoverOptions = {}): Popover => {
   const options = { ...defaultOptions, ...userOptions }
   const { iframe, embedId, refresh } = createIframe(formId, 'popover', options)
@@ -126,7 +132,9 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const popover = buildPopover(options.width, options.height)
   const wrapper = buildWrapper()
-  const icon = buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
+  const icon = options.clippy
+    ? buildClippy()
+    : buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
   const spinner = buildSpinner()
   const closeIcon = buildCloseIcon()
   const closeModal = buildCloseIcon('a', 'tf-v1-popover-close')
