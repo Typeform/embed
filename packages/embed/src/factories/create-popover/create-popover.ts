@@ -12,6 +12,7 @@ import {
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { clippy } from '../../clippy'
+import { waitForElement } from '../../utils/wait-for-element'
 
 import { PopoverOptions } from './popover-options'
 import { buildNotificationDot, canBuildNotificationDot, saveNotificationDotHideUntilTime } from './notification-days'
@@ -42,9 +43,9 @@ const replaceIcon = (iconToReplace: HTMLElement, newIcon: HTMLElement) => {
   }
 }
 
-const buildPopover = (width?: number, height?: number) => {
+const buildPopover = (width?: number, height?: number, clippy = false) => {
   const popover = document.createElement('div')
-  popover.className = 'tf-v1-popover tf-v1-popover-clippy'
+  popover.className = `tf-v1-popover${clippy ? ' tf-v1-popover-clippy' : ''}`
   popover.dataset.testid = 'tf-v1-popover'
   return setElementSize(popover, { width, height })
 }
@@ -129,30 +130,77 @@ const defaultOptions = {
   buttonColor: '#3a7685',
 }
 
-const buildClippy = () => {
-  const clippyEl = document.createElement('div')
-  clippyEl.innerText = '📎'
-  return clippyEl
-}
-
 export const createPopover = (formId: string, userOptions: PopoverOptions = {}): Popover => {
-  let clippyInstance
-  ;(clippy as any).load('Clippy', (agent) => {
-    agent.show()
-    agent.moveTo(window.innerWidth - 500, window.innerHeight - 100)
-    clippyInstance = agent
-  })
+  let clippyInstance = {
+    stop: () => {},
+    animate: () => {},
+    play: (_v: string) => {},
+    gestureAt: (_x: number, _y: number) => {},
+  }
 
-  const options = { ...defaultOptions, ...userOptions, onQuestionChanged: () => clippyInstance.animate() }
+  if (userOptions.clippy) {
+    ;(clippy as any).load('Clippy', async (agent) => {
+      agent.show()
+      agent.moveTo(window.innerWidth - 140, window.innerHeight - 120)
+      clippyInstance = agent
+      const clipyElm = await waitForElement('.clippy')
+      if (clipyElm) {
+        let moved = false
+        clipyElm.onmousedown = () => {
+          moved = false
+        }
+        clipyElm.onmousemove = () => {
+          moved = true
+        }
+        clipyElm.onmouseup = () => {
+          if (!moved) {
+            toggle()
+          }
+        }
+      }
+    })
+  }
+
+  const onQuestionChanged = (data) => {
+    if (userOptions.onQuestionChanged) {
+      userOptions.onQuestionChanged(data)
+    }
+    clippyInstance.stop()
+    clippyInstance.animate()
+  }
+
+  const onSubmit = (data) => {
+    if (userOptions.onSubmit) {
+      userOptions.onSubmit(data)
+    }
+    clippyInstance.stop()
+    clippyInstance.play('SendMail')
+  }
+
+  let alertUser = 0
+  const attentionAnimation = ['GetAttention', 'Wave', 'IdleHeadSCratch', 'IdleSnooze']
+  setInterval(() => {
+    if (clippyInstance) {
+      if (!isOpen(wrapper)) {
+        clippyInstance.play(attentionAnimation[alertUser % attentionAnimation.length])
+        alertUser += 1
+      } else {
+        var rect = wrapper.getBoundingClientRect()
+        const x = rect.left + (rect.right - rect.left) / 2
+        const y = rect.top + (rect.bottom - rect.top) / 2
+        clippyInstance.gestureAt(x, y)
+      }
+    }
+  }, 5000)
+
+  const options = { ...defaultOptions, ...userOptions, onQuestionChanged, onSubmit }
   const { iframe, embedId, refresh } = createIframe(formId, 'popover', options)
 
   let openHandler: RemoveHandler
 
-  const popover = buildPopover(options.width, options.height)
+  const popover = buildPopover(options.width, options.height, options.clippy)
   const wrapper = buildWrapper()
-  const icon = options.clippy
-    ? buildClippy()
-    : buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
+  const icon = buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
   const spinner = buildSpinner()
   const closeIcon = buildCloseIcon()
   const closeModal = buildCloseIcon('a', 'tf-v1-popover-close')
@@ -162,7 +210,10 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   container.append(popover)
   wrapper.append(iframe)
-  popover.append(button)
+
+  if (!options.clippy) {
+    popover.append(button)
+  }
   popover.append(closeModal)
   button.append(icon)
 
@@ -214,6 +265,8 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const open = () => {
     if (!isOpen(wrapper)) {
+      clippyInstance.stop()
+      clippyInstance.play('GetTechy')
       hideTooltip()
       hideNotificationDot()
       autoResize()
@@ -241,6 +294,8 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const close = () => {
     if (isOpen(popover)) {
+      clippyInstance.stop()
+      clippyInstance.play('GoodBye')
       userOptions.onClose?.()
       setTimeout(() => {
         if (options.keepSession) {
