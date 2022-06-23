@@ -9,6 +9,36 @@
   opacity: 0;
 }
 
+.tf-v1-popover-clippy {
+  &.tf-v1-popover {
+    right: 26px;
+    bottom: 126px;
+  }
+
+  .tf-v1-popover {
+    &-wrapper {
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    &-wrapper:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 30px;
+      width: 0;
+      height: 0;
+      border: 20px solid transparent;
+      border-top-color: inherit;
+      border-bottom: 0;
+      border-right: 0;
+      margin-left: -10px;
+      margin-bottom: -20px;
+    }
+  }
+}
+
 .tf-v1-popover {
   bottom: 96px;
   position: fixed;

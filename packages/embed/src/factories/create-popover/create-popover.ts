@@ -33,7 +33,7 @@ const replaceIcon = (iconToReplace: HTMLElement, newIcon: HTMLElement) => {
 
 const buildPopover = (width?: number, height?: number) => {
   const popover = document.createElement('div')
-  popover.className = 'tf-v1-popover'
+  popover.className = 'tf-v1-popover tf-v1-popover-clippy'
   popover.dataset.testid = 'tf-v1-popover'
   return setElementSize(popover, { width, height })
 }

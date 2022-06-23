@@ -1,6 +1,7 @@
 import { EmbedType, UrlOptions, ActionableOptions, IframeOptions } from '../../base'
 import { buildIframeSrc } from '../build-iframe-src'
 import { setupGaInstance } from '../'
+import { waitForElement } from '../wait-for-element'
 
 import { generateEmbedId } from './generate-embed-id'
 import {
@@ -40,11 +41,17 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
 
   iframe.addEventListener('load', triggerIframeRedraw, { once: true })
 
-  const onTheme = (data: any) => {
+  const onTheme = async (data: any) => {
     if (data?.theme) {
       const closeButtonElement = document.querySelector('.tf-v1-close-icon') as HTMLElement
       if (closeButtonElement) {
         closeButtonElement.style.color = data.theme?.color
+      }
+
+      const clippyBubbleElement = await waitForElement('.tf-v1-popover-clippy .tf-v1-popover-wrapper')
+      if (clippyBubbleElement) {
+        clippyBubbleElement.style.backgroundColor = data.theme?.backgroundColor
+        clippyBubbleElement.style.borderTopColor = data.theme?.backgroundColor
       }
     }
   }
