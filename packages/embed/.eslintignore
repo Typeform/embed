@@ -6,3 +6,4 @@ types/
 CHANGELOG.md
 **/cypress/fixtures
 coverage/
+src/clippy.js
