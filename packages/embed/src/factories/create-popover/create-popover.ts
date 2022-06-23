@@ -11,9 +11,20 @@ import {
   makeAutoResize,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
+import { clippy } from '../../clippy'
 
 import { PopoverOptions } from './popover-options'
 import { buildNotificationDot, canBuildNotificationDot, saveNotificationDotHideUntilTime } from './notification-days'
+
+window.clippy = clippy
+
+type Clippy = {
+  load: () => void
+}
+
+declare global {
+  var clippy: Clippy
+}
 
 export type Popover = {
   open: () => void
@@ -119,13 +130,20 @@ const defaultOptions = {
 }
 
 const buildClippy = () => {
-  const clippy = document.createElement('div')
-  clippy.innerText = '📎'
-  return clippy
+  const clippyEl = document.createElement('div')
+  clippyEl.innerText = '📎'
+  return clippyEl
 }
 
 export const createPopover = (formId: string, userOptions: PopoverOptions = {}): Popover => {
-  const options = { ...defaultOptions, ...userOptions }
+  let clippyInstance
+  ;(clippy as any).load('Clippy', (agent) => {
+    agent.show()
+    agent.moveTo(window.innerWidth - 500, window.innerHeight - 100)
+    clippyInstance = agent
+  })
+
+  const options = { ...defaultOptions, ...userOptions, onQuestionChanged: () => clippyInstance.animate() }
   const { iframe, embedId, refresh } = createIframe(formId, 'popover', options)
 
   let openHandler: RemoveHandler

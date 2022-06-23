@@ -3,6 +3,7 @@
 @import 'includes/iframe';
 @import 'includes/mobile';
 @import 'includes/fullsize';
+@import 'includes/clippy';
 
 @mixin closingAnimation {
   transition: opacity 0.25s ease-in-out;
