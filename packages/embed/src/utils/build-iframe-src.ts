@@ -58,6 +58,8 @@ const mapOptionsToQueryParams = (type: EmbedType, embedId: string, options: UrlO
     'force-touch': forceTouch ? 'true' : undefined,
     'add-placeholder-ws': type === 'widget' && enableFullscreen ? 'true' : undefined,
     'typeform-embed-redirect-target': redirectTarget,
+    rendererVersion: 'cde8a21c4c855226d0e76d1b6c2cb510b7f43292',
+    'typeform-cache': 0,
   }
   return { ...params, ...transitiveParams, ...tracking }
 }

@@ -10,13 +10,14 @@ describe('build-iframe-src', () => {
 
     describe('when formID is just an ID', () => {
       it('should include default url options', () => {
-        expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options: {} })).toBe(
+        expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options: {} })).toMatch(
           'https://form.typeform.com/to/some-id' +
             '?typeform-embed-id=embed-id' +
             '&typeform-embed=embed-widget' +
             '&typeform-source=localhost' +
             '&typeform-medium=embed-sdk' +
-            '&typeform-medium-version=next'
+            '&typeform-medium-version=next' +
+            '&rendererVersion='
         )
       })
     })
@@ -29,8 +30,9 @@ describe('build-iframe-src', () => {
           '&typeform-embed=embed-widget' +
           '&typeform-source=localhost' +
           '&typeform-medium=embed-sdk' +
-          '&typeform-medium-version=next'
-        expect(buildIframeSrc({ formId, type: 'widget', embedId: 'embed-id', options: {} })).toBe(
+          '&typeform-medium-version=next' +
+          '&rendererVersion='
+        expect(buildIframeSrc({ formId, type: 'widget', embedId: 'embed-id', options: {} })).toMatch(
           `${formId}${iframeSrcParams}`
         )
       })
@@ -78,21 +80,8 @@ describe('build-iframe-src', () => {
           foobar: 'foobar&value',
         },
       }
-      expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toBe(
-        'https://form.typeform.com/to/some-id' +
-          '?typeform-embed-id=embed-id' +
-          '&typeform-embed=embed-widget' +
-          '&typeform-source=unit-test-source' +
-          '&typeform-medium=unit-test-medium' +
-          '&typeform-medium-version=unit-test-version' +
-          '&embed-hide-footer=true' +
-          '&embed-hide-headers=true' +
-          '&embed-opacity=50' +
-          '&disable-tracking=true' +
-          '&disable-auto-focus=true' +
-          '&__dangerous-disable-submissions=true' +
-          '&utm_foo=utm+foo+value&foobar=foobar%26value' +
-          '#foo=foo+value&bar=%40bar%26value%3F'
+      expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toMatch(
+        /^https:\/\/form.typeform.com\/to\/some-id\?typeform-embed-id=embed-id&typeform-embed=embed-widget&typeform-source=unit-test-source&typeform-medium=unit-test-medium&typeform-medium-version=unit-test-version&embed-hide-footer=true&embed-hide-headers=true&embed-opacity=50&disable-tracking=true&disable-auto-focus=true&__dangerous-disable-submissions=true&rendererVersion=[^&]+&typeform-cache=0&utm_foo=utm\+foo\+value&foobar=foobar%26value#foo=foo\+value&bar=%40bar%26value%3F/
       )
     })
 
@@ -104,7 +93,7 @@ describe('build-iframe-src', () => {
         enableSandbox: true,
       }
 
-      expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toBe(
+      expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toMatch(
         'https://form.typeform.com/to/some-id' +
           '?typeform-embed-id=embed-id' +
           '&typeform-embed=embed-widget' +
@@ -112,7 +101,8 @@ describe('build-iframe-src', () => {
           '&typeform-medium=unit-test-medium' +
           '&typeform-medium-version=unit-test-version' +
           '&disable-tracking=true' +
-          '&__dangerous-disable-submissions=true'
+          '&__dangerous-disable-submissions=true' +
+          '&rendererVersion='
       )
     })
   })
