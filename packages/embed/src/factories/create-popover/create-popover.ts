@@ -161,12 +161,16 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     })
   }
 
+  const blockAnimations = {
+    default: 'GetWizardy',
+  }
+
   const onQuestionChanged = (data) => {
     if (userOptions.onQuestionChanged) {
       userOptions.onQuestionChanged(data)
     }
     clippyInstance.stop()
-    clippyInstance.animate()
+    clippyInstance.play(blockAnimations[data.block.type] || blockAnimations.default)
   }
 
   const onSubmit = (data) => {
@@ -191,7 +195,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
         clippyInstance.gestureAt(x, y)
       }
     }
-  }, 5000)
+  }, 10_000)
 
   const options = { ...defaultOptions, ...userOptions, onQuestionChanged, onSubmit }
   const { iframe, embedId, refresh } = createIframe(formId, 'popover', options)
@@ -253,7 +257,12 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     button.append(notificationDot)
   }
 
-  iframe.onload = () => {
+  iframe.onload = async () => {
+    if (options.clippy) {
+      const remainingAnimationTime = 3000 - (Date.now() - clippyLoadAnimationStart)
+      await new Promise((res) => setTimeout(res, remainingAnimationTime))
+      clippyInstance.stop()
+    }
     popover.classList.add('open')
     wrapper.style.opacity = '1'
     closeModal.style.opacity = '1'
@@ -263,10 +272,14 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const autoResize = makeAutoResize(popover)
 
+  let clippyLoadAnimationStart
   const open = () => {
     if (!isOpen(wrapper)) {
-      clippyInstance.stop()
-      clippyInstance.play('GetTechy')
+      if (options.clippy) {
+        clippyInstance.stop()
+        clippyInstance.play('GetTechy')
+        clippyLoadAnimationStart = Date.now()
+      }
       hideTooltip()
       hideNotificationDot()
       autoResize()

@@ -1,3 +1,11 @@
+body {
+  background: #848484 url('./bg_stars.gif');
+  text-align: center;
+  color: white;
+}
+table {
+  margin: 0 auto;
+}
 #outerCircleText {
   color: #00f;
   font-family: 'Comic Sans MS';
@@ -7,6 +15,7 @@
   left: 0;
   z-index: 3000;
   cursor: default;
+  pointer-events: none;
 }
 #outerCircleText div {
   position: relative;
