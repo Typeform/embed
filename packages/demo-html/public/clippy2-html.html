@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Static HTML Demo</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      data-tf-widget="euVfK9TL"
+      data-tf-clippy
+      data-tf-on-ready="onReady"
+      data-tf-on-question-changed="onChange"
+      data-tf-on-submit="onSubmit"
+      style="height: 100%"
+    ></div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="./lib/embed-next.js"></script>
+    <script>
+      function onReady(data) {
+        console.log('onReady', data)
+      }
+      function onChange(data) {
+        console.log('onChange', data)
+      }
+      function onSubmit(data) {
+        console.log('onSubmit', data)
+      }
+    </script>
+  </body>
+</html>

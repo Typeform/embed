@@ -32,6 +32,14 @@ const baseConfig = {
         },
       ],
     }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'src/css/assets',
+          to: 'css/assets',
+        },
+      ],
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         CSS_URL: JSON.stringify(isProd ? 'https://embed.typeform.com/clippy/css/' : './lib/css/'),
