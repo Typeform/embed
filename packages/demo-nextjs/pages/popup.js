@@ -38,7 +38,10 @@ export default function PopupPage({ id }) {
             medium="demo-test"
             hidden={{ foo: 'foo value', bar: 'bar value' }}
           >
-            open popup
+            <span role="img" aria-label="check">
+              ️✅
+            </span>
+            <span style={{ marginLeft: 10 }}>open popup</span>
           </PopupButton>
         </p>
       </main>
