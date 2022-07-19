@@ -1,6 +1,7 @@
 import { screenSizeDesktop, screenSizeMobile, Viewport } from './cypress-utils'
 
 const eyesCheck = async (name: string, { width, height }: Viewport) => {
+  cy.wait(2000)
   cy.eyesOpen({
     appName: 'Embed - Cypress',
     ignoreCaret: true,
