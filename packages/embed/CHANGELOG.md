@@ -1,3 +1,11 @@
+# [@typeform/embed-v1.36.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.36.0...@typeform/embed-v1.36.1) (2022-07-19)
+
+
+### Bug Fixes
+
+* **DIST-1643:** Change default sidetab icon size ([81dbed8](https://github.com/Typeform/embed/commit/81dbed886c883961795955e424b6bf2cbb1acc38))
+* **DIST-1643:** Update visual tests to accommodate for new loading animation ([b6c5086](https://github.com/Typeform/embed/commit/b6c5086e4d09d619a457a5ecbf66e9a790106aa5))
+
 # [@typeform/embed-v1.36.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.35.1...@typeform/embed-v1.36.0) (2022-06-08)
 
 
