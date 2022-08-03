@@ -4,6 +4,7 @@ import { FORM_BASE_URL } from '../constants'
 import { removeUndefinedKeys } from './remove-undefined-keys'
 import { isDefined } from './is-defined'
 import { getTransitiveSearchParams } from './get-transitive-search-params'
+import { getHubspotHiddenFields } from './hubspot'
 
 const getDefaultUrlOptions = (): UrlOptions => ({
   source: window?.location?.hostname.replace(/^www\./, ''),
@@ -82,6 +83,11 @@ export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
     .forEach(([paramName, paramValue]) => {
       url.searchParams.set(paramName, paramValue)
     })
+
+  if (options.hubspot) {
+    const hubspotHiddenFields = getHubspotHiddenFields()
+    options.hidden = { ...options.hidden, ...hubspotHiddenFields }
+  }
 
   if (options.hidden) {
     const tmpHashUrl = new URL(FORM_BASE_URL)

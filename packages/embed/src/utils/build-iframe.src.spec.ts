@@ -77,6 +77,7 @@ describe('build-iframe-src', () => {
           utm_foo: 'utm foo value',
           foobar: 'foobar&value',
         },
+        hubspot: true,
       }
       expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toBe(
         'https://form.typeform.com/to/some-id' +
@@ -92,7 +93,8 @@ describe('build-iframe-src', () => {
           '&disable-auto-focus=true' +
           '&__dangerous-disable-submissions=true' +
           '&utm_foo=utm+foo+value&foobar=foobar%26value' +
-          '#foo=foo+value&bar=%40bar%26value%3F'
+          '#foo=foo+value&bar=%40bar%26value%3F' +
+          '&hubspot_page_name=&hubspot_page_url=http%3A%2F%2Flocalhost%2F'
       )
     })
 

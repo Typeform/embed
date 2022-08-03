@@ -95,4 +95,12 @@ export type UrlOptions = {
    * @type {'_self' | '_top' | '_blank' | '_parent'}
    */
   redirectTarget?: '_self' | '_top' | '_blank' | '_parent'
+
+  /**
+   * Enable Hubspot Tracking
+   *
+   * @type {boolean}
+   */
+
+  hubspot?: boolean
 }
