@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.37.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.36.1...@typeform/embed-v1.37.0) (2022-08-04)
+
+
+### Features
+
+* **DIST-1767:** Add hubspot tracking ([#512](https://github.com/Typeform/embed/issues/512)) ([3ef5026](https://github.com/Typeform/embed/commit/3ef502622ea7e5e9a83c8e98bd07a827eca3c358))
+
 # [@typeform/embed-v1.36.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.36.0...@typeform/embed-v1.36.1) (2022-07-19)
 
 
