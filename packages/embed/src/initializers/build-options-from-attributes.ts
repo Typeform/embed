@@ -42,5 +42,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     iframeProps: 'record',
     lazy: 'boolean',
     keepSession: 'boolean',
+    hubspot: 'boolean',
   })
 }
