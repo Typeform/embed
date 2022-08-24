@@ -48,7 +48,16 @@ jobs:
 
       - run: yarn build
       - run: yarn lint
-      - run: yarn test
+      - run: yarn test --coverage
+
+      - name: Set SonarCloud project
+        run: sed -i 's/sonar\.projectVersion=.*/sonar\.projectVersion=${{ github.run_id }}/' sonar-project.properties
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_CLOUD_TOKEN }}
   functional:
     runs-on: ubuntu-latest
     steps:
