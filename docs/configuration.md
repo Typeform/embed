@@ -74,7 +74,7 @@ If you embed via HTML, you need to pass optinos as attributes with `data-tf-` pr
 
 ## Options in plain HTML embed
 
-To embed via HTML without writing JavaScript code, use `data-tf-widget="<form-id>"` for widget embed. You can define options as data attributes with `data-tf-` prefix and dashes in name (eg. `disableAutoFocus` becomes `data-tf-disable-autofocus`). For example:
+To embed via HTML without writing JavaScript code, use `data-tf-widget="<form-id>"` for widget embed. You can define options as data attributes with `data-tf-` prefix and dashes in name (eg. `disableAutoFocus` becomes `data-tf-disable-auto-focus`). For example:
 
 ```html
 <div data-tf-popup="<form-id>" data-tf-size="50" data-tf-hide-footer></div>
