@@ -1,4 +1,4 @@
-import { BaseOptions, EmbedType, UrlOptions } from '../base'
+import { BaseOptions, EmbedType, SizeableOptions, UrlOptions } from '../base'
 import { FORM_BASE_URL } from '../constants'
 
 import { removeUndefinedKeys } from './remove-undefined-keys'
@@ -24,7 +24,11 @@ const typesToEmbed: Record<EmbedType, string> = {
   'side-tab': 'popup-side-panel',
 }
 
-const mapOptionsToQueryParams = (type: EmbedType, embedId: string, options: UrlOptions): Record<string, any> => {
+const mapOptionsToQueryParams = (
+  type: EmbedType,
+  embedId: string,
+  options: UrlOptions & SizeableOptions
+): Record<string, any> => {
   const {
     transitiveSearchParams,
     source,
@@ -41,6 +45,7 @@ const mapOptionsToQueryParams = (type: EmbedType, embedId: string, options: UrlO
     enableFullscreen,
     tracking,
     redirectTarget,
+    autoResize,
   } = options
   const transitiveParams = getTransitiveSearchParams(transitiveSearchParams)
   const params = {
@@ -59,6 +64,7 @@ const mapOptionsToQueryParams = (type: EmbedType, embedId: string, options: UrlO
     'force-touch': forceTouch ? 'true' : undefined,
     'add-placeholder-ws': type === 'widget' && enableFullscreen ? 'true' : undefined,
     'typeform-embed-redirect-target': redirectTarget,
+    'typeform-embed-auto-resize': autoResize ? 'true' : undefined,
   }
   return { ...params, ...transitiveParams, ...tracking }
 }
