@@ -55,7 +55,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     window.addEventListener(
       'message',
       getFormHeightChangedHandler(embedId, (data) => {
-        let containerHeight = Math.max(data.height + 20, minHeight || 0)
+        let containerHeight = Math.max(data.height, minHeight || 0)
         if (maxHeight) {
           containerHeight = Math.min(containerHeight, maxHeight)
         }
