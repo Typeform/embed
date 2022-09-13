@@ -67,7 +67,6 @@ describe('build-iframe-src', () => {
         hideHeaders: true,
         opacity: 50,
         disableTracking: true,
-        disableAutoFocus: true,
         hidden: {
           foo: 'foo value',
           bar: '@bar&value?',
@@ -91,7 +90,6 @@ describe('build-iframe-src', () => {
           '&embed-hide-headers=true' +
           '&embed-opacity=50' +
           '&disable-tracking=true' +
-          '&disable-auto-focus=true' +
           '&__dangerous-disable-submissions=true' +
           '&typeform-embed-auto-resize=true' +
           '&utm_foo=utm+foo+value&foobar=foobar%26value' +

@@ -12,16 +12,11 @@ import {
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
+import { EmbedPopup } from '../../base'
 
 import { SliderOptions } from './slider-options'
 
-export type Slider = {
-  open: () => void
-  close: () => void
-  toggle: () => void
-  refresh: () => void
-  unmount: () => void
-}
+export type Slider = EmbedPopup
 
 const buildSlider = (position: 'right' | 'left') => {
   const slider = document.createElement('div')
@@ -59,12 +54,13 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
       close: () => {},
       toggle: () => {},
       refresh: () => {},
+      focus: () => {},
       unmount: () => {},
     }
   }
 
   const { position = SLIDER_POSITION, width = SLIDER_WIDTH, onClose, ...options } = userOptions
-  const { iframe, embedId, refresh } = createIframe(formId, 'slider', options)
+  const { iframe, embedId, refresh, focus } = createIframe(formId, 'slider', options)
   const scrollInitialState = document.body.style.overflow
   let openHandler: RemoveHandler
 
@@ -150,6 +146,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
     close,
     toggle,
     refresh,
+    focus,
     unmount,
   }
 }

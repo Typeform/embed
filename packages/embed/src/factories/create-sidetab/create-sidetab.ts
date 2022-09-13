@@ -11,16 +11,11 @@ import {
   makeAutoResize,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
+import { EmbedPopup } from '../../base'
 
 import { SidetabOptions } from './sidetab-options'
 
-export type Sidetab = {
-  open: () => void
-  close: () => void
-  toggle: () => void
-  refresh: () => void
-  unmount: () => void
-}
+export type Sidetab = EmbedPopup
 
 const defaultOptions = {
   buttonColor: '#3a7685',
@@ -103,7 +98,7 @@ const replaceElementChild = (childToReplace: HTMLElement, newChild: HTMLElement)
 
 export const createSidetab = (formId: string, userOptions: SidetabOptions = {}): Sidetab => {
   const options = { ...defaultOptions, ...userOptions }
-  const { iframe, embedId, refresh } = createIframe(formId, 'side-tab', options)
+  const { iframe, embedId, refresh, focus } = createIframe(formId, 'side-tab', options)
   const sidetab = buildSidetab(options.width, options.height)
   const wrapper = buildWrapper()
   const spinner = buildSpinner()
@@ -191,6 +186,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
     close,
     toggle,
     refresh,
+    focus,
     unmount,
   }
 }

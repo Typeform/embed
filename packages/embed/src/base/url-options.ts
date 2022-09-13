@@ -55,12 +55,6 @@ export type UrlOptions = {
    */
   shareGaInstance?: string | boolean
   /**
-   * Disables form auto focusing.
-   *
-   * @type {boolean}
-   */
-  disableAutoFocus?: boolean
-  /**
    * Enable sandbox mode for the form.
    * Allow testing without adding an entry to results or affecting metrics.
    *
