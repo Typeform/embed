@@ -71,7 +71,11 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
 
   const refresh = () => refreshIframe(iframe)
 
-  return { iframe, embedId, refresh }
+  const focus = () => {
+    iframe.contentWindow?.postMessage('embed-focus', '*')
+  }
+
+  return { iframe, embedId, refresh, focus }
 }
 
 type CreateIframeOptions = UrlOptions & ActionableOptions & IframeOptions

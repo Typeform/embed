@@ -23,4 +23,10 @@ export type WidgetOptions = BaseOptions &
      * @type {boolean}
      */
     lazy?: boolean
+    /**
+     * Enabled form auto focus.
+     *
+     * @type {boolean}
+     */
+    autoFocus?: boolean
   }

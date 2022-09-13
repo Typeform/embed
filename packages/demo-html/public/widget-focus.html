@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Static HTML Demo</title>
+    <style>
+      #widget-wrapper {
+        width: 100%;
+        max-width: 600px;
+        height: 400px;
+        margin: 0 auto;
+      }
+      #popup-focus {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 99999;
+      }
+      p {
+        text-align: center;
+      }
+    </style>
+    <link rel="stylesheet" href="./lib/css/widget.css" />
+    <link rel="stylesheet" href="./lib/css/popup.css" />
+  </head>
+  <body>
+    <h1>Auto focus and manual <code>focus()</code></h1>
+    <p>You can <button id="popup-button">open popup</button> and then use the button in top left to focus the typeform (once it looses focus).</p>
+    <button id="popup-focus">popup focus</button>
+
+    <div id="widget-wrapper"></div>
+    <p>You can <button id="widget-focus">focus the widget above</button> (once it looses focus).</p>
+
+    <script src="./lib/embed-next.js"></script>
+    <script>
+      const widget = window.tf.createWidget('Cqrg7cgL', {
+        container: document.getElementById('widget-wrapper'),
+        autoFocus: true,
+      })
+      document.getElementById('widget-focus').onclick = () => {
+        widget.focus()
+      }
+
+      const popup = window.tf.createPopup('Cqrg7cgL')
+      document.getElementById('popup-button').onclick = () => {
+        popup.toggle()
+      }
+      document.getElementById('popup-focus').onclick = () => {
+        popup.focus()
+      }
+    </script>
+  </body>
+</html>

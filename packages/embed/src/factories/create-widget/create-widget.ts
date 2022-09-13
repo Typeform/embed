@@ -9,17 +9,16 @@ import {
 } from '../../utils'
 import {
   getFormHeightChangedHandler,
+  getFormReadyHandler,
   getFormThemeHandler,
   getWelcomeScreenHiddenHandler,
 } from '../../utils/create-iframe/get-form-event-handler'
+import { EmbedWidget } from '../../base'
 
 import { WidgetOptions } from './widget-options'
 import { buildWidget } from './elements'
 
-export type Widget = {
-  refresh: () => void
-  unmount: () => void
-}
+export type Widget = EmbedWidget
 
 const buildCloseButton = () => {
   const closeButton = document.createElement('a')
@@ -32,6 +31,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
   if (!hasDom()) {
     return {
       refresh: () => {},
+      focus: () => {},
       unmount: () => {},
     }
   }
@@ -43,7 +43,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     widgetOptions.forceTouch = true
   }
 
-  const { embedId, iframe, refresh } = createIframe(formId, 'widget', widgetOptions)
+  const { embedId, iframe, refresh, focus } = createIframe(formId, 'widget', widgetOptions)
   const widget = buildWidget(iframe, options.width, options.height)
 
   if (widgetOptions.autoResize) {
@@ -60,6 +60,17 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
           containerHeight = Math.min(containerHeight, maxHeight)
         }
         options.container.style.height = `${containerHeight}px`
+      })
+    )
+  }
+
+  if (widgetOptions.autoFocus) {
+    window.addEventListener(
+      'message',
+      getFormReadyHandler(embedId, () => {
+        setTimeout(() => {
+          focus()
+        }, 1000)
       })
     )
   }
@@ -122,6 +133,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
 
   return {
     refresh,
+    focus,
     unmount: () => unmountElement(widget),
   }
 }

@@ -11,17 +11,12 @@ import {
   makeAutoResize,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
+import { EmbedPopup } from '../../base'
 
 import { PopoverOptions } from './popover-options'
 import { buildNotificationDot, canBuildNotificationDot, saveNotificationDotHideUntilTime } from './notification-days'
 
-export type Popover = {
-  open: () => void
-  close: () => void
-  toggle: () => void
-  refresh: () => void
-  unmount: () => void
-}
+export type Popover = EmbedPopup
 
 const replaceIcon = (iconToReplace: HTMLElement, newIcon: HTMLElement) => {
   const element = iconToReplace.parentNode
@@ -120,7 +115,7 @@ const defaultOptions = {
 
 export const createPopover = (formId: string, userOptions: PopoverOptions = {}): Popover => {
   const options = { ...defaultOptions, ...userOptions }
-  const { iframe, embedId, refresh } = createIframe(formId, 'popover', options)
+  const { iframe, embedId, refresh, focus } = createIframe(formId, 'popover', options)
 
   let openHandler: RemoveHandler
 
@@ -254,6 +249,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     close,
     toggle,
     refresh,
+    focus,
     unmount,
   }
 }

@@ -36,7 +36,7 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     forceTouch: 'boolean',
     enableFullscreen: 'boolean',
     inlineOnMobile: 'boolean',
-    disableAutoFocus: 'boolean',
+    autoFocus: 'boolean',
     tracking: 'record',
     redirectTarget: 'string',
     iframeProps: 'record',

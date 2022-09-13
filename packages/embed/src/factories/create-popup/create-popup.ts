@@ -11,16 +11,11 @@ import {
 import type { RemoveHandler } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
 import { isInPage, isOpen, makeAutoResize } from '../../utils'
+import { EmbedPopup } from '../../base'
 
 import { PopupOptions } from './popup-options'
 
-export type Popup = {
-  open: () => void
-  close: () => void
-  toggle: () => void
-  refresh: () => void
-  unmount: () => void
-}
+export type Popup = EmbedPopup
 
 const buildPopup = () => {
   const popup = document.createElement('div')
@@ -66,13 +61,14 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
       close: () => {},
       toggle: () => {},
       refresh: () => {},
+      focus: () => {},
       unmount: () => {},
     }
   }
 
   const { width, height, size = POPUP_SIZE, onClose, ...options } = userOptions
 
-  const { iframe, embedId, refresh } = createIframe(formId, 'popup', options)
+  const { iframe, embedId, refresh, focus } = createIframe(formId, 'popup', options)
   const scrollInitialState = document.body.style.overflow
   let openHandler: RemoveHandler
 
@@ -153,6 +149,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
     close,
     toggle,
     refresh,
+    focus,
     unmount,
   }
 }
