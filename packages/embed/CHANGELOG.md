@@ -1,3 +1,10 @@
+# [@typeform/embed-v1.38.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.37.1...@typeform/embed-v1.38.0) (2022-09-16)
+
+
+### Features
+
+* **DIST-1865:** Add option to enable auto focus ([ecdc1d5](https://github.com/Typeform/embed/commit/ecdc1d55eae254369839c3eda01ae70eb8ca79d1))
+
 # [@typeform/embed-v1.37.1](https://github.com/Typeform/embed/compare/@typeform/embed-v1.37.0...@typeform/embed-v1.37.1) (2022-09-12)
 
 
