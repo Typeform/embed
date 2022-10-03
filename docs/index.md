@@ -45,7 +45,3 @@ We support all modern browsers on most used platforms. You can [see list of supp
 **NOTE:** If you're not comfortable with front-end development, use the instructions in [this Help Center article](https://www.typeform.com/help/embed-a-typeform/) to embed with a code snippet instead.
 
 ---
-
-### Typeform Embed SDK for specific framework
-
-We are constantly trying to improve developer experience. Which framework would you like us to support next? [Vote for the next framework in this typeform.](https://survey.typeform.com/to/QrC0uX2f)

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $spinner-color: #fff !default;
 $spinner-background-color: #aaa !default;
 $spinner-stroke: 3px !default;
@@ -11,7 +13,7 @@ $spinner-sides: 1 !default;
   $diameter: $spinner-diameter,
   $sides: $spinner-sides
 ) {
-  $spinner-margin: $diameter / 2px * -1px;
+  $spinner-margin: math.div($diameter, 2px) * -1px;
   border: $stroke solid $background-color;
   font-size: $diameter;
   width: 1em;

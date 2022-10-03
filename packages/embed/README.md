@@ -6,6 +6,11 @@
 
 ### As NPM package
 
+Requirements:
+
+- node >= 14 (for node v12 use [v1.38.0](https://www.npmjs.com/package/@typeform/embed/v/1.38.0))
+- yarn or npm
+
 Install using your favourite package manager:
 
 ```shell
@@ -311,7 +316,7 @@ You can find examples for specific use-cases in our demos:
 
 Requirements:
 
-- node >= 12
+- node >= 14 (for node v12 use [v1.38.0](https://www.npmjs.com/package/@typeform/embed/v/1.38.0))
 - yarn
 
 Install dependencies:

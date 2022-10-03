@@ -4,6 +4,11 @@ Embed library for [React](https://reactjs.org/).
 
 ## Installation
 
+Requirements:
+
+- node >= 14 (for node v12 use [v1.21.0](https://www.npmjs.com/package/@typeform/embed-react/v/1.21.0))
+- yarn or npm
+
 Install as NPM package using your favourite package manager:
 
 ```shell
@@ -104,7 +109,7 @@ You can find examples for specific use-cases with React in our demos:
 
 Requirements:
 
-- node >= 12
+- node >= 14 (for node 12 use [v1.21.0](https://www.npmjs.com/package/@typeform/embed-react/v/1.21.0))
 - yarn
 
 Install dependencies:
