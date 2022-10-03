@@ -13,9 +13,12 @@ Support for other libraries coming later. [You can help us if you want 😉](#co
 
 ⚠️ **Important:** This library it is not compatible with the previous version of embed lib - [version 0](https://github.com/Typeform/embed/tree/master). If you need documentation for previous version [see old README here](https://github.com/Typeform/embed/tree/master#readme).
 
-### Typeform Embed SDK for specific framework
+## Requirements
 
-We are constantly trying to improve developer experience. Which framework would you like us to support next? [Vote for the next framework in this typeform.](https://survey.typeform.com/to/BLNXtGno)
+- node >= 14
+- yarn or npm
+
+**Node version support:** We aim to support all currently supported node versions (active or maintenance). Currently, we support and run tests in node versions 14, 16 and 18. Please refer to [node release schedule](https://github.com/nodejs/release#release-schedule) for specific dates on when specific node versions will be discontinued (end-of-life).
 
 # Demos
 
@@ -26,7 +29,7 @@ We have demo projects to show how the libraries work:
 - [React](./packages/demo-react)
 - [Next.js](./packages/demo-nextjs)
 
-## Contribution
+# Contribution
 
 Do you need a specific feature in embed library? Do you think others might benefit from it as well? Do you want to create embed library for another library? This is a section for you! We appreciate your help.
 

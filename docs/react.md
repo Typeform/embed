@@ -10,6 +10,11 @@ nav_order: 20
 
 ## Installation
 
+Requirements:
+
+- node >= 14 (for node v12 use [v1.21.0](https://www.npmjs.com/package/@typeform/embed-react/v/1.21.0))
+- yarn or npm
+
 Add the library to your project using your favourite package manager:
 
 ```shell
@@ -98,7 +103,7 @@ Pass options as props to the component.
 Learn more about [Vanilla Embed Library](/embed/vanilla). Since React Embed Library is just a React wrapper for Vanilla Embed Library, all concepts apply here as well.
 
 You can:
-- embed typeform [inline in page](/embed/inline) 
+- embed typeform [inline in page](/embed/inline)
 - open it [in modal window](/embed/modal)
 - see all available [configuration options](/embed/configuration)
 

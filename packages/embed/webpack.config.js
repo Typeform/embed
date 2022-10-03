@@ -1,6 +1,6 @@
 const path = require('path')
 
-const sass = require('node-sass')
+const sass = require('sass')
 const webpack = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin')
 
@@ -22,9 +22,8 @@ const baseConfig = {
           from: 'src/css/*.scss',
           to: 'css/[name].css',
           transform: (content, path) => {
-            const result = sass.renderSync({
-              file: path,
-              outputStyle: isProd ? 'compressed' : 'expanded',
+            const result = sass.compile(path, {
+              style: isProd ? 'compressed' : 'expanded',
             })
 
             return result.css.toString()
