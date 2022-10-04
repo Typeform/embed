@@ -1,3 +1,17 @@
+# [@typeform/embed-v2.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.38.0...@typeform/embed-v2.0.0) (2022-10-04)
+
+
+### Bug Fixes
+
+* **DIST-1614:** Add support for node 18, break node 12 support ([7b1e540](https://github.com/Typeform/embed/commit/7b1e540477d275852b37cf0cba3591a5d8061bd6))
+
+
+### BREAKING CHANGES
+
+* **DIST-1614:** Node 12 is no longer supported by OpenJS Foundation.
+We will no longer support it in embed libs as well. Node 18 moves to Active LTS on 2022-10-25.
+https://github.com/nodejs/release#release-schedule
+
 # [@typeform/embed-v1.38.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.37.1...@typeform/embed-v1.38.0) (2022-09-16)
 
 
