@@ -1,3 +1,22 @@
+# [@typeform/embed-react-v2.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.21.0...@typeform/embed-react-v2.0.0) (2022-10-04)
+
+
+### Bug Fixes
+
+* **DIST-1614:** Add support for node 18, break node 12 support ([7b1e540](https://github.com/Typeform/embed/commit/7b1e540477d275852b37cf0cba3591a5d8061bd6))
+
+
+### Features
+
+* Bump @typeform/embed in @typeform/embed-react package [skip ci] ([1023299](https://github.com/Typeform/embed/commit/1023299a6dc7dde31ef17cf3cc2e8dfbd02746d3))
+
+
+### BREAKING CHANGES
+
+* **DIST-1614:** Node 12 is no longer supported by OpenJS Foundation.
+We will no longer support it in embed libs as well. Node 18 moves to Active LTS on 2022-10-25.
+https://github.com/nodejs/release#release-schedule
+
 # [@typeform/embed-react-v1.21.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v1.20.0...@typeform/embed-react-v1.21.0) (2022-09-16)
 
 
