@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.0.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.0.0...@typeform/embed-v2.0.1) (2022-10-10)
+
+
+### Bug Fixes
+
+* **DIST-1733:** Question and height changed types ([#525](https://github.com/Typeform/embed/issues/525)) ([e58cd98](https://github.com/Typeform/embed/commit/e58cd98e0086bd8c2fd6c602875472b8d52fbe94))
+
 # [@typeform/embed-v2.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-v1.38.0...@typeform/embed-v2.0.0) (2022-10-04)
 
 
