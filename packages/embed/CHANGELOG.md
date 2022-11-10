@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.1.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.0.1...@typeform/embed-v2.1.0) (2022-11-10)
+
+
+### Features
+
+* **DIST-1562:** Common code to mixins ([#532](https://github.com/Typeform/embed/issues/532)) ([be3ff4d](https://github.com/Typeform/embed/commit/be3ff4de73ade71c3ab069bd3d186e3d9fa36f95))
+
 # [@typeform/embed-v2.0.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.0.0...@typeform/embed-v2.0.1) (2022-10-10)
 
 
