@@ -1,6 +1,6 @@
 @import 'mobile';
 
-@mixin close() {
+@mixin close($top: 6px, $right: 8px) {
   position: absolute;
   font-size: 32px;
   line-height: 24px;
@@ -12,6 +12,9 @@
   transition: opacity 0.25s ease-in-out;
   text-decoration: none;
   color: #000;
+  top: $top;
+  right: $right;
+
   &:hover {
     opacity: 1;
   }

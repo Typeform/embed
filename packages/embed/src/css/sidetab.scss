@@ -3,6 +3,7 @@
 @import 'includes/mobile';
 @import 'includes/close';
 @import 'includes/fullsize';
+@import 'includes/zindex';
 
 .tf-v1-sidetab {
   position: fixed;
@@ -12,16 +13,15 @@
   height: 580px;
   transform: translate(100%, -50%);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
-  z-index: 10001;
+  @include zIndex;
   will-change: transform;
 
   &.ready {
-    transition: transform 250ms ease-in-out;
+    transition: transform 400ms cubic-bezier(0.5, 0, 0.75, 0);
   }
 
   iframe {
-    @include iframe;
-    border-radius: 8px 0 0 8px;
+    @include iframe(border-radius, 8px 0 0 8px);
   }
 
   &.open {
@@ -110,10 +110,8 @@
     }
 
     &-close {
-      @include close();
+      @include close;
       display: block;
-      top: 6px;
-      right: 8px;
       z-index: 1;
     }
   }
