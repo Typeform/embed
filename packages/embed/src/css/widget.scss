@@ -1,6 +1,7 @@
 @import 'includes/close';
 @import 'includes/iframe';
 @import 'includes/fullsize';
+@import 'includes/zindex';
 
 .tf-v1-widget {
   width: 100%;
@@ -8,8 +9,7 @@
   position: relative;
 
   iframe {
-    @include iframe;
-    border-radius: 8px;
+    @include iframe(border-radius, 8px);
   }
 }
 
@@ -18,8 +18,7 @@
 }
 
 .tf-v1-widget-iframe-overlay {
-  @include iframe;
-  border-radius: 8px;
+  @include iframe(border-radius, 8px);
   position: absolute;
   top: 0;
   left: 0;
@@ -31,16 +30,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10001;
+  @include zIndex;
 
   @include fullsize;
 
   .tf-v1-widget-close {
     display: block;
-    @include close();
-
-    top: 4px;
-    right: 6px;
+    @include close;
     z-index: 1;
   }
 

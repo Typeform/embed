@@ -3,6 +3,7 @@
 @import 'includes/iframe';
 @import 'includes/mobile';
 @import 'includes/fullsize';
+@import 'includes/zindex';
 
 @mixin closingAnimation {
   transition: opacity 0.25s ease-in-out;
@@ -13,7 +14,7 @@
   bottom: 96px;
   position: fixed;
   right: 16px;
-  z-index: 10001;
+  @include zIndex;
 
   &.open {
     max-width: 100%;
@@ -34,8 +35,7 @@
     box-shadow: rgba(0, 0, 0, 0.08) 0 2px 4px, rgba(0, 0, 0, 0.06) 0 2px 12px;
 
     iframe {
-      @include iframe;
-      border-radius: 8px;
+      @include iframe(border-radius, 8px);
     }
   }
 
@@ -185,9 +185,7 @@
     }
 
     &-close {
-      @include close();
-      top: 0.5rem;
-      right: 0.5rem;
+      @include close;
       z-index: 1;
       opacity: 0;
     }

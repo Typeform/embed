@@ -3,16 +3,10 @@
 @import 'includes/iframe';
 @import 'includes/mobile';
 @import 'includes/fullsize';
+@import 'includes/backdrop';
 
 .tf-v1-slider {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.75);
-  transition: opacity 0.25s ease-in-out;
-  z-index: 10001;
+  @include backdrop;
 
   .tf-v1-iframe-wrapper {
     height: 100%;
@@ -34,7 +28,7 @@
 
     @include desktop {
       top: 4px;
-      left: -24px;
+      left: -26px;
     }
 
     &:hover {
@@ -43,7 +37,7 @@
   }
 
   .tf-v1-spinner {
-    @include spinner();
+    @include spinner;
   }
 
   &.left {
@@ -75,9 +69,7 @@
     }
 
     .tf-v1-close {
-      @include close();
-      top: 6px;
-      right: 8px;
+      @include close;
       left: auto;
     }
   }
