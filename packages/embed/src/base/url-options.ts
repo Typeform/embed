@@ -95,4 +95,9 @@ export type UrlOptions = {
    * @type {boolean}
    */
   hubspot?: boolean
+
+  /**
+   * Disable navigation between questions via scrolling and swiping
+   */
+  disableScroll?: boolean
 }
