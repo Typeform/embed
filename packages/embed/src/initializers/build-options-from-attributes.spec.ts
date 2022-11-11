@@ -26,6 +26,7 @@ describe('build-options-from-attributes', () => {
         data-tf-redirect-target="_blank"
         data-tf-lazy
         data-tf-keep-session
+        data-tf-disable-scroll
       ></div>`
 
     it('should load correct options', () => {
@@ -66,6 +67,7 @@ describe('build-options-from-attributes', () => {
         redirectTarget: '_blank',
         lazy: true,
         keepSession: true,
+        disableScroll: true,
       })
     })
   })

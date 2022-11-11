@@ -45,6 +45,7 @@ const mapOptionsToQueryParams = (
     tracking,
     redirectTarget,
     autoResize,
+    disableScroll,
   } = options
   const transitiveParams = getTransitiveSearchParams(transitiveSearchParams)
   const params = {
@@ -63,6 +64,7 @@ const mapOptionsToQueryParams = (
     'add-placeholder-ws': type === 'widget' && enableFullscreen ? 'true' : undefined,
     'typeform-embed-redirect-target': redirectTarget,
     'typeform-embed-auto-resize': autoResize ? 'true' : undefined,
+    'typeform-embed-disable-scroll': disableScroll ? 'true' : undefined,
   }
   return { ...params, ...transitiveParams, ...tracking }
 }

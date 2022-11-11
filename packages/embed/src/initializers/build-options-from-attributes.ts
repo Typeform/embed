@@ -43,5 +43,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     lazy: 'boolean',
     keepSession: 'boolean',
     hubspot: 'boolean',
+    disableScroll: 'boolean',
   })
 }
