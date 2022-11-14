@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.2.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.1.0...@typeform/embed-v2.2.0) (2022-11-14)
+
+
+### Features
+
+* **DIST-1981:** Add option to disable navigation between questions via scrolling and swiping ([c85e129](https://github.com/Typeform/embed/commit/c85e1294e1cd571a5516747a361637c68a24bb00))
+
 # [@typeform/embed-v2.1.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.0.1...@typeform/embed-v2.1.0) (2022-11-10)
 
 
