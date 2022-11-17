@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.3.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.2.0...@typeform/embed-v2.3.0) (2022-11-17)
+
+
+### Features
+
+* **DIST-1752:** Updated demos on readme ([#534](https://github.com/Typeform/embed/issues/534)) ([385eef2](https://github.com/Typeform/embed/commit/385eef2b472d3036649973f0c7430e435eeb9fb7))
+
 # [@typeform/embed-v2.2.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.1.0...@typeform/embed-v2.2.0) (2022-11-14)
 
 
