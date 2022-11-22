@@ -1,4 +1,4 @@
-import { BaseOptions, EmbedType, SizeableOptions, UrlOptions } from '../base'
+import { ActionableOptions, BaseOptions, EmbedType, SizeableOptions, UrlOptions } from '../base'
 import { FORM_BASE_URL } from '../constants'
 
 import { removeUndefinedKeys } from './remove-undefined-keys'
@@ -27,7 +27,7 @@ const typesToEmbed: Record<EmbedType, string> = {
 const mapOptionsToQueryParams = (
   type: EmbedType,
   embedId: string,
-  options: UrlOptions & SizeableOptions
+  options: UrlOptions & SizeableOptions & ActionableOptions
 ): Record<string, any> => {
   const {
     transitiveSearchParams,
@@ -46,6 +46,7 @@ const mapOptionsToQueryParams = (
     redirectTarget,
     autoResize,
     disableScroll,
+    onEndingButtonClick,
   } = options
   const transitiveParams = getTransitiveSearchParams(transitiveSearchParams)
   const params = {
@@ -65,6 +66,7 @@ const mapOptionsToQueryParams = (
     'typeform-embed-redirect-target': redirectTarget,
     'typeform-embed-auto-resize': autoResize ? 'true' : undefined,
     'typeform-embed-disable-scroll': disableScroll ? 'true' : undefined,
+    'typeform-embed-handle-ending-button-click': !!onEndingButtonClick ? 'true' : undefined,
   }
   return { ...params, ...transitiveParams, ...tracking }
 }
