@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.3.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.3.0...@typeform/embed-v2.3.1) (2022-11-28)
+
+
+### Bug Fixes
+
+* **DIST-1988:** Pass query param indicating there is embed callback for ending button click ([99c7a57](https://github.com/Typeform/embed/commit/99c7a571207e49acd9bdecddd057452cfdac9e11))
+
 # [@typeform/embed-v2.3.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.2.0...@typeform/embed-v2.3.0) (2022-11-17)
 
 
