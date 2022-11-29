@@ -50,17 +50,18 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install
       - run: yarn build
+      - run: yarn post-release
       # Update registry and tokens with write access for releasing.
-      - run: rm ./.npmrc
-      - run: npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
-      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
-      - run: npm config set @typeform:registry https://npm.pkg.github.com/ # install jarvis from github
-      - run: yarn add  @typeform/jarvis
-      - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json (the file is committed by semantic-release to bump version)
-      - run: npm config set @typeform:registry https://registry.npmjs.org/ # release embed lib to npm
-      - run: yarn semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      #- run: rm ./.npmrc
+      #- run: npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
+      #- run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+      #- run: npm config set @typeform:registry https://npm.pkg.github.com/ # install jarvis from github
+      #- run: yarn add  @typeform/jarvis
+      #- run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json (the file is committed by semantic-release to bump version)
+      #- run: npm config set @typeform:registry https://registry.npmjs.org/ # release embed lib to npm
+      #- run: yarn semantic-release
+      #env:
+      #    GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - uses: ravsamhq/notify-slack-action@v1
         if: always()
         with:
