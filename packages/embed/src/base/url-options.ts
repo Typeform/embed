@@ -22,7 +22,7 @@ export type UrlOptions = {
    *
    * @type {string[]}
    */
-  transitiveSearchParams?: string[]
+  transitiveSearchParams?: string[] | boolean
   /**
    * Hide typeform footer, that appears showing the progress bar and the navigation buttons.
    *

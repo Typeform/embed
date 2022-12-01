@@ -18,7 +18,7 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     autoResize: 'stringOrBoolean',
     onClose: 'function',
     onEndingButtonClick: 'function',
-    transitiveSearchParams: 'array',
+    transitiveSearchParams: 'arrayOrBoolean',
     hidden: 'record',
     chat: 'boolean',
     buttonColor: 'string',

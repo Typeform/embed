@@ -26,4 +26,16 @@ describe('transferUrlParametersToQueryStrings', () => {
       bar: 'rachel',
     })
   })
+
+  it('transfer ALL the parameters of the URL in the query strings', () => {
+    const queryStringWithTransferedUrlParameters = getTransitiveSearchParams(true)
+    expect(queryStringWithTransferedUrlParameters).toEqual({
+      foo: 'jason',
+      bar: 'rachel',
+      utm_medium: 'cpc',
+      utm_campaign: 'camp2008',
+      utm_source: 'instagram',
+      'embed-hide-footer': 'false',
+    })
+  })
 })

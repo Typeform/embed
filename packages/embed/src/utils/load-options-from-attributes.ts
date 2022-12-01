@@ -19,6 +19,7 @@ export type Transformation =
   | 'record'
   | 'integerOrBoolean'
   | 'stringOrBoolean'
+  | 'arrayOrBoolean'
 
 const transformString = (value: string | null): string | undefined => {
   return value || undefined
@@ -89,6 +90,8 @@ export const transformAttributeValue = (value: string | null, transformation: Tr
       return transformInteger(value) ?? transformBoolean(value)
     case 'stringOrBoolean':
       return transformString(value) ?? transformBoolean(value)
+    case 'arrayOrBoolean':
+      return transformArray(value) ?? transformBoolean(value)
     default:
       throw new Error(`Invalid attribute transformation ${transformation}`)
   }
