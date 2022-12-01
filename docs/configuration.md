@@ -148,3 +148,13 @@ You can supply a target for typeform redirect (on submit or via ending). It work
 - `_blank` opens in new tab, however it might be blocked by popup blockers.
 
 **⚠️ Warning:** Target `_blank` is not working in Safari (both desktop and mobile) and triggers a popup warning in Chrome on Android. It works in Chrome and Firefox on desktop.
+
+### Chaining typeforms
+
+You can chain multiple typeforms inside an embed. You need to [setup a redirect to another typeform](https://www.typeform.com/help/a/redirect-to-url-or-redirect-with-end-screens-360060589532/):
+
+- make sure to use URL with `typeform.com` domain in case you have a custom domain set up
+- set `redirectTarget` / `data-tf-redirect-target` to `_self` to make the redirect inside the embed iframe
+
+When you chain multiple typeforms they will be all displayed inside the embed and all embed options and callbacks will be preserved.
+You can use `formId` in the callback payload to identify which form is currently displayed.

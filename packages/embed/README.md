@@ -148,7 +148,7 @@ Closing and opening a typeform in modal window will restart the progress from th
 | [onClose](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)                           | function           | fires when the form is closed (when opened in modal window)                                                                                                                                                                                                                                            | `undefined`                                                   |
 | [onQuestionChanged](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)                 | function           | fires when user navigates between form questions                                                                                                                                                                                                                                                       | `undefined`                                                   |
 | [onHeightChanged](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)                   | function           | fires when form question height changes (eg. on navigation between questions or on error message)                                                                                                                                                                                                      | `undefined`                                                   |
-| [onEndingButtonClick](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)               | function           | fires when button on ending screen is clicked                                                                                                                                                                                                                                                          | `undefined`                                                   |
+| [onEndingButtonClick](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)               | function           | fires when button on ending screen is clicked, disables button redirect functionality                                                                                                                                                                                                                  | `undefined`                                                   |
 | [autoResize](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/widget-autoresize)                | string / boolean   | resize form to always fit the displayed question height, avoid scrollbars in the form (inline widget only), set min and max height separated by coma, eg. `"200,600"`                                                                                                                                  | `false`                                                       |
 | [shareGaInstance](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/widget-inline)               | string / boolean   | shares Google Analytics instance of the host page with embedded typeform, you can provide your Google Analytics ID to specify which instance to share (if you have more than one in your page)                                                                                                         | `false`                                                       |
 | [inlineOnMobile](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/widget-inline)                | boolean            | removes placeholder welcome screen in mobile and makes form show inline instead of fullscreen                                                                                                                                                                                                          | `false`                                                       |
@@ -209,44 +209,56 @@ createPopup('<form-id>', { container, shareGaInstance: 'UA-XXXXXX-XX' })
 You can listen to form events by providing callback methods:
 
 ```html
-<div id="wrapper"></div>
+<button id="btn">click</button>
 <script src="//embed.typeform.com/next/embed.js"></script>
 <link rel="stylesheet" href="//embed.typeform.com/next/css/widget.css" />
 <script>
-  window.tf.createWidget('<form-id>', {
-    container: document.getElementById('wrapper'),
-    onReady: () => {
-      console.log('form ready')
+  const { open } = window.tf.createPopup('<form-id>', {
+    onReady: ({ formId }) => {
+      console.log(`Form ${formId} is ready`)
     },
-    onQuestionChanged: (data) => {
-      console.log('question changed to ref:', data.ref)
+    onQuestionChanged: ({ formId, ref }) => {
+      console.log(`Question in form ${formId} changed to ${ref}`)
     },
-    onHeightChanged: (data) => {
-      console.log(`height of question ${data.ref} changed to ${data.height}px`)
+    onHeightChanged: ({ formId, ref, height }) => {
+      console.log(`Question ${ref} in form ${formId} has height ${height}px now`)
     },
-    onSubmit: (data) => {
-      console.log('forms submitted with id:', data.responseId)
-      // to retrieve the response use `data.responseId` (you have to do it server-side)
+    onSubmit: ({ formId, responseId }) => {
+      console.log(`Form ${formId} submitted, response id: ${responseId}`)
+      // to retrieve the response use `responseId` (you have to do it server-side)
       // more details: https://developer.typeform.com/responses/
     },
+    onClose: ({ formId }) => {
+      console.log(`Modal window with form ${formId} was closed`)
+    }
+    onEndingButtonClick: ({ formId }) => {
+      console.log(`Ending button clicked in form ${formId}`)
+    }
   })
+  document.querySelector('#btn').click = () => {
+    open()
+  }
 </script>
 ```
 
-Callback method receive payload object from the form:
+Callback method receive payload object from the form. Each payload contains form ID to identify which form sent the event (see chaining typeforms below):
 
 - onReady
-  - empty object
+  - `formId` (string)
 - onQuestionChanged
+  - `formId` (string)
   - `ref` (string) identifies currently displayed question
 - onHeightChanged
+  - `formId` (string)
   - `ref` (string) identifies currently displayed question
   - `height` (number) current height of currently displayed question
 - onSubmit
+  - `formId` (string)
   - `responseId` (string) identifies the response, can be retrieved via [Responses API](https://developer.typeform.com/responses/)
-  - `response_id` (string) same as above (for backward compatibility with old embed SDK)
 - onClose
   - no payload
+- onEndingButtonClick
+  - `formId` (string)
 
 See [callbacks example in demo package](../../packages/demo-html/public/callbacks.html).
 
@@ -282,6 +294,16 @@ This is related to all embeds:
 - sidetab
 - popover
 - widget - on mobile devices widget opens in fullscreen modal window (unless `inlineOnMobile` is set)
+
+### Chaining typeforms
+
+You can chain multiple typeforms inside an embed. You need to [setup a redirect to another typeform](https://www.typeform.com/help/a/redirect-to-url-or-redirect-with-end-screens-360060589532/):
+
+- make sure to use URL with `typeform.com` domain in case you have a custom domain set up
+- set `redirectTarget` / `data-tf-redirect-target` to `_self` to make the redirect inside the embed iframe
+
+When you chain multiple typeforms they will be all displayed inside the embed and all embed options and callbacks will be preserved.
+You can use `formId` in the callback payload to identify which form is currently displayed.
 
 ### Loading and reloading embedded forms
 

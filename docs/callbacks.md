@@ -6,15 +6,19 @@ nav_order: 15
 
 # Callback functions
 
-You can listen to varios events as the respondent is filling out the typeform on your page.
+You can listen to various events as the respondent is filling out the typeform on your page.
 
-There are 3 available callbacks:
+Available callbacks:
 
 - **onReady** fires when the form is loaded
 - **onSubmit** fires when user submits the form
 - **onClose** fires when user closes the modal window
 - **onQuestionChanged** fires when user navigates between form questions
 - **onHeightChanged** fires when height of currently displayed question changes
+- **onEndingButtonClick** fires when user clicks on the button on your typeform ending screen (it also disables the redirect functionality)
+
+Each callback receives a payload object with `formId` to identify the typeform that sent the event.
+Depending on the callback there might be more data in the payload - see examples below.
 
 ## onReady
 
@@ -27,8 +31,8 @@ import { createWidget } from '@typeform/embed'
 import '@typeform/embed/build/css/widget.css'
 
 createWidget('<form-id>', {
-  onReady: () => {
-    console.log('Form is ready!')
+  onReady: ({ formId }) => {
+    console.log(`Form ${formId} is ready`)
   },
 })
 ```
@@ -40,8 +44,8 @@ Or in HTML:
 <script src="//embed.typeform.com/next/embed.js"></script>
 <script>
   // this function needs to be available on global scope (window)
-  function ready() {
-    alert('Form is ready!')
+  function ready({ formId }) {
+    console.log(`Form ${formId} is ready`)
   }
 </script>
 ```
@@ -59,8 +63,8 @@ import { createPopup } from '@typeform/embed'
 import '@typeform/embed/build/css/popup.css'
 
 createPopup('<form-id>', {
-  onSubmit: (event) => {
-    console.log(event.response_id)
+  onSubmit: ({ formId, responseId }) => {
+    console.log(`Form ${formId} submitted, response id: ${responseId}`)
   },
 })
 ```
@@ -72,8 +76,8 @@ Or in HTML:
 <script src="//embed.typeform.com/next/embed.js"></script>
 <script>
   // this function needs to be available on global scope (window)
-  function submit(event) {
-    console.log(event.response_id)
+  function submit({ formId, responseId }) {
+    console.log(`Form ${formId} submitted, response id: ${responseId}`)
   }
 </script>
 ```
@@ -91,8 +95,8 @@ import { createPopup } from '@typeform/embed'
 import '@typeform/embed/build/css/popup.css'
 
 createPopup('<form-id>', {
-  onClose: () => {
-    console.log('Modal window closed')
+  onClose: ({ formId }) => {
+    console.log(`Modal window with form ${formId} was closed`)
   },
 })
 ```
@@ -104,8 +108,8 @@ Or in HTML:
 <script src="//embed.typeform.com/next/embed.js"></script>
 <script>
   // this function needs to be available on global scope (window)
-  function close(event) {
-    console.log(event.response_id)
+  function close({ formId }) {
+    console.log(`Modal window with form ${formId} was closed`)
   }
 </script>
 ```
@@ -125,8 +129,8 @@ import { createSlider } from '@typeform/embed'
 import '@typeform/embed/build/css/slider.css'
 
 createSlider('<form-id>', {
-  onQuestionChanged: ({ ref }) => {
-    console.log('Question changed to:', ref)
+  onQuestionChanged: ({ formId, ref }) => {
+    console.log(`Question in form ${formId} changed to ${ref}`)
   },
 })
 ```
@@ -138,8 +142,8 @@ Or in HTML:
 <script src="//embed.typeform.com/next/embed.js"></script>
 <script>
   // this function needs to be available on global scope (window)
-  function changed({ ref }) {
-    console.log('Question changed to:', ref)
+  function changed({ formId, ref }) {
+    console.log(`Question in form ${formId} changed to ${ref}`)
   }
 </script>
 ```
@@ -157,8 +161,8 @@ import { createSlider } from '@typeform/embed'
 import '@typeform/embed/build/css/slider.css'
 
 createSlider('<form-id>', {
-  onHeightChanged: ({ ref, height }) => {
-    console.log(`Question ${ref} now has height ${height}px`)
+  onHeightChanged: ({ formId, ref, height }) => {
+    console.log(`Question ${ref} in form ${formId} has height ${height}px now`)
   },
 })
 ```
@@ -170,13 +174,46 @@ Or in HTML:
 <script src="//embed.typeform.com/next/embed.js"></script>
 <script>
   // this function needs to be available on global scope (window)
-  function changed({ ref, height }) {
-    console.log(`Question ${ref} now has height ${height}px`)
+  function changed({ formId, ref, height }) {
+    console.log(`Question ${ref} in form ${formId} has height ${height}px now`)
   }
 </script>
 ```
 
 **Tip:** To automatically resize widget embed to fit typeform height, use `autoResize` option. You can specify minimum and maximum heights in pixels, eg. `data-tf-auto-resize="300,800"`.
+
+## onEndingButtonClick
+
+The `onEndingButtonClick` callback will execute whenever respondent clicks the button on ending screen in your typeform.
+You can add custom functionality here, such as hide the form, navigate to another page or execute any other custom code.
+
+When you add this callback to your embed, it will disable redirect functionality of the ending screen button.
+
+In JavaScript:
+
+```javascript
+import { createSlider } from '@typeform/embed'
+import '@typeform/embed/build/css/slider.css'
+
+createSlider('<form-id>', {
+  onEndingButtonClick: ({ formId }) => {
+    console.log(`Ending button clicked in form ${formId}`)
+  },
+})
+```
+
+Or in HTML:
+
+```html
+<button data-tf-slider="<form-id>" data-tf-on-ending-button-click="clicked">open</button>
+<script src="//embed.typeform.com/next/embed.js"></script>
+<script>
+  // this function needs to be available on global scope (window)
+  function clicked({ formId }) {
+    console.log(`Ending button clicked in form ${formId}`)
+  }
+</script>
+```
 
 ## What's next?
 
