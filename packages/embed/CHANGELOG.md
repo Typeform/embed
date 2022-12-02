@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.4.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.3.1...@typeform/embed-v2.4.0) (2022-12-02)
+
+
+### Features
+
+* **DIST-1914:** Forward all transitive params ([#542](https://github.com/Typeform/embed/issues/542)) ([1c499d2](https://github.com/Typeform/embed/commit/1c499d27a3eab641a48d3751a20f4506e6bb7dcf))
+
 # [@typeform/embed-v2.3.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.3.0...@typeform/embed-v2.3.1) (2022-11-28)
 
 
