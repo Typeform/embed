@@ -1,14 +1,20 @@
-export const getTransitiveSearchParams = (transitiveSearchParams?: string[]) => {
+export const getTransitiveSearchParams = (transitiveSearchParams?: string[] | boolean) => {
   const url = new URL(window.location.href)
-  const queryParamsWithTransitiveParams = {}
 
-  if (transitiveSearchParams && transitiveSearchParams.length > 0) {
-    transitiveSearchParams.forEach((key: string) => {
-      if (url.searchParams.has(key)) {
-        queryParamsWithTransitiveParams[key] = url.searchParams.get(key)
-      }
-    })
+  if (typeof transitiveSearchParams === 'boolean' && transitiveSearchParams) {
+    return Object.fromEntries(url.searchParams.entries())
   }
 
-  return queryParamsWithTransitiveParams
+  if (Array.isArray(transitiveSearchParams) && transitiveSearchParams.length > 0) {
+    return transitiveSearchParams.reduce<Record<string, string>>((queryParamsMap, key) => {
+      if (url.searchParams.has(key)) {
+        const keyValue = url.searchParams.get(key) as string
+        return { ...queryParamsMap, [key]: keyValue }
+      }
+
+      return queryParamsMap
+    }, {})
+  }
+
+  return {}
 }
