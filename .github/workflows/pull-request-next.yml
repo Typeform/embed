@@ -4,15 +4,6 @@ on:
   pull_request:
     branches: [main]
 
-env:
-  EYES_API_KEY: ${{ secrets.EYES_API_KEY }}
-  APPLITOOLS_BATCH_ID: ${{ github.event.pull_request.head.sha }}
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
-  AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
-  PUBLIC_CDN_URL: 'https://embed.typeform.com'
-
 jobs:
   build-lint-test:
     runs-on: ubuntu-latest
@@ -102,4 +93,9 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - run: yarn build
+
       - run: yarn test:visual
+        env:
+          APPLITOOLS_BATCH_ID: ${{ github.event.pull_request.head.sha }}
+          EYES_API_KEY: ${{ secrets.EYES_API_KEY }}
+
