@@ -67,7 +67,7 @@ jobs:
 
       - run: yarn add -W @typeform/jarvis
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json because it is private (the file is committed by semantic-release to bump version)
 
