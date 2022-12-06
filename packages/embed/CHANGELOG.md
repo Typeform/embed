@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.4.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.4.0...@typeform/embed-v2.4.1) (2022-12-06)
+
+
+### Bug Fixes
+
+* **DIST-2000:** Update github release action ([470ebd0](https://github.com/Typeform/embed/commit/470ebd00e43519a79a05db4ed8f6aa613180654f))
+
 # [@typeform/embed-v2.4.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.3.1...@typeform/embed-v2.4.0) (2022-12-02)
 
 
