@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v2.7.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v2.6.0...@typeform/embed-react-v2.7.0) (2022-12-06)
+
+
+### Features
+
+* Bump @typeform/embed in @typeform/embed-react package [skip ci] ([0651e89](https://github.com/Typeform/embed/commit/0651e89ae91ff06789f22d8effa3e90ebb749878))
+
 # [@typeform/embed-react-v2.6.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v2.5.0...@typeform/embed-react-v2.6.0) (2022-12-02)
 
 
