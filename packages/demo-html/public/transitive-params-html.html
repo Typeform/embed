@@ -35,6 +35,15 @@
       data-tf-medium="demo-test"
       data-tf-transitive-search-params="foo,bar"
     ></div>
+
+    <!-- Hidden field values take priority over transitive params values -->
+    <div
+      id="wrapper3"
+      data-tf-widget="HLjqXS5W"
+      data-tf-medium="demo-test"
+      data-tf-transitive-search-params="foo,bar"
+      data-tf-hidden="foo=hiddenvalue"
+    ></div>
     <script src="./lib/embed-next.js"></script>
     <script>
       window.onload = () => {

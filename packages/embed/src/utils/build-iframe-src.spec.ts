@@ -1,5 +1,7 @@
 import { buildIframeSrc } from './build-iframe-src'
 
+Object.defineProperty(window.document, 'title', { value: 'page title' })
+
 describe('build-iframe-src', () => {
   describe('#buildIframeSrc', () => {
     it('should return iframe src', () => {
@@ -96,7 +98,7 @@ describe('build-iframe-src', () => {
           '&typeform-embed-handle-ending-button-click=true' +
           '&utm_foo=utm+foo+value&foobar=foobar%26value' +
           '#foo=foo+value&bar=%40bar%26value%3F' +
-          '&hubspot_page_name=&hubspot_page_url=http%3A%2F%2Flocalhost%2F'
+          '&hubspot_page_name=page+title&hubspot_page_url=http%3A%2F%2Flocalhost%2F'
       )
     })
 

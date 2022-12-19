@@ -100,8 +100,9 @@ export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
   if (options.hidden) {
     const tmpHashUrl = new URL(FORM_BASE_URL)
     Object.entries(options.hidden)
-      .filter(([, paramValue]) => isDefined(paramValue))
+      .filter(([, paramValue]) => isDefined(paramValue) && paramValue !== '')
       .forEach(([paramName, paramValue]) => {
+        url.searchParams.delete(paramName)
         tmpHashUrl.searchParams.set(paramName, paramValue)
       })
     const hiddenFields = tmpHashUrl.searchParams.toString()
