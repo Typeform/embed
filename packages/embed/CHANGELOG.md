@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.5.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.4.1...@typeform/embed-v2.5.0) (2022-12-19)
+
+
+### Features
+
+* **DIST-1914:** Hidden field value priority over transitive params ([#545](https://github.com/Typeform/embed/issues/545)) ([4bd73f6](https://github.com/Typeform/embed/commit/4bd73f631ce034c28b56ba72d5a49047390bfe4a))
+
 # [@typeform/embed-v2.4.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.4.0...@typeform/embed-v2.4.1) (2022-12-06)
 
 
