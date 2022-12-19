@@ -29,11 +29,11 @@ function testWidget(path: string, title: string) {
     })
 
     it('should pass hidden fields as hash', () => {
-      cy.get('.tf-v1-widget iframe').invoke('attr', 'src').should('contain', '#foo=foo+value&bar=bar+value')
+      cy.get('.tf-v1-widget iframe').invoke('attr', 'src').should('contain', '#foo=foo+value')
     })
 
     it('should pass params from options to the iframe', () => {
-      cy.get('.tf-v1-widget iframe').invoke('attr', 'src').should('contain', 'foo=foo&bar=bar')
+      cy.get('.tf-v1-widget iframe').invoke('attr', 'src').should('contain', 'bar=bar')
     })
 
     it('should not pass params not in the list to the iframe', () => {

@@ -6,9 +6,9 @@ export const getTransitiveSearchParams = (transitiveSearchParams?: string[] | bo
   }
 
   if (Array.isArray(transitiveSearchParams) && transitiveSearchParams.length > 0) {
-    return transitiveSearchParams.reduce<Record<string, string>>((queryParamsMap, key) => {
-      if (url.searchParams.has(key)) {
-        const keyValue = url.searchParams.get(key) as string
+    return transitiveSearchParams.reduce((queryParamsMap, key) => {
+      const keyValue = url.searchParams.get(key)
+      if (keyValue) {
         return { ...queryParamsMap, [key]: keyValue }
       }
 
