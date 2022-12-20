@@ -102,7 +102,10 @@ export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
     Object.entries(options.hidden)
       .filter(([, paramValue]) => isDefined(paramValue) && paramValue !== '')
       .forEach(([paramName, paramValue]) => {
-        url.searchParams.delete(paramName)
+        // if transitive params is true, make hidden field values take priority over transitive params
+        if (typeof options.transitiveSearchParams === 'boolean') {
+          url.searchParams.delete(paramName)
+        }
         tmpHashUrl.searchParams.set(paramName, paramValue)
       })
     const hiddenFields = tmpHashUrl.searchParams.toString()
