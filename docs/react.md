@@ -102,7 +102,7 @@ Pass options as props to the component.
 
 For some custom use cases it may be convenient to open the pop programmatically (without the button being clicked). 
 
-To do this, pass a ref to the PopupButton component and then use `ref.current.open()` to trigger the popover to open. 
+To do this, pass a ref to the PopupButton component and then use `ref.current.open()` to trigger the popup to open. 
 
 Example: 
 ```javascript
