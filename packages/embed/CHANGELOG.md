@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.5.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.5.0...@typeform/embed-v2.5.1) (2022-12-20)
+
+
+### Bug Fixes
+
+* **TYP-8115:** Hidden field value priority only on all transitive params ([#547](https://github.com/Typeform/embed/issues/547)) ([bd54653](https://github.com/Typeform/embed/commit/bd5465302097983a6a7252d68e9fa3d41c428fe5))
+
 # [@typeform/embed-v2.5.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.4.1...@typeform/embed-v2.5.0) (2022-12-19)
 
 
