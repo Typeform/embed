@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v2.10.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v2.9.0...@typeform/embed-react-v2.10.0) (2022-12-21)
+
+
+### Features
+
+* **DIST-2005:** @typeform/embed-react add the ability to pass custom ref to PopupButton ([#546](https://github.com/Typeform/embed/issues/546)) ([389d196](https://github.com/Typeform/embed/commit/389d196075c679e9f31b1c046ae9fa4ff1abdde5))
+
 # [@typeform/embed-react-v2.9.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v2.8.0...@typeform/embed-react-v2.9.0) (2022-12-20)
 
 
