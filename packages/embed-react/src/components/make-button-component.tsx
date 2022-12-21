@@ -18,6 +18,7 @@ type ButtonComponentBaseProps = {
   style?: CSSProperties
   className?: string
   children: ReactNode
+  ref?: MutableRefObject<GenericEmbed>
 }
 
 type ButtonComponentProps<T> = T & ButtonComponentBaseProps
@@ -26,12 +27,12 @@ type CreateFnProps<T> = Omit<ButtonComponentProps<T>, keyof ButtonComponentBaseP
 
 type CreateFn<T> = (id: string, props: CreateFnProps<T>) => GenericEmbed
 
-type GenericEmbed = {
+export type GenericEmbed = {
   unmount: () => void
   open: () => void
 }
 
-const emptyEmbed: GenericEmbed = {
+export const emptyEmbed: GenericEmbed = {
   unmount: () => {},
   open: () => {},
 }
@@ -44,15 +45,18 @@ function makeButtonComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
     style = {},
     className = '',
     buttonProps,
+    ref: refOverride,
     ...props
   }: ButtonComponentProps<T>) => {
-    const ref: MutableRefObject<GenericEmbed> = useRef(emptyEmbed)
+    const internalRef: MutableRefObject<GenericEmbed> = useRef(emptyEmbed)
+    const ref = refOverride || internalRef
+
     useEffect(() => {
       ref.current = createFn(id, props)
       return () => ref.current.unmount()
-    }, [id, props])
+    }, [id, props, ref])
 
-    const handleClick = useMemo(() => () => ref.current.open(), [])
+    const handleClick = useMemo(() => () => ref.current.open(), [ref])
 
     const triggerElement = React.createElement(as, {
       style,
