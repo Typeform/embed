@@ -13,7 +13,8 @@
     "test": "yarn lerna run test",
     "test:functional": "yarn lerna run test:functional",
     "test:visual": "yarn lerna run test:visual",
-    "release": "sh ./scripts/release.sh"
+    "release": "sh ./scripts/release.sh",
+    "release:preview": "yarn lerna run release:preview"
   },
   "workspaces": [
     "packages/*"
