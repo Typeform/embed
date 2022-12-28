@@ -29,6 +29,8 @@
     "build": "yarn webpack",
     "postbuild": "tsc -p tsconfig.json --emitDeclarationOnly --declaration --declarationDir types --skipLibCheck",
     "dev": "yarn build --watch",
+    "preview": "yarn concurrently 'yarn dev' 'yarn preview:serve'",
+    "preview:serve": "yarn http-server -p 9022 -c-1 ./build",
     "demo-nextjs": "cd ../demo-nextjs && yarn start",
     "demo-html": "cd ../demo-html && yarn start",
     "demo": "yarn concurrently 'yarn dev' 'yarn demo-nextjs'",
