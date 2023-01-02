@@ -45,7 +45,7 @@ const npmConfig = {
   devtool: isProd ? false : 'inline-source-map',
   output: {
     filename: 'index.js',
-    library: 'embed-next',
+    library: 'embed',
     libraryTarget: 'umd',
     path: path.resolve(__dirname, 'build'),
     globalObject: 'this',
@@ -56,7 +56,7 @@ const browserConfig = {
   ...baseConfig,
   entry: './src/browser.ts',
   output: {
-    filename: 'embed-next.js',
+    filename: 'embed.js',
     library: 'tf',
     libraryTarget: 'window',
     path: path.resolve(__dirname, 'build'),

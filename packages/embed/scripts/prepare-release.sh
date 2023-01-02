@@ -11,7 +11,7 @@ mkdir ./build-aws
 echo 'ls -la ./build'
 ls -la ./build
 
-cp ./build/embed-next.js ./build-aws/embed.js
+cp ./build/embed.js ./build-aws/embed.js
 cp -r ./build/css ./build-aws/
 
 echo 'ls -la ./build-aws'

@@ -57,7 +57,7 @@
       <input id="threshold" name="percent" type="number" value="30" step="10" min="10" />
       <button type="submit">Set</button>
     </form>
-    <script src="../lib/embed-next.js"></script>
+    <script src="../lib/embed.js"></script>
     <script>
       const percent = parseInt(new URL(window.location.href).searchParams.get('percent'), 10)
       if (percent) {

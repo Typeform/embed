@@ -40,7 +40,7 @@
       <button type="submit">Set</button>
     </form>
     <script>
-      // if we want to modify embed code snippets we need to do it before loading embed-next.js
+      // if we want to modify embed code snippets we need to do it before loading embed.js (below)
       const threshold = parseInt(new URL(window.location.href).searchParams.get('threshold'), 10)
       if (threshold) {
         document.getElementById('visual-threshold').style.height = threshold + 'px'
@@ -48,6 +48,6 @@
         document.getElementById('threshold').value = threshold
       }
     </script>
-    <script src="../lib/embed-next.js"></script>
+    <script src="../lib/embed.js"></script>
   </body>
 </html>
