@@ -49,7 +49,9 @@
     "release:github": "npm config set @typeform:registry https://npm.pkg.github.com/ && npm publish",
     "release:aws": "yarn release:aws:prepare && yarn release:aws:deploy",
     "release:aws:prepare": "sh ./scripts/prepare-release.sh",
-    "release:aws:deploy": "DEBUG=jarvis yarn run jarvis deploy --path ./build-aws --version next"
+    "release:aws:deploy": "DEBUG=jarvis yarn run jarvis deploy --path ./build-aws --version next",
+    "release:preview": "yarn release:aws:prepare && yarn release:preview:aws",
+    "release:preview:aws": "DEBUG=jarvis yarn run jarvis deploy --path ./build-aws --preview --notify-preview"
   },
   "files": [
     "build",
