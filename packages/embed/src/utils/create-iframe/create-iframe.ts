@@ -17,7 +17,7 @@ import { refreshIframe } from './refresh-iframe'
 
 type CreateIframeOptions = UrlOptions & ActionableOptions & IframeOptions
 
-export const createIframe = (formId: string, type: EmbedType, options: CreateIframeOptions) => {
+export const createIframe = async (formId: string, type: EmbedType, options: CreateIframeOptions) => {
   const embedId = generateEmbedId()
   const {
     iframeProps = {},
@@ -29,7 +29,7 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
     shareGaInstance,
   } = options
 
-  const src = buildIframeSrc({ formId, embedId, type, options })
+  const src = await buildIframeSrc({ formId, embedId, type, options })
 
   const iframe = document.createElement('iframe')
   iframe.src = src

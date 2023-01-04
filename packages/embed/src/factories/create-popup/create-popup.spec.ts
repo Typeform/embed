@@ -9,8 +9,8 @@ describe('create-popup', () => {
       const container = document.createElement('div')
       const containerAppendSpy = jest.spyOn(container, 'append')
 
-      beforeAll(() => {
-        popup = createPopup('url', { container, width: 200, height: 100 })
+      beforeAll(async () => {
+        popup = await createPopup('url', { container, width: 200, height: 100 })
         popup.open()
         jest.runAllTimers()
       })
@@ -45,14 +45,14 @@ describe('create-popup', () => {
       const container = document.createElement('div')
       const containerRemoveChildSpy = jest.spyOn(container, 'removeChild')
 
-      it('should not remove typeform popup from the container if it was not open', () => {
-        createPopup('url', { container }).close()
+      it('should not remove typeform popup from the container if it was not open', async () => {
+        ;(await createPopup('url', { container })).close()
         jest.runAllTimers()
         expect(containerRemoveChildSpy).toHaveBeenCalledTimes(0)
       })
 
-      it('should remove typeform popup from the container', () => {
-        const popup = createPopup('url', { container })
+      it('should remove typeform popup from the container', async () => {
+        const popup = await createPopup('url', { container })
         popup.open()
         jest.runAllTimers()
         popup.close()
@@ -60,9 +60,9 @@ describe('create-popup', () => {
         expect(containerRemoveChildSpy).toHaveBeenCalledTimes(1)
       })
 
-      it('should set back the initial scrollbar state', () => {
+      it('should set back the initial scrollbar state', async () => {
         const scrollInitialState = document.body.style.overflow
-        const popup = createPopup('url', { container })
+        const popup = await createPopup('url', { container })
         popup.open()
         jest.runAllTimers()
         popup.close()
@@ -70,9 +70,9 @@ describe('create-popup', () => {
         expect(document.body.style.overflow).toBe(scrollInitialState)
       })
 
-      it('should run onClose callback if provided', () => {
+      it('should run onClose callback if provided', async () => {
         const onClose = jest.fn()
-        const popup = createPopup('url', { container, onClose })
+        const popup = await createPopup('url', { container, onClose })
         popup.open()
         popup.close()
         expect(onClose).toHaveBeenCalledTimes(1)
@@ -84,14 +84,14 @@ describe('create-popup', () => {
       const containerAppendSpy = jest.spyOn(container, 'append')
       const containerRemoveChildSpy = jest.spyOn(container, 'removeChild')
 
-      it('should open the popup', () => {
-        createPopup('url', { container }).toggle()
+      it('should open the popup', async () => {
+        ;(await createPopup('url', { container })).toggle()
         jest.runAllTimers()
         expect(containerAppendSpy).toHaveBeenCalledTimes(1)
       })
 
-      it('should close the popup', () => {
-        const popup = createPopup('url', { container })
+      it('should close the popup', async () => {
+        const popup = await createPopup('url', { container })
         popup.toggle()
         jest.runAllTimers()
         popup.toggle()

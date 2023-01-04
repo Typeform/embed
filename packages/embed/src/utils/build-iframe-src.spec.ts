@@ -4,15 +4,15 @@ Object.defineProperty(window.document, 'title', { value: 'page title' })
 
 describe('build-iframe-src', () => {
   describe('#buildIframeSrc', () => {
-    it('should return iframe src', () => {
-      expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: '', options: {} })).toMatch(
+    it('should return iframe src', async () => {
+      expect(await buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: '', options: {} })).toMatch(
         'https://form.typeform.com/to/some-id'
       )
     })
 
     describe('when formID is just an ID', () => {
-      it('should include default url options', () => {
-        expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options: {} })).toBe(
+      it('should include default url options', async () => {
+        expect(await buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options: {} })).toBe(
           'https://form.typeform.com/to/some-id' +
             '?typeform-embed-id=embed-id' +
             '&typeform-embed=embed-widget' +
@@ -24,7 +24,7 @@ describe('build-iframe-src', () => {
     })
 
     describe('when formID is a URL', () => {
-      it('should include the full url', () => {
+      it('should include the full url', async () => {
         const formId = 'https://custom-domain.com/form-id'
         const iframeSrcParams =
           '?typeform-embed-id=embed-id' +
@@ -32,14 +32,14 @@ describe('build-iframe-src', () => {
           '&typeform-source=localhost' +
           '&typeform-medium=embed-sdk' +
           '&typeform-medium-version=next'
-        expect(buildIframeSrc({ formId, type: 'widget', embedId: 'embed-id', options: {} })).toBe(
+        expect(await buildIframeSrc({ formId, type: 'widget', embedId: 'embed-id', options: {} })).toBe(
           `${formId}${iframeSrcParams}`
         )
       })
     })
 
-    it('should override default url options if value is explicitly supplied', () => {
-      const src = buildIframeSrc({
+    it('should override default url options if value is explicitly supplied', async () => {
+      const src = await buildIframeSrc({
         formId: 'some-id',
         type: 'widget',
         embedId: 'id',
@@ -49,8 +49,8 @@ describe('build-iframe-src', () => {
       expect(src).toMatch('typeform-source=unit-test-source')
     })
 
-    it('should omit false url options', () => {
-      const src = buildIframeSrc({
+    it('should omit false url options', async () => {
+      const src = await buildIframeSrc({
         formId: 'some-id',
         type: 'widget',
         embedId: '',
@@ -60,7 +60,7 @@ describe('build-iframe-src', () => {
       expect(src).not.toMatch('embed-hide-headers')
     })
 
-    it('should include all url options', () => {
+    it('should include all url options', async () => {
       const options = {
         source: 'unit-test-source',
         medium: 'unit-test-medium',
@@ -82,7 +82,7 @@ describe('build-iframe-src', () => {
         autoResize: true,
         onEndingButtonClick: () => {},
       }
-      expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toBe(
+      expect(await buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toBe(
         'https://form.typeform.com/to/some-id' +
           '?typeform-embed-id=embed-id' +
           '&typeform-embed=embed-widget' +
@@ -102,7 +102,7 @@ describe('build-iframe-src', () => {
       )
     })
 
-    it('should disable tracking and submission on sandbox mode', () => {
+    it('should disable tracking and submission on sandbox mode', async () => {
       const options = {
         source: 'unit-test-source',
         medium: 'unit-test-medium',
@@ -110,7 +110,7 @@ describe('build-iframe-src', () => {
         enableSandbox: true,
       }
 
-      expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toBe(
+      expect(await buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toBe(
         'https://form.typeform.com/to/some-id' +
           '?typeform-embed-id=embed-id' +
           '&typeform-embed=embed-widget' +

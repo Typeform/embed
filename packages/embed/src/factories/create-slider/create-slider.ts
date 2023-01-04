@@ -47,7 +47,7 @@ const buildCloseButton = (close: () => void) => {
   return closeButton
 }
 
-export const createSlider = (formId: string, userOptions: SliderOptions = {}): Slider => {
+export const createSlider = async (formId: string, userOptions: SliderOptions = {}): Promise<Slider> => {
   if (!hasDom()) {
     return {
       open: () => {},
@@ -60,7 +60,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
   }
 
   const { position = SLIDER_POSITION, width = SLIDER_WIDTH, onClose, ...options } = userOptions
-  const { iframe, embedId, refresh, focus } = createIframe(formId, 'slider', options)
+  const { iframe, embedId, refresh, focus } = await createIframe(formId, 'slider', options)
   const scrollInitialState = document.body.style.overflow
   let openHandler: RemoveHandler
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { InlineStyle } from './inline-style'
 
@@ -10,7 +10,7 @@ type InitializerComponentProps<T> = T & InitializerComponentBaseProps
 
 type CreateFnProps<T> = Omit<InitializerComponentProps<T>, keyof InitializerComponentBaseProps>
 
-type CreateFn<T> = (id: string, props: CreateFnProps<T>) => GenericEmbed
+type CreateFn<T> = (id: string, props: CreateFnProps<T>) => Promise<GenericEmbed>
 
 type GenericEmbed = {
   unmount: () => void
@@ -18,11 +18,13 @@ type GenericEmbed = {
 
 function makeInitializerComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
   return ({ id, ...props }: InitializerComponentProps<T>) => {
+    const ref = useRef<GenericEmbed | null>(null)
     useEffect(() => {
-      const ref = createFn(id, props)
-      return () => {
-        ref.unmount()
+      const loadWidget = async () => {
+        ref.current = await createFn(id, props)
       }
+      loadWidget()
+      return () => ref.current?.unmount()
     }, [id, props])
     return <InlineStyle filename={cssFilename} />
   }

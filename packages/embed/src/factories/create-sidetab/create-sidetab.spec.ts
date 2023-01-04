@@ -14,8 +14,8 @@ afterEach(() => {
 
 describe('#createSidetab', () => {
   describe('no params', () => {
-    beforeEach(() => {
-      sidetab = createSidetab('formId')
+    beforeEach(async () => {
+      sidetab = await createSidetab('formId')
     })
 
     describe('#open', () => {
@@ -56,9 +56,9 @@ describe('#createSidetab', () => {
         expect(screen.getByTestId('default-icon')).toBeInTheDocument()
       })
 
-      it('should run onClose callback if provided', () => {
+      it('should run onClose callback if provided', async () => {
         const onClose = jest.fn()
-        const sidetab = createSidetab('formId', { onClose })
+        const sidetab = await createSidetab('formId', { onClose })
         sidetab.open()
         sidetab.close()
         expect(onClose).toHaveBeenCalledTimes(1)
@@ -81,9 +81,9 @@ describe('#createSidetab', () => {
     })
   })
 
-  describe('#size', () => {
+  describe('#size', async () => {
     it('should render sidetab with size', async () => {
-      sidetab = createSidetab('formId', { width: 400, height: 600 })
+      sidetab = await createSidetab('formId', { width: 400, height: 600 })
       sidetab.open()
       jest.runAllTimers()
       expect(screen.getByTestId('tf-v1-sidetab')).toHaveStyle({ width: '400px', height: '600px' })

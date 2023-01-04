@@ -54,7 +54,7 @@ const buildCloseButton = (close: () => void) => {
   return closeButton
 }
 
-export const createPopup = (formId: string, userOptions: PopupOptions = {}): Popup => {
+export const createPopup = async (formId: string, userOptions: PopupOptions = {}): Promise<Popup> => {
   if (!hasDom()) {
     return {
       open: () => {},
@@ -68,7 +68,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
 
   const { width, height, size = POPUP_SIZE, onClose, ...options } = userOptions
 
-  const { iframe, embedId, refresh, focus } = createIframe(formId, 'popup', options)
+  const { iframe, embedId, refresh, focus } = await createIframe(formId, 'popup', options)
   const scrollInitialState = document.body.style.overflow
   let openHandler: RemoveHandler
 

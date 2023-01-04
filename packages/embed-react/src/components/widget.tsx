@@ -1,5 +1,5 @@
 import React, { CSSProperties, useEffect, useRef } from 'react'
-import { createWidget, WidgetOptions } from '@typeform/embed'
+import { createWidget, WidgetOptions, Widget as EmbedWidget } from '@typeform/embed'
 
 import { InlineStyle } from './inline-style'
 
@@ -11,15 +11,21 @@ type WidgetProps = Omit<WidgetOptions, 'container'> & {
 
 export const Widget = ({ id, style = {}, className = '', ...props }: WidgetProps) => {
   const container = useRef<HTMLDivElement>(null)
+  let widgetRef = useRef<EmbedWidget | null>(null)
 
   useEffect(() => {
-    if (container.current) {
-      const ref = createWidget(id, { ...props, container: container.current })
-      return () => {
-        ref.unmount()
+    const loadWidget = async () => {
+      if (container.current) {
+        let widget = await createWidget(id, { ...props, container: container.current })
+        widgetRef.current = widget
       }
     }
-  }, [id, props])
+    loadWidget()
+
+    return () => {
+      widgetRef.current?.unmount()
+    }
+  }, [id, props, container])
 
   return (
     <>

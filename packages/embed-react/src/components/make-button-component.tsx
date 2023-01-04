@@ -25,7 +25,7 @@ type ButtonComponentProps<T> = T & ButtonComponentBaseProps
 
 type CreateFnProps<T> = Omit<ButtonComponentProps<T>, keyof ButtonComponentBaseProps>
 
-type CreateFn<T> = (id: string, props: CreateFnProps<T>) => GenericEmbed
+type CreateFn<T> = (id: string, props: CreateFnProps<T>) => Promise<GenericEmbed>
 
 export type GenericEmbed = {
   unmount: () => void
@@ -52,7 +52,10 @@ function makeButtonComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
     const ref = refOverride || internalRef
 
     useEffect(() => {
-      ref.current = createFn(id, props)
+      const loadWidget = async () => {
+        ref.current = await createFn(id, props)
+      }
+      loadWidget()
       return () => ref.current.unmount()
     }, [id, props, ref])
 

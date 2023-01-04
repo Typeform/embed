@@ -21,8 +21,8 @@ describe('create-iframe', () => {
       iframeProps: { title: 'hello' },
     }
 
-    beforeEach(() => {
-      iframe = createIframe('form-id', 'widget', options).iframe
+    beforeEach(async () => {
+      iframe = (await createIframe('form-id', 'widget', options)).iframe
     })
 
     it('should call buildIframeSrc', () => {

@@ -4,7 +4,8 @@ import { FORM_BASE_URL } from '../constants'
 import { removeUndefinedKeys } from './remove-undefined-keys'
 import { isDefined } from './is-defined'
 import { getTransitiveSearchParams } from './get-transitive-search-params'
-import { getHubspotHiddenFields } from './hubspot'
+import { getHubspotHiddenFields, getHubspotCookieValue } from './hubspot'
+import { sleep } from './sleep'
 
 const getDefaultUrlOptions = (): UrlOptions => ({
   source: window?.location?.hostname.replace(/^www\./, ''),
@@ -80,7 +81,7 @@ const getBaseUrl = (formString: string, chat: boolean = false): URL => {
   )
 }
 
-export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
+export const buildIframeSrc = async (params: BuildIframeSrcOptions): Promise<string> => {
   const { formId, type, embedId, options } = params
   const queryParams = mapOptionsToQueryParams(type, embedId, addDefaultUrlOptions(options))
 
@@ -93,6 +94,9 @@ export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
     })
 
   if (options.hubspot) {
+    for (let maxRetries = 10, retries = 0; !getHubspotCookieValue() && retries < maxRetries; retries++) {
+      await sleep(250)
+    }
     const hubspotHiddenFields = getHubspotHiddenFields()
     options.hidden = { ...options.hidden, ...hubspotHiddenFields }
   }

@@ -4,8 +4,8 @@ import { POPUP_ATTRIBUTE } from '../constants'
 import { initialize } from './initialize'
 
 export const initializePopups = (forceReload: boolean = false) => {
-  initialize(POPUP_ATTRIBUTE, 'popup.css', forceReload, (formId, options, button) => {
-    const { toggle } = createPopup(formId, options)
+  initialize(POPUP_ATTRIBUTE, 'popup.css', forceReload, async (formId, options, button) => {
+    const { toggle } = await createPopup(formId, options)
     button.onclick = toggle
   })
 }

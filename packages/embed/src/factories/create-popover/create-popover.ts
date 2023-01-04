@@ -113,9 +113,9 @@ const defaultOptions = {
   buttonColor: '#3a7685',
 }
 
-export const createPopover = (formId: string, userOptions: PopoverOptions = {}): Popover => {
+export const createPopover = async (formId: string, userOptions: PopoverOptions = {}): Promise<Popover> => {
   const options = { ...defaultOptions, ...userOptions }
-  const { iframe, embedId, refresh, focus } = createIframe(formId, 'popover', options)
+  const { iframe, embedId, refresh, focus } = await createIframe(formId, 'popover', options)
 
   let openHandler: RemoveHandler
 
