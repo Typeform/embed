@@ -27,7 +27,7 @@ const buildCloseButton = () => {
   return closeButton
 }
 
-export const createWidget = (formId: string, options: WidgetOptions): Widget => {
+export const createWidget = async (formId: string, options: WidgetOptions): Promise<Widget> => {
   if (!hasDom()) {
     return {
       refresh: () => {},
@@ -43,7 +43,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     widgetOptions.forceTouch = true
   }
 
-  const { embedId, iframe, refresh, focus } = createIframe(formId, 'widget', widgetOptions)
+  const { embedId, iframe, refresh, focus } = await createIframe(formId, 'widget', widgetOptions)
   const widget = buildWidget(iframe, options.width, options.height)
 
   if (widgetOptions.autoResize) {
