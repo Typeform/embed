@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Static HTML Demo</title>
+  <link rel="stylesheet" href="./lib/css/popup.css" />
+  <style>
+    html, body { font-family: sans-serif; font-size: 16px; }
+    form { margin: 20px 0; padding: 10px; background: #ddd; }
+    form > div { margin: 10px 0; }
+    label { display: inline-block; width: 120px; }
+    button { cursor: pointer; }
+    button#error { padding: 14px; color: white; background: red; border: none; font-size: 20px; }
+  </style>
+</head>
+<body>
+
+<h1>🤖 Error handling via typeform</h1>
+
+<p>This page will show typeform popup to handle any JavaScript errors.</p>
+<p>Users can provide additional details on what they were doing when the error happened.</p>
+
+<form method="get">
+  <h2>User details</h2>
+  <p>
+    If you provide user details the error handling typeform will be more personalized.<br/>
+    In real world scenario you might have this data for example if the user is logged in.
+  </p>
+  <div>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required />
+  </div>
+  <div>
+    <label for="email">E-mail address</label>
+    <input type="email" id="email" name="email" required />
+  </div>
+  <button>Save</button> or <a href="?">reset</a>.
+</form>
+
+<button id="error" onclick="foo.bar()">click here to trigger a javascript error</button>
+<script src="./lib/embed.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search)
+  const name = params.get('name')
+  const email = params.get('email')
+
+  document.querySelector('#name').value = name
+  document.querySelector('#email').value = email
+
+  window.addEventListener("error", (event) => {
+    const error = event.message
+
+    const { open } = window.tf.createPopup('KlAIU54T', {
+      hidden: { name, email, error },
+    })
+
+    open()
+  });
+</script>
+</body>
+</html>
