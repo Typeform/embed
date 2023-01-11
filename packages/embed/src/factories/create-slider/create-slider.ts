@@ -18,7 +18,9 @@ import { SliderOptions } from './slider-options'
 
 export type Slider = EmbedPopup
 
-const buildSlider = (position: 'right' | 'left') => {
+type Position = 'right' | 'left'
+
+const buildSlider = (position: Position) => {
   const slider = document.createElement('div')
   slider.className = `tf-v1-slider ${position}`
   slider.dataset.testid = 'tf-v1-slider'
@@ -32,7 +34,7 @@ const buildSpinner = () => {
   return spinner
 }
 
-const buildWrapper = (position: 'right' | 'left', width: number) => {
+const buildWrapper = (position: Position, width: number) => {
   const wrapper = document.createElement('div')
   wrapper.className = 'tf-v1-iframe-wrapper'
   wrapper.style[position] = '-100%'
