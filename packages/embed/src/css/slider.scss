@@ -9,6 +9,7 @@
   @include backdrop;
 
   .tf-v1-iframe-wrapper {
+    max-width: calc(100vw - 26px);
     height: 100%;
     position: absolute;
     top: 0;
@@ -60,6 +61,7 @@
 
     .tf-v1-iframe-wrapper {
       width: 100% !important;
+      max-width: 100vw;
       height: 100%;
       transition: unset;
 
