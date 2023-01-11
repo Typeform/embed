@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.6.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.5.1...@typeform/embed-v2.6.0) (2023-01-11)
+
+
+### Features
+
+* **DIST-1904:** Max width for slider ([#553](https://github.com/Typeform/embed/issues/553)) ([10f9b53](https://github.com/Typeform/embed/commit/10f9b534ed80714309332436f84d1fc044b93bbb))
+
 # [@typeform/embed-v2.5.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.5.0...@typeform/embed-v2.5.1) (2022-12-20)
 
 
