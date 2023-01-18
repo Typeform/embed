@@ -47,6 +47,7 @@ const mapOptionsToQueryParams = (
     autoResize,
     disableScroll,
     onEndingButtonClick,
+    disableWelcome,
   } = options
   const transitiveParams = getTransitiveSearchParams(transitiveSearchParams)
   const params = {
@@ -67,6 +68,7 @@ const mapOptionsToQueryParams = (
     'typeform-embed-auto-resize': autoResize ? 'true' : undefined,
     'typeform-embed-disable-scroll': disableScroll ? 'true' : undefined,
     'typeform-embed-handle-ending-button-click': !!onEndingButtonClick ? 'true' : undefined,
+    'typeform-welcome': disableWelcome ? '0' : undefined,
   }
   return { ...params, ...transitiveParams, ...tracking }
 }

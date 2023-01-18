@@ -100,4 +100,9 @@ export type UrlOptions = {
    * Disable navigation between questions via scrolling and swiping
    */
   disableScroll?: boolean
+
+  /**
+   * Disable the welcome screen
+   */
+  disableWelcome?: boolean
 }
