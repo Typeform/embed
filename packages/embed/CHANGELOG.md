@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.6.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.6.0...@typeform/embed-v2.6.1) (2023-01-18)
+
+
+### Bug Fixes
+
+* **DIST-2017:** Race condition with hubspot integration script ([#554](https://github.com/Typeform/embed/issues/554)) ([f32f631](https://github.com/Typeform/embed/commit/f32f63101c68c0db887e2887583d389c532b9907))
+
 # [@typeform/embed-v2.6.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.5.1...@typeform/embed-v2.6.0) (2023-01-11)
 
 
