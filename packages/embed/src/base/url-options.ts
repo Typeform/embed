@@ -72,7 +72,7 @@ export type UrlOptions = {
    *
    * @type {boolean}
    */
-  enableFullscreen?: boolean
+  displayAsFullScreenModal?: boolean
   /**
    * List of tracking query strings
    *

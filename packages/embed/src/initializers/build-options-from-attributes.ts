@@ -34,7 +34,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     autoClose: 'integerOrBoolean',
     shareGaInstance: 'stringOrBoolean',
     forceTouch: 'boolean',
-    enableFullscreen: 'boolean',
     inlineOnMobile: 'boolean',
     autoFocus: 'boolean',
     tracking: 'record',
@@ -44,5 +43,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     keepSession: 'boolean',
     hubspot: 'boolean',
     disableScroll: 'boolean',
+    fullScreen: 'boolean',
   })
 }
