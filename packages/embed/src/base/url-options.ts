@@ -100,4 +100,9 @@ export type UrlOptions = {
    * Disable navigation between questions via scrolling and swiping
    */
   disableScroll?: boolean
+
+  /**
+   * Disable partial answers storage on local storage for embedded form
+   */
+  disablePartialResponses?: boolean
 }

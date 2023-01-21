@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Static HTML Demo</title>
+    <style>
+      body {
+        display: flex;
+      }
+      .col {
+        flex-grow: 1;
+        padding: 0 40px;
+      }
+      .wrapper {
+        width: 100%;
+        max-width: 600px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="col">
+      <h1>🛑 Partial responses disabled</h1>
+      <p>Will <strong>not</strong> store, read or clear partial answers on local storage.</p>
+      <div
+        class="wrapper"
+        data-tf-widget="HLjqXS5W"
+        data-tf-disable-partial-responses
+      ></div>
+      <hr />
+      <button
+        data-tf-popup="HLjqXS5W"
+        data-tf-disable-partial-responses
+      >open popup</button>
+    </div>
+    <div class="col">
+      <h1>✅ Partial responses enabled</h1>
+      <p>
+        Stores partial answers on local storage (<a href="https://www.typeform.com/help/a/save-and-return-to-your-typeform-later-360029581051/">more info</a>).
+      </p>
+      <div
+        class="wrapper"
+        data-tf-widget="HLjqXS5W"
+      ></div>
+      <hr />
+      <button
+        data-tf-popup="HLjqXS5W"
+      >open popup</button>
+    </div>
+    <script src="./lib/embed.js"></script>
+  </body>
+</html>

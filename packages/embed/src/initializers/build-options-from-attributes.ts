@@ -44,5 +44,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     keepSession: 'boolean',
     hubspot: 'boolean',
     disableScroll: 'boolean',
+    disablePartialResponses: 'boolean',
   })
 }
