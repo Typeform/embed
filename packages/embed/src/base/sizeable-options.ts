@@ -20,4 +20,8 @@ export type SizeableOptions = WidthOption & {
    * @type {boolean | string}
    */
   autoResize?: boolean | string
+  /**
+   * Make the widget embed full screen, resize on viewport change to fit window
+   */
+  fullScreen?: boolean
 }

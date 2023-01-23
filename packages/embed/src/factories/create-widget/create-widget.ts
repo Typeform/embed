@@ -17,6 +17,7 @@ import { EmbedWidget } from '../../base'
 
 import { WidgetOptions } from './widget-options'
 import { buildWidget } from './elements'
+import { overrideFullScreenStyles } from './elements/override-full-screen-styles'
 
 export type Widget = EmbedWidget
 
@@ -37,14 +38,24 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
   }
 
   const widgetOptions = options
+  widgetOptions.inlineOnMobile = options.inlineOnMobile || options.fullScreen
 
-  if (!options.inlineOnMobile && (options.forceTouch || isFullscreen())) {
-    widgetOptions.enableFullscreen = true
+  if (!widgetOptions.inlineOnMobile && (widgetOptions.forceTouch || isFullscreen())) {
+    widgetOptions.displayAsFullScreenModal = true
     widgetOptions.forceTouch = true
   }
 
   const { embedId, iframe, refresh, focus } = createIframe(formId, 'widget', widgetOptions)
-  const widget = buildWidget(iframe, options.width, options.height)
+  const widget = buildWidget(iframe, widgetOptions.width, widgetOptions.height)
+
+  let mobileAutoResize: () => void
+
+  if (widgetOptions.fullScreen) {
+    overrideFullScreenStyles(options.container, iframe)
+    mobileAutoResize = makeAutoResize(options.container, true)
+    window.addEventListener('resize', mobileAutoResize)
+    mobileAutoResize()
+  }
 
   if (widgetOptions.autoResize) {
     const [minHeight, maxHeight] =
@@ -85,18 +96,18 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     appendWidget()
   }
 
-  if (widgetOptions.enableFullscreen) {
+  if (widgetOptions.displayAsFullScreenModal) {
     let backgroundColor = ''
     const { container } = options
-    const autoResize = makeAutoResize(container)
+    mobileAutoResize = makeAutoResize(container)
     const originalHeight = container.style.height
     const openPopup = () => {
       container.classList.add('tf-v1-widget-fullscreen')
       if (options.opacity !== undefined) {
         container.style.backgroundColor = backgroundColor
       }
-      autoResize()
-      window.addEventListener('resize', autoResize)
+      mobileAutoResize()
+      window.addEventListener('resize', mobileAutoResize)
     }
     const onTheme = (data: any) => {
       backgroundColor = changeColorOpacity(data?.theme?.backgroundColor)
@@ -106,7 +117,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     const closeButton = buildCloseButton()
 
     const close = () => {
-      window.removeEventListener('resize', autoResize)
+      window.removeEventListener('resize', mobileAutoResize)
       container.style.height = originalHeight
       options.onClose?.()
       container.classList.remove('tf-v1-widget-fullscreen')
@@ -134,6 +145,11 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
   return {
     refresh,
     focus,
-    unmount: () => unmountElement(widget),
+    unmount: () => {
+      if (mobileAutoResize) {
+        window.removeEventListener('resize', mobileAutoResize)
+      }
+      unmountElement(widget)
+    },
   }
 }
