@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.7.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.6.1...@typeform/embed-v2.7.0) (2023-01-23)
+
+
+### Features
+
+* **DIST-1929:** Improve full screen embed experience ([#556](https://github.com/Typeform/embed/issues/556)) ([3f9ba77](https://github.com/Typeform/embed/commit/3f9ba77e03c2632665cc8a404057bde3815528de))
+
 # [@typeform/embed-v2.6.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.6.0...@typeform/embed-v2.6.1) (2023-01-18)
 
 
