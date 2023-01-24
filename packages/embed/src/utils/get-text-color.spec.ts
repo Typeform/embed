@@ -1,15 +1,15 @@
 import { getTextColor } from './get-text-color'
 
 describe('#getTextColor', () => {
-  it('Renders the correct rgb values if an Hex value is passed', () => {
-    expect(getTextColor('#000')).toEqual('#FFFFFF')
+  describe('for light colors', () => {
+    it.each(['#ffffff', '#ff0', '#faa', '#ccf', 'rgb(200, 200, 200)'])('returns black color for %s color', (input) => {
+      expect(getTextColor(input)).toEqual('#000000')
+    })
   })
 
-  it('Renders the correct rgb values if an RGB value is passed', () => {
-    expect(getTextColor('rgb(0, 0, 0)')).toEqual('#FFFFFF')
-  })
-
-  it('Renders the correct rgb values if an RGB with alpha value is passed', () => {
-    expect(getTextColor('rgba(0, 0, 0, 2)')).toEqual('#FFFFFF')
+  describe('for dark colors', () => {
+    it.each(['#000', '#0f0', '#0a0', '#a40000', 'rgba(0, 0, 0, 2)'])('returns white color for %s color', (input) => {
+      expect(getTextColor(input)).toEqual('#FFFFFF')
+    })
   })
 })

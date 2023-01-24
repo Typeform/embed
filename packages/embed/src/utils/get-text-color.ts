@@ -5,7 +5,7 @@ const RED_BRIGHTNESS = 299
 const GREEN_BRIGHTNESS = 587
 const BLUE_BRIGHTNESS = 114
 const BASE = 1000
-const BRIGHTNETSS_LIMIT = 125
+const BRIGHTNESS_LIMIT = 150
 
 const isHex = (string: string) => string.startsWith('#')
 
@@ -37,5 +37,5 @@ export const getTextColor = (color?: string): string => {
 
   const brightness = Math.round((red * RED_BRIGHTNESS + green * GREEN_BRIGHTNESS + blue * BLUE_BRIGHTNESS) / BASE)
 
-  return brightness > BRIGHTNETSS_LIMIT ? '#000000' : '#FFFFFF'
+  return brightness > BRIGHTNESS_LIMIT ? '#000000' : '#FFFFFF'
 }
