@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "@typeform/embed": "2.7.1",
-    "@typeform/embed-react": "2.14.0"
+    "@typeform/embed-react": "2.14.1"
   }
 }
