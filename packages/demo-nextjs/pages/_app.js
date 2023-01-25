@@ -19,6 +19,7 @@ function MyApp({ Component, pageProps }) {
     '/sidetab': 'sidetab',
     '/popover': 'popover',
     '/vanilla': 'vanilla library in react',
+    '/forward-ref': 'forward ref',
   }
 
   return (

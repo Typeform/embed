@@ -100,20 +100,19 @@ Pass options as props to the component.
 
 ### Passing a custom ref
 
-For some custom use cases it may be convenient to open the popup programmatically (without the button being clicked). 
+For some custom use cases it may be convenient to open the popup programmatically (without the button being clicked).
 
-To do this, pass a ref to the PopupButton component and then use `ref.current.open()` to trigger the popup to open. 
+To do this, pass a ref to the PopupButton component and then use `ref.current.open()` to trigger the popup to open.
 
-Example: 
+Example:
+
 ```javascript
-import { emptyEmbed } from "@typeform/embed-react";
-// ...
-const ref = useRef(emptyEmbed)
-const openPopup = () => ref.current.open()
+const ref = useRef()
+const openPopup = () => ref.current?.open()
 // ...
 <PopupButton
+  id="<form-id>"
   ref={ref}
-  ...
 >
   click to open
 </PopupButton>
@@ -124,9 +123,9 @@ const openPopup = () => ref.current.open()
 Learn more about [Vanilla Embed Library](/embed/vanilla). Since React Embed Library is just a React wrapper for Vanilla Embed Library, all concepts apply here as well.
 
 You can:
+
 - embed typeform [inline in page](/embed/inline)
 - open it [in modal window](/embed/modal)
 - see all available [configuration options](/embed/configuration)
 
 If you want to create a form so you can embed it, sign up for a [Typeform](https://typeform.com) account or head to our documentation for the [Create API](/create/).
-
