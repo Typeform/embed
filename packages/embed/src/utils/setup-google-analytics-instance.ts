@@ -1,6 +1,7 @@
 declare global {
   interface Window {
-    GoogleAnalyticsObject: string
+    ga: GoogleAnalyticsObject
+    gtag: Function
   }
 }
 
@@ -37,24 +38,32 @@ const logError = (message: string) => {
 }
 
 export const setupGaInstance = (iframe: HTMLIFrameElement, embedId: string, shareGaInstance?: string | boolean) => {
-  try {
-    const gaObject: GoogleAnalyticsObject = window[window.GoogleAnalyticsObject]
-    const trackingId = typeof shareGaInstance === 'string' ? shareGaInstance : undefined
-    const tracker = getTracker(gaObject.getAll(), trackingId)
+  const trackingId = typeof shareGaInstance === 'string' ? shareGaInstance : undefined
+  if (window.gtag) {
+    window.gtag('get', trackingId, 'client_id', (clientId: string) => {
+      sendGaIdMessage(embedId, clientId, iframe)
+    })
+  } else if (window.ga) {
+    try {
 
-    if (tracker) {
-      sendGaIdMessage(embedId, tracker.get('clientId'), iframe)
-    } else {
-      logError(
-        `Whoops! You enabled the shareGaInstance feature in your typeform embed but the tracker with ID ${trackingId} was not found. ` +
+      const gaObject: GoogleAnalyticsObject = window.ga
+      const tracker = getTracker(gaObject.getAll(), trackingId)
+
+      if (tracker) {
+        sendGaIdMessage(embedId, tracker.get('clientId'), iframe)
+      } else {
+        logError(
+          `Whoops! You enabled the shareGaInstance feature in your typeform embed but the tracker with ID ${trackingId} was not found. ` +
           'Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript code in your page and use correct tracker ID. '
-      )
-    }
-  } catch (exception) {
-    logError(
-      'Whoops! You enabled the shareGaInstance feature in your typeform embed but the Google Analytics object has not been found. ' +
+        )
+      }
+    } catch (exception) {
+      logError(
+        'Whoops! You enabled the shareGaInstance feature in your typeform embed but the Google Analytics object has not been found. ' +
         'Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript code in your page. '
-    )
-    logError(exception)
+      )
+      logError(exception)
+    }
   }
 }
+
