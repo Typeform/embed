@@ -18,7 +18,6 @@ type ButtonComponentBaseProps = {
   style?: CSSProperties
   className?: string
   children: ReactNode
-  ref?: MutableRefObject<GenericEmbed>
 }
 
 type ButtonComponentProps<T> = T & ButtonComponentBaseProps
@@ -38,17 +37,11 @@ export const emptyEmbed: GenericEmbed = {
 }
 
 function makeButtonComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
-  return ({
-    id,
-    children,
-    as = 'button',
-    style = {},
-    className = '',
-    buttonProps,
-    ref: refOverride,
-    ...props
-  }: ButtonComponentProps<T>) => {
-    const internalRef: MutableRefObject<GenericEmbed> = useRef(emptyEmbed)
+  const Button = (
+    { id, children, as = 'button', style = {}, className = '', buttonProps, ...props }: ButtonComponentProps<T>,
+    refOverride: MutableRefObject<GenericEmbed> | any
+  ) => {
+    const internalRef = useRef(emptyEmbed)
     const ref = refOverride || internalRef
 
     useEffect(() => {
@@ -74,6 +67,8 @@ function makeButtonComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
       </>
     )
   }
+
+  return React.forwardRef(Button)
 }
 
 export { makeButtonComponent }
