@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v2.14.1](https://github.com/Typeform/embed/compare/@typeform/embed-react-v2.14.0...@typeform/embed-react-v2.14.1) (2023-01-25)
+
+
+### Bug Fixes
+
+* **DIST-2005:** Use React.forwardRef to pass ref ([#560](https://github.com/Typeform/embed/issues/560)) ([302ea2d](https://github.com/Typeform/embed/commit/302ea2d7cfe6d3bc0905d5e4db44e4d37f2d2280))
+
 # [@typeform/embed-react-v2.14.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v2.13.0...@typeform/embed-react-v2.14.0) (2023-01-25)
 
 
