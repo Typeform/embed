@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.7.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.7.0...@typeform/embed-v2.7.1) (2023-01-25)
+
+
+### Bug Fixes
+
+* **DIST-2019:** Update logic for icon color (popover and side tab) ([#559](https://github.com/Typeform/embed/issues/559)) ([7dafc7b](https://github.com/Typeform/embed/commit/7dafc7babc1416b11d9f7badabdd243c2a0005e4))
+
 # [@typeform/embed-v2.7.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.6.1...@typeform/embed-v2.7.0) (2023-01-23)
 
 
