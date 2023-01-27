@@ -14,6 +14,7 @@ interface GoogleAnalyticsTracker {
 }
 
 const GA_TYPE_MESSAGE = 'ga-client-id'
+const G4A_CALLBACK_TIMEOUT = 3000
 
 export const sendGaIdMessage = (embedId: string, gaClientId: string, iframe: HTMLIFrameElement) => {
   const data = { embedId, gaClientId }
@@ -40,10 +41,22 @@ const logError = (message: string) => {
 export const setupGaInstance = (iframe: HTMLIFrameElement, embedId: string, shareGaInstance?: string | boolean) => {
   const trackingId = typeof shareGaInstance === 'string' ? shareGaInstance : undefined
   if (window.gtag) {
+    let fetchedAccountId = false
     window.gtag('get', trackingId, 'client_id', (clientId: string) => {
+      fetchedAccountId = true
       sendGaIdMessage(embedId, clientId, iframe)
     })
-  } else if (window.ga) {
+    setTimeout(() => {
+      if (!fetchedAccountId) {
+        logError(
+          `Whoops! You enabled the shareGaInstance feature in your` +
+            `typeform embed but the tracker with ID ${trackingId} was not found. ` +
+            'Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript' +
+            'code in your page and use correct tracker ID. '
+        )
+      }
+    }, G4A_CALLBACK_TIMEOUT)
+  } else {
     try {
       const gaObject: GoogleAnalyticsObject = window.ga
       const tracker = getTracker(gaObject.getAll(), trackingId)

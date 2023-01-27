@@ -54,7 +54,6 @@ describe('setup-google-analytics-instance', () => {
           makeTracker('UA-tracking-3', 'one.more.client.identifier'),
         ]),
     }
-    window['GoogleAnalyticsObject'] = 'ga'
     window['ga'] = GoogleAnalyticsObjectMock
 
     it('uses first GA tracker', () => {
@@ -73,6 +72,24 @@ describe('setup-google-analytics-instance', () => {
         embedId: 'embed-id-value',
         gaClientId: 'different.client.identifier',
       })
+    })
+
+    it('sends gaMessage when gtag exists', () => {
+      window['gtag'] = jest.fn().mockImplementation((_: string, __: string, ___: string, callback: Function) => {
+        callback('different.client.identifier')
+      })
+      setupGaInstance(iframeMock, 'embed-id-value', 'UA-tracking-2')
+      jest.runAllTimers()
+      expect(iframePostMessageSpy).toHaveBeenCalledWith(
+        {
+          data: {
+            embedId: 'embed-id-value',
+            gaClientId: 'different.client.identifier',
+          },
+          type: 'ga-client-id',
+        },
+        '*'
+      )
     })
   })
 })
