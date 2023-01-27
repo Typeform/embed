@@ -45,7 +45,6 @@ export const setupGaInstance = (iframe: HTMLIFrameElement, embedId: string, shar
     })
   } else if (window.ga) {
     try {
-
       const gaObject: GoogleAnalyticsObject = window.ga
       const tracker = getTracker(gaObject.getAll(), trackingId)
 
@@ -53,17 +52,19 @@ export const setupGaInstance = (iframe: HTMLIFrameElement, embedId: string, shar
         sendGaIdMessage(embedId, tracker.get('clientId'), iframe)
       } else {
         logError(
-          `Whoops! You enabled the shareGaInstance feature in your typeform embed but the tracker with ID ${trackingId} was not found. ` +
-          'Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript code in your page and use correct tracker ID. '
+          `Whoops! You enabled the shareGaInstance feature in your` +
+            `typeform embed but the tracker with ID ${trackingId} was not found. ` +
+            'Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript' +
+            'code in your page and use correct tracker ID. '
         )
       }
     } catch (exception) {
       logError(
-        'Whoops! You enabled the shareGaInstance feature in your typeform embed but the Google Analytics object has not been found. ' +
-        'Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript code in your page. '
+        'Whoops! You enabled the shareGaInstance feature in your typeform embed but the Google Analytics ' +
+          'object has not been found. Make sure to include Google Analytics Javascript code before the ' +
+          'Typeform Embed Javascript code in your page. '
       )
       logError(exception)
     }
   }
 }
-
