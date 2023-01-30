@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.8.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.7.1...@typeform/embed-v2.8.0) (2023-01-30)
+
+
+### Features
+
+* **INT-4274:** Send clientId for gtag ([#561](https://github.com/Typeform/embed/issues/561)) ([309ceb9](https://github.com/Typeform/embed/commit/309ceb9b5fd2ca65bea38eb908fd5dddbe22eb07))
+
 # [@typeform/embed-v2.7.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.7.0...@typeform/embed-v2.7.1) (2023-01-25)
 
 
