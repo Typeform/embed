@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, MutableRefObject, useRef } from 'react'
 
 import { InlineStyle } from './inline-style'
 
@@ -16,16 +16,26 @@ type GenericEmbed = {
   unmount: () => void
 }
 
+const emptyEmbed: GenericEmbed = {
+  unmount: () => {},
+}
+
 function makeInitializerComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
-  return ({ id, ...props }: InitializerComponentProps<T>) => {
+  const Embed = ({ id, ...props }: InitializerComponentProps<T>, refOverride: MutableRefObject<GenericEmbed> | any) => {
+    const internalRef = useRef(emptyEmbed)
+    const ref = refOverride || internalRef
+
     useEffect(() => {
-      const ref = createFn(id, props)
+      ref.current = createFn(id, props)
       return () => {
-        ref.unmount()
+        ref.current.unmount()
       }
-    }, [id, props])
+    }, [id, props, ref])
+
     return <InlineStyle filename={cssFilename} />
   }
+
+  return React.forwardRef(Embed)
 }
 
 export { makeInitializerComponent }
