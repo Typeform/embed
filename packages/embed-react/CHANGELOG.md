@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v2.16.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v2.15.0...@typeform/embed-react-v2.16.0) (2023-02-27)
+
+
+### Features
+
+* **DIST-2006:** Custom ref for popover and sidetab ([#562](https://github.com/Typeform/embed/issues/562)) ([abb0232](https://github.com/Typeform/embed/commit/abb02329e56e7a8f071113de78ebc2ce6ec1e5db))
+
 # [@typeform/embed-react-v2.15.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v2.14.1...@typeform/embed-react-v2.15.0) (2023-01-30)
 
 
