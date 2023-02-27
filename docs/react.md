@@ -98,11 +98,15 @@ Pass options as props to the component.
 </PopupButton>
 ```
 
+### CSP nonce support
+
+If the global `__webpack_nonce__` is set, its value will be used for a `nonce` attribute on the inline `<style>` block. See [Github issue #458](https://github.com/Typeform/embed/issues/458) for details.
+
 ### Passing a custom ref
 
 For some custom use cases it may be convenient to open the popup programmatically (without the button being clicked).
 
-To do this, pass a ref to the PopupButton component and then use `ref.current.open()` to trigger the popup to open.
+To do this, pass a ref to `PopupButton`, `SliderButton`, `Popover` and `Sidetab` components and then use `ref.current.open()` to trigger the popup to open.
 
 Example:
 
