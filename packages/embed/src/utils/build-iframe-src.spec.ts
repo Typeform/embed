@@ -23,18 +23,42 @@ describe('build-iframe-src', () => {
       })
     })
 
-    describe('when formID is a URL', () => {
-      it('should include the full url', () => {
-        const formId = 'https://custom-domain.com/form-id'
+    describe('when passing custom domain', () => {
+      it('should prefer it over the default one', () => {
         const iframeSrcParams =
           '?typeform-embed-id=embed-id' +
           '&typeform-embed=embed-widget' +
           '&typeform-source=localhost' +
           '&typeform-medium=embed-sdk' +
           '&typeform-medium-version=next'
-        expect(buildIframeSrc({ formId, type: 'widget', embedId: 'embed-id', options: {} })).toBe(
-          `${formId}${iframeSrcParams}`
-        )
+        expect(
+          buildIframeSrc({
+            formId: 'formId',
+            type: 'widget',
+            domain: 'custom.domain.com',
+            embedId: 'embed-id',
+            options: {},
+          })
+        ).toBe(`https://custom.domain.com/to/formId${iframeSrcParams}`)
+      })
+
+      it('should accept domain with a protocol', () => {
+        const iframeSrcParams =
+          '?typeform-embed-id=embed-id' +
+          '&typeform-embed=embed-widget' +
+          '&typeform-source=localhost' +
+          '&typeform-medium=embed-sdk' +
+          '&typeform-medium-version=next'
+
+        expect(
+          buildIframeSrc({
+            formId: 'formId',
+            domain: 'http://localhost',
+            type: 'widget',
+            embedId: 'embed-id',
+            options: {},
+          })
+        ).toBe(`http://localhost/to/formId${iframeSrcParams}`)
       })
     })
 

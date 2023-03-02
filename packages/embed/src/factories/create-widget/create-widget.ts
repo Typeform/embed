@@ -37,7 +37,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     }
   }
 
-  const widgetOptions = options
+  const { domain, ...widgetOptions } = options
   widgetOptions.inlineOnMobile = options.inlineOnMobile || options.fullScreen
 
   if (!widgetOptions.inlineOnMobile && (widgetOptions.forceTouch || isFullscreen())) {
@@ -45,7 +45,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     widgetOptions.forceTouch = true
   }
 
-  const { embedId, iframe, refresh, focus } = createIframe(formId, 'widget', widgetOptions)
+  const { embedId, iframe, refresh, focus } = createIframe('widget', { formId, domain, options: widgetOptions })
   const widget = buildWidget(iframe, widgetOptions.width, widgetOptions.height)
 
   let mobileAutoResize: () => void

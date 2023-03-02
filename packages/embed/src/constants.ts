@@ -6,4 +6,4 @@ export const SIDETAB_ATTRIBUTE = 'data-tf-sidetab'
 export const SLIDER_POSITION = 'right'
 export const SLIDER_WIDTH = 800
 export const POPUP_SIZE = 100
-export const FORM_BASE_URL = 'https://form.typeform.com'
+export const DEFAULT_DOMAIN = 'https://form.typeform.com'

@@ -1,5 +1,5 @@
 import { ActionableOptions, BaseOptions, EmbedType, SizeableOptions, UrlOptions } from '../base'
-import { FORM_BASE_URL } from '../constants'
+import { DEFAULT_DOMAIN } from '../constants'
 
 import { removeUndefinedKeys } from './remove-undefined-keys'
 import { isDefined } from './is-defined'
@@ -71,20 +71,23 @@ const mapOptionsToQueryParams = (
   return { ...params, ...transitiveParams, ...tracking }
 }
 
-const getBaseUrl = (formString: string, chat: boolean = false): URL => {
+const getBaseUrl = (formString: string, domain: string, chat: boolean = false): URL => {
   const prefix = chat ? 'c' : 'to'
-  return new URL(
-    formString.startsWith('http://') || formString.startsWith('https://')
-      ? formString
-      : `${FORM_BASE_URL}/${prefix}/${formString}`
-  )
+  const domainWithProtocol =
+    domain.startsWith('http://') || domain.startsWith('https://') ? domain : `https://${domain}`
+
+  const baseUrl = new URL(domainWithProtocol)
+
+  baseUrl.pathname = `${prefix}/${formString}`
+
+  return baseUrl
 }
 
 export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
-  const { formId, type, embedId, options } = params
+  const { domain = DEFAULT_DOMAIN, formId, type, embedId, options } = params
   const queryParams = mapOptionsToQueryParams(type, embedId, addDefaultUrlOptions(options))
 
-  const url = getBaseUrl(formId, options.chat)
+  const url = getBaseUrl(formId, domain, options.chat)
 
   Object.entries(queryParams)
     .filter(([, paramValue]) => isDefined(paramValue))
@@ -98,7 +101,8 @@ export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
   }
 
   if (options.hidden) {
-    const tmpHashUrl = new URL(FORM_BASE_URL)
+    const searchParams = new URLSearchParams()
+
     Object.entries(options.hidden)
       .filter(([, paramValue]) => isDefined(paramValue) && paramValue !== '')
       .forEach(([paramName, paramValue]) => {
@@ -106,9 +110,9 @@ export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
         if (typeof options.transitiveSearchParams === 'boolean') {
           url.searchParams.delete(paramName)
         }
-        tmpHashUrl.searchParams.set(paramName, paramValue)
+        searchParams.set(paramName, paramValue)
       })
-    const hiddenFields = tmpHashUrl.searchParams.toString()
+    const hiddenFields = searchParams.toString()
     if (hiddenFields) {
       url.hash = hiddenFields
     }
@@ -118,6 +122,7 @@ export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
 }
 
 type BuildIframeSrcOptions = {
+  domain?: string
   formId: string
   embedId: string
   type: EmbedType

@@ -15,9 +15,15 @@ import { triggerIframeRedraw } from './trigger-iframe-redraw'
 import { dispatchCustomKeyEventFromIframe } from './setup-custom-keyboard-close'
 import { refreshIframe } from './refresh-iframe'
 
+type CreateIframe = {
+  formId: string
+  domain?: string
+  options: CreateIframeOptions
+}
+
 type CreateIframeOptions = UrlOptions & ActionableOptions & IframeOptions
 
-export const createIframe = (formId: string, type: EmbedType, options: CreateIframeOptions) => {
+export const createIframe = (type: EmbedType, { formId, domain, options }: CreateIframe) => {
   const embedId = generateEmbedId()
   const {
     iframeProps = {},
@@ -29,7 +35,7 @@ export const createIframe = (formId: string, type: EmbedType, options: CreateIfr
     shareGaInstance,
   } = options
 
-  const src = buildIframeSrc({ formId, embedId, type, options })
+  const src = buildIframeSrc({ formId, domain, embedId, type, options })
 
   const iframe = document.createElement('iframe')
   iframe.src = src

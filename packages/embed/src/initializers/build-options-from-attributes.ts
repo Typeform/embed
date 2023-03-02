@@ -3,6 +3,7 @@ import { loadOptionsFromAttributes } from '../utils'
 export const buildOptionsFromAttributes = (element: HTMLElement) => {
   return loadOptionsFromAttributes(element, {
     source: 'string',
+    domain: 'string',
     medium: 'string',
     mediumVersion: 'string',
     open: 'string',
