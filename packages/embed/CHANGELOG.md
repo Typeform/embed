@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.9.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.8.0...@typeform/embed-v2.9.0) (2023-03-03)
+
+
+### Features
+
+* **PROS-217:** Accept domain to run against different environment ([#564](https://github.com/Typeform/embed/issues/564)) ([ca61757](https://github.com/Typeform/embed/commit/ca61757ba471185d93b9c692b722aac81d45d4d7))
+
 # [@typeform/embed-v2.8.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.7.1...@typeform/embed-v2.8.0) (2023-01-30)
 
 
