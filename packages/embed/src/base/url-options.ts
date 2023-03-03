@@ -1,5 +1,11 @@
 export type UrlOptions = {
   /**
+   * Domain name of the environment the SDK should run against.
+   *
+   * @type {string}
+   */
+  domain?: string
+  /**
    * Domain name of the site using the SDK.
    *
    * @type {string}

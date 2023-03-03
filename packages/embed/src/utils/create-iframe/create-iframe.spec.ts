@@ -18,11 +18,12 @@ describe('create-iframe', () => {
       onSubmit: jest.fn(),
       onQuestionChanged: jest.fn(),
       onHeightChanged: jest.fn(),
+      domain: 'custom.domain.com',
       iframeProps: { title: 'hello' },
     }
 
     beforeEach(() => {
-      iframe = createIframe('form-id', 'widget', options).iframe
+      iframe = createIframe('widget', { formId: 'form-id', options }).iframe
     })
 
     it('should call buildIframeSrc', () => {

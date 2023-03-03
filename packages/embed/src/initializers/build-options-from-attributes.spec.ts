@@ -24,6 +24,7 @@ describe('build-options-from-attributes', () => {
         data-tf-share-ga-instance="ua-hello-1"
         data-tf-tracking="utm_foo=utm foo value,foobar=foobar value"
         data-tf-redirect-target="_blank"
+        data-tf-domain="custom.domain.com"
         data-tf-lazy
         data-tf-keep-session
         data-tf-disable-scroll
@@ -66,6 +67,7 @@ describe('build-options-from-attributes', () => {
           foobar: 'foobar value',
         },
         redirectTarget: '_blank',
+        domain: 'custom.domain.com',
         lazy: true,
         keepSession: true,
         disableScroll: true,

@@ -23,5 +23,5 @@
     "types": ["@types/jest", "node"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts"]
+  "exclude": ["src/**/*.spec.ts", "./cypress.config.ts"]
 }
