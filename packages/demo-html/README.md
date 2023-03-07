@@ -20,7 +20,7 @@ For more control you can use provided javascript methods:
 ## Run demo locally
 
 1. Run `yarn build` in repository root to build all packages
-2. Then run `yarn start` here to run this demo in browser: http://localhost:8080
+2. Then run `yarn start` here to run this demo in browser: http://localhost:9090
 
 ## Run demo in CodeSandbox
 

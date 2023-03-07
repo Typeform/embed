@@ -23,6 +23,21 @@ describe('build-iframe-src', () => {
       })
     })
 
+    describe('when formID is a URL', () => {
+      it('should include the full URL', () => {
+        const formId = 'https://custom.example.com/form-id'
+        const iframeSrcParams =
+          '?typeform-embed-id=embed-id' +
+          '&typeform-embed=embed-widget' +
+          '&typeform-source=localhost' +
+          '&typeform-medium=embed-sdk' +
+          '&typeform-medium-version=next'
+        expect(buildIframeSrc({ formId, type: 'widget', embedId: 'embed-id', options: {} })).toBe(
+          `${formId}${iframeSrcParams}`
+        )
+      })
+    })
+
     describe('when passing custom domain', () => {
       it('should prefer it over the default one', () => {
         const iframeSrcParams =
@@ -35,30 +50,24 @@ describe('build-iframe-src', () => {
           buildIframeSrc({
             formId: 'formId',
             type: 'widget',
-            domain: 'custom.domain.com',
+            domain: 'custom.example.com',
             embedId: 'embed-id',
             options: {},
           })
-        ).toBe(`https://custom.domain.com/to/formId${iframeSrcParams}`)
+        ).toBe(`https://custom.example.com/to/formId${iframeSrcParams}`)
       })
 
-      it('should accept domain with a protocol', () => {
+      it('should ignore the domain if formID is URL', () => {
+        const formId = 'https://custom.example.com/form-id'
         const iframeSrcParams =
           '?typeform-embed-id=embed-id' +
           '&typeform-embed=embed-widget' +
           '&typeform-source=localhost' +
           '&typeform-medium=embed-sdk' +
           '&typeform-medium-version=next'
-
         expect(
-          buildIframeSrc({
-            formId: 'formId',
-            domain: 'http://localhost',
-            type: 'widget',
-            embedId: 'embed-id',
-            options: {},
-          })
-        ).toBe(`http://localhost/to/formId${iframeSrcParams}`)
+          buildIframeSrc({ formId, type: 'widget', domain: 'foobar.example.net', embedId: 'embed-id', options: {} })
+        ).toBe(`${formId}${iframeSrcParams}`)
       })
     })
 

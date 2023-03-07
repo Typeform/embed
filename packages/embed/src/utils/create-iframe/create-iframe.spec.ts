@@ -18,7 +18,7 @@ describe('create-iframe', () => {
       onSubmit: jest.fn(),
       onQuestionChanged: jest.fn(),
       onHeightChanged: jest.fn(),
-      domain: 'custom.domain.com',
+      domain: 'custom.example.com',
       iframeProps: { title: 'hello' },
     }
 
