@@ -124,12 +124,12 @@ const openPopup = () => ref.current?.open()
 
 ## What's next?
 
-Learn more about [Vanilla Embed Library](/embed/vanilla). Since React Embed Library is just a React wrapper for Vanilla Embed Library, all concepts apply here as well.
+Learn more about [Vanilla Embed Library](./vanilla.md). Since React Embed Library is just a React wrapper for Vanilla Embed Library, all concepts apply here as well.
 
 You can:
 
-- embed typeform [inline in page](/embed/inline)
-- open it [in modal window](/embed/modal)
-- see all available [configuration options](/embed/configuration)
+- embed typeform [inline in page](./inline.md)
+- open it [in modal window](./modal.md)
+- see all available [configuration options](./configuration.md)
 
 If you want to create a form so you can embed it, sign up for a [Typeform](https://typeform.com) account or head to our documentation for the [Create API](/create/).
