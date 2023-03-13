@@ -26,7 +26,6 @@ We have demo projects to show how the libraries work:
 
 - [HTML](./packages/demo-html)
 - [Webpack](./packages/demo-webpack)
-- [React](./packages/demo-react)
 - [Next.js](./packages/demo-nextjs)
 
 # Contribution
