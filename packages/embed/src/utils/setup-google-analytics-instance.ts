@@ -18,7 +18,6 @@ const G4A_CALLBACK_TIMEOUT = 3000
 
 export const sendGaIdMessage = (embedId: string, gaClientId: string, iframe: HTMLIFrameElement) => {
   const data = { embedId, gaClientId }
-
   setTimeout(() => {
     if (iframe && iframe.contentWindow) {
       iframe.contentWindow.postMessage({ type: GA_TYPE_MESSAGE, data }, '*')
@@ -38,9 +37,24 @@ const logError = (message: string) => {
   console.error(message)
 }
 
+const getTrackingFromDataLayer = (): string | undefined => {
+  if (window['dataLayer']) {
+    const config = window['dataLayer'].find((entry: string[]) => {
+      return entry.length > 1 && entry[0] === 'config'
+    })
+    return config && config[1]
+  }
+}
+
 export const setupGaInstance = (iframe: HTMLIFrameElement, embedId: string, shareGaInstance?: string | boolean) => {
-  const trackingId = typeof shareGaInstance === 'string' ? shareGaInstance : undefined
+  let trackingId = typeof shareGaInstance === 'string' ? shareGaInstance : undefined
   if (window.gtag) {
+    if (!trackingId) {
+      trackingId = getTrackingFromDataLayer()
+    }
+    if (!trackingId) {
+      return
+    }
     let fetchedAccountId = false
     window.gtag('get', trackingId, 'client_id', (clientId: string) => {
       fetchedAccountId = true
