@@ -53,6 +53,12 @@ export const setupGaInstance = (iframe: HTMLIFrameElement, embedId: string, shar
       trackingId = getTrackingFromDataLayer()
     }
     if (!trackingId) {
+      logError(
+        'Whoops! You enabled the shareGaInstance feature in your' +
+          'typeform embed but the tracker ID could not be retrieved. ' +
+          'Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript' +
+          'code in your page and use correct tracker ID. '
+      )
       return
     }
     let fetchedAccountId = false
