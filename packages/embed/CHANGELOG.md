@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.9.2](https://github.com/Typeform/embed/compare/@typeform/embed-v2.9.1...@typeform/embed-v2.9.2) (2023-03-15)
+
+
+### Bug Fixes
+
+* **TYP-8260:** Prevent undefined trackingId ([#568](https://github.com/Typeform/embed/issues/568)) ([6c47960](https://github.com/Typeform/embed/commit/6c479604f176344ef9a4ae7801d488b528abe133))
+
 # [@typeform/embed-v2.9.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.9.0...@typeform/embed-v2.9.1) (2023-03-07)
 
 
