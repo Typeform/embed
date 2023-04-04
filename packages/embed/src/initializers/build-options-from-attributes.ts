@@ -45,5 +45,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     hubspot: 'boolean',
     disableScroll: 'boolean',
     fullScreen: 'boolean',
+    noHeading: 'boolean',
   })
 }
