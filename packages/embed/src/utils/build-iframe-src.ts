@@ -13,6 +13,10 @@ const getDefaultUrlOptions = (): UrlOptions => ({
 })
 
 const addDefaultUrlOptions = (options: UrlOptions): UrlOptions => {
+  if (!options.noHeading) {
+    options.noHeading = document.querySelectorAll('h1').length > 0
+  }
+
   return { ...getDefaultUrlOptions(), ...removeUndefinedKeys(options) }
 }
 
@@ -47,6 +51,7 @@ const mapOptionsToQueryParams = (
     autoResize,
     disableScroll,
     onEndingButtonClick,
+    noHeading,
   } = options
   const transitiveParams = getTransitiveSearchParams(transitiveSearchParams)
   const params = {
@@ -67,6 +72,7 @@ const mapOptionsToQueryParams = (
     'typeform-embed-auto-resize': autoResize ? 'true' : undefined,
     'typeform-embed-disable-scroll': disableScroll ? 'true' : undefined,
     'typeform-embed-handle-ending-button-click': !!onEndingButtonClick ? 'true' : undefined,
+    'typeform-embed-no-heading': noHeading ? 'true' : undefined,
   }
   return { ...params, ...transitiveParams, ...tracking }
 }

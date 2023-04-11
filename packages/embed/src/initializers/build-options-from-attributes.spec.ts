@@ -29,6 +29,7 @@ describe('build-options-from-attributes', () => {
         data-tf-keep-session
         data-tf-disable-scroll
         data-tf-full-screen
+        data-tf-no-heading
       ></div>`
 
     it('should load correct options', () => {
@@ -72,6 +73,7 @@ describe('build-options-from-attributes', () => {
         keepSession: true,
         disableScroll: true,
         fullScreen: true,
+        noHeading: true,
       })
     })
   })

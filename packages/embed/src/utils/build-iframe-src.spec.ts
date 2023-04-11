@@ -154,5 +154,12 @@ describe('build-iframe-src', () => {
           '&__dangerous-disable-submissions=true'
       )
     })
+
+    it('should disable H1 headings in form if H1 is present in host page', () => {
+      jest.spyOn(document, 'querySelectorAll').mockReturnValue({ length: 1 } as any)
+      expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: '', options: {} })).toMatch(
+        'typeform-embed-no-heading=true'
+      )
+    })
   })
 })
