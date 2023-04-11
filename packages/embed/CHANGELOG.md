@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.10.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.9.2...@typeform/embed-v2.10.0) (2023-04-11)
+
+
+### Features
+
+* **SEO-416:** Render h2 in form for pages with existing h1 ([#571](https://github.com/Typeform/embed/issues/571)) ([d11a54d](https://github.com/Typeform/embed/commit/d11a54d051b08fe9508f560290a9cc72e6d47b95))
+
 # [@typeform/embed-v2.9.2](https://github.com/Typeform/embed/compare/@typeform/embed-v2.9.1...@typeform/embed-v2.9.2) (2023-03-15)
 
 
