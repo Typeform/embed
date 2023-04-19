@@ -11,7 +11,7 @@ For more control you can use provided javascript methods:
 
 ```html
 <script src="//embed.typeform.com/next/embed.js"></script>
-<link rel="stylesheet" href="//embed.typeform.com/css/popup.css" />
+<link rel="stylesheet" href="//embed.typeform.com/next/css/popup.css" />
 <script>
   const { open, close, toggle, refresh } = window.tf.createPopup('<form id>')
 </script>
