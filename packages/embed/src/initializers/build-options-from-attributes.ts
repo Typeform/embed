@@ -21,7 +21,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     onEndingButtonClick: 'function',
     transitiveSearchParams: 'arrayOrBoolean',
     hidden: 'record',
-    chat: 'boolean',
     buttonColor: 'string',
     customIcon: 'string',
     width: 'integer',

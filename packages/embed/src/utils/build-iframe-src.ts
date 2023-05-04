@@ -77,12 +77,12 @@ const mapOptionsToQueryParams = (
   return { ...params, ...transitiveParams, ...tracking }
 }
 
-const getBaseUrl = (formString: string, domain = DEFAULT_DOMAIN, chat = false): URL => {
+const getBaseUrl = (formString: string, domain = DEFAULT_DOMAIN): URL => {
   if (formString.startsWith('http://') || formString.startsWith('https://')) {
     return new URL(formString)
   }
 
-  const prefix = chat ? 'c' : 'to'
+  const prefix = 'to'
   return new URL(`https://${domain}/${prefix}/${formString}`)
 }
 
@@ -90,7 +90,7 @@ export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
   const { domain, formId, type, embedId, options } = params
   const queryParams = mapOptionsToQueryParams(type, embedId, addDefaultUrlOptions(options))
 
-  const url = getBaseUrl(formId, domain, options.chat)
+  const url = getBaseUrl(formId, domain)
 
   Object.entries(queryParams)
     .filter(([, paramValue]) => isDefined(paramValue))
