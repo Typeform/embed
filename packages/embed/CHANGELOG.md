@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.11.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.10.0...@typeform/embed-v2.11.0) (2023-05-05)
+
+
+### Features
+
+* **RESP-1747:** Removed chat ui references in docs due to deprecation ([#580](https://github.com/Typeform/embed/issues/580)) ([6e90308](https://github.com/Typeform/embed/commit/6e903082a8d142ed24c6be53307e150a7752ea8a))
+
 # [@typeform/embed-v2.10.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.9.2...@typeform/embed-v2.10.0) (2023-04-11)
 
 
