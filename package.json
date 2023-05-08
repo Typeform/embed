@@ -9,12 +9,14 @@
     "postinstall": "yarn lerna bootstrap",
     "clean": "yarn lerna run clean",
     "build": "yarn lerna run build",
-    "lint": "yarn lerna run lint",
+    "lint": "yarn lerna run lint && yarn docs-prettier-check",
     "test": "yarn lerna run test",
     "test:functional": "yarn lerna run test:functional",
     "test:visual": "yarn lerna run test:visual",
     "release": "sh ./scripts/release.sh",
-    "release:preview": "yarn lerna run release:preview"
+    "release:preview": "yarn lerna run release:preview",
+    "docs-prettier-check": "prettier --check ./docs --ignore-path .eslintignore",
+    "docs-prettier": "prettier --write ./docs --ignore-path .eslintignore"
   },
   "workspaces": [
     "packages/*"
