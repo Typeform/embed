@@ -10,13 +10,18 @@ import {
 import * as lib from './index'
 
 function loadEmbedElements(forceReload: boolean = false) {
+  initializeEmbedElements(forceReload)
   initializeSingleEmbeds(forceReload).then(() => {
-    initializePopovers(forceReload)
-    initializePopups(forceReload)
-    initializeSidetabs(forceReload)
-    initializeSliders(forceReload)
-    initializeWidgets(forceReload)
+    initializeEmbedElements(forceReload)
   })
+}
+
+function initializeEmbedElements(forceReload: boolean) {
+  initializePopovers(forceReload)
+  initializePopups(forceReload)
+  initializeSidetabs(forceReload)
+  initializeSliders(forceReload)
+  initializeWidgets(forceReload)
 }
 
 const reload = () => loadEmbedElements(true)
