@@ -4,16 +4,19 @@ import {
   initializeSidetabs,
   initializeSliders,
   initializeWidgets,
+  initializeSingleEmbeds,
 } from './initializers'
 
 import * as lib from './index'
 
 function loadEmbedElements(forceReload: boolean = false) {
-  initializePopovers(forceReload)
-  initializePopups(forceReload)
-  initializeSidetabs(forceReload)
-  initializeSliders(forceReload)
-  initializeWidgets(forceReload)
+  initializeSingleEmbeds(forceReload).then(() => {
+    initializePopovers(forceReload)
+    initializePopups(forceReload)
+    initializeSidetabs(forceReload)
+    initializeSliders(forceReload)
+    initializeWidgets(forceReload)
+  })
 }
 
 const reload = () => loadEmbedElements(true)
