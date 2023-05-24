@@ -18,7 +18,7 @@ describe('Single Embed Code', () => {
           },
         },
       })
-      cy.visit(`/embed-live.html`)
+      cy.visit(`/single-embed-code.html`)
     })
 
     it('should display widget', () => {
