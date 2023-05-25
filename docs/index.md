@@ -34,7 +34,7 @@ To create your own typeforms to embed, you need a Typeform account. Head to [www
 ## Limitations
 
 For security purposes we prevent embedding typeorms in unsecure pages (via [CSP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)).
-You can embed your typeform on pages served over HTTPS or via HTTP on localhost. You can also [embed in wrapped progressive web apps](https://developer.typeform.com/embed/native-mobile-apps/).
+You can embed your typeform on pages served over HTTPS or via HTTP on localhost. You can also [embed in wrapped progressive web apps](https://www.typeform.com/developers/embed/mobile-apps/#progressive-web-apps).
 
 ## Supported browsers
 
