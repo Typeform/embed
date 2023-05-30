@@ -1,12 +1,10 @@
 describe('Single Embed Code', () => {
   describe(`Should load`, () => {
     before(() => {
-      cy.intercept('https://api.typeform.com/forms/HLjqXS5W/embeds/embed-id', {
+      cy.intercept('https://api.typeform.com/single-embed/HLjqXS5W-embed-id', {
         statusCode: 200,
         body: {
-          type: 'widget',
-          config: {
-            html: `<div
+          html: `<div
             id="wrapper"
             data-tf-widget="HLjqXS5W"
             data-tf-medium="demo-test"
@@ -15,7 +13,6 @@ describe('Single Embed Code', () => {
             data-tf-tracking="utm_source=facebook"
             data-tf-iframe-props="title=Foo Bar"
           ></div>`,
-          },
         },
       })
       cy.visit(`/single-embed-code.html`)
