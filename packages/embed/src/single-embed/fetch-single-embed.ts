@@ -1,8 +1,8 @@
-export const fetchSingleEmbed = async (formId: string, embedId: string) => {
-  const response = await fetch(`https://api.typeform.com/single-embed/${formId}-${embedId}`)
+export const fetchSingleEmbed = async (embedId: string) => {
+  const response = await fetch(`https://api.typeform.com/single-embed/${embedId}`)
 
   if (!response.ok) {
-    throw new Error(`Cannot fetch embed ${embedId} for form ${formId}`)
+    throw new Error(`Cannot fetch embed ${embedId}`)
   }
 
   return await response.json()

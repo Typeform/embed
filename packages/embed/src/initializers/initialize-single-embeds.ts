@@ -7,19 +7,12 @@ export const initializeSingleEmbeds = async (forceReload: boolean) => {
   for (let index = 0; index < embedTypeElements.length; index += 1) {
     const element = embedTypeElements.item(index)
     if (forceReload || element.dataset.tfLoaded !== 'true') {
-      const code = element.getAttribute(SINGLE_EMBED_ATTRIBUTE)
-      if (!code) {
-        throw new Error(`Invalid ${SINGLE_EMBED_ATTRIBUTE}=${code} for embed #${index}`)
+      const embedId = element.getAttribute(SINGLE_EMBED_ATTRIBUTE)
+      if (!embedId) {
+        throw new Error(`Invalid ${SINGLE_EMBED_ATTRIBUTE}=${embedId} for embed #${index}`)
       }
 
-      const separatorPosition = code.indexOf('-')
-      const formId = code.substring(0, separatorPosition)
-      const embedId = code.substring(separatorPosition + 1)
-      if (formId === '' || embedId === '') {
-        throw new Error(`Invalid ${SINGLE_EMBED_ATTRIBUTE}=${code} for embed #${index}`)
-      }
-
-      const { html } = await fetchSingleEmbed(formId, embedId)
+      const { html } = await fetchSingleEmbed(embedId)
       element.innerHTML = html
       element.dataset.tfLoaded = 'true'
     }
