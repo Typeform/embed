@@ -4,14 +4,14 @@ import {
   initializeSidetabs,
   initializeSliders,
   initializeWidgets,
-  initializeSingleEmbeds,
+  initializeLiveEmbeds,
 } from './initializers'
 
 import * as lib from './index'
 
 function loadEmbedElements(forceReload: boolean = false) {
   initializeEmbedElements(forceReload)
-  initializeSingleEmbeds(forceReload).then(() => {
+  initializeLiveEmbeds(forceReload).then(() => {
     initializeEmbedElements(forceReload)
   })
 }
