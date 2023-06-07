@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.12.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.11.0...@typeform/embed-v2.12.0) (2023-06-07)
+
+
+### Features
+
+* **REACH-374:** Prepare live embed code initializer ([#587](https://github.com/Typeform/embed/issues/587)) ([6c7ff53](https://github.com/Typeform/embed/commit/6c7ff53a3c92f6d8420597cd3df79cf5c4fd2028))
+
 # [@typeform/embed-v2.11.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.10.0...@typeform/embed-v2.11.0) (2023-05-05)
 
 
