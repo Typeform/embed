@@ -9,6 +9,7 @@ import {
   isOpen,
   isInPage,
   makeAutoResize,
+  invokeWithoutDefault,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { EmbedPopup } from '../../base'
@@ -33,7 +34,7 @@ const buildPopover = (width?: number, height?: number) => {
   return setElementSize(popover, { width, height })
 }
 
-const buildCloseIcon = (element = 'div', className = 'tf-v1-popover-button-icon') => {
+const buildCloseIcon = (element = 'span', className = 'tf-v1-popover-button-icon') => {
   const icon = document.createElement(element)
   icon.className = `${className} tf-v1-close-icon`
   icon.innerHTML = '&times;'
@@ -124,7 +125,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   const icon = buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
   const spinner = buildSpinner()
   const closeIcon = buildCloseIcon()
-  const closeModal = buildCloseIcon('a', 'tf-v1-popover-close')
+  const closeModal = buildCloseIcon('button', 'tf-v1-popover-close')
   const button = buildTriggerButton(options.buttonColor || defaultOptions.buttonColor)
 
   const container = options.container || document.body
@@ -237,8 +238,8 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     }
   }
 
-  button.onclick = toggle
-  closeModal.onclick = close
+  button.onclick = invokeWithoutDefault(toggle)
+  closeModal.onclick = invokeWithoutDefault(close)
 
   if (options.open && !isOpen(wrapper)) {
     openHandler = handleCustomOpen(open, options.open, options.openValue)

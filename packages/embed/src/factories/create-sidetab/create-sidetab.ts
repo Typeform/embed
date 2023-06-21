@@ -9,6 +9,7 @@ import {
   isOpen,
   isInPage,
   makeAutoResize,
+  invokeWithoutDefault,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { EmbedPopup } from '../../base'
@@ -106,7 +107,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   const buttonText = buildTriggerButtonText(options.buttonText || defaultOptions.buttonText)
   const icon = buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
   const closeIcon = buildCloseIcon()
-  const closeModal = buildCloseIcon('a', 'tf-v1-sidetab-close')
+  const closeModal = buildCloseIcon('button', 'tf-v1-sidetab-close')
 
   const container = options.container || document.body
   let openHandler: RemoveHandler
@@ -166,8 +167,8 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
     isOpen(wrapper) ? close() : open()
   }
 
-  button.onclick = toggle
-  closeModal.onclick = close
+  button.onclick = invokeWithoutDefault(toggle)
+  closeModal.onclick = invokeWithoutDefault(close)
 
   if (options.open && !isOpen(wrapper)) {
     openHandler = handleCustomOpen(open, options.open, options.openValue)

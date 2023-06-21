@@ -7,6 +7,7 @@ import {
   unmountElement,
   setAutoClose,
   addCustomKeyboardListener,
+  invokeWithoutDefault,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
@@ -47,10 +48,10 @@ const buildWrapper = (width?: number, height?: number, size?: number) => {
 }
 
 const buildCloseButton = (close: () => void) => {
-  const closeButton = document.createElement('a')
+  const closeButton = document.createElement('button')
   closeButton.className = 'tf-v1-close tf-v1-close-icon'
   closeButton.innerHTML = '&times;'
-  closeButton.onclick = close
+  closeButton.onclick = invokeWithoutDefault(close)
   return closeButton
 }
 

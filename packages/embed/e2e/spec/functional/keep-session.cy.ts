@@ -1,7 +1,7 @@
 describe('Keep session', () => {
   const scenarios = [
-    { name: 'popup', openSelector: '#popup', closeSelector: 'a.tf-v1-close' },
-    { name: 'slider', openSelector: '#slider', closeSelector: 'a.tf-v1-close' },
+    { name: 'popup', openSelector: '#popup', closeSelector: 'button.tf-v1-close' },
+    { name: 'slider', openSelector: '#slider', closeSelector: 'button.tf-v1-close' },
     { name: 'popover', openSelector: 'button.tf-v1-sidetab-button', closeSelector: 'button.tf-v1-sidetab-button' },
     { name: 'sidetab', openSelector: 'button.tf-v1-popover-button', closeSelector: 'button.tf-v1-popover-button' },
   ]
