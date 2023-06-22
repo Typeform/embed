@@ -32,6 +32,8 @@ jobs:
             ~/.cache
           key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-${{ matrix.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
+      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+
       - name: Install Node.js dependencies
         # run when cache not found or PR is external (build fails for external PRs if dependencies are not installed)
         if: steps.yarn-cache.outputs.cache-hit != 'true' || github.event.pull_request.head.repo.full_name != github.repository
@@ -60,6 +62,8 @@ jobs:
             ~/.cache
           key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-16-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
+      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+
       - name: Install Node.js dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
@@ -87,6 +91,8 @@ jobs:
             **/node_modules
             ~/.cache
           key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-16-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+
+      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
 
       - name: Install Node.js dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
@@ -121,6 +127,8 @@ jobs:
             ~/.cache
           key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-16-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
+      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+
       - name: Install Node.js dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
@@ -132,7 +140,6 @@ jobs:
       # Update registry and tokens with write access for releasing.
       - run: rm ./.npmrc
       - run: npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
-      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - run: npm config set @typeform:registry https://npm.pkg.github.com/ # install jarvis from github
