@@ -32,7 +32,7 @@ jobs:
             ~/.cache
           key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-${{ matrix.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
-      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+      - run: npm config set '//npm.pkg.github.com/:_authToken' ${{ secrets.$GH_TOKEN }}
 
       - name: Install Node.js dependencies
         # run when cache not found or PR is external (build fails for external PRs if dependencies are not installed)
@@ -62,7 +62,7 @@ jobs:
             ~/.cache
           key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-16-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
-      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+      - run: npm config set '//npm.pkg.github.com/:_authToken' ${{ secrets.$GH_TOKEN }}
 
       - name: Install Node.js dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
@@ -92,7 +92,7 @@ jobs:
             ~/.cache
           key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-16-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
-      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+      - run: npm config set '//npm.pkg.github.com/:_authToken' ${{ secrets.$GH_TOKEN }}
 
       - name: Install Node.js dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
@@ -127,7 +127,7 @@ jobs:
             ~/.cache
           key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-16-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
-      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+      - run: npm config set '//npm.pkg.github.com/:_authToken' ${{ secrets.$GH_TOKEN }}
 
       - name: Install Node.js dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
@@ -139,9 +139,7 @@ jobs:
           NODE_ENV: 'production'
       # Update registry and tokens with write access for releasing.
       - run: rm ./.npmrc
-      - run: npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - run: npm config set '//registry.npmjs.org/:_authToken' ${{ secrets.$NPM_TOKEN }}
       - run: npm config set @typeform:registry https://npm.pkg.github.com/ # install jarvis from github
       - run: yarn add -W @typeform/jarvis
       - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json because it is private (the file is committed by semantic-release to bump version)
