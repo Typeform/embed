@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.12.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.12.0...@typeform/embed-v2.12.1) (2023-06-22)
+
+
+### Bug Fixes
+
+* **REACH-519, REACH-527:** Fix embed buttons ([#590](https://github.com/Typeform/embed/issues/590)) ([1018632](https://github.com/Typeform/embed/commit/101863215e7531719cf132c6155b86f87fa0d1dd))
+
 # [@typeform/embed-v2.12.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.11.0...@typeform/embed-v2.12.0) (2023-06-07)
 
 
