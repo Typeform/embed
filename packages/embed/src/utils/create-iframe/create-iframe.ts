@@ -49,6 +49,7 @@ export const createIframe = (type: EmbedType, { formId, domain, options }: Creat
 
   iframe.addEventListener('load', triggerIframeRedraw, { once: true })
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onTheme = (data: any) => {
     if (data?.theme) {
       const closeButtonElement = document.querySelector('.tf-v1-close-icon') as HTMLElement

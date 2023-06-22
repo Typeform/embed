@@ -4,14 +4,14 @@ jest.useFakeTimers()
 
 describe('setup-google-analytics-instance', () => {
   const iframePostMessageSpy = jest.fn()
-  const iframeMock: any = {
+  const iframeMock = {
     contentWindow: {
       postMessage: iframePostMessageSpy,
     },
-  }
+  } as unknown as HTMLIFrameElement
 
   beforeEach(() => {
-    iframeMock.contentWindow.postMessage.mockClear()
+    iframePostMessageSpy.mockClear()
   })
 
   describe('#sendGaIdMessage', () => {

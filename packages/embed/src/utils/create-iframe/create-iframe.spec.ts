@@ -23,6 +23,7 @@ describe('create-iframe', () => {
     }
 
     beforeEach(() => {
+      // eslint-disable-next-line prefer-destructuring
       iframe = createIframe('widget', { formId: 'form-id', options }).iframe
     })
 

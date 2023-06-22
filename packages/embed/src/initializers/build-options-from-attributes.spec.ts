@@ -33,6 +33,7 @@ describe('build-options-from-attributes', () => {
       ></div>`
 
     it('should load correct options', () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const win = window as any
       win.onTypeformReady = jest.fn()
       win.onTypeformSubmit = jest.fn()

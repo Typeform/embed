@@ -6,7 +6,7 @@ export const initialize = async (
   embedElementAttribute: string,
   cssFilename: string,
   forceReload: boolean = false,
-  factoryMethod: (id: string, options: any, element: HTMLElement) => void
+  factoryMethod: (id: string, options: unknown, element: HTMLElement) => void
 ) => {
   const embedTypeElements = document.querySelectorAll<HTMLElement>(`[${embedElementAttribute}]`)
 

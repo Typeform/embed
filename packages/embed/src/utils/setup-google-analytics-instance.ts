@@ -97,7 +97,7 @@ export const setupGaInstance = (iframe: HTMLIFrameElement, embedId: string, shar
           'object has not been found. Make sure to include Google Analytics Javascript code before the ' +
           'Typeform Embed Javascript code in your page. '
       )
-      logError(exception)
+      logError(exception as string)
     }
   }
 }

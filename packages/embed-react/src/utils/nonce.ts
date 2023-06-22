@@ -1,9 +1,6 @@
 declare global {
-  namespace NodeJS {
-    interface Global {
-      __webpack_nonce__: string
-    }
-  }
+  // eslint-disable-next-line no-var
+  var __webpack_nonce__: string
 }
 
 export default function getNonce() {

@@ -39,6 +39,7 @@ export const emptyEmbed: GenericEmbed = {
 function makeButtonComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
   const Button = (
     { id, children, as = 'button', style = {}, className = '', buttonProps, ...props }: ButtonComponentProps<T>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     refOverride: MutableRefObject<GenericEmbed> | any
   ) => {
     const internalRef = useRef(emptyEmbed)

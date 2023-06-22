@@ -110,6 +110,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
       mobileAutoResize()
       window.addEventListener('resize', mobileAutoResize)
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onTheme = (data: any) => {
       backgroundColor = changeColorOpacity(data?.theme?.backgroundColor)
     }
