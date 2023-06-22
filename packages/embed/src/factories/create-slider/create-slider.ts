@@ -9,6 +9,7 @@ import {
   isOpen,
   isInPage,
   makeAutoResize,
+  invokeWithoutDefault,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
@@ -42,10 +43,10 @@ const buildWrapper = (position: Position, width: number) => {
 }
 
 const buildCloseButton = (close: () => void) => {
-  const closeButton = document.createElement('a')
+  const closeButton = document.createElement('button')
   closeButton.className = 'tf-v1-close tf-v1-close-icon'
   closeButton.innerHTML = '&times;'
-  closeButton.onclick = close
+  closeButton.onclick = invokeWithoutDefault(close)
   return closeButton
 }
 

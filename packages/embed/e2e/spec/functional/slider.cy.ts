@@ -27,7 +27,7 @@ function testSlider(path: string, title: string) {
     })
 
     it('should close slider', () => {
-      cy.get('a.tf-v1-close').click()
+      cy.get('button.tf-v1-close').click()
       cy.get('.tf-v1-slider').should('not.exist')
     })
   })

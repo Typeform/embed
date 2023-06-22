@@ -6,6 +6,7 @@ import {
   lazyInitialize,
   makeAutoResize,
   changeColorOpacity,
+  invokeWithoutDefault,
 } from '../../utils'
 import {
   getFormHeightChangedHandler,
@@ -22,7 +23,7 @@ import { overrideFullScreenStyles } from './elements/override-full-screen-styles
 export type Widget = EmbedWidget
 
 const buildCloseButton = () => {
-  const closeButton = document.createElement('a')
+  const closeButton = document.createElement('button')
   closeButton.className = 'tf-v1-widget-close tf-v1-close-icon'
   closeButton.innerHTML = '&times;'
   return closeButton
@@ -138,7 +139,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
       }
     }
 
-    closeButton.onclick = close
+    closeButton.onclick = invokeWithoutDefault(close)
     container.append(closeButton)
   }
 

@@ -31,7 +31,7 @@ function testPopup(path: string, title: string) {
     })
 
     it('should close popup', () => {
-      cy.get('a.tf-v1-close').click()
+      cy.get('button.tf-v1-close').click()
       cy.get('.tf-v1-popup').should('not.exist')
     })
   })
