@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.13.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.12.1...@typeform/embed-v2.13.0) (2023-06-23)
+
+
+### Features
+
+* **REACH-458:** Bump [@typeform](https://github.com/typeform) dependencies ([#591](https://github.com/Typeform/embed/issues/591)) ([000a8a3](https://github.com/Typeform/embed/commit/000a8a3b04e02bd2db5eab8e25040a74f93b84b1))
+
 # [@typeform/embed-v2.12.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.12.0...@typeform/embed-v2.12.1) (2023-06-22)
 
 
