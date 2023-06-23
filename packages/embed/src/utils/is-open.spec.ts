@@ -2,9 +2,8 @@ import { isInPage, isOpen, isVisible } from './is-open'
 
 describe('is-open', () => {
   const emptyParentNode = {} as ParentNode
-  const undefinedParentNode = undefined as unknown as ParentNode
 
-  const makeFakeElement = (parentNode: ParentNode, display?: string) =>
+  const makeFakeElement = (parentNode: ParentNode | null, display?: string) =>
     ({
       parentNode,
       style: {
@@ -18,7 +17,7 @@ describe('is-open', () => {
     })
 
     it('should return false when element is not page', () => {
-      expect(isOpen(makeFakeElement(undefinedParentNode, 'inline-block'))).toBe(false)
+      expect(isOpen(makeFakeElement(null, 'inline-block'))).toBe(false)
     })
 
     it('should return false when element is not visible', () => {
@@ -32,7 +31,7 @@ describe('is-open', () => {
     })
 
     it('should return true when element is not page', () => {
-      expect(isInPage(makeFakeElement(undefinedParentNode))).toBe(false)
+      expect(isInPage(makeFakeElement(null))).toBe(false)
     })
   })
 
