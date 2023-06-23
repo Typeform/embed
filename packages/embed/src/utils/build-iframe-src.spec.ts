@@ -156,7 +156,7 @@ describe('build-iframe-src', () => {
     })
 
     it('should disable H1 headings in form if H1 is present in host page', () => {
-      jest.spyOn(document, 'querySelectorAll').mockReturnValue({ length: 1 } as any)
+      jest.spyOn(document, 'querySelectorAll').mockReturnValue({ length: 1 } as NodeListOf<Element>)
       expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: '', options: {} })).toMatch(
         'typeform-embed-no-heading=true'
       )

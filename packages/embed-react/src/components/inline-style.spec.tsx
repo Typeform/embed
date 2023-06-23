@@ -36,6 +36,7 @@ describe('<InlineStyle />', () => {
       </>
     )
 
+    // eslint-disable-next-line prefer-destructuring
     const styleElement = screen.getByTestId('style').getElementsByTagName('style')[0]
     expect(styleElement.nonce).toBe('AA==')
   })

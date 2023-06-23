@@ -9,6 +9,8 @@ describe('create-popup', () => {
       const container = document.createElement('div')
       const containerAppendSpy = jest.spyOn(container, 'append')
 
+      document.body.appendChild(container) // required by toBeVisible
+
       beforeAll(() => {
         popup = createPopup('url', { container, width: 200, height: 100 })
         popup.open()

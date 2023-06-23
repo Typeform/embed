@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type callbackFn = (ev?: any) => void
 
 export const getFormReadyHandler = (embedId: string, callback?: callbackFn) => {
@@ -29,6 +30,7 @@ export const getThankYouScreenButtonClickHandler = (embedId: string, callback?: 
 }
 
 function getFormEventHandler(eventType: string, expectedEmbedId: string, callback?: callbackFn) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (event: any) => {
     const { type, embedId, ...data } = event.data
     if (type !== eventType) {

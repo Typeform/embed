@@ -7,11 +7,11 @@ jest.mock('./mobile', () => ({
 
 describe('#makeUutoResize', () => {
   const styleSpy = jest.fn()
-  const fakeElm: any = {
+  const fakeElm = {
     style: {
       setProperty: styleSpy,
     },
-  }
+  } as unknown as HTMLElement
 
   beforeEach(() => {
     styleSpy.mockClear()

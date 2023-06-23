@@ -18,6 +18,7 @@ describe('handleCustomOpen', () => {
   })
 
   describe('on exit', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let handler: any
 
     beforeAll(() => {
@@ -74,7 +75,9 @@ describe('handleCustomOpen', () => {
   })
 
   describe('on scroll', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let handler: any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const win = window as any // Avoid to set any time window as any
     beforeAll(() => {
       jest.spyOn(document, 'addEventListener').mockImplementation((_event, fn) => {

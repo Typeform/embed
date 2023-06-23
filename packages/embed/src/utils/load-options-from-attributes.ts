@@ -103,5 +103,5 @@ export const loadOptionsFromAttributes = (element: HTMLElement, transform: Recor
       ...options,
       [key]: transformAttributeValue(element.getAttribute(`data-tf-${camelCaseToKebabCase(key)}`), transform[key]),
     }
-  }, {} as any)
+  }, {})
 }

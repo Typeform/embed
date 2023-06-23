@@ -21,6 +21,7 @@ const emptyEmbed: GenericEmbed = {
 }
 
 function makeInitializerComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const Embed = ({ id, ...props }: InitializerComponentProps<T>, refOverride: MutableRefObject<GenericEmbed> | any) => {
     const internalRef = useRef(emptyEmbed)
     const ref = refOverride || internalRef

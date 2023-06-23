@@ -16,7 +16,7 @@ describe('memo-component', () => {
   })
 
   describe('#memoComponent', () => {
-    const TestComponent = (props: any) => {
+    const TestComponent = (props: unknown) => {
       const [x, setX] = React.useState(0)
 
       React.useEffect(() => {
@@ -33,6 +33,7 @@ describe('memo-component', () => {
 
     const MemoizedTestComponent = memoComponent(TestComponent)
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const WrapperComponent = ({ ChildComponent }: any) => {
       const [irrelevant, setIrrelevant] = React.useState(0)
       const [relevant, setRelevant] = React.useState(0)

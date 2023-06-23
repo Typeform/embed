@@ -1,9 +1,10 @@
 import { getTransitiveSearchParams } from './get-transitive-search-params'
 
 describe('transferUrlParametersToQueryStrings', () => {
-  const location: Location = window.location
+  const { location } = window
 
   beforeAll(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     delete (window as any).location
     const search =
       '?foo=jason&bar=rachel&utm_medium=cpc&utm_campaign=camp2008&utm_source=instagram&embed-hide-footer=false'
@@ -11,7 +12,7 @@ describe('transferUrlParametersToQueryStrings', () => {
     window.location = {
       search,
       href: `http://localhost/${search}`,
-    } as any
+    } as Location
   })
 
   afterAll(() => {

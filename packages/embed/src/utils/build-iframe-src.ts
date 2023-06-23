@@ -32,6 +32,7 @@ const mapOptionsToQueryParams = (
   type: EmbedType,
   embedId: string,
   options: UrlOptions & SizeableOptions & ActionableOptions
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Record<string, any> => {
   const {
     transitiveSearchParams,
