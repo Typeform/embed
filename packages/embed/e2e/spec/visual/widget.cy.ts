@@ -1,5 +1,4 @@
 import { open, openOnMobile } from '../../cypress-utils'
-import { eyesCheckDesktop, eyesCheckMobile } from '../../applitools-utils'
 
 describe('Embed Widget', () => {
   describe('Desktop', () => {
@@ -8,7 +7,7 @@ describe('Embed Widget', () => {
     })
 
     it('Basic Embed Widget - Desktop', () => {
-      eyesCheckDesktop('Embed')
+      cy.vrt('Basic Embed Widget - Desktop')
     })
   })
 
@@ -24,7 +23,7 @@ describe('Embed Widget', () => {
           cy.wrap($body).find('[data-qa="start-button"]').click()
         })
         cy.wait(1000)
-        eyesCheckMobile('Embed')
+        cy.vrt('Basic Embed Widget - Mobile fullscreen view')
       })
     })
 
@@ -35,7 +34,7 @@ describe('Embed Widget', () => {
 
       it('Basic Embed Widget - Mobile inline view', () => {
         cy.wait(1000)
-        eyesCheckMobile('Embed')
+        cy.vrt('Basic Embed Widget - Mobile inline view')
       })
     })
   })

@@ -3,8 +3,8 @@ export type Viewport = {
   height: number
 }
 
-export const screenSizeDesktop: Viewport = { width: 1024, height: 768 }
-export const screenSizeMobile: Viewport = { width: 375, height: 667 }
+const screenSizeDesktop: Viewport = { width: 1024, height: 768 }
+const screenSizeMobile: Viewport = { width: 375, height: 667 }
 
 const setViewport = ({ width, height }: Viewport) => {
   cy.viewport(width, height)

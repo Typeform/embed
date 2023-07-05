@@ -1,0 +1,6 @@
+{
+  "apiUrl": "https://vrt-api.tools.typeform.tf",
+  "project": "embed",
+  "apiKey": "api-key-here",
+  "branchName": "local"
+}

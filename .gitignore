@@ -63,3 +63,4 @@ dist
 **/cypress/screenshots
 **/cypress/videos
 **/cypress/fixtures
+packages/embed/vrt.json
