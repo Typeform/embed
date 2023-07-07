@@ -46,6 +46,15 @@ const getTrackingFromDataLayer = (): string | undefined => {
   }
 }
 
+const logErrorMessage = (reason?: string) => {
+  logError(
+    `Whoops! You enabled the shareGaInstance feature in your typeform embed but ${reason}.\n\n` +
+      'Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript ' +
+      'code in your page and use correct tracker ID.\n\n' +
+      'It is also possible the Google Analytics was blocked by your adblock plugin.'
+  )
+}
+
 export const setupGaInstance = (iframe: HTMLIFrameElement, embedId: string, shareGaInstance?: string | boolean) => {
   let trackingId = typeof shareGaInstance === 'string' ? shareGaInstance : undefined
   if (window.gtag) {
@@ -53,12 +62,7 @@ export const setupGaInstance = (iframe: HTMLIFrameElement, embedId: string, shar
       trackingId = getTrackingFromDataLayer()
     }
     if (!trackingId) {
-      logError(
-        'Whoops! You enabled the shareGaInstance feature in your' +
-          'typeform embed but the tracker ID could not be retrieved. ' +
-          'Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript' +
-          'code in your page and use correct tracker ID. '
-      )
+      logErrorMessage('the tracking ID could not be retrieved')
       return
     }
     let fetchedAccountId = false
@@ -68,12 +72,7 @@ export const setupGaInstance = (iframe: HTMLIFrameElement, embedId: string, shar
     })
     setTimeout(() => {
       if (!fetchedAccountId) {
-        logError(
-          `Whoops! You enabled the shareGaInstance feature in your` +
-            `typeform embed but the tracker with ID ${trackingId} was not found. ` +
-            'Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript' +
-            'code in your page and use correct tracker ID. '
-        )
+        logErrorMessage(`the tracker with ID ${trackingId} was not found`)
       }
     }, G4A_CALLBACK_TIMEOUT)
   } else {
@@ -84,19 +83,10 @@ export const setupGaInstance = (iframe: HTMLIFrameElement, embedId: string, shar
       if (tracker) {
         sendGaIdMessage(embedId, tracker.get('clientId'), iframe)
       } else {
-        logError(
-          `Whoops! You enabled the shareGaInstance feature in your` +
-            `typeform embed but the tracker with ID ${trackingId} was not found. ` +
-            'Make sure to include Google Analytics Javascript code before the Typeform Embed Javascript' +
-            'code in your page and use correct tracker ID. '
-        )
+        logErrorMessage(`the tracker with ID ${trackingId} was not found`)
       }
     } catch (exception) {
-      logError(
-        'Whoops! You enabled the shareGaInstance feature in your typeform embed but the Google Analytics ' +
-          'object has not been found. Make sure to include Google Analytics Javascript code before the ' +
-          'Typeform Embed Javascript code in your page. '
-      )
+      logErrorMessage('the Google Analytics object has not been found')
       logError(exception as string)
     }
   }
