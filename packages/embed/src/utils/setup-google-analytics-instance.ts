@@ -86,7 +86,7 @@ export const setupGaInstance = (iframe: HTMLIFrameElement, embedId: string, shar
         logErrorMessage(`the tracker with ID ${trackingId} was not found`)
       }
     } catch (exception) {
-      logErrorMessage('the Google Analytics object has not been found')
+      logErrorMessage('the Google Analytics object was not found')
       logError(exception as string)
     }
   }
