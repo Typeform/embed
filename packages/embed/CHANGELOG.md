@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.13.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.13.0...@typeform/embed-v2.13.1) (2023-07-10)
+
+
+### Bug Fixes
+
+* **REACH-578:** Update error message for shareGaInstance ([#596](https://github.com/Typeform/embed/issues/596)) ([5b80582](https://github.com/Typeform/embed/commit/5b805821f9abd27083a0275866508ad6f93d6188))
+
 # [@typeform/embed-v2.13.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.12.1...@typeform/embed-v2.13.0) (2023-06-23)
 
 
