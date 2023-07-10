@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.13.2](https://github.com/Typeform/embed/compare/@typeform/embed-v2.13.1...@typeform/embed-v2.13.2) (2023-07-10)
+
+
+### Bug Fixes
+
+* **REACH-573:** Update types of payloads for callbacks ([#595](https://github.com/Typeform/embed/issues/595)) ([6b77a31](https://github.com/Typeform/embed/commit/6b77a316cfcebe85a521fca07842c0a4d0680335))
+
 # [@typeform/embed-v2.13.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.13.0...@typeform/embed-v2.13.1) (2023-07-10)
 
 

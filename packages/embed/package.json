@@ -1,6 +1,6 @@
 {
   "name": "@typeform/embed",
-  "version": "2.13.1",
+  "version": "2.13.2",
   "main": "./build/index.js",
   "types": "./types/index.d.ts",
   "author": "Typeform",
