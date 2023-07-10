@@ -24,7 +24,7 @@
     "release:github": "npm config set @typeform:registry https://npm.pkg.github.com/ && npm publish"
   },
   "dependencies": {
-    "@typeform/embed": "2.13.1",
+    "@typeform/embed": "2.13.2",
     "fast-deep-equal": "^3.1.3"
   },
   "peerDependencies": {
