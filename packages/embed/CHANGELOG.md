@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.14.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.13.2...@typeform/embed-v2.14.0) (2023-07-12)
+
+
+### Features
+
+* **REACH-576:** Add `ref` to the `onEndingButtonClick` payload type ([#597](https://github.com/Typeform/embed/issues/597)) ([f4e85a1](https://github.com/Typeform/embed/commit/f4e85a120bdb8af7bd1bafbee7ec081efb9c5ba7))
+
 # [@typeform/embed-v2.13.2](https://github.com/Typeform/embed/compare/@typeform/embed-v2.13.1...@typeform/embed-v2.13.2) (2023-07-10)
 
 
