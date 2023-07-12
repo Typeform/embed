@@ -233,8 +233,11 @@ You can listen to form events by providing callback methods:
     onClose: ({ formId }) => {
       console.log(`Modal window with form ${formId} was closed`)
     }
-    onEndingButtonClick: ({ formId }) => {
+    onEndingButtonClick: ({ formId, ref }) => {
       console.log(`Ending button clicked in form ${formId}`)
+
+      // for plans with "Redirect from ending screen" feature you also receive `ref`:
+      console.log(`Ending button clicked in end screen ${ref}`)
     }
   })
   document.querySelector('#btn').click = () => {
@@ -261,6 +264,7 @@ Callback method receive payload object from the form. Each payload contains form
   - no payload
 - onEndingButtonClick
   - `formId` (string)
+  - `ref` (string) identifies the end screen (_Note:_ this is available for plans with "Redirect from ending screen" feature only.)
 
 See [callbacks example in demo package](../../packages/demo-html/public/callbacks.html).
 

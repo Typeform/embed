@@ -49,6 +49,7 @@ export type ActionableOptions = {
    * Callback function when button on ending screen is clicked.
    * @param {Object} event - Event payload.
    * @param {string} event.formId - Form ID string.
+   * @param {string} event.ref - End screen ref string (for plans with "Redirect from ending screen" feature).
    */
-  onEndingButtonClick?: (event: WithFormId) => void
+  onEndingButtonClick?: (event: WithFormId & Partial<WithRef>) => void
 }
