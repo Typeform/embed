@@ -30,6 +30,7 @@ export default function PopoverPage({ id }) {
           onReady={handleOnReady}
           medium="demo-test"
           hidden={{ foo: 'foo value', bar: 'bar value' }}
+          buttonProps={{ ariaLabel: 'Typeform Button', dataTestid: 'demo-button' }}
         />
       </main>
     </div>

@@ -30,6 +30,8 @@ describe('build-options-from-attributes', () => {
         data-tf-disable-scroll
         data-tf-full-screen
         data-tf-no-heading
+        data-tf-iframe-props="title=foo"
+        data-tf-button-props="aria-label=bar"
       ></div>`
 
     it('should load correct options', () => {
@@ -75,6 +77,12 @@ describe('build-options-from-attributes', () => {
         disableScroll: true,
         fullScreen: true,
         noHeading: true,
+        iframeProps: {
+          title: 'foo',
+        },
+        buttonProps: {
+          'aria-label': 'bar',
+        },
       })
     })
   })

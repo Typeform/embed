@@ -1,6 +1,6 @@
 import { EmbedType, UrlOptions, ActionableOptions, IframeOptions } from '../../base'
 import { buildIframeSrc } from '../build-iframe-src'
-import { setupGaInstance } from '../'
+import { addAttributesToElement, setupGaInstance } from '../'
 
 import { generateEmbedId } from './generate-embed-id'
 import {
@@ -42,10 +42,7 @@ export const createIframe = (type: EmbedType, { formId, domain, options }: Creat
   iframe.dataset.testid = 'iframe'
   iframe.style.border = '0px'
   iframe.allow = 'microphone; camera'
-
-  Object.keys(iframeProps).forEach((key) => {
-    iframe.setAttribute(key, iframeProps[key])
-  })
+  addAttributesToElement(iframe, iframeProps)
 
   iframe.addEventListener('load', triggerIframeRedraw, { once: true })
 

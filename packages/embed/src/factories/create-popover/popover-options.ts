@@ -6,6 +6,7 @@ import {
   SizeableOptions,
   IframeOptions,
   ModalWindowOptions,
+  ButtonOptions,
 } from '../../base'
 
 export type PopoverOptions = BaseOptions &
@@ -14,7 +15,8 @@ export type PopoverOptions = BaseOptions &
   ActionableOptions &
   BehavioralOptions &
   SizeableOptions &
-  IframeOptions & {
+  IframeOptions &
+  ButtonOptions & {
     /**
      * Specify the size of the popover (only applies if using mode "popover").
      *
