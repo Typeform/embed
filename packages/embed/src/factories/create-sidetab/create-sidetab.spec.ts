@@ -89,4 +89,13 @@ describe('#createSidetab', () => {
       expect(screen.getByTestId('tf-v1-sidetab')).toHaveStyle({ width: '400px', height: '600px' })
     })
   })
+
+  describe('#buttonProps', () => {
+    it('should render sidetab with custom button attributes', async () => {
+      sidetab = createSidetab('formId', { buttonProps: { ariaLabel: 'foo', title: 'button' } })
+      sidetab.open()
+      jest.runAllTimers()
+      expect(screen.getByTitle('button')).toHaveAttribute('aria-label', 'foo')
+    })
+  })
 })

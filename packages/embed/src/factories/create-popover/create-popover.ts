@@ -10,9 +10,10 @@ import {
   isInPage,
   makeAutoResize,
   invokeWithoutDefault,
+  addAttributesToElement,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
-import { EmbedPopup } from '../../base'
+import { ButtonProps, EmbedPopup } from '../../base'
 
 import { PopoverOptions } from './popover-options'
 import { buildNotificationDot, canBuildNotificationDot, saveNotificationDotHideUntilTime } from './notification-days'
@@ -81,13 +82,14 @@ const buildIcon = (customIcon?: string, color?: string) => {
   return triggerIcon
 }
 
-const buildTriggerButton = (color: string) => {
+const buildTriggerButton = (color: string, buttonProps: ButtonProps = {}) => {
   const textColor = getTextColor(color)
   const button = document.createElement('button')
   button.className = 'tf-v1-popover-button'
   button.dataset.testid = 'tf-v1-popover-button'
   button.style.backgroundColor = color
   button.style.color = textColor
+  addAttributesToElement(button, buttonProps)
   return button
 }
 
@@ -126,7 +128,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   const spinner = buildSpinner()
   const closeIcon = buildCloseIcon()
   const closeModal = buildCloseIcon('button', 'tf-v1-popover-close')
-  const button = buildTriggerButton(options.buttonColor || defaultOptions.buttonColor)
+  const button = buildTriggerButton(options.buttonColor || defaultOptions.buttonColor, options.buttonProps)
 
   const container = options.container || document.body
 

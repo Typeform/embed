@@ -176,5 +176,14 @@ describe('#createSidetab', () => {
         )
       })
     })
+
+    describe('#buttonProps', () => {
+      it('should render popover with custom button attributes', async () => {
+        popover = createPopover('formId', { buttonProps: { ariaLabel: 'foo', title: 'pop' } })
+        popover.open()
+        jest.runAllTimers()
+        expect(screen.getByTitle('pop')).toHaveAttribute('aria-label', 'foo')
+      })
+    })
   })
 })

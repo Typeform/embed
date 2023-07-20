@@ -40,6 +40,7 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     tracking: 'record',
     redirectTarget: 'string',
     iframeProps: 'record',
+    buttonProps: 'record',
     lazy: 'boolean',
     keepSession: 'boolean',
     hubspot: 'boolean',

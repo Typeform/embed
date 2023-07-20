@@ -19,7 +19,11 @@ describe('create-iframe', () => {
       onQuestionChanged: jest.fn(),
       onHeightChanged: jest.fn(),
       domain: 'custom.example.com',
-      iframeProps: { title: 'hello' },
+      iframeProps: {
+        title: 'hello',
+        ariaLabel: 'foo bar',
+        style: 'border:1px red solid;margin:10px;', // not recommended, but valid
+      },
     }
 
     beforeEach(() => {
@@ -51,6 +55,14 @@ describe('create-iframe', () => {
 
     it('should set correct iframe title', () => {
       expect(iframe.getAttribute('title')).toBe('hello')
+    })
+
+    it('should set correct iframe aria-label', () => {
+      expect(iframe.getAttribute('aria-label')).toBe('foo bar')
+    })
+
+    it('should set correct iframe style', () => {
+      expect(iframe).toHaveStyle({ border: '1px red solid', margin: '10px' })
     })
 
     it('should set correct iframe permissions', () => {

@@ -10,9 +10,10 @@ import {
   isInPage,
   makeAutoResize,
   invokeWithoutDefault,
+  addAttributesToElement,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
-import { EmbedPopup } from '../../base'
+import { ButtonProps, EmbedPopup } from '../../base'
 
 import { SidetabOptions } from './sidetab-options'
 
@@ -47,12 +48,13 @@ const buildSpinner = () => {
   return icon
 }
 
-const buildTriggerButton = (color: string) => {
+const buildTriggerButton = (color: string, buttonProps: ButtonProps = {}) => {
   const textColor = getTextColor(color)
   const button = document.createElement('button')
   button.className = 'tf-v1-sidetab-button'
   button.style.backgroundColor = color
   button.style.color = textColor
+  addAttributesToElement(button, buttonProps)
   return button
 }
 
@@ -103,7 +105,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   const sidetab = buildSidetab(options.width, options.height)
   const wrapper = buildWrapper()
   const spinner = buildSpinner()
-  const button = buildTriggerButton(options.buttonColor || defaultOptions.buttonColor)
+  const button = buildTriggerButton(options.buttonColor || defaultOptions.buttonColor, options.buttonProps)
   const buttonText = buildTriggerButtonText(options.buttonText || defaultOptions.buttonText)
   const icon = buildIcon(options.customIcon, options.buttonColor || defaultOptions.buttonColor)
   const closeIcon = buildCloseIcon()

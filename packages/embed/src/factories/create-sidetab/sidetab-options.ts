@@ -6,6 +6,7 @@ import {
   SizeableOptions,
   IframeOptions,
   ModalWindowOptions,
+  ButtonOptions,
 } from '../../base'
 
 export type SidetabOptions = BaseOptions &
@@ -14,7 +15,8 @@ export type SidetabOptions = BaseOptions &
   ActionableOptions &
   BehavioralOptions &
   SizeableOptions &
-  IframeOptions & {
+  IframeOptions &
+  ButtonOptions & {
     /**
      * Specify the button text
      *
