@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.15.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.14.0...@typeform/embed-v2.15.0) (2023-07-20)
+
+
+### Features
+
+* **REACH-574:** Allow passing any attributes to the button for popover and sidetab ([#598](https://github.com/Typeform/embed/issues/598)) ([dba5b6a](https://github.com/Typeform/embed/commit/dba5b6a4f28a673a89278b257a4de255545f7e74))
+
 # [@typeform/embed-v2.14.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.13.2...@typeform/embed-v2.14.0) (2023-07-12)
 
 
