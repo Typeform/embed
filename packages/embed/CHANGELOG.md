@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.15.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.15.0...@typeform/embed-v2.15.1) (2023-07-21)
+
+
+### Bug Fixes
+
+* **REACH-644:** Update close button CSS ([#599](https://github.com/Typeform/embed/issues/599)) ([4dce213](https://github.com/Typeform/embed/commit/4dce213e36f3a6e9496b40befb087635e4e4b8d1))
+
 # [@typeform/embed-v2.15.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.14.0...@typeform/embed-v2.15.0) (2023-07-20)
 
 
