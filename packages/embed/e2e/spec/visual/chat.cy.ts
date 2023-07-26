@@ -1,5 +1,4 @@
 import { open, openOnMobile } from '../../cypress-utils'
-import { eyesCheckDesktop, eyesCheckMobile } from '../../applitools-utils'
 
 describe('Chat popover', () => {
   describe('Desktop', () => {
@@ -8,7 +7,7 @@ describe('Chat popover', () => {
     })
 
     it('Chat popover - Desktop', () => {
-      eyesCheckDesktop('Embed')
+      cy.vrt('Chat popover - Desktop')
     })
   })
 
@@ -18,7 +17,7 @@ describe('Chat popover', () => {
     })
 
     it('Chat popover - Mobile', () => {
-      eyesCheckMobile('Embed')
+      cy.vrt('Chat popover - Mobile')
     })
   })
 })

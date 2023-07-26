@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('vrt', (title, options = {}) => {
+  cy.wait(2000) // wait for typeform to load and hide loading screen
+  cy.vrtStart()
+  cy.vrtTrack(title, {
+    viewport: title.match(/mobile/i) ? 'mobile' : 'desktop',
+    ...options,
+  })
+  cy.vrtStop()
+})

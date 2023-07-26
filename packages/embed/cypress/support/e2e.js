@@ -13,10 +13,22 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-import '@applitools/eyes-cypress/commands'
-
 // Import commands.js using ES2015 syntax:
 import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+import {
+  addVrtTrackCommand,
+  addVrtStartCommand,
+  addVrtStopCommand,
+  addVrtTrackBufferCommand,
+  addVrtTrackBase64Command,
+} from '@visual-regression-tracker/agent-cypress/dist/commands'
+
+addVrtStartCommand()
+addVrtStopCommand()
+addVrtTrackCommand()
+addVrtTrackBufferCommand()
+addVrtTrackBase64Command()

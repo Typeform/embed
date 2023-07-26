@@ -96,8 +96,12 @@ jobs:
 
       - run: yarn test:visual
         env:
-          APPLITOOLS_BATCH_ID: ${{ github.event.pull_request.head.sha }}
-          EYES_API_KEY: ${{ secrets.EYES_API_KEY }}
+          VRT_APIURL: ${{ secrets.VRT_APIURL }}
+          VRT_APIKEY: ${{ secrets.VRT_APIKEY }}
+          VRT_PROJECT: ${{ secrets.VRT_PROJECT }}
+          VRT_BRANCHNAME: ${{ github.head_ref || github.ref_name }}
+          VRT_CIBUILDID: ${{ github.sha }}
+
   deploy_preview:
     runs-on: ubuntu-latest
     # skip for external PRs

@@ -12,12 +12,16 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+const { addVisualRegressionTrackerPlugin } = require('@visual-regression-tracker/agent-cypress/dist/plugin')
+
 /**
  * @type {Cypress.PluginConfig}
  */
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
-}
 
-require('@applitools/eyes-cypress')(module)
+  if (config.env.testType === 'visual') {
+    addVisualRegressionTrackerPlugin(on, config)
+  }
+}

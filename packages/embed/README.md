@@ -387,4 +387,13 @@ yarn cy:run   # run in background (headless)
 yarn cy:open  # open cypress UI
 ```
 
+Run visual tests via Cypress and VRT:
+
+```bash
+yarn cy:visual    # run in background (headless)
+yarn cy:open:vrt  # open cypress UI (with support for VRT)
+```
+
+_Note:_ You need access to our [self-hosted Visual Regression Tracker (aka VRT)](https://github.com/Visual-Regression-Tracker/Visual-Regression-Tracker). Copy `vrt.example.json` to `vrt.json` and provide `apiKey` to run visual tests locally.
+
 See details on [contributing to this repo](https://github.com/Typeform/embed#contribution).
