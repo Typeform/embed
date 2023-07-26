@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.16.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.15.1...@typeform/embed-v2.16.0) (2023-07-26)
+
+
+### Features
+
+* **REACH-565:** Replace Applitools with VRT ([#594](https://github.com/Typeform/embed/issues/594)) ([db997a1](https://github.com/Typeform/embed/commit/db997a11e2f069d03b0d7b86f23382f7079008f6))
+
 # [@typeform/embed-v2.15.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.15.0...@typeform/embed-v2.15.1) (2023-07-21)
 
 
