@@ -4,7 +4,6 @@ import {
   isFullscreen,
   unmountElement,
   lazyInitialize,
-  makeAutoResize,
   changeColorOpacity,
   invokeWithoutDefault,
 } from '../../utils'
@@ -49,13 +48,8 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
   const { embedId, iframe, refresh, focus } = createIframe('widget', { formId, domain, options: widgetOptions })
   const widget = buildWidget(iframe, widgetOptions.width, widgetOptions.height)
 
-  let mobileAutoResize: () => void
-
   if (widgetOptions.fullScreen) {
     overrideFullScreenStyles(options.container, iframe)
-    mobileAutoResize = makeAutoResize(options.container, true)
-    window.addEventListener('resize', mobileAutoResize)
-    mobileAutoResize()
   }
 
   if (widgetOptions.autoResize) {
@@ -100,15 +94,12 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
   if (widgetOptions.displayAsFullScreenModal) {
     let backgroundColor = ''
     const { container } = options
-    mobileAutoResize = makeAutoResize(container)
     const originalHeight = container.style.height
     const openPopup = () => {
       container.classList.add('tf-v1-widget-fullscreen')
       if (options.opacity !== undefined) {
         container.style.backgroundColor = backgroundColor
       }
-      mobileAutoResize()
-      window.addEventListener('resize', mobileAutoResize)
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onTheme = (data: any) => {
@@ -119,7 +110,6 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     const closeButton = buildCloseButton()
 
     const close = () => {
-      window.removeEventListener('resize', mobileAutoResize)
       container.style.height = originalHeight
       options.onClose?.()
       container.classList.remove('tf-v1-widget-fullscreen')
@@ -148,9 +138,6 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
     refresh,
     focus,
     unmount: () => {
-      if (mobileAutoResize) {
-        window.removeEventListener('resize', mobileAutoResize)
-      }
       unmountElement(widget)
     },
   }
