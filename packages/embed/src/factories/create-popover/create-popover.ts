@@ -8,7 +8,6 @@ import {
   getTextColor,
   isOpen,
   isInPage,
-  makeAutoResize,
   invokeWithoutDefault,
   addAttributesToElement,
 } from '../../utils'
@@ -182,14 +181,10 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     addCustomKeyboardListener(close)
   }
 
-  const autoResize = makeAutoResize(popover)
-
   const open = () => {
     if (!isOpen(wrapper)) {
       hideTooltip()
       hideNotificationDot()
-      autoResize()
-      window.addEventListener('resize', autoResize)
       setTimeout(() => {
         if (!isInPage(wrapper)) {
           popover.append(wrapper)
@@ -234,7 +229,6 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const unmount = () => {
     unmountElement(popover)
-    window.removeEventListener('resize', autoResize)
     if (options.open && openHandler?.remove) {
       openHandler.remove()
     }

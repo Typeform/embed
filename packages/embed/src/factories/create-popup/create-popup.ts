@@ -11,7 +11,7 @@ import {
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
-import { isInPage, isOpen, makeAutoResize } from '../../utils'
+import { isInPage, isOpen } from '../../utils'
 import { EmbedPopup } from '../../base'
 
 import { PopupOptions } from './popup-options'
@@ -91,8 +91,6 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
     addCustomKeyboardListener(close)
   }
 
-  const autoResize = makeAutoResize(popup)
-
   const open = () => {
     if (!isOpen(popup)) {
       if (!isInPage(popup)) {
@@ -102,8 +100,6 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
         popup.style.display = 'flex'
       }
       document.body.style.overflow = 'hidden'
-      autoResize()
-      window.addEventListener('resize', autoResize)
       setTimeout(() => {
         popup.style.opacity = '1'
       })
@@ -139,7 +135,6 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
 
   const unmount = () => {
     unmountElement(popup)
-    window.removeEventListener('resize', autoResize)
     if (options.open && openHandler?.remove) {
       openHandler.remove()
     }
