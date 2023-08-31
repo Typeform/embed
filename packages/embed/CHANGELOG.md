@@ -1,3 +1,10 @@
+# [@typeform/embed-v2.16.1](https://github.com/Typeform/embed/compare/@typeform/embed-v2.16.0...@typeform/embed-v2.16.1) (2023-08-31)
+
+
+### Bug Fixes
+
+* **REACH-763:** Remove height auto resize ([#612](https://github.com/Typeform/embed/issues/612)) ([8e9d64b](https://github.com/Typeform/embed/commit/8e9d64bdac9a32ff1230784f80547b24570a385e))
+
 # [@typeform/embed-v2.16.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.15.1...@typeform/embed-v2.16.0) (2023-07-26)
 
 
