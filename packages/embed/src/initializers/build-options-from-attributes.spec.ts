@@ -20,7 +20,6 @@ describe('build-options-from-attributes', () => {
         data-tf-open="exit"
         data-tf-open-value="3000"
         data-tf-hidden="foo=foo value,bar=some bar value"
-        data-tf-chat
         data-tf-share-ga-instance="ua-hello-1"
         data-tf-tracking="utm_foo=utm foo value,foobar=foobar value"
         data-tf-redirect-target="_blank"
@@ -64,7 +63,6 @@ describe('build-options-from-attributes', () => {
           foo: 'foo value',
           bar: 'some bar value',
         },
-        chat: true,
         shareGaInstance: 'ua-hello-1',
         tracking: {
           utm_foo: 'utm foo value',
