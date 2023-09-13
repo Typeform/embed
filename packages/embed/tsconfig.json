@@ -6,6 +6,8 @@
     "lib": ["esnext", "dom", "dom.iterable"],
     "moduleResolution": "node",
     "jsx": "react",
+    "allowUnreachableCode": false,
+    "noImplicitAny": true,
     "keyofStringsOnly": true,
     "suppressImplicitAnyIndexErrors": true,
     "experimentalDecorators": true,

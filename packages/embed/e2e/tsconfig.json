@@ -1,6 +1,8 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "allowUnreachableCode": false,
+    "noImplicitAny": true,
     "noEmit": true,
     "types": ["cypress"]
   },
