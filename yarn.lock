@@ -3260,10 +3260,10 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@typeform/eslint-config@^6.0.2":
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/@typeform/eslint-config/-/eslint-config-6.0.2.tgz#68007909d7ca7d65fea2d342f7bf1c4ee97ecd8a"
-  integrity sha512-2DvNxg3KGi169OudWUGKK2QlItrZlQNomopdbVkYC032BGSHlTyA77ZwrX3sfy6WsQuisT6ovlg/2sjVoA+fyw==
+"@typeform/eslint-config@^6.0.3":
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/@typeform/eslint-config/-/eslint-config-6.0.3.tgz#72984805a186261f6cf1d43d9eee380934310941"
+  integrity sha512-3KpGk4Q3hfbBO3syMXkXOicx/kaEYtTJ8DG9wt85k/7zqcdnuFGggHokB3Szb8uGyWjlLIt3WqpHZHnrtAhm4A==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.44.0"
     "@typescript-eslint/parser" "^5.44.0"
