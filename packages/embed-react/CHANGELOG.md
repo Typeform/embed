@@ -1,3 +1,20 @@
+# [@typeform/embed-react-v3.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v2.31.0...@typeform/embed-react-v3.0.0) (2023-09-14)
+
+
+### Features
+
+* Bump @typeform/embed in @typeform/embed-react package [skip ci] ([cbbf53a](https://github.com/Typeform/embed/commit/cbbf53ac780a5caa6fb263ea38de3c3b049ee69d))
+* **RESP-1781:** Remove support for CUI ([#613](https://github.com/Typeform/embed/issues/613)) ([00f3a89](https://github.com/Typeform/embed/commit/00f3a892972cd5d2e77411236724a63b4ac804c9))
+
+
+### BREAKING CHANGES
+
+* **RESP-1781:** CUI is not supported anymore
+
+* chore(RESP-1781): Update tsconfig to match standards
+
+* chore(RESP-1781): Update typeform eslint config to latest
+
 # [@typeform/embed-react-v2.31.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v2.30.0...@typeform/embed-react-v2.31.0) (2023-08-31)
 
 
