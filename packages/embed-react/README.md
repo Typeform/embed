@@ -85,12 +85,13 @@ Pass options as props to the component.
     console.log('form ready')
   }}
   enableSandbox
+  transitiveSearchParams
 >
   click to open
 </PopupButton>
 ```
 
-See all available options in [Vanilla JavaScript Embed Library README file](../embed/README.md#options).
+See all available options in [Vanilla JavaScript Embed Library README file](../embed/README.md#options). Make sure to pass props in camel case without the `data-tf-` prefix.
 
 ### CSP nonce support
 
@@ -120,8 +121,7 @@ const openPopup = () => ref.current?.open()
 
 You can find examples for specific use-cases with React in our demos:
 
-- [React demo](../../packages/demo-react)
-- [Next.js demo](../../packages/demo-nextjs)
+- [Next.js (React) demo](../../packages/demo-nextjs)
 - [Codesandbox demo](https://github.com/Typeform/embed-demo#react-nextjs)
 
 ## Local setup and development
