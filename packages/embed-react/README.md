@@ -85,12 +85,13 @@ Pass options as props to the component.
     console.log('form ready')
   }}
   enableSandbox
+  transitiveSearchParams
 >
   click to open
 </PopupButton>
 ```
 
-See all available options in [Vanilla JavaScript Embed Library README file](../embed/README.md#options).
+See all available options in [Vanilla JavaScript Embed Library README file](../embed/README.md#options). Make sure to pass props in camel case without the `data-tf-` prefix.
 
 ### CSP nonce support
 
