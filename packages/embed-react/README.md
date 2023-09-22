@@ -120,8 +120,7 @@ const openPopup = () => ref.current?.open()
 
 You can find examples for specific use-cases with React in our demos:
 
-- [React demo](../../packages/demo-react)
-- [Next.js demo](../../packages/demo-nextjs)
+- [Next.js (React) demo](../../packages/demo-nextjs)
 - [Codesandbox demo](https://github.com/Typeform/embed-demo#react-nextjs)
 
 ## Local setup and development
