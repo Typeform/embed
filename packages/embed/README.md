@@ -288,6 +288,8 @@ You can supply a target for typeform redirect (on submit or via ending). It work
 
 **⚠️ Warning:** Target `_blank` is not working in Safari (both desktop and mobile) and triggers a popup warning in Chrome on Android. It works in Chrome and Firefox on desktop.
 
+If you set target to `_self` and also enable `autoClose` option the iframe with your redirect will be closed before users are able to interact with it.
+
 ### Positioning and overlapping
 
 All embeds that are intended to be displayed over existing content in the website have **z-index set to 10001**.
