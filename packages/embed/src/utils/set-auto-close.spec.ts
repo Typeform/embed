@@ -1,22 +1,24 @@
-import { setAutoClose } from './set-auto-close'
+import { DEFAULT_AUTO_CLOSE_TIME, setAutoClose } from './set-auto-close'
+
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 describe('set-auto-close', () => {
   describe('#setAutoClose', () => {
     it('should listen to submit event', async () => {
       const embedId = '123'
-      const autoClose = 500
+      const autoClose = 1500
       const cb = jest.fn()
 
       setAutoClose(embedId, autoClose, cb)
 
       window.postMessage({ type: 'form-submit', embedId }, '*')
 
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      await wait(autoClose + 100)
 
       expect(cb).toHaveBeenCalled()
     })
 
-    it('should trigger autoClose with no delay', async () => {
+    it('should trigger autoClose with default minimal delay', async () => {
       const embedId = '123'
       const autoClose = true
       const cb = jest.fn()
@@ -25,7 +27,7 @@ describe('set-auto-close', () => {
 
       window.postMessage({ type: 'form-submit', embedId }, '*')
 
-      await new Promise((resolve) => setTimeout(resolve, 200))
+      await wait(DEFAULT_AUTO_CLOSE_TIME + 100)
 
       expect(cb).toHaveBeenCalled()
     })

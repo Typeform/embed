@@ -25,7 +25,7 @@ describe('Auto Close', () => {
   })
 
   it('HTML - should auto close the form after submit', () => {
-    const autoCloseTime = 100
+    const autoCloseTime = 500
 
     cy.visit('/autoclose.html')
 
