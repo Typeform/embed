@@ -42,7 +42,7 @@
     "coverage": "jest --coverage",
     "cy:open": "yarn cypress open",
     "cy:open:vrt": "yarn cypress open --env testType=visual",
-    "cy:open:func": "yarn cy:open -c integrationFolder=./e2e/spec/functional/",
+    "cy:open:func": "yarn cy:open -c e2e.specPattern=./e2e/spec/functional/",
     "cy:functional": "yarn cypress run --spec e2e/spec/functional/**/* --headless",
     "cy:visual": "yarn cypress run --spec e2e/spec/visual/**/* --env testType=visual",
     "test:functional": "start-server-and-test demo 9090 cy:functional",
