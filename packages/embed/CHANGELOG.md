@@ -1,3 +1,11 @@
+# [@typeform/embed-v3.0.1](https://github.com/Typeform/embed/compare/@typeform/embed-v3.0.0...@typeform/embed-v3.0.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* **REACH-827:** Add minimum wait time before closing modal ([21fe10a](https://github.com/Typeform/embed/commit/21fe10ad80060cbe8804224aee3ad4de05df8aa7))
+* **REACH-827:** Run Cypress tests in default browser (Electron) ([498daae](https://github.com/Typeform/embed/commit/498daaedd501c9b42b0b7a6dc02b9963bdf6b124))
+
 # [@typeform/embed-v3.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-v2.16.1...@typeform/embed-v3.0.0) (2023-09-14)
 
 
