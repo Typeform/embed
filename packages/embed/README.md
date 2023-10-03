@@ -349,7 +349,7 @@ You can find examples for specific use-cases in our demos:
 
 Requirements:
 
-- node >= 14 (for node v12 use [v1.38.0](https://www.npmjs.com/package/@typeform/embed/v/1.38.0))
+- node >= 16
 - yarn
 
 Install dependencies:
