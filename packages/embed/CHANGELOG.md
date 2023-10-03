@@ -1,3 +1,18 @@
+# [@typeform/embed-v4.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-v3.0.1...@typeform/embed-v4.0.0) (2023-10-03)
+
+
+### Features
+
+* **REACH-800:** Update CI to run on Node version 20 ([#617](https://github.com/Typeform/embed/issues/617)) ([eff1f36](https://github.com/Typeform/embed/commit/eff1f369eb47a82d560276eb2595dd7fc3503f2a))
+
+
+### BREAKING CHANGES
+
+* **REACH-800:** The library no longer supports node version 14 (end of
+life 2023-04-30). While we officially do not support it anymore, there
+are no known issues at the moment and the library should work with this
+node version so far.
+
 # [@typeform/embed-v3.0.1](https://github.com/Typeform/embed/compare/@typeform/embed-v3.0.0...@typeform/embed-v3.0.1) (2023-10-02)
 
 
