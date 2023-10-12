@@ -23,7 +23,7 @@ const defaultOptions = {
   buttonText: 'Launch me',
 }
 
-const buildSidetab = (width?: number, height?: number) => {
+const buildSidetab = (width?: number | string, height?: number | string) => {
   const sidetab = document.createElement('div')
   sidetab.className = 'tf-v1-sidetab'
   sidetab.dataset.testid = 'tf-v1-sidetab'
