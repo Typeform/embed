@@ -3,7 +3,7 @@ interface ElementSize {
   height?: number | string
 }
 
-const getValueWithUnits = (value: number | string): string => {
+export const getValueWithUnits = (value: number | string): string => {
   if (typeof value === 'string') {
     return value
   } else {

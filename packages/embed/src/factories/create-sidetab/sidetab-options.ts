@@ -17,22 +17,14 @@ export type SidetabOptions = BaseOptions &
   SizeableOptions &
   IframeOptions &
   ButtonOptions & {
-    /**
-     * Specify the button text
-     *
-     * @type {string}
-     */
     buttonText?: string
-    /**
-     * Specify the button background color
-     *
-     * @type {string}
-     */
     buttonColor?: string
-    /**
-     * Specify the image url for the sidetab trigger button icon
-     *
-     * @type {string}
-     */
+    buttonTextColor?: string
+    buttonTextSize?: number | string
+    buttonWidth?: number | string
+    buttonHeight?: number | string
+    buttonAlign?: 'top' | 'center' | 'bottom'
+    top?: number | string
+    bottom?: number | string
     customIcon?: string
   }
