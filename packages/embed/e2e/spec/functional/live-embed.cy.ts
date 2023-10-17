@@ -23,5 +23,9 @@ describe('Single Embed Code', () => {
       cy.get('.tf-v1-widget iframe').should('be.visible')
       cy.get('.tf-v1-widget iframe').invoke('attr', 'src').should('contain', 'form.typeform.com/to/')
     })
+
+    it('should pass hidden fields as hash', () => {
+      cy.get('.tf-v1-widget iframe').invoke('attr', 'src').should('contain', '#foo=foo+value&email=foo%40bar.com')
+    })
   })
 })

@@ -4,9 +4,21 @@ import { invokeWithoutDefault } from '../utils'
 
 import { initialize } from './initialize'
 
-export const initializeSliders = (forceReload: boolean = false) => {
-  initialize(SLIDER_ATTRIBUTE, 'slider.css', forceReload, (formId, options, button) => {
-    const { toggle } = createSlider(formId, options as SliderOptions)
-    button.onclick = invokeWithoutDefault(toggle)
+export const initializeSliders = ({
+  container,
+  forceReload = false,
+}: {
+  container?: HTMLElement
+  forceReload?: boolean
+}) => {
+  initialize({
+    embedElementAttribute: SLIDER_ATTRIBUTE,
+    cssFilename: 'slider.css',
+    container,
+    forceReload,
+    factoryMethod: (formId, options, button) => {
+      const { toggle } = createSlider(formId, options as SliderOptions)
+      button.onclick = invokeWithoutDefault(toggle)
+    },
   })
 }

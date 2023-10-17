@@ -3,8 +3,20 @@ import { SIDETAB_ATTRIBUTE } from '../constants'
 
 import { initialize } from './initialize'
 
-export const initializeSidetabs = (forceReload: boolean = false) => {
-  initialize(SIDETAB_ATTRIBUTE, 'sidetab.css', forceReload, (formId, options) => {
-    createSidetab(formId, options as SidetabOptions)
+export const initializeSidetabs = ({
+  container,
+  forceReload = false,
+}: {
+  container?: HTMLElement
+  forceReload?: boolean
+}) => {
+  initialize({
+    embedElementAttribute: SIDETAB_ATTRIBUTE,
+    cssFilename: 'sidetab.css',
+    container,
+    forceReload,
+    factoryMethod: (formId, options) => {
+      createSidetab(formId, options as SidetabOptions)
+    },
   })
 }
