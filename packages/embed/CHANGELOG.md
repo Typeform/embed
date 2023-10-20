@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.1.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.0.0...@typeform/embed-v4.1.0) (2023-10-20)
+
+
+### Features
+
+* **REACH-897:** Support hidden fields in live embed codes ([#621](https://github.com/Typeform/embed/issues/621)) ([9b0e6d2](https://github.com/Typeform/embed/commit/9b0e6d2141e023d2a4d0bafb38025a7f25b2eb75))
+
 # [@typeform/embed-v4.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-v3.0.1...@typeform/embed-v4.0.0) (2023-10-03)
 
 
