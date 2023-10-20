@@ -1,7 +1,13 @@
 import { LIVE_EMBED_ATTRIBUTE } from '../constants'
 import { fetchLiveEmbed } from '../live-embed/fetch-live-embed'
 
-export const initializeLiveEmbeds = async (forceReload: boolean) => {
+export const initializeLiveEmbeds = ({
+  forceReload,
+  onLiveEmbedLoad,
+}: {
+  forceReload: boolean
+  onLiveEmbedLoad: (element: HTMLElement) => void
+}) => {
   const embedTypeElements = document.querySelectorAll<HTMLElement>(`[${LIVE_EMBED_ATTRIBUTE}]`)
 
   for (let index = 0; index < embedTypeElements.length; index += 1) {
@@ -12,9 +18,12 @@ export const initializeLiveEmbeds = async (forceReload: boolean) => {
         throw new Error(`Invalid ${LIVE_EMBED_ATTRIBUTE}=${embedId} for embed #${index}`)
       }
 
-      const { html } = await fetchLiveEmbed(embedId)
-      element.innerHTML = html
-      element.dataset.tfLoaded = 'true'
+      fetchLiveEmbed(embedId).then(({ html }) => {
+        element.innerHTML = html
+        element.dataset.tfLoaded = 'true'
+
+        onLiveEmbedLoad(element)
+      })
     }
   }
 }
