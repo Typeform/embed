@@ -15,7 +15,7 @@ describe('Single Embed Code', () => {
           ></div>`,
         },
       })
-      cy.visit(`/live-embed.html`)
+      cy.visit(`/live-embed.html?bar=transitive`)
     })
 
     it('should display widget', () => {
@@ -26,6 +26,10 @@ describe('Single Embed Code', () => {
 
     it('should pass hidden fields as hash', () => {
       cy.get('.tf-v1-widget iframe').invoke('attr', 'src').should('contain', '#foo=foo+value&email=foo%40bar.com')
+    })
+
+    it('should pass transitive search params', () => {
+      cy.get('.tf-v1-widget iframe').invoke('attr', 'src').should('contain', '&bar=transitive')
     })
   })
 })

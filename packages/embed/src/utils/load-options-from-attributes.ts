@@ -25,7 +25,11 @@ const transformString = (value: string | null): string | undefined => {
   return value || undefined
 }
 
-const transformBoolean = (value: string | null): boolean => {
+const transformBoolean = (value: string | null): boolean | undefined => {
+  if (value === null) {
+    return undefined
+  }
+
   return value === '' || value === 'yes' || value === 'true'
 }
 
