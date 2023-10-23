@@ -47,7 +47,11 @@ describe('load-options-from-attributes', () => {
         expect(transformAttributeValue('', 'boolean')).toBe(true)
       })
 
-      const falseValues = ['no', 'foo', null]
+      it('should transform null (attribute not found) to undefined', () => {
+        expect(transformAttributeValue(null, 'boolean')).toBe(undefined)
+      })
+
+      const falseValues = ['no', 'foo']
       falseValues.forEach((value) => {
         it(`should transform "${value}" to false`, () => {
           expect(transformAttributeValue(value, 'boolean')).toBe(false)
@@ -143,8 +147,8 @@ describe('load-options-from-attributes', () => {
       expect(transformAttributeValue('', 'integerOrBoolean')).toEqual(true)
     })
 
-    it('should return false if no value is provided', () => {
-      expect(transformAttributeValue(null, 'integerOrBoolean')).toEqual(false)
+    it('should return undefined if no value is provided', () => {
+      expect(transformAttributeValue(null, 'integerOrBoolean')).toEqual(undefined)
     })
   })
 
@@ -157,8 +161,8 @@ describe('load-options-from-attributes', () => {
       expect(transformAttributeValue('', 'integerOrBoolean')).toEqual(true)
     })
 
-    it('should return false if no value is provided', () => {
-      expect(transformAttributeValue(null, 'integerOrBoolean')).toEqual(false)
+    it('should return undefined if no value is provided', () => {
+      expect(transformAttributeValue(null, 'integerOrBoolean')).toEqual(undefined)
     })
   })
 
@@ -184,7 +188,6 @@ describe('load-options-from-attributes', () => {
         stringParam: 'foo',
         boolParam: true,
         boolParamYes: true,
-        nonExistantBoolParam: false,
       })
     })
   })
