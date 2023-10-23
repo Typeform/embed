@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.1.1](https://github.com/Typeform/embed/compare/@typeform/embed-v4.1.0...@typeform/embed-v4.1.1) (2023-10-23)
+
+
+### Bug Fixes
+
+* **REACH-914:** wrong overlapping settings in live embed ([#622](https://github.com/Typeform/embed/issues/622)) ([3f2c6f9](https://github.com/Typeform/embed/commit/3f2c6f9b5e63421d78e67c6db39d5776efea4679))
+
 # [@typeform/embed-v4.1.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.0.0...@typeform/embed-v4.1.0) (2023-10-20)
 
 
