@@ -1,3 +1,10 @@
+# [@typeform/embed-react-v3.4.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v3.3.0...@typeform/embed-react-v3.4.0) (2023-10-23)
+
+
+### Features
+
+* Bump @typeform/embed in @typeform/embed-react package [skip ci] ([4d899d4](https://github.com/Typeform/embed/commit/4d899d40009d899cd3baab55cc04891919f40744))
+
 # [@typeform/embed-react-v3.3.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v3.2.0...@typeform/embed-react-v3.3.0) (2023-10-20)
 
 
