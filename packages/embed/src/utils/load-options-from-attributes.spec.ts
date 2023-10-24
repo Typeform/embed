@@ -25,10 +25,6 @@ describe('load-options-from-attributes', () => {
         expect(transformAttributeValue(null, 'string')).toBe(undefined)
       })
 
-      it('should transform undefined to undefined', () => {
-        expect(transformAttributeValue(null, 'string')).toBe(undefined)
-      })
-
       it('should return empty string as undefined', () => {
         expect(transformAttributeValue('', 'string')).toBe(undefined)
       })
@@ -131,6 +127,24 @@ describe('load-options-from-attributes', () => {
 
     it('should return undefined if no value', () => {
       expect(transformAttributeValue('', 'record')).toEqual(undefined)
+    })
+  })
+
+  describe('to integerOrString', () => {
+    it('should return an integer if numeric value is provided', () => {
+      expect(transformAttributeValue('1000', 'integerOrString')).toEqual(1000)
+    })
+
+    it('should return a string if non-numeric value is provided', () => {
+      expect(transformAttributeValue('1000px', 'integerOrString')).toEqual('1000px')
+    })
+
+    it('should transform null to undefined', () => {
+      expect(transformAttributeValue(null, 'integerOrString')).toBe(undefined)
+    })
+
+    it('should return empty string as undefined', () => {
+      expect(transformAttributeValue('', 'integerOrString')).toBe(undefined)
     })
   })
 

@@ -34,7 +34,7 @@ const buildSpinner = () => {
   return spinner
 }
 
-const buildWrapper = (position: Position, width: number) => {
+const buildWrapper = (position: Position, width: number | string) => {
   const wrapper = document.createElement('div')
   wrapper.className = 'tf-v1-iframe-wrapper'
   wrapper.style[position] = '-100%'

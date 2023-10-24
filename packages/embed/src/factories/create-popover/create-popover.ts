@@ -27,7 +27,7 @@ const replaceIcon = (iconToReplace: HTMLElement, newIcon: HTMLElement) => {
   }
 }
 
-const buildPopover = (width?: number, height?: number) => {
+const buildPopover = (width?: number | string, height?: number | string) => {
   const popover = document.createElement('div')
   popover.className = 'tf-v1-popover'
   popover.dataset.testid = 'tf-v1-popover'

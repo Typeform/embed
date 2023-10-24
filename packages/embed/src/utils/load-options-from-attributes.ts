@@ -17,6 +17,7 @@ export type Transformation =
   | 'function'
   | 'array'
   | 'record'
+  | 'integerOrString'
   | 'integerOrBoolean'
   | 'stringOrBoolean'
   | 'arrayOrBoolean'
@@ -76,6 +77,13 @@ const transformRecord = (value: string | null): Record<string, string> | undefin
   }, {})
 }
 
+const transformIntegerOrString = (value: string | null): string | number | undefined => {
+  if (!value) {
+    return undefined
+  }
+  return value.match(/^[0-9]+$/) ? transformInteger(value) : transformString(value)
+}
+
 export const transformAttributeValue = (value: string | null, transformation: Transformation) => {
   switch (transformation) {
     case 'string':
@@ -90,6 +98,8 @@ export const transformAttributeValue = (value: string | null, transformation: Tr
       return transformArray(value)
     case 'record':
       return transformRecord(value)
+    case 'integerOrString':
+      return transformIntegerOrString(value)
     case 'integerOrBoolean':
       return transformInteger(value) ?? transformBoolean(value)
     case 'stringOrBoolean':

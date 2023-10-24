@@ -1,15 +1,23 @@
 interface ElementSize {
-  width?: number
-  height?: number
+  width?: number | string
+  height?: number | string
+}
+
+const getValueWithUnits = (value: number | string): string => {
+  if (typeof value === 'string') {
+    return value
+  } else {
+    return `${value}px`
+  }
 }
 
 export const setElementSize = (element: HTMLElement, { width, height }: ElementSize) => {
   if (width) {
-    element.style.width = `${width}px`
+    element.style.width = getValueWithUnits(width)
   }
 
   if (height) {
-    element.style.height = `${height}px`
+    element.style.height = getValueWithUnits(height)
   }
 
   return element
