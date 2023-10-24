@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.3.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.2.0...@typeform/embed-v4.3.0) (2023-10-24)
+
+
+### Features
+
+* **REACH-577:** Add new options for sidetab ([#620](https://github.com/Typeform/embed/issues/620)) ([c938630](https://github.com/Typeform/embed/commit/c93863093970c11d99f9ec63977aa2e73932c586))
+
 # [@typeform/embed-v4.2.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.1.1...@typeform/embed-v4.2.0) (2023-10-24)
 
 
