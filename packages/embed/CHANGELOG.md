@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.2.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.1.1...@typeform/embed-v4.2.0) (2023-10-24)
+
+
+### Features
+
+* **REACH-575:** Accept size with units ([#619](https://github.com/Typeform/embed/issues/619)) ([03e199d](https://github.com/Typeform/embed/commit/03e199dd009516e2691d2a0c6abaced50b735796))
+
 # [@typeform/embed-v4.1.1](https://github.com/Typeform/embed/compare/@typeform/embed-v4.1.0...@typeform/embed-v4.1.1) (2023-10-23)
 
 
