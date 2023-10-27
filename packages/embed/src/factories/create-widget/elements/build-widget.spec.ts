@@ -21,4 +21,18 @@ describe('build-widget', () => {
       })
     })
   })
+
+  describe('#buildWidget with size', () => {
+    it('should set min height of iFrame when requested height is 100%', () => {
+      const iframe = document.createElement('iframe')
+      buildWidget(iframe, '100px', '100%')
+      expect(iframe.style.minHeight).toBe('350px')
+    })
+
+    it('should NOT set min height of iFrame when requested height is in px', () => {
+      const iframe = document.createElement('iframe')
+      buildWidget(iframe, '100px', '100px')
+      expect(iframe.style.minHeight).toBeFalsy()
+    })
+  })
 })
