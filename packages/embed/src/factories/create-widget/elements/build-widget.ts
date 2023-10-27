@@ -11,13 +11,5 @@ export const buildWidget = (
 
   widget.append(iframe)
 
-  if (height != null && typeof height == 'string' && height.endsWith('%')) {
-    widget.style.minHeight = 'inherit'
-    widget.style.display = 'flex'
-    iframe.style.flexGrow = '1'
-
-    return widget
-  }
-
   return setElementSize(widget, { width, height })
 }

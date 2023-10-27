@@ -13,13 +13,6 @@ describe('build-widget', () => {
       expect(iframe.parentNode).toBe(widget)
     })
 
-    it('should fill in the parent if with % size', () => {
-      const widget = buildWidget(iframe, 200, '100%')
-      expect(widget.style.display).toBe('flex')
-      expect(widget.style.minHeight).toBe('inherit')
-      expect(iframe.style.flexGrow).toBe('1')
-    })
-
     it('should render widget with size', () => {
       const widget = buildWidget(iframe, 200, 400)
       expect(widget).toHaveStyle({
@@ -28,6 +21,4 @@ describe('build-widget', () => {
       })
     })
   })
-
-  describe('#buildWidget ', () => {})
 })
