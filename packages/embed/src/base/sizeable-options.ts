@@ -2,18 +2,18 @@ export type WidthOption = {
   /**
    * Specify the width of the embed.
    *
-   * @type {number}
+   * @type {number | string}
    */
-  width?: number
+  width?: number | string
 }
 
 export type SizeableOptions = WidthOption & {
   /**
    * Specify the height of the embed.
    *
-   * @type {number}
+   * @type {number | string}
    */
-  height?: number
+  height?: number | string
   /**
    * Automatically resize embed to always fit the whole form.
    *
