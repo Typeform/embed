@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.3.1](https://github.com/Typeform/embed/compare/@typeform/embed-v4.3.0...@typeform/embed-v4.3.1) (2023-10-30)
+
+
+### Bug Fixes
+
+* **REACH-913:** Apply min height to the widget iframe ([#623](https://github.com/Typeform/embed/issues/623)) ([6cc6b6e](https://github.com/Typeform/embed/commit/6cc6b6ee7863b821defda8de515334bf1b4b4086))
+
 # [@typeform/embed-v4.3.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.2.0...@typeform/embed-v4.3.0) (2023-10-24)
 
 
