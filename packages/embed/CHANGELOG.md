@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.3.2](https://github.com/Typeform/embed/compare/@typeform/embed-v4.3.1...@typeform/embed-v4.3.2) (2023-10-31)
+
+
+### Bug Fixes
+
+* **NOJIRA-123:** Set size in pixels by default ([#624](https://github.com/Typeform/embed/issues/624)) ([0faf922](https://github.com/Typeform/embed/commit/0faf9227c67cc7593e75b33315994e15049457eb))
+
 # [@typeform/embed-v4.3.1](https://github.com/Typeform/embed/compare/@typeform/embed-v4.3.0...@typeform/embed-v4.3.1) (2023-10-30)
 
 
