@@ -4,7 +4,7 @@ interface ElementSize {
 }
 
 export const getValueWithUnits = (value: number | string): string => {
-  if (typeof value === 'string') {
+  if (typeof value === 'string' && !value.match(/^[0-9]+$/)) {
     return value
   } else {
     return `${value}px`

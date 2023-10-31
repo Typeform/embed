@@ -1,4 +1,4 @@
-import { setElementSize } from './set-element-size'
+import { getValueWithUnits, setElementSize } from './set-element-size'
 
 describe('set-element-size', () => {
   describe('#setElementSize', () => {
@@ -18,7 +18,7 @@ describe('set-element-size', () => {
 
     it('should return an element with width and height', () => {
       const element = document.createElement('div')
-      expect(setElementSize(element, { width: 100, height: 100 })).toHaveStyle({
+      expect(setElementSize(element, { width: 100, height: '100' })).toHaveStyle({
         width: '100px',
         height: '100px',
       })
@@ -35,6 +35,20 @@ describe('set-element-size', () => {
       const sizedElement = setElementSize(element, { width: '100%', height: '50vh' })
       expect(sizedElement).toHaveStyle('width: 100%')
       expect(sizedElement).toHaveStyle('height: 50vh')
+    })
+  })
+
+  describe('#getValueWithUnits', () => {
+    it('should return size in pixels for number value', () => {
+      expect(getValueWithUnits(100)).toBe('100px')
+    })
+
+    it('should return size in pixels for string value containing only numbers', () => {
+      expect(getValueWithUnits('100')).toBe('100px')
+    })
+
+    it('should keep original units when provided in the value', () => {
+      expect(getValueWithUnits('100vh')).toBe('100vh')
     })
   })
 })
