@@ -5,6 +5,10 @@ export const getFormReadyHandler = (embedId: string, callback?: callbackFn) => {
   return getFormEventHandler('form-ready', embedId, callback)
 }
 
+export const getFormStartedHandler = (embedId: string, callback?: callbackFn) => {
+  return getFormEventHandler('form-started', embedId, callback)
+}
+
 export const getFormQuestionChangedHandler = (embedId: string, callback?: callbackFn) => {
   return getFormEventHandler('form-screen-changed', embedId, callback)
 }

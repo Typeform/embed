@@ -20,6 +20,10 @@ export type ActionableOptions = {
    */
   onReady?: (event: WithFormId) => void
   /**
+   * Callback function that will be executed once the typeform "submission start" event is fired.
+   */
+  onStarted?: (event: WithFormId & WithResponseId) => void
+  /**
    * Callback function that will be executed right after the typeform is successfully submitted.
    * @param {Object} event - Event payload.
    * @param {string} event.formId - Form ID string.

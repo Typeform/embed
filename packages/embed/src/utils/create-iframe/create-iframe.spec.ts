@@ -15,6 +15,7 @@ describe('create-iframe', () => {
     const triggerIframeRedrawMock = jest.spyOn(require('./trigger-iframe-redraw'), 'triggerIframeRedraw')
     const options = {
       onReady: jest.fn(),
+      onStarted: jest.fn(),
       onSubmit: jest.fn(),
       onQuestionChanged: jest.fn(),
       onHeightChanged: jest.fn(),
@@ -82,6 +83,13 @@ describe('create-iframe', () => {
       await new Promise((resolve) => setTimeout(resolve))
 
       expect(options.onReady).toBeCalled()
+    })
+
+    it('should call form-started handler', async () => {
+      window.postMessage({ type: 'form-started', embedId: 'random-id' }, '*')
+      await new Promise((resolve) => setTimeout(resolve))
+
+      expect(options.onStarted).toBeCalled()
     })
 
     it('should call form-screen-changed handler', async () => {
