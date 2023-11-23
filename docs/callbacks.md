@@ -11,6 +11,7 @@ You can listen to various events as the respondent is filling out the typeform o
 Available callbacks:
 
 - **onReady** fires when the form is loaded
+- **onStarted** fires on the form "submission start" event
 - **onSubmit** fires when user submits the form
 - **onClose** fires when user closes the modal window
 - **onQuestionChanged** fires when user navigates between form questions
@@ -46,6 +47,36 @@ Or in HTML:
   // this function needs to be available on global scope (window)
   function ready({ formId }) {
     console.log(`Form ${formId} is ready`)
+  }
+</script>
+```
+
+## onStarted
+
+The `onStarted` callback will execute when the embedded typeform "submission start" even is trigerred.
+
+In JavaScript:
+
+```javascript
+import { createWidget } from '@typeform/embed'
+import '@typeform/embed/build/css/widget.css'
+
+createWidget('<form-id>', {
+  onStarted: ({ formId, responseId }) => {
+    console.log(`Form ${formId} started with response ID ${responseId}`)
+  },
+})
+```
+
+Or in HTML:
+
+```html
+<div data-tf-widget="<form-id>" data-tf-on-started="started"></div>
+<script src="//embed.typeform.com/next/embed.js"></script>
+<script>
+  // this function needs to be available on global scope (window)
+  function started({ formId }) {
+    console.log(`Form ${formId} started with response ID ${responseId}`)
   }
 </script>
 ```

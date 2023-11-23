@@ -13,6 +13,7 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     opacity: 'integer',
     disableTracking: 'boolean',
     onReady: 'function',
+    onStarted: 'function',
     onSubmit: 'function',
     onQuestionChanged: 'function',
     onHeightChanged: 'function',

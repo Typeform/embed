@@ -152,6 +152,7 @@ Closing and opening a typeform in modal window will restart the progress from th
 | [notificationDays](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/popover-html)               | number                      | display red notification dot, hide for given number of days since popover is open (popover only)                                                                                                                                                                                                       | `undefined`                                                   |
 | [autoClose](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/autoclose)                         | number / boolean            | time (ms) until the embedded typeform will automatically close after a respondent clicks the Submit button. (all embeds except widget)                                                                                                                                                                 | `undefined`                                                   |
 | [onReady](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)                           | function                    | fires when the form is loaded                                                                                                                                                                                                                                                                          | `undefined`                                                   |
+| [onStarted](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)                         | function                    | fires on the "submission start" event, contains `responseId` in the payload                                                                                                                                                                                                                            | `undefined`                                                   |
 | [onSubmit](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)                          | function                    | fires when user submits the form                                                                                                                                                                                                                                                                       | `undefined`                                                   |
 | [onClose](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)                           | function                    | fires when the form is closed (when opened in modal window)                                                                                                                                                                                                                                            | `undefined`                                                   |
 | [onQuestionChanged](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)                 | function                    | fires when user navigates between form questions                                                                                                                                                                                                                                                       | `undefined`                                                   |
@@ -228,6 +229,9 @@ You can listen to form events by providing callback methods:
     onReady: ({ formId }) => {
       console.log(`Form ${formId} is ready`)
     },
+    onStarted: ({ formId, responseId }) => {
+      console.log(`Form ${formId} started with response ID ${responseId}`)
+    },
     onQuestionChanged: ({ formId, ref }) => {
       console.log(`Question in form ${formId} changed to ${ref}`)
     },
@@ -259,6 +263,9 @@ Callback method receive payload object from the form. Each payload contains form
 
 - onReady
   - `formId` (string)
+- onStarted
+  - `formId` (string)
+  - `responseId` (string)
 - onQuestionChanged
   - `formId` (string)
   - `ref` (string) identifies currently displayed question

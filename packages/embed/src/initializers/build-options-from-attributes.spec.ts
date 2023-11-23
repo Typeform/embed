@@ -13,6 +13,7 @@ describe('build-options-from-attributes', () => {
         data-tf-disable-tracking
         data-tf-disable-auto-focus
         data-tf-on-ready="onTypeformReady"
+        data-tf-on-started="onTypeformStarted"
         data-tf-on-submit="onTypeformSubmit"
         data-tf-on-question-changed="onTypeformQuestionChanged"
         data-tf-on-height-changed="onTypeformHeightChanged"
@@ -37,6 +38,7 @@ describe('build-options-from-attributes', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const win = window as any
       win.onTypeformReady = jest.fn()
+      win.onTypeformStarted = jest.fn()
       win.onTypeformSubmit = jest.fn()
       win.onTypeformQuestionChanged = jest.fn()
       win.onTypeformHeightChanged = jest.fn()
@@ -53,6 +55,7 @@ describe('build-options-from-attributes', () => {
         opacity: 50,
         disableTracking: true,
         onReady: win.onTypeformReady,
+        onStarted: win.onTypeformStarted,
         onSubmit: win.onTypeformSubmit,
         onQuestionChanged: win.onTypeformQuestionChanged,
         onHeightChanged: win.onTypeformHeightChanged,

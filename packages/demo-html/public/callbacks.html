@@ -18,6 +18,7 @@
       data-tf-widget="HLjqXS5W"
       data-tf-source="localhost"
       data-tf-on-ready="onTypeformReady"
+      data-tf-on-started="onTypeformStarted"
       data-tf-on-submit="onTypeformSubmit"
       data-tf-on-question-changed="onTypeformQuestionChanged"
       data-tf-on-height-changed="onTypeformHeightChanged"
@@ -28,6 +29,7 @@
       data-tf-popup="HLjqXS5W"
       data-tf-source="localhost"
       data-tf-on-ready="onTypeformReady"
+      data-tf-on-started="onTypeformStarted"
       data-tf-on-submit="onTypeformSubmit"
       data-tf-on-question-changed="onTypeformQuestionChanged"
       data-tf-on-close="onTypeformClose"
@@ -45,18 +47,21 @@
         console.log('form ready', data)
       }
 
+      function onTypeformStarted(data) {
+        alert('onStarted')
+        console.log('form started', data)
+      }
+
       function onTypeformSubmit(data) {
         alert('onSubmit')
         console.log('form submitted', data)
       }
 
       function onTypeformQuestionChanged(data) {
-        alert(`onQuestionChanged: ${data.ref}`)
         console.log('form question changed', data)
       }
 
       function onTypeformHeightChanged(data) {
-        alert(`onHeightChanged: ${data.height}px`)
         console.log('form height changed', data)
       }
 
