@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.4.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.3.2...@typeform/embed-v4.4.0) (2023-11-23)
+
+
+### Features
+
+* **NOJIRA-123:** Add `onStarted` callback for "submission start" event ([#627](https://github.com/Typeform/embed/issues/627)) ([e44b5e7](https://github.com/Typeform/embed/commit/e44b5e7c54119b4557362c24c588ddf26db697dc))
+
 # [@typeform/embed-v4.3.2](https://github.com/Typeform/embed/compare/@typeform/embed-v4.3.1...@typeform/embed-v4.3.2) (2023-10-31)
 
 
