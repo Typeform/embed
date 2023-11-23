@@ -7,6 +7,8 @@ const CopyPlugin = require('copy-webpack-plugin')
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development'
 const isProd = mode === 'production'
 
+const cssUrl = process.env.CSS_URL ?? (isProd ? 'https://embed.typeform.com/next/css/' : './lib/css/')
+
 const baseConfig = {
   mode,
   resolve: {
@@ -33,7 +35,7 @@ const baseConfig = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        CSS_URL: JSON.stringify(isProd ? 'https://embed.typeform.com/next/css/' : './lib/css/'),
+        CSS_URL: JSON.stringify(cssUrl),
       },
     }),
   ],
