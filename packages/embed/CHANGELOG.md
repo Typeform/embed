@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.4.1](https://github.com/Typeform/embed/compare/@typeform/embed-v4.4.0...@typeform/embed-v4.4.1) (2024-01-03)
+
+
+### Bug Fixes
+
+* **TU-7496:** Require TS >=4.4.0 ([#632](https://github.com/Typeform/embed/issues/632)) ([aed00b6](https://github.com/Typeform/embed/commit/aed00b6b1f15042d929ef6c5202dfb5b814ea06c))
+
 # [@typeform/embed-v4.4.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.3.2...@typeform/embed-v4.4.0) (2023-11-23)
 
 
