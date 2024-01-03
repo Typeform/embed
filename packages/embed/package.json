@@ -27,7 +27,9 @@
   "scripts": {
     "clean": "rm -rf ./build ./build-aws ./types",
     "build": "yarn webpack",
-    "postbuild": "tsc -p tsconfig.json --emitDeclarationOnly --declaration --declarationDir types --skipLibCheck",
+    "build:types": "tsc -p tsconfig.json --emitDeclarationOnly --declaration --declarationDir types --skipLibCheck",
+    "build:unsupported": "echo '\"Package '@typeform/embed' requires TS version >=4.4.0\".' > types/not-supported-ts-version.d.ts",
+    "postbuild": "yarn build:types && yarn build:unsupported",
     "dev": "yarn build --watch",
     "preview": "yarn concurrently 'CSS_URL=\"http://localhost:9022/css/\" yarn dev' 'yarn preview:serve'",
     "preview:serve": "yarn http-server -p 9022 -c-1 ./build",
@@ -59,5 +61,17 @@
   "files": [
     "build",
     "types"
-  ]
+  ],
+  "typesVersions": {
+    ">=4.4.0": {
+      "*": [
+        "*"
+      ]
+    },
+    "*": {
+      "*": [
+        "types/not-supported-ts-version.d.ts"
+      ]
+    }
+  }
 }
