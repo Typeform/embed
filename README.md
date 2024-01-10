@@ -1,3 +1,4 @@
+<a href=https://engineering-metrics.typeform.tf/standards-adoption-tool/reports/embed/><img src=https://api.typeform.com/repositories/embed/badges.svg /></a>
 # 📦 Typeform Embed Libraries
 
 This is a monorepo for all embed libraries.
