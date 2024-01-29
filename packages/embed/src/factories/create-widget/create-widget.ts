@@ -25,6 +25,7 @@ const buildCloseButton = () => {
   const closeButton = document.createElement('button')
   closeButton.className = 'tf-v1-widget-close tf-v1-close-icon'
   closeButton.innerHTML = '&times;'
+  closeButton.ariaLabel = 'Close'
   return closeButton
 }
 

@@ -45,6 +45,7 @@ const buildCloseButton = (close: () => void) => {
   const closeButton = document.createElement('button')
   closeButton.className = 'tf-v1-close tf-v1-close-icon'
   closeButton.innerHTML = '&times;'
+  closeButton.ariaLabel = 'Close'
   closeButton.onclick = invokeWithoutDefault(close)
   return closeButton
 }
