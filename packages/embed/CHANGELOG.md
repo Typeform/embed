@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.5.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.4.1...@typeform/embed-v4.5.0) (2024-01-30)
+
+
+### Features
+
+* **NOJIRA-123:** Add aria-label to modal close button ([#636](https://github.com/Typeform/embed/issues/636)) ([65c36c9](https://github.com/Typeform/embed/commit/65c36c98fd41787f951a606cebefc2cee52168c2)), closes [#635](https://github.com/Typeform/embed/issues/635)
+
 # [@typeform/embed-v4.4.1](https://github.com/Typeform/embed/compare/@typeform/embed-v4.4.0...@typeform/embed-v4.4.1) (2024-01-03)
 
 
