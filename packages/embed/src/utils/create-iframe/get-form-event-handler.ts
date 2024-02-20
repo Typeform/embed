@@ -1,5 +1,7 @@
+import { handleFormRedirect } from './handle-form-redirect'
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type callbackFn = (ev?: any) => void
+type callbackFn = (data?: any) => void
 
 export const getFormReadyHandler = (embedId: string, callback?: callbackFn) => {
   return getFormEventHandler('form-ready', embedId, callback)
@@ -33,17 +35,31 @@ export const getThankYouScreenButtonClickHandler = (embedId: string, callback?: 
   return getFormEventHandler('thank-you-screen-button-click', embedId, callback)
 }
 
-function getFormEventHandler(eventType: string, expectedEmbedId: string, callback?: callbackFn) {
+export const getRedirectHandler = (embedId: string, iframe: HTMLIFrameElement) => {
+  return getFormEventHandler(
+    ['redirect-after-submit', 'thank-you-screen-redirect'],
+    embedId,
+    handleFormRedirect(iframe)
+  )
+}
+
+const isValidEventType = (expectedType: string | string[], type: string): boolean => {
+  if (Array.isArray(expectedType)) {
+    return expectedType.includes(type)
+  }
+  return expectedType === type
+}
+
+function getFormEventHandler(eventType: string | string[], expectedEmbedId: string, callback?: callbackFn) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (event: any) => {
     const { type, embedId, ...data } = event.data
-    if (type !== eventType) {
+    if (!isValidEventType(eventType, type)) {
       return
     }
     if (embedId !== expectedEmbedId) {
       return
     }
-
     callback?.(data)
   }
 }

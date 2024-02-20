@@ -70,6 +70,7 @@ const mapOptionsToQueryParams = (
     'force-touch': forceTouch ? 'true' : undefined,
     'add-placeholder-ws': type === 'widget' && displayAsFullScreenModal ? 'true' : undefined,
     'typeform-embed-redirect-target': redirectTarget,
+    'typeform-embed-handles-redirect': 1,
     'typeform-embed-auto-resize': autoResize ? 'true' : undefined,
     'typeform-embed-disable-scroll': disableScroll ? 'true' : undefined,
     'typeform-embed-handle-ending-button-click': !!onEndingButtonClick ? 'true' : undefined,
