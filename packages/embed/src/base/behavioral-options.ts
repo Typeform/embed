@@ -8,4 +8,5 @@ export type BehavioralOptions = {
    */
   open?: BehavioralType
   openValue?: number
+  preventOpenOnClose?: boolean
 }

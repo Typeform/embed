@@ -2,6 +2,7 @@ import {
   createIframe,
   setElementSize,
   handleCustomOpen,
+  isOpenPrevented,
   unmountElement,
   setAutoClose,
   addCustomKeyboardListener,
@@ -11,6 +12,7 @@ import {
   invokeWithoutDefault,
   addAttributesToElement,
   getValueWithUnits,
+  setPreventOpenOnCloseCookieValue,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { ButtonProps, EmbedPopup } from '../../base'
@@ -212,6 +214,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
 
   const close = () => {
     if (isOpen(wrapper)) {
+      options.preventOpenOnClose && setPreventOpenOnCloseCookieValue(formId)
       options.onClose?.()
       sidetab.classList.remove('open')
       setTimeout(() => {
@@ -234,7 +237,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
   button.onclick = invokeWithoutDefault(toggle)
   closeModal.onclick = invokeWithoutDefault(close)
 
-  if (options.open && !isOpen(wrapper)) {
+  if (options.open && !isOpen(wrapper) && !isOpenPrevented(options, formId)) {
     openHandler = handleCustomOpen(open, options.open, options.openValue)
   }
 

@@ -1,3 +1,5 @@
+import { BehavioralOptions } from '../base'
+
 export type RemoveHandler = { remove: () => void }
 
 const emptyHandler: RemoveHandler = { remove: () => {} }
@@ -68,4 +70,25 @@ export const handleCustomOpen = (open: () => void, openType: string, value?: num
       return emptyHandler
     // do not open automatically
   }
+}
+
+export const getPreventOpenOnCloseCookieValue = (formId: string) => {
+  const match = document.cookie.match(new RegExp(`(^| )tf-${formId}-closed=([^;]+)`))
+  return (match && match[2]) || undefined
+}
+
+export const setPreventOpenOnCloseCookieValue = (formId: string) => {
+  document.cookie = `tf-${formId}-closed=true`
+}
+
+export const isOpenPrevented = (options: BehavioralOptions, formId: string) => {
+  if (!options.preventOpenOnClose) {
+    return false
+  }
+
+  const wasClosed = getPreventOpenOnCloseCookieValue(formId) === 'true'
+  if (wasClosed) return true
+
+  // setPreventOpenOnCloseCookieValue()
+  return false
 }
