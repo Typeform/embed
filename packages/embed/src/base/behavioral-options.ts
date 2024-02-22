@@ -8,5 +8,8 @@ export type BehavioralOptions = {
    */
   open?: BehavioralType
   openValue?: number
-  preventOpenOnClose?: boolean
+  /**
+   * Preselect first question (ref) with answer (ref)
+   */
+  preventReOpenOnClose?: boolean
 }

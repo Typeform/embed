@@ -11,7 +11,7 @@ import {
   invokeWithoutDefault,
   addAttributesToElement,
   getValueWithUnits,
-  handlePreventOpenOnClose,
+  handlePreventReOpenOnClose,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { ButtonProps, EmbedPopup } from '../../base'
@@ -213,7 +213,7 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
 
   const close = () => {
     if (isOpen(wrapper)) {
-      handlePreventOpenOnClose(options, formId)
+      handlePreventReOpenOnClose(options, formId)
       options.onClose?.()
       sidetab.classList.remove('open')
       setTimeout(() => {

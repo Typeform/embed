@@ -138,7 +138,7 @@ describe('handleCustomOpen', () => {
   describe('when preventOpenOnClose is enabled', () => {
     beforeAll(() => {
       document.cookie = `tf-${formIdMock}-closed=false;Path=/\``
-      handleCustomOpen(mockOpen, { open: 'load', preventOpenOnClose: true }, formIdMock)
+      handleCustomOpen(mockOpen, { open: 'load', preventReOpenOnClose: true }, formIdMock)
     })
 
     it('should open the popup', () => {

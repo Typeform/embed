@@ -8,7 +8,7 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     mediumVersion: 'string',
     open: 'string',
     openValue: 'integer',
-    preventOpenOnClose: 'boolean',
+    preventReOpenOnClose: 'boolean',
     hideFooter: 'boolean',
     hideHeaders: 'boolean',
     opacity: 'integer',

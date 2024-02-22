@@ -46,14 +46,14 @@ const openOnScroll = (scrollThreshold: number, open: () => void): RemoveHandler 
   }
 }
 
-export const handlePreventOpenOnClose = (options: BehavioralOptions, formId: string) => {
-  options.preventOpenOnClose && setPreventOpenOnCloseCookieValue(formId)
+export const handlePreventReOpenOnClose = (options: BehavioralOptions, formId: string) => {
+  options.preventReOpenOnClose && setPreventOpenOnCloseCookieValue(formId)
 }
 
 export const handleCustomOpen = (open: () => void, options: BehavioralOptions, formId: string) => {
-  const { open: openType, openValue: value, preventOpenOnClose } = options
+  const { open: openType, openValue: value, preventReOpenOnClose } = options
 
-  if (preventOpenOnClose && getPreventOpenOnCloseCookieValue(formId)) {
+  if (preventReOpenOnClose && getPreventOpenOnCloseCookieValue(formId)) {
     return emptyHandler
   }
 

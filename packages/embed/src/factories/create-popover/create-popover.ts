@@ -10,7 +10,7 @@ import {
   isInPage,
   invokeWithoutDefault,
   addAttributesToElement,
-  handlePreventOpenOnClose,
+  handlePreventReOpenOnClose,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { ButtonProps, EmbedPopup } from '../../base'
@@ -209,7 +209,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const close = () => {
     if (isOpen(popover)) {
-      handlePreventOpenOnClose(options, formId)
+      handlePreventReOpenOnClose(options, formId)
       userOptions.onClose?.()
       setTimeout(() => {
         if (options.keepSession) {

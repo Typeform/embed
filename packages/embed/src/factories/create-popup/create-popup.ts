@@ -8,7 +8,7 @@ import {
   setAutoClose,
   addCustomKeyboardListener,
   invokeWithoutDefault,
-  handlePreventOpenOnClose,
+  handlePreventReOpenOnClose,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
@@ -110,7 +110,7 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
 
   const close = () => {
     if (isOpen(popup)) {
-      handlePreventOpenOnClose(options, formId)
+      handlePreventReOpenOnClose(options, formId)
       onClose?.()
       popup.style.opacity = '0'
       document.body.style.overflow = scrollInitialState
