@@ -9,7 +9,7 @@ export type BehavioralOptions = {
   open?: BehavioralType
   openValue?: number
   /**
-   * Preselect first question (ref) with answer (ref)
+   * When the user closes the modal, it will not automatically reopen on next page visit.
    */
   preventReOpenOnClose?: boolean
 }

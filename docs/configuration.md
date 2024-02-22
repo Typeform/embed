@@ -96,6 +96,7 @@ To set different option types:
 You can open modal embed types (all except widget) based on user actions.
 
 Properties `open` and `openValue` define when to automatically open the typeform.
+Also, you can define if you wish to prevent automatically re-opening the typeform by setting `preventReOpenOnClose`.
 
 - on page load
   - `open: 'load'`
@@ -120,13 +121,14 @@ import '@typeform/embed/build/css/popup.css'
 createPopup('<form-id>', {
   open: 'time',
   openValue: 60000,
+  preventReOpenOnClose: true,
 })
 ```
 
 Or in HTML:
 
 ```html
-<a data-tf-popup="<form-id>" data-tf-open="time" data-tf-open-value="60000"></a>
+<a data-tf-popup="<form-id>" data-tf-open="time" data-tf-open-value="60000" data-tf-prevent-re-open-on-close></a>
 <script src="//embed.typeform.com/next/embed.js"></script>
 ```
 

@@ -47,13 +47,13 @@ const openOnScroll = (scrollThreshold: number, open: () => void): RemoveHandler 
 }
 
 export const handlePreventReOpenOnClose = (options: BehavioralOptions, formId: string) => {
-  options.preventReOpenOnClose && setPreventOpenOnCloseCookieValue(formId)
+  options.preventReOpenOnClose && setPreventReOpenOnCloseCookieValue(formId)
 }
 
 export const handleCustomOpen = (open: () => void, options: BehavioralOptions, formId: string) => {
   const { open: openType, openValue: value, preventReOpenOnClose } = options
 
-  if (preventReOpenOnClose && getPreventOpenOnCloseCookieValue(formId)) {
+  if (preventReOpenOnClose && getPreventReOpenOnCloseCookieValue(formId)) {
     return emptyHandler
   }
 
@@ -82,10 +82,10 @@ export const handleCustomOpen = (open: () => void, options: BehavioralOptions, f
   }
 }
 
-const getPreventOpenOnCloseCookieValue = (formId: string): boolean => {
+const getPreventReOpenOnCloseCookieValue = (formId: string): boolean => {
   return document.cookie.includes(`tf-${formId}-closed=true`)
 }
 
-const setPreventOpenOnCloseCookieValue = (formId: string) => {
+const setPreventReOpenOnCloseCookieValue = (formId: string) => {
   document.cookie = `tf-${formId}-closed=true;Path=/`
 }
