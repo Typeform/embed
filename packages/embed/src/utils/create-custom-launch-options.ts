@@ -83,9 +83,9 @@ export const handleCustomOpen = (open: () => void, options: BehavioralOptions, f
 }
 
 const getPreventOpenOnCloseCookieValue = (formId: string): boolean => {
-  return document.cookie.includes(`tf-${formId}-closed=true;Path=/`)
+  return document.cookie.includes(`tf-${formId}-closed=true`)
 }
 
 const setPreventOpenOnCloseCookieValue = (formId: string) => {
-  document.cookie = `tf-${formId}-closed=true`
+  document.cookie = `tf-${formId}-closed=true;Path=/`
 }

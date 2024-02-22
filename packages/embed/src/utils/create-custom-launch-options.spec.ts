@@ -136,17 +136,16 @@ describe('handleCustomOpen', () => {
   })
 
   describe('when preventOpenOnClose is enabled', () => {
-    beforeAll(() => {
-      document.cookie = `tf-${formIdMock}-closed=false;Path=/\``
-      handleCustomOpen(mockOpen, { open: 'load', preventReOpenOnClose: true }, formIdMock)
-    })
-
     it('should open the popup', () => {
+      document.cookie = `tf-${formIdMock}-closed=false;Path=/`
+      handleCustomOpen(mockOpen, { open: 'load', preventReOpenOnClose: true }, formIdMock)
       expect(mockOpen).toHaveBeenCalledTimes(1)
     })
 
-    it('should NOT open the popup', () => {
-      document.cookie = `tf-${formIdMock}-closed=true;Path=/\``
+    it('should NOT open the popup', async () => {
+      document.cookie = `tf-${formIdMock}-closed=true;Path=/`
+
+      handleCustomOpen(mockOpen, { open: 'load', preventReOpenOnClose: true }, formIdMock)
       expect(mockOpen).not.toHaveBeenCalled()
     })
   })
