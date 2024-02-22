@@ -46,7 +46,17 @@ const openOnScroll = (scrollThreshold: number, open: () => void): RemoveHandler 
   }
 }
 
-export const handleCustomOpen = (open: () => void, openType: string, value?: number) => {
+export const handlePreventOpenOnClose = (options: BehavioralOptions, formId: string) => {
+  options.preventOpenOnClose && setPreventOpenOnCloseCookieValue(formId)
+}
+
+export const handleCustomOpen = (open: () => void, options: BehavioralOptions, formId: string) => {
+  const { open: openType, openValue: value, preventOpenOnClose } = options
+
+  if (preventOpenOnClose && getPreventOpenOnCloseCookieValue(formId)) {
+    return emptyHandler
+  }
+
   switch (openType) {
     case 'load':
       open()
@@ -72,23 +82,10 @@ export const handleCustomOpen = (open: () => void, openType: string, value?: num
   }
 }
 
-export const getPreventOpenOnCloseCookieValue = (formId: string) => {
-  const match = document.cookie.match(new RegExp(`(^| )tf-${formId}-closed=([^;]+)`))
-  return (match && match[2]) || undefined
+const getPreventOpenOnCloseCookieValue = (formId: string): boolean => {
+  return document.cookie.includes(`tf-${formId}-closed=true;Path=/`)
 }
 
-export const setPreventOpenOnCloseCookieValue = (formId: string) => {
+const setPreventOpenOnCloseCookieValue = (formId: string) => {
   document.cookie = `tf-${formId}-closed=true`
-}
-
-export const isOpenPrevented = (options: BehavioralOptions, formId: string) => {
-  if (!options.preventOpenOnClose) {
-    return false
-  }
-
-  const wasClosed = getPreventOpenOnCloseCookieValue(formId) === 'true'
-  if (wasClosed) return true
-
-  // setPreventOpenOnCloseCookieValue()
-  return false
 }

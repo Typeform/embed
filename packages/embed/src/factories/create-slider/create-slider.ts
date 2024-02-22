@@ -9,6 +9,7 @@ import {
   isOpen,
   isInPage,
   invokeWithoutDefault,
+  handlePreventOpenOnClose,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { SLIDER_POSITION, SLIDER_WIDTH } from '../../constants'
@@ -106,6 +107,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
 
   const close = () => {
     if (isOpen(slider)) {
+      handlePreventOpenOnClose(options, formId)
       onClose?.()
       slider.style.opacity = '0'
       wrapper.style[position] = '-100%'
@@ -129,7 +131,7 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
   wrapper.append(buildCloseButton(close))
 
   if (options.open && !isOpen(slider)) {
-    openHandler = handleCustomOpen(open, options.open, options.openValue)
+    openHandler = handleCustomOpen(open, options, formId)
   }
 
   const unmount = () => {
