@@ -11,6 +11,7 @@ import {
   getFormThemeHandler,
   getThankYouScreenButtonClickHandler,
   getFormStartedHandler,
+  getRedirectHandler,
 } from './get-form-event-handler'
 import { triggerIframeRedraw } from './trigger-iframe-redraw'
 import { dispatchCustomKeyEventFromIframe } from './setup-custom-keyboard-close'
@@ -65,6 +66,7 @@ export const createIframe = (type: EmbedType, { formId, domain, options }: Creat
   window.addEventListener('message', getFormSubmitHandler(embedId, onSubmit))
   window.addEventListener('message', getFormThemeHandler(embedId, onTheme))
   window.addEventListener('message', getThankYouScreenButtonClickHandler(embedId, onEndingButtonClick))
+  window.addEventListener('message', getRedirectHandler(embedId, iframe))
 
   if (type !== 'widget') {
     window.addEventListener('message', dispatchCustomKeyEventFromIframe)

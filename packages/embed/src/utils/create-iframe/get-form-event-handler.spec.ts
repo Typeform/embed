@@ -3,9 +3,16 @@ import {
   getFormQuestionChangedHandler,
   getFormReadyHandler,
   getFormSubmitHandler,
+  getRedirectHandler,
   getThankYouScreenButtonClickHandler,
   getWelcomeScreenHiddenHandler,
 } from './get-form-event-handler'
+
+const handleFormRedirectSpy = jest.fn()
+
+jest.mock('./handle-form-redirect', () => ({
+  handleFormRedirect: () => handleFormRedirectSpy,
+}))
 
 describe('get-form-event-handler', () => {
   const embedId = 'foobar'
@@ -14,6 +21,7 @@ describe('get-form-event-handler', () => {
 
   beforeEach(() => {
     spy.mockReset()
+    handleFormRedirectSpy.mockReset()
   })
 
   describe('#getFormReadyHandler', () => {
@@ -122,6 +130,37 @@ describe('get-form-event-handler', () => {
     it('should call the callback function', () => {
       handler({ data: { type: 'thank-you-screen-button-click', embedId } })
       expect(spy).toHaveBeenCalledTimes(1)
+    })
+
+    it('should not call the callback function for mismatched embed id', () => {
+      handler({ data: { type: 'welcome-screen-hidden', embedId: 'other', ...data } })
+      expect(spy).toHaveBeenCalledTimes(0)
+    })
+
+    it('should not call the callback function for different event type', () => {
+      handler({ data: { type: 'form-ready', embedId, ...data } })
+      expect(spy).toHaveBeenCalledTimes(0)
+    })
+  })
+
+  describe('#getRedirectHandler', () => {
+    const iframe = document.createElement('iframe') as HTMLIFrameElement
+    const handler = getRedirectHandler(embedId, iframe)
+
+    it('should call the callback function', () => {
+      handler({ data: { type: 'redirect-after-submit', embedId } })
+      handler({ data: { type: 'thank-you-screen-redirect', embedId } })
+      expect(handleFormRedirectSpy).toHaveBeenCalledTimes(2)
+    })
+
+    it('should not call the callback function for mismatched embed id', () => {
+      handler({ data: { type: 'welcome-screen-hidden', embedId: 'other', ...data } })
+      expect(handleFormRedirectSpy).toHaveBeenCalledTimes(0)
+    })
+
+    it('should not call the callback function for different event type', () => {
+      handler({ data: { type: 'form-ready', embedId, ...data } })
+      expect(handleFormRedirectSpy).toHaveBeenCalledTimes(0)
     })
   })
 })

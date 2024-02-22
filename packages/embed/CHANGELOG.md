@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.6.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.5.0...@typeform/embed-v4.6.0) (2024-02-22)
+
+
+### Features
+
+* **TU-8207:** Handle form redirects in embed SDK ([#638](https://github.com/Typeform/embed/issues/638)) ([7b4092c](https://github.com/Typeform/embed/commit/7b4092c690870dc32197c36affe66641bac4153c))
+
 # [@typeform/embed-v4.5.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.4.1...@typeform/embed-v4.5.0) (2024-01-30)
 
 
