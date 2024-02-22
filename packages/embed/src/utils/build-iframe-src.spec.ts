@@ -18,7 +18,8 @@ describe('build-iframe-src', () => {
             '&typeform-embed=embed-widget' +
             '&typeform-source=localhost' +
             '&typeform-medium=embed-sdk' +
-            '&typeform-medium-version=next'
+            '&typeform-medium-version=next' +
+            '&typeform-embed-handles-redirect=1'
         )
       })
     })
@@ -31,7 +32,8 @@ describe('build-iframe-src', () => {
           '&typeform-embed=embed-widget' +
           '&typeform-source=localhost' +
           '&typeform-medium=embed-sdk' +
-          '&typeform-medium-version=next'
+          '&typeform-medium-version=next' +
+          '&typeform-embed-handles-redirect=1'
         expect(buildIframeSrc({ formId, type: 'widget', embedId: 'embed-id', options: {} })).toBe(
           `${formId}${iframeSrcParams}`
         )
@@ -45,7 +47,8 @@ describe('build-iframe-src', () => {
           '&typeform-embed=embed-widget' +
           '&typeform-source=localhost' +
           '&typeform-medium=embed-sdk' +
-          '&typeform-medium-version=next'
+          '&typeform-medium-version=next' +
+          '&typeform-embed-handles-redirect=1'
         expect(
           buildIframeSrc({
             formId: 'formId',
@@ -64,7 +67,8 @@ describe('build-iframe-src', () => {
           '&typeform-embed=embed-widget' +
           '&typeform-source=localhost' +
           '&typeform-medium=embed-sdk' +
-          '&typeform-medium-version=next'
+          '&typeform-medium-version=next' +
+          '&typeform-embed-handles-redirect=1'
         expect(
           buildIframeSrc({ formId, type: 'widget', domain: 'foobar.example.net', embedId: 'embed-id', options: {} })
         ).toBe(`${formId}${iframeSrcParams}`)
@@ -127,6 +131,7 @@ describe('build-iframe-src', () => {
           '&embed-opacity=50' +
           '&disable-tracking=true' +
           '&__dangerous-disable-submissions=true' +
+          '&typeform-embed-handles-redirect=1' +
           '&typeform-embed-auto-resize=true' +
           '&typeform-embed-handle-ending-button-click=true' +
           '&utm_foo=utm+foo+value&foobar=foobar%26value' +
@@ -151,7 +156,8 @@ describe('build-iframe-src', () => {
           '&typeform-medium=unit-test-medium' +
           '&typeform-medium-version=unit-test-version' +
           '&disable-tracking=true' +
-          '&__dangerous-disable-submissions=true'
+          '&__dangerous-disable-submissions=true' +
+          '&typeform-embed-handles-redirect=1'
       )
     })
 
