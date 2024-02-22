@@ -1,7 +1,10 @@
+import { BehavioralType } from '../../types/base'
+
 import { handleCustomOpen } from './create-custom-launch-options'
 
 describe('handleCustomOpen', () => {
   const mockOpen = jest.fn()
+  const formIdMock = 'aFormId'
 
   afterEach(() => {
     jest.clearAllMocks()
@@ -9,7 +12,7 @@ describe('handleCustomOpen', () => {
 
   describe('on load', () => {
     beforeAll(() => {
-      handleCustomOpen(mockOpen, 'load')
+      handleCustomOpen(mockOpen, { open: 'load' }, formIdMock)
     })
 
     it('should open the popup', () => {
@@ -29,7 +32,7 @@ describe('handleCustomOpen', () => {
     })
 
     it('should not open the popup when mouse moves outside the threshold', () => {
-      handleCustomOpen(mockOpen, 'exit', 50)
+      handleCustomOpen(mockOpen, { open: 'exit', openValue: 50 }, formIdMock)
       handler({ clientY: 105 })
       handler({ clientY: 110 })
       handler({ clientY: 115 })
@@ -40,7 +43,7 @@ describe('handleCustomOpen', () => {
     })
 
     it('should not open the popup when mouse moves down', () => {
-      handleCustomOpen(mockOpen, 'exit', 50)
+      handleCustomOpen(mockOpen, { open: 'exit', openValue: 50 }, formIdMock)
       handler({ clientY: 5 })
       handler({ clientY: 10 })
       handler({ clientY: 11 })
@@ -50,7 +53,7 @@ describe('handleCustomOpen', () => {
     })
 
     it('should open the popup (and remove event listener) when mouse moves up', () => {
-      handleCustomOpen(mockOpen, 'exit', 50)
+      handleCustomOpen(mockOpen, { open: 'exit', openValue: 50 }, formIdMock)
       handler({ clientY: 10 })
       handler({ clientY: 8 })
       expect(mockOpen).toHaveBeenCalledTimes(1)
@@ -61,7 +64,7 @@ describe('handleCustomOpen', () => {
   describe('on time', () => {
     beforeAll(() => {
       jest.useFakeTimers()
-      handleCustomOpen(mockOpen, 'time', 5000)
+      handleCustomOpen(mockOpen, { open: 'time', openValue: 5000 }, formIdMock)
     })
 
     it('should not open the popup right away', () => {
@@ -90,7 +93,7 @@ describe('handleCustomOpen', () => {
     })
 
     it('should not open the popup when the page has not scrolled past the threshold', () => {
-      handleCustomOpen(mockOpen, 'scroll', 30)
+      handleCustomOpen(mockOpen, { open: 'scroll', openValue: 30 }, formIdMock)
 
       win.pageYOffset = 0
       handler()
@@ -106,7 +109,7 @@ describe('handleCustomOpen', () => {
     })
 
     it('should open the popup when the page has scrolled past the threshold', () => {
-      handleCustomOpen(mockOpen, 'scroll', 30)
+      handleCustomOpen(mockOpen, { open: 'scroll', openValue: 30 }, formIdMock)
       win.pageYOffset = 300
       handler()
       expect(mockOpen).toHaveBeenCalledTimes(1)
@@ -114,7 +117,7 @@ describe('handleCustomOpen', () => {
     })
 
     it('should open the popup when the page is scrolled at the end and threshold is beyond the end', () => {
-      handleCustomOpen(mockOpen, 'scroll', 90)
+      handleCustomOpen(mockOpen, { open: 'scroll', openValue: 90 }, formIdMock)
       win.pageYOffset = 500
       handler()
       expect(mockOpen).toHaveBeenCalledTimes(1)
@@ -124,11 +127,27 @@ describe('handleCustomOpen', () => {
 
   describe('on unknown value', () => {
     beforeAll(() => {
-      handleCustomOpen(mockOpen, 'unknown')
+      handleCustomOpen(mockOpen, { open: 'unknown' as BehavioralType }, formIdMock)
     })
 
     it('should not open the popup', () => {
       expect(mockOpen).toHaveBeenCalledTimes(0)
+    })
+  })
+
+  describe('when preventOpenOnClose is enabled', () => {
+    beforeAll(() => {
+      document.cookie = `tf-${formIdMock}-closed=false;Path=/\``
+      handleCustomOpen(mockOpen, { open: 'load', preventOpenOnClose: true }, formIdMock)
+    })
+
+    it('should open the popup', () => {
+      expect(mockOpen).toHaveBeenCalledTimes(1)
+    })
+
+    it('should NOT open the popup', () => {
+      document.cookie = `tf-${formIdMock}-closed=true;Path=/\``
+      expect(mockOpen).not.toHaveBeenCalled()
     })
   })
 })
