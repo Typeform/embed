@@ -109,4 +109,8 @@ export type UrlOptions = {
    * Do not use H1 tags inside the form
    */
   noHeading?: boolean
+  /**
+   * Preselect first question (ref) with answer (ref)
+   */
+  preselect?: Record<string, string>
 }

@@ -54,5 +54,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     disableScroll: 'boolean',
     fullScreen: 'boolean',
     noHeading: 'boolean',
+    preselect: 'record',
   })
 }
