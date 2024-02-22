@@ -6,16 +6,13 @@ describe('handleCustomOpen', () => {
   const mockOpen = jest.fn()
   const formIdMock = 'aFormId'
 
-  afterEach(() => {
+  beforeEach(() => {
     jest.clearAllMocks()
   })
 
   describe('on load', () => {
-    beforeAll(() => {
-      handleCustomOpen(mockOpen, { open: 'load' }, formIdMock)
-    })
-
     it('should open the popup', () => {
+      handleCustomOpen(mockOpen, { open: 'load' }, formIdMock)
       expect(mockOpen).toHaveBeenCalledTimes(1)
     })
   })
@@ -146,6 +143,38 @@ describe('handleCustomOpen', () => {
       document.cookie = `tf-${formIdMock}-closed=true;Path=/`
 
       handleCustomOpen(mockOpen, { open: 'load', preventReopenOnClose: true }, formIdMock)
+      expect(mockOpen).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('when respectOpenModals is "all"', () => {
+    it('should open the modal when another modal is not open', () => {
+      handleCustomOpen(mockOpen, { open: 'load', respectOpenModals: 'all' }, formIdMock)
+      expect(mockOpen).toHaveBeenCalledTimes(1)
+    })
+
+    it('should NOT open the modal when another modal is already open', () => {
+      jest.spyOn(document, 'querySelector').mockReturnValue({ offsetHeight: 100 } as HTMLDivElement)
+      handleCustomOpen(mockOpen, { open: 'load', respectOpenModals: 'all' }, formIdMock)
+      expect(mockOpen).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('when respectOpenModals is "same"', () => {
+    it('should open the modal when another modal is NOT open', () => {
+      handleCustomOpen(mockOpen, { open: 'load', respectOpenModals: 'same' }, formIdMock)
+      expect(mockOpen).toHaveBeenCalledTimes(1)
+    })
+
+    it('should open the modal when another modal is already open with DIFFERENT form', () => {
+      jest.spyOn(document, 'querySelector').mockReturnValue({ offsetHeight: 100 } as HTMLDivElement)
+      handleCustomOpen(mockOpen, { open: 'load', respectOpenModals: 'same' }, formIdMock)
+      expect(mockOpen).toHaveBeenCalledTimes(1)
+    })
+
+    it('should NOT open the modal when another modal is already open with THE SAME form', () => {
+      document.body.innerHTML += `<div class="tf-v1-popup"><iframe src="typeform.com/to/${formIdMock}" /></div>`
+      handleCustomOpen(mockOpen, { open: 'load', respectOpenModals: 'same' }, formIdMock)
       expect(mockOpen).not.toHaveBeenCalled()
     })
   })

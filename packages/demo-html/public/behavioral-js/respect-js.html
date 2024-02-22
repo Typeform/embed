@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Open and respect</title>
+    <link rel="stylesheet" href="../lib/css/popover.css" />
+    <link rel="stylesheet" href="../lib/css/slider.css" />
+    <link rel="stylesheet" href="../lib/css/sidetab.css" />
+  </head>
+  <body>
+    <h1>Respect</h1>
+    <form action="?" method="get">
+      <label><input type="radio" name="respect" value="all" /> all</label><br/>
+      <label><input type="radio" name="respect" value="same" /> same forms</label><br/>
+      <label><input type="radio" name="respect" value="none" /> none</label>
+    </form>
+    <p>Form in popover opens in 1 second.</p>
+    <p><strong>If respect = none</strong> the same form in slider opens in 2 second.</p>
+    <p><strong>If respect = none or same</strong> different form in side tab might open in 3 seconds.</p>
+
+    <script src="../lib/embed.js"></script>
+    <script>
+      document.querySelectorAll('input').forEach(radio => {
+        radio.onclick = () => document.querySelector('form').submit()
+      })
+      const [, respectOpenModals = 'none' ] = window.location.search.match(/\?respect=([a-z]+)/) || []
+      document.querySelector(`input[name=respect][value=${respectOpenModals}]`).checked = true
+
+      window.tf.createPopover('HLjqXS5W', {
+        open: 'time',
+        openValue: 1000,
+        respectOpenModals
+      })
+      window.tf.createSlider('HLjqXS5W', {
+        position: 'left',
+        open: 'time',
+        openValue: 2000,
+        respectOpenModals
+      })
+      window.tf.createSidetab('Cqrg7cgL', {
+        open: 'time',
+        openValue: 3000,
+        respectOpenModals
+      })
+    </script>
+  </body>
+</html>
