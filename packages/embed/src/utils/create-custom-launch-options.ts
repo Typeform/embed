@@ -50,8 +50,34 @@ export const handlePreventReopenOnClose = (options: BehavioralOptions, formId: s
   options.preventReopenOnClose && setPreventReopenOnCloseCookieValue(formId)
 }
 
-export const handleCustomOpen = (open: () => void, options: BehavioralOptions, formId: string) => {
-  const { open: openType, openValue: value, preventReopenOnClose } = options
+const hasOpenModalEmbedInPage = () => {
+  const elm = document.querySelector(
+    '.tf-v1-popup, .tf-v1-slider, .tf-v1-popover-wrapper, .tf-v1-sidetab-wrapper'
+  ) as HTMLElement
+  return !!(elm?.offsetHeight || elm?.offsetWidth || elm?.getClientRects()?.length)
+}
+
+const hasOpenModalEmbedInPageWithFormId = (formId: string) => {
+  const elms = document.querySelectorAll('.tf-v1-popup, .tf-v1-slider, .tf-v1-popover-wrapper, .tf-v1-sidetab-wrapper')
+  return Array.from(elms).some((elm) => {
+    const iframeSrc = elm.querySelector('iframe')?.src
+    return iframeSrc?.includes(`typeform.com/to/${formId}`) || iframeSrc?.startsWith(formId)
+  })
+}
+
+const openWithRespect = (open: () => void, formId: string, respectOpenModals?: 'all' | 'same') => () => {
+  if (respectOpenModals === 'all' && hasOpenModalEmbedInPage()) {
+    return
+  }
+  if (respectOpenModals === 'same' && hasOpenModalEmbedInPageWithFormId(formId)) {
+    return
+  }
+  return open()
+}
+
+export const handleCustomOpen = (openFn: () => void, options: BehavioralOptions, formId: string) => {
+  const { open: openType, openValue: value, preventReopenOnClose, respectOpenModals } = options
+  const open = respectOpenModals ? openWithRespect(openFn, formId, respectOpenModals) : openFn
 
   if (preventReopenOnClose && getPreventReopenOnCloseCookieValue(formId)) {
     return emptyHandler
