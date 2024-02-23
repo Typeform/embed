@@ -1,3 +1,15 @@
+# [@typeform/embed-v4.8.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.7.0...@typeform/embed-v4.8.0) (2024-02-23)
+
+
+### Bug Fixes
+
+* **TU-8691:** Fix preventReopenOnClose logic ([dfb5615](https://github.com/Typeform/embed/commit/dfb561558412f6e4b7e0c364ba6d9eca693703b4))
+
+
+### Features
+
+* **TU-8855:** Do not auto-open modal if there already is a modal open ([780f627](https://github.com/Typeform/embed/commit/780f6279540ef1de6b39abe9ce2f1f9a65da77a3))
+
 # [@typeform/embed-v4.7.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.6.0...@typeform/embed-v4.7.0) (2024-02-23)
 
 
