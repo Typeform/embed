@@ -65,23 +65,23 @@ const hasOpenModalEmbedInPageWithFormId = (formId: string) => {
   })
 }
 
-const openWithRespect = (open: () => void, formId: string, respectOpenModals?: 'all' | 'same') => () => {
-  if (respectOpenModals === 'all' && hasOpenModalEmbedInPage()) {
-    return
+const openWithConditions =
+  (open: () => void, formId: string, respectOpenModals?: 'all' | 'same', preventReopenOnClose?: boolean) => () => {
+    if (preventReopenOnClose && getPreventReopenOnCloseCookieValue(formId)) {
+      return
+    }
+    if (respectOpenModals === 'all' && hasOpenModalEmbedInPage()) {
+      return
+    }
+    if (respectOpenModals === 'same' && hasOpenModalEmbedInPageWithFormId(formId)) {
+      return
+    }
+    return open()
   }
-  if (respectOpenModals === 'same' && hasOpenModalEmbedInPageWithFormId(formId)) {
-    return
-  }
-  return open()
-}
 
 export const handleCustomOpen = (openFn: () => void, options: BehavioralOptions, formId: string) => {
   const { open: openType, openValue: value, preventReopenOnClose, respectOpenModals } = options
-  const open = respectOpenModals ? openWithRespect(openFn, formId, respectOpenModals) : openFn
-
-  if (preventReopenOnClose && getPreventReopenOnCloseCookieValue(formId)) {
-    return emptyHandler
-  }
+  const open = openWithConditions(openFn, formId, respectOpenModals, preventReopenOnClose)
 
   switch (openType) {
     case 'load':
