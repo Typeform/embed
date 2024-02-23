@@ -56,5 +56,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     fullScreen: 'boolean',
     noHeading: 'boolean',
     preselect: 'record',
+    respectOpenModals: 'string',
   })
 }
