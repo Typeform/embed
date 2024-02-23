@@ -32,6 +32,8 @@ describe('build-options-from-attributes', () => {
         data-tf-no-heading
         data-tf-iframe-props="title=foo"
         data-tf-button-props="aria-label=bar"
+        data-tf-preselect="foo=bar"
+        data-tf-respect-open-modals="all"
       ></div>`
 
     it('should load correct options', () => {
@@ -84,6 +86,10 @@ describe('build-options-from-attributes', () => {
         buttonProps: {
           'aria-label': 'bar',
         },
+        preselect: {
+          foo: 'bar',
+        },
+        respectOpenModals: 'all',
       })
     })
   })
