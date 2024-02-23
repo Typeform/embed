@@ -96,7 +96,7 @@ To set different option types:
 You can open modal embed types (all except widget) based on user actions.
 
 Properties `open` and `openValue` define when to automatically open the typeform.
-Also, you can define if you wish to prevent automatically re-opening the typeform by setting `preventReOpenOnClose`.
+If you wish to prevent automatically re-opening the typeform you can set `preventReOpenOnClose`.
 
 - on page load
   - `open: 'load'`
