@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Open: time (via embed code)</title>
+    <link rel="stylesheet" href="../lib/css/sidetab.css" />
+  </head>
+  <body>
+    <h1>This sidetab opens in <span id="seconds">5</span> seconds (via embed code)</h1>
+    <p>The sidetab is opened automatically after the given time has passed.</p>
+    <p>If the user closes the sidetab and then refreshes, it will not reopen the Typeform.</p>
+
+    <a
+      id="sidetab"
+      class="typeform-share"
+      data-tf-sidetab="HLjqXS5W"
+      data-tf-medium="unit-test"
+      data-tf-open="time"
+      data-tf-open-value="5000"
+      data-tf-prevent-reopen-on-close
+    >
+    </a>
+
+    <p>
+    <button
+      id="reset-cookie"
+    >
+      Reset cookie to reopen Typeform automatically
+    </button>
+    </p>
+
+    <p>
+      <button
+        id="refresh"
+      >
+        Refresh page
+      </button>
+    </p>
+
+    <h2>Customize the time</h2>
+    <p>This can be set on "Share" page as well.</p>
+    <form action="" method="get">
+      <label for="time">Milliseconds</label>
+      <input id="time" name="ms" type="number" value="5000" step="1000" min="1000" />
+      <button type="submit">Set</button>
+    </form>
+
+    <script>
+      const ms = parseInt(new URL(window.location.href).searchParams.get('ms'), 10)
+      if (ms) {
+        document.getElementById('sidetab').dataset.tfOpenValue = ms
+        document.getElementById('time').value = ms
+        document.getElementById('seconds').innerHTML = Math.round(ms / 1000)
+      }
+
+      document.getElementById('reset-cookie').addEventListener("click", () => {
+        document.cookie = 'tf-HLjqXS5W-closed=false;Path=/'
+        window.location.reload()
+      })
+
+      document.getElementById('refresh').addEventListener("click", () => {
+        window.location.reload()
+      })
+
+    </script>
+
+    <script src="../lib/embed.js"></script>
+  </body>
+</html>

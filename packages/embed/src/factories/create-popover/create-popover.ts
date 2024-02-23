@@ -10,6 +10,7 @@ import {
   isInPage,
   invokeWithoutDefault,
   addAttributesToElement,
+  handlePreventReopenOnClose,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { ButtonProps, EmbedPopup } from '../../base'
@@ -208,6 +209,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const close = () => {
     if (isOpen(popover)) {
+      handlePreventReopenOnClose(options, formId)
       userOptions.onClose?.()
       setTimeout(() => {
         if (options.keepSession) {
@@ -238,7 +240,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
   closeModal.onclick = invokeWithoutDefault(close)
 
   if (options.open && !isOpen(wrapper)) {
-    openHandler = handleCustomOpen(open, options.open, options.openValue)
+    openHandler = handleCustomOpen(open, options, formId)
   }
 
   return {

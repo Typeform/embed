@@ -1,3 +1,5 @@
+import { BehavioralOptions } from '../base'
+
 export type RemoveHandler = { remove: () => void }
 
 const emptyHandler: RemoveHandler = { remove: () => {} }
@@ -44,7 +46,17 @@ const openOnScroll = (scrollThreshold: number, open: () => void): RemoveHandler 
   }
 }
 
-export const handleCustomOpen = (open: () => void, openType: string, value?: number) => {
+export const handlePreventReopenOnClose = (options: BehavioralOptions, formId: string) => {
+  options.preventReopenOnClose && setPreventReopenOnCloseCookieValue(formId)
+}
+
+export const handleCustomOpen = (open: () => void, options: BehavioralOptions, formId: string) => {
+  const { open: openType, openValue: value, preventReopenOnClose } = options
+
+  if (preventReopenOnClose && getPreventReopenOnCloseCookieValue(formId)) {
+    return emptyHandler
+  }
+
   switch (openType) {
     case 'load':
       open()
@@ -68,4 +80,12 @@ export const handleCustomOpen = (open: () => void, openType: string, value?: num
       return emptyHandler
     // do not open automatically
   }
+}
+
+const getPreventReopenOnCloseCookieValue = (formId: string): boolean => {
+  return document.cookie.includes(`tf-${formId}-closed=true`)
+}
+
+const setPreventReopenOnCloseCookieValue = (formId: string) => {
+  document.cookie = `tf-${formId}-closed=true;Path=/`
 }
