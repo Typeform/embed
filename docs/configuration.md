@@ -52,6 +52,7 @@ If you embed via HTML, you need to pass optinos as attributes with `data-tf-` pr
 | autoFocus              | boolean          | enable form auto focus when loaded                                                                                                                                                                                                                                                                     | `false`                                                       |
 | open                   | string           | open embed based on user action (see below)                                                                                                                                                                                                                                                            | `undefined`                                                   |
 | openValue              | number           | based on `open` (see below)                                                                                                                                                                                                                                                                            | `undefined`                                                   |
+| preventReopenOnClose   | boolean          | prevent automatically re-opening the typeform                                                                                                                                                                                                                                                          | `false`                                                       |
 | enableSandbox          | boolean          | enable [sandbox mode](https://help.typeform.com/hc/en-us/articles/360029295952) (disables submissions and tracking)                                                                                                                                                                                    | `false`                                                       |
 | buttonText             | string           | customize the button text (sidetab only)                                                                                                                                                                                                                                                               | `"Launch me"`                                                 |
 | customIcon             | string           | customize the message icon (popover, sidetab) [more info](#custom-icon)                                                                                                                                                                                                                                | `undefined`                                                   |
@@ -121,14 +122,14 @@ import '@typeform/embed/build/css/popup.css'
 createPopup('<form-id>', {
   open: 'time',
   openValue: 60000,
-  preventReOpenOnClose: true,
+  preventReopenOnClose: true,
 })
 ```
 
 Or in HTML:
 
 ```html
-<a data-tf-popup="<form-id>" data-tf-open="time" data-tf-open-value="60000" data-tf-prevent-re-open-on-close></a>
+<a data-tf-popup="<form-id>" data-tf-open="time" data-tf-open-value="60000" data-tf-prevent-reopen-on-close></a>
 <script src="//embed.typeform.com/next/embed.js"></script>
 ```
 

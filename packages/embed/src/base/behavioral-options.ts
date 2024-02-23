@@ -11,5 +11,5 @@ export type BehavioralOptions = {
   /**
    * When the user closes the modal, it will not automatically reopen on next page visit.
    */
-  preventReOpenOnClose?: boolean
+  preventReopenOnClose?: boolean
 }
