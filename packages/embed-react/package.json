@@ -1,6 +1,6 @@
 {
   "name": "@typeform/embed-react",
-  "version": "3.12.0",
+  "version": "3.13.0",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "author": "Typeform",
@@ -24,7 +24,7 @@
     "release:github": "npm config set @typeform:registry https://npm.pkg.github.com/ && npm publish"
   },
   "dependencies": {
-    "@typeform/embed": "4.6.0",
+    "@typeform/embed": "4.7.0",
     "fast-deep-equal": "^3.1.3"
   },
   "peerDependencies": {

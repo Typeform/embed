@@ -8,7 +8,7 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     mediumVersion: 'string',
     open: 'string',
     openValue: 'integer',
-    preventReOpenOnClose: 'boolean',
+    preventReopenOnClose: 'boolean',
     hideFooter: 'boolean',
     hideHeaders: 'boolean',
     opacity: 'integer',
@@ -55,5 +55,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     disableScroll: 'boolean',
     fullScreen: 'boolean',
     noHeading: 'boolean',
+    preselect: 'record',
   })
 }

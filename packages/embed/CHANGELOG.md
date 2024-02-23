@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.7.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.6.0...@typeform/embed-v4.7.0) (2024-02-23)
+
+
+### Features
+
+* **TU-8694:** Pass option to prefill first question ([#640](https://github.com/Typeform/embed/issues/640)) ([8dc8924](https://github.com/Typeform/embed/commit/8dc8924d82df3e665fc38a01c15ef083ffaf49c6))
+
 # [@typeform/embed-v4.6.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.5.0...@typeform/embed-v4.6.0) (2024-02-22)
 
 
