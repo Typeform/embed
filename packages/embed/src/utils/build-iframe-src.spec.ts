@@ -118,6 +118,10 @@ describe('build-iframe-src', () => {
         hubspot: true,
         autoResize: true,
         onEndingButtonClick: () => {},
+        noHeading: true,
+        preselect: {
+          question1: 'value2',
+        },
       }
       expect(buildIframeSrc({ formId: 'some-id', type: 'widget', embedId: 'embed-id', options })).toBe(
         'https://form.typeform.com/to/some-id' +
@@ -134,9 +138,11 @@ describe('build-iframe-src', () => {
           '&typeform-embed-handles-redirect=1' +
           '&typeform-embed-auto-resize=true' +
           '&typeform-embed-handle-ending-button-click=true' +
+          '&typeform-embed-no-heading=true' +
           '&utm_foo=utm+foo+value&foobar=foobar%26value' +
           '#foo=foo+value&bar=%40bar%26value%3F' +
-          '&hubspot_page_name=page+title&hubspot_page_url=http%3A%2F%2Flocalhost%2F'
+          '&hubspot_page_name=page+title&hubspot_page_url=http%3A%2F%2Flocalhost%2F' +
+          '&answers-question1=value2'
       )
     })
 

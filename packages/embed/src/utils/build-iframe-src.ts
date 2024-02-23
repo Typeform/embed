@@ -87,6 +87,46 @@ const getBaseUrl = (formString: string, domain = DEFAULT_DOMAIN): URL => {
   return new URL(`https://${domain}/to/${formString}`)
 }
 
+const makePreselectParam = (preselect?: Record<string, string>) => {
+  if (!preselect) {
+    return null
+  }
+  const questionRef = Object.keys(preselect).at(0)
+  const answerRef = (questionRef && preselect[questionRef]) || undefined
+
+  if (questionRef === undefined || answerRef === undefined) {
+    return null
+  }
+  return {
+    key: `answers-${questionRef}`,
+    value: answerRef,
+  }
+}
+
+const buildHashParams = (url: URL, options: BaseOptions & UrlOptions): string => {
+  const hashParams = new URLSearchParams()
+
+  if (options.hidden) {
+    Object.entries(options.hidden)
+      .filter(([, paramValue]) => isDefined(paramValue) && paramValue !== '')
+      .forEach(([paramName, paramValue]) => {
+        // if transitive params is true, make hidden field values take priority over transitive params
+        if (typeof options.transitiveSearchParams === 'boolean') {
+          url.searchParams.delete(paramName)
+        }
+        hashParams.set(paramName, paramValue)
+      })
+  }
+
+  const preselectParam = makePreselectParam(options.preselect)
+  if (preselectParam) {
+    const { key, value } = preselectParam
+    hashParams.set(key, value)
+  }
+
+  return hashParams.toString()
+}
+
 export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
   const { domain, formId, type, embedId, options } = params
   const queryParams = mapOptionsToQueryParams(type, embedId, addDefaultUrlOptions(options))
@@ -104,23 +144,7 @@ export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
     options.hidden = { ...options.hidden, ...hubspotHiddenFields }
   }
 
-  if (options.hidden) {
-    const searchParams = new URLSearchParams()
-
-    Object.entries(options.hidden)
-      .filter(([, paramValue]) => isDefined(paramValue) && paramValue !== '')
-      .forEach(([paramName, paramValue]) => {
-        // if transitive params is true, make hidden field values take priority over transitive params
-        if (typeof options.transitiveSearchParams === 'boolean') {
-          url.searchParams.delete(paramName)
-        }
-        searchParams.set(paramName, paramValue)
-      })
-    const hiddenFields = searchParams.toString()
-    if (hiddenFields) {
-      url.hash = hiddenFields
-    }
-  }
+  url.hash = buildHashParams(url, options)
 
   return url.href
 }
