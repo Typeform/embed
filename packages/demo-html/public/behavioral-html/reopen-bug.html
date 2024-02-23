@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Open: time (via embed code)</title>
+    <link rel="stylesheet" href="../lib/css/sidetab.css" />
+    <link rel="stylesheet" href="../lib/css/popover.css" />
+    <link rel="stylesheet" href="../lib/css/popup.css" />
+  </head>
+  <body>
+    <a
+      id="popover"
+      class="typeform-share"
+      data-tf-popover="HLjqXS5W"
+      data-tf-medium="unit-test"
+      data-tf-open="time"
+      data-tf-open-value="1000"
+      data-tf-prevent-reopen-on-close
+    >
+    </a>
+
+    <a
+      id="sidetab"
+      class="typeform-share"
+      data-tf-sidetab="HLjqXS5W"
+      data-tf-medium="unit-test"
+      data-tf-open="time"
+      data-tf-open-value="6000"
+      data-tf-prevent-reopen-on-close
+    >
+    </a>
+
+    <a
+      id="popup"
+      class="typeform-share"
+      data-tf-popup="Cqrg7cgL"
+      data-tf-medium="unit-test"
+      data-tf-open="time"
+      data-tf-open-value="7000"
+      data-tf-prevent-reopen-on-close
+    >
+      popup
+    </a>
+
+    <p>
+    <button
+      id="reset-cookie"
+    >
+      Reset all cookies to reopen Typeform automatically
+    </button>
+    </p>
+
+    <script>
+      document.getElementById('reset-cookie').addEventListener("click", () => {
+        document.cookie = 'tf-HLjqXS5W-closed=false;Path=/'
+        document.cookie = 'tf-Cqrg7cgL-closed=false;Path=/'
+        window.location.reload()
+      })
+    </script>
+
+    <script src="../lib/embed.js"></script>
+  </body>
+</html>
