@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.8.1](https://github.com/Typeform/embed/compare/@typeform/embed-v4.8.0...@typeform/embed-v4.8.1) (2024-02-23)
+
+
+### Bug Fixes
+
+* **TU-8855:** Build `respectOpenModals` from HTML attributes ([#642](https://github.com/Typeform/embed/issues/642)) ([1105b36](https://github.com/Typeform/embed/commit/1105b360022af169861025707079943f8dd74ef4))
+
 # [@typeform/embed-v4.8.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.7.0...@typeform/embed-v4.8.0) (2024-02-23)
 
 
