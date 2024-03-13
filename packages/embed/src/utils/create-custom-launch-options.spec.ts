@@ -1,4 +1,4 @@
-import { BehavioralType } from '../../types/base'
+import { BehavioralType } from '../base'
 
 import { handleCustomOpen } from './create-custom-launch-options'
 
