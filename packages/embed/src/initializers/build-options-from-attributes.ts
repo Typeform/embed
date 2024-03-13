@@ -57,5 +57,6 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     noHeading: 'boolean',
     preselect: 'record',
     respectOpenModals: 'string',
+    noScrollbars: 'boolean',
   })
 }

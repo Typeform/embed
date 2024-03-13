@@ -53,6 +53,7 @@ const mapOptionsToQueryParams = (
     disableScroll,
     onEndingButtonClick,
     noHeading,
+    noScrollbars,
   } = options
   const transitiveParams = getTransitiveSearchParams(transitiveSearchParams)
   const params = {
@@ -75,6 +76,7 @@ const mapOptionsToQueryParams = (
     'typeform-embed-disable-scroll': disableScroll ? 'true' : undefined,
     'typeform-embed-handle-ending-button-click': !!onEndingButtonClick ? 'true' : undefined,
     'typeform-embed-no-heading': noHeading ? 'true' : undefined,
+    'typeform-embed-no-scrollbars': noScrollbars ? 'true' : undefined,
   }
   return { ...params, ...transitiveParams, ...tracking }
 }

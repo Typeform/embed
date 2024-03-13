@@ -34,6 +34,7 @@ describe('build-options-from-attributes', () => {
         data-tf-button-props="aria-label=bar"
         data-tf-preselect="foo=bar"
         data-tf-respect-open-modals="all"
+        data-tf-no-scrollbars
       ></div>`
 
     it('should load correct options', () => {
@@ -90,6 +91,7 @@ describe('build-options-from-attributes', () => {
           foo: 'bar',
         },
         respectOpenModals: 'all',
+        noScrollbars: true,
       })
     })
   })
