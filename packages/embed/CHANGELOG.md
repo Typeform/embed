@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.9.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.8.1...@typeform/embed-v4.9.0) (2024-03-18)
+
+
+### Features
+
+* **TU-9756:** support no-scrollbars flag ([#644](https://github.com/Typeform/embed/issues/644)) ([c7d8e70](https://github.com/Typeform/embed/commit/c7d8e7089f1212ebbcbf3b693f2941cdb6d03f5a))
+
 # [@typeform/embed-v4.8.1](https://github.com/Typeform/embed/compare/@typeform/embed-v4.8.0...@typeform/embed-v4.8.1) (2024-02-23)
 
 
