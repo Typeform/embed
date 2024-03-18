@@ -113,4 +113,11 @@ export type UrlOptions = {
    * Preselect first question (ref) with answer (ref)
    */
   preselect?: Record<string, string>
+  /**
+   * Prevents vertical scrollbars from being rendered.
+   * Useful when used along with `autoResize`
+   *
+   * @type {boolean}
+   */
+  noScrollbars?: boolean
 }
