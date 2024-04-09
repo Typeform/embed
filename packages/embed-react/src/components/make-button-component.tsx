@@ -20,7 +20,7 @@ type ButtonComponentBaseProps = {
   children: ReactNode
 }
 
-type ButtonComponentProps<T> = T & ButtonComponentBaseProps
+export type ButtonComponentProps<T> = T & ButtonComponentBaseProps
 
 type CreateFnProps<T> = Omit<ButtonComponentProps<T>, keyof ButtonComponentBaseProps>
 

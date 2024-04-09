@@ -3,7 +3,7 @@ import { createWidget, WidgetOptions } from '@typeform/embed'
 
 import { InlineStyle } from './inline-style'
 
-type WidgetProps = Omit<WidgetOptions, 'container'> & {
+export type WidgetProps = Omit<WidgetOptions, 'container'> & {
   id: string
   style?: CSSProperties
   className?: string

@@ -6,7 +6,7 @@ type InitializerComponentBaseProps = {
   id: string
 }
 
-type InitializerComponentProps<T> = T & InitializerComponentBaseProps
+export type InitializerComponentProps<T> = T & InitializerComponentBaseProps
 
 type CreateFnProps<T> = Omit<InitializerComponentProps<T>, keyof InitializerComponentBaseProps>
 
