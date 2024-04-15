@@ -1,23 +1,15 @@
-import React, {
-  CSSProperties,
-  MutableRefObject,
-  ReactNode,
-  useEffect,
-  useMemo,
-  useRef,
-  ReactHTML,
-  HTMLAttributes,
-} from 'react'
+import React, { CSSProperties, MutableRefObject, ReactNode, useEffect, useMemo, useRef, ReactHTML } from 'react'
+import { ButtonProps } from '@typeform/embed'
 
 import { InlineStyle } from './inline-style'
 
 type ButtonComponentBaseProps = {
   id: string
   as?: keyof ReactHTML
-  buttonProps?: HTMLAttributes<HTMLElement> & Record<string, string>
+  buttonProps?: ButtonProps
   style?: CSSProperties
   className?: string
-  children: ReactNode
+  children?: ReactNode
 }
 
 export type ButtonComponentProps<T> = T & ButtonComponentBaseProps

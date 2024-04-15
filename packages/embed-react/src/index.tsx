@@ -15,26 +15,21 @@ import {
   makeButtonComponent,
   makeInitializerComponent,
   Widget as WidgetComponent,
-  WidgetProps as WidgetOptions,
+  WidgetProps,
 } from './components'
 import { memoComponent } from './utils'
 
-const Widget = memoComponent<WidgetOptions>(WidgetComponent)
+export { WidgetProps }
+export const Widget = memoComponent<WidgetProps>(WidgetComponent)
 
-const PopupButton = memoComponent<ButtonComponentProps<PopupOptions>>(
-  makeButtonComponent<PopupOptions>(createPopup, 'popup')
-)
+export type PopupButtonProps = ButtonComponentProps<PopupOptions>
+export const PopupButton = memoComponent<PopupButtonProps>(makeButtonComponent<PopupOptions>(createPopup, 'popup'))
 
-const SliderButton = memoComponent<ButtonComponentProps<SliderOptions>>(
-  makeButtonComponent<SliderOptions>(createSlider, 'slider')
-)
+export type SliderButtonProps = ButtonComponentProps<SliderOptions>
+export const SliderButton = memoComponent<SliderButtonProps>(makeButtonComponent<SliderOptions>(createSlider, 'slider'))
 
-const Popover = memoComponent<InitializerComponentProps<PopoverOptions>>(
-  makeInitializerComponent<PopoverOptions>(createPopover, 'popover')
-)
+export type PopoverProps = InitializerComponentProps<PopoverOptions>
+export const Popover = memoComponent<PopoverProps>(makeInitializerComponent<PopoverOptions>(createPopover, 'popover'))
 
-const Sidetab = memoComponent<InitializerComponentProps<SidetabOptions>>(
-  makeInitializerComponent<SidetabOptions>(createSidetab, 'sidetab')
-)
-
-export { Widget, PopupButton, SliderButton, Popover, Sidetab }
+export type SidetabProps = InitializerComponentProps<SidetabOptions>
+export const Sidetab = memoComponent<SidetabProps>(makeInitializerComponent<SidetabOptions>(createSidetab, 'sidetab'))
