@@ -1,4 +1,13 @@
-import React, { CSSProperties, MutableRefObject, ReactNode, useEffect, useMemo, useRef, ReactHTML } from 'react'
+import React, {
+  CSSProperties,
+  MutableRefObject,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  ReactHTML,
+  AriaAttributes,
+} from 'react'
 import { ButtonProps } from '@typeform/embed'
 
 import { InlineStyle } from './inline-style'
@@ -6,7 +15,7 @@ import { InlineStyle } from './inline-style'
 type ButtonComponentBaseProps = {
   id: string
   as?: keyof ReactHTML
-  buttonProps?: ButtonProps
+  buttonProps?: ButtonProps & AriaAttributes
   style?: CSSProperties
   className?: string
   children?: ReactNode
