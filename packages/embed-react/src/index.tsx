@@ -9,17 +9,27 @@ import {
   SidetabOptions,
 } from '@typeform/embed'
 
-import { makeButtonComponent, makeInitializerComponent, Widget as WidgetComponent } from './components'
+import {
+  ButtonComponentProps,
+  InitializerComponentProps,
+  makeButtonComponent,
+  makeInitializerComponent,
+  Widget as WidgetComponent,
+  WidgetProps,
+} from './components'
 import { memoComponent } from './utils'
 
-const Widget = memoComponent(WidgetComponent)
+export { WidgetProps }
+export const Widget = memoComponent<WidgetProps>(WidgetComponent)
 
-const PopupButton = memoComponent(makeButtonComponent<PopupOptions>(createPopup, 'popup'))
+export type PopupButtonProps = ButtonComponentProps<PopupOptions>
+export const PopupButton = memoComponent<PopupButtonProps>(makeButtonComponent<PopupOptions>(createPopup, 'popup'))
 
-const SliderButton = memoComponent(makeButtonComponent<SliderOptions>(createSlider, 'slider'))
+export type SliderButtonProps = ButtonComponentProps<SliderOptions>
+export const SliderButton = memoComponent<SliderButtonProps>(makeButtonComponent<SliderOptions>(createSlider, 'slider'))
 
-const Popover = memoComponent(makeInitializerComponent<PopoverOptions>(createPopover, 'popover'))
+export type PopoverProps = InitializerComponentProps<PopoverOptions>
+export const Popover = memoComponent<PopoverProps>(makeInitializerComponent<PopoverOptions>(createPopover, 'popover'))
 
-const Sidetab = memoComponent(makeInitializerComponent<SidetabOptions>(createSidetab, 'sidetab'))
-
-export { Widget, PopupButton, SliderButton, Popover, Sidetab }
+export type SidetabProps = InitializerComponentProps<SidetabOptions>
+export const Sidetab = memoComponent<SidetabProps>(makeInitializerComponent<SidetabOptions>(createSidetab, 'sidetab'))

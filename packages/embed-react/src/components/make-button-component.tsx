@@ -6,21 +6,22 @@ import React, {
   useMemo,
   useRef,
   ReactHTML,
-  HTMLAttributes,
+  AriaAttributes,
 } from 'react'
+import { ButtonProps } from '@typeform/embed'
 
 import { InlineStyle } from './inline-style'
 
 type ButtonComponentBaseProps = {
   id: string
   as?: keyof ReactHTML
-  buttonProps?: HTMLAttributes<HTMLElement> & Record<string, string>
+  buttonProps?: ButtonProps & AriaAttributes
   style?: CSSProperties
   className?: string
-  children: ReactNode
+  children?: ReactNode
 }
 
-type ButtonComponentProps<T> = T & ButtonComponentBaseProps
+export type ButtonComponentProps<T> = T & ButtonComponentBaseProps
 
 type CreateFnProps<T> = Omit<ButtonComponentProps<T>, keyof ButtonComponentBaseProps>
 
