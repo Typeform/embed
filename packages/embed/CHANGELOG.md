@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.10.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.9.0...@typeform/embed-v4.10.0) (2024-04-16)
+
+
+### Features
+
+* **TU-9582:** Export correct prop types for react components ([#646](https://github.com/Typeform/embed/issues/646)) ([02030ab](https://github.com/Typeform/embed/commit/02030abadfc74a324826fb66372a8fe61b6dfe6f)), closes [#643](https://github.com/Typeform/embed/issues/643)
+
 # [@typeform/embed-v4.9.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.8.1...@typeform/embed-v4.9.0) (2024-03-18)
 
 

@@ -1,3 +1,11 @@
+# [@typeform/embed-react-v3.17.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v3.16.0...@typeform/embed-react-v3.17.0) (2024-04-16)
+
+
+### Features
+
+* Bump @typeform/embed in @typeform/embed-react package [skip ci] ([29b1dc5](https://github.com/Typeform/embed/commit/29b1dc5bf5409b72a5b0a073542cf62ace29af9a))
+* **TU-9582:** Export correct prop types for react components ([#646](https://github.com/Typeform/embed/issues/646)) ([02030ab](https://github.com/Typeform/embed/commit/02030abadfc74a324826fb66372a8fe61b6dfe6f)), closes [#643](https://github.com/Typeform/embed/issues/643)
+
 # [@typeform/embed-react-v3.16.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v3.15.0...@typeform/embed-react-v3.16.0) (2024-03-18)
 
 
