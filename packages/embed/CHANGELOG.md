@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.10.1](https://github.com/Typeform/embed/compare/@typeform/embed-v4.10.0...@typeform/embed-v4.10.1) (2024-07-08)
+
+
+### Bug Fixes
+
+* **TU-15591:** Listen to trusted iframe load events only ([#655](https://github.com/Typeform/embed/issues/655)) ([24ee093](https://github.com/Typeform/embed/commit/24ee093496c34ba7ea742f77931c0129963881d9))
+
 # [@typeform/embed-v4.10.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.9.0...@typeform/embed-v4.10.0) (2024-04-16)
 
 
