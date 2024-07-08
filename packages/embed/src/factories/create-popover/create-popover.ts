@@ -174,12 +174,14 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
     button.append(notificationDot)
   }
 
-  iframe.onload = () => {
-    popover.classList.add('open')
-    wrapper.style.opacity = '1'
-    closeModal.style.opacity = '1'
-    replaceIcon(spinner, closeIcon)
-    addCustomKeyboardListener(close)
+  iframe.onload = (event) => {
+    if (event?.isTrusted) {
+      popover.classList.add('open')
+      wrapper.style.opacity = '1'
+      closeModal.style.opacity = '1'
+      replaceIcon(spinner, closeIcon)
+      addCustomKeyboardListener(close)
+    }
   }
 
   const open = () => {

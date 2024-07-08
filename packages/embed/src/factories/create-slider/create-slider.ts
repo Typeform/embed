@@ -78,13 +78,14 @@ export const createSlider = (formId: string, userOptions: SliderOptions = {}): S
 
   const container = options.container || document.body
 
-  iframe.onload = () => {
-    wrapper.style[position] = '0'
-    setTimeout(() => {
-      spinner.style.display = 'none'
-    }, 500)
-
-    addCustomKeyboardListener(close)
+  iframe.onload = (event) => {
+    if (event?.isTrusted) {
+      wrapper.style[position] = '0'
+      setTimeout(() => {
+        spinner.style.display = 'none'
+      }, 500)
+      addCustomKeyboardListener(close)
+    }
   }
 
   const open = () => {
