@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.10.2](https://github.com/Typeform/embed/compare/@typeform/embed-v4.10.1...@typeform/embed-v4.10.2) (2024-07-10)
+
+
+### Bug Fixes
+
+* **TU-14459:** Hide popover close button ([#656](https://github.com/Typeform/embed/issues/656)) ([45ff307](https://github.com/Typeform/embed/commit/45ff307e5773b255007c9fe2052bc8f31a613101))
+
 # [@typeform/embed-v4.10.1](https://github.com/Typeform/embed/compare/@typeform/embed-v4.10.0...@typeform/embed-v4.10.1) (2024-07-08)
 
 
