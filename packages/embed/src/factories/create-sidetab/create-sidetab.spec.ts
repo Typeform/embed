@@ -1,4 +1,4 @@
-import { screen, waitForElementToBeRemoved, fireEvent } from '@testing-library/dom'
+import { screen, waitForElementToBeRemoved } from '@testing-library/dom'
 
 import { createSidetab, Sidetab } from './create-sidetab'
 
@@ -30,7 +30,7 @@ describe('#createSidetab', () => {
         expect(screen.getByTestId('spinner-icon')).toBeInTheDocument()
         jest.runAllTimers()
         const iframe = screen.getByTestId('iframe')
-        fireEvent(iframe, new Event('load'))
+        iframe?.onload?.({ isTrusted: true } as Event)
         expect(screen.getByTestId('tf-v1-sidetab-button-icon')).toBeInTheDocument()
       })
     })
@@ -49,7 +49,7 @@ describe('#createSidetab', () => {
         expect(screen.getByTestId('spinner-icon')).toBeInTheDocument()
         jest.runAllTimers()
         const iframe = screen.getByTestId('iframe')
-        fireEvent(iframe, new Event('load'))
+        iframe?.onload?.({ isTrusted: true } as Event)
         expect(screen.getByTestId('tf-v1-sidetab-button-icon')).toBeInTheDocument()
         sidetab.close()
         await waitForElementToBeRemoved(() => screen.queryByTestId('tf-v1-sidetab-wrapper'))

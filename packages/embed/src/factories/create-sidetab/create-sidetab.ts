@@ -192,10 +192,12 @@ export const createSidetab = (formId: string, userOptions: SidetabOptions = {}):
     sidetab.classList.add('ready')
   }, 250)
 
-  iframe.onload = () => {
-    sidetab.classList.add('open')
-    replaceElementChild(spinner, closeIcon)
-    addCustomKeyboardListener(close)
+  iframe.onload = (event) => {
+    if (event?.isTrusted) {
+      sidetab.classList.add('open')
+      replaceElementChild(spinner, closeIcon)
+      addCustomKeyboardListener(close)
+    }
   }
 
   const open = () => {

@@ -26,7 +26,7 @@ afterEach(() => {
   mockedLocalStorage.setItem.mockReset()
 })
 
-describe('#createSidetab', () => {
+describe('#createPopover', () => {
   describe('no params', () => {
     beforeEach(() => {
       popover = createPopover('formId')
@@ -45,7 +45,7 @@ describe('#createSidetab', () => {
         jest.runAllTimers()
         expect(screen.getByTestId('spinner-icon')).toBeInTheDocument()
         const iframe = screen.getByTestId('iframe')
-        fireEvent(iframe, new Event('load'))
+        iframe?.onload?.({ isTrusted: true } as Event)
         expect(screen.getByTestId('tf-v1-popover-button-icon')).toBeInTheDocument()
       })
     })
@@ -64,7 +64,7 @@ describe('#createSidetab', () => {
         jest.runAllTimers()
         expect(screen.getByTestId('spinner-icon')).toBeInTheDocument()
         const iframe = screen.getByTestId('iframe')
-        fireEvent(iframe, new Event('load'))
+        iframe?.onload?.({ isTrusted: true } as Event)
         expect(screen.getByTestId('tf-v1-popover-button-icon')).toBeInTheDocument()
         popover.close()
         await waitForElementToBeRemoved(() => screen.queryByTestId('tf-v1-popover-wrapper'))

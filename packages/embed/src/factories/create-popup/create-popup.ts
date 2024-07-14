@@ -85,12 +85,14 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
 
   const container = options.container || document.body
 
-  iframe.onload = () => {
-    wrapper.style.opacity = '1'
-    setTimeout(() => {
-      spinner.style.display = 'none'
-    }, 250)
-    addCustomKeyboardListener(close)
+  iframe.onload = (event) => {
+    if (event?.isTrusted) {
+      wrapper.style.opacity = '1'
+      setTimeout(() => {
+        spinner.style.display = 'none'
+      }, 250)
+      addCustomKeyboardListener(close)
+    }
   }
 
   const open = () => {
