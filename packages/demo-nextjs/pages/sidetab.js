@@ -25,7 +25,7 @@ export default function SidetabPage({ id }) {
 
         <Sidetab
           id={id}
-          ref={sidetabRef}
+          embedRef={sidetabRef}
           medium="demo-test"
           hidden={{ foo: 'foo value', bar: 'bar value' }}
           buttonText="open sidetab"

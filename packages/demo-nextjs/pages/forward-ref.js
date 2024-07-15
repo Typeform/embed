@@ -33,7 +33,7 @@ export default function PopupPage({ id }) {
         </p>
 
         <p>
-          <PopupButton id={id} ref={ref} style={buttonStyle} size={66} medium="demo-test">
+          <PopupButton id={id} embedRef={ref} style={buttonStyle} size={66} medium="demo-test">
             <span role="img" aria-label="check">
               ️✅
             </span>

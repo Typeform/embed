@@ -36,7 +36,7 @@ export default function Slider({ id }) {
         <p>
           <SliderButton
             id={id}
-            ref={sliderRef}
+            embedRef={sliderRef}
             style={buttonStyle}
             medium="demo-test"
             hidden={{ foo: 'foo value', bar: 'bar value' }}
