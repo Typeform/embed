@@ -2,13 +2,27 @@ version: 2
 
 updates:
   - package-ecosystem: npm
+    registries:
+      - gh-packages
     directory: '/'
     schedule:
-      interval: daily
-    open-pull-requests-limit: 99
+      interval: weekly
     versioning-strategy: increase
     allow:
       - dependency-name: '@typeform*'
     commit-message:
       prefix: 'chore'
       include: 'scope'
+    labels:
+      - 'dependabot'
+    groups:
+      typeform:
+        patterns:
+          - '@typeform*'
+
+registries:
+  gh-packages:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: ${{ secrets.GH_TOKEN }}
+
