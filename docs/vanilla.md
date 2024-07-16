@@ -14,7 +14,7 @@ nav_order: 10
 
 Requirements:
 
-- node >= 14 (for node v12 use [v1.38.0](https://www.npmjs.com/package/@typeform/embed/v/1.38.0))
+- node >= 18
 - yarn or npm
 
 Install using your favourite package manager:

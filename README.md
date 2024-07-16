@@ -15,7 +15,7 @@ Support for other libraries coming later. [You can help us if you want 😉](#co
 
 ## Requirements
 
-- node >= 14
+- node >= 18
 - yarn or npm
 
 **Node version support:** We aim to support all currently supported node versions (active or maintenance). Currently, we support and run tests in node versions 14, 16 and 18. Please refer to [node release schedule](https://github.com/nodejs/release#release-schedule) for specific dates on when specific node versions will be discontinued (end-of-life).

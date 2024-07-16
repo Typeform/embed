@@ -12,7 +12,7 @@ nav_order: 20
 
 Requirements:
 
-- node >= 14 (for node v12 use [v1.21.0](https://www.npmjs.com/package/@typeform/embed-react/v/1.21.0))
+- node >= 18
 - yarn or npm
 
 Add the library to your project using your favourite package manager:
