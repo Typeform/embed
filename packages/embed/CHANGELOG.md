@@ -1,3 +1,10 @@
+# [@typeform/embed-v4.10.3](https://github.com/Typeform/embed/compare/@typeform/embed-v4.10.2...@typeform/embed-v4.10.3) (2024-07-17)
+
+
+### Bug Fixes
+
+* **TU-15898:** Disable auto-resize for widgets in modal on mobile ([#658](https://github.com/Typeform/embed/issues/658)) ([6c8631a](https://github.com/Typeform/embed/commit/6c8631a749f7d87105a03e5a82892f550602f953))
+
 # [@typeform/embed-v4.10.2](https://github.com/Typeform/embed/compare/@typeform/embed-v4.10.1...@typeform/embed-v4.10.2) (2024-07-10)
 
 
