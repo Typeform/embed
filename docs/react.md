@@ -12,7 +12,7 @@ nav_order: 20
 
 Requirements:
 
-- node >= 14 (for node v12 use [v1.21.0](https://www.npmjs.com/package/@typeform/embed-react/v/1.21.0))
+- node >= 18
 - yarn or npm
 
 Add the library to your project using your favourite package manager:
@@ -102,11 +102,11 @@ Pass options as props to the component.
 
 If the global `__webpack_nonce__` is set, its value will be used for a `nonce` attribute on the inline `<style>` block. See [Github issue #458](https://github.com/Typeform/embed/issues/458) for details.
 
-### Passing a custom ref
+### Passing a custom ref as `embedRef`
 
 For some custom use cases it may be convenient to open the popup programmatically (without the button being clicked).
 
-To do this, pass a ref to `PopupButton`, `SliderButton`, `Popover` and `Sidetab` components and then use `ref.current.open()` to trigger the popup to open.
+To do this, pass an `embedRef` prop to `PopupButton`, `SliderButton`, `Popover` and `Sidetab` components and then use `ref.current.open()` to trigger the popup to open.
 
 Example:
 
@@ -116,7 +116,7 @@ const openPopup = () => ref.current?.open()
 // ...
 <PopupButton
   id="<form-id>"
-  ref={ref}
+  embedRef={ref}
 >
   click to open
 </PopupButton>

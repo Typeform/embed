@@ -6,7 +6,7 @@ Embed library for [React](https://reactjs.org/).
 
 Requirements:
 
-- node >= 14 (for node v12 use [v1.21.0](https://www.npmjs.com/package/@typeform/embed-react/v/1.21.0))
+- node >= 18
 - yarn or npm
 
 Install as NPM package using your favourite package manager:
@@ -97,11 +97,11 @@ See all available options in [Vanilla JavaScript Embed Library README file](../e
 
 If the global `__webpack_nonce__` is set, its value will be used for a `nonce` attribute on the inline `<style>` block. See [#458](https://github.com/Typeform/embed/issues/458) for details.
 
-### Passing a custom ref
+### Passing a custom ref as `embedRef`
 
 For some custom use cases it may be convenient to open the popup programmatically (without the button being clicked).
 
-To do this, pass a ref to `PopupButton`, `SliderButton`, `Popover` and `Sidetab` components and then use `ref.current.open()` to trigger the popup to open.
+To do this, pass an `embedRef` prop to `PopupButton`, `SliderButton`, `Popover` and `Sidetab` components and then use `ref.current.open()` to trigger the popup to open.
 
 Example:
 
@@ -111,7 +111,7 @@ const openPopup = () => ref.current?.open()
 // ...
 <PopupButton
   id="<form-id>"
-  ref={ref}
+  embedRef={ref}
 >
   click to open
 </PopupButton>
@@ -130,7 +130,7 @@ You can find examples for specific use-cases with React in our demos:
 
 Requirements:
 
-- node >= 14 (for node 12 use [v1.21.0](https://www.npmjs.com/package/@typeform/embed-react/v/1.21.0))
+- node >= 18
 - yarn
 
 Install dependencies:

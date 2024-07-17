@@ -58,7 +58,7 @@ function testMobile(path: string, title: string) {
         cy.wrap($body).find('[data-qa="start-button"]').click()
         cy.get('.tf-v1-widget-close').click()
       })
-      cy.wait(500)
+      cy.wait(1000)
       cy.get('iframe').then(($iframe) => {
         const $body = $iframe.contents().find('body')
         cy.wrap($body).find('[data-qa="start-button"]').should('exist')

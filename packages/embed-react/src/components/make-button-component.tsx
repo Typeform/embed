@@ -1,14 +1,16 @@
 import React, {
+  AriaAttributes,
   CSSProperties,
   MutableRefObject,
+  ReactHTML,
   ReactNode,
   useEffect,
   useMemo,
   useRef,
-  ReactHTML,
-  AriaAttributes,
 } from 'react'
 import { ButtonProps } from '@typeform/embed'
+
+import { genericEmbed, GenericEmbed } from '../utils'
 
 import { InlineStyle } from './inline-style'
 
@@ -19,6 +21,7 @@ type ButtonComponentBaseProps = {
   style?: CSSProperties
   className?: string
   children?: ReactNode
+  embedRef?: MutableRefObject<GenericEmbed | undefined>
 }
 
 export type ButtonComponentProps<T> = T & ButtonComponentBaseProps
@@ -27,31 +30,26 @@ type CreateFnProps<T> = Omit<ButtonComponentProps<T>, keyof ButtonComponentBaseP
 
 type CreateFn<T> = (id: string, props: CreateFnProps<T>) => GenericEmbed
 
-export type GenericEmbed = {
-  unmount: () => void
-  open: () => void
-}
-
-export const emptyEmbed: GenericEmbed = {
-  unmount: () => {},
-  open: () => {},
-}
-
 function makeButtonComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
-  const Button = (
-    { id, children, as = 'button', style = {}, className = '', buttonProps, ...props }: ButtonComponentProps<T>,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    refOverride: MutableRefObject<GenericEmbed> | any
-  ) => {
-    const internalRef = useRef(emptyEmbed)
-    const ref = refOverride || internalRef
+  return ({
+    id,
+    children,
+    as = 'button',
+    style = {},
+    className = '',
+    buttonProps,
+    embedRef,
+    ...props
+  }: ButtonComponentProps<T>) => {
+    const internalRef = useRef(genericEmbed)
+    const ref = embedRef || internalRef
 
     useEffect(() => {
       ref.current = createFn(id, props)
-      return () => ref.current.unmount()
+      return () => ref.current?.unmount()
     }, [id, props, ref])
 
-    const handleClick = useMemo(() => () => ref.current.open(), [ref])
+    const handleClick = useMemo(() => () => ref.current?.open(), [ref])
 
     const triggerElement = React.createElement(as, {
       style,
@@ -69,8 +67,6 @@ function makeButtonComponent<T>(createFn: CreateFn<T>, cssFilename: string) {
       </>
     )
   }
-
-  return React.forwardRef(Button)
 }
 
 export { makeButtonComponent }

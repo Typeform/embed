@@ -14,7 +14,14 @@ a {
   box-sizing: border-box;
 }
 
+.menu {
+  border-top: 1px #aaa solid;
+  border-bottom: 1px #aaa solid;
+  padding: 10px 0;
+  margin: 16px 0;
+}
+
 .menu a {
   display: inline-block;
-  margin-right: 10px;
+  margin: 0 10px;
 }

@@ -10,9 +10,9 @@ jobs:
     strategy:
       matrix:
         node_version:
-          - 16 # end of life 2023-09-11
           - 18 # end of life 2025-04-30
-          - 20 # end of life 2025-04-30
+          - 20 # end of life 2026-04-30
+          - 22 # end of life 2027-04-03
     name: build-lint-test - node ${{ matrix.node_version }}
     steps:
       - name: Check out Git repository
