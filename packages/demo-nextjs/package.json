@@ -8,7 +8,7 @@
     "clean": "rm -rf ./.next"
   },
   "dependencies": {
-    "@typeform/embed": "4.10.3",
-    "@typeform/embed-react": "3.20.0"
+    "@typeform/embed": "5.0.0",
+    "@typeform/embed-react": "4.0.0"
   }
 }
