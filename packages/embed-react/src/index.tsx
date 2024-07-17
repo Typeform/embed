@@ -17,9 +17,9 @@ import {
   Widget as WidgetComponent,
   WidgetProps,
 } from './components'
-import { memoComponent } from './utils'
+import { memoComponent, GenericEmbed } from './utils'
 
-export { WidgetProps }
+export { WidgetProps, GenericEmbed }
 export const Widget = memoComponent<WidgetProps>(WidgetComponent)
 
 export type PopupButtonProps = ButtonComponentProps<PopupOptions>

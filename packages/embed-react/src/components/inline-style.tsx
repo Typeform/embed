@@ -9,5 +9,5 @@ interface InlineStyleProps {
 export const InlineStyle: FC<InlineStyleProps> = ({ filename }: InlineStyleProps) => {
   const inlneCss = require(`../css/${filename}.css`)
   const nonce = getNonce()
-  return <style {...(nonce ? { nonce } : {})}>{inlneCss.default}</style>
+  return <style {...(nonce ? { nonce } : {})} dangerouslySetInnerHTML={{ __html: inlneCss.default }} />
 }

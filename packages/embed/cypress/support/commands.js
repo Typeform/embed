@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('vrt', (title, options = {}) => {
-  cy.wait(2000) // wait for typeform to load and hide loading screen
+  cy.wait(4000) // wait for typeform to load and hide loading screen
   cy.vrtStart()
   cy.vrtTrack(title, {
     viewport: title.match(/mobile/i) ? 'mobile' : 'desktop',
