@@ -1,3 +1,31 @@
+# [@typeform/embed-react-v4.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v3.20.0...@typeform/embed-react-v4.0.0) (2024-07-17)
+
+
+### Bug Fixes
+
+* **TU-15133:** Rename `ref` prop to `embedRef` for proper typing ([#657](https://github.com/Typeform/embed/issues/657)) ([7860e94](https://github.com/Typeform/embed/commit/7860e943a99ab35f7a59d537862c547a305766ac))
+
+
+### Features
+
+* Bump @typeform/embed in @typeform/embed-react package [skip ci] ([b2ada39](https://github.com/Typeform/embed/commit/b2ada392e534ee4b6cb9a64f7ff678ef6a12f6b4))
+
+
+### BREAKING CHANGES
+
+* **TU-15133:** Components are unable to access `ref` prop directly.
+Using  `forwardRef` breaks the typings. Since we do not accept any
+`ForwardedRef` but rather only `MutableRefObject`, we will rename the
+prop to type it correctly.
+
+* chore(TU-15133): Update NextJS demos to run on latest version
+
+Add examples for the App Router available from NextJS version >= 13.
+
+* feat(TU-15133): Update CI to run on Node version 22
+* **TU-15133:** The library no longer supports node version 16 (end of
+life 2023-09-11). React version is bumped and requires node >= 18.
+
 # [@typeform/embed-react-v3.20.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v3.19.0...@typeform/embed-react-v3.20.0) (2024-07-17)
 
 
