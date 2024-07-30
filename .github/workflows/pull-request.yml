@@ -39,7 +39,7 @@ jobs:
 
       - run: yarn build
       - run: yarn lint
-      - run: yarn test --coverage
+      - run: yarn test
 
       - name: Upload coverage file
         uses: actions/upload-artifact@v4
