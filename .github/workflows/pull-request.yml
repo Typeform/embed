@@ -41,6 +41,9 @@ jobs:
       - run: yarn lint
       - run: yarn test
 
+      - name: Verify coverage file ready
+        run: find . | grep coverage
+
       - name: Upload coverage file
         uses: actions/upload-artifact@v4
         if: ${{ matrix.node_version == '22' }}
