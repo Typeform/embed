@@ -12,7 +12,7 @@ jobs:
         node_version:
           - 18 # end of life 2025-04-30
           - 20 # end of life 2026-04-30
-          - 22 # end of life 2027-04-03
+          - 22 # end of life 2027-04-03 # please update "Upload coverage file" step if you change this
     name: build-lint-test - node ${{ matrix.node_version }}
     steps:
       - name: Check out Git repository
@@ -40,6 +40,18 @@ jobs:
       - run: yarn build
       - run: yarn lint
       - run: yarn test
+
+      - name: Verify coverage file ready
+        run: find . | grep coverage
+
+      - name: Upload coverage file
+        uses: actions/upload-artifact@v4
+        if: ${{ matrix.node_version == '22' }}
+        with:
+          name: coverage
+          path: ./packages/embed/coverage/lcov.info
+          retention-days: 1
+
   functional:
     runs-on: ubuntu-latest
     steps:
@@ -116,3 +128,36 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           JARVIS_NOTIFY_PREVIEW_TEMPLATE: ${{ secrets.JARVIS_NOTIFY_PREVIEW_TEMPLATE }}
           PUBLIC_CDN_URL: 'https://embed.typeform.com'
+
+  sonarcloud:
+    name: Test and Code Quality Report (SonarCloud)
+    needs:
+      - build-lint-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download coverage file
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage
+
+      - name: Move the coverage file to a proper location
+        run: |
+          mkdir -p coverage
+          mv lcov.info coverage/lcov.info
+
+      - name: Verify coverage file ready
+        run: ls -lah ./coverage/lcov.info
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          args: >
+            -Dsonar.projectVersion=${{ github.run_id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_CLOUD_TOKEN }}
