@@ -56,4 +56,11 @@ export type ActionableOptions = {
    * @param {string} event.ref - End screen ref string (for plans with "Redirect from ending screen" feature).
    */
   onEndingButtonClick?: (event: WithFormId & Partial<WithRef>) => void
+
+  /**
+   * Callback function that will be executed once we detect the current user reached the form answer quota.
+   * @param {Object} event - Event payload.
+   * @param {string} event.formId - Form ID string.
+   */
+  onDuplicateDetected?: (event: WithFormId) => void
 }

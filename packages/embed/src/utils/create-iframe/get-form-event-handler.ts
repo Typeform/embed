@@ -23,6 +23,10 @@ export const getFormSubmitHandler = (embedId: string, callback?: callbackFn) => 
   return getFormEventHandler('form-submit', embedId, callback)
 }
 
+export const getDuplicateDetectedHandler = (embedId: string, callback?: callbackFn) => {
+  return getFormEventHandler('duplicate-detected', embedId, callback)
+}
+
 export const getWelcomeScreenHiddenHandler = (embedId: string, callback?: callbackFn) => {
   return getFormEventHandler('welcome-screen-hidden', embedId, callback)
 }
