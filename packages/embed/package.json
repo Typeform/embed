@@ -41,7 +41,7 @@
     "prettier-check": "prettier --check . --ignore-path .eslintignore",
     "prettier": "prettier --write . --ignore-path .eslintignore",
     "test": "jest",
-    "coverage": "jest --coverage",
+    "test:coverage": "jest --coverage",
     "cy:open": "yarn cypress open",
     "cy:open:vrt": "yarn cypress open --env testType=visual",
     "cy:open:func": "yarn cy:open -c e2e.specPattern=./e2e/spec/functional/",

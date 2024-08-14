@@ -11,6 +11,7 @@
     "build": "yarn lerna run build",
     "lint": "yarn lerna run lint && yarn docs-prettier-check",
     "test": "yarn lerna run test",
+    "test:coverage": "yarn lerna run test:coverage",
     "test:functional": "yarn lerna run test:functional",
     "test:visual": "yarn lerna run test:visual",
     "release": "sh ./scripts/release.sh",

@@ -17,7 +17,7 @@
     "demo-nextjs": "cd ../demo-nextjs && yarn start",
     "demo": "yarn concurrently 'yarn dev' 'yarn demo-nextjs'",
     "test": "jest",
-    "coverage": "jest --coverage",
+    "test:coverage": "jest --coverage",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0",
     "release": "npm config set @typeform:registry https://registry.npmjs.org/ && yarn semantic-release",
     "post-release": "yarn release:github",
