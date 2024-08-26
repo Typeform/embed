@@ -17,6 +17,7 @@ describe('build-options-from-attributes', () => {
         data-tf-on-submit="onTypeformSubmit"
         data-tf-on-question-changed="onTypeformQuestionChanged"
         data-tf-on-height-changed="onTypeformHeightChanged"
+        data-tf-on-duplicate-detected="onDuplicateDetected"
         data-tf-auto-resize="100,300"
         data-tf-open="exit"
         data-tf-open-value="3000"
@@ -45,6 +46,7 @@ describe('build-options-from-attributes', () => {
       win.onTypeformSubmit = jest.fn()
       win.onTypeformQuestionChanged = jest.fn()
       win.onTypeformHeightChanged = jest.fn()
+      win.onDuplicateDetected = jest.fn()
 
       const element = wrapper.querySelector('#element') as HTMLElement
       const options = buildOptionsFromAttributes(element)
@@ -62,6 +64,7 @@ describe('build-options-from-attributes', () => {
         onSubmit: win.onTypeformSubmit,
         onQuestionChanged: win.onTypeformQuestionChanged,
         onHeightChanged: win.onTypeformHeightChanged,
+        onDuplicateDetected: win.onDuplicateDetected,
         autoResize: '100,300',
         open: 'exit',
         openValue: 3000,
