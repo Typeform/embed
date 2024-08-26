@@ -18,6 +18,7 @@ export const buildOptionsFromAttributes = (element: HTMLElement) => {
     onSubmit: 'function',
     onQuestionChanged: 'function',
     onHeightChanged: 'function',
+    onDuplicateDetected: 'function',
     autoResize: 'stringOrBoolean',
     onClose: 'function',
     onEndingButtonClick: 'function',

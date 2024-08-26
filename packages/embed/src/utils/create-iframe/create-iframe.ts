@@ -12,6 +12,7 @@ import {
   getThankYouScreenButtonClickHandler,
   getFormStartedHandler,
   getRedirectHandler,
+  getDuplicateDetectedHandler,
 } from './get-form-event-handler'
 import { triggerIframeRedraw } from './trigger-iframe-redraw'
 import { dispatchCustomKeyEventFromIframe } from './setup-custom-keyboard-close'
@@ -35,6 +36,7 @@ export const createIframe = (type: EmbedType, { formId, domain, options }: Creat
     onHeightChanged,
     onSubmit,
     onEndingButtonClick,
+    onDuplicateDetected,
     shareGaInstance,
   } = options
 
@@ -67,6 +69,7 @@ export const createIframe = (type: EmbedType, { formId, domain, options }: Creat
   window.addEventListener('message', getFormThemeHandler(embedId, onTheme))
   window.addEventListener('message', getThankYouScreenButtonClickHandler(embedId, onEndingButtonClick))
   window.addEventListener('message', getRedirectHandler(embedId, iframe))
+  window.addEventListener('message', getDuplicateDetectedHandler(embedId, onDuplicateDetected))
 
   if (type !== 'widget') {
     window.addEventListener('message', dispatchCustomKeyEventFromIframe)

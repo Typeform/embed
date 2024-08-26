@@ -159,6 +159,7 @@ Closing and opening a typeform in modal window will restart the progress from th
 | [onQuestionChanged](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)                       | function                    | fires when user navigates between form questions                                                                                                                                                                                                                                                       | `undefined`                                                   |
 | [onHeightChanged](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)                         | function                    | fires when form question height changes (eg. on navigation between questions or on error message)                                                                                                                                                                                                      | `undefined`                                                   |
 | [onEndingButtonClick](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/callbacks)                     | function                    | fires when button on ending screen is clicked, disables button redirect functionality                                                                                                                                                                                                                  | `undefined`                                                   |
+| onDuplicateDetected                                                                                                          | function                    | fires when the respondent reaches the quota of responses defined in [the duplicate prevention setting](https://www.typeform.com/help/a/prevent-duplicate-responses-27917825492244/)                                                                                                                    | `undefined`                                                   |
 | [autoResize](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/widget-autoresize)                      | string / boolean            | resize form to always fit the displayed question height, avoid scrollbars in the form (inline widget only), set min and max height separated by coma, eg. `"200,600"`                                                                                                                                  | `false`                                                       |
 | [shareGaInstance](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/widget-inline)                     | string / boolean            | shares Google Analytics instance of the host page with embedded typeform, you can provide your Google Analytics ID to specify which instance to share (if you have more than one in your page)                                                                                                         | `false`                                                       |
 | [inlineOnMobile](https://codesandbox.io/s/github/Typeform/embed-demo/tree/main/demo-html/widget-inline)                      | boolean                     | removes placeholder welcome screen in mobile and makes form show inline instead of fullscreen                                                                                                                                                                                                          | `false`                                                       |
@@ -255,6 +256,9 @@ You can listen to form events by providing callback methods:
 
       // for plans with "Redirect from ending screen" feature you also receive `ref`:
       console.log(`Ending button clicked in end screen ${ref}`)
+    },
+    onDuplicateDetected: ({ formId }) => {
+      console.log(`User reached the quote of responses for form ${formId}`)
     }
   })
   document.querySelector('#btn').click = () => {
@@ -285,6 +289,8 @@ Callback method receive payload object from the form. Each payload contains form
 - onEndingButtonClick
   - `formId` (string)
   - `ref` (string) identifies the end screen (_Note:_ this is available for plans with "Redirect from ending screen" feature only.)
+- onDuplicateDetected
+  - `formId` (string)
 
 See [callbacks example in demo package](../../packages/demo-html/public/callbacks.html).
 

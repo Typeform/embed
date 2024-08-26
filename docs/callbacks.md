@@ -17,6 +17,7 @@ Available callbacks:
 - **onQuestionChanged** fires when user navigates between form questions
 - **onHeightChanged** fires when height of currently displayed question changes
 - **onEndingButtonClick** fires when user clicks on the button on your typeform ending screen (it also disables the redirect functionality)
+- **onDuplicateDetected** fires when the respondent reaches the quota of responses defined in [the duplicate prevention setting](https://www.typeform.com/help/a/prevent-duplicate-responses-27917825492244/)
 
 Each callback receives a payload object with `formId` to identify the typeform that sent the event.
 Depending on the callback there might be more data in the payload - see examples below.
@@ -242,6 +243,37 @@ Or in HTML:
   // this function needs to be available on global scope (window)
   function clicked({ formId }) {
     console.log(`Ending button clicked in form ${formId}`)
+  }
+</script>
+```
+
+## onDuplicateDetected
+
+The `onDuplicateDetected` callback will execute whenever we detect the respondent reached the quota of responses
+defined in [the duplicate prevention setting](https://www.typeform.com/help/a/prevent-duplicate-responses-27917825492244/).
+
+In JavaScript:
+
+```javascript
+import { createSlider } from '@typeform/embed'
+import '@typeform/embed/build/css/slider.css'
+
+createSlider('<form-id>', {
+  onDuplicateDetected: ({ formId }) => {
+    console.log(`Duplicate detected for form ${formId}`)
+  },
+})
+```
+
+Or in HTML:
+
+```html
+<button data-tf-slider="<form-id>" data-tf-on-duplicate-detected="duplicateDetected">open</button>
+<script src="//embed.typeform.com/next/embed.js"></script>
+<script>
+  // this function needs to be available on global scope (window)
+  function duplicateDetected({ formId }) {
+    console.log(`Duplicate detected for form ${formId}`)
   }
 </script>
 ```
