@@ -1,3 +1,10 @@
+# [@typeform/embed-v5.1.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.0.0...@typeform/embed-v5.1.0) (2024-08-26)
+
+
+### Features
+
+* **TU-13163:** Add the duplicate-detected callback ([#660](https://github.com/Typeform/embed/issues/660)) ([90135e7](https://github.com/Typeform/embed/commit/90135e7d09ab9b1ac90cb05d862c32626e2993e5))
+
 # [@typeform/embed-v5.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-v4.10.3...@typeform/embed-v5.0.0) (2024-07-17)
 
 
