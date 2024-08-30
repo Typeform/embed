@@ -20,7 +20,7 @@ describe('Embed Widget', () => {
       it('Basic Embed Widget - Mobile fullscreen view', () => {
         cy.get('iframe').then(($iframe) => {
           const $body = $iframe.contents().find('body')
-          cy.wrap($body).find('[data-qa="start-button"]').click()
+          cy.wrap($body).find('[data-qa="ok-button"]').click()
         })
         cy.wait(1000)
         cy.vrt('Basic Embed Widget - Mobile fullscreen view')
