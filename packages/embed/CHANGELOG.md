@@ -1,3 +1,15 @@
+# [@typeform/embed-v5.2.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.1.0...@typeform/embed-v5.2.0) (2024-11-20)
+
+
+### Bug Fixes
+
+* **NOJIRA-123:** Prevent loading live embed multiple times ([#668](https://github.com/Typeform/embed/issues/668)) ([ac398e0](https://github.com/Typeform/embed/commit/ac398e035277d8c23cf6bfcd0e2dfa2aa8b2c37d))
+
+
+### Features
+
+* **TU-17542:** Update docs on sandbox mode ([#664](https://github.com/Typeform/embed/issues/664)) ([be89ed2](https://github.com/Typeform/embed/commit/be89ed2c11e020ce48cfe77d9ffad54108f8b900)), closes [#662](https://github.com/Typeform/embed/issues/662)
+
 # [@typeform/embed-v5.1.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.0.0...@typeform/embed-v5.1.0) (2024-08-26)
 
 
