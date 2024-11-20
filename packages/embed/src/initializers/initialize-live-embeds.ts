@@ -12,17 +12,19 @@ export const initializeLiveEmbeds = ({
 
   for (let index = 0; index < embedTypeElements.length; index += 1) {
     const element = embedTypeElements.item(index)
-    if (forceReload || element.dataset.tfLoaded !== 'true') {
+    const canBeLoaded = element.dataset.tfLoading !== 'true' && element.dataset.tfLoaded !== 'true'
+    if (canBeLoaded || forceReload) {
       const embedId = element.getAttribute(LIVE_EMBED_ATTRIBUTE)
       if (!embedId) {
         throw new Error(`Invalid ${LIVE_EMBED_ATTRIBUTE}=${embedId} for embed #${index}`)
       }
+      element.dataset.tfLoading = 'true'
 
       fetchLiveEmbed(embedId).then(({ html }) => {
         element.innerHTML = html
-        element.dataset.tfLoaded = 'true'
-
         onLiveEmbedLoad(element)
+        delete element.dataset.tfLoading
+        element.dataset.tfLoaded = 'true'
       })
     }
   }

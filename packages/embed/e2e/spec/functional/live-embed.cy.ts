@@ -1,7 +1,7 @@
 describe('Single Embed Code', () => {
   describe(`Should load`, () => {
     before(() => {
-      cy.intercept('https://api.typeform.com/single-embed/embed-id', {
+      cy.intercept('https://api.typeform.com/single-embed/01J5X1H8WM5CSXVDN89WXNX5EB', {
         statusCode: 200,
         body: {
           html: `<div
