@@ -33,8 +33,10 @@ import { createWidget } from '@typeform/embed'
 import '@typeform/embed/build/css/widget.css'
 
 createWidget('<form-id>', {
-  onReady: ({ formId }) => {
-    console.log(`Form ${formId} is ready`)
+  onReady: ({ formId, isClosed }) => {
+    console.log(
+      `Form ${formId} is ready. ${isClosed ? 'It is closed for new responses.' : 'It is open to new responses.'}`
+    )
   },
 })
 ```
@@ -46,8 +48,10 @@ Or in HTML:
 <script src="//embed.typeform.com/next/embed.js"></script>
 <script>
   // this function needs to be available on global scope (window)
-  function ready({ formId }) {
-    console.log(`Form ${formId} is ready`)
+  function ready({ formId, isClosed }) {
+    console.log(
+      `Form ${formId} is ready. ${isClosed ? 'It is closed for new responses.' : 'It is open to new responses.'}`
+    )
   }
 </script>
 ```

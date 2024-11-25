@@ -231,8 +231,8 @@ You can listen to form events by providing callback methods:
 <link rel="stylesheet" href="//embed.typeform.com/next/css/widget.css" />
 <script>
   const { open } = window.tf.createPopup('<form-id>', {
-    onReady: ({ formId }) => {
-      console.log(`Form ${formId} is ready`)
+    onReady: ({ formId, isClosed }) => {
+      console.log(`Form ${formId} is ready. ${isClosed ? 'It is closed for new responses.' : 'It is open to new responses.'}`)
     },
     onStarted: ({ formId, responseId }) => {
       console.log(`Form ${formId} started with response ID ${responseId}`)
@@ -271,6 +271,7 @@ Callback method receive payload object from the form. Each payload contains form
 
 - onReady
   - `formId` (string)
+  - `isClosed` (boolean) indicates [the form is closed for new responses](https://www.typeform.com/help/a/close-your-form-360050913591/)
 - onStarted
   - `formId` (string)
   - `responseId` (string)
