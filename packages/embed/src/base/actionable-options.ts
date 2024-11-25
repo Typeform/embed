@@ -14,11 +14,15 @@ interface WithHeight {
   height: number
 }
 
+interface WithIsClosed {
+  isClosed: boolean
+}
+
 export type ActionableOptions = {
   /**
    * Callback function that will be executed once the typeform is ready.
    */
-  onReady?: (event: WithFormId) => void
+  onReady?: (event: WithFormId & WithIsClosed) => void
   /**
    * Callback function that will be executed once the typeform "submission start" event is fired.
    */
