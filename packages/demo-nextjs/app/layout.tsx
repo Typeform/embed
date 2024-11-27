@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import { AppMenu } from './app-menu'
 import '../shared/globals.css'
 
@@ -9,8 +11,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           This is an example <a href="https://nextjs.org">Next.js</a> app with{' '}
           <a href="https://nextjs.org/docs/app">App Router</a>.
         </h1>
-        <AppMenu />
-        {children}
+        <Suspense>
+          <AppMenu />
+          {children}
+        </Suspense>
       </body>
     </html>
   )
