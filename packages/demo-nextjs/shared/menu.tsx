@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export const Menu = ({ id }: { id: string }) => {
-  const links = {
+  const links: Record<string, string> = {
     '/': 'widget',
     '/popup': 'popup',
     '/slider': 'slider',
