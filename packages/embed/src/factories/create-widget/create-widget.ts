@@ -40,6 +40,7 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
 
   const { domain, ...widgetOptions } = options
   widgetOptions.inlineOnMobile = options.inlineOnMobile || options.fullScreen
+  const scrollInitialState = document.body.style.overflow
 
   if (!widgetOptions.inlineOnMobile && (widgetOptions.forceTouch || isFullscreen())) {
     widgetOptions.displayAsFullScreenModal = true
@@ -116,6 +117,10 @@ export const createWidget = (formId: string, options: WidgetOptions): Widget => 
       options.onClose?.()
       container.classList.remove('tf-v1-widget-fullscreen')
       container.style.backgroundColor = ''
+
+      if (widgetOptions.fullScreen) {
+        document.body.style.overflow = scrollInitialState
+      }
 
       if (options.keepSession) {
         const overlay = document.createElement('div')
