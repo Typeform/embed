@@ -1,3 +1,15 @@
+# [@typeform/embed-v5.3.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.2.0...@typeform/embed-v5.3.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* **TU-21474:** Remove overflow on widget close ([#677](https://github.com/Typeform/embed/issues/677)) ([ee4ddf6](https://github.com/Typeform/embed/commit/ee4ddf64f67b0c1c35f7cc74166258d2b96b203c))
+
+
+### Features
+
+* **TU-20040:** Add `isClosed` to `onReady` callback payload ([#670](https://github.com/Typeform/embed/issues/670)) ([f263f9e](https://github.com/Typeform/embed/commit/f263f9ea14fb7f2b0ec388361028b9a6cedb2677)), closes [#647](https://github.com/Typeform/embed/issues/647)
+
 # [@typeform/embed-v5.2.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.1.0...@typeform/embed-v5.2.0) (2024-11-20)
 
 
