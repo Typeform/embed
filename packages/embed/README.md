@@ -357,7 +357,7 @@ If you need to reload all snippets in the page:
 window.tf.reload()
 ```
 
-You can see an example of this in [reload-event.html](../demo-html/public/reload-event.htm).
+You can see an example of this in [reload-event.html](../demo-html/public/reload-event.html).
 
 ### Examples
 
