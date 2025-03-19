@@ -24,7 +24,7 @@ jobs:
           node-version: 20
 
       - name: Get yarn cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: yarn-cache
         with:
           path: |

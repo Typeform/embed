@@ -24,7 +24,7 @@ jobs:
           node-version: ${{ matrix.node_version }}
 
       - name: Get yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: yarn-cache
         with:
           path: |
@@ -95,7 +95,7 @@ jobs:
           node-version: 20
 
       - name: Get yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: yarn-cache
         with:
           path: |
