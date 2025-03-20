@@ -16,7 +16,7 @@ jobs:
     name: build-lint-test - node ${{ matrix.node_version }}
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -24,7 +24,7 @@ jobs:
           node-version: ${{ matrix.node_version }}
 
       - name: Get yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: yarn-cache
         with:
           path: |
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -66,7 +66,7 @@ jobs:
           node-version: 20
 
       - name: Get yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: yarn-cache
         with:
           path: |
@@ -87,8 +87,7 @@ jobs:
     if: github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - name: Check out Git repository
-        uses:
-          actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -96,7 +95,7 @@ jobs:
           node-version: 20
 
       - name: Get yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: yarn-cache
         with:
           path: |

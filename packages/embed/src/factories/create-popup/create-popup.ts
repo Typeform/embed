@@ -9,6 +9,7 @@ import {
   addCustomKeyboardListener,
   invokeWithoutDefault,
   handlePreventReopenOnClose,
+  closeIconSvg,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
 import { POPUP_SIZE } from '../../constants'
@@ -51,7 +52,7 @@ const buildWrapper = (width?: number | string, height?: number | string, size?: 
 const buildCloseButton = (close: () => void) => {
   const closeButton = document.createElement('button')
   closeButton.className = 'tf-v1-close tf-v1-close-icon'
-  closeButton.innerHTML = '&times;'
+  closeButton.innerHTML = closeIconSvg
   closeButton.ariaLabel = 'Close'
   closeButton.onclick = invokeWithoutDefault(close)
   return closeButton

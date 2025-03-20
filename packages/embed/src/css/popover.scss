@@ -120,20 +120,26 @@
     }
 
     &-close {
-      color: rgba(0, 0, 0, 0.2);
       cursor: pointer;
       margin-left: 4px;
       display: inline-block;
-      width: 20px;
-      height: 20px;
-      font-size: 18px;
       text-align: center;
       position: absolute;
-      top: 8px;
+      top: 12px;
       right: 6px;
 
-      &:hover {
-        color: rgba(0, 0, 0, 0.3);
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      svg path {
+        fill: rgba(0, 0, 0, 0.2);
+        transition: fill 150ms ease-in-out;
+      }
+
+      &:hover svg path {
+        fill: rgba(0, 0, 0, 0.3);
       }
     }
 
