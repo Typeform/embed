@@ -1,3 +1,10 @@
+# [@typeform/embed-v5.3.1](https://github.com/Typeform/embed/compare/@typeform/embed-v5.3.0...@typeform/embed-v5.3.1) (2025-03-20)
+
+
+### Bug Fixes
+
+* **NOJIRA-123:** Update embed icons ([#686](https://github.com/Typeform/embed/issues/686)) ([4150a12](https://github.com/Typeform/embed/commit/4150a120d71af8e94ad18f69924fc02bcc19deb3))
+
 # [@typeform/embed-v5.3.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.2.0...@typeform/embed-v5.3.0) (2025-01-08)
 
 
