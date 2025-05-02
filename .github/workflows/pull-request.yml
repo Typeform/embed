@@ -129,7 +129,7 @@ jobs:
         with:
           aws-region: 'us-east-1'
           mask-aws-account-id: true
-          role-to-assume: ${{ secrets.DEPLOYMENT_AWS_ROLE }}
+          role-to-assume: ${{ secrets.DEPLOYMENT_ROLE_ARN }}
           role-session-name: ${{ github.run_id }}-${{ github.run_attempt }}
           role-duration-seconds: 900
           unset-current-credentials: true
