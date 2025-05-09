@@ -1,4 +1,4 @@
-import { LIVE_EMBED_ATTRIBUTE } from '../constants'
+import { LIVE_EMBED_ATTRIBUTE, LIVE_EMBED_DATA_REGION_ATTRIBUTE } from '../constants'
 import { fetchLiveEmbed } from '../live-embed/fetch-live-embed'
 
 export const initializeLiveEmbeds = ({
@@ -20,7 +20,9 @@ export const initializeLiveEmbeds = ({
       }
       element.dataset.tfLoading = 'true'
 
-      fetchLiveEmbed(embedId).then(({ html }) => {
+      const dataRegion = element.getAttribute(LIVE_EMBED_DATA_REGION_ATTRIBUTE) ?? undefined
+
+      fetchLiveEmbed(embedId, dataRegion).then(({ html }) => {
         element.innerHTML = html
         onLiveEmbedLoad(element)
         delete element.dataset.tfLoading
