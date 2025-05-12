@@ -1,3 +1,10 @@
+# [@typeform/embed-v5.4.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.3.1...@typeform/embed-v5.4.0) (2025-05-12)
+
+
+### Features
+
+* **PLT-1578:** eu region option for live embed routing ([#689](https://github.com/Typeform/embed/issues/689)) ([b060015](https://github.com/Typeform/embed/commit/b060015a341ba9a9da7115a08db182bf00a8031c))
+
 # [@typeform/embed-v5.3.1](https://github.com/Typeform/embed/compare/@typeform/embed-v5.3.0...@typeform/embed-v5.3.1) (2025-03-20)
 
 
