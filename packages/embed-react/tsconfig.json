@@ -9,7 +9,6 @@
     "jsx": "react",
     "allowUnreachableCode": false,
     "noImplicitAny": true,
-    "keyofStringsOnly": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
