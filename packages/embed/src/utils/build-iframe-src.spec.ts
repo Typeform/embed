@@ -75,6 +75,66 @@ describe('build-iframe-src', () => {
       })
     })
 
+    describe('when passing region option', () => {
+      it('should use EU domain when region is set to "eu"', () => {
+        const iframeSrcParams =
+          '?typeform-embed-id=embed-id' +
+          '&typeform-embed=embed-widget' +
+          '&typeform-source=localhost' +
+          '&typeform-medium=embed-sdk' +
+          '&typeform-medium-version=next' +
+          '&typeform-embed-handles-redirect=1'
+
+        expect(
+          buildIframeSrc({
+            formId: 'some-id',
+            type: 'widget',
+            embedId: 'embed-id',
+            options: { region: 'eu' },
+          })
+        ).toBe(`https://form.typeform.eu/to/some-id${iframeSrcParams}`)
+      })
+
+      it('should use US domain when region is not specified', () => {
+        const iframeSrcParams =
+          '?typeform-embed-id=embed-id' +
+          '&typeform-embed=embed-widget' +
+          '&typeform-source=localhost' +
+          '&typeform-medium=embed-sdk' +
+          '&typeform-medium-version=next' +
+          '&typeform-embed-handles-redirect=1'
+
+        expect(
+          buildIframeSrc({
+            formId: 'some-id',
+            type: 'widget',
+            embedId: 'embed-id',
+            options: {},
+          })
+        ).toBe(`https://form.typeform.com/to/some-id${iframeSrcParams}`)
+      })
+
+      it('should prioritize custom domain over region setting', () => {
+        const iframeSrcParams =
+          '?typeform-embed-id=embed-id' +
+          '&typeform-embed=embed-widget' +
+          '&typeform-source=localhost' +
+          '&typeform-medium=embed-sdk' +
+          '&typeform-medium-version=next' +
+          '&typeform-embed-handles-redirect=1'
+
+        expect(
+          buildIframeSrc({
+            formId: 'some-id',
+            type: 'widget',
+            domain: 'custom.example.com',
+            embedId: 'embed-id',
+            options: { region: 'eu' },
+          })
+        ).toBe(`https://custom.example.com/to/some-id${iframeSrcParams}`)
+      })
+    })
+
     it('should override default url options if value is explicitly supplied', () => {
       const src = buildIframeSrc({
         formId: 'some-id',
