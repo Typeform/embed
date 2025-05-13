@@ -18,13 +18,19 @@ export type UrlOptions = {
    */
   medium?: string
   /**
+   * The region for your Typeform account.
+   * This is used to determine the correct endpoint for the Typeform API.
+   * The default value is 'us'.
+   */
+  region?: 'us' | 'eu'
+  /**
    * Version of the plugin built on top of the SDK.
    *
    * @type {string}
    */
   mediumVersion?: string
   /**
-   * Parameters that we want to transfert from the URL to the Typeform as hidden fields.
+   * Parameters that we want to transfer from the URL to the Typeform as hidden fields.
    *
    * @type {string[]}
    */
@@ -89,7 +95,7 @@ export type UrlOptions = {
    * Redirect target for redirect on submit or redirect from thank you page.
    *
    * Browser Compatibility Note:
-   * Target "_blank" will be blocked in some browsers: Safari on dekstop and iOS, Chrome on Android.
+   * Target "_blank" will be blocked in some browsers: Safari on desktop and iOS, Chrome on Android.
    * Redirecting in new tab works in Chrome and Firefox on desktop.
    *
    * @type {'_self' | '_top' | '_blank' | '_parent'}

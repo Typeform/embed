@@ -1,5 +1,5 @@
 import { ActionableOptions, BaseOptions, EmbedType, SizeableOptions, UrlOptions } from '../base'
-import { DEFAULT_DOMAIN } from '../constants'
+import { DEFAULT_DOMAIN, DEFAULT_EU_DOMAIN } from '../constants'
 
 import { removeUndefinedKeys } from './remove-undefined-keys'
 import { isDefined } from './is-defined'
@@ -81,12 +81,25 @@ const mapOptionsToQueryParams = (
   return { ...params, ...transitiveParams, ...tracking }
 }
 
-const getBaseUrl = (formString: string, domain = DEFAULT_DOMAIN): URL => {
+const getBaseUrl = (formString: string, domain = DEFAULT_DOMAIN, region?: 'eu' | 'us'): URL => {
   if (formString.startsWith('http://') || formString.startsWith('https://')) {
     return new URL(formString)
   }
 
-  return new URL(`https://${domain}/to/${formString}`)
+  // If a custom domain is provided use it.
+  const regionAwareDomain = domain !== DEFAULT_DOMAIN ? domain : buildRegionAwareDomain(region)
+
+  return new URL(`https://${regionAwareDomain}/to/${formString}`)
+}
+
+const buildRegionAwareDomain = (region?: 'eu' | 'us'): string => {
+  switch (region) {
+    case 'eu':
+      return DEFAULT_EU_DOMAIN
+    default:
+      // Default to US domain if no region is specified for backward compatibility.
+      return DEFAULT_DOMAIN
+  }
 }
 
 const makePreselectParam = (preselect?: Record<string, string>) => {
@@ -133,7 +146,7 @@ export const buildIframeSrc = (params: BuildIframeSrcOptions): string => {
   const { domain, formId, type, embedId, options } = params
   const queryParams = mapOptionsToQueryParams(type, embedId, addDefaultUrlOptions(options))
 
-  const url = getBaseUrl(formId, domain)
+  const url = getBaseUrl(formId, domain, options?.region)
 
   Object.entries(queryParams)
     .filter(([, paramValue]) => isDefined(paramValue))
