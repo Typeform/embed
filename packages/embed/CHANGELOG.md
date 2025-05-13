@@ -1,3 +1,10 @@
+# [@typeform/embed-v5.5.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.4.0...@typeform/embed-v5.5.0) (2025-05-13)
+
+
+### Features
+
+* **PLT-1578:** EU region option for embed and embed-react ([#690](https://github.com/Typeform/embed/issues/690)) ([73689cf](https://github.com/Typeform/embed/commit/73689cf9b3f5157f042fb1f626ea25642d81558b))
+
 # [@typeform/embed-v5.4.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.3.1...@typeform/embed-v5.4.0) (2025-05-12)
 
 
