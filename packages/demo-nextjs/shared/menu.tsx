@@ -3,6 +3,7 @@ import Link from 'next/link'
 export const Menu = ({ id }: { id: string }) => {
   const links: Record<string, string> = {
     '/': 'widget',
+    '/widget-eu': 'widget (EU region)',
     '/popup': 'popup',
     '/slider': 'slider',
     '/sidetab': 'sidetab',

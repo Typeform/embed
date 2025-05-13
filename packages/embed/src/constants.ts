@@ -1,4 +1,5 @@
 export const DEFAULT_DOMAIN = 'form.typeform.com'
+export const DEFAULT_EU_DOMAIN = 'form.typeform.eu'
 export const LIVE_EMBED_ATTRIBUTE = 'data-tf-live'
 export const LIVE_EMBED_DATA_REGION_ATTRIBUTE = 'data-tf-region'
 export const LIVE_EMBED_DATA_REGION_EU = 'eu'
