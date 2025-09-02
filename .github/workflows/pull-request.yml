@@ -44,17 +44,15 @@ jobs:
       - name: Verify coverage file ready
         run: find . | grep coverage
 
-      # Ongoing SonarCloud infrastructure changes are blocking us
-      # from running this step at this time. Please activate the step again later.
-      # - name: SonarCloud Scan
-      #   uses: SonarSource/sonarcloud-github-action@v2
-      #   if: ${{ matrix.node_version == '22' }}
-      #   with:
-      #     args: >
-      #       -Dsonar.projectVersion=${{ github.run_id }}
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      #     SONAR_TOKEN: ${{ secrets.SONAR_CLOUD_TOKEN }}
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        if: ${{ matrix.node_version == '22' }}
+        with:
+          args: >
+            -Dsonar.projectVersion=${{ github.run_id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_CLOUD_TOKEN }}
 
   functional:
     runs-on: ubuntu-latest
