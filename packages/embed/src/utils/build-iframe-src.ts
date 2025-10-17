@@ -66,7 +66,7 @@ const mapOptionsToQueryParams = (
     'embed-hide-headers': hideHeaders ? 'true' : undefined,
     'embed-opacity': opacity,
     'disable-tracking': disableTracking || enableSandbox ? 'true' : undefined,
-    '__dangerous-disable-submissions': enableSandbox ? 'true' : undefined,
+    'enable-sandbox': enableSandbox ? 'true' : undefined,
     'share-ga-instance': shareGaInstance ? 'true' : undefined,
     'force-touch': forceTouch ? 'true' : undefined,
     'add-placeholder-ws': type === 'widget' && displayAsFullScreenModal ? 'true' : undefined,
