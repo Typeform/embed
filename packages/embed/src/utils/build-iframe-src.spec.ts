@@ -195,7 +195,7 @@ describe('build-iframe-src', () => {
           '&embed-hide-headers=true' +
           '&embed-opacity=50' +
           '&disable-tracking=true' +
-          '&__dangerous-disable-submissions=true' +
+          '&enable-sandbox=true' +
           '&typeform-embed-handles-redirect=1' +
           '&typeform-embed-auto-resize=true' +
           '&typeform-embed-handle-ending-button-click=true' +
@@ -208,7 +208,7 @@ describe('build-iframe-src', () => {
       )
     })
 
-    it('should disable tracking and submission on sandbox mode', () => {
+    it('should disable tracking and enable sandbox mode when on sandbox mode', () => {
       const options = {
         source: 'unit-test-source',
         medium: 'unit-test-medium',
@@ -224,7 +224,7 @@ describe('build-iframe-src', () => {
           '&typeform-medium=unit-test-medium' +
           '&typeform-medium-version=unit-test-version' +
           '&disable-tracking=true' +
-          '&__dangerous-disable-submissions=true' +
+          '&enable-sandbox=true' +
           '&typeform-embed-handles-redirect=1'
       )
     })
