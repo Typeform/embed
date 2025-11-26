@@ -1,3 +1,10 @@
+# [@typeform/embed-v5.5.1](https://github.com/Typeform/embed/compare/@typeform/embed-v5.5.0...@typeform/embed-v5.5.1) (2025-11-14)
+
+
+### Bug Fixes
+
+* **TU-18127:** Replace __dangerous-disable-submissions with enable-sandbox=true ([#699](https://github.com/Typeform/embed/issues/699)) ([7bf7879](https://github.com/Typeform/embed/commit/7bf78797b441a114df4991928b5c728bb846906a))
+
 # [@typeform/embed-v5.5.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.4.0...@typeform/embed-v5.5.0) (2025-05-13)
 
 
