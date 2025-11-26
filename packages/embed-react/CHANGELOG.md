@@ -1,3 +1,25 @@
+# [@typeform/embed-react-v4.7.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v4.6.0...@typeform/embed-react-v4.7.0) (2025-11-14)
+
+
+### Features
+
+* Bump @typeform/embed in @typeform/embed-react package [skip ci] ([dc9e72b](https://github.com/Typeform/embed/commit/dc9e72ba2237a126f9c97094477a12cc26317e5b))
+
+# [@typeform/embed-react-v4.6.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v4.5.0...@typeform/embed-react-v4.6.0) (2025-05-13)
+
+
+### Features
+
+* Bump @typeform/embed in @typeform/embed-react package [skip ci] ([1c2f870](https://github.com/Typeform/embed/commit/1c2f8709674b10540f399c0ac7138466227b13b5))
+* **PLT-1578:** EU region option for embed and embed-react ([#690](https://github.com/Typeform/embed/issues/690)) ([73689cf](https://github.com/Typeform/embed/commit/73689cf9b3f5157f042fb1f626ea25642d81558b))
+
+# [@typeform/embed-react-v4.5.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v4.4.0...@typeform/embed-react-v4.5.0) (2025-05-12)
+
+
+### Features
+
+* Bump @typeform/embed in @typeform/embed-react package [skip ci] ([4fd5d22](https://github.com/Typeform/embed/commit/4fd5d22b110650c05703fdb164986076e39bd7c0))
+
 # [@typeform/embed-react-v4.4.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v4.3.0...@typeform/embed-react-v4.4.0) (2025-03-20)
 
 

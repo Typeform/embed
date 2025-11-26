@@ -1,3 +1,24 @@
+# [@typeform/embed-v5.5.1](https://github.com/Typeform/embed/compare/@typeform/embed-v5.5.0...@typeform/embed-v5.5.1) (2025-11-14)
+
+
+### Bug Fixes
+
+* **TU-18127:** Replace __dangerous-disable-submissions with enable-sandbox=true ([#699](https://github.com/Typeform/embed/issues/699)) ([7bf7879](https://github.com/Typeform/embed/commit/7bf78797b441a114df4991928b5c728bb846906a))
+
+# [@typeform/embed-v5.5.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.4.0...@typeform/embed-v5.5.0) (2025-05-13)
+
+
+### Features
+
+* **PLT-1578:** EU region option for embed and embed-react ([#690](https://github.com/Typeform/embed/issues/690)) ([73689cf](https://github.com/Typeform/embed/commit/73689cf9b3f5157f042fb1f626ea25642d81558b))
+
+# [@typeform/embed-v5.4.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.3.1...@typeform/embed-v5.4.0) (2025-05-12)
+
+
+### Features
+
+* **PLT-1578:** eu region option for live embed routing ([#689](https://github.com/Typeform/embed/issues/689)) ([b060015](https://github.com/Typeform/embed/commit/b060015a341ba9a9da7115a08db182bf00a8031c))
+
 # [@typeform/embed-v5.3.1](https://github.com/Typeform/embed/compare/@typeform/embed-v5.3.0...@typeform/embed-v5.3.1) (2025-03-20)
 
 
