@@ -45,7 +45,7 @@ jobs:
         run: find . | grep coverage
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: SonarSource/sonarqube-scan-action@v6
         if: ${{ matrix.node_version == '22' }}
         with:
           args: >
