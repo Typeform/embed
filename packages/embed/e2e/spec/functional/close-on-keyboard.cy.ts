@@ -17,7 +17,7 @@ describe('Close on Keyboard Esc Event', () => {
     cy.get('iframe').then(($iframe) => {
       const $body = $iframe.contents().find('body')
       // interact with Iframe - click on NPS option "2"
-      cy.wrap($body).find('button').filter(':contains("2")').not(':contains("→")').first().click()
+      cy.wrap($body).find('button').filter(':contains("2")').first().click()
       // close with keyboard inside iframe - trigger keydown on body
       cy.wrap($body).trigger('keydown', { key: 'Escape', code: 'Escape', keyCode: 27 })
     })
