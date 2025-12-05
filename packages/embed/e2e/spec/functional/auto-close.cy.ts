@@ -12,11 +12,12 @@ describe('Auto Close', () => {
       const transitionTime = 1000
       const $body = $iframe.contents().find('body')
 
-      cy.wrap($body).find('[data-qa-index="10"]').click()
+      // Click the "10" rating option (NPS question)
+      cy.wrap($body).find('button').filter(':contains("10")').first().click()
 
       cy.wait(transitionTime)
 
-      cy.wrap($body).find('[data-qa="submit-button deep-purple-submit-button"]').last().click()
+      cy.wrap($body).contains('button', 'Submit').click()
     })
 
     cy.wait(autoCloseTime)
@@ -37,11 +38,12 @@ describe('Auto Close', () => {
       const transitionTime = 1000
       const $body = $iframe.contents().find('body')
 
-      cy.wrap($body).find('[data-qa-index="10"]').click()
+      // Click the "10" rating option (NPS question)
+      cy.wrap($body).find('button').filter(':contains("10")').first().click()
 
       cy.wait(transitionTime)
 
-      cy.wrap($body).find('[data-qa="submit-button deep-purple-submit-button"]').last().click()
+      cy.wrap($body).contains('button', 'Submit').click()
     })
 
     cy.wait(autoCloseTime)
