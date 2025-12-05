@@ -42,7 +42,8 @@ describe('Reload and reload methods', () => {
         cy.wait(transitionTime)
 
         cy.wrap($body).contains('How likely are you to recommend us')
-        cy.wrap($body).find('[data-qa-index="10"]').click()
+        // Click the "10" rating option (NPS question) - find button by exact text match
+        cy.wrap($body).find('button').filter(':contains("10")').not(':contains("10 →")').first().click()
 
         cy.wait(transitionTime)
 
