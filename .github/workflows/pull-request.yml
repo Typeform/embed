@@ -10,9 +10,7 @@ jobs:
     strategy:
       matrix:
         node_version:
-          - 18 # end of life 2025-04-30
-          - 20 # end of life 2026-04-30
-          - 22 # end of life 2027-04-03 # please update SonarCloud below when there is new latest node version
+          - 22 # end of life 2027-04-30 # used in SonarCloud scan
     name: build-lint-test - node ${{ matrix.node_version }}
     steps:
       - name: Check out Git repository
@@ -46,7 +44,6 @@ jobs:
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5
-        if: ${{ matrix.node_version == '22' }}
         with:
           args: >
             -Dsonar.projectVersion=${{ github.run_id }}
@@ -64,7 +61,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Get yarn cache
         uses: actions/cache@v4
@@ -96,7 +93,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Get yarn cache
         uses: actions/cache@v4
@@ -115,9 +112,8 @@ jobs:
       - run: yarn build
         env:
           NODE_ENV: 'production'
-      # Update registry and tokens with write access for releasing.
+      # Configure registry for GitHub Packages
       - run: rm ./.npmrc
-      - run: npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
       - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
