@@ -49,9 +49,9 @@
     "cy:visual": "yarn cypress run --spec e2e/spec/visual/**/* --env testType=visual",
     "test:functional": "start-server-and-test demo 9090 cy:functional",
     "test:visual": "start-server-and-test demo 9090 cy:visual",
-    "release-vanilla": "npm config set @typeform:registry https://registry.npmjs.org/ && yarn semantic-release",
+    "release-vanilla": "yarn semantic-release",
     "post-release": "yarn release:github && yarn release:aws",
-    "release:github": "npm config set @typeform:registry https://npm.pkg.github.com/ && npm publish",
+    "release:github": "npm publish --registry https://npm.pkg.github.com/",
     "release:aws": "yarn release:aws:prepare && yarn release:aws:deploy",
     "release:aws:prepare": "sh ./scripts/prepare-release.sh",
     "release:aws:deploy": "DEBUG=jarvis yarn run jarvis deploy --path ./build-aws --version next",
@@ -62,6 +62,9 @@
     "build",
     "types"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "typesVersions": {
     ">=4.4.0": {
       "*": [
