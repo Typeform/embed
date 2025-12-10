@@ -48,7 +48,7 @@ jobs:
       - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      - run: npm install @typeform/jarvis --registry=https://npm.pkg.github.com/ --no-save
+      - run: npm install @typeform/jarvis --registry=https://npm.pkg.github.com/ --no-save --legacy-peer-deps
 
       # authenticate to AWS
       - uses: aws-actions/configure-aws-credentials@v4
