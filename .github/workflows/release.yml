@@ -48,7 +48,10 @@ jobs:
       - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      - run: npm install @typeform/jarvis --registry=https://npm.pkg.github.com/ --no-save --legacy-peer-deps
+      - run: npm config set @typeform:registry https://npm.pkg.github.com/
+      - run: yarn add -W @typeform/jarvis
+      - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json because it is private (the file is committed by semantic-release to bump version)
+      - run: npm config delete @typeform:registry
 
       # authenticate to AWS
       - uses: aws-actions/configure-aws-credentials@v4
