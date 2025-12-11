@@ -2,7 +2,7 @@
   "branches": [
     "main"
   ],
-  extends: [
+  "extends": [
     "semantic-release-monorepo"
   ],
   "plugins": [
