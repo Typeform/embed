@@ -46,7 +46,7 @@ jobs:
       # Configure registry for GitHub Packages using local .npmrc to avoid npm global config corruption
       - run: rm ./.npmrc
       - run: |
-          cat > .npmrc << 'EOF'
+          cat > .npmrc << EOF
           //npm.pkg.github.com/:_authToken=${GH_TOKEN}
           @typeform:registry=https://npm.pkg.github.com/
           EOF
@@ -56,7 +56,7 @@ jobs:
       - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json because it is private (the file is committed by semantic-release to bump version)
       # Create clean .npmrc with just auth token
       - run: |
-          cat > .npmrc << 'EOF'
+          cat > .npmrc << EOF
           //npm.pkg.github.com/:_authToken=${GH_TOKEN}
           EOF
         env:
