@@ -43,15 +43,24 @@ jobs:
       - run: yarn build
         env:
           NODE_ENV: 'production'
-      # Configure registry for GitHub Packages
+      # Configure registry for GitHub Packages using local .npmrc to avoid npm global config corruption
       - run: rm ./.npmrc
-      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
+      - run: |
+          cat > .npmrc << 'EOF'
+          //npm.pkg.github.com/:_authToken=${GH_TOKEN}
+          @typeform:registry=https://npm.pkg.github.com/
+          EOF
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      - run: npm config set @typeform:registry https://npm.pkg.github.com/
       - run: yarn add -W @typeform/jarvis
       - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json because it is private (the file is committed by semantic-release to bump version)
-      - run: npm config delete @typeform:registry
+      # Create clean .npmrc with just auth token
+      - run: |
+          cat > .npmrc << 'EOF'
+          //npm.pkg.github.com/:_authToken=${GH_TOKEN}
+          EOF
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       # authenticate to AWS
       - uses: aws-actions/configure-aws-credentials@v4
