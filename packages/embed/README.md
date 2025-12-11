@@ -371,7 +371,7 @@ You can find examples for specific use-cases in our demos:
 
 ## Local setup and development
 
-[Fork and clone](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) this Github repo: https://github.com/Typeform/embed
+[Fork and clone](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) this GitHub repo: https://github.com/Typeform/embed
 
 Requirements:
 
