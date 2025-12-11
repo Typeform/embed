@@ -19,7 +19,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint src --ext .js,.ts,.jsx,.tsx --max-warnings=0",
-    "release": "yarn semantic-release",
+    "release": "yarn semantic-release -e semantic-release-monorepo",
     "post-release": "yarn release:github",
     "release:github": "npm publish --registry https://npm.pkg.github.com/"
   },
