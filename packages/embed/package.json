@@ -49,7 +49,7 @@
     "cy:visual": "yarn cypress run --spec e2e/spec/visual/**/* --env testType=visual",
     "test:functional": "start-server-and-test demo 9090 cy:functional",
     "test:visual": "start-server-and-test demo 9090 cy:visual",
-    "release-vanilla": "yarn semantic-release",
+    "release-vanilla": "yarn semantic-release -e semantic-release-monorepo",
     "post-release": "yarn release:github && yarn release:aws",
     "release:github": "npm publish --registry https://npm.pkg.github.com/",
     "release:aws": "yarn release:aws:prepare && yarn release:aws:deploy",
