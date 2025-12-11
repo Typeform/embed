@@ -68,8 +68,6 @@ jobs:
           AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
           AWS_CLOUDFRONT_DIST: 'E3IUO95IYL1RI3'
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          # Hybrid approach: NPM_TOKEN for verification, OIDC for publishing
           PUBLIC_CDN_URL: 'https://embed.typeform.com'
           SEGMENT_WRITE_KEY: ${{ secrets.DEPLOYMENT_SEGMENT_WRITE_KEY }}
 
