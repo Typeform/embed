@@ -10,43 +10,43 @@ echo "-- setup git"
 git config --global user.email "you@example.com"
 git config --global user.name "Github Action"
 
-# release vanilla lib
-echo "-- release vanilla lib"
+# release embed lib
+echo "-- release embed lib"
 cd $REPO_ROOT/packages/embed
 yarn release-vanilla
 
-# bump vanilla lib
-echo "-- bump vanilla lib"
+# bump embed in embed-react
+echo "-- bump embed in embed-react"
+EMBED_VERSION=$(npm view @typeform/embed version)
+echo "Latest @typeform/embed version: $EMBED_VERSION"
 cd $REPO_ROOT/packages/embed-react
-yarn upgrade @typeform/embed
+sed -i.bak "s/\"@typeform\/embed\": \".*\"/\"@typeform\/embed\": \"$EMBED_VERSION\"/" package.json && rm package.json.bak
 
-# commit vanilla bump in react lib
-echo "-- commit vanilla lib bump in react lib"
+# commit embed bump in embed-react
+echo "-- commit embed bump in embed-react"
 cd $REPO_ROOT
 git add packages/embed-react
 git commit -m 'feat: Bump @typeform/embed in @typeform/embed-react package [skip ci]'
 git push https://$GITHUB_TOKEN@github.com/Typeform/embed.git
 
-# release react lib, will also commit all changes in react lib including vanilla lib bump
-echo "-- release react lib, will also commit all changes in react lib including vanilla lib bump"
+# release embed-react, will also commit all changes in embed-react including embed bump
+echo "-- release embed-react lib, will also commit all changes in embed-react including embed bump"
 cd $REPO_ROOT/packages/embed-react
 yarn release
 
-# bump vanilla and react libs in demos
-echo "-- bump vanilla and react libs in demos"
+# bump embed and embed-react in demos
+echo "-- bump embed and embed-react in demos"
+EMBED_VERSION=$(npm view @typeform/embed version)
+EMBED_REACT_VERSION=$(npm view @typeform/embed-react version)
+echo "Latest @typeform/embed version: $EMBED_VERSION"
+echo "Latest @typeform/embed-react version: $EMBED_REACT_VERSION"
 cd $REPO_ROOT/packages/demo-nextjs
-yarn upgrade @typeform/embed
-yarn upgrade @typeform/embed-react
+sed -i.bak "s/\"@typeform\/embed\": \".*\"/\"@typeform\/embed\": \"$EMBED_VERSION\"/" package.json && rm package.json.bak
+sed -i.bak "s/\"@typeform\/embed-react\": \".*\"/\"@typeform\/embed-react\": \"$EMBED_REACT_VERSION\"/" package.json && rm package.json.bak
 
-cd $REPO_ROOT/packages/demo-react
-yarn upgrade @typeform/embed-react
-
-cd $REPO_ROOT/packages/demo-webpack
-yarn upgrade @typeform/embed
-
-# commit vanilla and react lib bumps in demos
-echo "-- commit vanilla and react lib bumps in demos"
+# commit embed and embed-react bumps in demo-nextjs
+echo "-- commit embed and embed-react bumps in demp-nextjs"
 cd $REPO_ROOT
-git add packages/demo-*
-git commit -m 'chore: Bump @typeform/embed and @typeform/embed-react in demo packages'
+git add packages/demo-nextjs
+git commit -m 'chore: Bump @typeform/embed and @typeform/embed-react in demo-nextjs'
 git push https://$GITHUB_TOKEN@github.com/Typeform/embed.git
