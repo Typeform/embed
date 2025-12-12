@@ -1,3 +1,10 @@
+# [@typeform/embed-v5.8.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.7.0...@typeform/embed-v5.8.0) (2025-12-12)
+
+
+### Features
+
+* **TU-33149:** Move to a new semantic release configuration file structure ([#723](https://github.com/Typeform/embed/issues/723)) ([9d782f7](https://github.com/Typeform/embed/commit/9d782f761edf2f8d289c703383dfe7377e95a16f))
+
 # [@typeform/embed-v5.5.1](https://github.com/Typeform/embed/compare/@typeform/embed-v5.5.0...@typeform/embed-v5.5.1) (2025-11-14)
 
 
