@@ -50,7 +50,7 @@
     "test:functional": "start-server-and-test demo 9090 cy:functional",
     "test:visual": "start-server-and-test demo 9090 cy:visual",
     "release-vanilla": "yarn semantic-release",
-    "post-release": "yarn release:github && yarn release:aws",
+    "post-release": "yarn release:github",
     "release:github": "npm publish --registry https://npm.pkg.github.com/",
     "release:aws": "yarn release:aws:prepare && yarn release:aws:deploy",
     "release:aws:prepare": "sh ./scripts/prepare-release.sh",

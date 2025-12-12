@@ -1,25 +1,23 @@
-name: Release
+name: Deploy to AWS
 
 on:
-  push:
-    branches: [main]
+  release:
+    types: [ published ]
 
 jobs:
-  release:
-    name: Release
+  deploy:
+    name: Deploy Embed to AWS
+    # Only run for embed releases (not embed-react). Tag format: @typeform/embed-v5.8.0
+    if: startsWith(github.event.release.tag_name, '@typeform/embed-v')
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       id-token: write
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          # Use custom token from repo secrets to allow semantic release to push commit:
-          # https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/github-actions.md#pushing-packagejson-changes-to-a-master-branch
-          persist-credentials: false
-          token: ${{ secrets.GH_TOKEN }}
+          ref: ${{ github.event.release.tag_name }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -43,19 +41,36 @@ jobs:
       - run: yarn build
         env:
           NODE_ENV: 'production'
-      # Configure .npmrc with auth token for GitHub Packages
+
+      # Configure registry for GitHub Packages to install jarvis
       - run: rm ./.npmrc
       - run: |
           cat > .npmrc << EOF
           //npm.pkg.github.com/:_authToken=${GH_TOKEN}
+          @typeform:registry=https://npm.pkg.github.com/
           EOF
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      - run: yarn release
+      - run: yarn add -W @typeform/jarvis
+      - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json because it is private
+
+      # Authenticate to AWS
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: 'us-east-1'
+          mask-aws-account-id: true
+          role-to-assume: ${{ secrets.DEPLOYMENT_ROLE_ARN }}
+          role-session-name: ${{ github.run_id }}-${{ github.run_attempt }}
+          role-duration-seconds: 900
+          unset-current-credentials: true
+
+      - name: Deploy to AWS
+        run: cd packages/embed && yarn release:aws
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          SEGMENT_WRITE_KEY: ${{ secrets.DEPLOYMENT_SEGMENT_WRITE_KEY }}
+          AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
+          AWS_CLOUDFRONT_DIST: 'E3IUO95IYL1RI3'
+          PUBLIC_CDN_URL: 'https://embed.typeform.com'
 
       - uses: 8398a7/action-slack@v3
         if: failure()
