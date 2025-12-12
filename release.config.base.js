@@ -1,0 +1,39 @@
+module.exports = {
+  extends: ['semantic-release-monorepo'],
+  branches: [{ name: 'main', channel: false }],
+  plugins: [
+    [
+      '@semantic-release/commit-analyzer',
+      {
+        releaseRules: [
+          { breaking: true, release: 'major' },
+          { revert: true, release: 'patch' },
+          { type: 'feat', release: 'minor' },
+          { type: 'fix', release: 'patch' },
+          { type: 'perf', release: 'patch' },
+          { type: 'chore', scope: 'deps', release: 'patch' },
+        ],
+        parserOpts: {
+          noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES'],
+        },
+      },
+    ],
+    '@semantic-release/release-notes-generator',
+    '@semantic-release/changelog',
+    [
+      '@semantic-release/npm',
+      {
+        npmPublish: true,
+        provenance: true,
+      },
+    ],
+    [
+      '@semantic-release/exec',
+      {
+        successCmd: 'yarn post-release',
+      },
+    ],
+    '@semantic-release/git',
+    '@semantic-release/github',
+  ],
+}
