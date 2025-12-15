@@ -1,3 +1,10 @@
+# [@typeform/embed-v5.9.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.8.0...@typeform/embed-v5.9.0) (2025-12-15)
+
+
+### Features
+
+* **TU-34343:** Create a new AWS deploy workflow ([#726](https://github.com/Typeform/embed/issues/726)) ([0dc8fb4](https://github.com/Typeform/embed/commit/0dc8fb42bc7a628e3eb9c5108676462e0dae6c61))
+
 # [@typeform/embed-v5.8.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.7.0...@typeform/embed-v5.8.0) (2025-12-12)
 
 
