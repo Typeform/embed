@@ -17,7 +17,7 @@ yarn release-vanilla
 
 # bump embed in embed-react
 echo "-- bump embed in embed-react"
-EMBED_VERSION=$(npm view @typeform/embed version)
+EMBED_VERSION=$(node -p "require('$REPO_ROOT/packages/embed/package.json').version")
 echo "Latest @typeform/embed version: $EMBED_VERSION"
 cd $REPO_ROOT/packages/embed-react
 sed -i.bak "s/\"@typeform\/embed\": \".*\"/\"@typeform\/embed\": \"$EMBED_VERSION\"/" package.json && rm package.json.bak
@@ -36,8 +36,8 @@ yarn release
 
 # bump embed and embed-react in demos
 echo "-- bump embed and embed-react in demos"
-EMBED_VERSION=$(npm view @typeform/embed version)
-EMBED_REACT_VERSION=$(npm view @typeform/embed-react version)
+EMBED_VERSION=$(node -p "require('$REPO_ROOT/packages/embed/package.json').version")
+EMBED_REACT_VERSION=$(node -p "require('$REPO_ROOT/packages/embed-react/package.json').version")
 echo "Latest @typeform/embed version: $EMBED_VERSION"
 echo "Latest @typeform/embed-react version: $EMBED_REACT_VERSION"
 cd $REPO_ROOT/packages/demo-nextjs
@@ -45,7 +45,7 @@ sed -i.bak "s/\"@typeform\/embed\": \".*\"/\"@typeform\/embed\": \"$EMBED_VERSIO
 sed -i.bak "s/\"@typeform\/embed-react\": \".*\"/\"@typeform\/embed-react\": \"$EMBED_REACT_VERSION\"/" package.json && rm package.json.bak
 
 # commit embed and embed-react bumps in demo-nextjs
-echo "-- commit embed and embed-react bumps in demp-nextjs"
+echo "-- commit embed and embed-react bumps in demo-nextjs"
 cd $REPO_ROOT
 git add packages/demo-nextjs
 git commit -m 'chore: Bump @typeform/embed and @typeform/embed-react in demo-nextjs'

@@ -71,11 +71,3 @@ jobs:
           AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
           AWS_CLOUDFRONT_DIST: 'E3IUO95IYL1RI3'
           PUBLIC_CDN_URL: 'https://embed.typeform.com'
-
-      - uses: 8398a7/action-slack@v3
-        if: failure()
-        with:
-          status: ${{ job.status }}
-          fields: repo,message,commit,author,action
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.ACTION_MONITORING_SLACK }}
