@@ -387,7 +387,7 @@ yarn
 We recommend you work in a branch:
 
 ```bash
-git checkout -b cool-new-feature
+git checkout -b my-cool-new-feature
 ```
 
 Build, watch for changes and start a demo server too (using `demo-nextjs`)
