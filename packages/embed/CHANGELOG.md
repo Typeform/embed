@@ -1,3 +1,10 @@
+# [@typeform/embed-v5.10.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.9.0...@typeform/embed-v5.10.0) (2025-12-15)
+
+
+### Features
+
+* **TU-34343:** Update Release Script ([#727](https://github.com/Typeform/embed/issues/727)) ([6aa7fad](https://github.com/Typeform/embed/commit/6aa7fad4c54b950655b06945bd7b798ec041c2c4))
+
 # [@typeform/embed-v5.9.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.8.0...@typeform/embed-v5.9.0) (2025-12-15)
 
 
