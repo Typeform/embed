@@ -13,7 +13,7 @@ jobs:
       id-token: write
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           # Use custom token from repo secrets to allow semantic release to push commit:
@@ -22,12 +22,12 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
           node-version: 22
 
       - name: Get yarn cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: yarn-cache
         with:
           path: |
