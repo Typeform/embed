@@ -1,28 +1,41 @@
 version: 2
 
-updates:
-  - package-ecosystem: npm
-    registries:
-      - gh-packages
-    directory: '/'
-    schedule:
-      interval: weekly
-    versioning-strategy: increase
-    allow:
-      - dependency-name: '@typeform*'
-    commit-message:
-      prefix: 'chore'
-      include: 'scope'
-    labels:
-      - 'dependabot'
-    groups:
-      typeform:
-        patterns:
-          - '@typeform*'
-
 registries:
-  gh-packages:
+  npm-github:
     type: npm-registry
     url: https://npm.pkg.github.com
     token: ${{ secrets.GH_TOKEN }}
+  git-github:
+    type: git
+    url: https://github.com
+    username: x-access-token
+    password: '${{ secrets.GH_TOKEN }}'
 
+updates:
+  - package-ecosystem: npm
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    directories:
+      - "/"
+    commit-message:
+      prefix: fix(dependabot)
+    registries:
+      - npm-github
+      - git-github
+
+  - package-ecosystem: github-actions
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    directory: "/"
+    commit-message:
+      prefix: build(dependabot)
