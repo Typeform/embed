@@ -1,3 +1,11 @@
+# [@typeform/embed-react-v5.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v4.11.0...@typeform/embed-react-v5.0.0) (2026-03-02)
+
+
+### Features
+
+* Bump @typeform/embed in @typeform/embed-react package [skip ci] ([c7c1225](https://github.com/Typeform/embed/commit/c7c122509326cd2a7469ac9f74a9879cf24229f1))
+* **TU-36984:** Upgrade CI to node 24 ([#734](https://github.com/Typeform/embed/issues/734)) ([8adb94b](https://github.com/Typeform/embed/commit/8adb94b7213fd702daae49878afced1ff1562d49))
+
 # [@typeform/embed-react-v4.11.0](https://github.com/Typeform/embed/compare/@typeform/embed-react-v4.10.0...@typeform/embed-react-v4.11.0) (2025-12-15)
 
 
