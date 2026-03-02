@@ -1,3 +1,10 @@
+# [@typeform/embed-v6.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.10.0...@typeform/embed-v6.0.0) (2026-03-02)
+
+
+### Features
+
+* **TU-36984:** Upgrade CI to node 24 ([#734](https://github.com/Typeform/embed/issues/734)) ([8adb94b](https://github.com/Typeform/embed/commit/8adb94b7213fd702daae49878afced1ff1562d49))
+
 # [@typeform/embed-v5.10.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.9.0...@typeform/embed-v5.10.0) (2025-12-15)
 
 
