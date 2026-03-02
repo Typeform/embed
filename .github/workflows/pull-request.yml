@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         node_version:
-          - 22 # end of life 2027-04-30 # used in SonarCloud scan
+          - 24 # end of life 2028-04-30 # used in SonarCloud scan
     name: build-lint-test - node ${{ matrix.node_version }}
     steps:
       - name: Check out Git repository
@@ -61,7 +61,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
 
       - name: Get yarn cache
         uses: actions/cache@v5
@@ -70,7 +70,7 @@ jobs:
           path: |
             **/node_modules
             ~/.cache
-          key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-22-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+          key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-24-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
       - name: Install Node.js dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
@@ -93,7 +93,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
 
       - name: Get yarn cache
         uses: actions/cache@v5
@@ -102,7 +102,7 @@ jobs:
           path: |
             **/node_modules
             ~/.cache
-          key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-22-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
+          key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-24-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
 
       - name: Install Node.js dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'

@@ -22,7 +22,7 @@
     "popover"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=18"
   },
   "scripts": {
     "clean": "rm -rf ./build ./build-aws ./types",
