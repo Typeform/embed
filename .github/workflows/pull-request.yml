@@ -1,139 +1,51 @@
-name: Pull Request
+name: Pull Request (Consolidated)
+
+concurrency:
+  group: pr-${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 on:
   pull_request:
     branches:
       - main
 
 jobs:
-  build-lint-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node_version:
-          - 24 # end of life 2028-04-30 # used in SonarCloud scan
-    name: build-lint-test - node ${{ matrix.node_version }}
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v6
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ matrix.node_version }}
-
-      - name: Get yarn cache
-        uses: actions/cache@v5
-        id: yarn-cache
-        with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-${{ matrix.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
-
-      - name: Install Node.js dependencies
-        # run when cache not found or PR is external (build fails for external PRs if dependencies are not installed)
-        if: steps.yarn-cache.outputs.cache-hit != 'true' || github.event.pull_request.head.repo.full_name != github.repository
-        run: yarn install --frozen-lockfile
-
-      - run: yarn build
-      - run: yarn lint
-      - run: yarn test:coverage
-
-      - name: Verify coverage file ready
-        run: find . | grep coverage
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v7
-        with:
-          args: >
-            "-Dsonar.projectVersion=${{ github.run_id }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_CLOUD_TOKEN }}
-          LC_ALL: 'C.UTF-8'
-
-  functional:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v6
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-
-      - name: Get yarn cache
-        uses: actions/cache@v5
-        id: yarn-cache
-        with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-24-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
-
-      - name: Install Node.js dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
-
-      - run: yarn build
-      - run: yarn test:functional
-
-  deploy_preview:
-    runs-on: ubuntu-latest
-    # skip for external PRs
-    if: github.event.pull_request.head.repo.full_name == github.repository
-    permissions:
-      contents: read
-      id-token: write
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v6
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-
-      - name: Get yarn cache
-        uses: actions/cache@v5
-        id: yarn-cache
-        with:
-          path: |
-            **/node_modules
-            ~/.cache
-          key: ${{ runner.os }}-repo-${{ github.event.pull_request.head.repo.full_name }}-node-24-yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.github/workflows/**.yml') }}
-
-      - name: Install Node.js dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
-
-      - run: yarn lerna bootstrap
-      - run: yarn build
-        env:
-          NODE_ENV: 'production'
-      # Configure registry for GitHub Packages
-      - run: rm ./.npmrc
-      - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      - run: npm config set @typeform:registry https://npm.pkg.github.com/ # install jarvis from github
-      - run: yarn add -W @typeform/jarvis
-      - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json because it is private (the file is committed by semantic-release to bump version)
-
-      # authenticate to AWS
-      - uses: aws-actions/configure-aws-credentials@v6
-        with:
-          aws-region: 'us-east-1'
-          mask-aws-account-id: true
-          role-to-assume: ${{ secrets.DEPLOYMENT_ROLE_ARN }}
-          role-session-name: ${{ github.run_id }}-${{ github.run_attempt }}
-          role-duration-seconds: 900
-          unset-current-credentials: true
-
-      - run: yarn release:preview
-        env:
-          AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          JARVIS_NOTIFY_PREVIEW_TEMPLATE: ${{ secrets.JARVIS_NOTIFY_PREVIEW_TEMPLATE }}
-          PUBLIC_CDN_URL: 'https://embed.typeform.com'
+  pr-workflow:
+    uses: Typeform/.github/.github/workflows/frontend-pr-workflow.yml@v1
+    with:
+      app-name: 'embed'
+      node-version: '24'
+      use-asdf: false
+      cache-mode: 'full'
+      runner: '["ubuntu-latest"]'
+      build-command: 'yarn build'
+      clean-command: 'yarn clean'
+      run-linting: true
+      lint-command: 'yarn lint'
+      run-unit-tests: true
+      unit-test-command: 'yarn test:coverage'
+      run-sonarcloud: true
+      run-graphql-persisted-operations: false
+      run-deep-purple: false
+      run-cypress-functional: true
+      cypress-functional-command: 'yarn test:functional'
+      cypress-functional-start: ''
+      cypress-functional-wait-on: ''
+      cypress-runner: '["ubuntu-latest"]'
+      cypress-timeout: 20
+      deploy-preview: true
+      deploy-command: 'yarn release:preview'
+      build-output-dir: 'packages/embed/build'
+      cdn-bucket: 'typeform-public-assets/embed'
+      cloudfront-dist: 'E3IUO95IYL1RI3'
+      cdn-url: 'https://embed.typeform.com'
+      jarvis-datadog-enabled: true
+      jarvis-datadog-service: 'embed'
+      jarvis-datadog-env: 'staging'
+      build-timeout: 15
+      test-timeout: 30
+      deploy-timeout: 10
+    secrets:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      SONAR_CLOUD_TOKEN: ${{ secrets.SONAR_CLOUD_TOKEN }}
+      DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY_FRONTEND_METRICS }}
