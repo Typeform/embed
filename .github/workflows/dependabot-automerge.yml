@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   dependabot:
-    runs-on: [ci-universal-scale-set]
+    runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
 
     steps:
