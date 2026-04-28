@@ -1,5 +1,4 @@
 version: 2
-
 registries:
   npm-github:
     type: npm-registry
@@ -10,7 +9,6 @@ registries:
     url: https://github.com
     username: x-access-token
     password: '${{ secrets.GH_TOKEN }}'
-
 updates:
   - package-ecosystem: npm
     schedule:
@@ -27,7 +25,14 @@ updates:
     registries:
       - npm-github
       - git-github
-
+    cooldown:
+      default-days: 7
+      exclude:
+        - '@typeform/*'
+    ignore:
+      - dependency-name: semantic-release
+        versions:
+          - '>=25.0.0'
   - package-ecosystem: github-actions
     schedule:
       interval: weekly
