@@ -45,6 +45,7 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v8
         with:
+          skipSignatureVerification: true
           args: >
             "-Dsonar.projectVersion=${{ github.run_id }}"
         env:
