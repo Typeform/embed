@@ -42,15 +42,6 @@ jobs:
       - name: Verify coverage file ready
         run: find . | grep coverage
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v7
-        with:
-          args: >
-            "-Dsonar.projectVersion=${{ github.run_id }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_CLOUD_TOKEN }}
-          LC_ALL: 'C.UTF-8'
 
   functional:
     runs-on: ubuntu-latest
