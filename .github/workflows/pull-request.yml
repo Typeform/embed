@@ -80,7 +80,7 @@ jobs:
         run: yarn cypress install
 
       - run: yarn build
-      - run: yarn test:functional
+      - run: yarn lerna run test:functional --stream
 
   deploy_preview:
     runs-on: ubuntu-latest
