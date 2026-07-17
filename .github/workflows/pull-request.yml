@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         node_version:
-          - 24 # end of life 2028-04-30 # used in SonarCloud scan
+          - 24 # end of life 2028-04-30
     name: build-lint-test - node ${{ matrix.node_version }}
     steps:
       - name: Check out Git repository
@@ -42,15 +42,6 @@ jobs:
       - name: Verify coverage file ready
         run: find . | grep coverage
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v7
-        with:
-          args: >
-            "-Dsonar.projectVersion=${{ github.run_id }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_CLOUD_TOKEN }}
-          LC_ALL: 'C.UTF-8'
 
   functional:
     runs-on: ubuntu-latest
