@@ -3655,19 +3655,6 @@
     "@tufjs/canonical-json" "2.0.0"
     minimatch "^9.0.5"
 
-"@typeform/embed-react@4.7.0":
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/@typeform/embed-react/-/embed-react-4.7.0.tgz#c0b2a54303fb5d3e5abb70af3910f7fdd3497785"
-  integrity sha512-1fLS8sM44LZ0Oql9LTychL69mjO3hw0555hl2/KzRrbFyruEwrpIckfCNaeRfpP4OOQOgXrrZpL27C+isS90SQ==
-  dependencies:
-    "@typeform/embed" "5.5.1"
-    fast-deep-equal "^3.1.3"
-
-"@typeform/embed@5.5.1":
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/@typeform/embed/-/embed-5.5.1.tgz#e0f6ac948dedc3b86b4c33618656b9421082b4d3"
-  integrity sha512-lFApRl5KsGb02R8bEwsXd+BCziLH8M0KDAZq3SGiEa/Xfc+GKjlntw6+m70TXTiHJKECJbbgpPmT0EbDLWaq6g==
-
 "@typeform/eslint-config@6.0.3":
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/@typeform/eslint-config/-/eslint-config-6.0.3.tgz#72984805a186261f6cf1d43d9eee380934310941"
@@ -19697,9 +19684,9 @@ webpack@^5.74.0:
     webpack-sources "^3.3.3"
 
 websocket-driver@>=0.5.1, websocket-driver@^0.7.4:
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/websocket-driver/-/websocket-driver-0.7.4.tgz#89ad5295bbf64b480abcba31e4953aca706f5760"
-  integrity sha512-b17KeDIQVjvb0ssuSDF2cYXSg2iztliJ4B9WdsuB6J952qCPKmnVq4DyW5motImXHDC1cBT/1UezrJVsKw5zjg==
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/websocket-driver/-/websocket-driver-0.7.5.tgz#569d22764ab21f2de20af0e74b411e8ae5a0fa46"
+  integrity sha512-ZL2+3c7kMBdIRCMz6l8jQMHyGVxj+UL+xVk74Ombiciboca8rHa15L86B19E5oh1pL9Ii/uj54gtsIrZGMo6zA==
   dependencies:
     http-parser-js ">=0.5.1"
     safe-buffer ">=5.1.0"
