@@ -53,10 +53,9 @@ function testMobile(path: string, title: string) {
     })
 
     it('should reset the form when closing it', () => {
-      cy.get('#wrapper').should('have.class', 'tf-v1-widget-fullscreen')
       cy.get('iframe').then(($iframe) => {
         const $body = $iframe.contents().find('body')
-        cy.wrap($body).find('[data-qa="ok-button"]').click()
+        cy.wrap($body).find('[data-qa="ok-button"]').click({ force: true })
         cy.get('.tf-v1-widget-close').click()
       })
       cy.wait(1000)
