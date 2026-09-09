@@ -1,4 +1,4 @@
-name: Dependabot auto-approve and auto-merge
+name: Bot PR auto-approve and auto-merge
 
 on:
   pull_request_target:
@@ -9,32 +9,103 @@ permissions:
   contents: write
 
 jobs:
-  dependabot:
+  automerge:
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
+    # Trusted automation only. Keep this list in sync across blocks-owned repos.
+    if: contains(fromJSON('["dependabot[bot]", "aikido-autofix[bot]"]'), github.actor)
 
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 1
-
-      - name: Install GitHub CLI
+      # A green CI run does not prove a transitive bump is safe: the repo's own
+      # tests never exercise how the intermediate package uses the changed API.
+      # Anything matching below is neither approved nor auto-merged, so it cannot
+      # satisfy the required-review count and a human has to sign it off.
+      - name: Assess dependency risk
+        id: risk
         run: |
-          sudo apt-get update
-          sudo apt-get install -y gh
+          FILES=$(gh api "repos/$REPO/pulls/$PR_NUMBER/files" --paginate)
+          manifests() {
+            printf '%s' "$FILES" | jq -r ".[] | select(.filename|test(\"$1\")) | .patch // \"\""
+          }
+          REASON=""
 
-      - name: Authenticate gh
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+          # 1. The bot names major bumps in its own title.
+          if printf '%s' "$PR_TITLE" | grep -qiE 'major version upgrade'; then
+            REASON="major version upgrade"
+          fi
 
-      - name: Approve dependabot PRs
+          # 2. A forced transitive pin in a JS manifest (resolutions/overrides/glob).
+          if [ -z "$REASON" ] && manifests 'package\\.json$' \
+              | grep -qE '^[ +-].*"(resolutions|overrides)"[[:space:]]*:|^\+[[:space:]]*"\*\*/'; then
+            REASON="forced transitive override"
+          fi
+
+          # 3. A Go major bump.
+          if [ -z "$REASON" ] && manifests 'go\\.mod$' | grep -qE '^\+.*\+incompatible'; then
+            REASON="go major (+incompatible) bump"
+          fi
+
+          # 4. A bulk sweep across many packages at once.
+          N=$(manifests '(go\\.mod|package\\.json)$' \
+              | grep -cE '^\+[[:space:]]+([a-zA-Z0-9./_-]+ v[0-9]|"[^"]+"[[:space:]]*:)' || true)
+          if [ -z "$REASON" ] && [ "${N:-0}" -gt 6 ]; then
+            REASON="bulk sweep ($N dependency lines changed)"
+          fi
+
+          # 5. A wide lockfile rewrite means many transitive packages moved,
+          #    even when the manifest diff looks small.
+          CHURN=$(printf '%s' "$FILES" \
+              | jq '[.[] | select(.filename|test("(yarn\\.lock|package-lock\\.json|go\\.sum|pnpm-lock\\.yaml)$")) | .additions + .deletions] | add // 0')
+          if [ -z "$REASON" ] && [ "${CHURN:-0}" -gt 600 ]; then
+            REASON="wide lockfile rewrite ($CHURN lines)"
+          fi
+
+          if [ -n "$REASON" ]; then
+            echo "risky=true" >> "$GITHUB_OUTPUT"
+            echo "reason=$REASON" >> "$GITHUB_OUTPUT"
+            echo "::warning::Not auto-merging: $REASON"
+          else
+            echo "risky=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Approve bot PR
+        if: steps.risk.outputs.risky == 'false'
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Merge for dependabot PRs
+      - name: Enable auto-merge for bot PR
+        if: steps.risk.outputs.risky == 'false'
         run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Hold risky bot PR for human review
+        if: steps.risk.outputs.risky == 'true'
+        run: |
+          # An earlier run may have approved and armed this PR while it still
+          # looked routine, so undo both before flagging it.
+          gh pr merge --disable-auto "$PR_URL" || true
+
+          gh api "repos/$REPO/pulls/$PR_NUMBER/reviews" \
+            --jq '.[] | select(.state == "APPROVED" and .user.login == "github-actions[bot]") | .id' \
+          | while read -r id; do
+              gh api -X PUT "repos/$REPO/pulls/$PR_NUMBER/reviews/$id/dismissals" \
+                -f message="Withdrawn: $REASON" >/dev/null || true
+            done
+
+          gh pr edit "$PR_URL" --add-label needs-human
+          gh pr comment "$PR_URL" --body \
+            "Held for human review: **$REASON**. A green CI run does not prove a transitive dependency bump is safe, so this PR was deliberately **not** approved and auto-merge is off. It needs a human to review and merge it."
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REASON: ${{ steps.risk.outputs.reason }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
