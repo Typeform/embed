@@ -1,4 +1,4 @@
-name: Dependabot auto-approve and auto-merge
+name: Bot PR auto-approve and auto-merge
 
 on:
   pull_request_target:
@@ -9,9 +9,10 @@ permissions:
   contents: write
 
 jobs:
-  dependabot:
+  automerge:
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
+    # Trusted automation only. Keep this list in sync across blocks-owned repos.
+    if: contains(fromJSON('["dependabot[bot]", "smartling-github-connector[bot]", "aikido-autofix[bot]"]'), github.actor)
 
     steps:
       - name: Checkout Repo
@@ -27,13 +28,13 @@ jobs:
       - name: Authenticate gh
         run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
 
-      - name: Approve dependabot PRs
+      - name: Approve bot PR
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Merge for dependabot PRs
+      - name: Enable auto-merge for bot PR
         run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
