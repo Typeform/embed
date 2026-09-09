@@ -11,31 +11,86 @@ permissions:
 jobs:
   automerge:
     runs-on: ubuntu-latest
-    # Trusted automation only. Smartling is omitted: no translated content in this repo.
+    # Trusted automation only. Keep this list in sync across blocks-owned repos.
     if: contains(fromJSON('["dependabot[bot]", "aikido-autofix[bot]"]'), github.actor)
 
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 1
-
-      - name: Install GitHub CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gh
-
-      - name: Authenticate gh
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-
       - name: Approve bot PR
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # A green CI run does not prove a transitive bump is safe: the repo's own
+      # tests never exercise how the intermediate package uses the changed API.
+      # Anything matching below is left for a human instead of auto-merging.
+      - name: Assess dependency risk
+        id: risk
+        run: |
+          FILES=$(gh api "repos/$REPO/pulls/$PR_NUMBER/files" --paginate)
+          manifests() {
+            printf '%s' "$FILES" | jq -r ".[] | select(.filename|test(\"$1\")) | .patch // \"\""
+          }
+          REASON=""
+
+          # 1. The bot names major bumps in its own title.
+          if printf '%s' "$PR_TITLE" | grep -qiE 'major version upgrade'; then
+            REASON="major version upgrade"
+          fi
+
+          # 2. A forced transitive pin in a JS manifest (resolutions/overrides/glob).
+          if [ -z "$REASON" ] && manifests 'package\\.json$' \
+              | grep -qE '^[ +-].*"(resolutions|overrides)"[[:space:]]*:|^\+[[:space:]]*"\*\*/'; then
+            REASON="forced transitive override"
+          fi
+
+          # 3. A Go major bump.
+          if [ -z "$REASON" ] && manifests 'go\\.mod$' | grep -qE '^\+.*\+incompatible'; then
+            REASON="go major (+incompatible) bump"
+          fi
+
+          # 4. A bulk sweep across many packages at once.
+          N=$(manifests '(go\\.mod|package\\.json)$' \
+              | grep -cE '^\+[[:space:]]+([a-zA-Z0-9./_-]+ v[0-9]|"[^"]+"[[:space:]]*:)' || true)
+          if [ -z "$REASON" ] && [ "${N:-0}" -gt 6 ]; then
+            REASON="bulk sweep ($N dependency lines changed)"
+          fi
+
+          # 5. A wide lockfile rewrite means many transitive packages moved,
+          #    even when the manifest diff looks small.
+          CHURN=$(printf '%s' "$FILES" \
+              | jq '[.[] | select(.filename|test("(yarn\\.lock|package-lock\\.json|go\\.sum|pnpm-lock\\.yaml)$")) | .additions + .deletions] | add // 0')
+          if [ -z "$REASON" ] && [ "${CHURN:-0}" -gt 600 ]; then
+            REASON="wide lockfile rewrite ($CHURN lines)"
+          fi
+
+          if [ -n "$REASON" ]; then
+            echo "risky=true" >> "$GITHUB_OUTPUT"
+            echo "reason=$REASON" >> "$GITHUB_OUTPUT"
+            echo "::warning::Not auto-merging: $REASON"
+          else
+            echo "risky=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Enable auto-merge for bot PR
+        if: steps.risk.outputs.risky == 'false'
         run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Flag risky bot PR for human review
+        if: steps.risk.outputs.risky == 'true'
+        run: |
+          gh pr edit "$PR_URL" --add-label needs-human
+          gh pr comment "$PR_URL" --body \
+            "Not auto-merged: **$REASON**. A green CI run does not prove a transitive dependency bump is safe, so this one needs a human look."
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          REASON: ${{ steps.risk.outputs.reason }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
