@@ -11,8 +11,8 @@ permissions:
 jobs:
   automerge:
     runs-on: ubuntu-latest
-    # Trusted automation only. Keep this list in sync across blocks-owned repos.
-    if: contains(fromJSON('["dependabot[bot]", "smartling-github-connector[bot]", "aikido-autofix[bot]"]'), github.actor)
+    # Trusted automation only. Smartling is omitted: no translated content in this repo.
+    if: contains(fromJSON('["dependabot[bot]", "aikido-autofix[bot]"]'), github.actor)
 
     steps:
       - name: Checkout Repo
