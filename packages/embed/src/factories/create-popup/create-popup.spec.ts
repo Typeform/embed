@@ -41,6 +41,26 @@ describe('create-popup', () => {
         expect(wrapper.style.width).toBe('200px')
         expect(wrapper.style.height).toBe('100px')
       })
+
+      it('should set the popup background from the form theme', () => {
+        const popupElement = container.querySelector('.tf-v1-popup') as HTMLElement
+        const iframe = popupElement.querySelector('iframe') as HTMLIFrameElement
+        const embedId = new URL(iframe.src).searchParams.get('typeform-embed-id')
+
+        window.dispatchEvent(
+          new MessageEvent('message', {
+            data: { type: 'form-theme', embedId: 'other-embed-id', theme: { backgroundColor: 'rgba(0, 0, 255, 0)' } },
+          })
+        )
+        expect(popupElement.style.getPropertyValue('--tf-popup-background')).toBe('')
+
+        window.dispatchEvent(
+          new MessageEvent('message', {
+            data: { type: 'form-theme', embedId, theme: { backgroundColor: 'rgba(255, 200, 0, 0)' } },
+          })
+        )
+        expect(popupElement.style.getPropertyValue('--tf-popup-background')).toBe('rgba(255, 200, 0, 255)')
+      })
     })
 
     describe('#close', () => {
