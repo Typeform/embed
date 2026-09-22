@@ -34,6 +34,7 @@
 @include mobile {
   .tf-v1-popup {
     @include fullsize;
+    background: var(--tf-popup-background, rgba(0, 0, 0, 0.75));
 
     .tf-v1-iframe-wrapper {
       position: relative;

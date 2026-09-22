@@ -10,8 +10,10 @@ import {
   invokeWithoutDefault,
   handlePreventReopenOnClose,
   closeIconSvg,
+  changeColorOpacity,
 } from '../../utils'
 import type { RemoveHandler } from '../../utils'
+import { getFormThemeHandler } from '../../utils/create-iframe/get-form-event-handler'
 import { POPUP_SIZE } from '../../constants'
 import { isInPage, isOpen } from '../../utils'
 import { EmbedPopup } from '../../base'
@@ -83,6 +85,16 @@ export const createPopup = (formId: string, userOptions: PopupOptions = {}): Pop
   wrapper.append(iframe)
   popup.append(spinner)
   popup.append(wrapper)
+
+  window.addEventListener(
+    'message',
+    getFormThemeHandler(embedId, (data) => {
+      const backgroundColor = data?.theme?.backgroundColor
+      if (backgroundColor) {
+        popup.style.setProperty('--tf-popup-background', changeColorOpacity(backgroundColor))
+      }
+    })
+  )
 
   const container = options.container || document.body
 
