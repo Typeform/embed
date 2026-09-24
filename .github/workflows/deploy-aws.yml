@@ -50,7 +50,7 @@ jobs:
           @typeform:registry=https://npm.pkg.github.com/
           EOF
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.JENKINS_PAT_TOKEN }}
 
       - run: yarn add -W @typeform/jarvis
       - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json because it is private
