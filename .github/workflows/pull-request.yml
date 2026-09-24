@@ -110,7 +110,7 @@ jobs:
       - run: rm ./.npmrc
       - run: npm config set '//npm.pkg.github.com/:_authToken' $GH_TOKEN
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.JENKINS_PAT_TOKEN }}
       - run: npm config set @typeform:registry https://npm.pkg.github.com/ # install jarvis from github
       - run: yarn add -W @typeform/jarvis
       - run: git checkout HEAD -- package.json # do not save jarvis dependency to package.json because it is private (the file is committed by semantic-release to bump version)
@@ -128,6 +128,6 @@ jobs:
       - run: yarn release:preview
         env:
           AWS_ASSETS_BUCKET: 'typeform-public-assets/embed'
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.JENKINS_PAT_TOKEN }}
           JARVIS_NOTIFY_PREVIEW_TEMPLATE: ${{ secrets.JARVIS_NOTIFY_PREVIEW_TEMPLATE }}
           PUBLIC_CDN_URL: 'https://embed.typeform.com'
