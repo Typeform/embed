@@ -11,16 +11,32 @@ permissions:
 jobs:
   automerge:
     runs-on: ubuntu-latest
-    # Trusted automation only. Keep this list in sync across blocks-owned repos.
-    if: contains(fromJSON('["dependabot[bot]", "aikido-autofix[bot]"]'), github.actor)
+    # Trusted automation only. Keyed on the PR author so the job still runs, and
+    # can revoke, when someone else pushes to a bot PR. Keep in sync across repos.
+    if: contains(fromJSON('["dependabot[bot]", "aikido-autofix[bot]"]'), github.event.pull_request.user.login)
 
     steps:
+      - name: Check the PR was pushed by its author
+        id: trust
+        run: |
+          # A later push by anyone else (e.g. a collaborator with write access)
+          # must not inherit an approval or armed auto-merge given to the bot.
+          if [ "$ACTOR" = "$AUTHOR" ]; then
+            echo "trusted=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "trusted=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          ACTOR: ${{ github.actor }}
+          AUTHOR: ${{ github.event.pull_request.user.login }}
+
       # A green CI run does not prove a transitive bump is safe: the repo's own
       # tests never exercise how the intermediate package uses the changed API.
       # Anything matching below is neither approved nor auto-merged, so it cannot
       # satisfy the required-review count and a human has to sign it off.
       - name: Assess dependency risk
         id: risk
+        if: steps.trust.outputs.trusted == 'true'
         run: |
           FILES=$(gh api "repos/$REPO/pulls/$PR_NUMBER/files" --paginate)
           manifests() {
@@ -95,8 +111,8 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Hold risky bot PR for human review
-        if: steps.risk.outputs.risky == 'true'
+      - name: Hold bot PR for human review
+        if: steps.trust.outputs.trusted == 'false' || steps.risk.outputs.risky == 'true'
         run: |
           # An earlier run may have approved and armed this PR while it still
           # looked routine, so undo both before flagging it.
@@ -111,10 +127,10 @@ jobs:
 
           gh pr edit "$PR_URL" --add-label needs-human
           gh pr comment "$PR_URL" --body \
-            "Held for human review: **$REASON**. A green CI run does not prove a transitive dependency bump is safe, so this PR was deliberately **not** approved and auto-merge is off. It needs a human to review and merge it."
+            "Held for human review: **$REASON**. This PR was deliberately **not** approved and auto-merge is off; any earlier approval was withdrawn. It needs a human to review and merge it."
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           REPO: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-          REASON: ${{ steps.risk.outputs.reason }}
+          REASON: ${{ steps.risk.outputs.reason || format('{0} pushed to this PR, not the bot that opened it', github.actor) }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
