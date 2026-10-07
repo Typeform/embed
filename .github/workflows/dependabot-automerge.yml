@@ -59,6 +59,15 @@ jobs:
             REASON="wide lockfile rewrite ($CHURN lines)"
           fi
 
+          # 6. Aikido only fixes dependencies. Any other touched file is not what
+          #    the bot normally produces, so a human has to look at it.
+          if [ -z "$REASON" ] && [ "$GITHUB_ACTOR" = "aikido-autofix[bot]" ]; then
+            OTHER=$(printf '%s' "$FILES" | jq -r '.[].filename | select((split("/")[-1] | test("^(package\\.json|yarn\\.lock|package-lock\\.json|pnpm-lock\\.yaml|go\\.mod|go\\.sum|requirements[^/]*\\.(txt|in))$")) | not)' | head -3 | tr '\n' ' ')
+            if [ -n "$OTHER" ]; then
+              REASON="aikido PR touches non-dependency files: $OTHER"
+            fi
+          fi
+
           if [ -n "$REASON" ]; then
             echo "risky=true" >> "$GITHUB_OUTPUT"
             echo "reason=$REASON" >> "$GITHUB_OUTPUT"
