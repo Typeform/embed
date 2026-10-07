@@ -3655,19 +3655,6 @@
     "@tufjs/canonical-json" "2.0.0"
     minimatch "^9.0.5"
 
-"@typeform/embed-react@4.7.0":
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/@typeform/embed-react/-/embed-react-4.7.0.tgz#c0b2a54303fb5d3e5abb70af3910f7fdd3497785"
-  integrity sha512-1fLS8sM44LZ0Oql9LTychL69mjO3hw0555hl2/KzRrbFyruEwrpIckfCNaeRfpP4OOQOgXrrZpL27C+isS90SQ==
-  dependencies:
-    "@typeform/embed" "5.5.1"
-    fast-deep-equal "^3.1.3"
-
-"@typeform/embed@5.5.1":
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/@typeform/embed/-/embed-5.5.1.tgz#e0f6ac948dedc3b86b4c33618656b9421082b4d3"
-  integrity sha512-lFApRl5KsGb02R8bEwsXd+BCziLH8M0KDAZq3SGiEa/Xfc+GKjlntw6+m70TXTiHJKECJbbgpPmT0EbDLWaq6g==
-
 "@typeform/eslint-config@6.0.3":
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/@typeform/eslint-config/-/eslint-config-6.0.3.tgz#72984805a186261f6cf1d43d9eee380934310941"
@@ -6500,13 +6487,14 @@ compressible@~2.0.18:
     mime-db ">= 1.43.0 < 2"
 
 compression@^1.7.4:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/compression/-/compression-1.8.1.tgz#4a45d909ac16509195a9a28bd91094889c180d79"
-  integrity sha512-9mAqGPHLakhCLeNyxPkK4xVo746zQ/czLH1Ky+vkitMnWfWZps8r0qXuwhwizagCRttsL4lfG4pIOvaWLpAP0w==
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/compression/-/compression-1.8.2.tgz#781397127ae2da00c0c5f7c76bda5b2a9b32a49f"
+  integrity sha512-o8vI5RE5A6EVVOd9o41jKp41aJom+QTEO/Bx8MYNjexMo/Bv2WOjUfZr+aL0WnYSgymUy6zeguqLTsIhV0gMvQ==
   dependencies:
     bytes "3.1.2"
     compressible "~2.0.18"
     debug "2.6.9"
+    destroy "1.2.0"
     negotiator "~0.6.4"
     on-headers "~1.1.0"
     safe-buffer "5.2.1"
