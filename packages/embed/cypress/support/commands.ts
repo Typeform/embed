@@ -56,7 +56,9 @@ const getFormDocuments = (doc: Document) =>
 // finite animations. Infinite ones (spinners, skeletons) are ignored or this would never settle.
 const waitForFormsReady = () =>
   cy.document({ timeout: FORM_READY_TIMEOUT }).should((doc) => {
-    getFormDocuments(doc).forEach((formDoc) => {
+    const formDocs = getFormDocuments(doc)
+    expect(formDocs, 'form iframes found').to.have.length.greaterThan(0)
+    formDocs.forEach((formDoc) => {
       expect(formDoc.body.innerText.trim(), 'form has rendered content').to.not.equal('')
       expect(formDoc.fonts.status, 'fonts loaded').to.equal('loaded')
       expect(
