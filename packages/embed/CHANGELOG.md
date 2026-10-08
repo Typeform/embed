@@ -1,3 +1,10 @@
+# [@typeform/embed-v6.0.1](https://github.com/Typeform/embed/compare/@typeform/embed-v6.0.0...@typeform/embed-v6.0.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* **TU-48826:** stabilize the CI ([#780](https://github.com/Typeform/embed/issues/780)) ([bebd02b](https://github.com/Typeform/embed/commit/bebd02bbd3a30790dd5e16ff08582078d964c625))
+
 # [@typeform/embed-v6.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.10.0...@typeform/embed-v6.0.0) (2026-03-02)
 
 
