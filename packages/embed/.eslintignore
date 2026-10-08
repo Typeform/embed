@@ -4,8 +4,7 @@ build-aws/
 dist/
 types/
 CHANGELOG.md
-**/cypress/fixtures
 coverage/
 test-results/
 playwright-report/
-visual-tests/local-screenshots/
+e2e/visual/local-screenshots/

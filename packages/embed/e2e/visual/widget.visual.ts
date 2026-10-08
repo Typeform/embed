@@ -1,4 +1,5 @@
-import { test, expect, mobileOptions } from './support'
+import { startWidgetOnMobile } from '../support'
+import { test, mobileOptions } from './support'
 
 test.describe('Embed Widget', () => {
   test('Basic Embed Widget - Desktop', async ({ page, track }) => {
@@ -12,15 +13,7 @@ test.describe('Embed Widget', () => {
 
     test('Basic Embed Widget - Mobile fullscreen view', async ({ page, track }) => {
       await page.goto('/widget-js.html')
-      // The form's button exists before its handlers are attached, so a single click can be lost.
-      await expect(async () => {
-        await page
-          .frameLocator('iframe')
-          .locator('[data-qa*="ok-button"]')
-          .first()
-          .click({ force: true, timeout: 2000 })
-        await expect(page.locator('.tf-v1-widget-close')).toBeVisible({ timeout: 1500 })
-      }).toPass({ timeout: 15000 })
+      await startWidgetOnMobile(page)
       await track(page, 'Basic Embed Widget - Mobile fullscreen view')
     })
 

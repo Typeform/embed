@@ -1,22 +1,12 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-import { expect, test as base, type Frame, type Page } from '@playwright/test'
+import type { Frame, Page } from '@playwright/test'
 import { PlaywrightVisualRegressionTracker } from '@visual-regression-tracker/agent-playwright'
 
-export { expect }
+import { expect, FORM_ID, test as base } from '../support'
 
-export const FORM_ID = 'HLjqXS5W'
-
-export const desktopViewport = { width: 1024, height: 768 }
-export const mobileViewport = { width: 375, height: 667 }
-
-// The embed treats these user agents as mobile and any screen below 1024x768 as small.
-export const mobileOptions = {
-  viewport: mobileViewport,
-  screen: mobileViewport,
-  userAgent: 'playwright mobile browser',
-}
+export { expect, FORM_ID, mobileOptions } from '../support'
 
 const LOCAL_SCREENSHOTS = join(__dirname, 'local-screenshots')
 const FONTS_TIMEOUT = 5000
