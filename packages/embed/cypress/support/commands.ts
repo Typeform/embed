@@ -81,7 +81,7 @@ const logFormState = (title: string) =>
         src: frame.src.slice(0, 120),
         size: `${frame.offsetWidth}x${frame.offsetHeight}`,
         text: formDoc.body.innerText.replace(/\s+/g, ' ').slice(0, 200),
-        okButton: !!formDoc.querySelector('[data-qa="ok-button"]'),
+        okButton: !!formDoc.querySelector('[data-qa*="ok-button"]'),
         // heuristic: the new RX renderer marks non-focused blocks `inert`, the old UI doesn't
         inertBlocks: formDoc.querySelectorAll('[inert]').length,
       }
