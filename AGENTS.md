@@ -143,6 +143,11 @@ data as a UI hint and verify responses server-side (Responses API or webhooks).
 - **`hidden` ≠ `tracking`.** Hidden fields must exist in the form and travel in the URL hash; `tracking`
   goes in the query string.
 - **`domain` is a bare host** (`form.typeform.eu`), not a URL.
+- **EU accounts: forms live on `form.typeform.eu`.** A plain embed points at `form.typeform.com`, which
+  does not serve EU forms (it returns Typeform's generic landing page). Use `region: 'eu'` (JS, React) or `data-tf-domain="form.typeform.eu"` (HTML); a custom
+  `domain` wins over `region`. For `data-tf-live`, add `data-tf-region="eu"` on the same element so the
+  snippet is fetched from `api.typeform.eu`. The `region` row in `docs/configuration.md` still says it is
+  not available to customers yet; the SDK supports it.
 - **`enableSandbox` is Typeform's test mode**, not an iframe `sandbox`. The iframe has no `sandbox`
   attribute, no default `title` (pass `iframeProps: { title }`) and `allow="microphone; camera"` only;
   `iframeProps.allow` replaces that list rather than extending it.
@@ -158,7 +163,7 @@ data as a UI hint and verify responses server-side (Responses API or webhooks).
   (for example on every render) leaks listeners.
 - **CSP:** allow `frame-src` for `form.typeform.com` / `form.typeform.eu` (or your `domain`). HTML mode
   also needs `script-src` and `style-src` for `embed.typeform.com`; `data-tf-live` needs `connect-src`
-  for `api.typeform.com`. Forms can only be framed from `https:`, `localhost`, `capacitor:` and `ionic:`.
+  for `api.typeform.com` (`api.typeform.eu` for EU). Forms can only be framed from `https:`, `localhost`, `capacitor:` and `ionic:`.
 - **`buttonText`, `tooltip` and `customIcon` are written with `innerHTML`.** Never pass untrusted input.
 
 ## How it works
