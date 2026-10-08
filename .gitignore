@@ -59,8 +59,6 @@ lib
 dist
 
 # tests
-**/e2e/screenshots
-**/cypress/screenshots
-**/cypress/videos
-**/cypress/fixtures
-packages/embed/vrt.json
+packages/embed/e2e/visual/local-screenshots
+packages/embed/playwright-report
+packages/embed/test-results

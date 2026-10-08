@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Visual tests - options</title>
+    <link rel="stylesheet" href="./lib/css/widget.css" />
+    <link rel="stylesheet" href="./lib/css/popup.css" />
+    <style>
+      /* Stripes make the embed's opacity and transparent areas visible in screenshots */
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: repeating-linear-gradient(45deg, #f4d35e, #f4d35e 20px, #ee6c4d 20px, #ee6c4d 40px);
+      }
+      #wrapper {
+        width: 600px;
+        height: 400px;
+        margin: 40px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+    <script src="./lib/embed.js"></script>
+  </body>
+</html>
