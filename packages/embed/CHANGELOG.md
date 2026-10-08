@@ -1,3 +1,10 @@
+# [@typeform/embed-v6.0.3](https://github.com/Typeform/embed/compare/@typeform/embed-v6.0.2...@typeform/embed-v6.0.3) (2026-10-08)
+
+
+### Bug Fixes
+
+* **TU-48826:** run the visual tests in chrome and fix the mobile fullscreen test ([#787](https://github.com/Typeform/embed/issues/787)) ([c89a167](https://github.com/Typeform/embed/commit/c89a167f998c335c40266f7877a5a51015c6da6e))
+
 # [@typeform/embed-v6.0.2](https://github.com/Typeform/embed/compare/@typeform/embed-v6.0.1...@typeform/embed-v6.0.2) (2026-10-08)
 
 
