@@ -422,6 +422,12 @@ yarn cy:visual    # run in background (headless)
 yarn cy:open:vrt  # open cypress UI (with support for VRT)
 ```
 
+To debug without VRT, save the screenshots locally instead (no `vrt.json` needed):
+
+```bash
+yarn test:visual:local  # screenshots land in e2e/screenshots/<spec>/
+```
+
 _Note:_ You need access to our [self-hosted Visual Regression Tracker (aka VRT)](https://github.com/Visual-Regression-Tracker/Visual-Regression-Tracker). Copy `vrt.example.json` to `vrt.json` and provide `apiKey` to run visual tests locally.
 
 See details on [contributing to this repo](https://github.com/Typeform/embed#contribution).

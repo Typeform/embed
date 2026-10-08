@@ -22,7 +22,7 @@ const setupNodeEvents: Cypress.PluginConfig = (on: Cypress.PluginEvents, config:
     },
   })
 
-  if (config.env.testType === 'visual') {
+  if (config.env.testType === 'visual' && !config.env.vrtLocal) {
     addVisualRegressionTrackerPlugin(on, config)
   }
 }

@@ -1,31 +1,20 @@
-import { openOnMobile } from '../../cypress-utils'
+import { openOnMobile, waitForAnimations } from '../../cypress-utils'
+
+const embeds = [
+  { name: 'Popover', page: '/popover-js.html', trigger: '#button' },
+  { name: 'Popup', page: '/popup-js.html', trigger: '#button' },
+  { name: 'Sidetab', page: '/sidetab-js.html', trigger: 'button.tf-v1-sidetab-button' },
+  { name: 'Slider', page: '/slider-js.html', trigger: '#button' },
+]
 
 describe('Mobile Embeds', () => {
-  it('Popover fullscreen', () => {
-    openOnMobile('/popover-js.html')
-    cy.get('#button').click({ force: true })
-    cy.get('[data-testid="iframe"]').should('be.visible')
-    cy.vrt('Popover Mobile')
-  })
-
-  it('Popup fullscreen', () => {
-    openOnMobile('/popup-js.html')
-    cy.get('#button').click({ force: true })
-    cy.get('[data-testid="iframe"]').should('be.visible')
-    cy.vrt('Popup Mobile')
-  })
-
-  it('Sidetab fullscreen', () => {
-    openOnMobile('/sidetab-js.html')
-    cy.get('button.tf-v1-sidetab-button').click({ force: true })
-    cy.get('[data-testid="iframe"]').should('be.visible')
-    cy.vrt('Sidetab Mobile')
-  })
-
-  it('Slider fullscreen', () => {
-    openOnMobile('/slider-js.html')
-    cy.get('#button').click({ force: true })
-    cy.get('[data-testid="iframe"]').should('be.visible')
-    cy.vrt('Slider Mobile')
+  embeds.forEach(({ name, page, trigger }) => {
+    it(`${name} fullscreen`, () => {
+      openOnMobile(page)
+      cy.get(trigger).click({ force: true })
+      waitForAnimations()
+      cy.get('[data-testid="iframe"]').should('be.visible')
+      cy.vrt(`${name} Mobile`)
+    })
   })
 })

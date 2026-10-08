@@ -1,4 +1,4 @@
-import { open, openOnMobile } from '../../cypress-utils'
+import { open, openOnMobile, startWidgetOnMobile, waitForAnimations } from '../../cypress-utils'
 
 describe('Embed Widget', () => {
   describe('Desktop', () => {
@@ -18,11 +18,7 @@ describe('Embed Widget', () => {
       })
 
       it('Basic Embed Widget - Mobile fullscreen view', () => {
-        cy.get('iframe').then(($iframe) => {
-          const $body = $iframe.contents().find('body')
-          cy.wrap($body).find('[data-qa="ok-button"]').click()
-        })
-        cy.wait(1000)
+        startWidgetOnMobile()
         cy.vrt('Basic Embed Widget - Mobile fullscreen view')
       })
     })
@@ -33,7 +29,7 @@ describe('Embed Widget', () => {
       })
 
       it('Basic Embed Widget - Mobile inline view', () => {
-        cy.wait(1000)
+        waitForAnimations()
         cy.vrt('Basic Embed Widget - Mobile inline view')
       })
     })

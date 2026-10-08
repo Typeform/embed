@@ -32,6 +32,14 @@ export const openOnMobile = (url: string) => {
   })
 }
 
+// Retries until no finite CSS animation/transition is running on the page (infinite ones, e.g. spinners, are ignored).
+export const waitForAnimations = () => {
+  cy.document().should((doc) => {
+    const running = doc.getAnimations().filter((a) => a.effect?.getTiming().iterations !== Infinity)
+    expect(running, 'running animations').to.have.length(0)
+  })
+}
+
 // Clicks the form's welcome screen button until the widget goes fullscreen (close button visible).
 // The button exists before the form's handlers are attached, so a single click can be lost; and it
 // can be scrolled out of the iframe viewport, hence `force`.

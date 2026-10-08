@@ -52,10 +52,15 @@ const getFormDocuments = (doc: Document) =>
     .map((iframe) => iframe.contentDocument)
     .filter((formDoc): formDoc is Document => !!formDoc)
 
+const getRunningFiniteAnimations = (doc: Document) =>
+  doc.getAnimations().filter((a) => a.playState === 'running' && Number.isFinite(a.effect?.getComputedTiming().endTime))
+
 // Waits until every embedded form has rendered content, loaded its fonts and images, and finished its
 // finite animations. Infinite ones (spinners, skeletons) are ignored or this would never settle.
+// The host page is checked too: popup/popover/slider/sidetab fade or slide in with CSS transitions there.
 const waitForFormsReady = () =>
   cy.document({ timeout: FORM_READY_TIMEOUT }).should((doc) => {
+    expect(getRunningFiniteAnimations(doc), 'host page transitions still running').to.have.length(0)
     getFormDocuments(doc).forEach((formDoc) => {
       expect(formDoc.body.innerText.trim(), 'form has rendered content').to.not.equal('')
       expect(formDoc.fonts.status, 'fonts loaded').to.equal('loaded')
@@ -63,10 +68,7 @@ const waitForFormsReady = () =>
         Array.from(formDoc.images).filter((img) => !img.complete),
         'images still loading'
       ).to.have.length(0)
-      const running = formDoc
-        .getAnimations()
-        .filter((a) => a.playState === 'running' && Number.isFinite(a.effect?.getComputedTiming().endTime))
-      expect(running, 'finite animations still running').to.have.length(0)
+      expect(getRunningFiniteAnimations(formDoc), 'finite animations still running').to.have.length(0)
     })
   })
 
@@ -91,7 +93,13 @@ const logFormState = (title: string) =>
 Cypress.Commands.add('vrt', (title, options = {}) => {
   waitForFormsReady()
   cy.wait(SETTLE_MS) // animations can start right after the content mounts
+  waitForFormsReady() // ...so check again once they had the chance to start
   logFormState(title)
+  if (Cypress.env('vrtLocal')) {
+    // Debug mode: keep the screenshot on disk (e2e/screenshots/<spec>/) instead of sending it to VRT
+    cy.screenshot(title, { capture: 'viewport' })
+    return
+  }
   cy.vrtStart()
   cy.vrtTrack(title, {
     viewport: title.match(/mobile/i) ? 'mobile' : 'desktop',
