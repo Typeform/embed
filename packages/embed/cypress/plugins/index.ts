@@ -24,6 +24,15 @@ const setupNodeEvents: Cypress.PluginConfig = (on: Cypress.PluginEvents, config:
 
   if (config.env.testType === 'visual') {
     addVisualRegressionTrackerPlugin(on, config)
+
+    // Headless Chrome opens a small window, so Cypress shrinks the viewport (667px -> 577px) and shows
+    // scrollbars. Use a window big enough for the largest spec viewport, at 1x, so screenshots are stable.
+    on('before:browser:launch', (browser, launchOptions) => {
+      if (browser.family === 'chromium' && browser.name !== 'electron') {
+        launchOptions.args.push('--window-size=1400,1200', '--force-device-scale-factor=1', '--hide-scrollbars')
+      }
+      return launchOptions
+    })
   }
 }
 
