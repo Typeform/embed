@@ -33,7 +33,7 @@ test.describe('Desktop Embeds', () => {
     await page.goto('/sidetab-js.html')
     await page.locator('button.tf-v1-sidetab-button').click({ force: true })
     await page.getByTestId('iframe').waitFor()
-    // The title and footer text anti-alias differently between runs (up to ~0.3% of the pixels).
-    await track(page, 'Sidetab Desktop', { diffTolerancePercent: 0.5 })
+    // The title and footer text anti-alias differently between runs (up to ~0.5% of the pixels over 8 runs).
+    await track(page, 'Sidetab Desktop', { diffTolerancePercent: 1 })
   })
 })
