@@ -8,7 +8,7 @@ It ships:
   served as a browser bundle at `https://embed.typeform.com/next/embed.js` (exposes `window.tf`).
 - **`@typeform/embed-react`** ([packages/embed-react](packages/embed-react)) — React components wrapping
   the vanilla package. It pins the exact `@typeform/embed` version.
-- `demo-html` and `demo-nextjs` — private demo apps, also used by the Cypress suites.
+- `demo-html` and `demo-nextjs` — private demo apps, also used by the Playwright suites.
 
 Owned by `@Typeform/blocks`. [docs/](docs/) is the source of the public documentation at
 https://www.typeform.com/developers/embed/. The form itself (everything inside the iframe) lives in a
@@ -183,8 +183,8 @@ data as a UI hint and verify responses server-side (Responses API or webhooks).
 
 ## Contributing
 
-Layout: `packages/embed/src/{base,factories,initializers,live-embed,utils,css}`, `packages/embed/e2e`
-(Cypress functional + visual), `packages/embed-react/src/{components,utils}`, `docs/` (public docs),
+Layout: `packages/embed/src/{base,factories,initializers,live-embed,utils,css}`, `packages/embed/e2e/{functional,visual}`
+(Playwright, config in `packages/embed/playwright.config.ts`), `packages/embed-react/src/{components,utils}`, `docs/` (public docs),
 `scripts/release.sh`, `.github/workflows/`.
 
 Node 24 in CI (`engines` still says ≥ 18), Yarn 1, Lerna 3 as a task runner only.
@@ -195,8 +195,10 @@ yarn build                   # embed, then embed-react, then the Next.js demo; b
 yarn lint && yarn test       # eslint --max-warnings=0 + prettier (incl. docs/), jest (~300 tests, ~10 s each)
 cd packages/embed && yarn demo       # watch build + demo-nextjs on :9090
 cd packages/embed && yarn preview    # serve build/embed.js on :9022 with a matching CSS URL
-yarn test:functional         # Cypress against real hosted forms; needs network
-yarn test:visual             # needs Typeform's internal VRT server; skipped on PRs from forks
+yarn playwright install chromium     # once: the e2e tests use Playwright's pinned Chromium
+yarn test:functional         # Playwright; mostly a blank page instead of the form, only form-interacting tests need network
+yarn test:visual             # Playwright + VRT; without VRT_APIKEY it saves screenshots to e2e/visual/local-screenshots
+yarn test:e2e:open           # Playwright UI; CI runs the visual job only on PRs from this repo, not forks
 ```
 
 Conventions: conventional commits enforced by commitlint with a Jira scope,
@@ -207,10 +209,11 @@ Release: a push to `main` runs `scripts/release.sh` via `release.yml`: semantic-
 `@typeform/embed` (npm with provenance, plus GitHub Packages), then an automatic `feat:` bump of
 embed-react's dependency (so every embed release also cuts an embed-react minor), then embed-react.
 `feat` → minor, `fix`/`perf`/`chore(deps)` → patch, a `BREAKING CHANGE:` footer → major; PRs are
-squash-merged, so the squashed commit message is what semantic-release reads. An `@typeform/embed-v*`
+squash-merged, so the squashed commit message is what semantic-release reads. Typeform's tooling also expects branches named
+`type/TU-1234_snake_case` and lowercase PR titles, `fix(TU-1234): lowercase subject`. An `@typeform/embed-v*`
 release triggers `deploy-aws.yml`, which uploads `embed.js` and the CSS to `embed.typeform.com/next/`
 with the internal `jarvis` tool. Pushes to `main` also dispatch `Typeform/developers` (docs) and
-`Typeform/embed-demo`. Internal-only: AWS and preview deploys, VRT, `ci-standard-checks`.
+`Typeform/embed-demo`. Internal-only: AWS and preview deploys, the VRT server (tracking runs and approving baselines), `ci-standard-checks`.
 `packages/*/CHANGELOG.md` are generated.
 
 ### Things AI commonly gets wrong (contributors)
@@ -220,13 +223,25 @@ with the internal `jarvis` tool. Pushes to `main` also dispatch `Typeform/develo
   automatically. Add a spec next to each file.
 - **The `typeform-embed*` query params and the message types are a contract with the form renderer.**
   Adding or renaming one needs a renderer change first; the SDK can't add behaviour the form doesn't
-  support.
+  support. Checked against the renderer's `apps/louvre/src/client/embed-settings.js` on 2026-10-08: it
+  maps only `embed-widget`, `embed-fullpage`, `popup-classic`, `popup-drawer` and `popup-blank` to an embed
+  mode, so `popup-popover` and `popup-side-panel` get none; an absent `embed-opacity` means opaque (100);
+  `embed-hide-footer` hides the arrows and progress but not the OK button or "Powered by Typeform".
 - **`yarn build` without `NODE_ENV=production` is a dev build** with `CSS_URL=./lib/css/` and eval source
   maps. Never publish or compare bundle sizes from it.
 - **Don't edit** `packages/*/CHANGELOG.md`, `packages/demo-nextjs/public` (symlink to demo-html) or
   `packages/embed-react/src/css` (symlink to embed's build).
-- **Visual tests load live hosted forms** (`HLjqXS5W`, EU `fsP70kdi`); a renderer change can break the
-  baselines without any SDK change. Baselines live on the VRT server, not in the repo.
+- **Visual tests load the live hosted form `HLjqXS5W`** (19 tests, `packages/embed/e2e/visual`); a renderer
+  change can break the baselines without any SDK change. Baselines live on the VRT server, not in the repo,
+  and new ones need approving there (a new browser or test name shows up as `No baseline`). They run on
+  Playwright's pinned Chromium, so baselines also change when Playwright is bumped. Only the two sidetab
+  tests set `diffTolerancePercent` (1%) because their text anti-aliasing varies between runs; keep every
+  other screenshot at 0%.
+- **Functional tests serve a blank page for the form** (`mockForms` in `packages/embed/e2e/support.ts`) when
+  they only assert iframe attributes. A test that needs `form-ready`, the form's keyboard focus or its
+  content must use the real form instead.
+- **`ci-standard-checks` rejects any PR that touches a `tsconfig.json`** without `allowUnreachableCode: false`
+  and `noImplicitAny: true`, even in `e2e/tsconfig.json`.
 - **`docs/` is published verbatim** to the developer portal; keep the front matter (`nav_title`,
   `nav_order`) and run `yarn docs-prettier`.
 
