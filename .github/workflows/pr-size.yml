@@ -14,7 +14,7 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - uses: codelytv/pr-size-labeler@v1
+      - uses: codelytv/pr-size-labeler@19c335e7695ba922de938806dd129f0a9b992644 # v1.12.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           xs_max_size: '10'
@@ -22,4 +22,3 @@ jobs:
           m_max_size: '500'
           l_max_size: '1000'
           fail_if_xl: 'false'
-          github_api_url: 'api.github.com'
