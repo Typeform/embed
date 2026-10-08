@@ -76,6 +76,7 @@
   },
   "prettier": "@typeform/eslint-config/prettier",
   "resolutions": {
-    "@types/minimatch": "5.1.2"
+    "@types/minimatch": "5.1.2",
+    "@octokit/rest": "^22.0.1"
   }
 }
