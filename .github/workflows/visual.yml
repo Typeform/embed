@@ -33,8 +33,10 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
-      - name: Install Cypress binary
-        run: yarn cypress install
+      # Same browser as the renderer's visual tests: Playwright's pinned Chromium, so the baselines only change
+      # when the Playwright version does. Skips the download when the browser is cached.
+      - name: Install Playwright browser
+        run: yarn playwright install --with-deps chromium
 
       - run: yarn build
 
@@ -45,3 +47,13 @@ jobs:
           VRT_PROJECT: ${{ secrets.VRT_PROJECT }}
           VRT_BRANCHNAME: ${{ github.head_ref || github.ref_name }}
           VRT_CIBUILDID: ${{ github.sha }}
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-visual-report-${{ github.run_id }}
+          path: |
+            packages/embed/playwright-report/
+            packages/embed/test-results/
+          if-no-files-found: ignore
