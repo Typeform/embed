@@ -1,3 +1,10 @@
+# [@typeform/embed-v6.0.2](https://github.com/Typeform/embed/compare/@typeform/embed-v6.0.1...@typeform/embed-v6.0.2) (2026-10-08)
+
+
+### Bug Fixes
+
+* **TU-48826:** make VRT tests more consistent ([#784](https://github.com/Typeform/embed/issues/784)) ([3e1f922](https://github.com/Typeform/embed/commit/3e1f922c6f205c633be6757d9f6cff278ba27409))
+
 # [@typeform/embed-v6.0.1](https://github.com/Typeform/embed/compare/@typeform/embed-v6.0.0...@typeform/embed-v6.0.1) (2026-10-08)
 
 
