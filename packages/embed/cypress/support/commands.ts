@@ -25,6 +25,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+type VrtOptions = NonNullable<Parameters<Cypress.Chainable['vrtTrack']>[1]> & { waitForForms?: boolean }
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -36,9 +38,10 @@ declare global {
 
       /**
        * Waits for the embedded forms to settle, then tracks a visual regression snapshot.
+       * Pass `waitForForms: false` for states without a rendered form, such as a closed launcher.
        * @example cy.vrt('popup mobile')
        */
-      vrt(title: string, options?: Parameters<Chainable['vrtTrack']>[1]): Chainable<void>
+      vrt(title: string, options?: VrtOptions): Chainable<void>
     }
   }
 }
@@ -90,8 +93,10 @@ const logFormState = (title: string) =>
     cy.task('log', `[vrt-debug] ${JSON.stringify({ title, viewport, forms })}`, { log: false })
   })
 
-Cypress.Commands.add('vrt', (title, options = {}) => {
-  waitForFormsReady()
+Cypress.Commands.add('vrt', (title, { waitForForms = true, ...options }: VrtOptions = {}) => {
+  if (waitForForms) {
+    waitForFormsReady()
+  }
   cy.wait(SETTLE_MS) // animations can start right after the content mounts
   logFormState(title)
   cy.vrtStart()
