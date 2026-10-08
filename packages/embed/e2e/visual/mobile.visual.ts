@@ -22,7 +22,8 @@ test.describe('Mobile Embeds', () => {
     await page.goto('/sidetab-js.html')
     await page.locator('button.tf-v1-sidetab-button').click({ force: true })
     await page.getByTestId('iframe').waitFor()
-    await track(page, 'Sidetab Mobile')
+    // The title text anti-aliases differently between runs (up to ~0.3% of the pixels).
+    await track(page, 'Sidetab Mobile', { diffTolerancePercent: 0.5 })
   })
 
   test('Slider fullscreen', async ({ page, track }) => {

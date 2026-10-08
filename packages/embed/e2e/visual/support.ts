@@ -98,7 +98,14 @@ const takeStableScreenshot = async (page: Page) => {
   throw new Error(`The page never became visually stable (${STABLE_ATTEMPTS} attempts, ${STABLE_INTERVAL_MS}ms apart)`)
 }
 
-type Track = (page: Page, name: string, options?: { waitForForms?: boolean }) => Promise<void>
+type TrackOptions = {
+  // Set to false for states without a rendered form, such as a closed launcher.
+  waitForForms?: boolean
+  // Percentage of pixels allowed to differ. Only for screenshots with known sub-pixel text noise between runs.
+  diffTolerancePercent?: number
+}
+
+type Track = (page: Page, name: string, options?: TrackOptions) => Promise<void>
 
 export const test = base.extend<{ track: Track }>({
   track: async ({ browserName }, use) => {
@@ -112,13 +119,18 @@ export const test = base.extend<{ track: Track }>({
     await tracker?.start()
     mkdirSync(LOCAL_SCREENSHOTS, { recursive: true })
 
-    await use(async (page, name, { waitForForms = true } = {}) => {
+    await use(async (page, name, { waitForForms = true, diffTolerancePercent } = {}) => {
       await waitForEmbedReady(page, { waitForForms })
       const stableScreenshot = () => takeStableScreenshot(page)
 
       if (tracker) {
         // No VRT-side retries: they resend the same image, so they can never turn a diff into a pass.
-        await tracker.trackPage({ viewportSize: () => page.viewportSize(), screenshot: stableScreenshot }, name, {}, 0)
+        await tracker.trackPage(
+          { viewportSize: () => page.viewportSize(), screenshot: stableScreenshot },
+          name,
+          { diffTollerancePercent: diffTolerancePercent },
+          0
+        )
       } else {
         const image = await stableScreenshot()
         writeFileSync(join(LOCAL_SCREENSHOTS, `${name.replace(/[^a-z0-9]+/gi, '-')}.png`), image)
