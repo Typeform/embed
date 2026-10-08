@@ -31,3 +31,19 @@ export const openOnMobile = (url: string) => {
     },
   })
 }
+
+// Clicks the form's welcome screen button until the widget goes fullscreen (close button visible).
+// The button exists before the form's handlers are attached, so a single click can be lost; and it
+// can be scrolled out of the iframe viewport, hence `force`.
+export const startWidgetOnMobile = (attempts = 5) => {
+  cy.get('iframe').then(($iframe) => {
+    const $body = $iframe.contents().find('body')
+    cy.wrap($body).find('[data-qa="ok-button"]').click({ force: true })
+  })
+  cy.wait(1000)
+  cy.get('.tf-v1-widget-close').then(($close) => {
+    if (!$close.is(':visible') && attempts > 1) {
+      startWidgetOnMobile(attempts - 1)
+    }
+  })
+}
