@@ -1,3 +1,10 @@
+# [@typeform/embed-v6.1.0](https://github.com/Typeform/embed/compare/@typeform/embed-v6.0.3...@typeform/embed-v6.1.0) (2026-10-08)
+
+
+### Features
+
+* **TU-48826:** migrate all e2e tests to playwright, remove cypress and cover more embeds ([#790](https://github.com/Typeform/embed/issues/790)) ([4151c1e](https://github.com/Typeform/embed/commit/4151c1e6848e4c75fec60d7d2fb522270202ccc5))
+
 # [@typeform/embed-v6.0.3](https://github.com/Typeform/embed/compare/@typeform/embed-v6.0.2...@typeform/embed-v6.0.3) (2026-10-08)
 
 
