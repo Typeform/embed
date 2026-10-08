@@ -42,7 +42,7 @@ describe('Reload and reload methods', () => {
         cy.wait(transitionTime)
 
         cy.wrap($body).contains('How likely are you to recommend us')
-        cy.wrap($body).find('[data-qa-index="10"]').click()
+        cy.wrap($body).find('button[role="radio"][value="10"]').click()
 
         cy.wait(transitionTime)
 
