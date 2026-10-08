@@ -47,30 +47,3 @@ export const startWidgetOnMobile = (attempts = 5) => {
     }
   })
 }
-
-type EmbedKind = 'createWidget' | 'createPopup' | 'createPopover' | 'createSlider' | 'createSidetab'
-type TfWindow = Window & {
-  tf: Record<EmbedKind, (formId: string, options?: Record<string, unknown>) => { open?: () => void }>
-}
-
-// Opens a page with a striped background and creates an embed with the given options, to cover
-// options the demo pages don't use. Popups, sliders and sidetabs are opened when `open` is true.
-export const openWithEmbed = (
-  kind: EmbedKind,
-  formId: string,
-  options: Record<string, unknown> = {},
-  { open: openEmbed = false } = {}
-) => {
-  setViewport(screenSizeDesktop)
-  cy.visit('/visual-options.html')
-  cy.window().then((win) => {
-    const embed = (win as unknown as TfWindow).tf[kind](formId, {
-      medium: 'demo-test',
-      container: win.document.getElementById('wrapper'),
-      ...options,
-    })
-    if (openEmbed) {
-      embed.open?.()
-    }
-  })
-}

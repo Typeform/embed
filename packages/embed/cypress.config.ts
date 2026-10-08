@@ -1,5 +1,4 @@
 import { defineConfig } from 'cypress'
-import setupNodeEventsFn from './cypress/plugins'
 
 export default defineConfig({
   chromeWebSecurity: false,
@@ -10,9 +9,7 @@ export default defineConfig({
   animationDistanceThreshold: 2,
   video: false,
   e2e: {
-    // We've imported your old cypress plugins here.
-    // You may want to clean this up later by importing these.
-    setupNodeEvents: setupNodeEventsFn,
+    supportFile: false,
     specPattern: './e2e/spec/**/*.cy.{js,jsx,ts,tsx}',
     baseUrl: 'http://localhost:9090/',
   },

@@ -63,4 +63,6 @@ dist
 **/cypress/screenshots
 **/cypress/videos
 **/cypress/fixtures
-packages/embed/vrt.json
+packages/embed/visual-tests/local-screenshots
+packages/embed/playwright-report
+packages/embed/test-results

@@ -36,8 +36,10 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
-      - name: Install Cypress binary
-        run: yarn cypress install
+      # Same browser as the renderer's visual tests: Playwright's pinned Chromium, so the baselines only change
+      # when the Playwright version does. Skips the download when the browser is cached.
+      - name: Install Playwright browser
+        run: yarn playwright install --with-deps chromium
 
       - run: yarn build
 
@@ -50,12 +52,14 @@ jobs:
           VRT_BRANCHNAME: main
           VRT_CIBUILDID: ${{ github.sha }}
 
-      - name: Upload Cypress screenshots
+      - name: Upload Playwright report
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: cypress-visual-screenshots-${{ github.run_id }}
-          path: packages/embed/e2e/screenshots/
+          name: playwright-visual-report-${{ github.run_id }}
+          path: |
+            packages/embed/playwright-report/
+            packages/embed/test-results/
           if-no-files-found: ignore
 
   notify-results:

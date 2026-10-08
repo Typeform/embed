@@ -6,5 +6,5 @@
     "noEmit": true,
     "types": ["cypress"]
   },
-  "include": ["../node_modules/cypress", "./**/*.ts", "../cypress/**/*.ts"]
+  "include": ["../node_modules/cypress", "./**/*.ts"]
 }

@@ -6,3 +6,6 @@ types/
 CHANGELOG.md
 **/cypress/fixtures
 coverage/
+test-results/
+playwright-report/
+visual-tests/local-screenshots/
