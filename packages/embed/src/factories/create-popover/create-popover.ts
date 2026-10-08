@@ -85,7 +85,12 @@ const buildTriggerButton = (color: string, buttonProps: ButtonProps = {}) => {
   button.dataset.testid = 'tf-v1-popover-button'
   button.style.backgroundColor = color
   button.style.color = textColor
-  addAttributesToElement(button, buttonProps)
+  // Add default aria-label for accessibility if not provided
+  const propsWithDefaults = {
+    ariaLabel: 'Open form',
+    ...buttonProps,
+  }
+  addAttributesToElement(button, propsWithDefaults)
   return button
 }
 

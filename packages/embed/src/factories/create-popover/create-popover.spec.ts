@@ -185,5 +185,19 @@ describe('#createPopover', () => {
         expect(screen.getByTitle('pop')).toHaveAttribute('aria-label', 'foo')
       })
     })
+
+    describe('#default aria-label', () => {
+      it('should have a default aria-label for accessibility', () => {
+        popover = createPopover('formId')
+        const button = screen.getByTestId('tf-v1-popover-button')
+        expect(button).toHaveAttribute('aria-label', 'Open form')
+      })
+
+      it('should allow overriding the default aria-label', () => {
+        popover = createPopover('formId', { buttonProps: { ariaLabel: 'Custom label' } })
+        const button = screen.getByTestId('tf-v1-popover-button')
+        expect(button).toHaveAttribute('aria-label', 'Custom label')
+      })
+    })
   })
 })

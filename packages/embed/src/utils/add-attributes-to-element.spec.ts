@@ -19,6 +19,16 @@ describe('#addAttributesToElement', () => {
     expect(element.getAttribute('data-custom-value')).toBe('bar')
   })
 
+  it('should not double-hyphenate attributes that already contain hyphens', () => {
+    const element = document.createElement('button')
+    addAttributesToElement(element, {
+      'aria-label': 'test',
+      'data-custom-id': '123',
+    })
+    expect(element.getAttribute('aria-label')).toBe('test')
+    expect(element.getAttribute('data-custom-id')).toBe('123')
+  })
+
   it('should set element style from a string', () => {
     const element = document.createElement('button')
     addAttributesToElement(element, {
