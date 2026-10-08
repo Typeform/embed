@@ -1,4 +1,4 @@
-import { open, openOnMobile } from '../../cypress-utils'
+import { open, openOnMobile, startWidgetOnMobile } from '../../cypress-utils'
 
 describe('Embed Widget', () => {
   describe('Desktop', () => {
@@ -18,11 +18,8 @@ describe('Embed Widget', () => {
       })
 
       it('Basic Embed Widget - Mobile fullscreen view', () => {
-        cy.get('iframe').then(($iframe) => {
-          const $body = $iframe.contents().find('body')
-          cy.wrap($body).find('[data-qa="ok-button"]').click()
-        })
-        cy.wait(1000)
+        startWidgetOnMobile()
+        cy.get('.tf-v1-widget-close').should('be.visible')
         cy.vrt('Basic Embed Widget - Mobile fullscreen view')
       })
     })

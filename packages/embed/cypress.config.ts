@@ -9,10 +9,6 @@ export default defineConfig({
   viewportHeight: 1000,
   animationDistanceThreshold: 2,
   video: false,
-  eyesIsDisabled: false,
-  eyesFailCypressOnDiff: true,
-  eyesDisableBrowserFetching: false,
-  eyesPort: 61632,
   e2e: {
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.

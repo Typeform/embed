@@ -56,7 +56,9 @@ const getFormDocuments = (doc: Document) =>
 // finite animations. Infinite ones (spinners, skeletons) are ignored or this would never settle.
 const waitForFormsReady = () =>
   cy.document({ timeout: FORM_READY_TIMEOUT }).should((doc) => {
-    getFormDocuments(doc).forEach((formDoc) => {
+    const formDocs = getFormDocuments(doc)
+    expect(formDocs, 'form iframes found').to.have.length.greaterThan(0)
+    formDocs.forEach((formDoc) => {
       expect(formDoc.body.innerText.trim(), 'form has rendered content').to.not.equal('')
       expect(formDoc.fonts.status, 'fonts loaded').to.equal('loaded')
       expect(
@@ -79,7 +81,7 @@ const logFormState = (title: string) =>
         src: frame.src.slice(0, 120),
         size: `${frame.offsetWidth}x${frame.offsetHeight}`,
         text: formDoc.body.innerText.replace(/\s+/g, ' ').slice(0, 200),
-        okButton: !!formDoc.querySelector('[data-qa="ok-button"]'),
+        okButton: !!formDoc.querySelector('[data-qa*="ok-button"]'),
         // heuristic: the new RX renderer marks non-focused blocks `inert`, the old UI doesn't
         inertBlocks: formDoc.querySelectorAll('[inert]').length,
       }
