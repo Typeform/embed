@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         node_version:
-          - 24 # end of life 2028-04-30
+          - 24.21.0 # end of life 2028-04-30
     name: build-lint-test - node ${{ matrix.node_version }}
     steps:
       - name: Check out Git repository
@@ -52,7 +52,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 24.21.0
 
       - name: Get yarn cache
         uses: actions/cache@v5
@@ -98,7 +98,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version: 24.21.0
 
       - name: Get yarn cache
         uses: actions/cache@v5
