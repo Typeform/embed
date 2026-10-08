@@ -1,3 +1,31 @@
+# [@typeform/embed-v6.1.0](https://github.com/Typeform/embed/compare/@typeform/embed-v6.0.3...@typeform/embed-v6.1.0) (2026-10-08)
+
+
+### Features
+
+* **TU-48826:** migrate all e2e tests to playwright, remove cypress and cover more embeds ([#790](https://github.com/Typeform/embed/issues/790)) ([4151c1e](https://github.com/Typeform/embed/commit/4151c1e6848e4c75fec60d7d2fb522270202ccc5))
+
+# [@typeform/embed-v6.0.3](https://github.com/Typeform/embed/compare/@typeform/embed-v6.0.2...@typeform/embed-v6.0.3) (2026-10-08)
+
+
+### Bug Fixes
+
+* **TU-48826:** run the visual tests in chrome and fix the mobile fullscreen test ([#787](https://github.com/Typeform/embed/issues/787)) ([c89a167](https://github.com/Typeform/embed/commit/c89a167f998c335c40266f7877a5a51015c6da6e))
+
+# [@typeform/embed-v6.0.2](https://github.com/Typeform/embed/compare/@typeform/embed-v6.0.1...@typeform/embed-v6.0.2) (2026-10-08)
+
+
+### Bug Fixes
+
+* **TU-48826:** make VRT tests more consistent ([#784](https://github.com/Typeform/embed/issues/784)) ([3e1f922](https://github.com/Typeform/embed/commit/3e1f922c6f205c633be6757d9f6cff278ba27409))
+
+# [@typeform/embed-v6.0.1](https://github.com/Typeform/embed/compare/@typeform/embed-v6.0.0...@typeform/embed-v6.0.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* **TU-48826:** stabilize the CI ([#780](https://github.com/Typeform/embed/issues/780)) ([bebd02b](https://github.com/Typeform/embed/commit/bebd02bbd3a30790dd5e16ff08582078d964c625))
+
 # [@typeform/embed-v6.0.0](https://github.com/Typeform/embed/compare/@typeform/embed-v5.10.0...@typeform/embed-v6.0.0) (2026-03-02)
 
 

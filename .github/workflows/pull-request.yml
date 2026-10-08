@@ -67,11 +67,22 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
-      - name: Install Cypress binary
-        run: yarn cypress install
+      # Same browser as the visual tests: Playwright's pinned Chromium. Skips the download when it is cached.
+      - name: Install Playwright browser
+        run: yarn playwright install --with-deps chromium
 
       - run: yarn build
       - run: yarn test:functional
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-functional-report-${{ github.run_id }}
+          path: |
+            packages/embed/playwright-report/
+            packages/embed/test-results/
+          if-no-files-found: ignore
 
   deploy_preview:
     runs-on: ubuntu-latest
