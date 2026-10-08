@@ -12,7 +12,7 @@ describe('Auto Close', () => {
       const transitionTime = 1000
       const $body = $iframe.contents().find('body')
 
-      cy.wrap($body).find('[data-qa-index="10"]').click()
+      cy.wrap($body).find('button[role="radio"][value="10"]').click()
 
       cy.wait(transitionTime)
 
@@ -37,7 +37,7 @@ describe('Auto Close', () => {
       const transitionTime = 1000
       const $body = $iframe.contents().find('body')
 
-      cy.wrap($body).find('[data-qa-index="10"]').click()
+      cy.wrap($body).find('button[role="radio"][value="10"]').click()
 
       cy.wait(transitionTime)
 
