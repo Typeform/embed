@@ -408,20 +408,19 @@ Run unit tests:
 yarn test
 ```
 
-Run functional tests via Cypress:
+Run functional tests with [Playwright](https://playwright.dev) (uses its own Chromium, run `yarn playwright install chromium` once):
 
 ```bash
-yarn cy:run   # run in background (headless)
-yarn cy:open  # open cypress UI
+yarn test:functional  # run in background (headless)
+yarn test:e2e:open    # open the Playwright UI
 ```
 
-Run visual tests via Cypress and VRT:
+Run visual tests with Playwright and VRT:
 
 ```bash
-yarn cy:visual    # run in background (headless)
-yarn cy:open:vrt  # open cypress UI (with support for VRT)
+yarn test:visual
 ```
 
-_Note:_ You need access to our [self-hosted Visual Regression Tracker (aka VRT)](https://github.com/Visual-Regression-Tracker/Visual-Regression-Tracker). Copy `vrt.example.json` to `vrt.json` and provide `apiKey` to run visual tests locally.
+_Note:_ Without `VRT_APIKEY` the visual tests save their screenshots to `e2e/visual/local-screenshots` so you can run them locally without a VRT server. To track them in our [self-hosted Visual Regression Tracker (aka VRT)](https://github.com/Visual-Regression-Tracker/Visual-Regression-Tracker), set `VRT_APIURL`, `VRT_APIKEY`, `VRT_PROJECT` and `VRT_BRANCHNAME`. CI always tracks them.
 
 See details on [contributing to this repo](https://github.com/Typeform/embed#contribution).
