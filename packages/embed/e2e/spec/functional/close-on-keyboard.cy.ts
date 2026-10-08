@@ -9,7 +9,7 @@ describe('Close on Keyboard Esc Event', () => {
     cy.get('iframe').then(($iframe) => {
       const $body = $iframe.contents().find('body')
       // interact with Iframe
-      cy.wrap($body).find('[data-value-number="2"]').click()
+      cy.wrap($body).find('button[role="radio"][value="2"]').click()
       // close with keyboard inside iframe
       cy.wrap($body).find('textarea').type('{esc}')
     })
