@@ -19,7 +19,7 @@ jobs:
           # Use custom token from repo secrets to allow semantic release to push commit:
           # https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/github-actions.md#pushing-packagejson-changes-to-a-master-branch
           persist-credentials: false
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.JENKINS_PAT_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -50,11 +50,11 @@ jobs:
           //npm.pkg.github.com/:_authToken=${GH_TOKEN}
           EOF
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.JENKINS_PAT_TOKEN }}
 
       - run: yarn release
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.JENKINS_PAT_TOKEN }}
           SEGMENT_WRITE_KEY: ${{ secrets.DEPLOYMENT_SEGMENT_WRITE_KEY }}
 
       - uses: 8398a7/action-slack@v3
