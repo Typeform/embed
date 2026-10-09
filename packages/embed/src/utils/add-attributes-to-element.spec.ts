@@ -29,6 +29,14 @@ describe('#addAttributesToElement', () => {
     expect(element.getAttribute('data-custom-id')).toBe('123')
   })
 
+  it('should skip null and undefined values', () => {
+    const element = document.createElement('button')
+    addAttributesToElement(element, { title: undefined, 'data-foo': null, 'aria-label': 'ok' })
+    expect(element.hasAttribute('title')).toBe(false)
+    expect(element.hasAttribute('data-foo')).toBe(false)
+    expect(element.getAttribute('aria-label')).toBe('ok')
+  })
+
   it('should set element style from a string', () => {
     const element = document.createElement('button')
     addAttributesToElement(element, {

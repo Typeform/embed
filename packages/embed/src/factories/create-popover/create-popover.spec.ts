@@ -48,6 +48,14 @@ describe('#createPopover', () => {
         iframe?.onload?.({ isTrusted: true } as Event)
         expect(screen.getByTestId('tf-v1-popover-button-icon')).toBeInTheDocument()
       })
+
+      it('should mark the trigger button as expanded', () => {
+        const button = screen.getByTestId('tf-v1-popover-button')
+        expect(button).toHaveAttribute('aria-expanded', 'false')
+        popover.open()
+        jest.runAllTimers()
+        expect(button).toHaveAttribute('aria-expanded', 'true')
+      })
     })
 
     describe('#close', () => {
@@ -69,6 +77,16 @@ describe('#createPopover', () => {
         popover.close()
         await waitForElementToBeRemoved(() => screen.queryByTestId('tf-v1-popover-wrapper'))
         expect(screen.getByTestId('default-icon')).toBeInTheDocument()
+      })
+
+      it('should mark the trigger button as collapsed', async () => {
+        const button = screen.getByTestId('tf-v1-popover-button')
+        popover.open()
+        jest.runAllTimers()
+        screen.getByTestId('iframe')?.onload?.({ isTrusted: true } as Event)
+        popover.close()
+        expect(button).toHaveAttribute('aria-expanded', 'false')
+        await waitForElementToBeRemoved(() => screen.queryByTestId('tf-v1-popover-wrapper'))
       })
 
       it('should run onClose callback if provided', () => {
@@ -197,6 +215,18 @@ describe('#createPopover', () => {
         popover = createPopover('formId', { buttonProps: { ariaLabel: 'Custom label' } })
         const button = screen.getByTestId('tf-v1-popover-button')
         expect(button).toHaveAttribute('aria-label', 'Custom label')
+      })
+
+      it('should allow overriding the default aria-label with a hyphenated key (data-tf-button-props)', () => {
+        popover = createPopover('formId', { buttonProps: { 'aria-label': 'Custom label' } as never })
+        const button = screen.getByTestId('tf-v1-popover-button')
+        expect(button).toHaveAttribute('aria-label', 'Custom label')
+      })
+
+      it('should use the default aria-label when ariaLabel is undefined', () => {
+        popover = createPopover('formId', { buttonProps: { ariaLabel: undefined } })
+        const button = screen.getByTestId('tf-v1-popover-button')
+        expect(button).toHaveAttribute('aria-label', 'Open form')
       })
     })
   })
