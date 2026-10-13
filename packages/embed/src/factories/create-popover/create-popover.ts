@@ -78,6 +78,8 @@ const buildIcon = (customIcon?: string, color?: string) => {
   return triggerIcon
 }
 
+const DEFAULT_TRIGGER_ARIA_LABEL = 'Open form'
+
 const buildTriggerButton = (color: string, buttonProps: ButtonProps = {}) => {
   const textColor = getTextColor(color)
   const button = document.createElement('button')
@@ -86,6 +88,12 @@ const buildTriggerButton = (color: string, buttonProps: ButtonProps = {}) => {
   button.style.backgroundColor = color
   button.style.color = textColor
   addAttributesToElement(button, buttonProps)
+  // Icon-only button needs an accessible name. Check the DOM so any key form the user passed counts.
+  if (!button.hasAttribute('aria-label')) {
+    button.setAttribute('aria-label', DEFAULT_TRIGGER_ARIA_LABEL)
+  }
+  // The label stays constant, open state is conveyed through aria-expanded
+  button.setAttribute('aria-expanded', 'false')
   return button
 }
 
@@ -182,6 +190,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const open = () => {
     if (!isOpen(wrapper)) {
+      button.setAttribute('aria-expanded', 'true')
       hideTooltip()
       hideNotificationDot()
       setTimeout(() => {
@@ -207,6 +216,7 @@ export const createPopover = (formId: string, userOptions: PopoverOptions = {}):
 
   const close = () => {
     if (isOpen(popover)) {
+      button.setAttribute('aria-expanded', 'false')
       handlePreventReopenOnClose(options, formId)
       userOptions.onClose?.()
       setTimeout(() => {

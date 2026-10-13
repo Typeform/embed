@@ -16,6 +16,7 @@ for (const [title, path] of pages) {
     const openIcon = button.getByTestId('tf-v1-popover-button-icon')
 
     await expect(button, 'button displayed on page load').toBeVisible()
+    await expect(button).toHaveAttribute('aria-label', 'Typeform Button')
     await expect(defaultIcon).toBeVisible()
     await expect(wrapper, 'popover not displayed on page load').toHaveCount(0)
 

@@ -2,7 +2,8 @@ export const camelCaseToKebabCase = (value: string) => {
   return value
     .split('')
     .map((letter, i) => {
-      if (letter.toUpperCase() === letter) {
+      // Only add hyphen before uppercase letters (A-Z), not other characters like hyphens or numbers
+      if (letter >= 'A' && letter <= 'Z') {
         return `${i !== 0 ? '-' : ''}${letter.toLowerCase()}`
       }
       return letter
