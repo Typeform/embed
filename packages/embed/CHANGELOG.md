@@ -1,3 +1,10 @@
+# [@typeform/embed-v6.1.1](https://github.com/Typeform/embed/compare/@typeform/embed-v6.1.0...@typeform/embed-v6.1.1) (2026-10-13)
+
+
+### Bug Fixes
+
+* add default aria-label to popover button and fix double-hyphen bug ([#785](https://github.com/Typeform/embed/issues/785)) ([95c4d01](https://github.com/Typeform/embed/commit/95c4d01e76693ce10d3e3eb68ba66c185d301328))
+
 # [@typeform/embed-v6.1.0](https://github.com/Typeform/embed/compare/@typeform/embed-v6.0.3...@typeform/embed-v6.1.0) (2026-10-08)
 
 
