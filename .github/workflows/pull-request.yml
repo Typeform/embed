@@ -14,15 +14,15 @@ jobs:
     name: build-lint-test - node ${{ matrix.node_version }}
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node_version }}
 
       - name: Get yarn cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         id: yarn-cache
         with:
           path: |
@@ -47,15 +47,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24.21.0
 
       - name: Get yarn cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         id: yarn-cache
         with:
           path: |
@@ -75,7 +75,7 @@ jobs:
       - run: yarn test:functional
 
       - name: Upload Playwright report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: playwright-functional-report-${{ github.run_id }}
@@ -93,15 +93,15 @@ jobs:
       id-token: write
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24.21.0
 
       - name: Get yarn cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         id: yarn-cache
         with:
           path: |
