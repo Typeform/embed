@@ -58,6 +58,12 @@ describe('create-iframe', () => {
       expect(iframe.getAttribute('title')).toBe('hello')
     })
 
+    it('should default the iframe title when none is provided', () => {
+      const { iframe: iframeWithoutProps } = createIframe('widget', { formId: 'form-id', options: {} })
+
+      expect(iframeWithoutProps.getAttribute('title')).toBe('Typeform')
+    })
+
     it('should set correct iframe aria-label', () => {
       expect(iframe.getAttribute('aria-label')).toBe('foo bar')
     })
