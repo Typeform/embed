@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_version:
-          - 24.21.0 # end of life 2028-04-30
-    name: build-lint-test - node ${{ matrix.node_version }}
+        # node_major names the job, and must match the required check in the repo ruleset
+        include:
+          - node_version: 24.21.0 # end of life 2028-04-30
+            node_major: 24
+    name: build-lint-test - node ${{ matrix.node_major }}
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v7
