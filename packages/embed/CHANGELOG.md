@@ -1,3 +1,10 @@
+# [@typeform/embed-v6.1.2](https://github.com/Typeform/embed/compare/@typeform/embed-v6.1.1...@typeform/embed-v6.1.2) (2026-11-16)
+
+
+### Bug Fixes
+
+* **TU-50453:** default the iframe title to Typeform ([#807](https://github.com/Typeform/embed/issues/807)) ([0e5afc4](https://github.com/Typeform/embed/commit/0e5afc41cbaab9e48d608c0349977bf8de144c79))
+
 # [@typeform/embed-v6.1.1](https://github.com/Typeform/embed/compare/@typeform/embed-v6.1.0...@typeform/embed-v6.1.1) (2026-10-13)
 
 
