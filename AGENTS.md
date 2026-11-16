@@ -117,7 +117,7 @@ Messages matched by type and embed id only; no `event.origin` check. Treat callb
 - **`hidden` ≠ `tracking`.** Hidden fields must exist in form and travel in URL hash; `tracking` goes in query string.
 - **`domain` = bare host** (`form.typeform.eu`), not URL.
 - **EU accounts: forms live on `form.typeform.eu`.** Plain embed points at `form.typeform.com`, which doesn't serve EU forms (returns Typeform's generic landing page). Use `region: 'eu'` (JS, React) or `data-tf-domain="form.typeform.eu"` (HTML); custom `domain` wins over `region`. For `data-tf-live`, add `data-tf-region="eu"` on same element so snippet fetched from `api.typeform.eu`. `region` row in `docs/configuration.md` still says not available to customers yet; SDK supports it.
-- **`enableSandbox` = Typeform test mode**, not iframe `sandbox`. Iframe has no `sandbox` attribute, no default `title` (pass `iframeProps: { title }`) and `allow="microphone; camera"` only; `iframeProps.allow` replaces list, not extends.
+- **`enableSandbox` = Typeform test mode**, not iframe `sandbox`. Iframe has no `sandbox` attribute, default `title` `Typeform` (override with `iframeProps: { title }`) and `allow="microphone; camera"` only; `iframeProps.allow` replaces list, not extends.
 - **Mobile widgets go fullscreen.** On phone widget shows placeholder welcome screen, then opens as fullscreen modal unless `inlineOnMobile` or `fullScreen` set. Check is user-agent based.
 - **Redirects:** default `redirectTarget` is `_parent` (navigates host page). `_self` keeps redirect inside iframe (needed to chain typeforms); `_blank` blocked by Safari and Chrome Android; `_self` + `autoClose` closes modal before redirect seen.
 - **`onClose` has no payload.** Code destructuring `({ formId })` from it throws.
