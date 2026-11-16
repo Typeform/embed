@@ -18,6 +18,8 @@ import { triggerIframeRedraw } from './trigger-iframe-redraw'
 import { dispatchCustomKeyEventFromIframe } from './setup-custom-keyboard-close'
 import { refreshIframe } from './refresh-iframe'
 
+const DEFAULT_IFRAME_TITLE = 'Typeform'
+
 type CreateIframe = {
   formId: string
   domain?: string
@@ -47,6 +49,7 @@ export const createIframe = (type: EmbedType, { formId, domain, options }: Creat
   iframe.dataset.testid = 'iframe'
   iframe.style.border = '0px'
   iframe.allow = 'microphone; camera'
+  iframe.title = DEFAULT_IFRAME_TITLE
   addAttributesToElement(iframe, iframeProps)
 
   iframe.addEventListener('load', triggerIframeRedraw, { once: true })
