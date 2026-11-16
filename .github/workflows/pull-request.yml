@@ -11,7 +11,7 @@ jobs:
       matrix:
         node_version:
           - 24.21.0 # end of life 2028-04-30
-    name: build-lint-test - node ${{ matrix.node_version }}
+    name: build-lint-test - node 24
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v6
