@@ -10,7 +10,7 @@ on:
 jobs:
   daily-visual-tests:
     name: 'Daily Visual Tests'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     steps:
       - name: Check out Git repository
@@ -64,7 +64,7 @@ jobs:
 
   notify-results:
     name: 'Notify Test Results'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     needs: [daily-visual-tests]
     if: always()
     steps:

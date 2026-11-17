@@ -144,6 +144,11 @@ Layout: `packages/embed/src/{base,factories,initializers,live-embed,utils,css}`,
 
 Node 24 in CI (`engines` still says ≥ 18), Yarn 1, Lerna 3 as task runner only.
 
+Runner image: every job pins `ubuntu-26.04`. Never use `ubuntu-latest`: GitHub repoints it to next Ubuntu LTS with no
+change in this repo. To upgrade, change label in all workflows in one PR; its checks (build, functional, visual) validate
+new image, and visual baselines may need re-approving in VRT. Release and `deploy-aws.yml` only run from `main`, so watch
+first `Release` and `Deploy to AWS` runs after merge and revert that PR if they fail.
+
 ```bash
 yarn install                 # runs lerna bootstrap
 yarn build                   # embed, then embed-react, then the Next.js demo; build embed before embed-react

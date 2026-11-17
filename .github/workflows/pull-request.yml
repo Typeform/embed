@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-lint-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     strategy:
       matrix:
         # node_major names the job, and must match the required check in the repo ruleset
@@ -46,7 +46,7 @@ jobs:
 
 
   functional:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v7
@@ -87,7 +87,7 @@ jobs:
           if-no-files-found: ignore
 
   deploy_preview:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     # skip for external PRs
     if: github.event.pull_request.head.repo.full_name == github.repository
     permissions:

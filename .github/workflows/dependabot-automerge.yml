@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   automerge:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     # Trusted automation only. Keyed on the PR author so the job still runs, and
     # can revoke, when someone else pushes to a bot PR. Keep in sync across repos.
     if: contains(fromJSON('["dependabot[bot]", "aikido-autofix[bot]"]'), github.event.pull_request.user.login)
