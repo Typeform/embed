@@ -6,7 +6,7 @@ on:
 
 jobs:
   trigger-external-update:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
       - name: update_embed_demos

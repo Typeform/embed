@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   labeler:
-    runs-on: [ubuntu-latest]
+    runs-on: [ubuntu-26.04]
     name: Label the PR size
     permissions:
       contents: read

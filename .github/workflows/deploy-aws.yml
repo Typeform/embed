@@ -9,7 +9,7 @@ jobs:
     name: Deploy Embed to AWS
     # Only run for embed releases (not embed-react). Tag format: @typeform/embed-v5.8.0
     if: startsWith(github.event.release.tag_name, '@typeform/embed-v')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
       id-token: write
